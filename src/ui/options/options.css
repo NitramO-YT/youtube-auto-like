@@ -92,6 +92,10 @@ main {
   border-bottom: 1px solid var(--border);
   scroll-margin-top: 80px;
 }
+/* Focused by the menu, for keyboard users; the menu already marks it. */
+.block:focus {
+  outline: none;
+}
 .block:last-child {
   border-bottom: 0;
 }

@@ -26,3 +26,22 @@ export function currentSection(tops, { scrollY, scrollMax, height, offset }) {
   });
   return current;
 }
+
+/**
+ * The scroll position that brings a section chosen in the menu onto the
+ * reading line, so that it is the current one, and that scrolling from there
+ * goes on from it.
+ *
+ * With line(y) = offset + y / scrollMax × (height − 1 − offset), the top of
+ * the section, pageTop − y in window coordinates, meets the line at
+ * y = (pageTop − offset) / (1 + (height − 1 − offset) / scrollMax). Rounded
+ * up, so that the top is on the line or just above it.
+ *
+ * @param {number} pageTop Top of the section in page coordinates.
+ * @param {object} view { scrollMax, height, offset }, as for currentSection.
+ */
+export function scrollTargetFor(pageTop, { scrollMax, height, offset }) {
+  if (scrollMax <= 0) return 0;
+  const target = Math.ceil((pageTop - offset) / (1 + (height - 1 - offset) / scrollMax));
+  return Math.min(scrollMax, Math.max(0, target));
+}

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { currentSection } from '../../src/ui/options/sections.js';
+import { currentSection, scrollTargetFor } from '../../src/ui/options/sections.js';
 
 // Five sections at these page positions; a window of 1000 px whose page
 // scrolls by 200 px only, as on a large screen.
@@ -35,6 +35,26 @@ describe('currentSection', () => {
 
   it('reads a page that does not scroll from its first section', () => {
     assert.equal(at(0, 0, 2000), 0);
+  });
+
+  it('brings a section chosen in the menu onto the reading line, whatever the screen', () => {
+    for (const [scrollMax, height] of [[200, 1000], [1000, 300], [880, 613]]) {
+      PAGE_TOPS.forEach((pageTop, index) => {
+        const target = scrollTargetFor(pageTop, { scrollMax, height, offset: 120 });
+        assert.ok(target >= 0 && target <= scrollMax);
+        assert.equal(at(target, scrollMax, height), index, `section ${index}, ${height} px high, scrolling ${scrollMax} px`);
+      });
+    }
+  });
+
+  it('goes on from the chosen section when the page scrolls a little further, never back', () => {
+    for (const [scrollMax, height] of [[200, 1000], [1000, 300]]) {
+      PAGE_TOPS.forEach((pageTop, index) => {
+        const target = scrollTargetFor(pageTop, { scrollMax, height, offset: 120 });
+        assert.ok(at(Math.min(scrollMax, target + 3), scrollMax, height) >= index);
+        assert.ok(at(Math.max(0, target - 3), scrollMax, height) <= index);
+      });
+    }
   });
 
   it('follows the header on a long page', () => {
