@@ -67,21 +67,40 @@ const channelBar = ({ listsButton, buttonClasses = [] }) =>
     children: listsButton ? { 'yt-subscribe-button-view-model button': element({ classes: buttonClasses }) } : {},
   });
 
-const short = (videoId, bar) =>
+// Action bar of a Short as observed: data.buttonViewModels lists the like
+// button with likeStatus, and no dislike component.
+const shortsActionBar = (videoId, { isToggled = false, likeStatus } = {}) =>
+  element({
+    props: {
+      data: {
+        buttonViewModels:
+          likeStatus === undefined
+            ? []
+            : [{ likeButtonViewModel: { likeStatusEntityKey: 'key', likeStatusEntity: { likeStatus } } }, { buttonViewModel: {} }],
+      },
+    },
+    children: { [LIKE_TOGGLE]: shortsToggle(videoId, isToggled) },
+  });
+
+const short = (videoId, bar, actionBar = shortsActionBar(videoId)) =>
   element({
     props: { data: { command: { reelWatchEndpoint: { videoId } } } },
     children: {
       ...(bar && { 'yt-reel-channel-bar-view-model': bar }),
-      // Dislike replaced by Return YouTube Dislike: no dislike component.
-      'reel-action-bar-view-model': element({ children: { [LIKE_TOGGLE]: shortsToggle(videoId, false) } }),
+      'reel-action-bar-view-model': actionBar,
     },
   });
 
-const shortsPage = ({ videoId = 'JgL5gMtA2X4', shortVideoId = videoId, bar = channelBar({ listsButton: false }) } = {}) =>
+const shortsPage = ({
+  videoId = 'JgL5gMtA2X4',
+  shortVideoId = videoId,
+  bar = channelBar({ listsButton: false }),
+  actionBar = shortsActionBar(shortVideoId),
+} = {}) =>
   fakeDocument({
     '#shorts-player': element({
       props: { getPlayerResponse: () => response(videoId, { microformat: { isShortsEligible: true } }) },
-      ancestors: { 'ytd-reel-video-renderer': short(shortVideoId, bar) },
+      ancestors: { 'ytd-reel-video-renderer': short(shortVideoId, bar, actionBar) },
     }),
   });
 
@@ -154,6 +173,34 @@ describe('readSnapshot in the Shorts player', () => {
     const snapshot = readSnapshot(shortsPage({ shortVideoId: 'trLwaRWXeJY' }), Surface.SHORTS);
     assert.equal(snapshot.videoId, 'JgL5gMtA2X4');
     assert.equal(snapshot.surfaceVideoId, 'trLwaRWXeJY');
+  });
+
+  describe('rating at load from likeStatus', () => {
+    const ratings = (options) => {
+      const { likeAtLoad, dislikeAtLoad } = readSnapshot(
+        shortsPage({ actionBar: shortsActionBar('JgL5gMtA2X4', options) }),
+        Surface.SHORTS,
+      );
+      return { liked: likeAtLoad?.toggled, disliked: dislikeAtLoad?.toggled, dislikeVideoId: dislikeAtLoad?.videoId };
+    };
+
+    it('INDIFFERENT, observed on a Short not rated: neither liked nor disliked', () => {
+      assert.deepEqual(ratings({ likeStatus: 'INDIFFERENT' }), { liked: false, disliked: false, dislikeVideoId: 'JgL5gMtA2X4' });
+    });
+
+    it('LIKE, observed on a liked Short: liked, even when the button data says otherwise', () => {
+      assert.deepEqual(ratings({ likeStatus: 'LIKE', isToggled: false }), { liked: true, disliked: false, dislikeVideoId: 'JgL5gMtA2X4' });
+    });
+
+    it('any other value counts as disliked, so that it never allows a like', () => {
+      assert.equal(ratings({ likeStatus: 'DISLIKE' }).disliked, true);
+      assert.equal(ratings({ likeStatus: 'SOMETHING_NEW' }).disliked, true);
+      assert.equal(ratings({ likeStatus: '' }).disliked, true);
+    });
+
+    it('leaves the dislike state unknown without likeStatus', () => {
+      assert.equal(ratings({}).disliked, undefined);
+    });
   });
 
   it('ignores the watch page hidden behind the Shorts player', () => {

@@ -216,6 +216,35 @@ describe('step', () => {
       assert.equal(settle(session, observation(), instant, T0 + 300_001).action, 'click');
     });
 
+    // Seen in Brave on 8 November 2026: Shorts with no dislike button at all
+    // stayed unreadable until Return YouTube Dislike added its own.
+    it('likes a video with no dislike button once the state at load says not disliked', () => {
+      const result = settle(start(), observation({ disliked: null }), instant, T0);
+      assert.equal(result.action, 'click');
+    });
+
+    it('skips a video with no dislike button that YouTube sent disliked', () => {
+      const result = step(
+        start(),
+        observation({ disliked: null, snapshot: snapshot({ dislikeAtLoad: { toggled: true, videoId: VIDEO_ID } }) }),
+        instant,
+        T0,
+      );
+      assert.equal(result.session.reason, Reason.ALREADY_DISLIKED);
+    });
+
+    it('waits when there is neither a dislike button nor a dislike state at load', () => {
+      const result = settle(start(), observation({ disliked: null, snapshot: snapshot({ dislikeAtLoad: null }) }), instant, T0);
+      assert.equal(result.action, null);
+      assert.equal(result.session.reason, Reason.UNKNOWN_STATE);
+    });
+
+    it('still needs the like button on screen, whatever the state at load', () => {
+      const result = settle(start(), observation({ liked: null }), instant, T0);
+      assert.equal(result.action, null);
+      assert.equal(result.session.reason, Reason.UNKNOWN_STATE);
+    });
+
     it('accepts a dislike button with no state at load, replaced by another extension', () => {
       assert.equal(settle(start(), observation({ snapshot: snapshot({ dislikeAtLoad: null }) }), instant, T0).action, 'click');
       assert.equal(

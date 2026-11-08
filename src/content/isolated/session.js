@@ -61,25 +61,29 @@ export function createSession(videoId, now, random) {
 const update = (session, changes, action = null) => ({ session: { ...session, ...changes }, action });
 
 /**
- * Whether a button counts as pressed: true when the page shows it pressed or
- * YouTube sent it pressed with the page, false only when both say no, null
- * when unknown. The state at load must be about this video: a button left
- * with the data of the previous video gives null.
+ * Whether a rating counts as given: true when the page shows the button
+ * pressed or YouTube sent the video rated with the page, false when neither,
+ * null when unknown. The state at load must be about this video: data left
+ * from the previous video gives null.
  *
- * @param {boolean|null} shown aria-pressed of the button.
+ * @param {boolean|null} shown aria-pressed of the button, null when the
+ *   button is missing.
  * @param {object|null} atLoad { toggled, videoId } from the snapshot.
- * @param {boolean} required Whether the state at load must be known: always
- *   for the like button, and not for a dislike button replaced by another
- *   extension, which carries no data.
+ * @param {boolean} isLike The like button must be on screen, since it is
+ *   the one clicked; a missing dislike button is fine once the state at load
+ *   says not disliked (the Shorts player often has none, and without one the
+ *   user cannot dislike in the page). A dislike button replaced by another
+ *   extension carries no data: what it shows is then enough.
  */
-function pressedState(shown, atLoad, videoId, required) {
+function ratingState(shown, atLoad, videoId, isLike) {
   if (shown === true) return true;
   if (atLoad) {
     if (atLoad.videoId !== videoId || atLoad.toggled === null) return null;
     if (atLoad.toggled) return true;
-  } else if (required) {
-    return null;
+    if (shown === false) return false;
+    return isLike ? null : false;
   }
+  if (isLike) return null;
   return shown === false ? false : null;
 }
 
@@ -121,8 +125,8 @@ export function step(session, observation, settings, now) {
       channelId: snapshot.channelId,
       isShort: snapshot.isShort,
       subscribed: snapshot.subscribed,
-      liked: pressedState(observation.liked, snapshot.likeAtLoad, session.videoId, true),
-      disliked: pressedState(observation.disliked, snapshot.dislikeAtLoad, session.videoId, false),
+      liked: ratingState(observation.liked, snapshot.likeAtLoad, session.videoId, true),
+      disliked: ratingState(observation.disliked, snapshot.dislikeAtLoad, session.videoId, false),
     },
     settings,
   );

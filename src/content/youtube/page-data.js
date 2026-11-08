@@ -26,6 +26,14 @@
  * opened in the watch page, Brave, 8 November 2026): the button alone cannot
  * prove that a video is not liked yet.
  *
+ * In the Shorts player, the action bar's own data also holds the rating sent
+ * with the page, likeButtonViewModel.likeStatusEntity.likeStatus: "LIKE" and
+ * "INDIFFERENT" observed on 8 November 2026. The Shorts player often shows
+ * no dislike button at all (neither YouTube's nor Return YouTube Dislike's),
+ * so this is where the dislike state at load comes from there. Any value
+ * other than the two observed counts as disliked, so that an unknown value
+ * never allows a like.
+ *
  * Every access is guarded: a missing piece gives null, never an exception.
  */
 import { Surface } from './surface.js';
@@ -40,6 +48,7 @@ const SHORTS_RATING_BAR = 'reel-action-bar-view-model';
 const LIKE_TOGGLE = 'like-button-view-model toggle-button-view-model';
 const DISLIKE_TOGGLE = 'dislike-button-view-model toggle-button-view-model';
 const SHORTS_CHANNEL_BAR = 'yt-reel-channel-bar-view-model';
+const NOT_DISLIKED_STATUSES = ['LIKE', 'INDIFFERENT'];
 // Depth of the like command below defaultButtonViewModel: 6 levels on the
 // watch page, 3 in the Shorts player (checked on 8 November 2026), with some
 // margin.
@@ -99,10 +108,33 @@ export function ratingAtLoad(toggle) {
   };
 }
 
+/** likeStatus from the data of a Shorts action bar, or null. */
+export function shortsLikeStatus(bar) {
+  const buttons = bar?.data?.buttonViewModels;
+  if (!Array.isArray(buttons)) return null;
+  const status = buttons.find((button) => button?.likeButtonViewModel)?.likeButtonViewModel?.likeStatusEntity?.likeStatus;
+  return typeof status === 'string' ? status : null;
+}
+
 function ratingsAtLoad(bar) {
   return {
     likeAtLoad: ratingAtLoad(bar?.querySelector(LIKE_TOGGLE)),
     dislikeAtLoad: ratingAtLoad(bar?.querySelector(DISLIKE_TOGGLE)),
+  };
+}
+
+/**
+ * In the Shorts player, likeStatus completes the button data: it marks the
+ * video liked, and gives the dislike state when no dislike component exists.
+ * It rates the same video as the like button of the same bar.
+ */
+function shortsRatingsAtLoad(bar) {
+  const { likeAtLoad, dislikeAtLoad } = ratingsAtLoad(bar);
+  const status = shortsLikeStatus(bar);
+  if (status === null || !likeAtLoad) return { likeAtLoad, dislikeAtLoad };
+  return {
+    likeAtLoad: { ...likeAtLoad, toggled: likeAtLoad.toggled === true || status === 'LIKE' },
+    dislikeAtLoad: dislikeAtLoad ?? { toggled: !NOT_DISLIKED_STATUSES.includes(status), videoId: likeAtLoad.videoId },
   };
 }
 
@@ -123,7 +155,7 @@ function shortsSources(doc) {
     response: guarded(() => player?.getPlayerResponse?.()),
     surfaceVideoId: short?.data?.command?.reelWatchEndpoint?.videoId ?? null,
     subscribed: shortsSubscription(short),
-    ...ratingsAtLoad(short?.querySelector(SHORTS_RATING_BAR)),
+    ...shortsRatingsAtLoad(short?.querySelector(SHORTS_RATING_BAR)),
   };
 }
 
