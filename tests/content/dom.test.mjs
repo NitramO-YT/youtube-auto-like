@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { findLikeButton, readPlayback, readRating } from '../../src/content/youtube/dom.js';
+import { findLikeButton, readChannelAvatar, readPlayback, readRating } from '../../src/content/youtube/dom.js';
 import { Surface } from '../../src/content/youtube/surface.js';
 import { element, fakeDocument } from '../helpers/fake-dom.mjs';
 
@@ -85,6 +85,41 @@ describe('findLikeButton', () => {
   it('finds nothing without a surface or a rating bar', () => {
     assert.equal(findLikeButton(fakeDocument(), Surface.WATCH), null);
     assert.equal(findLikeButton(watchPage({ [LIKE]: 'false' }), null), null);
+  });
+});
+
+describe('readChannelAvatar', () => {
+  // Address observed on 8 November 2026 (COLAS).
+  const AVATAR = 'https://yt3.ggpht.com/MVUN-H_w-0QKeMUYdDNiS3NA0cvA8mWGPHNzgTdxvplCbszxBKH-4smhoBfc9GBiI0j8';
+  const image = (src) => element({ props: { src, currentSrc: '' } });
+  const watch = (src) => fakeDocument({ 'ytd-watch-metadata ytd-video-owner-renderer #avatar img': image(src) });
+  const shorts = (src) => {
+    const short = element({ children: { 'yt-reel-channel-bar-view-model img': image(src) } });
+    return fakeDocument({ '#shorts-player': element({ ancestors: { 'ytd-reel-video-renderer': short } }) });
+  };
+
+  it('reads the avatar of the channel on both surfaces', () => {
+    assert.equal(readChannelAvatar(watch(AVATAR), Surface.WATCH), AVATAR);
+    assert.equal(readChannelAvatar(shorts(AVATAR), Surface.SHORTS), AVATAR);
+  });
+
+  it('refuses any address that is not an https image of YouTube servers', () => {
+    for (const src of [
+      'http://yt3.ggpht.com/x',
+      'https://evil.example/x.png',
+      'https://yt3.ggpht.com.evil.example/x',
+      'javascript:alert(1)',
+      'data:image/png;base64,AAAA',
+      '',
+      'not a url',
+    ]) {
+      assert.equal(readChannelAvatar(watch(src), Surface.WATCH), null, src);
+    }
+  });
+
+  it('gives null without an image or a surface', () => {
+    assert.equal(readChannelAvatar(fakeDocument(), Surface.WATCH), null);
+    assert.equal(readChannelAvatar(watch(AVATAR), null), null);
   });
 });
 

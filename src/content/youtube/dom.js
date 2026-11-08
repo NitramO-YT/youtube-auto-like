@@ -18,13 +18,18 @@ const SELECTORS = {
     ratingBar: 'ytd-menu-renderer.ytd-watch-metadata segmented-like-dislike-button-view-model',
     player: '#movie_player',
     video: '#movie_player video.video-stream',
+    avatar: 'ytd-watch-metadata ytd-video-owner-renderer #avatar img',
   },
   [Surface.SHORTS]: {
     ratingBar: 'reel-action-bar-view-model',
     player: '#shorts-player',
     video: '#shorts-player video.video-stream',
+    avatar: 'yt-reel-channel-bar-view-model img',
   },
 };
+// Hosts the channel avatars come from (yt3.ggpht.com observed on 8 November
+// 2026). The popup loads the avatar, so any other address is refused.
+const AVATAR_HOSTS = ['yt3.ggpht.com', 'yt3.googleusercontent.com', 'yt4.ggpht.com'];
 const SHORT = 'ytd-reel-video-renderer';
 // The like component holds two buttons; the one with aria-pressed is the toggle.
 const LIKE_BUTTON = 'like-button-view-model button[aria-pressed]';
@@ -37,14 +42,31 @@ const REPLACED_SHORTS_DISLIKE_BUTTON = ':scope > div button[aria-pressed]';
 // yet observed in this project).
 const AD_CLASSES = ['ad-showing', 'ad-interrupting'];
 
+/** The root to search the video's own elements in: the Short being played, or the page. */
+function scope(doc, surface) {
+  if (surface === Surface.SHORTS) return doc.querySelector(SELECTORS[surface].player)?.closest(SHORT) ?? null;
+  return doc;
+}
+
 function ratingBar(doc, surface) {
   const selectors = SELECTORS[surface];
   if (!selectors) return null;
-  if (surface === Surface.SHORTS) {
-    const short = doc.querySelector(selectors.player)?.closest(SHORT);
-    return short?.querySelector(selectors.ratingBar) ?? null;
+  return scope(doc, surface)?.querySelector(selectors.ratingBar) ?? null;
+}
+
+/** The address of the channel avatar, when it is an https image of YouTube's servers; otherwise null. */
+export function readChannelAvatar(doc, surface) {
+  const selectors = SELECTORS[surface];
+  if (!selectors) return null;
+  const image = scope(doc, surface)?.querySelector(selectors.avatar);
+  const source = image?.currentSrc || image?.src;
+  if (typeof source !== 'string') return null;
+  try {
+    const url = new URL(source);
+    return url.protocol === 'https:' && AVATAR_HOSTS.includes(url.hostname) ? url.href : null;
+  } catch {
+    return null;
   }
-  return doc.querySelector(selectors.ratingBar);
 }
 
 function pressed(button) {

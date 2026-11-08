@@ -6,6 +6,8 @@ import {
   CLICK_CONFIRM_TIMEOUT_MS,
   createSession,
   isFinal,
+  likeNow,
+  skipVideo,
   STABLE_FOR_MS,
   Status,
   step,
@@ -132,6 +134,47 @@ describe('step', () => {
       const liked = step(start(), observation({ liked: true }), instant, T0).session;
       assert.ok(isFinal(liked));
       assert.equal(settle(liked, observation(), instant, T0 + 5000).action, null);
+    });
+  });
+
+  describe('commands from the popup', () => {
+    it('"like now" skips the wait, but not the stability delay', () => {
+      const waiting = step(start(), observation({ position: 10 }), halfway, T0).session;
+      const asked = likeNow(waiting);
+      const first = step(asked, observation({ position: 11 }), halfway, T0 + 1000);
+      assert.equal(first.action, null);
+      assert.deepEqual(first.session.target, { at: 0, basis: 'like-now' });
+      assert.equal(step(first.session, observation({ position: 12 }), halfway, T0 + 2000).action, 'click');
+    });
+
+    it('"like now" never likes a video the user has rated', () => {
+      const asked = likeNow(step(start(), observation({ position: 10 }), halfway, T0).session);
+      const result = settle(asked, observation({ liked: true }), halfway, T0 + 1000);
+      assert.equal(result.action, null);
+      assert.equal(result.session.reason, Reason.ALREADY_LIKED);
+    });
+
+    it('"like now" changes nothing once the video is done with', () => {
+      const liked = step(clicked(), observation({ liked: true }), instant, T0 + 2000).session;
+      assert.equal(likeNow(liked), liked);
+    });
+
+    it('"not this video" leaves the video alone for good', () => {
+      const skipped = skipVideo(step(start(), observation({ position: 10 }), halfway, T0).session);
+      assert.equal(skipped.status, Status.SKIPPED);
+      assert.equal(skipped.reason, Reason.SKIPPED_BY_USER);
+      assert.ok(isFinal(skipped));
+      assert.equal(settle(skipped, observation({ position: 900 }), halfway, T0 + 5000).action, null);
+    });
+
+    it('"not this video" cannot take back a click already made', () => {
+      const confirming = clicked();
+      assert.equal(skipVideo(confirming), confirming);
+    });
+
+    it('records when the like was confirmed', () => {
+      const liked = step(clicked(), observation({ liked: true }), instant, T0 + 2500).session;
+      assert.equal(liked.likedAt, T0 + 2500);
     });
   });
 

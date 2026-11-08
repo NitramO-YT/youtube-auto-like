@@ -62,6 +62,8 @@ export function createSession(videoId, now, random) {
     liveStart: null,
     readySince: null,
     clickedAt: null,
+    likedAt: null,
+    likeNow: false,
     target: null,
     status: Status.READING,
     reason: null,
@@ -69,6 +71,24 @@ export function createSession(videoId, now, random) {
 }
 
 const update = (session, changes, action = null) => ({ session: { ...session, ...changes }, action });
+
+/**
+ * "Like now", from the popup: the video no longer waits for its like time.
+ * Every other check still applies, the stability delay included.
+ */
+export function likeNow(session) {
+  return isFinal(session) ? session : { ...session, likeNow: true };
+}
+
+/**
+ * "Not this video", from the popup: the video being watched is left alone
+ * for good. A click already made cannot be taken back, so it is refused
+ * while the like is being confirmed.
+ */
+export function skipVideo(session) {
+  if (isFinal(session) || session.status === Status.CONFIRMING) return session;
+  return { ...session, status: Status.SKIPPED, reason: Reason.SKIPPED_BY_USER, readySince: null };
+}
 
 /**
  * Whether a rating counts as given: true when the page shows the button
@@ -109,7 +129,7 @@ export function step(session, observation, settings, now) {
   if (isFinal(session)) return { session, action: null };
 
   if (session.status === Status.CONFIRMING) {
-    if (observation.liked === true) return update(session, { status: Status.LIKED });
+    if (observation.liked === true) return update(session, { status: Status.LIKED, likedAt: now });
     if (now - session.clickedAt > CLICK_CONFIRM_TIMEOUT_MS) return update(session, { status: Status.CLICK_FAILED });
     return update(session, {});
   }
@@ -146,6 +166,7 @@ export function step(session, observation, settings, now) {
     return update(session, { status, reason: verdict.reason, readySince: null });
   }
 
+  if (session.likeNow) return ready({ target: { at: 0, basis: 'like-now' } });
   if (settings.timing.mode === 'instant') return ready({ target: { at: 0, basis: 'instant' } });
 
   // An ad plays in the same video element: its time and duration are not

@@ -21,6 +21,9 @@ export const Reason = Object.freeze({
   NOT_SUBSCRIBED: 'not-subscribed',
   IN_NEVER_LIST: 'in-never-list',
   NOT_IN_ALWAYS_LIST: 'not-in-always-list',
+  // Set by the liker, not by evaluateEligibility: the user asked, from the
+  // popup, not to like the video being watched.
+  SKIPPED_BY_USER: 'skipped-by-user',
 });
 
 const verdict = (eligible, reason) => ({ eligible, reason });
