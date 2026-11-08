@@ -1,13 +1,16 @@
 /**
- * The file the options page exports the channel lists to, and imports them
- * from: JSON, { format, version, exportedAt, always, never }, each list
- * holding { id, name, addedAt } entries.
+ * The file the options page exports the lists to, and imports them from:
+ * JSON, { format, version, exportedAt, always, never, excludedVideos }. The
+ * channel lists hold { id, name, addedAt } entries, the excluded videos
+ * { videoId, title, channelName, isShort, addedAt } ones. excludedVideos may
+ * be missing from a file.
  *
  * An imported file is untrusted: its size is bounded, its format must be
- * this one, and its lists go through normalizeLists, which keeps valid
- * channel IDs and known fields only.
+ * this one, and its lists go through normalizeLists and
+ * normalizeExcludedVideos, which keep valid IDs and known fields only.
  */
 import { normalizeLists } from './channels.js';
+import { normalizeExcludedVideos } from './excluded-videos.js';
 
 export const LISTS_FILE_FORMAT = 'youtube-auto-like/channel-lists';
 export const LISTS_FILE_VERSION = 1;
@@ -20,12 +23,16 @@ export const ImportError = Object.freeze({
 });
 
 /** The text of an export file. */
-export function serializeLists(lists, exportedAt) {
-  return `${JSON.stringify(
-    { format: LISTS_FILE_FORMAT, version: LISTS_FILE_VERSION, exportedAt, always: lists.always, never: lists.never },
-    null,
-    2,
-  )}\n`;
+export function serializeLists(lists, excludedVideos, exportedAt) {
+  const data = {
+    format: LISTS_FILE_FORMAT,
+    version: LISTS_FILE_VERSION,
+    exportedAt,
+    always: lists.always,
+    never: lists.never,
+    excludedVideos,
+  };
+  return `${JSON.stringify(data, null, 2)}\n`;
 }
 
 /** The name proposed for an export file: youtube-auto-like-lists-2026-11-08.json. */
@@ -36,8 +43,9 @@ export function listsFileName(date) {
 /**
  * @param {string} text Content of the file.
  * @param {number} size Size of the file in bytes.
- * @returns {{ lists: object } | { error: string }} lists from normalizeLists,
- *   or an ImportError.
+ * @returns {{ lists: object, excludedVideos: object[] } | { error: string }}
+ *   lists from normalizeLists and excludedVideos from
+ *   normalizeExcludedVideos, or an ImportError.
  */
 export function parseListsFile(text, size) {
   if (size > MAX_LISTS_FILE_BYTES) return { error: ImportError.TOO_BIG };
@@ -50,5 +58,8 @@ export function parseListsFile(text, size) {
   if (!data || typeof data !== 'object' || data.format !== LISTS_FILE_FORMAT || data.version !== LISTS_FILE_VERSION) {
     return { error: ImportError.INVALID };
   }
-  return { lists: normalizeLists({ always: data.always, never: data.never }) };
+  return {
+    lists: normalizeLists({ always: data.always, never: data.never }),
+    excludedVideos: normalizeExcludedVideos(data.excludedVideos),
+  };
 }

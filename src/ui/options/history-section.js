@@ -5,7 +5,8 @@
  *
  * @param {object} page From index.js (see lists-section.js).
  */
-import { MAX_HISTORY, videoUrl } from '../../core/history.js';
+import { MAX_HISTORY } from '../../core/history.js';
+import { videoUrl } from '../../core/video.js';
 import { createAvatar, initialOf } from '../shared/avatar.js';
 import { el } from '../shared/dom.js';
 import { formatNumber } from '../shared/format.js';

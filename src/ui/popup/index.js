@@ -15,7 +15,7 @@ import { markReady, renderParts } from '../shared/dom.js';
 import { embeddedOptionsUrl } from '../shared/embed.js';
 import { formatLikeCount } from '../shared/format.js';
 import { createTranslator, translatePage } from '../shared/i18n.js';
-import { moveChannel } from '../shared/lists.js';
+import { moveChannel, setVideoExcluded } from '../shared/lists.js';
 import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
 import { applyTheme } from '../shared/theme.js';
@@ -143,6 +143,23 @@ async function moveVideoChannel(target) {
   });
 }
 
+/** Excludes the video of the tab for good, or takes it out of the excluded videos, with an undo. */
+async function excludeVideo(exclude) {
+  const { status } = state;
+  if (!status?.videoId) return;
+  const video = { videoId: status.videoId, title: status.title, channelName: status.channel?.name ?? '', isShort: status.isShort === true };
+  const { settings, undo } = await setVideoExcluded(store, video, exclude);
+  state.settings = settings;
+  render();
+  notice.show(t(exclude ? 'noticeVideoExcluded' : 'noticeVideoUnexcluded'), {
+    undo: async () => {
+      state.settings = await undo();
+      render();
+      notice.show(t('noticeUndone'));
+    },
+  });
+}
+
 /**
  * Switches between the video view and the settings view. The settings are
  * the options page itself, loaded in its frame the first time only, so that
@@ -164,6 +181,8 @@ function showSettings(open) {
 const ACTIONS = {
   [Action.LIKE_NOW]: () => videoCommand(Message.LIKE_NOW),
   [Action.SKIP]: () => videoCommand(Message.SKIP_VIDEO),
+  [Action.EXCLUDE_VIDEO]: () => excludeVideo(true),
+  [Action.UNEXCLUDE_VIDEO]: () => excludeVideo(false),
   [Action.ALWAYS]: () => moveVideoChannel('always'),
   [Action.NEVER]: () => moveVideoChannel('never'),
   [Action.UNLIST_NEVER]: () => moveVideoChannel(null),

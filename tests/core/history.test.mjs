@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { addToHistory, historyEntry, MAX_HISTORY, normalizeHistory, videoUrl } from '../../src/core/history.js';
+import { addToHistory, historyEntry, MAX_HISTORY, normalizeHistory } from '../../src/core/history.js';
+import { videoUrl } from '../../src/core/video.js';
 
 const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
 const like = (videoId, overrides = {}) => ({

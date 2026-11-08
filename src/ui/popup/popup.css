@@ -1,5 +1,10 @@
 @import '../shared/theme.css';
 
+/* The popup window of the browser is at most 600 px high: past that, it
+   scrolls vertically, never sideways. */
+html {
+  overflow-x: hidden;
+}
 body {
   width: 340px;
 }
@@ -96,8 +101,13 @@ body {
   font-weight: 600;
 }
 
+/* Floats over the bottom of the popup, so that it never adds to its height. */
 .notice {
-  margin: 10px 14px;
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: 10px;
+  z-index: 2;
 }
 
 /* Settings view: the options page in embedded mode, in a frame. The popup

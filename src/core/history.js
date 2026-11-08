@@ -74,8 +74,3 @@ export function historyEntry(videoId, snapshot, likedAt) {
     likedAt: new Date(likedAt).toISOString(),
   };
 }
-
-/** Address of a liked video on YouTube, in the player it was liked in. */
-export function videoUrl(entry) {
-  return entry.isShort ? `https://www.youtube.com/shorts/${entry.videoId}` : `https://www.youtube.com/watch?v=${entry.videoId}`;
-}

@@ -17,7 +17,11 @@ import { formatAgo, formatClock, formatDuration, formatNumber } from '../shared/
 
 export const Action = Object.freeze({
   LIKE_NOW: 'like-now',
+  // Not this time: the video is left alone for this viewing only.
   SKIP: 'skip',
+  // Never this video, until the user takes it out of the excluded videos.
+  EXCLUDE_VIDEO: 'exclude-video',
+  UNEXCLUDE_VIDEO: 'unexclude-video',
   ALWAYS: 'always',
   NEVER: 'never',
   UNLIST_NEVER: 'unlist-never',
@@ -32,6 +36,7 @@ const REASON_DETAILS = {
   [Reason.IN_NEVER_LIST]: 'reasonInNeverList',
   [Reason.SHORTS_OFF]: 'reasonShortsOff',
   [Reason.NORMAL_VIDEOS_OFF]: 'reasonNormalVideosOff',
+  [Reason.VIDEO_EXCLUDED]: 'reasonVideoExcluded',
 };
 
 const card = (tone, icon, title, detail = null, progress = null) => ({ tone, icon, title, detail, progress });
@@ -131,11 +136,24 @@ export function channelAction(channel, settings) {
   return liked ? Action.NEVER : Action.ALWAYS;
 }
 
+/**
+ * The buttons for the video itself: like now, not this time or never while
+ * it waits; never, once skipped this time; no longer excluded, once
+ * excluded.
+ */
+function videoActions(status) {
+  if (status.status === Status.WAITING || status.status === Status.WAITING_AD) {
+    return [Action.LIKE_NOW, Action.SKIP, Action.EXCLUDE_VIDEO];
+  }
+  if (status.reason === Reason.SKIPPED_BY_USER) return [Action.EXCLUDE_VIDEO];
+  if (status.reason === Reason.VIDEO_EXCLUDED) return [Action.UNEXCLUDE_VIDEO];
+  return [];
+}
+
 /** The buttons under the status card, in order; none while the extension is paused. */
 export function actions(status, settings) {
   if (!settings.enabled) return [];
-  const list = [];
-  if (status.status === Status.WAITING || status.status === Status.WAITING_AD) list.push(Action.LIKE_NOW, Action.SKIP);
+  const list = videoActions(status);
   if (status.channel) list.push(channelAction(status.channel, settings));
   return list;
 }

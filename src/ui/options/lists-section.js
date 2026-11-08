@@ -1,20 +1,24 @@
 /**
- * "My lists" on the options page: the two channel lists in tabs, their
- * search, the removal of a channel, and the export and import of the lists.
+ * "My lists" on the options page, in three tabs: the two channel lists and
+ * the excluded videos. Each tab has its search and its removal with undo;
+ * the export and import cover all three.
  *
  * @param {object} page From index.js: { doc, byId, t, lang, store, notice,
  *   act, confirmChange, state, refresh }; state.settings holds the settings
  *   shown, refresh redraws the page from them.
  */
-import { LIST_NAMES, mergeLists } from '../../core/channels.js';
+import { mergeLists } from '../../core/channels.js';
+import { mergeExcludedVideos } from '../../core/excluded-videos.js';
+import { videoUrl } from '../../core/video.js';
 import { ImportError, listsFileName, MAX_LISTS_FILE_BYTES, parseListsFile, serializeLists } from '../../core/lists-file.js';
 import { createAvatar, initialOf } from '../shared/avatar.js';
 import { el, icon } from '../shared/dom.js';
 import { formatNumber, pluralKey } from '../shared/format.js';
-import { moveChannel } from '../shared/lists.js';
-import { filterChannels } from './fields.js';
+import { moveChannel, setVideoExcluded } from '../shared/lists.js';
+import { filterChannels, filterVideos } from './fields.js';
 
 const CHANNEL_URL = 'https://www.youtube.com/channel/';
+const TAB_NAMES = ['always', 'never', 'videos'];
 
 export function createListsSection(page) {
   const { doc, byId, t, lang, store, notice, act, confirmChange, state } = page;
@@ -23,71 +27,118 @@ export function createListsSection(page) {
   let query = '';
   let drawnRows = null;
 
-  function channelRow(channel) {
-    const name = channel.name || t('channelUnknown');
-    const row = el(doc, 'li', 'row');
+  function row({ id, avatar, name, href, linkTitle, meta, removeLabel }) {
+    const item = el(doc, 'li', 'row');
     const title = el(doc, 'div', 'title');
     const link = el(doc, 'a', null, name);
-    link.href = CHANNEL_URL + channel.id;
+    link.href = href;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    link.title = t('listOpenChannel');
+    if (linkTitle) link.title = linkTitle;
     title.append(link);
-    if (channel.addedAt) title.append(el(doc, 'span', 'meta', t('listAddedOn', [dateFormat.format(new Date(channel.addedAt))])));
+    if (meta) title.append(el(doc, 'span', 'meta', meta));
     const remove = el(doc, 'button', 'icon-btn');
     remove.type = 'button';
-    remove.dataset.remove = channel.id;
-    remove.setAttribute('aria-label', t('listRemove', [name]));
-    remove.title = t('listRemove', [name]);
+    remove.dataset.remove = id;
+    remove.setAttribute('aria-label', removeLabel);
+    remove.title = removeLabel;
     remove.append(icon(doc, 'close'));
-    row.append(createAvatar(doc, { id: channel.id, initial: initialOf(channel.name) }), title, remove);
-    return row;
+    item.append(createAvatar(doc, avatar), title, remove);
+    return item;
   }
 
+  const channelTab = (list) => ({
+    entries: () => state.settings.lists[list],
+    filter: filterChannels,
+    idOf: (channel) => channel.id,
+    row: (channel) => {
+      const name = channel.name || t('channelUnknown');
+      return row({
+        id: channel.id,
+        avatar: { id: channel.id, initial: initialOf(channel.name) },
+        name,
+        href: CHANNEL_URL + channel.id,
+        linkTitle: t('listOpenChannel'),
+        meta: channel.addedAt ? t('listAddedOn', [dateFormat.format(new Date(channel.addedAt))]) : '',
+        removeLabel: t('listRemove', [name]),
+      });
+    },
+    remove: async (channel) => {
+      const { settings, undo } = await moveChannel(store, channel, null);
+      return { settings, undo, noticeKey: list === 'always' ? 'noticeRemovedAlways' : 'noticeRemovedNever' };
+    },
+  });
+
+  const TABS = {
+    always: channelTab('always'),
+    never: channelTab('never'),
+    videos: {
+      entries: () => state.settings.excludedVideos,
+      filter: filterVideos,
+      idOf: (video) => video.videoId,
+      row: (video) => {
+        const name = video.title || t('historyUntitled');
+        const added = video.addedAt ? t('listExcludedOn', [dateFormat.format(new Date(video.addedAt))]) : '';
+        return row({
+          id: video.videoId,
+          avatar: { id: video.videoId, initial: initialOf(video.channelName) },
+          name,
+          href: videoUrl(video),
+          meta: [video.channelName, t(video.isShort ? 'kindShort' : 'kindVideo'), added].filter(Boolean).join(' · '),
+          removeLabel: t('listUnexclude', [name]),
+        });
+      },
+      remove: async (video) => {
+        const { settings, undo } = await setVideoExcluded(store, video, false);
+        return { settings, undo, noticeKey: 'noticeVideoUnexcluded' };
+      },
+    },
+  };
+
   function render() {
-    const { lists } = state.settings;
-    for (const name of LIST_NAMES) {
-      byId(`count-${name}`).textContent = formatNumber(lists[name].length, lang);
+    for (const name of TAB_NAMES) {
+      byId(`count-${name}`).textContent = formatNumber(TABS[name].entries().length, lang);
       const button = byId(`tab-${name}`);
       button.setAttribute('aria-selected', String(name === tab));
       button.tabIndex = name === tab ? 0 : -1;
     }
     byId('list-panel').setAttribute('aria-labelledby', `tab-${tab}`);
 
-    const shown = filterChannels(lists[tab], query);
-    // Rebuilding up to MAX_CHANNELS rows only when they change.
+    const current = TABS[tab];
+    const shown = current.filter(current.entries(), query);
+    // Rebuilding up to 5,000 rows only when they change.
     const key = JSON.stringify([tab, shown]);
     if (key !== drawnRows) {
       drawnRows = key;
-      byId('list-rows').replaceChildren(...shown.map(channelRow));
+      byId('list-rows').replaceChildren(...shown.map(current.row));
     }
     const empty = byId('list-empty');
     empty.hidden = shown.length > 0;
-    empty.textContent = t(lists[tab].length === 0 ? 'listEmpty' : 'listNoMatch');
+    empty.textContent = t(current.entries().length === 0 ? 'listEmpty' : 'listNoMatch');
   }
 
-  async function removeChannel(channelId) {
-    const list = tab;
-    const channel = state.settings.lists[list].find((existing) => existing.id === channelId);
-    if (!channel) return;
+  async function remove(id) {
+    const current = TABS[tab];
+    const entry = current.entries().find((existing) => current.idOf(existing) === id);
+    if (!entry) return;
     const buttons = [...byId('list-rows').querySelectorAll('[data-remove]')];
-    const index = buttons.findIndex((button) => button.dataset.remove === channelId);
-    const { settings, undo } = await moveChannel(store, channel, null);
+    const index = buttons.findIndex((button) => button.dataset.remove === id);
+    const { settings, undo, noticeKey } = await current.remove(entry);
     state.settings = settings;
     page.refresh();
     // The focus goes to the row that took its place, so that a keyboard user
     // can go on removing.
     const remaining = byId('list-rows').querySelectorAll('[data-remove]');
     (remaining[index] ?? remaining[index - 1] ?? byId('list-search')).focus();
-    confirmChange(list === 'always' ? 'noticeRemovedAlways' : 'noticeRemovedNever', [], async () => {
+    confirmChange(noticeKey, [], async () => {
       state.settings = await undo();
     });
   }
 
   function exportLists() {
     const now = new Date();
-    const blob = new Blob([serializeLists(state.settings.lists, now.toISOString())], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
+    const text = serializeLists(state.settings.lists, state.settings.excludedVideos, now.toISOString());
+    const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
     const link = el(doc, 'a');
     link.href = url;
     link.download = listsFileName(now);
@@ -106,10 +157,11 @@ export function createListsSection(page) {
     let previous;
     let added = 0;
     state.settings = await store.updateSettings((current) => {
-      previous = current.lists;
-      const merged = mergeLists(current.lists, result.lists, new Date().toISOString());
-      added = merged.added;
-      return { ...current, lists: merged.lists };
+      previous = { lists: current.lists, excludedVideos: current.excludedVideos };
+      const channels = mergeLists(current.lists, result.lists, new Date().toISOString());
+      const videos = mergeExcludedVideos(current.excludedVideos, result.excludedVideos);
+      added = channels.added + videos.added;
+      return { ...current, lists: channels.lists, excludedVideos: videos.videos };
     });
     page.refresh();
     if (added === 0) {
@@ -117,7 +169,7 @@ export function createListsSection(page) {
       return;
     }
     confirmChange(pluralKey(added, lang, 'noticeImportedOne', 'noticeImportedOther'), [formatNumber(added, lang)], async () => {
-      state.settings = await store.updateSettings((current) => ({ ...current, lists: previous }));
+      state.settings = await store.updateSettings((current) => ({ ...current, ...previous }));
     });
   }
 
@@ -128,19 +180,20 @@ export function createListsSection(page) {
   }
 
   function listen() {
-    for (const name of LIST_NAMES) byId(`tab-${name}`).addEventListener('click', () => selectTab(name));
+    for (const name of TAB_NAMES) byId(`tab-${name}`).addEventListener('click', () => selectTab(name));
     byId('tab-always').parentElement.addEventListener('keydown', (event) => {
       if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
       event.preventDefault();
-      selectTab(tab === 'always' ? 'never' : 'always', true);
+      const step = event.key === 'ArrowRight' ? 1 : -1;
+      selectTab(TAB_NAMES[(TAB_NAMES.indexOf(tab) + step + TAB_NAMES.length) % TAB_NAMES.length], true);
     });
     byId('list-search').addEventListener('input', (event) => {
       query = event.target.value;
       render();
     });
     byId('list-rows').addEventListener('click', (event) => {
-      const channelId = event.target.closest('[data-remove]')?.dataset.remove;
-      if (channelId) act(() => removeChannel(channelId));
+      const id = event.target.closest('[data-remove]')?.dataset.remove;
+      if (id) act(() => remove(id));
     });
     byId('export').addEventListener('click', exportLists);
     byId('import').addEventListener('click', () => byId('import-file').click());

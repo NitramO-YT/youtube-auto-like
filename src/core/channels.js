@@ -11,12 +11,13 @@ const MAX_NAME_LENGTH = 200;
 export const MAX_CHANNELS = 5000;
 export const LIST_NAMES = ['always', 'never'];
 
-/** Thrown when a channel would go past MAX_CHANNELS in a list. */
+/** Thrown when an entry would go past the maximum size of a list. */
 export class ListFullError extends Error {
-  constructor(list) {
-    super(`The ${list} list is full (${MAX_CHANNELS} channels).`);
+  constructor(list, max = MAX_CHANNELS) {
+    super(`The ${list} list is full (${max} entries).`);
     this.name = 'ListFullError';
     this.list = list;
+    this.max = max;
   }
 }
 

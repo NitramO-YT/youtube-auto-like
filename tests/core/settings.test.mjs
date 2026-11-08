@@ -33,6 +33,7 @@ describe('normalizeSettings', () => {
       likeNormalVideos: false,
       likeShorts: false,
       lists: { always: [{ id: CHANNEL, name: 'COLAS', addedAt: '2026-11-08T21:00:00.000Z' }], never: [] },
+      excludedVideos: [{ videoId: 'aeP4eG-gO10', title: 'Atelier', channelName: 'COLAS', isShort: false, addedAt: '2026-11-08T21:00:00.000Z' }],
       timing: { mode: 'custom', percent: { enabled: false, value: 0 }, minutes: { enabled: true, value: 600 } },
       notifyUpdates: false,
       theme: 'dark',

@@ -9,7 +9,7 @@
  * action that must not apply twice on a double click computes its target
  * when it is asked (the switch is set to a value, not toggled).
  */
-import { ListFullError, MAX_CHANNELS } from '../../core/channels.js';
+import { ListFullError } from '../../core/channels.js';
 import { formatNumber } from './format.js';
 
 const LOG_PREFIX = '[YouTube Auto Like]';
@@ -24,7 +24,7 @@ export function createActionRunner(notice, t, lang) {
   return (action) => {
     queue = queue.then(action).catch((error) => {
       if (error instanceof ListFullError) {
-        notice.show(t('noticeListFull', [formatNumber(MAX_CHANNELS, lang)]), { error: true });
+        notice.show(t('noticeListFull', [formatNumber(error.max, lang)]), { error: true });
       } else {
         console.error(LOG_PREFIX, 'action failed', error);
         notice.show(t('noticeSaveFailed'), { error: true });

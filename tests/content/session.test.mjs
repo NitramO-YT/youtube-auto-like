@@ -137,6 +137,19 @@ describe('step', () => {
     });
   });
 
+  describe('videos excluded for good', () => {
+    const excluded = normalizeSettings({ excludedVideos: [{ videoId: VIDEO_ID }] });
+
+    it('leaves an excluded video alone, and likes it once taken out of the list', () => {
+      const left = settle(start(), observation(), excluded, T0);
+      assert.equal(left.action, null);
+      assert.equal(left.session.status, Status.NOT_ELIGIBLE);
+      assert.equal(left.session.reason, Reason.VIDEO_EXCLUDED);
+      const taken = settle(left.session, observation(), instant, T0 + 5000);
+      assert.equal(taken.action, 'click');
+    });
+  });
+
   describe('commands from the popup', () => {
     it('"like now" skips the wait, but not the stability delay', () => {
       const waiting = step(start(), observation({ position: 10 }), halfway, T0).session;

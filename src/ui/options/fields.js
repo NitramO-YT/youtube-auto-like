@@ -58,9 +58,19 @@ export function lockedThreshold(timing) {
 // Lower case, without accents: "Élodie" is found by "elodie".
 const searchable = (text) => text.normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase();
 
+/** The entries whose texts, read by fields(entry), contain the query, in their order. */
+function filterBy(entries, query, fields) {
+  const wanted = searchable(query.trim());
+  if (!wanted) return entries;
+  return entries.filter((entry) => fields(entry).some((text) => searchable(text).includes(wanted)));
+}
+
 /** The channels whose name or ID contains the query, in their order. */
 export function filterChannels(channels, query) {
-  const wanted = searchable(query.trim());
-  if (!wanted) return channels;
-  return channels.filter((channel) => searchable(channel.name).includes(wanted) || searchable(channel.id).includes(wanted));
+  return filterBy(channels, query, (channel) => [channel.name, channel.id]);
+}
+
+/** The videos whose title, channel name or ID contains the query, in their order. */
+export function filterVideos(videos, query) {
+  return filterBy(videos, query, (video) => [video.title, video.channelName, video.videoId]);
 }

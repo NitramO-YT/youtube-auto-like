@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { normalizeSettings } from '../../src/core/settings.js';
-import { FIELDS, filterChannels, lockedThreshold, NUMBER_RANGES, validNumber } from '../../src/ui/options/fields.js';
+import { FIELDS, filterChannels, filterVideos, lockedThreshold, NUMBER_RANGES, validNumber } from '../../src/ui/options/fields.js';
 
 const timing = (mode, percent, minutes) => ({ mode, percent: { enabled: percent, value: 50 }, minutes: { enabled: minutes, value: 2 } });
 
@@ -68,5 +68,19 @@ describe('filterChannels', () => {
   it('keeps every channel for an empty query, and none without a match', () => {
     assert.equal(filterChannels(channels, '  '), channels);
     assert.deepEqual(filterChannels(channels, 'zzz'), []);
+  });
+});
+
+describe('filterVideos', () => {
+  const videos = [
+    { videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelName: 'COLAS' },
+    { videoId: 'aeP4eG-gO10', title: "J'AI CONSTRUIT MON ATELIER DE RÊVE !", channelName: 'COLAS' },
+    { videoId: 'trLwaRWXeJY', title: '', channelName: 'qoqsik' },
+  ];
+
+  it('finds a video by its title, its channel or its ID, ignoring case and accents', () => {
+    assert.deepEqual(filterVideos(videos, 'reve').map((v) => v.videoId), ['aeP4eG-gO10']);
+    assert.deepEqual(filterVideos(videos, 'qoqsik').map((v) => v.videoId), ['trLwaRWXeJY']);
+    assert.deepEqual(filterVideos(videos, 'EkDC9').map((v) => v.videoId), ['EkDC9elBHHc']);
   });
 });

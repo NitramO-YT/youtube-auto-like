@@ -3,7 +3,7 @@ import { describe, it, mock } from 'node:test';
 import { ListFullError, listOf, MAX_CHANNELS, normalizeChannels } from '../../src/core/channels.js';
 import { createStore } from '../../src/platform/storage.js';
 import { createActionRunner } from '../../src/ui/shared/actions.js';
-import { moveChannel } from '../../src/ui/shared/lists.js';
+import { moveChannel, setVideoExcluded } from '../../src/ui/shared/lists.js';
 import { createNotice } from '../../src/ui/shared/notice.js';
 import { translator } from '../helpers/fake-i18n.mjs';
 import { fakeStorageApi } from '../helpers/fake-storage.mjs';
@@ -36,6 +36,24 @@ describe('moveChannel', () => {
     const api = fakeStorageApi({ settings: { lists: { always: full } } });
     await assert.rejects(moveChannel(createStore(api), COLAS, 'always', NOW), ListFullError);
     assert.equal(api.data.settings.lists.always.length, MAX_CHANNELS);
+  });
+});
+
+describe('setVideoExcluded', () => {
+  const VIDEO = { videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelName: 'COLAS', isShort: true };
+
+  it('excludes a video, and the undo takes it out again', async () => {
+    const store = storeWith({});
+    const { settings, undo } = await setVideoExcluded(store, VIDEO, true, NOW);
+    assert.deepEqual(settings.excludedVideos, [{ ...VIDEO, addedAt: NOW.toISOString() }]);
+    assert.deepEqual((await undo()).excludedVideos, []);
+  });
+
+  it('stops excluding a video, and the undo gives it back with its date', async () => {
+    const store = createStore(fakeStorageApi({ settings: { excludedVideos: [{ ...VIDEO, addedAt: OLD }] } }));
+    const { settings, undo } = await setVideoExcluded(store, { videoId: VIDEO.videoId }, false, NOW);
+    assert.deepEqual(settings.excludedVideos, []);
+    assert.deepEqual((await undo()).excludedVideos, [{ ...VIDEO, addedAt: OLD }]);
   });
 });
 
@@ -100,7 +118,7 @@ describe('createActionRunner', () => {
       error.mock.restore();
     }
     assert.deepEqual(shown, [
-      ['This list is full (5,000 channels).', true],
+      ['This list is full (5,000 entries at most).', true],
       ['The change could not be saved.', true],
     ]);
   });

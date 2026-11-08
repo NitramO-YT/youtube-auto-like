@@ -11,7 +11,8 @@ const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
 // Avatar of COLAS, read on its public channel page on 8 November 2026.
 const COLAS_AVATAR =
   'https://yt3.googleusercontent.com/3fhLCThebQlwuSDXM9SEapaTSVFB3EuXHCKtDzFhnugoLLb71I05xsU_yi5-qLMoT0Ve4PQQ=s88-c-k-c0x00ffffff-no-rj-mo';
-const POPUP = { page: 'ui/popup/popup.html', size: [340, 560] };
+// 600 px: the highest a popup window of the browser gets.
+const POPUP = { page: 'ui/popup/popup.html', size: [340, 600] };
 const OPTIONS = { page: 'ui/options/options.html', size: [1100, 1700], status: 'no-answer' };
 
 const video = {
@@ -54,6 +55,12 @@ export const SCENARIOS = [
     status: { ...video, isShort: true, channel: channel(false, { id: 'UCbbbbbbbbbbbbbbbbbbbbbb', name: 'qoqsik' }), status: 'not-eligible', reason: 'not-subscribed' },
   },
   {
+    name: 'popup-video-excluded',
+    ...POPUP,
+    settings: { excludedVideos: [{ videoId: 'aeP4eG-gO10', title: "J'AI CONSTRUIT MON ATELIER DE RÊVE !", channelName: 'COLAS' }] },
+    status: { ...video, channel: channel(true), status: 'not-eligible', reason: 'video-excluded' },
+  },
+  {
     name: 'popup-click-failed',
     ...POPUP,
     status: { ...video, channel: channel(true), status: 'click-failed' },
@@ -84,6 +91,9 @@ export const SCENARIOS = [
         ],
         never: [{ id: COLAS, name: 'COLAS', addedAt: '2026-10-28T10:00:00.000Z' }],
       },
+      excludedVideos: [
+        { videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelName: 'COLAS', isShort: true, addedAt: '2026-11-08T21:30:00.000Z' },
+      ],
     },
     history: [
       { videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelId: COLAS, channelName: 'COLAS', isShort: true, likedAt: '2026-11-08T21:12:00.000Z' },

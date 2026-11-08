@@ -7,6 +7,7 @@
  * extension never handles a malformed value.
  */
 import { normalizeLists } from './channels.js';
+import { normalizeExcludedVideos } from './excluded-videos.js';
 
 export const SETTINGS_SCHEMA_VERSION = 1;
 
@@ -26,6 +27,7 @@ const DEFAULTS = {
   likeNormalVideos: true,
   likeShorts: true,
   lists: { always: [], never: [] },
+  excludedVideos: [],
   timing: {
     mode: 'instant',
     percent: { enabled: true, value: 50 },
@@ -71,6 +73,7 @@ export function normalizeSettings(raw) {
     likeNormalVideos: booleanOr(input.likeNormalVideos, defaults.likeNormalVideos),
     likeShorts: booleanOr(input.likeShorts, defaults.likeShorts),
     lists: normalizeLists(input.lists),
+    excludedVideos: normalizeExcludedVideos(input.excludedVideos),
     timing: {
       mode: oneOf(timing.mode, TIMING_MODES, defaults.timing.mode),
       percent: {

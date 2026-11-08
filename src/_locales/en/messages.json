@@ -96,7 +96,8 @@
   "statusNotLikedTitle": { "message": "Not liked" },
   "reasonAlreadyLiked": { "message": "This video already had a like: the extension leaves it as it is." },
   "reasonAlreadyDisliked": { "message": "You disliked this video: the extension leaves it as it is." },
-  "reasonSkippedByUser": { "message": "You asked not to like this video." },
+  "reasonSkippedByUser": { "message": "You asked not to like it this time. It may be liked when you watch it again." },
+  "reasonVideoExcluded": { "message": "You excluded this video: it is never liked, until you stop excluding it." },
   "reasonNotSubscribed": { "message": "You are not subscribed to this channel. It will be liked if you subscribe." },
   "reasonNotInAlwaysList": { "message": "Only the channels in your “Always like” list are liked." },
   "reasonInNeverList": { "message": "This channel is in your “Never like” list." },
@@ -106,7 +107,9 @@
   "statusWouldLikeDetail": { "message": "if the extension were active." },
 
   "actionLikeNow": { "message": "Like now" },
-  "actionSkip": { "message": "Not this video", "description": "Button: do not like the video being watched, and only this one." },
+  "actionSkip": { "message": "Not this time", "description": "Button: do not like the video being watched, for this viewing only; it may be liked when watched again." },
+  "actionExcludeVideo": { "message": "Never like this video", "description": "Button: never like this video, until the user takes it out of the excluded videos." },
+  "actionUnexcludeVideo": { "message": "Stop excluding this video" },
   "actionAlways": { "message": "Always like this channel" },
   "actionNever": { "message": "Never like this channel" },
   "actionUnlistNever": { "message": "Remove from “Never like”" },
@@ -114,12 +117,14 @@
   "noticeAddedAlways": { "message": "Added to “Always like”" },
   "noticeAddedNever": { "message": "Added to “Never like”" },
   "noticeRemovedNever": { "message": "Removed from “Never like”" },
+  "noticeVideoExcluded": { "message": "Added to the excluded videos" },
+  "noticeVideoUnexcluded": { "message": "Removed from the excluded videos" },
   "noticeUndo": { "message": "Undo" },
   "noticeUndone": { "message": "Undone" },
   "noticeSaveFailed": { "message": "The change could not be saved." },
   "noticeLoadFailed": { "message": "The settings could not be read." },
   "noticeListFull": {
-    "message": "This list is full ($COUNT$ channels).",
+    "message": "This list is full ($COUNT$ entries at most).",
     "placeholders": { "count": { "content": "$1", "example": "5,000" } }
   },
   "noticeNoAnswer": { "message": "The page did not answer. Reload it and try again." },
@@ -185,9 +190,18 @@
   "summaryLabel": { "message": "Summary:" },
 
   "listsHeading": { "message": "My channel lists" },
-  "listsHint": { "message": "Add a channel from the toolbar popup, during one of its videos." },
+  "listsHint": { "message": "Add a channel, or exclude a video, from the toolbar popup while you watch it." },
   "listAlways": { "message": "Always like" },
   "listNever": { "message": "Never like" },
+  "listVideos": { "message": "Excluded videos" },
+  "listExcludedOn": {
+    "message": "excluded on $DATE$",
+    "placeholders": { "date": { "content": "$1", "example": "Nov 8, 2026" } }
+  },
+  "listUnexclude": {
+    "message": "Stop excluding $TITLE$",
+    "placeholders": { "title": { "content": "$1", "example": "le moooonstre" } }
+  },
   "listSearch": { "message": "Search a channel" },
   "listImport": { "message": "Import" },
   "listExport": { "message": "Export" },

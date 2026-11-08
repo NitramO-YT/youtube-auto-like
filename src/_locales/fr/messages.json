@@ -73,7 +73,8 @@
   "statusNotLikedTitle": { "message": "Pas likée" },
   "reasonAlreadyLiked": { "message": "Cette vidéo avait déjà un J'aime : l'extension la laisse telle quelle." },
   "reasonAlreadyDisliked": { "message": "Vous avez mis un Je n'aime pas à cette vidéo : l'extension la laisse telle quelle." },
-  "reasonSkippedByUser": { "message": "Vous avez demandé de ne pas liker cette vidéo." },
+  "reasonSkippedByUser": { "message": "Vous avez demandé de ne pas la liker cette fois-ci. Elle pourra l'être si vous la regardez de nouveau." },
+  "reasonVideoExcluded": { "message": "Vous avez exclu cette vidéo : elle n'est jamais likée, tant que vous ne la retirez pas des vidéos exclues." },
   "reasonNotSubscribed": { "message": "Vous n'êtes pas abonné à cette chaîne. Elle sera likée si vous vous abonnez." },
   "reasonNotInAlwaysList": { "message": "Seules les chaînes de votre liste « Toujours liker » sont likées." },
   "reasonInNeverList": { "message": "Cette chaîne est dans votre liste « Ne jamais liker »." },
@@ -83,7 +84,9 @@
   "statusWouldLikeDetail": { "message": "si l'extension était active." },
 
   "actionLikeNow": { "message": "Liker maintenant" },
-  "actionSkip": { "message": "Pas cette vidéo" },
+  "actionSkip": { "message": "Pas cette fois" },
+  "actionExcludeVideo": { "message": "Ne jamais liker cette vidéo" },
+  "actionUnexcludeVideo": { "message": "Ne plus exclure cette vidéo" },
   "actionAlways": { "message": "Toujours liker cette chaîne" },
   "actionNever": { "message": "Ne jamais liker cette chaîne" },
   "actionUnlistNever": { "message": "Retirer de « Ne jamais liker »" },
@@ -91,12 +94,14 @@
   "noticeAddedAlways": { "message": "Ajoutée à « Toujours liker »" },
   "noticeAddedNever": { "message": "Ajoutée à « Ne jamais liker »" },
   "noticeRemovedNever": { "message": "Retirée de « Ne jamais liker »" },
+  "noticeVideoExcluded": { "message": "Ajoutée aux vidéos exclues" },
+  "noticeVideoUnexcluded": { "message": "Retirée des vidéos exclues" },
   "noticeUndo": { "message": "Annuler" },
   "noticeUndone": { "message": "Annulé" },
   "noticeSaveFailed": { "message": "Le changement n'a pas pu être enregistré." },
   "noticeLoadFailed": { "message": "Les réglages n'ont pas pu être lus." },
   "noticeListFull": {
-    "message": "Cette liste est pleine ($COUNT$ chaînes).",
+    "message": "Cette liste est pleine ($COUNT$ entrées au maximum).",
     "placeholders": { "count": { "content": "$1" } }
   },
   "noticeNoAnswer": { "message": "La page n'a pas répondu. Rechargez-la et réessayez." },
@@ -159,9 +164,18 @@
   "summaryLabel": { "message": "Résumé :" },
 
   "listsHeading": { "message": "Mes listes de chaînes" },
-  "listsHint": { "message": "Ajoutez une chaîne depuis la fenêtre de l'icône, pendant une de ses vidéos." },
+  "listsHint": { "message": "Ajoutez une chaîne, ou excluez une vidéo, depuis la fenêtre de l'icône pendant que vous la regardez." },
   "listAlways": { "message": "Toujours liker" },
   "listNever": { "message": "Ne jamais liker" },
+  "listVideos": { "message": "Vidéos exclues" },
+  "listExcludedOn": {
+    "message": "exclue le $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Ne plus exclure $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
   "listSearch": { "message": "Rechercher une chaîne" },
   "listImport": { "message": "Importer" },
   "listExport": { "message": "Exporter" },

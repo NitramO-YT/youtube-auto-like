@@ -93,6 +93,7 @@ describe('statusCard: not liked', () => {
       Reason.IN_NEVER_LIST,
       Reason.SHORTS_OFF,
       Reason.NORMAL_VIDEOS_OFF,
+      Reason.VIDEO_EXCLUDED,
     ]) {
       const card = cardOf({ status: Status.NOT_ELIGIBLE, reason });
       assert.equal(card.title, 'Not liked', reason);
@@ -108,7 +109,10 @@ describe('statusCard: not liked', () => {
     const liked = cardOf({ status: Status.SKIPPED, reason: Reason.ALREADY_LIKED });
     assert.equal(liked.title, 'Already liked');
     assert.equal(liked.tone, 'liked');
-    assert.equal(cardOf({ status: Status.SKIPPED, reason: Reason.SKIPPED_BY_USER }).detail, 'You asked not to like this video.');
+    assert.equal(
+      cardOf({ status: Status.SKIPPED, reason: Reason.SKIPPED_BY_USER }).detail,
+      'You asked not to like it this time. It may be liked when you watch it again.',
+    );
   });
 
   it('reports a click that did not take', () => {
@@ -148,11 +152,20 @@ describe('channelAction', () => {
 });
 
 describe('actions', () => {
-  it('offers "like now" and "not this video" only while the video waits', () => {
-    assert.deepEqual(actions(status({ status: Status.WAITING }), defaults), [Action.LIKE_NOW, Action.SKIP, Action.NEVER]);
-    assert.deepEqual(actions(status({ status: Status.WAITING_AD }), defaults), [Action.LIKE_NOW, Action.SKIP, Action.NEVER]);
+  it('offers "like now", "not this time" and "never this video" only while the video waits', () => {
+    const waiting = [Action.LIKE_NOW, Action.SKIP, Action.EXCLUDE_VIDEO, Action.NEVER];
+    assert.deepEqual(actions(status({ status: Status.WAITING }), defaults), waiting);
+    assert.deepEqual(actions(status({ status: Status.WAITING_AD }), defaults), waiting);
     assert.deepEqual(actions(status({ status: Status.LIKED }), defaults), [Action.NEVER]);
     assert.deepEqual(actions(status({ status: Status.CONFIRMING }), defaults), [Action.NEVER]);
+  });
+
+  it('offers to exclude for good a video skipped this time, and to stop excluding an excluded one', () => {
+    const skipped = status({ status: Status.SKIPPED, reason: Reason.SKIPPED_BY_USER });
+    assert.deepEqual(actions(skipped, defaults), [Action.EXCLUDE_VIDEO, Action.NEVER]);
+    const excluded = status({ status: Status.NOT_ELIGIBLE, reason: Reason.VIDEO_EXCLUDED });
+    assert.deepEqual(actions(excluded, defaults), [Action.UNEXCLUDE_VIDEO, Action.NEVER]);
+    assert.deepEqual(actions(status({ status: Status.SKIPPED, reason: Reason.ALREADY_LIKED }), defaults), [Action.NEVER]);
   });
 
   it('offers nothing while the extension is paused, and no list without a channel', () => {

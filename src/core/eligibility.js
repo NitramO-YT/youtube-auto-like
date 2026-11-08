@@ -3,12 +3,14 @@
  * reason codes let the popup tell the user what the extension does with the
  * video in front of them.
  *
- * Order of the rules: a rating the user gave wins over everything; then the
- * Shorts and normal video switches; then the "never like" list; then the
- * "always like" list; then the base rule (subscribed channels, every channel,
- * or the "always like" list only).
+ * Order of the rules: a rating the user gave wins over everything; then a
+ * video the user excluded for good; then the Shorts and normal video
+ * switches; then the "never like" list; then the "always like" list; then
+ * the base rule (subscribed channels, every channel, or the "always like"
+ * list only).
  */
 import { isChannelListed, isValidChannelId } from './channels.js';
+import { isVideoExcluded } from './excluded-videos.js';
 
 export const Reason = Object.freeze({
   ELIGIBLE: 'eligible',
@@ -21,6 +23,7 @@ export const Reason = Object.freeze({
   NOT_SUBSCRIBED: 'not-subscribed',
   IN_NEVER_LIST: 'in-never-list',
   NOT_IN_ALWAYS_LIST: 'not-in-always-list',
+  VIDEO_EXCLUDED: 'video-excluded',
   // Set by the liker, not by evaluateEligibility: the user asked, from the
   // popup, not to like the video being watched.
   SKIPPED_BY_USER: 'skipped-by-user',
@@ -31,9 +34,9 @@ const unknown = verdict(false, Reason.UNKNOWN_STATE);
 const eligible = verdict(true, Reason.ELIGIBLE);
 
 /**
- * @param {object} video State read from the page: channelId (string),
- *   isShort, subscribed, liked and disliked (booleans). A field the page did
- *   not provide is null.
+ * @param {object} video State read from the page: videoId and channelId
+ *   (strings), isShort, subscribed, liked and disliked (booleans). A field
+ *   the page did not provide is null.
  * @param {object} settings Settings returned by normalizeSettings.
  */
 export function evaluateEligibility(video, settings) {
@@ -44,6 +47,7 @@ export function evaluateEligibility(video, settings) {
   if (typeof video.liked !== 'boolean' || typeof video.disliked !== 'boolean') return unknown;
   if (video.liked) return verdict(false, Reason.ALREADY_LIKED);
   if (video.disliked) return verdict(false, Reason.ALREADY_DISLIKED);
+  if (isVideoExcluded(settings.excludedVideos, video.videoId)) return verdict(false, Reason.VIDEO_EXCLUDED);
 
   if (typeof video.isShort !== 'boolean') return unknown;
   if (video.isShort && !settings.likeShorts) return verdict(false, Reason.SHORTS_OFF);

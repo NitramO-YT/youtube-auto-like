@@ -6,7 +6,10 @@ import { normalizeSettings } from '../../src/core/settings.js';
 const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
 const QOQSIK = 'UCfefITu3BR2ix7ZUSrxj16w';
 
+const VIDEO_ID = 'aeP4eG-gO10';
+
 const video = (overrides = {}) => ({
+  videoId: VIDEO_ID,
   channelId: COLAS,
   isShort: false,
   subscribed: true,
@@ -60,6 +63,14 @@ describe('evaluateEligibility', () => {
     assert.equal(check({ liked: true }).reason, Reason.ALREADY_LIKED);
     assert.equal(check({ disliked: true }).reason, Reason.ALREADY_DISLIKED);
     assert.equal(check({ disliked: true }, { lists: lists({ always: [COLAS] }) }).reason, Reason.ALREADY_DISLIKED);
+  });
+
+  it('never likes a video the user excluded, even from a channel always liked', () => {
+    const excludedVideos = [{ videoId: VIDEO_ID }];
+    assert.equal(check({}, { excludedVideos }).reason, Reason.VIDEO_EXCLUDED);
+    assert.equal(check({}, { excludedVideos, likeWhat: 'all', lists: lists({ always: [COLAS] }) }).reason, Reason.VIDEO_EXCLUDED);
+    assert.equal(check({ liked: true }, { excludedVideos }).reason, Reason.ALREADY_LIKED, 'a rating given comes first');
+    assert.equal(check({ videoId: 'EkDC9elBHHc' }, { excludedVideos }).eligible, true, 'other videos are not affected');
   });
 
   it('applies the Shorts and normal video switches before the lists', () => {

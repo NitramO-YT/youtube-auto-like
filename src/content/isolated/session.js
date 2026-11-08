@@ -135,6 +135,7 @@ export function evaluateVideo(session, observation, settings) {
   }
   return evaluateEligibility(
     {
+      videoId: session.videoId,
       channelId: snapshot.channelId,
       isShort: snapshot.isShort,
       subscribed: snapshot.subscribed,
