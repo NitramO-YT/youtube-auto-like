@@ -236,6 +236,14 @@ describe('step', () => {
   describe('videos excluded for good', () => {
     const excluded = normalizeSettings({ excludedVideos: [{ videoId: VIDEO_ID }] });
 
+    it('shows as excluded a video skipped this time and then excluded', () => {
+      const skipped = skipVideo(step(start(), observation({ position: 10 }), halfway, T0).session);
+      const then = step(skipped, observation({ position: 11 }), excluded, T0 + 1000);
+      assert.equal(then.action, null);
+      assert.equal(then.session.status, Status.NOT_ELIGIBLE);
+      assert.equal(then.session.reason, Reason.VIDEO_EXCLUDED);
+    });
+
     it('leaves an excluded video alone, and likes it once taken out of the list', () => {
       const left = settle(start(), observation(), excluded, T0);
       assert.equal(left.action, null);

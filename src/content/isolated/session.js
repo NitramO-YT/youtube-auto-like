@@ -29,6 +29,7 @@
  * cannot tell such a moment from the real state.
  */
 import { evaluateEligibility, Reason } from '../../core/eligibility.js';
+import { isVideoExcluded } from '../../core/excluded-videos.js';
 import { likeTime } from '../../core/like-time.js';
 
 // How long a click has to show on the button (aria-pressed="true").
@@ -223,6 +224,11 @@ function watchRemovedLike(session, observation, settings, now) {
  * @returns {{ session: object, action: 'click' | null }}
  */
 export function step(session, observation, settings, now) {
+  // Excluding for good a video skipped this time: the exclusion wins, and
+  // the video is shown as excluded.
+  if (skippedThisTime(session) && isVideoExcluded(settings.excludedVideos, session.videoId)) {
+    return update(session, { status: Status.NOT_ELIGIBLE, reason: Reason.VIDEO_EXCLUDED, readySince: null });
+  }
   if (isFinal(session)) return watchRemovedLike(session, observation, settings, now);
 
   if (session.status === Status.CONFIRMING) {
