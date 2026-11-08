@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "YouTube Auto Like",
+    "description": "Name of the extension, shown in the browser's extension list."
+  },
+  "extensionDescription": {
+    "message": "Automatically likes YouTube videos from the channels you choose.",
+    "description": "Short description of the extension, shown in the browser's extension list."
+  }
+}

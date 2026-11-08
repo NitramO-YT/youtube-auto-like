@@ -1,4 +1,9 @@
-node_modules
-release
-*.zip
+node_modules/
+
+# Build output (npm run build), one folder per browser target
+dist/
+
+# Packed extensions, distributed through GitHub releases
+releases/
+
 .DS_Store
