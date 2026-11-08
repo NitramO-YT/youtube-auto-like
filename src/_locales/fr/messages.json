@@ -1,8 +1,156 @@
 {
-  "extensionName": {
-    "message": "YouTube Auto Like"
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Met automatiquement un J'aime aux vidéos YouTube des chaînes de votre choix." },
+
+  "locale": { "message": "fr" },
+
+  "switchLabel": { "message": "Liker automatiquement les vidéos" },
+  "switchActive": { "message": "Actif" },
+  "switchPaused": { "message": "En pause" },
+  "pausedBanner": { "message": "L'extension ne like rien tant qu'elle est en pause." },
+
+  "sectionThisVideo": { "message": "Cette vidéo" },
+  "sectionRule": { "message": "Règle active" },
+  "openSettings": { "message": "Modifier les réglages →" },
+  "noVideo": { "message": "Ouvrez une vidéo ou un Short sur YouTube pour voir ce que fait l'extension." },
+  "noVideoHint": { "message": "Si une vidéo est déjà ouverte, rechargez sa page." },
+
+  "channelUnknown": { "message": "Chaîne inconnue" },
+  "channelSubscribed": { "message": "Abonné" },
+  "channelNotSubscribed": { "message": "Non abonné" },
+  "kindVideo": { "message": "Vidéo" },
+  "kindVideoDuration": {
+    "message": "Vidéo de $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
   },
-  "extensionDescription": {
-    "message": "Met automatiquement un J'aime aux vidéos YouTube des chaînes de votre choix."
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Direct" },
+
+  "statusLikedTitle": { "message": "Likée automatiquement" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "dès l'ouverture" },
+  "likedHowLikeNow": { "message": "à votre demande" },
+  "likedHowAt": {
+    "message": "à $TIME$ de la vidéo",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "après $DURATION$ de visionnage",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Sera likée à $PERCENT$ % de la vidéo",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Sera likée après $MINUTES$ min de lecture",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Sera likée à un moment choisi au hasard" },
+  "statusWaitBeforeEnd": { "message": "Sera likée juste avant la fin" },
+  "statusWaitRemaining": {
+    "message": "encore $DURATION$ de lecture",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Like dans un instant" },
+  "statusWaitDuration": { "message": "En attente de la durée de la vidéo" },
+  "statusWaitAd": { "message": "En attente de la fin de la pub" },
+  "statusWaitAdDetail": { "message": "Le temps de la pub n'est pas compté." },
+  "statusReading": { "message": "Lecture de la page…" },
+  "statusReadingDetail": { "message": "Sur un Short, YouTube n'affiche parfois ses boutons qu'après un mouvement de la souris sur la vidéo." },
+  "statusConfirming": { "message": "Vérification que le like a bien été pris…" },
+  "statusFailedTitle": { "message": "Le like n'a pas pu être confirmé" },
+  "statusFailedDetail": { "message": "Le bouton J'aime n'a pas réagi. Rechargez la page pour réessayer." },
+
+  "statusAlreadyLikedTitle": { "message": "Déjà likée" },
+  "statusNotLikedTitle": { "message": "Pas likée" },
+  "reasonAlreadyLiked": { "message": "Cette vidéo avait déjà un J'aime : l'extension la laisse telle quelle." },
+  "reasonAlreadyDisliked": { "message": "Vous avez mis un Je n'aime pas à cette vidéo : l'extension la laisse telle quelle." },
+  "reasonSkippedByUser": { "message": "Vous avez demandé de ne pas liker cette vidéo." },
+  "reasonNotSubscribed": { "message": "Vous n'êtes pas abonné à cette chaîne. Elle sera likée si vous vous abonnez." },
+  "reasonNotInAlwaysList": { "message": "Seules les chaînes de votre liste « Toujours liker » sont likées." },
+  "reasonInNeverList": { "message": "Cette chaîne est dans votre liste « Ne jamais liker »." },
+  "reasonShortsOff": { "message": "Les Shorts ne sont pas likés, d'après vos réglages." },
+  "reasonNormalVideosOff": { "message": "Seuls les Shorts sont likés, d'après vos réglages." },
+  "statusWouldLike": { "message": "Serait likée" },
+  "statusWouldLikeDetail": { "message": "si l'extension était active." },
+
+  "actionLikeNow": { "message": "Liker maintenant" },
+  "actionSkip": { "message": "Pas cette vidéo" },
+  "actionAlways": { "message": "Toujours liker cette chaîne" },
+  "actionNever": { "message": "Ne jamais liker cette chaîne" },
+  "actionUnlistNever": { "message": "Retirer de « Ne jamais liker »" },
+
+  "noticeAddedAlways": { "message": "Ajoutée à « Toujours liker »" },
+  "noticeAddedNever": { "message": "Ajoutée à « Ne jamais liker »" },
+  "noticeRemovedNever": { "message": "Retirée de « Ne jamais liker »" },
+  "noticeUndo": { "message": "Annuler" },
+  "noticeUndone": { "message": "Annulé" },
+  "noticeSaveFailed": { "message": "Le changement n'a pas pu être enregistré." },
+  "noticeLoadFailed": { "message": "Les réglages n'ont pas pu être lus." },
+  "noticeListFull": {
+    "message": "Cette liste est pleine ($COUNT$ chaînes).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "La page n'a pas répondu. Rechargez-la et réessayez." },
+
+  "ruleSentence": {
+    "message": "Like les $WHAT$ $CHANNELS$, $WHEN$.",
+    "placeholders": {
+      "what": { "content": "$1" },
+      "channels": { "content": "$2" },
+      "when": { "content": "$3" }
+    }
+  },
+  "ruleNothing": { "message": "Ne like rien : les vidéos et les Shorts sont tous deux désactivés." },
+  "ruleWhatBoth": { "message": "vidéos et Shorts" },
+  "ruleWhatVideos": { "message": "vidéos" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "des chaînes auxquelles vous êtes abonné" },
+  "ruleChannelsSubscribedAndList": { "message": "des chaînes auxquelles vous êtes abonné et de celles de votre liste « Toujours liker »" },
+  "ruleChannelsAll": { "message": "de toutes les chaînes" },
+  "ruleChannelsList": { "message": "des chaînes de votre liste « Toujours liker »" },
+  "ruleWhenInstant": { "message": "dès l'ouverture" },
+  "ruleWhenPercent": {
+    "message": "à $PERCENT$ % de la vidéo",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "après $MINUTES$ min de lecture",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "à $PERCENT$ % de la vidéo ou après $MINUTES$ min de lecture, au premier des deux atteint",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "à un moment choisi au hasard" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ vidéo likée",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ vidéos likées",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ h $MINUTES$ min",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
   }
 }

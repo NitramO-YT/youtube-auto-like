@@ -16,7 +16,7 @@ const fixtureBuild = (outDir, overrides = {}) =>
     outDir,
     version: '3.0.0',
     targets: ['chromium'],
-    staticDirs: ['static'],
+    staticPaths: ['static', 'pages/page.html'],
     entryPoints: [{ in: 'entry/main.js', out: 'main' }],
     ...overrides,
   });
@@ -32,7 +32,7 @@ describe('buildExtension', () => {
     await rm(workDir, { recursive: true, force: true });
   });
 
-  it('writes the assembled manifest, the static folders and the bundles', async () => {
+  it('writes the assembled manifest, the static folders and files, and the bundles', async () => {
     const outDir = path.join(workDir, 'full');
     await fixtureBuild(outDir);
 
@@ -47,6 +47,7 @@ describe('buildExtension', () => {
       await readFile(path.join(outDir, 'static', 'note.txt'), 'utf8'),
       'Copied unchanged by the build.\n',
     );
+    assert.match(await readFile(path.join(outDir, 'pages', 'page.html'), 'utf8'), /alone in its folder/);
 
     // The bundle must run as a classic script, with its imports inlined.
     const bundle = await readFile(path.join(outDir, 'main.js'), 'utf8');

@@ -11,6 +11,7 @@
  * #shorts-player, which is the one being played even when the page holds
  * several.
  */
+import { avatarUrl } from '../../core/avatar.js';
 import { Surface } from './surface.js';
 
 const SELECTORS = {
@@ -27,9 +28,6 @@ const SELECTORS = {
     avatar: 'yt-reel-channel-bar-view-model img',
   },
 };
-// Hosts the channel avatars come from (yt3.ggpht.com observed on 8 November
-// 2026). The popup loads the avatar, so any other address is refused.
-const AVATAR_HOSTS = ['yt3.ggpht.com', 'yt3.googleusercontent.com', 'yt4.ggpht.com'];
 const SHORT = 'ytd-reel-video-renderer';
 // The like component holds two buttons; the one with aria-pressed is the toggle.
 const LIKE_BUTTON = 'like-button-view-model button[aria-pressed]';
@@ -59,14 +57,7 @@ export function readChannelAvatar(doc, surface) {
   const selectors = SELECTORS[surface];
   if (!selectors) return null;
   const image = scope(doc, surface)?.querySelector(selectors.avatar);
-  const source = image?.currentSrc || image?.src;
-  if (typeof source !== 'string') return null;
-  try {
-    const url = new URL(source);
-    return url.protocol === 'https:' && AVATAR_HOSTS.includes(url.hostname) ? url.href : null;
-  } catch {
-    return null;
-  }
+  return avatarUrl(image?.currentSrc || image?.src);
 }
 
 function pressed(button) {

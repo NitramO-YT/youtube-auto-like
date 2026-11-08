@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title data-i18n="extensionName">YouTube Auto Like</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<header class="popup-head">
+  <span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 21h4V9H2v12zm20-11a2 2 0 0 0-2-2h-6.3l1-4.6v-.3c0-.4-.2-.8-.4-1.1L13.2 1 6.6 7.6c-.4.4-.6.9-.6 1.4v10a2 2 0 0 0 2 2h9c.8 0 1.5-.5 1.8-1.2l3-7.1c.1-.2.2-.5.2-.7v-2z"/></svg></span>
+  <h1 data-i18n="extensionName"></h1>
+  <button type="button" class="switch" id="enabled" role="switch" aria-checked="true" data-i18n-aria-label="switchLabel" disabled>
+    <span id="enabled-state"></span><span class="track" aria-hidden="true"></span>
+  </button>
+</header>
+
+<div class="paused-banner" id="paused-banner" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <span data-i18n="pausedBanner"></span>
+</div>
+
+<section class="section" id="video" aria-labelledby="video-heading" hidden>
+  <h2 class="eyebrow" id="video-heading" data-i18n="sectionThisVideo"></h2>
+  <div id="video-channel"></div>
+  <div id="video-card"></div>
+  <div class="actions" id="video-actions"></div>
+</section>
+
+<section class="section" id="no-video" hidden>
+  <div class="empty">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 15l5.2-3L10 9v6zm11.6-7.8c.3 1 .4 2.6.4 4.8s-.1 3.8-.4 4.8a2.5 2.5 0 0 1-1.8 1.8c-1.1.3-4 .4-7.8.4s-6.7-.1-7.8-.4a2.5 2.5 0 0 1-1.8-1.8C2.1 15.8 2 14.2 2 12s.1-3.8.4-4.8a2.5 2.5 0 0 1 1.8-1.8C5.3 5.1 8.2 5 12 5s6.7.1 7.8.4a2.5 2.5 0 0 1 1.8 1.8z"/></svg>
+    <p data-i18n="noVideo"></p>
+    <p id="no-video-hint" data-i18n="noVideoHint" hidden></p>
+  </div>
+</section>
+
+<div class="notice" id="notice" role="status" hidden>
+  <span id="notice-text"></span>
+  <button type="button" id="notice-undo" data-i18n="noticeUndo" hidden></button>
+</div>
+
+<section class="section" id="rule-section" aria-labelledby="rule-heading">
+  <h2 class="eyebrow" id="rule-heading" data-i18n="sectionRule"></h2>
+  <p class="rule" id="rule"></p>
+  <button type="button" class="link" id="open-settings" data-i18n="openSettings"></button>
+</section>
+
+<footer class="foot">
+  <span id="like-count"></span>
+  <span id="version"></span>
+</footer>
+
+<script src="popup.js"></script>
+</body>
+</html>

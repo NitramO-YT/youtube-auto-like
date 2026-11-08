@@ -8,7 +8,7 @@ import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
-import { ENTRY_POINTS, STATIC_DIRS, TARGETS } from './build-config.mjs';
+import { ENTRY_POINTS, STATIC_PATHS, TARGETS } from './build-config.mjs';
 import { assembleManifest } from './lib/manifest.mjs';
 
 async function readJson(file) {
@@ -25,7 +25,7 @@ export async function buildExtension({
   outDir,
   version,
   targets = TARGETS,
-  staticDirs = STATIC_DIRS,
+  staticPaths = STATIC_PATHS,
   entryPoints = ENTRY_POINTS,
 }) {
   // Checked before anything is written or deleted.
@@ -42,8 +42,8 @@ export async function buildExtension({
   await rm(outDir, { recursive: true, force: true });
   await mkdir(outDir, { recursive: true });
 
-  for (const dir of staticDirs) {
-    await cp(path.join(srcDir, dir), path.join(outDir, dir), { recursive: true });
+  for (const staticPath of staticPaths) {
+    await cp(path.join(srcDir, staticPath), path.join(outDir, staticPath), { recursive: true });
   }
 
   if (entryPoints.length > 0) {

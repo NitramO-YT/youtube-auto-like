@@ -57,6 +57,29 @@ describe('createStore', () => {
     assert.equal('unknown' in received[0], false);
   });
 
+  it('applies a change to the settings as stored, not to an older copy', async () => {
+    const api = fakeApi();
+    const store = createStore(api);
+    const copyOfThePopup = await store.loadSettings();
+    // Another page switches Shorts off after the popup loaded its copy.
+    await store.saveSettings({ ...copyOfThePopup, likeShorts: false });
+    const saved = await store.updateSettings((settings) => ({ ...settings, enabled: false }));
+    assert.equal(saved.enabled, false);
+    assert.equal(saved.likeShorts, false);
+    assert.deepEqual(api.data[SETTINGS_KEY], saved);
+  });
+
+  it('passes the new like count to listeners, and ignores other keys', async () => {
+    const api = fakeApi();
+    const store = createStore(api);
+    const received = [];
+    store.onLikeCountChange((count) => received.push(count));
+    await store.incrementLikeCount();
+    await api.storage.local.set({ [STATS_KEY]: { likeCount: 'many' } });
+    await api.storage.local.set({ [SETTINGS_KEY]: {} });
+    assert.deepEqual(received, [1, 0]);
+  });
+
   it('counts likes, starting from zero or from a corrupted value', async () => {
     const store = createStore(fakeApi({ [STATS_KEY]: { likeCount: -3 } }));
     assert.equal(await store.loadLikeCount(), 0);

@@ -28,6 +28,15 @@ export function createStore(api) {
       return normalized;
     },
 
+    /**
+     * Applies change to the settings as stored, and saves the result: a page
+     * never writes back an old copy over a change made elsewhere since it
+     * loaded. change receives normalized settings and returns new ones.
+     */
+    async updateSettings(change) {
+      return this.saveSettings(change(await this.loadSettings()));
+    },
+
     /** Calls listener with the new settings, normalized, after each change. */
     onSettingsChange(listener) {
       api.storage.onChanged.addListener((changes, areaName) => {
@@ -40,6 +49,15 @@ export function createStore(api) {
     async loadLikeCount() {
       const stored = await area.get(STATS_KEY);
       return validCount(stored[STATS_KEY]?.likeCount);
+    },
+
+    /** Calls listener with the new like count after each change. */
+    onLikeCountChange(listener) {
+      api.storage.onChanged.addListener((changes, areaName) => {
+        if (areaName === 'local' && STATS_KEY in changes) {
+          listener(validCount(changes[STATS_KEY].newValue?.likeCount));
+        }
+      });
     },
 
     async incrementLikeCount() {

@@ -1,17 +1,21 @@
 /**
  * What the popup shows about the video being watched, built from the
- * liker's session and its last observation of the page.
+ * liker's session and its last observation of the page. The list the channel
+ * is in is not part of it: the popup reads it from its own copy of the
+ * settings, which it updates as soon as the user moves the channel.
  */
-import { listOf } from '../../core/channels.js';
+import { evaluateVideo } from './session.js';
 
 /**
  * @param {object} session From session.js.
  * @param {object|null} observation The last observation, with avatarUrl.
  * @param {object} settings From normalizeSettings.
  * @returns {object} { videoId, isShort, isLive, channel, status, reason,
- *   target, elapsed, duration, likedAt }. channel is null until the page has
- *   given a channel ID; elapsed is the playback position, or the time watched
- *   for a live stream.
+ *   target, elapsed, duration, likedAt, ifEnabled }. channel is null until
+ *   the page has given a channel ID; elapsed is the playback position, or the
+ *   time watched for a live stream. ifEnabled, only while the extension is
+ *   paused, is the verdict it would give if it were active ({ eligible,
+ *   reason }, or null while the page is unreadable).
  */
 export function popupStatus(session, observation, settings) {
   const snapshot = observation?.snapshot ?? null;
@@ -31,7 +35,6 @@ export function popupStatus(session, observation, settings) {
           name: snapshot.channelName,
           avatarUrl: observation.avatarUrl ?? null,
           subscribed: snapshot.subscribed,
-          list: listOf(settings.lists, channelId),
         }
       : null,
     status: session.status,
@@ -40,5 +43,6 @@ export function popupStatus(session, observation, settings) {
     elapsed,
     duration: typeof observation?.duration === 'number' && Number.isFinite(observation.duration) ? observation.duration : null,
     likedAt: session.likedAt,
+    ifEnabled: settings.enabled ? null : evaluateVideo(session, observation, { ...settings, enabled: true }),
   };
 }

@@ -118,6 +118,34 @@ function ratingState(shown, atLoad, videoId, isLike) {
 }
 
 /**
+ * Whether the video of the session should be liked, from one observation:
+ * the verdict of evaluateEligibility, or null when the page does not show
+ * this video yet. The URL, the player and the surface showing the rating
+ * buttons must all point to the same video: while YouTube switches videos,
+ * they briefly disagree.
+ *
+ * @param {object} session
+ * @param {object|null} observation As for step.
+ * @param {object} settings From normalizeSettings.
+ */
+export function evaluateVideo(session, observation, settings) {
+  const snapshot = observation?.snapshot;
+  if (!snapshot || snapshot.videoId !== session.videoId || snapshot.surfaceVideoId !== session.videoId) {
+    return null;
+  }
+  return evaluateEligibility(
+    {
+      channelId: snapshot.channelId,
+      isShort: snapshot.isShort,
+      subscribed: snapshot.subscribed,
+      liked: ratingState(observation.liked, snapshot.likeAtLoad, session.videoId, true),
+      disliked: ratingState(observation.disliked, snapshot.dislikeAtLoad, session.videoId, false),
+    },
+    settings,
+  );
+}
+
+/**
  * @param {object} session
  * @param {object} observation { snapshot (from validateSnapshot, or null),
  *   liked, disliked, position, duration, adPlaying }
@@ -142,24 +170,9 @@ export function step(session, observation, settings, now) {
       ? update(session, { ...changes, status: Status.CONFIRMING, reason: null, clickedAt: now }, 'click')
       : update(session, { ...changes, status: Status.WAITING, reason: null, readySince: session.readySince ?? now });
 
-  // The URL, the player and the surface showing the rating buttons must all
-  // point to the same video: while YouTube switches videos, they briefly
-  // disagree.
+  const verdict = evaluateVideo(session, observation, settings);
+  if (!verdict) return unreadable();
   const { snapshot } = observation;
-  if (!snapshot || snapshot.videoId !== session.videoId || snapshot.surfaceVideoId !== session.videoId) {
-    return unreadable();
-  }
-
-  const verdict = evaluateEligibility(
-    {
-      channelId: snapshot.channelId,
-      isShort: snapshot.isShort,
-      subscribed: snapshot.subscribed,
-      liked: ratingState(observation.liked, snapshot.likeAtLoad, session.videoId, true),
-      disliked: ratingState(observation.disliked, snapshot.dislikeAtLoad, session.videoId, false),
-    },
-    settings,
-  );
   if (!verdict.eligible) {
     if (verdict.reason === Reason.UNKNOWN_STATE) return unreadable();
     const status = USER_RATINGS.has(verdict.reason) ? Status.SKIPPED : Status.NOT_ELIGIBLE;

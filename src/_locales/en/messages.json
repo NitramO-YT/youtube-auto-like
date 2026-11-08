@@ -6,5 +6,184 @@
   "extensionDescription": {
     "message": "Automatically likes YouTube videos from the channels you choose.",
     "description": "Short description of the extension, shown in the browser's extension list."
+  },
+
+  "locale": {
+    "message": "en",
+    "description": "Language code of this translation (BCP 47), used to format numbers and dates like the texts."
+  },
+
+  "switchLabel": {
+    "message": "Like videos automatically",
+    "description": "Accessible name of the on/off switch of the extension."
+  },
+  "switchActive": { "message": "Active", "description": "State shown next to the switch when the extension is on." },
+  "switchPaused": { "message": "Paused", "description": "State shown next to the switch when the extension is off." },
+  "pausedBanner": { "message": "The extension likes nothing while it is paused." },
+
+  "sectionThisVideo": { "message": "This video", "description": "Heading of the popup section about the video in the current tab." },
+  "sectionRule": { "message": "Active rule", "description": "Heading of the popup section that sums up the settings in one sentence." },
+  "openSettings": { "message": "Change the settings →" },
+  "noVideo": { "message": "Open a video or a Short on YouTube to see what the extension does with it." },
+  "noVideoHint": {
+    "message": "If a video is already open, reload its page.",
+    "description": "Shown when the current tab did not answer, for instance a YouTube tab opened before the extension was installed."
+  },
+
+  "channelUnknown": { "message": "Unknown channel" },
+  "channelSubscribed": { "message": "Subscribed" },
+  "channelNotSubscribed": { "message": "Not subscribed" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "$DURATION$ video",
+    "placeholders": { "duration": { "content": "$1", "example": "18:45" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Live", "description": "A live stream." },
+
+  "statusLikedTitle": { "message": "Liked automatically" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "description": "When and how the video was liked, for instance: 12 seconds ago, as soon as it opened.",
+    "placeholders": {
+      "when": { "content": "$1", "example": "12 seconds ago" },
+      "how": { "content": "$2", "example": "as soon as it opened" }
+    }
+  },
+  "likedHowInstant": { "message": "as soon as it opened" },
+  "likedHowLikeNow": { "message": "at your request" },
+  "likedHowAt": {
+    "message": "at $TIME$ into the video",
+    "placeholders": { "time": { "content": "$1", "example": "9:22" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "after $DURATION$ of watching",
+    "description": "For a live stream: how long the user had been watching when it was liked.",
+    "placeholders": { "duration": { "content": "$1", "example": "2 min 0 s" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Will be liked at $PERCENT$% of the video",
+    "placeholders": { "percent": { "content": "$1", "example": "50" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Will be liked after $MINUTES$ min of playback",
+    "placeholders": { "minutes": { "content": "$1", "example": "2" } }
+  },
+  "statusWaitRandom": { "message": "Will be liked at a random moment" },
+  "statusWaitBeforeEnd": {
+    "message": "Will be liked just before the end",
+    "description": "The video is shorter than the delay set, so it is liked two seconds before its end."
+  },
+  "statusWaitRemaining": {
+    "message": "$DURATION$ of playback left",
+    "placeholders": { "duration": { "content": "$1", "example": "5 min 48 s" } }
+  },
+  "statusWaitSoon": { "message": "Liking in a moment" },
+  "statusWaitDuration": { "message": "Waiting for the length of the video" },
+  "statusWaitAd": { "message": "Waiting for the ad to end" },
+  "statusWaitAdDetail": { "message": "Ad time is not counted." },
+  "statusReading": { "message": "Reading the page…" },
+  "statusReadingDetail": { "message": "On a Short, YouTube sometimes shows its buttons only once the mouse moves over the video." },
+  "statusConfirming": { "message": "Checking that the like went through…" },
+  "statusFailedTitle": { "message": "The like could not be confirmed" },
+  "statusFailedDetail": { "message": "The like button did not react. Reload the page to try again." },
+
+  "statusAlreadyLikedTitle": { "message": "Already liked" },
+  "statusNotLikedTitle": { "message": "Not liked" },
+  "reasonAlreadyLiked": { "message": "This video already had a like: the extension leaves it as it is." },
+  "reasonAlreadyDisliked": { "message": "You disliked this video: the extension leaves it as it is." },
+  "reasonSkippedByUser": { "message": "You asked not to like this video." },
+  "reasonNotSubscribed": { "message": "You are not subscribed to this channel. It will be liked if you subscribe." },
+  "reasonNotInAlwaysList": { "message": "Only the channels in your “Always like” list are liked." },
+  "reasonInNeverList": { "message": "This channel is in your “Never like” list." },
+  "reasonShortsOff": { "message": "Shorts are not liked, as set in your settings." },
+  "reasonNormalVideosOff": { "message": "Only Shorts are liked, as set in your settings." },
+  "statusWouldLike": { "message": "Would be liked", "description": "Shown while the extension is paused." },
+  "statusWouldLikeDetail": { "message": "if the extension were active." },
+
+  "actionLikeNow": { "message": "Like now" },
+  "actionSkip": { "message": "Not this video", "description": "Button: do not like the video being watched, and only this one." },
+  "actionAlways": { "message": "Always like this channel" },
+  "actionNever": { "message": "Never like this channel" },
+  "actionUnlistNever": { "message": "Remove from “Never like”" },
+
+  "noticeAddedAlways": { "message": "Added to “Always like”" },
+  "noticeAddedNever": { "message": "Added to “Never like”" },
+  "noticeRemovedNever": { "message": "Removed from “Never like”" },
+  "noticeUndo": { "message": "Undo" },
+  "noticeUndone": { "message": "Undone" },
+  "noticeSaveFailed": { "message": "The change could not be saved." },
+  "noticeLoadFailed": { "message": "The settings could not be read." },
+  "noticeListFull": {
+    "message": "This list is full ($COUNT$ channels).",
+    "placeholders": { "count": { "content": "$1", "example": "5,000" } }
+  },
+  "noticeNoAnswer": { "message": "The page did not answer. Reload it and try again." },
+
+  "ruleSentence": {
+    "message": "Likes $WHAT$ $CHANNELS$, $WHEN$.",
+    "description": "The settings in one sentence, for instance: Likes videos and Shorts from the channels you subscribe to, as soon as they open.",
+    "placeholders": {
+      "what": { "content": "$1", "example": "videos and Shorts" },
+      "channels": { "content": "$2", "example": "from the channels you subscribe to" },
+      "when": { "content": "$3", "example": "as soon as they open" }
+    }
+  },
+  "ruleNothing": { "message": "Likes nothing: videos and Shorts are both switched off." },
+  "ruleWhatBoth": { "message": "videos and Shorts" },
+  "ruleWhatVideos": { "message": "videos" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "from the channels you subscribe to" },
+  "ruleChannelsSubscribedAndList": { "message": "from the channels you subscribe to and those in your “Always like” list" },
+  "ruleChannelsAll": { "message": "from every channel" },
+  "ruleChannelsList": { "message": "from the channels in your “Always like” list" },
+  "ruleWhenInstant": { "message": "as soon as they open" },
+  "ruleWhenPercent": {
+    "message": "at $PERCENT$% of the video",
+    "placeholders": { "percent": { "content": "$1", "example": "50" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "after $MINUTES$ min of playback",
+    "placeholders": { "minutes": { "content": "$1", "example": "2" } }
+  },
+  "ruleWhenBoth": {
+    "message": "at $PERCENT$% of the video or after $MINUTES$ min of playback, whichever comes first",
+    "placeholders": {
+      "percent": { "content": "$1", "example": "50" },
+      "minutes": { "content": "$2", "example": "2" }
+    }
+  },
+  "ruleWhenRandom": { "message": "at a random moment" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ video liked",
+    "placeholders": { "count": { "content": "$1", "example": "1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ videos liked",
+    "placeholders": { "count": { "content": "$1", "example": "1,248" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1", "example": "3.0.0" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1", "example": "48" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$ s",
+    "placeholders": {
+      "minutes": { "content": "$1", "example": "5" },
+      "seconds": { "content": "$2", "example": "48" }
+    }
+  },
+  "durationHours": {
+    "message": "$HOURS$ h $MINUTES$ min",
+    "placeholders": {
+      "hours": { "content": "$1", "example": "1" },
+      "minutes": { "content": "$2", "example": "05" }
+    }
   }
 }

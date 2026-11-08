@@ -1,0 +1,264 @@
+/*
+ * Colors, base styles and components shared by the popup and the options
+ * page. The theme follows the system (prefers-color-scheme).
+ */
+:root {
+  --bg: #ffffff;
+  --surface: #f6f7f9;
+  --border: #e2e5ea;
+  --text: #16181d;
+  --muted: #5d6470;
+  --accent: #d93025;
+  --accent-soft: #fde8e7;
+  /* Text on --accent and on --error, at least 4.5:1 (WCAG AA). */
+  --on-accent: #ffffff;
+  --on-error: #ffffff;
+  --success: #137333;
+  --success-soft: #e6f4ea;
+  --wait: #8a5a00;
+  --wait-soft: #fdf3dc;
+  --error: #b3261e;
+  --error-soft: #fce8e6;
+  --neutral-soft: #eceff3;
+  --focus: #1a73e8;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17181b;
+    --surface: #202226;
+    --border: #2e3137;
+    --text: #eceef2;
+    --muted: #a2a8b3;
+    --accent: #ff6b5f;
+    --accent-soft: #3a1d1b;
+    --on-accent: #17181b;
+    --on-error: #17181b;
+    --success: #5fd38a;
+    --success-soft: #16301f;
+    --wait: #f2c14e;
+    --wait-soft: #33290f;
+    --error: #ff8a80;
+    --error-soft: #3a1d1b;
+    --neutral-soft: #26292e;
+    --focus: #8ab4f8;
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.45 system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, sans-serif;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Logo: the thumb on a red square, grey while the extension is paused. */
+.logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--accent);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.logo svg {
+  width: 16px;
+  height: 16px;
+  fill: #fff;
+}
+.paused .logo {
+  background: var(--muted);
+}
+
+/* On/off switch: a button with role="switch" and aria-checked. */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: none;
+  padding: 4px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.switch .track {
+  width: 34px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--border);
+  position: relative;
+  transition: background 0.15s;
+  flex: none;
+}
+.switch .track::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition: left 0.15s;
+}
+.switch[aria-checked='true'] .track {
+  background: var(--success);
+}
+.switch[aria-checked='true'] .track::after {
+  left: 16px;
+}
+
+.btn {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.btn:hover {
+  background: var(--surface);
+}
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+.btn.primary:hover {
+  filter: brightness(1.08);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.link {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+
+/* Channel picture: the avatar image, or the initial on a colored disc. */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  font-weight: 700;
+  color: #fff;
+  flex: none;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Dark enough for white text in both themes. */
+.avatar-tone-0 { background: #b3261e; }
+.avatar-tone-1 { background: #1a5fb4; }
+.avatar-tone-2 { background: #7b4bb7; }
+.avatar-tone-3 { background: #137333; }
+.avatar-tone-4 { background: #a14f00; }
+.avatar-tone-5 { background: #0b6e79; }
+.avatar-tone-6 { background: #8e244d; }
+.avatar-tone-7 { background: #4a5568; }
+
+/* Status card: what the extension does with the video, and why. */
+.status {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+.status .icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  margin-top: 1px;
+  fill: currentColor;
+}
+.status .text {
+  flex: 1;
+  min-width: 0;
+}
+.status strong {
+  display: block;
+}
+.status .detail {
+  display: block;
+  font-size: 12px;
+}
+.status.tone-liked {
+  background: var(--success-soft);
+  color: var(--success);
+}
+.status.tone-wait {
+  background: var(--wait-soft);
+  color: var(--wait);
+}
+.status.tone-no {
+  background: var(--neutral-soft);
+  color: var(--text);
+}
+.status.tone-no .detail {
+  color: var(--muted);
+}
+.status.tone-error {
+  background: var(--error-soft);
+  color: var(--error);
+}
+.progress {
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 25%, transparent);
+  margin-top: 8px;
+  overflow: hidden;
+}
+.progress > span {
+  display: block;
+  height: 100%;
+  background: currentColor;
+  transition: width 0.4s linear;
+}
