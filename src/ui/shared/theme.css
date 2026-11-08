@@ -1,53 +1,39 @@
 /*
  * Colors, base styles and components shared by the popup and the options
- * page. The theme follows the system (prefers-color-scheme).
+ * page.
+ *
+ * Each color holds its light and its dark value, light-dark(light, dark);
+ * color-scheme picks one: the theme of the system by default, a fixed one
+ * when the theme setting asks for it (data-theme on <html>, see theme.js).
  */
 :root {
-  --bg: #ffffff;
-  --surface: #f6f7f9;
-  --border: #e2e5ea;
-  --text: #16181d;
-  --muted: #5d6470;
-  --accent: #d93025;
-  --accent-soft: #fde8e7;
+  color-scheme: light dark;
+  --bg: light-dark(#ffffff, #17181b);
+  --surface: light-dark(#f6f7f9, #202226);
+  --border: light-dark(#e2e5ea, #2e3137);
+  --text: light-dark(#16181d, #eceef2);
+  --muted: light-dark(#5d6470, #a2a8b3);
+  --accent: light-dark(#d93025, #ff6b5f);
+  --accent-soft: light-dark(#fde8e7, #3a1d1b);
   /* Text on --accent and on --error, and accent text on --accent-soft, at
      least 4.5:1 (WCAG AA). */
-  --accent-on-soft: #b3261e;
-  --on-accent: #ffffff;
-  --on-error: #ffffff;
-  --success: #137333;
-  --success-soft: #e6f4ea;
-  --wait: #8a5a00;
-  --wait-soft: #fdf3dc;
-  --error: #b3261e;
-  --error-soft: #fce8e6;
-  --neutral-soft: #eceff3;
-  --focus: #1a73e8;
+  --accent-on-soft: light-dark(#b3261e, #ff6b5f);
+  --on-accent: light-dark(#ffffff, #17181b);
+  --on-error: light-dark(#ffffff, #17181b);
+  --success: light-dark(#137333, #5fd38a);
+  --success-soft: light-dark(#e6f4ea, #16301f);
+  --wait: light-dark(#8a5a00, #f2c14e);
+  --wait-soft: light-dark(#fdf3dc, #33290f);
+  --error: light-dark(#b3261e, #ff8a80);
+  --error-soft: light-dark(#fce8e6, #3a1d1b);
+  --neutral-soft: light-dark(#eceff3, #26292e);
+  --focus: light-dark(#1a73e8, #8ab4f8);
+}
+:root[data-theme='light'] {
   color-scheme: light;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #17181b;
-    --surface: #202226;
-    --border: #2e3137;
-    --text: #eceef2;
-    --muted: #a2a8b3;
-    --accent: #ff6b5f;
-    --accent-soft: #3a1d1b;
-    --accent-on-soft: #ff6b5f;
-    --on-accent: #17181b;
-    --on-error: #17181b;
-    --success: #5fd38a;
-    --success-soft: #16301f;
-    --wait: #f2c14e;
-    --wait-soft: #33290f;
-    --error: #ff8a80;
-    --error-soft: #3a1d1b;
-    --neutral-soft: #26292e;
-    --focus: #8ab4f8;
-    color-scheme: dark;
-  }
+:root[data-theme='dark'] {
+  color-scheme: dark;
 }
 
 * {

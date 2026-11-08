@@ -16,6 +16,7 @@ import { createTranslator, translatePage } from '../shared/i18n.js';
 import { moveChannel } from '../shared/lists.js';
 import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
+import { applyTheme } from '../shared/theme.js';
 import { FIELDS, filterChannels, lockedThreshold, NUMBER_RANGES, validNumber } from './fields.js';
 import { currentSection } from './sections.js';
 
@@ -103,6 +104,7 @@ function renderCount() {
 function fill() {
   const { settings } = state;
   if (!settings) return;
+  applyTheme(document, settings.theme, window.localStorage);
   const paused = !settings.enabled;
   document.body.classList.toggle('paused', paused);
   byId('paused-banner').hidden = !paused;

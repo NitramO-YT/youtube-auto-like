@@ -57,6 +57,9 @@ export const SCENARIOS = [
   },
   { name: 'popup-no-video', ...POPUP, status: { videoId: null } },
   { name: 'popup-no-answer', ...POPUP, status: 'no-answer' },
+  // A fixed theme wins over the one of the system, in both color schemes.
+  { name: 'popup-theme-light', ...POPUP, settings: { theme: 'light' }, status: { videoId: null } },
+  { name: 'options-theme-dark', ...OPTIONS, size: [1100, 900], settings: { theme: 'dark' } },
   { name: 'options-default', ...OPTIONS },
   {
     name: 'options-custom-lists',

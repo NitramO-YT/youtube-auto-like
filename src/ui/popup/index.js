@@ -17,6 +17,7 @@ import { createTranslator, translatePage } from '../shared/i18n.js';
 import { moveChannel } from '../shared/lists.js';
 import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
+import { applyTheme } from '../shared/theme.js';
 import { renderActions, renderCard, renderChannel } from './render.js';
 import { Action, videoView } from './view.js';
 
@@ -55,6 +56,7 @@ function render() {
   const { settings, status } = state;
   if (!settings) return;
 
+  draw('theme', settings.theme, (theme) => applyTheme(document, theme, window.localStorage));
   const paused = !settings.enabled;
   document.body.classList.toggle('paused', paused);
   draw('switch', paused, () => {

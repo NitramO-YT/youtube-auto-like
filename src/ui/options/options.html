@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-i18n="optionsPageTitle">YouTube Auto Like</title>
+<script src="../theme-boot.js"></script>
 <link rel="stylesheet" href="options.css">
 </head>
 <body>
@@ -109,6 +110,14 @@
 
     <section class="block" id="more" aria-labelledby="more-heading">
       <h2 id="more-heading" data-i18n="moreHeading"></h2>
+      <div class="row-toggle">
+        <span id="theme-label" data-i18n="themeLabel"></span>
+        <div class="seg compact" role="radiogroup" aria-labelledby="theme-label">
+          <label><input type="radio" name="theme" value="system" data-field="theme"><span data-i18n="themeSystem"></span></label>
+          <label><input type="radio" name="theme" value="light" data-field="theme"><span data-i18n="themeLight"></span></label>
+          <label><input type="radio" name="theme" value="dark" data-field="theme"><span data-i18n="themeDark"></span></label>
+        </div>
+      </div>
       <div class="row-toggle">
         <div><span id="like-count"></span><span class="hint" data-i18n="likeCountHint"></span></div>
         <button type="button" class="btn" id="reset-count" data-i18n="likeCountReset"></button>

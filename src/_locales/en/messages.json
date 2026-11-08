@@ -201,6 +201,10 @@
   "listOpenChannel": { "message": "Open the channel on YouTube" },
 
   "moreHeading": { "message": "More" },
+  "themeLabel": { "message": "Theme" },
+  "themeSystem": { "message": "Same as the system" },
+  "themeLight": { "message": "Light" },
+  "themeDark": { "message": "Dark" },
   "likeCountHint": { "message": "Since the extension was installed, or since the last reset. Resetting it changes nothing else." },
   "likeCountReset": { "message": "Reset" },
 

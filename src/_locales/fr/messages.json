@@ -175,6 +175,10 @@
   "listOpenChannel": { "message": "Ouvrir la chaîne sur YouTube" },
 
   "moreHeading": { "message": "Divers" },
+  "themeLabel": { "message": "Thème" },
+  "themeSystem": { "message": "Comme le système" },
+  "themeLight": { "message": "Clair" },
+  "themeDark": { "message": "Sombre" },
   "likeCountHint": { "message": "Depuis l'installation de l'extension, ou depuis la dernière remise à zéro. Le remettre à zéro ne change rien d'autre." },
   "likeCountReset": { "message": "Remettre à zéro" },
 

@@ -14,6 +14,8 @@ export const SETTINGS_SCHEMA_VERSION = 1;
 // every channel, or only the channels of the "always like" list.
 export const LIKE_WHAT = ['subscribed', 'all', 'alwaysList'];
 export const TIMING_MODES = ['instant', 'custom', 'random'];
+// Theme of the extension pages: the one of the system, or a fixed one.
+export const THEMES = ['system', 'light', 'dark'];
 export const PERCENT_RANGE = Object.freeze({ min: 0, max: 100 });
 export const MINUTES_RANGE = Object.freeze({ min: 0, max: 600 });
 
@@ -30,6 +32,7 @@ const DEFAULTS = {
     minutes: { enabled: false, value: 2 },
   },
   notifyUpdates: true,
+  theme: 'system',
 };
 
 export function defaultSettings() {
@@ -80,6 +83,7 @@ export function normalizeSettings(raw) {
       },
     },
     notifyUpdates: booleanOr(input.notifyUpdates, defaults.notifyUpdates),
+    theme: oneOf(input.theme, THEMES, defaults.theme),
   };
 
   // A custom timing with no threshold enabled would leave the user waiting

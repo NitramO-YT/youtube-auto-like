@@ -400,6 +400,12 @@ main {
 .row-toggle .hint {
   margin: 0;
 }
+.row-toggle + .row-toggle {
+  border-top: 1px dashed var(--border);
+}
+.seg.compact {
+  margin: 0;
+}
 
 /* The notice floats at the bottom of the window. */
 .toast {

@@ -35,8 +35,15 @@ describe('normalizeSettings', () => {
       lists: { always: [{ id: CHANNEL, name: 'COLAS', addedAt: '2026-11-08T21:00:00.000Z' }], never: [] },
       timing: { mode: 'custom', percent: { enabled: false, value: 0 }, minutes: { enabled: true, value: 600 } },
       notifyUpdates: false,
+      theme: 'dark',
     };
     assert.deepEqual(normalizeSettings(custom), custom);
+  });
+
+  it('accepts each theme', () => {
+    for (const theme of ['system', 'light', 'dark']) {
+      assert.equal(normalizeSettings({ theme }).theme, theme);
+    }
   });
 
   it('accepts each base rule', () => {
@@ -52,8 +59,10 @@ describe('normalizeSettings', () => {
       likeShorts: false,
       timing: { mode: 'later', percent: { enabled: true, value: 101 }, minutes: { value: Number.NaN } },
       notifyUpdates: 'often',
+      theme: 'sepia',
     });
     const defaults = defaultSettings();
+    assert.equal(normalized.theme, defaults.theme);
     assert.equal(normalized.enabled, defaults.enabled);
     assert.equal(normalized.likeWhat, defaults.likeWhat);
     assert.equal(normalized.likeShorts, false);
