@@ -119,6 +119,7 @@
 
   "actionLikeNow": { "message": "Like now" },
   "actionSkip": { "message": "Not this time", "description": "Button: do not like the video being watched, for this viewing only; it may be liked when watched again." },
+  "actionResume": { "message": "Undo “Not this time”", "description": "Button: the video goes through the usual checks again, and may be liked." },
   "actionExcludeVideo": { "message": "Never like this video", "description": "Button: never like this video, until the user takes it out of the excluded videos." },
   "actionUnexcludeVideo": { "message": "Stop excluding this video" },
   "actionAlways": { "message": "Always like this channel" },

@@ -61,6 +61,12 @@ export const SCENARIOS = [
     status: { ...video, isShort: true, channel: channel(false, { id: 'UCbbbbbbbbbbbbbbbbbbbbbb', name: 'qoqsik' }), status: 'not-eligible', reason: 'not-subscribed' },
   },
   {
+    name: 'popup-skipped-this-time',
+    ...POPUP,
+    settings: halfway,
+    status: { ...video, channel: channel(true), status: 'skipped', reason: 'skipped-by-user', target: { at: 562.5, basis: 'percent' } },
+  },
+  {
     name: 'popup-video-excluded',
     ...POPUP,
     settings: { excludedVideos: [{ videoId: 'aeP4eG-gO10', title: "J'AI CONSTRUIT MON ATELIER DE RÊVE !", channelName: 'COLAS' }] },

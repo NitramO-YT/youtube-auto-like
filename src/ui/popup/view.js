@@ -19,6 +19,8 @@ export const Action = Object.freeze({
   LIKE_NOW: 'like-now',
   // Not this time: the video is left alone for this viewing only.
   SKIP: 'skip',
+  // Takes back "not this time", for as long as the video stays open.
+  RESUME: 'resume',
   // Never this video, until the user takes it out of the excluded videos.
   EXCLUDE_VIDEO: 'exclude-video',
   UNEXCLUDE_VIDEO: 'unexclude-video',
@@ -138,14 +140,14 @@ export function channelAction(channel, settings) {
 
 /**
  * The buttons for the video itself: like now, not this time or never while
- * it waits; like now or never, once skipped this time; no longer excluded,
- * once excluded.
+ * it waits; take back "not this time", like now or never, once skipped this
+ * time; no longer excluded, once excluded.
  */
 function videoActions(status) {
   if (status.status === Status.WAITING || status.status === Status.WAITING_AD) {
     return [Action.LIKE_NOW, Action.SKIP, Action.EXCLUDE_VIDEO];
   }
-  if (status.reason === Reason.SKIPPED_BY_USER) return [Action.LIKE_NOW, Action.EXCLUDE_VIDEO];
+  if (status.reason === Reason.SKIPPED_BY_USER) return [Action.RESUME, Action.LIKE_NOW, Action.EXCLUDE_VIDEO];
   if (status.reason === Reason.VIDEO_EXCLUDED) return [Action.UNEXCLUDE_VIDEO];
   return [];
 }

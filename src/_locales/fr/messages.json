@@ -94,6 +94,7 @@
 
   "actionLikeNow": { "message": "Liker maintenant" },
   "actionSkip": { "message": "Pas cette fois" },
+  "actionResume": { "message": "Annuler « Pas cette fois »" },
   "actionExcludeVideo": { "message": "Ne jamais liker cette vidéo" },
   "actionUnexcludeVideo": { "message": "Ne plus exclure cette vidéo" },
   "actionAlways": { "message": "Toujours liker cette chaîne" },

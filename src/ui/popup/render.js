@@ -8,6 +8,7 @@ import { Action } from './view.js';
 const ACTION_LABELS = {
   [Action.LIKE_NOW]: 'actionLikeNow',
   [Action.SKIP]: 'actionSkip',
+  [Action.RESUME]: 'actionResume',
   [Action.EXCLUDE_VIDEO]: 'actionExcludeVideo',
   [Action.UNEXCLUDE_VIDEO]: 'actionUnexcludeVideo',
   [Action.ALWAYS]: 'actionAlways',

@@ -206,6 +206,7 @@ function showSettings(open) {
 const ACTIONS = {
   [Action.LIKE_NOW]: () => videoCommand(Message.LIKE_NOW),
   [Action.SKIP]: skipThisTime,
+  [Action.RESUME]: () => videoCommand(Message.RESUME_VIDEO),
   [Action.EXCLUDE_VIDEO]: () => excludeVideo(true),
   [Action.UNEXCLUDE_VIDEO]: () => excludeVideo(false),
   [Action.ALWAYS]: () => moveVideoChannel('always'),
