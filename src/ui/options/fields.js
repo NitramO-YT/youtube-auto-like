@@ -32,6 +32,10 @@ export const FIELDS = Object.freeze({
   minutesValue: timingPart('minutes', 'value'),
   lists: { get: (settings) => settings.lists, set: (settings, value) => ({ ...settings, lists: value }) },
   theme: { get: (settings) => settings.theme, set: (settings, value) => ({ ...settings, theme: value }) },
+  relikeAfterRemoval: {
+    get: (settings) => settings.relikeAfterRemoval,
+    set: (settings, value) => ({ ...settings, relikeAfterRemoval: value }),
+  },
   updateCheckMinutes: {
     get: (settings) => settings.updateCheckMinutes,
     set: (settings, value) => ({ ...settings, updateCheckMinutes: value }),

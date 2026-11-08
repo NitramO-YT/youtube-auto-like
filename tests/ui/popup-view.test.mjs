@@ -133,6 +133,41 @@ describe('statusCard: paused', () => {
   });
 });
 
+describe('a rating removed, and a video to restart', () => {
+  const removed = { liked: false, disliked: false };
+
+  it('shows a like removed, by the extension or by the user, with "restart"', () => {
+    for (const state of [{ status: Status.LIKED }, { status: Status.SKIPPED, reason: Reason.ALREADY_LIKED }]) {
+      const now = status({ ...state, rating: removed, target: { at: 0, basis: 'instant' } });
+      assert.equal(statusCard(now, defaults, en, 'en', NOW).title, 'Like removed');
+      assert.deepEqual(actions(now, defaults, NOW), [Action.RESTART, Action.NEVER]);
+    }
+    const stillLiked = status({ status: Status.LIKED, rating: { liked: true, disliked: false }, target: { at: 0, basis: 'instant' } });
+    assert.equal(statusCard(stillLiked, defaults, en, 'en', NOW).title, 'Liked automatically');
+  });
+
+  it('shows a dislike removed with "restart"', () => {
+    const now = status({ status: Status.SKIPPED, reason: Reason.ALREADY_DISLIKED, rating: removed });
+    assert.equal(statusCard(now, defaults, en, 'en', NOW).title, 'Dislike removed');
+    assert.deepEqual(actions(now, defaults, NOW), [Action.RESTART, Action.NEVER]);
+  });
+
+  it('says when a like removed comes back, and offers to like now', () => {
+    const atTime = status({ status: Status.NOT_ELIGIBLE, reason: Reason.LIKE_REMOVED, target: { at: 562.5, basis: 'percent' } });
+    assert.equal(statusCard(atTime, defaults, fr, 'fr', NOW).detail, 'Il sera remis quand la lecture repassera à 9:22.');
+    const instantLike = status({ status: Status.NOT_ELIGIBLE, reason: Reason.LIKE_REMOVED, target: { at: 0, basis: 'instant' } });
+    assert.equal(statusCard(instantLike, defaults, fr, 'fr', NOW).detail, 'Il sera remis à la prochaine ouverture de la vidéo.');
+    assert.deepEqual(actions(atTime, defaults, NOW), [Action.LIKE_NOW, Action.NEVER]);
+  });
+
+  it('offers to try again after a like that did not take, and to restart a page read for too long', () => {
+    assert.deepEqual(actions(status({ status: Status.CLICK_FAILED }), defaults, NOW), [Action.RETRY, Action.NEVER]);
+    const reading = (age) => status({ status: Status.READING, startedAt: NOW - age, channel: null });
+    assert.deepEqual(actions(reading(5_000), defaults, NOW), []);
+    assert.deepEqual(actions(reading(25_000), defaults, NOW), [Action.RESTART]);
+  });
+});
+
 describe('channelAction', () => {
   const channel = (subscribed) => ({ id: COLAS, name: 'COLAS', subscribed });
   const listed = (list, settings = {}) => normalizeSettings({ ...settings, lists: { [list]: [{ id: COLAS, name: 'COLAS' }] } });

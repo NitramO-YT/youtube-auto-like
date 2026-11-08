@@ -6,12 +6,17 @@
  * tested without a browser. A video gets at most one click; once a final
  * status is reached, nothing more happens until the next video.
  *
- * Only a rating the user gave is final (SKIPPED): it is never undone. Every
- * other reason not to like (not subscribed, channel list, Shorts or videos
- * switched off, extension disabled) keeps being checked (NOT_ELIGIBLE), so
- * that subscribing during the video, or changing a setting, takes effect on
- * the video being watched. The subscription state is read live: it follows a
+ * Only a rating the user gave is final (SKIPPED). Every other reason not to
+ * like (not subscribed, channel list, Shorts or videos switched off,
+ * extension disabled) keeps being checked (NOT_ELIGIBLE), so that
+ * subscribing during the video, or changing a setting, takes effect on the
+ * video being watched. The subscription state is read live: it follows a
  * subscription made after the page loaded (checked in Brave on both surfaces).
+ *
+ * A final video keeps being watched, never clicked: the popup shows a like
+ * or a dislike the user removes, and offers to restart the video. With the
+ * relikeAfterRemoval setting, a like removed comes back once playback
+ * crosses the like time again (see watchRemovedLike).
  *
  * An unreadable page is waited for without a time limit: YouTube renders the
  * buttons of a Short only once the user moves the mouse over the page, which
@@ -67,7 +72,24 @@ export function createSession(videoId, now, random) {
     target: null,
     status: Status.READING,
     reason: null,
+    // Rating read from the buttons only, not from the state sent with the
+    // page: set once the user has changed the rating since the page loaded.
+    trustShown: false,
+    // A like the user removed comes back only once playback has gone back
+    // before the like time and reaches it again.
+    mustCross: false,
+    // Since when the like has been seen removed, for the stability delay.
+    removedSince: null,
   };
+}
+
+/**
+ * "Restart for this video", from the popup: the video goes through the
+ * checks again from the start, as after a reload of the page, the rating
+ * being read from what the buttons show.
+ */
+export function restartVideo(session, now, random) {
+  return { ...createSession(session.videoId, now, random), trustShown: true };
 }
 
 const update = (session, changes, action = null) => ({ session: { ...session, ...changes }, action });
@@ -118,9 +140,12 @@ export function skipVideo(session) {
  *   says not disliked (the Shorts player often has none, and without one the
  *   user cannot dislike in the page). A dislike button replaced by another
  *   extension carries no data: what it shows is then enough.
+ * @param {boolean} trustShown The rating changed since the page loaded: a
+ *   button shown not pressed is believed over the state sent with the page.
  */
-function ratingState(shown, atLoad, videoId, isLike) {
+function ratingState(shown, atLoad, videoId, isLike, trustShown) {
   if (shown === true) return true;
+  if (trustShown && shown === false) return false;
   if (atLoad) {
     if (atLoad.videoId !== videoId || atLoad.toggled === null) return null;
     if (atLoad.toggled) return true;
@@ -142,22 +167,51 @@ function ratingState(shown, atLoad, videoId, isLike) {
  * @param {object|null} observation As for step.
  * @param {object} settings From normalizeSettings.
  */
+const showsVideo = (session, snapshot) =>
+  Boolean(snapshot) && snapshot.videoId === session.videoId && snapshot.surfaceVideoId === session.videoId;
+
 export function evaluateVideo(session, observation, settings) {
   const snapshot = observation?.snapshot;
-  if (!snapshot || snapshot.videoId !== session.videoId || snapshot.surfaceVideoId !== session.videoId) {
-    return null;
-  }
+  if (!showsVideo(session, snapshot)) return null;
+  const { trustShown } = session;
   return evaluateEligibility(
     {
       videoId: session.videoId,
       channelId: snapshot.channelId,
       isShort: snapshot.isShort,
       subscribed: snapshot.subscribed,
-      liked: ratingState(observation.liked, snapshot.likeAtLoad, session.videoId, true),
-      disliked: ratingState(observation.disliked, snapshot.dislikeAtLoad, session.videoId, false),
+      liked: ratingState(observation.liked, snapshot.likeAtLoad, session.videoId, true, trustShown),
+      disliked: ratingState(observation.disliked, snapshot.dislikeAtLoad, session.videoId, false, trustShown),
     },
     settings,
   );
+}
+
+/**
+ * A liked video, by the extension or by the user, whose like the user
+ * removes. With relikeAfterRemoval, once the like has stayed removed for
+ * STABLE_FOR_MS, the video goes through the checks again, and must see
+ * playback cross its like time again (mustCross); otherwise it stays as it
+ * is, and the popup offers to restart it.
+ */
+function watchRemovedLike(session, observation, settings, now) {
+  const liked = session.status === Status.LIKED || (session.status === Status.SKIPPED && session.reason === Reason.ALREADY_LIKED);
+  if (!liked || !settings.enabled || !settings.relikeAfterRemoval) return { session, action: null };
+  const removed = showsVideo(session, observation.snapshot) && observation.liked === false && observation.disliked !== true;
+  if (!removed) return session.removedSince === null ? { session, action: null } : update(session, { removedSince: null });
+  if (session.removedSince === null) return update(session, { removedSince: now });
+  if (now - session.removedSince < STABLE_FOR_MS) return { session, action: null };
+  return update(session, {
+    status: Status.READING,
+    reason: null,
+    readySince: null,
+    clickedAt: null,
+    likeNow: false,
+    target: null,
+    removedSince: null,
+    trustShown: true,
+    mustCross: true,
+  });
 }
 
 /**
@@ -169,7 +223,7 @@ export function evaluateVideo(session, observation, settings) {
  * @returns {{ session: object, action: 'click' | null }}
  */
 export function step(session, observation, settings, now) {
-  if (isFinal(session)) return { session, action: null };
+  if (isFinal(session)) return watchRemovedLike(session, observation, settings, now);
 
   if (session.status === Status.CONFIRMING) {
     if (observation.liked === true) return update(session, { status: Status.LIKED, likedAt: now });
@@ -182,8 +236,10 @@ export function step(session, observation, settings, now) {
   // Clicks once the video has stayed ready for STABLE_FOR_MS; until then, waits.
   const ready = (changes) =>
     session.readySince !== null && now - session.readySince >= STABLE_FOR_MS
-      ? update(session, { ...changes, status: Status.CONFIRMING, reason: null, clickedAt: now }, 'click')
+      ? update(session, { ...changes, status: Status.CONFIRMING, reason: null, clickedAt: now, mustCross: false }, 'click')
       : update(session, { ...changes, status: Status.WAITING, reason: null, readySince: session.readySince ?? now });
+  // A like the user removed, waiting for playback to cross the like time again.
+  const removedLike = (changes) => update(session, { ...changes, status: Status.NOT_ELIGIBLE, reason: Reason.LIKE_REMOVED, readySince: null });
 
   const verdict = evaluateVideo(session, observation, settings);
   if (!verdict) return unreadable();
@@ -195,7 +251,12 @@ export function step(session, observation, settings, now) {
   }
 
   if (session.likeNow) return ready({ target: { at: 0, basis: 'like-now' } });
-  if (settings.timing.mode === 'instant') return ready({ target: { at: 0, basis: 'instant' } });
+  if (settings.timing.mode === 'instant') {
+    // An instant like has no time to cross again: it comes back the next
+    // time the video is opened.
+    const target = { at: 0, basis: 'instant' };
+    return session.mustCross ? removedLike({ target }) : ready({ target });
+  }
 
   // An ad plays in the same video element: its time and duration are not
   // those of the video.
@@ -210,6 +271,7 @@ export function step(session, observation, settings, now) {
   if (!target) return update(session, { status: Status.WAITING, reason: null, liveStart, target: null, readySince: null });
 
   const position = snapshot.isLive ? observation.position - liveStart : observation.position;
-  if (position >= target.at) return ready({ liveStart, target });
-  return update(session, { status: Status.WAITING, reason: null, liveStart, target, readySince: null });
+  if (position >= target.at) return session.mustCross ? removedLike({ liveStart, target }) : ready({ liveStart, target });
+  // Before the like time: a like removed may come back once it is reached.
+  return update(session, { status: Status.WAITING, reason: null, liveStart, target, readySince: null, mustCross: false });
 }

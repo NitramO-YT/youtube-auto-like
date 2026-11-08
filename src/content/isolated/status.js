@@ -11,11 +11,13 @@ import { evaluateVideo } from './session.js';
  * @param {object|null} observation The last observation, with avatarUrl.
  * @param {object} settings From normalizeSettings.
  * @returns {object} { videoId, title, isShort, isLive, channel, status, reason,
- *   target, elapsed, duration, likedAt, ifEnabled }. channel is null until
- *   the page has given a channel ID; elapsed is the playback position, or the
- *   time watched for a live stream. ifEnabled, only while the extension is
- *   paused, is the verdict it would give if it were active ({ eligible,
- *   reason }, or null while the page is unreadable).
+ *   target, elapsed, duration, likedAt, startedAt, rating, ifEnabled }.
+ *   channel is null until the page has given a channel ID; elapsed is the
+ *   playback position, or the time watched for a live stream; rating is
+ *   { liked, disliked } as the buttons show them, or null while the page is
+ *   unreadable. ifEnabled, only while the extension is paused, is the
+ *   verdict it would give if it were active ({ eligible, reason }, or null
+ *   while the page is unreadable).
  */
 export function popupStatus(session, observation, settings) {
   const snapshot = observation?.snapshot ?? null;
@@ -44,6 +46,9 @@ export function popupStatus(session, observation, settings) {
     elapsed,
     duration: typeof observation?.duration === 'number' && Number.isFinite(observation.duration) ? observation.duration : null,
     likedAt: session.likedAt,
+    startedAt: session.startedAt,
+    // What the buttons show now, for a like or a dislike the user removed.
+    rating: readable ? { liked: observation.liked ?? null, disliked: observation.disliked ?? null } : null,
     ifEnabled: settings.enabled ? null : evaluateVideo(session, observation, { ...settings, enabled: true }),
   };
 }

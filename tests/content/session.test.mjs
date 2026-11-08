@@ -7,6 +7,7 @@ import {
   createSession,
   isFinal,
   likeNow,
+  restartVideo,
   resumeVideo,
   skipVideo,
   STABLE_FOR_MS,
@@ -135,6 +136,100 @@ describe('step', () => {
       const liked = step(start(), observation({ liked: true }), instant, T0).session;
       assert.ok(isFinal(liked));
       assert.equal(settle(liked, observation(), instant, T0 + 5000).action, null);
+    });
+  });
+
+  describe('a like the user removes', () => {
+    const relikeHalfway = normalizeSettings({ ...halfway, relikeAfterRemoval: true });
+    const relikeInstant = normalizeSettings({ relikeAfterRemoval: true });
+    // Liked by the extension at 50 % (562.5 s of 1125 s).
+    const likedHalfway = () => {
+      const waiting = settle(start(), observation({ position: 600 }), halfway, T0);
+      assert.equal(waiting.action, 'click');
+      return step(waiting.session, observation({ position: 601, liked: true }), halfway, T0 + 3000).session;
+    };
+    /** Steps through observations one second apart, from `from`; the last result and every action. */
+    const play = (session, settings, observations, from) => {
+      let result = { session, action: null };
+      const done = [];
+      observations.forEach((obs, i) => {
+        result = step(result.session, obs, settings, from + i * 1000);
+        if (result.action) done.push(result.action);
+      });
+      return { ...result, done };
+    };
+
+    it('stays removed without the setting, and is never clicked again', () => {
+      const liked = likedHalfway();
+      assert.equal(liked.status, Status.LIKED);
+      const later = play(liked, halfway, Array.from({ length: 5 }, (_, i) => observation({ position: 610 + i })), T0 + 10_000);
+      assert.deepEqual(later.done, []);
+      assert.equal(later.session.status, Status.LIKED);
+    });
+
+    it('comes back with the setting only once playback crosses the like time again', () => {
+      const unliked = (position) => observation({ position });
+      const result = play(likedHalfway(), relikeHalfway, [unliked(610), unliked(611), unliked(612), unliked(613)], T0 + 10_000);
+      assert.deepEqual(result.done, [], 'no click while playback stays past the like time');
+      assert.equal(result.session.reason, Reason.LIKE_REMOVED);
+      const back = play(result.session, relikeHalfway, [unliked(100), unliked(560), unliked(563), unliked(564)], T0 + 20_000);
+      assert.deepEqual(back.done, ['click']);
+    });
+
+    it('ignores a like seen removed for less than the stability delay', () => {
+      const liked = likedHalfway();
+      const first = step(liked, observation({ position: 610 }), relikeHalfway, T0 + 10_000).session;
+      const second = step(first, observation({ position: 610 }), relikeHalfway, T0 + 10_500).session;
+      assert.equal(second.status, Status.LIKED, 'still liked half a second after the like was first seen removed');
+      const restored = step(second, observation({ position: 611, liked: true }), relikeHalfway, T0 + 10_700).session;
+      assert.equal(restored.status, Status.LIKED);
+      assert.equal(restored.removedSince, null);
+    });
+
+    it('comes back at the next opening only, with an instant like', () => {
+      const liked = step(clicked(), observation({ liked: true }), relikeInstant, T0 + 2000).session;
+      const result = play(liked, relikeInstant, Array.from({ length: 6 }, () => observation()), T0 + 10_000);
+      assert.deepEqual(result.done, []);
+      assert.equal(result.session.reason, Reason.LIKE_REMOVED);
+    });
+
+    it('comes back for a video the user had liked before the page loaded, despite the state sent with the page', () => {
+      const likedAtLoad = { snapshot: snapshot({ likeAtLoad: { toggled: true, videoId: VIDEO_ID } }) };
+      const rated = settle(start(), observation({ ...likedAtLoad, liked: true, position: 600 }), relikeHalfway, T0).session;
+      assert.equal(rated.reason, Reason.ALREADY_LIKED);
+      const unliked = (position) => observation({ ...likedAtLoad, position });
+      const result = play(rated, relikeHalfway, [unliked(610), unliked(611), unliked(612), unliked(100), unliked(563), unliked(564)], T0 + 10_000);
+      assert.deepEqual(result.done, ['click']);
+    });
+
+    it('never brings back a dislike removed', () => {
+      const disliked = settle(start(), observation({ disliked: true }), relikeInstant, T0).session;
+      const result = play(disliked, relikeInstant, Array.from({ length: 5 }, () => observation()), T0 + 10_000);
+      assert.deepEqual(result.done, []);
+      assert.equal(result.session.reason, Reason.ALREADY_DISLIKED);
+    });
+
+    it('is liked at once with "like now", without waiting for the crossing', () => {
+      const result = play(likedHalfway(), relikeHalfway, [observation({ position: 610 }), observation({ position: 611 }), observation({ position: 612 })], T0 + 10_000);
+      const liked = settle(likeNow(result.session), observation({ position: 613 }), relikeHalfway, T0 + 20_000);
+      assert.equal(liked.action, 'click');
+    });
+  });
+
+  describe('restart for this video', () => {
+    it('reads the rating from the buttons, so a video the user unliked can be liked again', () => {
+      const likedAtLoad = { snapshot: snapshot({ likeAtLoad: { toggled: true, videoId: VIDEO_ID } }) };
+      const rated = settle(start(), observation({ ...likedAtLoad, liked: true }), instant, T0).session;
+      const stillRated = settle(rated, observation(likedAtLoad), instant, T0 + 5000).session;
+      assert.equal(stillRated.reason, Reason.ALREADY_LIKED, 'without a restart, the state sent with the page wins');
+      const restarted = settle(restartVideo(stillRated, T0 + 10_000, 0.5), observation(likedAtLoad), instant, T0 + 10_000);
+      assert.equal(restarted.action, 'click');
+    });
+
+    it('tries again after a like that did not take', () => {
+      const failed = step(clicked(), observation(), instant, T0 + STABLE_FOR_MS + CLICK_CONFIRM_TIMEOUT_MS + 1).session;
+      assert.equal(failed.status, Status.CLICK_FAILED);
+      assert.equal(settle(restartVideo(failed, T0 + 20_000, 0.5), observation(), instant, T0 + 20_000).action, 'click');
     });
   });
 

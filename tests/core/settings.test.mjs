@@ -36,6 +36,7 @@ describe('normalizeSettings', () => {
       excludedVideos: [{ videoId: 'aeP4eG-gO10', title: 'Atelier', channelName: 'COLAS', isShort: false, addedAt: '2026-11-08T21:00:00.000Z' }],
       timing: { mode: 'custom', percent: { enabled: false, value: 0 }, minutes: { enabled: true, value: 600 } },
       updateCheckMinutes: 0,
+      relikeAfterRemoval: true,
       theme: 'dark',
     };
     assert.deepEqual(normalizeSettings(custom), custom);

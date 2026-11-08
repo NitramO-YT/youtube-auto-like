@@ -43,6 +43,8 @@ describe('popupStatus', () => {
       elapsed: 120.5,
       duration: 1125,
       likedAt: null,
+      startedAt: 0,
+      rating: { liked: null, disliked: null },
       ifEnabled: null,
     });
   });

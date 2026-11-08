@@ -94,6 +94,19 @@
 
   "actionLikeNow": { "message": "Liker maintenant" },
   "actionSkip": { "message": "Pas cette fois" },
+  "actionRestart": { "message": "Relancer pour cette vidéo" },
+  "actionRetry": { "message": "Réessayer" },
+  "removedLikeTitle": { "message": "Like retiré" },
+  "removedLikeRestart": { "message": "Vous avez retiré le like. Relancez pour que l'extension traite de nouveau cette vidéo." },
+  "removedDislikeTitle": { "message": "Dislike retiré" },
+  "removedDislikeRestart": { "message": "Vous avez retiré le dislike. Relancez pour que l'extension traite de nouveau cette vidéo." },
+  "likeRemovedNextOpening": { "message": "Il sera remis à la prochaine ouverture de la vidéo." },
+  "likeRemovedAt": {
+    "message": "Il sera remis quand la lecture repassera à $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Remettre le like si je le retire" },
+  "relikeHint": { "message": "Quand la lecture repasse le moment prévu, donc après être revenu avant lui ; avec « Dès l'ouverture », à la prochaine ouverture de la vidéo. Vaut aussi pour une vidéo que vous aviez likée vous-même." },
   "actionResume": { "message": "Annuler « Pas cette fois »" },
   "actionExcludeVideo": { "message": "Ne jamais liker cette vidéo" },
   "actionUnexcludeVideo": { "message": "Ne plus exclure cette vidéo" },

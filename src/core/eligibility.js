@@ -27,6 +27,9 @@ export const Reason = Object.freeze({
   // Set by the liker, not by evaluateEligibility: the user asked, from the
   // popup, not to like the video being watched.
   SKIPPED_BY_USER: 'skipped-by-user',
+  // Set by the liker: the user removed a like, which comes back only once
+  // playback crosses the like time again (see session.js).
+  LIKE_REMOVED: 'like-removed',
 });
 
 const verdict = (eligible, reason) => ({ eligible, reason });

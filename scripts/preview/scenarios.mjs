@@ -67,6 +67,17 @@ export const SCENARIOS = [
     status: { ...video, channel: channel(true), status: 'skipped', reason: 'skipped-by-user', target: { at: 562.5, basis: 'percent' } },
   },
   {
+    name: 'popup-like-removed',
+    ...POPUP,
+    status: { ...video, channel: channel(true), status: 'liked', target: { at: 0, basis: 'instant' }, likedAgoMs: 60_000, rating: { liked: false, disliked: false } },
+  },
+  {
+    name: 'popup-like-coming-back',
+    ...POPUP,
+    settings: { ...halfway, relikeAfterRemoval: true },
+    status: { ...video, channel: channel(true), status: 'not-eligible', reason: 'like-removed', target: { at: 562.5, basis: 'percent' } },
+  },
+  {
     name: 'popup-video-excluded',
     ...POPUP,
     settings: { excludedVideos: [{ videoId: 'aeP4eG-gO10', title: "J'AI CONSTRUIT MON ATELIER DE RÊVE !", channelName: 'COLAS' }] },

@@ -22,7 +22,7 @@ import { claimInstance, isConnected } from '../instance.js';
 import { ISOLATED_SOURCE, PAGE_SOURCE, SNAPSHOT, SNAPSHOT_REQUEST, validateSnapshot } from '../protocol.js';
 import { findLikeButton, readChannelAvatar, readPlayback, readRating } from '../youtube/dom.js';
 import { surfaceFromUrl, videoIdFromUrl } from '../youtube/surface.js';
-import { createSession, isFinal, likeNow, resumeVideo, skipVideo, Status, step } from './session.js';
+import { createSession, likeNow, restartVideo, resumeVideo, skipVideo, Status, step } from './session.js';
 import { popupStatus } from './status.js';
 
 const TICK_MS = 1000;
@@ -114,7 +114,8 @@ async function tick() {
       clickedSnapshot = null;
       log(`video ${videoId}`);
     }
-    if (isFinal(session)) return;
+    // A final video is still observed, for the popup and for a like the
+    // user removes (see step); it is never clicked again.
 
     const surface = surfaceFromUrl(window.location.href);
     const snapshot = await requestSnapshot();
@@ -166,6 +167,10 @@ const COMMANDS = {
   [Message.LIKE_NOW]: likeNow,
   [Message.SKIP_VIDEO]: skipVideo,
   [Message.RESUME_VIDEO]: resumeVideo,
+  [Message.RESTART_VIDEO]: (current) => {
+    clickedSnapshot = null;
+    return restartVideo(current, Date.now(), Math.random());
+  },
 };
 
 function onPopupMessage(message, sender, sendResponse) {
@@ -179,7 +184,7 @@ function onPopupMessage(message, sender, sendResponse) {
   }
   sendResponse(currentStatus());
   // The video is looked at again at once, rather than at the next tick.
-  if (type === Message.LIKE_NOW || type === Message.RESUME_VIDEO) tick();
+  if (type === Message.LIKE_NOW || type === Message.RESUME_VIDEO || type === Message.RESTART_VIDEO) tick();
 }
 
 async function start() {

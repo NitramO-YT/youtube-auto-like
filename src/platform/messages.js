@@ -11,6 +11,7 @@ export const Message = Object.freeze({
   LIKE_NOW: 'like-now',
   SKIP_VIDEO: 'skip-video',
   RESUME_VIDEO: 'resume-video',
+  RESTART_VIDEO: 'restart-video',
   CHECK_UPDATES: 'check-updates',
 });
 

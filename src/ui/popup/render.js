@@ -9,6 +9,8 @@ const ACTION_LABELS = {
   [Action.LIKE_NOW]: 'actionLikeNow',
   [Action.SKIP]: 'actionSkip',
   [Action.RESUME]: 'actionResume',
+  [Action.RESTART]: 'actionRestart',
+  [Action.RETRY]: 'actionRetry',
   [Action.EXCLUDE_VIDEO]: 'actionExcludeVideo',
   [Action.UNEXCLUDE_VIDEO]: 'actionUnexcludeVideo',
   [Action.ALWAYS]: 'actionAlways',

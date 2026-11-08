@@ -35,6 +35,9 @@ const DEFAULTS = {
     minutes: { enabled: false, value: 2 },
   },
   updateCheckMinutes: 30,
+  // A like the user removes comes back when playback crosses the like time
+  // again (off: it stays removed).
+  relikeAfterRemoval: false,
   theme: 'system',
 };
 
@@ -87,6 +90,7 @@ export function normalizeSettings(raw) {
       },
     },
     updateCheckMinutes: isValidCheckFrequency(input.updateCheckMinutes) ? input.updateCheckMinutes : defaults.updateCheckMinutes,
+    relikeAfterRemoval: booleanOr(input.relikeAfterRemoval, defaults.relikeAfterRemoval),
     theme: oneOf(input.theme, THEMES, defaults.theme),
   };
 

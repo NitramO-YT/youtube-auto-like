@@ -207,6 +207,8 @@ const ACTIONS = {
   [Action.LIKE_NOW]: () => videoCommand(Message.LIKE_NOW),
   [Action.SKIP]: skipThisTime,
   [Action.RESUME]: () => videoCommand(Message.RESUME_VIDEO),
+  [Action.RESTART]: () => videoCommand(Message.RESTART_VIDEO),
+  [Action.RETRY]: () => videoCommand(Message.RESTART_VIDEO),
   [Action.EXCLUDE_VIDEO]: () => excludeVideo(true),
   [Action.UNEXCLUDE_VIDEO]: () => excludeVideo(false),
   [Action.ALWAYS]: () => moveVideoChannel('always'),

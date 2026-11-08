@@ -272,6 +272,12 @@ main {
 .random-hint {
   margin-top: 0;
 }
+.relike {
+  margin-top: 12px;
+}
+.relike .hint {
+  margin: 6px 0 0;
+}
 .summary {
   padding: 12px 14px;
   border-radius: 10px;

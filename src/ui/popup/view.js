@@ -24,6 +24,11 @@ export const Action = Object.freeze({
   // Never this video, until the user takes it out of the excluded videos.
   EXCLUDE_VIDEO: 'exclude-video',
   UNEXCLUDE_VIDEO: 'unexclude-video',
+  // The video goes through the checks again from the start, as after a
+  // reload of the page: RESTART for a rating removed or a page read too
+  // long, RETRY after a like that did not take.
+  RESTART: 'restart',
+  RETRY: 'retry',
   ALWAYS: 'always',
   NEVER: 'never',
   UNLIST_NEVER: 'unlist-never',
@@ -41,7 +46,25 @@ const REASON_DETAILS = {
   [Reason.VIDEO_EXCLUDED]: 'reasonVideoExcluded',
 };
 
+// Reading the page for longer than this offers to restart the video.
+export const STUCK_READING_MS = 20_000;
+
 const card = (tone, icon, title, detail = null, progress = null) => ({ tone, icon, title, detail, progress });
+
+// A like (by the extension or by the user) or a dislike that the buttons no
+// longer show.
+const likeRemoved = (status) =>
+  status.rating?.liked === false &&
+  (status.status === Status.LIKED || (status.status === Status.SKIPPED && status.reason === Reason.ALREADY_LIKED));
+const dislikeRemoved = (status) =>
+  status.rating?.disliked === false && status.status === Status.SKIPPED && status.reason === Reason.ALREADY_DISLIKED;
+
+/** A like removed that comes back later: when playback passes the like time again, or at the next opening. */
+function likeComingBackCard(status, t) {
+  const { target } = status;
+  const when = !target || target.at === 0 ? t('likeRemovedNextOpening') : t('likeRemovedAt', [formatClock(target.at)]);
+  return card('no', 'block', t('removedLikeTitle'), when);
+}
 
 function readingCard(t) {
   return card('wait', 'clock', t('statusReading'), t('statusReadingDetail'));
@@ -105,10 +128,14 @@ function pausedCard(status, t) {
 
 /** The status card: { tone, icon, title, detail, progress }. */
 export function statusCard(status, settings, t, lang, now) {
-  // Final statuses first: a video liked before a pause stays shown as liked.
+  // Final statuses first: a video liked before a pause stays shown as liked,
+  // unless the user removed the like since.
+  if (likeRemoved(status)) return card('no', 'block', t('removedLikeTitle'), t('removedLikeRestart'));
+  if (dislikeRemoved(status)) return card('no', 'block', t('removedDislikeTitle'), t('removedDislikeRestart'));
   if (status.status === Status.LIKED) return likedCard(status, t, lang, now);
   if (status.status === Status.CLICK_FAILED) return card('error', 'alert', t('statusFailedTitle'), t('statusFailedDetail'));
   if (status.status === Status.SKIPPED) return reasonCard(status.reason, t);
+  if (status.reason === Reason.LIKE_REMOVED && settings.enabled) return likeComingBackCard(status, t);
   if (!settings.enabled) return pausedCard(status, t);
 
   switch (status.status) {
@@ -141,21 +168,29 @@ export function channelAction(channel, settings) {
 /**
  * The buttons for the video itself: like now, not this time or never while
  * it waits; take back "not this time", like now or never, once skipped this
- * time; no longer excluded, once excluded.
+ * time; no longer excluded, once excluded; restart, once a rating is removed
+ * or the page has been read for too long; try again, after a like that did
+ * not take.
  */
-function videoActions(status) {
+function videoActions(status, now) {
+  if (likeRemoved(status) || dislikeRemoved(status)) return [Action.RESTART];
+  if (status.status === Status.CLICK_FAILED) return [Action.RETRY];
   if (status.status === Status.WAITING || status.status === Status.WAITING_AD) {
     return [Action.LIKE_NOW, Action.SKIP, Action.EXCLUDE_VIDEO];
   }
   if (status.reason === Reason.SKIPPED_BY_USER) return [Action.RESUME, Action.LIKE_NOW, Action.EXCLUDE_VIDEO];
   if (status.reason === Reason.VIDEO_EXCLUDED) return [Action.UNEXCLUDE_VIDEO];
+  if (status.reason === Reason.LIKE_REMOVED) return [Action.LIKE_NOW];
+  if (status.status === Status.READING && typeof status.startedAt === 'number' && now - status.startedAt > STUCK_READING_MS) {
+    return [Action.RESTART];
+  }
   return [];
 }
 
 /** The buttons under the status card, in order; none while the extension is paused. */
-export function actions(status, settings) {
+export function actions(status, settings, now = Date.now()) {
   if (!settings.enabled) return [];
-  const list = videoActions(status);
+  const list = videoActions(status, now);
   if (status.channel) list.push(channelAction(status.channel, settings));
   return list;
 }
@@ -194,6 +229,6 @@ export function videoView(status, settings, t, lang, now) {
     title: status.title || null,
     channel,
     card: statusCard(status, settings, t, lang, now),
-    actions: actions(status, settings),
+    actions: actions(status, settings, now),
   };
 }
