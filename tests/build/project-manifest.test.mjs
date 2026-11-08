@@ -51,13 +51,15 @@ for (const target of TARGETS) {
       }
     });
 
-    it('ships the popup and every file it loads', async () => {
-      const page = manifest.action.default_popup;
-      const html = await readFile(path.join(outDir, page), 'utf8');
-      const loaded = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map((match) => match[1]);
-      assert.ok(loaded.length >= 2, 'the popup loads its script and its stylesheet');
-      for (const file of loaded) {
-        await access(path.join(outDir, path.dirname(page), file));
+    it('ships the popup, the options page, and every file they load', async () => {
+      for (const page of [manifest.action.default_popup, manifest.options_ui.page]) {
+        const html = await readFile(path.join(outDir, page), 'utf8');
+        // Addresses of the page itself (anchors to its sections) are not files.
+        const loaded = [...html.matchAll(/(?:src|href)="([^"#]+)"/g)].map((match) => match[1]);
+        assert.ok(loaded.length >= 2, `${page} loads its script and its stylesheet`);
+        for (const file of loaded) {
+          await access(path.join(outDir, path.dirname(page), file));
+        }
       }
     });
 

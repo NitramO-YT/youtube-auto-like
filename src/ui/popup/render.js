@@ -1,19 +1,10 @@
 /**
- * DOM of the popup, built from the models of view.js. Texts are only ever
- * set with textContent: a channel name from YouTube is never parsed as HTML.
+ * DOM of the popup, built from the models of view.js.
  */
 import { createAvatar } from '../shared/avatar.js';
+import { el, icon } from '../shared/dom.js';
 import { Action } from './view.js';
 
-const SVG_NS = 'http://www.w3.org/2000/svg';
-const ICONS = {
-  check: 'M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z',
-  clock: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10.4 3.5 2.1-.8 1.3L11 13V7h2z',
-  block:
-    'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM4 12a8 8 0 0 1 12.9-6.3L5.7 16.9A7.9 7.9 0 0 1 4 12zm8 8a7.9 7.9 0 0 1-4.9-1.7L18.3 7.1A8 8 0 0 1 12 20z',
-  alert: 'M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z',
-  pause: 'M6 19h4V5H6v14zm8-14v14h4V5h-4z',
-};
 const ACTION_LABELS = {
   [Action.LIKE_NOW]: 'actionLikeNow',
   [Action.SKIP]: 'actionSkip',
@@ -21,24 +12,6 @@ const ACTION_LABELS = {
   [Action.NEVER]: 'actionNever',
   [Action.UNLIST_NEVER]: 'actionUnlistNever',
 };
-
-function el(doc, tag, className, text) {
-  const element = doc.createElement(tag);
-  if (className) element.className = className;
-  if (text !== undefined && text !== null) element.textContent = text;
-  return element;
-}
-
-function icon(doc, name) {
-  const svg = doc.createElementNS(SVG_NS, 'svg');
-  svg.setAttribute('viewBox', '0 0 24 24');
-  svg.setAttribute('class', 'icon');
-  svg.setAttribute('aria-hidden', 'true');
-  const path = doc.createElementNS(SVG_NS, 'path');
-  path.setAttribute('d', ICONS[name] ?? ICONS.clock);
-  svg.append(path);
-  return svg;
-}
 
 /** @param {object|null} channel { id, name, initial, avatarUrl, meta } */
 export function renderChannel(container, channel) {
@@ -84,10 +57,4 @@ export function renderActions(container, actions, t) {
       return button;
     }),
   );
-}
-
-/** @param {{ text: string, strong: boolean }[]} parts From ruleParts. */
-export function renderRule(container, parts) {
-  const doc = container.ownerDocument;
-  container.replaceChildren(...parts.map((part) => (part.strong ? el(doc, 'strong', null, part.text) : doc.createTextNode(part.text))));
 }

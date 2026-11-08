@@ -120,6 +120,89 @@
     "placeholders": { "count": { "content": "$1", "example": "5,000" } }
   },
   "noticeNoAnswer": { "message": "The page did not answer. Reload it and try again." },
+  "noticeSaved": { "message": "Saved" },
+  "noticeRemovedAlways": { "message": "Removed from “Always like”" },
+  "noticeImportedOne": {
+    "message": "$COUNT$ channel imported",
+    "placeholders": { "count": { "content": "$1", "example": "1" } }
+  },
+  "noticeImportedOther": {
+    "message": "$COUNT$ channels imported",
+    "placeholders": { "count": { "content": "$1", "example": "12" } }
+  },
+  "noticeImportedNone": { "message": "This file holds no channel that is not already in your lists." },
+  "noticeImportInvalid": { "message": "This file is not a list exported by YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "This file is too large to be a list of channels." },
+  "noticeCountReset": { "message": "Counter reset" },
+  "noticeNumberInvalid": {
+    "message": "Enter a number from $MIN$ to $MAX$.",
+    "placeholders": {
+      "min": { "content": "$1", "example": "0" },
+      "max": { "content": "$2", "example": "100" }
+    }
+  },
+
+  "optionsPageTitle": { "message": "YouTube Auto Like settings", "description": "Title of the browser tab of the options page." },
+  "optionsTitle": { "message": "Settings" },
+  "navSections": { "message": "Sections", "description": "Accessible name of the menu of the options page." },
+  "navChannels": { "message": "Which channels" },
+  "navVideos": { "message": "Which videos" },
+  "navWhen": { "message": "When to like" },
+  "navLists": { "message": "My lists" },
+  "navMore": { "message": "More" },
+
+  "channelsHeading": { "message": "Which channels to like?" },
+  "channelsHint": { "message": "The “Never like” list always comes first." },
+  "likeWhatSubscribed": { "message": "The channels I subscribe to" },
+  "likeWhatSubscribedHint": { "message": "plus those in my “Always like” list." },
+  "recommended": { "message": "Recommended" },
+  "likeWhatAll": { "message": "Every channel" },
+  "likeWhatAllHint": { "message": "every video watched is liked." },
+  "likeWhatList": { "message": "Only my “Always like” list" },
+  "likeWhatListHint": { "message": "subscribed or not, nothing else is liked." },
+
+  "videosHeading": { "message": "Which videos?" },
+  "videosHint": { "message": "Shorts are recognized even when opened in the regular player." },
+  "likeNormalVideos": { "message": "Videos" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "When to like?" },
+  "whenHint": { "message": "A video you like or dislike yourself is never touched." },
+  "modeInstant": { "message": "As soon as it opens" },
+  "modeCustom": { "message": "After a while" },
+  "modeRandom": { "message": "At a random moment" },
+  "thresholdAfter": { "message": "after", "description": "Before a threshold: after [50] % of the video, after [2] minutes of playback." },
+  "thresholdPercentUnit": { "message": "% of the video" },
+  "thresholdMinutesUnit": { "message": "minutes of playback" },
+  "percentLabel": { "message": "Percentage of the video" },
+  "minutesLabel": { "message": "Minutes of playback" },
+  "thresholdKeepOne": { "message": "At least one threshold stays checked." },
+  "thresholdsHint": { "message": "The first threshold reached triggers the like. A video shorter than that is liked two seconds before its end. On a live stream, only minutes count, from the moment you started watching; without a minutes threshold, it is liked as soon as it opens. Ads are not counted." },
+  "randomHint": { "message": "A moment drawn at random in each video. A live stream is liked as soon as it opens." },
+  "summaryLabel": { "message": "Summary:" },
+
+  "listsHeading": { "message": "My channel lists" },
+  "listsHint": { "message": "Add a channel from the toolbar popup, during one of its videos." },
+  "listAlways": { "message": "Always like" },
+  "listNever": { "message": "Never like" },
+  "listSearch": { "message": "Search a channel" },
+  "listImport": { "message": "Import" },
+  "listExport": { "message": "Export" },
+  "listEmpty": { "message": "No channel in this list." },
+  "listNoMatch": { "message": "No channel matches this search." },
+  "listAddedOn": {
+    "message": "added on $DATE$",
+    "placeholders": { "date": { "content": "$1", "example": "Nov 8, 2026" } }
+  },
+  "listRemove": {
+    "message": "Remove $NAME$ from this list",
+    "placeholders": { "name": { "content": "$1", "example": "COLAS" } }
+  },
+  "listOpenChannel": { "message": "Open the channel on YouTube" },
+
+  "moreHeading": { "message": "More" },
+  "likeCountHint": { "message": "Since the extension was installed, or since the last reset. Resetting it changes nothing else." },
+  "likeCountReset": { "message": "Reset" },
 
   "ruleSentence": {
     "message": "Likes $WHAT$ $CHANNELS$, $WHEN$.",

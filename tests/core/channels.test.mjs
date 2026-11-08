@@ -3,8 +3,10 @@ import { describe, it } from 'node:test';
 import {
   isChannelListed,
   isValidChannelId,
+  ListFullError,
   listOf,
   MAX_CHANNELS,
+  mergeLists,
   normalizeChannels,
   normalizeLists,
   placeChannel,
@@ -120,6 +122,38 @@ describe('placeChannel', () => {
   it('refuses an invalid channel, an unknown list and a full list', () => {
     assert.throws(() => placeChannel(empty, { id: 'nope' }, 'always', NOW), /Invalid channel ID/);
     assert.throws(() => placeChannel(empty, { id: COLAS }, 'sometimes', NOW), /Unknown list/);
-    assert.throws(() => placeChannel({ always: normalizeChannels(manyChannels(MAX_CHANNELS)), never: [] }, { id: COLAS }, 'always', NOW), /full/);
+    assert.throws(() => placeChannel({ always: normalizeChannels(manyChannels(MAX_CHANNELS)), never: [] }, { id: COLAS }, 'always', NOW), ListFullError);
+  });
+});
+
+describe('mergeLists', () => {
+  const OLD = '2026-01-01T00:00:00.000Z';
+  const current = normalizeLists({
+    always: [{ id: COLAS, name: 'COLAS', addedAt: OLD }],
+    never: [{ id: QOQSIK, name: 'qoqsik', addedAt: OLD }],
+  });
+
+  it('adds the imported channels in their order, with their dates, and keeps the others', () => {
+    const imported = normalizeLists({ always: [{ id: WAKED, name: 'Waked XY', addedAt: OLD }, { id: 'UC' + '1'.repeat(22), name: 'One' }] });
+    const { lists, added } = mergeLists(current, imported, NOW);
+    assert.equal(added, 2);
+    assert.deepEqual(lists.always.map((channel) => channel.id), [WAKED, 'UC' + '1'.repeat(22), COLAS]);
+    assert.equal(lists.always[0].addedAt, OLD);
+    assert.equal(lists.always[1].addedAt, NOW);
+    assert.deepEqual(lists.never.map((channel) => channel.id), [QOQSIK]);
+  });
+
+  it('moves a channel to the list the import gives it, and does not count one already there', () => {
+    const imported = normalizeLists({ always: [{ id: QOQSIK, name: 'qoqsik' }], never: [{ id: COLAS, name: 'COLAS' }] });
+    const { lists, added } = mergeLists(current, imported, NOW);
+    assert.equal(added, 2);
+    assert.equal(listOf(lists, QOQSIK), 'always');
+    assert.equal(listOf(lists, COLAS), 'never');
+    assert.equal(mergeLists(current, current, NOW).added, 0);
+  });
+
+  it('merges nothing when a list would be full', () => {
+    const full = { always: normalizeChannels(manyChannels(MAX_CHANNELS)), never: [] };
+    assert.throws(() => mergeLists(full, normalizeLists({ always: [{ id: COLAS }] }), NOW), ListFullError);
   });
 });

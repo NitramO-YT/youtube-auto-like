@@ -9,7 +9,7 @@ export const TARGETS = ['chromium'];
 // Folders and files of src/ copied unchanged into the build, at the same path.
 // A page is listed file by file: its folder also holds the JavaScript sources
 // that esbuild bundles.
-export const STATIC_PATHS = ['_locales', 'icons', 'ui/popup/popup.html'];
+export const STATIC_PATHS = ['_locales', 'icons', 'ui/popup/popup.html', 'ui/options/options.html'];
 
 // Scripts bundled by esbuild, one per extension context (service worker,
 // content script, page), as { in: 'path/to/source.js', out: 'path/to/output' }.
@@ -19,4 +19,5 @@ export const ENTRY_POINTS = [
   { in: 'content/page/index.js', out: 'content/page' },
   { in: 'content/isolated/index.js', out: 'content/isolated' },
   { in: 'ui/popup/index.js', out: 'ui/popup/popup' },
+  { in: 'ui/options/index.js', out: 'ui/options/options' },
 ];

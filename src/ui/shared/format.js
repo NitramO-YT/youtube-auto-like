@@ -35,8 +35,15 @@ export function formatAgo(elapsedMs, lang) {
   return format.format(-Math.floor(seconds / 86400), 'day');
 }
 
+/**
+ * The key of a count's text by the plural rules of the language: oneKey for
+ * the "one" category (1 in English; 0 and 1 in French), otherKey otherwise.
+ */
+export function pluralKey(count, lang, oneKey, otherKey) {
+  return new Intl.PluralRules(lang).select(count) === 'one' ? oneKey : otherKey;
+}
+
 /** "1 248 vidéos likées", with the plural rules of the language. */
 export function formatLikeCount(count, lang, t) {
-  const key = new Intl.PluralRules(lang).select(count) === 'one' ? 'likeCountOne' : 'likeCountOther';
-  return t(key, [formatNumber(count, lang)]);
+  return t(pluralKey(count, lang, 'likeCountOne', 'likeCountOther'), [formatNumber(count, lang)]);
 }

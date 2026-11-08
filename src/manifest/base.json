@@ -18,6 +18,10 @@
       "32": "icons/32.png"
     }
   },
+  "options_ui": {
+    "page": "ui/options/options.html",
+    "open_in_tab": true
+  },
   "content_security_policy": {
     "extension_pages": "default-src 'self'; script-src 'self'; object-src 'none'; img-src 'self' https://yt3.ggpht.com https://yt3.googleusercontent.com https://yt4.ggpht.com; base-uri 'none'; form-action 'none'"
   },

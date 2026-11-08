@@ -61,7 +61,12 @@ export function createStore(api) {
     },
 
     async incrementLikeCount() {
-      const likeCount = (await this.loadLikeCount()) + 1;
+      return this.setLikeCount((await this.loadLikeCount()) + 1);
+    },
+
+    /** Sets the like count (reset, or its undo); a value that is not a count gives 0. */
+    async setLikeCount(count) {
+      const likeCount = validCount(count);
       await area.set({ [STATS_KEY]: { likeCount } });
       return likeCount;
     },

@@ -2,31 +2,7 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { defaultSettings } from '../../src/core/settings.js';
 import { createStore, SETTINGS_KEY, STATS_KEY } from '../../src/platform/storage.js';
-
-// storage.local and storage.onChanged as Chromium exposes them in Manifest V3.
-function fakeApi(initial = {}) {
-  const data = structuredClone(initial);
-  const listeners = [];
-  return {
-    data,
-    storage: {
-      local: {
-        async get(key) {
-          return key in data ? { [key]: structuredClone(data[key]) } : {};
-        },
-        async set(items) {
-          const changes = {};
-          for (const [key, value] of Object.entries(items)) {
-            changes[key] = { oldValue: data[key], newValue: structuredClone(value) };
-            data[key] = structuredClone(value);
-          }
-          for (const listener of listeners) listener(changes, 'local');
-        },
-      },
-      onChanged: { addListener: (listener) => listeners.push(listener) },
-    },
-  };
-}
+import { fakeStorageApi as fakeApi } from '../helpers/fake-storage.mjs';
 
 describe('createStore', () => {
   it('loads the defaults when nothing is stored', async () => {
@@ -86,5 +62,13 @@ describe('createStore', () => {
     assert.equal(await store.incrementLikeCount(), 1);
     assert.equal(await store.incrementLikeCount(), 2);
     assert.equal(await store.loadLikeCount(), 2);
+  });
+
+  it('sets the like count, refusing what is not a count', async () => {
+    const store = createStore(fakeApi());
+    assert.equal(await store.setLikeCount(1248), 1248);
+    assert.equal(await store.setLikeCount(-1), 0);
+    assert.equal(await store.setLikeCount(2.5), 0);
+    assert.equal(await store.loadLikeCount(), 0);
   });
 });

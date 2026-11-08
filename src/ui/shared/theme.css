@@ -10,7 +10,9 @@
   --muted: #5d6470;
   --accent: #d93025;
   --accent-soft: #fde8e7;
-  /* Text on --accent and on --error, at least 4.5:1 (WCAG AA). */
+  /* Text on --accent and on --error, and accent text on --accent-soft, at
+     least 4.5:1 (WCAG AA). */
+  --accent-on-soft: #b3261e;
   --on-accent: #ffffff;
   --on-error: #ffffff;
   --success: #137333;
@@ -33,6 +35,7 @@
     --muted: #a2a8b3;
     --accent: #ff6b5f;
     --accent-soft: #3a1d1b;
+    --accent-on-soft: #ff6b5f;
     --on-accent: #17181b;
     --on-error: #17181b;
     --success: #5fd38a;
@@ -106,7 +109,6 @@ body {
   border-radius: 999px;
   background: var(--border);
   position: relative;
-  transition: background 0.15s;
   flex: none;
 }
 .switch .track::after {
@@ -119,6 +121,13 @@ body {
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+/* Animated only once the page shows the stored state (markReady), so that
+   the switch does not slide from its default position when a page opens. */
+:root[data-ready] .switch .track {
+  transition: background 0.15s;
+}
+:root[data-ready] .switch .track::after {
   transition: left 0.15s;
 }
 .switch[aria-checked='true'] .track {
@@ -140,6 +149,7 @@ body {
   display: inline-flex;
   gap: 6px;
   align-items: center;
+  white-space: nowrap;
 }
 .btn:hover {
   background: var(--surface);
@@ -203,6 +213,32 @@ body {
 .avatar-tone-5 { background: #0b6e79; }
 .avatar-tone-6 { background: #8e244d; }
 .avatar-tone-7 { background: #4a5568; }
+
+/* Confirmation of a change, from notice.js, with its Undo button. */
+.notice {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 12.5px;
+}
+.notice.error {
+  background: var(--error);
+  color: var(--on-error);
+}
+.notice button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 /* Status card: what the extension does with the video, and why. */
 .status {

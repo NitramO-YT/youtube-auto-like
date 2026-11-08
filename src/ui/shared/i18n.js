@@ -23,16 +23,22 @@ export function createTranslator(getMessage) {
   };
 }
 
+// Attributes filled by translatePage, from data-i18n-<attribute>.
+const TRANSLATED_ATTRIBUTES = ['aria-label', 'placeholder', 'title'];
+
 /**
- * Fills the elements of root that carry data-i18n (text) or
- * data-i18n-aria-label (accessible name) with the text of that key.
+ * Fills the elements of root that carry data-i18n (text), or
+ * data-i18n-aria-label, data-i18n-placeholder and data-i18n-title (those
+ * attributes), with the text of that key.
  */
 export function translatePage(root, t) {
   for (const element of root.querySelectorAll('[data-i18n]')) {
-    element.textContent = t(element.dataset.i18n);
+    element.textContent = t(element.getAttribute('data-i18n'));
   }
-  for (const element of root.querySelectorAll('[data-i18n-aria-label]')) {
-    element.setAttribute('aria-label', t(element.dataset.i18nAriaLabel));
+  for (const attribute of TRANSLATED_ATTRIBUTES) {
+    for (const element of root.querySelectorAll(`[data-i18n-${attribute}]`)) {
+      element.setAttribute(attribute, t(element.getAttribute(`data-i18n-${attribute}`)));
+    }
   }
 }
 

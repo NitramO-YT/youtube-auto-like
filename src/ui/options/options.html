@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="optionsPageTitle">YouTube Auto Like</title>
+<link rel="stylesheet" href="options.css">
+</head>
+<body>
+<header class="options-head">
+  <span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 21h4V9H2v12zm20-11a2 2 0 0 0-2-2h-6.3l1-4.6v-.3c0-.4-.2-.8-.4-1.1L13.2 1 6.6 7.6c-.4.4-.6.9-.6 1.4v10a2 2 0 0 0 2 2h9c.8 0 1.5-.5 1.8-1.2l3-7.1c.1-.2.2-.5.2-.7v-2z"/></svg></span>
+  <h1 data-i18n="optionsTitle"></h1>
+  <button type="button" class="switch" id="enabled" role="switch" aria-checked="false" data-i18n-aria-label="switchLabel" disabled>
+    <span id="enabled-state"></span><span class="track" aria-hidden="true"></span>
+  </button>
+</header>
+
+<div class="paused-banner" id="paused-banner" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <span data-i18n="pausedBanner"></span>
+</div>
+
+<div class="options-body">
+  <nav id="nav" data-i18n-aria-label="navSections">
+    <a href="#channels" data-i18n="navChannels"></a>
+    <a href="#videos" data-i18n="navVideos"></a>
+    <a href="#when" data-i18n="navWhen"></a>
+    <a href="#lists" data-i18n="navLists"></a>
+    <a href="#more" data-i18n="navMore"></a>
+  </nav>
+
+  <main id="form">
+    <section class="block" id="channels" aria-labelledby="channels-heading">
+      <h2 id="channels-heading" data-i18n="channelsHeading"></h2>
+      <p class="hint" data-i18n="channelsHint"></p>
+      <div class="choices" role="radiogroup" aria-labelledby="channels-heading">
+        <label class="choice">
+          <input type="radio" name="likeWhat" value="subscribed" data-field="likeWhat">
+          <span class="radio" aria-hidden="true"></span>
+          <span><strong><span data-i18n="likeWhatSubscribed"></span> <span class="badge" data-i18n="recommended"></span></strong><span class="choice-hint" data-i18n="likeWhatSubscribedHint"></span></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="likeWhat" value="all" data-field="likeWhat">
+          <span class="radio" aria-hidden="true"></span>
+          <span><strong data-i18n="likeWhatAll"></strong><span class="choice-hint" data-i18n="likeWhatAllHint"></span></span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="likeWhat" value="alwaysList" data-field="likeWhat">
+          <span class="radio" aria-hidden="true"></span>
+          <span><strong data-i18n="likeWhatList"></strong><span class="choice-hint" data-i18n="likeWhatListHint"></span></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="block" id="videos" aria-labelledby="videos-heading">
+      <h2 id="videos-heading" data-i18n="videosHeading"></h2>
+      <p class="hint" data-i18n="videosHint"></p>
+      <div class="checks">
+        <label class="check"><input type="checkbox" data-field="likeNormalVideos"><span class="box" aria-hidden="true"></span><span data-i18n="likeNormalVideos"></span></label>
+        <label class="check"><input type="checkbox" data-field="likeShorts"><span class="box" aria-hidden="true"></span><span data-i18n="likeShorts"></span></label>
+      </div>
+    </section>
+
+    <section class="block" id="when" aria-labelledby="when-heading">
+      <h2 id="when-heading" data-i18n="whenHeading"></h2>
+      <p class="hint" data-i18n="whenHint"></p>
+      <div class="seg" role="radiogroup" aria-labelledby="when-heading">
+        <label><input type="radio" name="timingMode" value="instant" data-field="timingMode"><span data-i18n="modeInstant"></span></label>
+        <label><input type="radio" name="timingMode" value="custom" data-field="timingMode"><span data-i18n="modeCustom"></span></label>
+        <label><input type="radio" name="timingMode" value="random" data-field="timingMode"><span data-i18n="modeRandom"></span></label>
+      </div>
+      <div class="delays" id="delays" hidden>
+        <div class="delay">
+          <label class="check"><input type="checkbox" id="percent-enabled" data-field="percentEnabled"><span class="box" aria-hidden="true"></span><span data-i18n="thresholdAfter"></span></label>
+          <input type="range" min="0" max="100" step="1" data-mirror="percentValue" data-i18n-aria-label="percentLabel">
+          <input type="number" min="0" max="100" step="1" data-field="percentValue" data-i18n-aria-label="percentLabel">
+          <span data-i18n="thresholdPercentUnit"></span>
+        </div>
+        <div class="delay">
+          <label class="check"><input type="checkbox" id="minutes-enabled" data-field="minutesEnabled"><span class="box" aria-hidden="true"></span><span data-i18n="thresholdAfter"></span></label>
+          <input type="number" min="0" max="600" step="0.5" data-field="minutesValue" data-i18n-aria-label="minutesLabel">
+          <span data-i18n="thresholdMinutesUnit"></span>
+        </div>
+        <p class="hint" id="threshold-lock" data-i18n="thresholdKeepOne" hidden></p>
+        <p class="hint" data-i18n="thresholdsHint"></p>
+      </div>
+      <p class="hint random-hint" id="random-hint" data-i18n="randomHint" hidden></p>
+      <p class="summary"><strong data-i18n="summaryLabel"></strong> <span id="summary"></span></p>
+    </section>
+
+    <section class="block" id="lists" aria-labelledby="lists-heading">
+      <h2 id="lists-heading" data-i18n="listsHeading"></h2>
+      <p class="hint" data-i18n="listsHint"></p>
+      <div class="tabs" role="tablist" aria-labelledby="lists-heading">
+        <button type="button" role="tab" id="tab-always" data-list="always" aria-controls="list-panel" aria-selected="true"><span data-i18n="listAlways"></span><span class="count" id="count-always"></span></button>
+        <button type="button" role="tab" id="tab-never" data-list="never" aria-controls="list-panel" aria-selected="false" tabindex="-1"><span data-i18n="listNever"></span><span class="count" id="count-never"></span></button>
+      </div>
+      <div class="list-tools">
+        <input class="search" type="search" id="list-search" data-i18n-placeholder="listSearch" data-i18n-aria-label="listSearch">
+        <button type="button" class="btn" id="import" data-i18n="listImport"></button>
+        <button type="button" class="btn" id="export" data-i18n="listExport"></button>
+        <input type="file" id="import-file" accept="application/json,.json" hidden>
+      </div>
+      <div id="list-panel" role="tabpanel" aria-labelledby="tab-always">
+        <ul class="rows" id="list-rows"></ul>
+        <p class="list-empty" id="list-empty" hidden></p>
+      </div>
+    </section>
+
+    <section class="block" id="more" aria-labelledby="more-heading">
+      <h2 id="more-heading" data-i18n="moreHeading"></h2>
+      <div class="row-toggle">
+        <div><span id="like-count"></span><span class="hint" data-i18n="likeCountHint"></span></div>
+        <button type="button" class="btn" id="reset-count" data-i18n="likeCountReset"></button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="notice toast" id="notice" role="status" hidden>
+  <span id="notice-text"></span>
+  <button type="button" id="notice-undo" data-i18n="noticeUndo" hidden></button>
+</div>
+
+<script src="options.js"></script>
+</body>
+</html>

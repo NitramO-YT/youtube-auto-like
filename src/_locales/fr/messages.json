@@ -97,6 +97,86 @@
     "placeholders": { "count": { "content": "$1" } }
   },
   "noticeNoAnswer": { "message": "La page n'a pas répondu. Rechargez-la et réessayez." },
+  "noticeSaved": { "message": "Enregistré" },
+  "noticeRemovedAlways": { "message": "Retirée de « Toujours liker »" },
+  "noticeImportedOne": {
+    "message": "$COUNT$ chaîne importée",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeImportedOther": {
+    "message": "$COUNT$ chaînes importées",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeImportedNone": { "message": "Ce fichier ne contient aucune chaîne qui ne soit déjà dans vos listes." },
+  "noticeImportInvalid": { "message": "Ce fichier n'est pas une liste exportée par YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "Ce fichier est trop volumineux pour être une liste de chaînes." },
+  "noticeCountReset": { "message": "Compteur remis à zéro" },
+  "noticeNumberInvalid": {
+    "message": "Entrez un nombre de $MIN$ à $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Réglages de YouTube Auto Like" },
+  "optionsTitle": { "message": "Réglages" },
+  "navSections": { "message": "Sections" },
+  "navChannels": { "message": "Quelles chaînes" },
+  "navVideos": { "message": "Quelles vidéos" },
+  "navWhen": { "message": "Quand liker" },
+  "navLists": { "message": "Mes listes" },
+  "navMore": { "message": "Divers" },
+
+  "channelsHeading": { "message": "Quelles chaînes liker ?" },
+  "channelsHint": { "message": "La liste « Ne jamais liker » passe toujours avant." },
+  "likeWhatSubscribed": { "message": "Les chaînes auxquelles je suis abonné" },
+  "likeWhatSubscribedHint": { "message": "plus celles de ma liste « Toujours liker »." },
+  "recommended": { "message": "Recommandé" },
+  "likeWhatAll": { "message": "Toutes les chaînes" },
+  "likeWhatAllHint": { "message": "chaque vidéo regardée est likée." },
+  "likeWhatList": { "message": "Seulement ma liste « Toujours liker »" },
+  "likeWhatListHint": { "message": "abonnement ou non, rien d'autre n'est liké." },
+
+  "videosHeading": { "message": "Quelles vidéos ?" },
+  "videosHint": { "message": "Les Shorts sont reconnus même ouverts dans le lecteur classique." },
+  "likeNormalVideos": { "message": "Vidéos" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Quand liker ?" },
+  "whenHint": { "message": "Une vidéo que vous likez ou dislikez vous-même n'est jamais touchée." },
+  "modeInstant": { "message": "Dès l'ouverture" },
+  "modeCustom": { "message": "Après un moment" },
+  "modeRandom": { "message": "À un moment au hasard" },
+  "thresholdAfter": { "message": "après" },
+  "thresholdPercentUnit": { "message": "% de la vidéo" },
+  "thresholdMinutesUnit": { "message": "minutes de lecture" },
+  "percentLabel": { "message": "Pourcentage de la vidéo" },
+  "minutesLabel": { "message": "Minutes de lecture" },
+  "thresholdKeepOne": { "message": "Au moins un des deux seuils reste coché." },
+  "thresholdsHint": { "message": "Le premier des deux seuils atteint déclenche le like. Une vidéo plus courte est likée deux secondes avant la fin. Sur un direct, seules les minutes comptent, depuis le moment où vous avez commencé à regarder ; sans seuil en minutes, il est liké dès l'ouverture. Les pubs ne sont pas comptées." },
+  "randomHint": { "message": "Un moment tiré au hasard dans chaque vidéo. Un direct est liké dès l'ouverture." },
+  "summaryLabel": { "message": "Résumé :" },
+
+  "listsHeading": { "message": "Mes listes de chaînes" },
+  "listsHint": { "message": "Ajoutez une chaîne depuis la fenêtre de l'icône, pendant une de ses vidéos." },
+  "listAlways": { "message": "Toujours liker" },
+  "listNever": { "message": "Ne jamais liker" },
+  "listSearch": { "message": "Rechercher une chaîne" },
+  "listImport": { "message": "Importer" },
+  "listExport": { "message": "Exporter" },
+  "listEmpty": { "message": "Aucune chaîne dans cette liste." },
+  "listNoMatch": { "message": "Aucune chaîne ne correspond à cette recherche." },
+  "listAddedOn": {
+    "message": "ajoutée le $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Retirer $NAME$ de cette liste",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listOpenChannel": { "message": "Ouvrir la chaîne sur YouTube" },
+
+  "moreHeading": { "message": "Divers" },
+  "likeCountHint": { "message": "Depuis l'installation de l'extension, ou depuis la dernière remise à zéro. Le remettre à zéro ne change rien d'autre." },
+  "likeCountReset": { "message": "Remettre à zéro" },
 
   "ruleSentence": {
     "message": "Like les $WHAT$ $CHANNELS$, $WHEN$.",

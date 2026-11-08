@@ -11,6 +11,7 @@ const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
 const COLAS_AVATAR =
   'https://yt3.googleusercontent.com/3fhLCThebQlwuSDXM9SEapaTSVFB3EuXHCKtDzFhnugoLLb71I05xsU_yi5-qLMoT0Ve4PQQ=s88-c-k-c0x00ffffff-no-rj-mo';
 const POPUP = { page: 'ui/popup/popup.html', size: [340, 560] };
+const OPTIONS = { page: 'ui/options/options.html', size: [1100, 1700], status: 'no-answer' };
 
 const video = {
   videoId: 'aeP4eG-gO10',
@@ -56,4 +57,22 @@ export const SCENARIOS = [
   },
   { name: 'popup-no-video', ...POPUP, status: { videoId: null } },
   { name: 'popup-no-answer', ...POPUP, status: 'no-answer' },
+  { name: 'options-default', ...OPTIONS },
+  {
+    name: 'options-custom-lists',
+    ...OPTIONS,
+    settings: {
+      likeShorts: false,
+      timing: { mode: 'custom', percent: { enabled: true, value: 50 }, minutes: { enabled: false, value: 2 } },
+      lists: {
+        always: [
+          { id: 'UCbbbbbbbbbbbbbbbbbbbbbb', name: 'qoqsik', addedAt: '2026-11-08T20:00:00.000Z' },
+          { id: 'UCcccccccccccccccccccccc', name: 'Laurent Houtman', addedAt: '2026-11-02T10:00:00.000Z' },
+          { id: 'UCdddddddddddddddddddddd', name: 'Élodie Créations', addedAt: null },
+        ],
+        never: [{ id: COLAS, name: 'COLAS', addedAt: '2026-10-28T10:00:00.000Z' }],
+      },
+    },
+  },
+  { name: 'options-narrow', ...OPTIONS, size: [390, 1600], settings: { enabled: false, timing: { mode: 'random' } } },
 ];

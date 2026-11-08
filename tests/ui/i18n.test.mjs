@@ -1,6 +1,26 @@
 import assert from 'node:assert/strict';
 import { describe, it, mock } from 'node:test';
-import { createTranslator, emphasized } from '../../src/ui/shared/i18n.js';
+import { createTranslator, emphasized, translatePage } from '../../src/ui/shared/i18n.js';
+
+describe('translatePage', () => {
+  // Elements with what translatePage uses: attributes and textContent.
+  const element = (attributes) => ({ attributes: { ...attributes }, textContent: '', getAttribute(name) { return this.attributes[name] ?? null; }, setAttribute(name, value) { this.attributes[name] = value; } });
+  const root = (elements) => ({
+    querySelectorAll: (selector) => elements.filter((item) => selector.slice(1, -1) in item.attributes),
+  });
+
+  it('fills the text and the translated attributes of each element', () => {
+    const t = createTranslator((key) => `<${key}>`);
+    const heading = element({ 'data-i18n': 'title' });
+    const search = element({ 'data-i18n-placeholder': 'listSearch', 'data-i18n-aria-label': 'listSearch' });
+    const button = element({ 'data-i18n-title': 'listOpenChannel' });
+    translatePage(root([heading, search, button]), t);
+    assert.equal(heading.textContent, '<title>');
+    assert.equal(search.attributes.placeholder, '<listSearch>');
+    assert.equal(search.attributes['aria-label'], '<listSearch>');
+    assert.equal(button.attributes.title, '<listOpenChannel>');
+  });
+});
 
 describe('createTranslator', () => {
   it('passes the substitutions as strings', () => {

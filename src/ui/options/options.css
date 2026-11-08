@@ -1,0 +1,443 @@
+@import '../shared/theme.css';
+
+body {
+  background: var(--surface);
+}
+
+/* Native inputs stay in the page, for the keyboard and screen readers, but
+   are drawn by the element that follows them. */
+.choice input,
+.check input,
+.seg input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+
+.options-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.options-head h1 {
+  margin: 0;
+  font-size: 18px;
+  flex: 1;
+}
+
+.paused-banner {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 24px;
+  background: var(--wait-soft);
+  color: var(--wait);
+}
+.paused-banner svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex: none;
+}
+
+.options-body {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  max-width: 1040px;
+  margin: 24px auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+nav {
+  border-right: 1px solid var(--border);
+  padding: 16px 12px;
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  position: sticky;
+  top: 70px;
+  align-self: start;
+}
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13.5px;
+}
+nav a:hover {
+  background: var(--surface);
+}
+nav a[aria-current='true'] {
+  background: var(--accent-soft);
+  color: var(--accent-on-soft);
+  font-weight: 600;
+}
+main {
+  padding: 8px 28px 28px;
+  min-width: 0;
+}
+
+.block {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 80px;
+}
+.block:last-child {
+  border-bottom: 0;
+}
+.block h2 {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+.hint {
+  display: block;
+  color: var(--muted);
+  font-size: 12.5px;
+  margin: 0 0 12px;
+}
+
+/* "Which channels": three radio cards. */
+.choices {
+  display: grid;
+  gap: 8px;
+}
+.choice {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+}
+.choice:has(input:checked) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.choice:has(input:focus-visible),
+.check:has(input:focus-visible),
+.seg label:has(input:focus-visible) {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.choice .radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--muted);
+  flex: none;
+  margin-top: 2px;
+  position: relative;
+}
+.choice:has(input:checked) .radio {
+  border-color: var(--accent);
+}
+.choice:has(input:checked) .radio::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.choice strong {
+  display: block;
+  font-weight: 600;
+}
+.choice-hint {
+  color: var(--muted);
+  font-size: 12.5px;
+}
+.badge {
+  font-size: 11px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--success-soft);
+  color: var(--success);
+  margin-left: 6px;
+  font-weight: 600;
+  vertical-align: 1px;
+}
+
+/* Check boxes drawn as pills. */
+.checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.check {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  cursor: pointer;
+  position: relative;
+}
+.check:has(input:disabled) {
+  cursor: default;
+  opacity: 0.7;
+}
+.check .box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 2px solid var(--muted);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.check:has(input:checked) .box {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.check:has(input:checked) .box::after {
+  content: '';
+  width: 8px;
+  height: 4px;
+  border: 2px solid var(--on-accent);
+  border-top: 0;
+  border-right: 0;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+
+/* "When to like": segmented choice, then the thresholds. */
+.seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.seg label {
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  position: relative;
+}
+.seg label + label {
+  border-left: 1px solid var(--border);
+}
+.seg label:has(input:checked) {
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+.delays {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  background: var(--surface);
+  border-radius: 10px;
+}
+.delays .hint {
+  margin: 0;
+}
+.delay {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.delay input[type='number'] {
+  width: 80px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+.delay input[type='range'] {
+  width: 200px;
+  accent-color: var(--accent);
+}
+.random-hint {
+  margin-top: 0;
+}
+.summary {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--surface);
+  margin: 12px 0 0;
+  font-size: 13px;
+}
+
+/* "My lists". */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.tabs button {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.tabs button[aria-selected='true'] {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+.tabs .count {
+  opacity: 0.75;
+  margin-left: 6px;
+}
+.list-tools {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.search {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.rows:empty {
+  display: none;
+}
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 8px 8px 12px;
+}
+.row + .row {
+  border-top: 1px solid var(--border);
+}
+.row .avatar {
+  width: 28px;
+  height: 28px;
+  font-size: 12px;
+}
+.row .title {
+  flex: 1;
+  min-width: 0;
+}
+.row .title a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.row .title a:hover {
+  text-decoration: underline;
+}
+.row .meta {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.icon-btn:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+.icon-btn .icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+.list-empty {
+  color: var(--muted);
+  padding: 14px;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  margin: 0;
+}
+
+/* "More". */
+.row-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+}
+.row-toggle .hint {
+  margin: 0;
+}
+
+/* The notice floats at the bottom of the window. */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  max-width: calc(100% - 32px);
+  z-index: 3;
+}
+
+@media (max-width: 760px) {
+  body {
+    background: var(--bg);
+  }
+  .options-head {
+    padding: 12px 16px;
+  }
+  .seg {
+    display: grid;
+  }
+  .seg label + label {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+  .search {
+    flex-basis: 100%;
+  }
+  .options-body {
+    grid-template-columns: 1fr;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
+  nav {
+    display: none;
+  }
+  main {
+    padding: 8px 16px 72px;
+  }
+}

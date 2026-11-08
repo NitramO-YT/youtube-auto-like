@@ -7,18 +7,20 @@
  * a button keeps the keyboard focus while the remaining time ticks.
  */
 import './popup.css';
-import { MAX_CHANNELS, listOf, placeChannel } from '../../core/channels.js';
 import { api } from '../../platform/api.js';
 import { Message } from '../../platform/messages.js';
 import { createStore } from '../../platform/storage.js';
-import { formatLikeCount, formatNumber } from '../shared/format.js';
+import { createActionRunner } from '../shared/actions.js';
+import { markReady, renderParts } from '../shared/dom.js';
+import { formatLikeCount } from '../shared/format.js';
 import { createTranslator, translatePage } from '../shared/i18n.js';
+import { moveChannel } from '../shared/lists.js';
+import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
-import { renderActions, renderCard, renderChannel, renderRule } from './render.js';
+import { renderActions, renderCard, renderChannel } from './render.js';
 import { Action, videoView } from './view.js';
 
 const REFRESH_MS = 1000;
-const NOTICE_MS = 8000;
 const LOG_PREFIX = '[YouTube Auto Like]';
 
 const t = createTranslator((key, substitutions) => api.i18n.getMessage(key, substitutions));
@@ -32,12 +34,14 @@ const state = {
   // undefined until the tab has been asked; null when it did not answer.
   status: undefined,
   likeCount: null,
-  notice: null,
 };
-let pendingUndo = null;
-let noticeTimer = null;
 let refreshing = false;
-let acting = false;
+
+const notice = createNotice(
+  { box: byId('notice'), text: byId('notice-text'), undoButton: byId('notice-undo') },
+  { run: (action) => act(action) },
+);
+const act = createActionRunner(notice, t, lang);
 
 const drawn = new Map();
 function draw(name, model, paint) {
@@ -47,16 +51,7 @@ function draw(name, model, paint) {
   paint(model);
 }
 
-function paintNotice(notice) {
-  byId('notice').hidden = !notice;
-  if (!notice) return;
-  byId('notice').classList.toggle('error', notice.error);
-  byId('notice-text').textContent = notice.text;
-  byId('notice-undo').hidden = !notice.undoable;
-}
-
 function render() {
-  draw('notice', state.notice, paintNotice);
   const { settings, status } = state;
   if (!settings) return;
 
@@ -81,22 +76,10 @@ function render() {
   }
 
   byId('rule-section').hidden = paused;
-  draw('rule', ruleParts(settings, t, lang), (parts) => renderRule(byId('rule'), parts));
+  draw('rule', ruleParts(settings, t, lang), (parts) => renderParts(byId('rule'), parts));
   draw('count', state.likeCount, (count) => {
     byId('like-count').textContent = count === null ? '' : formatLikeCount(count, lang, t);
   });
-}
-
-function showNotice(text, { error = false, undo = null } = {}) {
-  clearTimeout(noticeTimer);
-  state.notice = { text, error, undoable: Boolean(undo) };
-  pendingUndo = undo;
-  noticeTimer = setTimeout(() => {
-    state.notice = null;
-    pendingUndo = null;
-    render();
-  }, NOTICE_MS);
-  render();
 }
 
 /** Sends a message to the liker of the current tab; its answer is the status of the video. */
@@ -125,15 +108,7 @@ async function refresh() {
 async function videoCommand(type) {
   const status = await ask(type);
   if (status) state.status = status;
-  else showNotice(t('noticeNoAnswer'), { error: true });
-  render();
-}
-
-async function placeInList(channel, target, addedAt) {
-  state.settings = await store.updateSettings((settings) => ({
-    ...settings,
-    lists: placeChannel(settings.lists, channel, target, addedAt),
-  }));
+  else notice.show(t('noticeNoAnswer'), { error: true });
   render();
 }
 
@@ -142,26 +117,18 @@ function moveNoticeKey(target) {
   return target === 'never' ? 'noticeAddedNever' : 'noticeRemovedNever';
 }
 
-/**
- * Moves the channel of the video to a list (null: out of both), and offers
- * to undo: the channel goes back to its previous list, with its date.
- */
-async function moveChannel(target) {
+/** Moves the channel of the video to a list (null: out of both), with an undo. */
+async function moveVideoChannel(target) {
   const channel = state.status?.channel;
-  if (!channel || !state.settings) return;
-  const { lists } = state.settings;
-  const from = listOf(lists, channel.id);
-  const entry = from ? lists[from].find((existing) => existing.id === channel.id) : null;
-  if (target && from !== target && lists[target].length >= MAX_CHANNELS) {
-    showNotice(t('noticeListFull', [formatNumber(MAX_CHANNELS, lang)]), { error: true });
-    return;
-  }
-  const now = new Date().toISOString();
-  await placeInList({ id: channel.id, name: channel.name ?? '' }, target, now);
-  showNotice(t(moveNoticeKey(target)), {
+  if (!channel) return;
+  const { settings, undo } = await moveChannel(store, { id: channel.id, name: channel.name }, target);
+  state.settings = settings;
+  render();
+  notice.show(t(moveNoticeKey(target)), {
     undo: async () => {
-      await placeInList({ id: channel.id, name: entry?.name || channel.name || '' }, from, entry?.addedAt ?? now);
-      showNotice(t('noticeUndone'));
+      state.settings = await undo();
+      render();
+      notice.show(t('noticeUndone'));
     },
   });
 }
@@ -169,41 +136,25 @@ async function moveChannel(target) {
 const ACTIONS = {
   [Action.LIKE_NOW]: () => videoCommand(Message.LIKE_NOW),
   [Action.SKIP]: () => videoCommand(Message.SKIP_VIDEO),
-  [Action.ALWAYS]: () => moveChannel('always'),
-  [Action.NEVER]: () => moveChannel('never'),
-  [Action.UNLIST_NEVER]: () => moveChannel(null),
+  [Action.ALWAYS]: () => moveVideoChannel('always'),
+  [Action.NEVER]: () => moveVideoChannel('never'),
+  [Action.UNLIST_NEVER]: () => moveVideoChannel(null),
 };
 
-/** Runs one user action at a time; a failure to save is shown, and logged. */
-async function act(run) {
-  if (acting) return;
-  acting = true;
-  try {
-    await run();
-  } catch (error) {
-    console.error(LOG_PREFIX, 'action failed', error);
-    showNotice(t('noticeSaveFailed'), { error: true });
-  } finally {
-    acting = false;
-  }
-}
-
 function listen() {
-  byId('enabled').addEventListener('click', () =>
+  byId('enabled').addEventListener('click', () => {
+    // The value is decided at the click: a double click asks for it twice
+    // instead of switching back.
+    const enabled = !state.settings.enabled;
     act(async () => {
-      state.settings = await store.updateSettings((settings) => ({ ...settings, enabled: !settings.enabled }));
+      state.settings = await store.updateSettings((settings) => ({ ...settings, enabled }));
       render();
       refresh();
-    }),
-  );
-  byId('video-actions').addEventListener('click', (event) => {
-    const run = ACTIONS[event.target.closest('button[data-action]')?.dataset.action];
-    if (run) act(run);
+    });
   });
-  byId('notice-undo').addEventListener('click', () => {
-    const undo = pendingUndo;
-    pendingUndo = null;
-    if (undo) act(undo);
+  byId('video-actions').addEventListener('click', (event) => {
+    const action = ACTIONS[event.target.closest('button[data-action]')?.dataset.action];
+    if (action) act(action);
   });
   byId('open-settings').addEventListener('click', () => {
     api.runtime.openOptionsPage().then(
@@ -230,10 +181,12 @@ async function start() {
     state.likeCount = await store.loadLikeCount();
   } catch (error) {
     console.error(LOG_PREFIX, 'could not load the settings', error);
-    showNotice(t('noticeLoadFailed'), { error: true });
+    notice.show(t('noticeLoadFailed'), { error: true });
     return;
   }
   listen();
+  render();
+  markReady(document);
   const [tab] = await api.tabs.query({ active: true, currentWindow: true });
   state.tabId = tab?.id ?? null;
   await refresh();

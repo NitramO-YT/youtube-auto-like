@@ -43,7 +43,7 @@ describe('locales', () => {
 
   it('define every key used in the HTML of the pages', () => {
     for (const file of sourceFiles(SRC, ['.html'])) {
-      for (const [, key] of read(file).matchAll(/data-i18n(?:-aria-label)?="(\w+)"/g)) {
+      for (const [, key] of read(file).matchAll(/data-i18n(?:-aria-label|-placeholder|-title)?="(\w+)"/g)) {
         assert.ok(messages.en[key], `${path.relative(SRC, file)} uses ${key}`);
       }
     }

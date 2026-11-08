@@ -11,6 +11,15 @@ const MAX_NAME_LENGTH = 200;
 export const MAX_CHANNELS = 5000;
 export const LIST_NAMES = ['always', 'never'];
 
+/** Thrown when a channel would go past MAX_CHANNELS in a list. */
+export class ListFullError extends Error {
+  constructor(list) {
+    super(`The ${list} list is full (${MAX_CHANNELS} channels).`);
+    this.name = 'ListFullError';
+    this.list = list;
+  }
+}
+
 export function isValidChannelId(id) {
   return typeof id === 'string' && CHANNEL_ID_PATTERN.test(id);
 }
@@ -63,8 +72,8 @@ export function listOf(lists, channelId) {
 /**
  * Moves a channel to a list, or out of both with target null. Returns new
  * lists; the inputs are not modified. A channel already in the target list
- * keeps its place and its addedAt, only its name is refreshed. Throws when
- * the target list is full.
+ * keeps its place and its addedAt, only its name is refreshed. Throws
+ * ListFullError when the target list is full.
  *
  * @param {object} lists { always, never }
  * @param {object} channel { id, name }
@@ -85,7 +94,32 @@ export function placeChannel(lists, channel, target, now) {
     );
     return next;
   }
-  if (next[target].length >= MAX_CHANNELS) throw new Error(`The ${target} list is full (${MAX_CHANNELS} channels).`);
+  if (next[target].length >= MAX_CHANNELS) throw new ListFullError(target);
   next[target] = [entry, ...next[target]];
   return next;
+}
+
+/**
+ * Adds imported lists to the current ones. A channel of the import goes to
+ * the list it has in the import, with its date when the import has one;
+ * every other channel stays where it is. Both inputs come from
+ * normalizeLists, so the import holds a channel in one list at most.
+ *
+ * @returns {{ lists: object, added: number }} added counts the channels
+ *   that were not already in the list the import gives them.
+ * @throws {ListFullError} when a list would go past MAX_CHANNELS; nothing is
+ *   merged then.
+ */
+export function mergeLists(current, imported, now) {
+  let lists = current;
+  let added = 0;
+  for (const target of LIST_NAMES) {
+    // placeChannel puts a new channel first: going through the import from
+    // its end keeps its order at the top of the list.
+    for (const entry of [...imported[target]].reverse()) {
+      if (!isChannelListed(lists[target], entry.id)) added += 1;
+      lists = placeChannel(lists, entry, target, entry.addedAt ?? now);
+    }
+  }
+  return { lists, added };
 }
