@@ -360,27 +360,6 @@ main {
   color: var(--muted);
   font-size: 12px;
 }
-.icon-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 0;
-  background: none;
-  color: var(--muted);
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  flex: none;
-}
-.icon-btn:hover {
-  background: var(--surface);
-  color: var(--text);
-}
-.icon-btn .icon {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
-}
 .list-empty {
   color: var(--muted);
   padding: 14px;
@@ -405,6 +384,26 @@ main {
 }
 .seg.compact {
   margin: 0;
+}
+
+/* Embedded in the popup (shared/embed.js): the popup shows the switch, the
+   paused banner and the way back; the page is only its form. */
+:root[data-embedded] body {
+  background: var(--bg);
+}
+:root[data-embedded] .options-head,
+:root[data-embedded] .paused-banner,
+:root[data-embedded] nav {
+  display: none;
+}
+:root[data-embedded] .options-body {
+  display: block;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+:root[data-embedded] main {
+  padding: 0 14px 64px;
 }
 
 /* The notice floats at the bottom of the window. */

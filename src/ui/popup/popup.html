@@ -3,13 +3,16 @@
 <head>
 <meta charset="utf-8">
 <title data-i18n="extensionName">YouTube Auto Like</title>
-<script src="../theme-boot.js"></script>
+<script src="../boot.js"></script>
 <link rel="stylesheet" href="popup.css">
 </head>
 <body>
 <header class="popup-head">
   <span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 21h4V9H2v12zm20-11a2 2 0 0 0-2-2h-6.3l1-4.6v-.3c0-.4-.2-.8-.4-1.1L13.2 1 6.6 7.6c-.4.4-.6.9-.6 1.4v10a2 2 0 0 0 2 2h9c.8 0 1.5-.5 1.8-1.2l3-7.1c.1-.2.2-.5.2-.7v-2z"/></svg></span>
   <h1 data-i18n="extensionName"></h1>
+  <button type="button" class="icon-btn" id="settings-toggle" aria-expanded="false" aria-controls="settings-view" data-i18n-title="settingsShow" data-i18n-aria-label="settingsShow">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.87a.47.47 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg>
+  </button>
   <button type="button" class="switch" id="enabled" role="switch" aria-checked="false" data-i18n-aria-label="switchLabel" disabled>
     <span id="enabled-state"></span><span class="track" aria-hidden="true"></span>
   </button>
@@ -20,36 +23,46 @@
   <span data-i18n="pausedBanner"></span>
 </div>
 
-<section class="section" id="video" aria-labelledby="video-heading" hidden>
-  <h2 class="eyebrow" id="video-heading" data-i18n="sectionThisVideo"></h2>
-  <div id="video-channel"></div>
-  <div id="video-card"></div>
-  <div class="actions" id="video-actions"></div>
-</section>
+<div id="main-view">
+  <section class="section" id="video" aria-labelledby="video-heading" hidden>
+    <h2 class="eyebrow" id="video-heading" data-i18n="sectionThisVideo"></h2>
+    <div id="video-channel"></div>
+    <div id="video-card"></div>
+    <div class="actions" id="video-actions"></div>
+  </section>
 
-<section class="section" id="no-video" hidden>
-  <div class="empty">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 15l5.2-3L10 9v6zm11.6-7.8c.3 1 .4 2.6.4 4.8s-.1 3.8-.4 4.8a2.5 2.5 0 0 1-1.8 1.8c-1.1.3-4 .4-7.8.4s-6.7-.1-7.8-.4a2.5 2.5 0 0 1-1.8-1.8C2.1 15.8 2 14.2 2 12s.1-3.8.4-4.8a2.5 2.5 0 0 1 1.8-1.8C5.3 5.1 8.2 5 12 5s6.7.1 7.8.4a2.5 2.5 0 0 1 1.8 1.8z"/></svg>
-    <p data-i18n="noVideo"></p>
-    <p id="no-video-hint" data-i18n="noVideoHint" hidden></p>
+  <section class="section" id="no-video" hidden>
+    <div class="empty">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 15l5.2-3L10 9v6zm11.6-7.8c.3 1 .4 2.6.4 4.8s-.1 3.8-.4 4.8a2.5 2.5 0 0 1-1.8 1.8c-1.1.3-4 .4-7.8.4s-6.7-.1-7.8-.4a2.5 2.5 0 0 1-1.8-1.8C2.1 15.8 2 14.2 2 12s.1-3.8.4-4.8a2.5 2.5 0 0 1 1.8-1.8C5.3 5.1 8.2 5 12 5s6.7.1 7.8.4a2.5 2.5 0 0 1 1.8 1.8z"/></svg>
+      <p data-i18n="noVideo"></p>
+      <p id="no-video-hint" data-i18n="noVideoHint" hidden></p>
+    </div>
+  </section>
+
+  <div class="notice" id="notice" role="status" hidden>
+    <span id="notice-text"></span>
+    <button type="button" id="notice-undo" data-i18n="noticeUndo" hidden></button>
   </div>
-</section>
 
-<div class="notice" id="notice" role="status" hidden>
-  <span id="notice-text"></span>
-  <button type="button" id="notice-undo" data-i18n="noticeUndo" hidden></button>
+  <section class="section" id="rule-section" aria-labelledby="rule-heading">
+    <h2 class="eyebrow" id="rule-heading" data-i18n="sectionRule"></h2>
+    <p class="rule" id="rule"></p>
+    <button type="button" class="link" id="open-settings" data-i18n="openSettings" aria-controls="settings-view"></button>
+  </section>
+
+  <footer class="foot">
+    <span id="like-count"></span>
+    <span id="version"></span>
+  </footer>
 </div>
 
-<section class="section" id="rule-section" aria-labelledby="rule-heading">
-  <h2 class="eyebrow" id="rule-heading" data-i18n="sectionRule"></h2>
-  <p class="rule" id="rule"></p>
-  <button type="button" class="link" id="open-settings" data-i18n="openSettings"></button>
+<section id="settings-view" aria-labelledby="settings-heading" hidden>
+  <div class="settings-bar">
+    <h2 id="settings-heading" data-i18n="optionsTitle"></h2>
+    <button type="button" class="link" id="open-full-page" data-i18n="openFullPage"></button>
+  </div>
+  <iframe id="settings-frame" data-i18n-title="optionsTitle"></iframe>
 </section>
-
-<footer class="foot">
-  <span id="like-count"></span>
-  <span id="version"></span>
-</footer>
 
 <script src="popup.js"></script>
 </body>

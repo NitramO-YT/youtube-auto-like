@@ -12,6 +12,7 @@ import { Message } from '../../platform/messages.js';
 import { createStore } from '../../platform/storage.js';
 import { createActionRunner } from '../shared/actions.js';
 import { markReady, renderParts } from '../shared/dom.js';
+import { embeddedOptionsUrl } from '../shared/embed.js';
 import { formatLikeCount } from '../shared/format.js';
 import { createTranslator, translatePage } from '../shared/i18n.js';
 import { moveChannel } from '../shared/lists.js';
@@ -135,6 +136,24 @@ async function moveVideoChannel(target) {
   });
 }
 
+/**
+ * Switches between the video view and the settings view. The settings are
+ * the options page itself, loaded in its frame the first time only, so that
+ * the popup keeps opening at once.
+ */
+function showSettings(open) {
+  const frame = byId('settings-frame');
+  if (open && !frame.getAttribute('src')) frame.src = embeddedOptionsUrl((path) => api.runtime.getURL(path));
+  byId('main-view').hidden = open;
+  byId('settings-view').hidden = !open;
+  const toggle = byId('settings-toggle');
+  toggle.setAttribute('aria-expanded', String(open));
+  const label = t(open ? 'settingsHide' : 'settingsShow');
+  toggle.setAttribute('aria-label', label);
+  toggle.title = label;
+  (open ? byId('open-full-page') : toggle).focus();
+}
+
 const ACTIONS = {
   [Action.LIKE_NOW]: () => videoCommand(Message.LIKE_NOW),
   [Action.SKIP]: () => videoCommand(Message.SKIP_VIDEO),
@@ -158,7 +177,9 @@ function listen() {
     const action = ACTIONS[event.target.closest('button[data-action]')?.dataset.action];
     if (action) act(action);
   });
-  byId('open-settings').addEventListener('click', () => {
+  byId('settings-toggle').addEventListener('click', () => showSettings(byId('settings-view').hidden));
+  byId('open-settings').addEventListener('click', () => showSettings(true));
+  byId('open-full-page').addEventListener('click', () => {
     api.runtime.openOptionsPage().then(
       () => window.close(),
       (error) => console.error(LOG_PREFIX, 'could not open the options page', error),

@@ -153,6 +153,30 @@ body {
   cursor: default;
 }
 
+/* Round button holding only an icon; its name is in aria-label. */
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.icon-btn:hover,
+.icon-btn[aria-expanded='true'] {
+  background: var(--surface);
+  color: var(--text);
+}
+.icon-btn .icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
 .link {
   border: 0;
   background: none;

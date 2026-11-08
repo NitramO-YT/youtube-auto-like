@@ -42,7 +42,8 @@ async function writePreviewPage(extensionDir, scenario, locale, version) {
   const pageFile = path.join(extensionDir, scenario.page);
   const id = `preview-${scenario.name}-${locale}`;
   const messages = await readJson(path.join(extensionDir, '_locales', locale, 'messages.json'));
-  const preview = { messages, version, settings: scenario.settings, stats: scenario.stats ?? { likeCount: 1248 }, status: scenario.status };
+  const root = `${path.relative(path.dirname(pageFile), extensionDir).split(path.sep).join('/')}/`;
+  const preview = { messages, version, root, settings: scenario.settings, stats: scenario.stats ?? { likeCount: 1248 }, status: scenario.status };
   await writeFile(path.join(path.dirname(pageFile), `${id}.data.js`), `window.PREVIEW = ${JSON.stringify(preview)};\n`);
   const fakeApi = path.relative(path.dirname(pageFile), path.join(extensionDir, 'preview-fake-api.js'));
   const html = injectScripts(await readFile(pageFile, 'utf8'), [`${id}.data.js`, fakeApi.split(path.sep).join('/')]);
@@ -104,7 +105,7 @@ async function main() {
   try {
     for (const scenario of scenarios) {
       for (const locale of locales) {
-        const url = pathToFileURL(await writePreviewPage(extensionDir, scenario, locale, version)).href;
+        const url = pathToFileURL(await writePreviewPage(extensionDir, scenario, locale, version)).href + (scenario.query ?? '');
         for (const [theme, scheme] of Object.entries(THEMES)) {
           const name = `${scenario.name}-${locale}-${theme}`;
           const common = [`--blink-settings=preferredColorScheme=${scheme}`, `--virtual-time-budget=${RENDER_BUDGET_MS}`];

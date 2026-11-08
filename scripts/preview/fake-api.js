@@ -44,6 +44,8 @@
     runtime: {
       id: 'preview',
       getManifest: () => ({ version: window.PREVIEW.version }),
+      // root: the extension folder, relative to the preview page.
+      getURL: (path) => new URL(window.PREVIEW.root + path, window.location.href).href,
       openOptionsPage: async () => {},
     },
     storage: {

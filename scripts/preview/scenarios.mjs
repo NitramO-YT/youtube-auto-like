@@ -1,9 +1,10 @@
 /**
  * Situations shown by scripts/preview-ui.mjs, one screenshot each per
- * language and theme. A scenario gives the page (path in the build), the
- * window size, and what the stand-in API serves: settings and statistics as
- * stored, and the status the liker of the tab answers ("no-answer" for a tab
- * without the liker). Channel names and IDs are examples.
+ * language and theme. A scenario gives the page (path in the build), an
+ * optional query added to its address, the window size, and what the
+ * stand-in API serves: settings and statistics as stored, and the status the
+ * liker of the tab answers ("no-answer" for a tab without the liker).
+ * Channel names and IDs are examples.
  */
 
 const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
@@ -78,4 +79,6 @@ export const SCENARIOS = [
     },
   },
   { name: 'options-narrow', ...OPTIONS, size: [390, 1600], settings: { enabled: false, timing: { mode: 'random' } } },
+  // The options page as the frame of the popup shows it.
+  { name: 'options-embedded', ...OPTIONS, query: '?embedded', size: [340, 470], settings: { enabled: false } },
 ];

@@ -4,7 +4,7 @@
  *
  * The settings are read asynchronously, after the first paint. So that a
  * page opens in its theme instead of switching to it, the theme is also
- * kept in the localStorage of the extension, which ui/theme-boot.js reads
+ * kept in the localStorage of the extension, which ui/boot.js reads
  * synchronously in the <head> of each page. The settings stay the reference:
  * the copy is rewritten each time the page applies them.
  */

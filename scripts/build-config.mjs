@@ -20,5 +20,5 @@ export const ENTRY_POINTS = [
   { in: 'content/isolated/index.js', out: 'content/isolated' },
   { in: 'ui/popup/index.js', out: 'ui/popup/popup' },
   { in: 'ui/options/index.js', out: 'ui/options/options' },
-  { in: 'ui/theme-boot.js', out: 'ui/theme-boot' },
+  { in: 'ui/boot.js', out: 'ui/boot' },
 ];
