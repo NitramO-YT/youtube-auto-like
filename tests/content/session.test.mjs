@@ -7,6 +7,7 @@ import {
   createSession,
   isFinal,
   likeNow,
+  resumeVideo,
   skipVideo,
   STABLE_FOR_MS,
   Status,
@@ -178,6 +179,28 @@ describe('step', () => {
       assert.equal(skipped.reason, Reason.SKIPPED_BY_USER);
       assert.ok(isFinal(skipped));
       assert.equal(settle(skipped, observation({ position: 900 }), halfway, T0 + 5000).action, null);
+    });
+
+    it('"not this time" can be taken back: the video goes through the checks again', () => {
+      const skipped = skipVideo(step(start(), observation({ position: 10 }), halfway, T0).session);
+      const resumed = resumeVideo(skipped);
+      assert.equal(resumed.status, Status.READING);
+      assert.equal(resumed.reason, null);
+      const waiting = step(resumed, observation({ position: 20 }), halfway, T0 + 5000).session;
+      assert.equal(waiting.status, Status.WAITING);
+    });
+
+    it('"like now" brings back a video skipped this time, and likes it after the stability delay', () => {
+      const skipped = skipVideo(step(start(), observation({ position: 10 }), halfway, T0).session);
+      const liked = settle(likeNow(skipped), observation({ position: 20 }), halfway, T0 + 5000);
+      assert.equal(liked.action, 'click');
+    });
+
+    it('never brings back a video the user rated', () => {
+      const rated = settle(start(), observation({ liked: true }), instant, T0).session;
+      assert.equal(rated.reason, Reason.ALREADY_LIKED);
+      assert.equal(resumeVideo(rated), rated);
+      assert.equal(likeNow(rated), rated);
     });
 
     it('"not this video" cannot take back a click already made', () => {

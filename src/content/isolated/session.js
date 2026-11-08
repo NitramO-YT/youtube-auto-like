@@ -72,12 +72,26 @@ export function createSession(videoId, now, random) {
 
 const update = (session, changes, action = null) => ({ session: { ...session, ...changes }, action });
 
+const skippedThisTime = (session) => session.status === Status.SKIPPED && session.reason === Reason.SKIPPED_BY_USER;
+
 /**
- * "Like now", from the popup: the video no longer waits for its like time.
- * Every other check still applies, the stability delay included.
+ * Back from "not this time", from the popup: the video goes through the
+ * checks again, as if it had just opened. Only a video skipped this way
+ * comes back; a rating the user gave stays final.
+ */
+export function resumeVideo(session) {
+  if (!skippedThisTime(session)) return session;
+  return { ...session, status: Status.READING, reason: null, readySince: null };
+}
+
+/**
+ * "Like now", from the popup: the video no longer waits for its like time,
+ * and a video skipped this time comes back. Every other check still applies,
+ * the stability delay included.
  */
 export function likeNow(session) {
-  return isFinal(session) ? session : { ...session, likeNow: true };
+  const resumed = resumeVideo(session);
+  return isFinal(resumed) ? resumed : { ...resumed, likeNow: true };
 }
 
 /**

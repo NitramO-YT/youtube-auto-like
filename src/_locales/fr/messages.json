@@ -103,6 +103,7 @@
   "noticeAddedAlways": { "message": "Ajoutée à « Toujours liker »" },
   "noticeAddedNever": { "message": "Ajoutée à « Ne jamais liker »" },
   "noticeRemovedNever": { "message": "Retirée de « Ne jamais liker »" },
+  "noticeSkipped": { "message": "Pas likée cette fois" },
   "noticeVideoExcluded": { "message": "Ajoutée aux vidéos exclues" },
   "noticeVideoUnexcluded": { "message": "Retirée des vidéos exclues" },
   "noticeUndo": { "message": "Annuler" },

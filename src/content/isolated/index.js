@@ -16,7 +16,7 @@ import { createStore } from '../../platform/storage.js';
 import { ISOLATED_SOURCE, PAGE_SOURCE, SNAPSHOT, SNAPSHOT_REQUEST, validateSnapshot } from '../protocol.js';
 import { findLikeButton, readChannelAvatar, readPlayback, readRating } from '../youtube/dom.js';
 import { surfaceFromUrl, videoIdFromUrl } from '../youtube/surface.js';
-import { createSession, isFinal, likeNow, skipVideo, Status, step } from './session.js';
+import { createSession, isFinal, likeNow, resumeVideo, skipVideo, Status, step } from './session.js';
 import { popupStatus } from './status.js';
 
 const TICK_MS = 1000;
@@ -135,20 +135,24 @@ function currentStatus() {
   return onVideo && settings ? popupStatus(session, lastObservation, settings) : { videoId: null };
 }
 
+// Commands of the popup on the video of the tab; each returns the new session.
+const COMMANDS = {
+  [Message.LIKE_NOW]: likeNow,
+  [Message.SKIP_VIDEO]: skipVideo,
+  [Message.RESUME_VIDEO]: resumeVideo,
+};
+
 function onPopupMessage(message, sender, sendResponse) {
   const type = acceptedMessage(message, sender, api.runtime.id);
   if (!type) return;
   const onVideo = session && session.videoId === videoIdFromUrl(window.location.href);
-  if (onVideo && type === Message.LIKE_NOW) {
-    session = likeNow(session);
-    log(`video ${session.videoId}: like now requested`);
-  }
-  if (onVideo && type === Message.SKIP_VIDEO) {
-    session = skipVideo(session);
-    log(`video ${session.videoId}: ${describe(session)}`);
+  if (onVideo && COMMANDS[type]) {
+    session = COMMANDS[type](session);
+    log(`video ${session.videoId}: ${type}, ${describe(session)}`);
   }
   sendResponse(currentStatus());
-  if (type === Message.LIKE_NOW) tick();
+  // The video is looked at again at once, rather than at the next tick.
+  if (type === Message.LIKE_NOW || type === Message.RESUME_VIDEO) tick();
 }
 
 async function start() {

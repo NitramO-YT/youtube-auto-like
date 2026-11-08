@@ -10,6 +10,7 @@ export const Message = Object.freeze({
   GET_STATUS: 'get-status',
   LIKE_NOW: 'like-now',
   SKIP_VIDEO: 'skip-video',
+  RESUME_VIDEO: 'resume-video',
   CHECK_UPDATES: 'check-updates',
 });
 

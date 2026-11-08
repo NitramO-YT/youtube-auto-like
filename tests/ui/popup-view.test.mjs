@@ -160,9 +160,9 @@ describe('actions', () => {
     assert.deepEqual(actions(status({ status: Status.CONFIRMING }), defaults), [Action.NEVER]);
   });
 
-  it('offers to exclude for good a video skipped this time, and to stop excluding an excluded one', () => {
+  it('offers to like now or to exclude for good a video skipped this time, and to stop excluding an excluded one', () => {
     const skipped = status({ status: Status.SKIPPED, reason: Reason.SKIPPED_BY_USER });
-    assert.deepEqual(actions(skipped, defaults), [Action.EXCLUDE_VIDEO, Action.NEVER]);
+    assert.deepEqual(actions(skipped, defaults), [Action.LIKE_NOW, Action.EXCLUDE_VIDEO, Action.NEVER]);
     const excluded = status({ status: Status.NOT_ELIGIBLE, reason: Reason.VIDEO_EXCLUDED });
     assert.deepEqual(actions(excluded, defaults), [Action.UNEXCLUDE_VIDEO, Action.NEVER]);
     assert.deepEqual(actions(status({ status: Status.SKIPPED, reason: Reason.ALREADY_LIKED }), defaults), [Action.NEVER]);

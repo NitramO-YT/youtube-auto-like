@@ -138,14 +138,14 @@ export function channelAction(channel, settings) {
 
 /**
  * The buttons for the video itself: like now, not this time or never while
- * it waits; never, once skipped this time; no longer excluded, once
- * excluded.
+ * it waits; like now or never, once skipped this time; no longer excluded,
+ * once excluded.
  */
 function videoActions(status) {
   if (status.status === Status.WAITING || status.status === Status.WAITING_AD) {
     return [Action.LIKE_NOW, Action.SKIP, Action.EXCLUDE_VIDEO];
   }
-  if (status.reason === Reason.SKIPPED_BY_USER) return [Action.EXCLUDE_VIDEO];
+  if (status.reason === Reason.SKIPPED_BY_USER) return [Action.LIKE_NOW, Action.EXCLUDE_VIDEO];
   if (status.reason === Reason.VIDEO_EXCLUDED) return [Action.UNEXCLUDE_VIDEO];
   return [];
 }

@@ -134,6 +134,17 @@ async function videoCommand(type) {
   if (status) state.status = status;
   else notice.show(t('noticeNoAnswer'), { error: true });
   render();
+  return status;
+}
+
+/** "Not this time", with an undo that sends the video through the checks again. */
+async function skipThisTime() {
+  if (!(await videoCommand(Message.SKIP_VIDEO))) return;
+  notice.show(t('noticeSkipped'), {
+    undo: async () => {
+      if (await videoCommand(Message.RESUME_VIDEO)) notice.show(t('noticeUndone'));
+    },
+  });
 }
 
 function moveNoticeKey(target) {
@@ -194,7 +205,7 @@ function showSettings(open) {
 
 const ACTIONS = {
   [Action.LIKE_NOW]: () => videoCommand(Message.LIKE_NOW),
-  [Action.SKIP]: () => videoCommand(Message.SKIP_VIDEO),
+  [Action.SKIP]: skipThisTime,
   [Action.EXCLUDE_VIDEO]: () => excludeVideo(true),
   [Action.UNEXCLUDE_VIDEO]: () => excludeVideo(false),
   [Action.ALWAYS]: () => moveVideoChannel('always'),
