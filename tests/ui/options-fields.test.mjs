@@ -20,6 +20,7 @@ describe('FIELDS', () => {
       ['minutesValue', 2.5],
       ['lists', { always: [], never: [] }],
       ['theme', 'dark'],
+      ['updateCheckMinutes', 1440],
     ]) {
       const changed = FIELDS[name].set(settings, value);
       assert.deepEqual(FIELDS[name].get(changed), value, name);

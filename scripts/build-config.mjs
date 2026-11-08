@@ -16,6 +16,7 @@ export const STATIC_PATHS = ['_locales', 'icons', 'ui/popup/popup.html', 'ui/opt
 // The output name has no extension: esbuild adds .js, and .css when the
 // script imports a stylesheet.
 export const ENTRY_POINTS = [
+  { in: 'background/index.js', out: 'background' },
   { in: 'content/page/index.js', out: 'content/page' },
   { in: 'content/isolated/index.js', out: 'content/isolated' },
   { in: 'ui/popup/index.js', out: 'ui/popup/popup' },

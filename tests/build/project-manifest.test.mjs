@@ -4,14 +4,27 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { after, before, describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
+import vm from 'node:vm';
 import { TARGETS } from '../../scripts/build-config.mjs';
 import { buildExtension } from '../../scripts/build.mjs';
 import { AVATAR_HOSTS } from '../../src/core/avatar.js';
+import { LATEST_RELEASE_API } from '../../src/core/update.js';
 
 // Builds the real sources of each target and checks what would keep the
 // browser from loading the extension.
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const MESSAGE_PATTERN = /__MSG_(\w+)__/g;
+
+// An object that accepts any property, call or construction, and returns
+// another one; `then` stays undefined so that awaiting it resolves at once.
+function stub() {
+  const proxy = new Proxy(function () {}, {
+    get: (_, property) => (property === 'then' ? undefined : property === Symbol.toPrimitive ? () => '' : proxy),
+    apply: () => proxy,
+    construct: () => proxy,
+  });
+  return proxy;
+}
 
 function collectStrings(value) {
   if (typeof value === 'string') return [value];
@@ -73,6 +86,30 @@ for (const target of TARGETS) {
       assert.deepEqual(directives['img-src'], ["'self'", ...AVATAR_HOSTS.map((host) => `https://${host}`)]);
       assert.deepEqual(directives['script-src'], ["'self'"]);
       assert.deepEqual(directives['object-src'], ["'none'"]);
+    });
+
+    it('lets extension pages connect only to the API that publishes the releases', () => {
+      const connect = manifest.content_security_policy.extension_pages
+        .split(';')
+        .map((directive) => directive.trim().split(/\s+/))
+        .find(([name]) => name === 'connect-src');
+      assert.deepEqual(connect.slice(1), [new URL(LATEST_RELEASE_API).origin]);
+    });
+
+    it('ships the background service worker it declares', async () => {
+      // Chromium runs the background as a service worker; Firefox, later,
+      // declares background scripts in its own layer.
+      if (target !== 'chromium') return;
+      assert.ok(manifest.background?.service_worker, 'the Chromium build declares a service worker');
+      const worker = await readFile(path.join(outDir, manifest.background.service_worker), 'utf8');
+      // A service worker cannot load modules unless declared as one.
+      assert.doesNotMatch(worker, /^\s*(import|export)\s/m);
+      // Evaluated as the browser would: an error at the top level (an
+      // unknown identifier, a use of the DOM, which a service worker lacks)
+      // keeps the whole background from registering, and only shows once
+      // loaded. Every browser API is a stub that accepts any call.
+      const sandbox = { console: { log() {}, error() {}, warn() {}, debug() {} }, chrome: stub(), fetch: stub(), URL, Headers };
+      assert.doesNotThrow(() => vm.runInNewContext(worker, sandbox, { filename: 'background.js' }));
     });
 
     it('defines every __MSG_ key it uses, in every locale', async () => {

@@ -35,7 +35,7 @@ describe('normalizeSettings', () => {
       lists: { always: [{ id: CHANNEL, name: 'COLAS', addedAt: '2026-11-08T21:00:00.000Z' }], never: [] },
       excludedVideos: [{ videoId: 'aeP4eG-gO10', title: 'Atelier', channelName: 'COLAS', isShort: false, addedAt: '2026-11-08T21:00:00.000Z' }],
       timing: { mode: 'custom', percent: { enabled: false, value: 0 }, minutes: { enabled: true, value: 600 } },
-      notifyUpdates: false,
+      updateCheckMinutes: 0,
       theme: 'dark',
     };
     assert.deepEqual(normalizeSettings(custom), custom);
@@ -59,7 +59,7 @@ describe('normalizeSettings', () => {
       likeWhat: 'none',
       likeShorts: false,
       timing: { mode: 'later', percent: { enabled: true, value: 101 }, minutes: { value: Number.NaN } },
-      notifyUpdates: 'often',
+      updateCheckMinutes: 5,
       theme: 'sepia',
     });
     const defaults = defaultSettings();
@@ -70,7 +70,7 @@ describe('normalizeSettings', () => {
     assert.equal(normalized.timing.mode, defaults.timing.mode);
     assert.equal(normalized.timing.percent.value, defaults.timing.percent.value);
     assert.equal(normalized.timing.minutes.value, defaults.timing.minutes.value);
-    assert.equal(normalized.notifyUpdates, defaults.notifyUpdates);
+    assert.equal(normalized.updateCheckMinutes, 30, 'only the frequencies offered are kept');
   });
 
   it('drops unknown keys, including those of the single list of earlier designs', () => {

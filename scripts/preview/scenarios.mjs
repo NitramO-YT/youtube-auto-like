@@ -28,6 +28,12 @@ const video = {
   ifEnabled: null,
 };
 const channel = (subscribed, overrides = {}) => ({ id: COLAS, name: 'COLAS', avatarUrl: null, subscribed, ...overrides });
+// A check made just now, and a release newer than any version of this project.
+const CHECKED_AT = new Date().toISOString();
+const NEWER_RELEASE = {
+  latest: { version: '99.0.0', url: 'https://github.com/NitramO-YT/youtube-auto-like/releases/tag/v99.0.0', publishedAt: null },
+  checkedAt: CHECKED_AT,
+};
 const halfway = { timing: { mode: 'custom', percent: { enabled: true, value: 50 }, minutes: { enabled: false, value: 2 } } };
 
 export const SCENARIOS = [
@@ -71,12 +77,19 @@ export const SCENARIOS = [
     settings: { enabled: false },
     status: { ...video, isShort: true, channel: channel(true), status: 'not-eligible', reason: 'disabled', ifEnabled: { eligible: true, reason: 'eligible' } },
   },
+  {
+    name: 'popup-update-available',
+    ...POPUP,
+    update: NEWER_RELEASE,
+    status: { ...video, channel: channel(true, { avatarUrl: COLAS_AVATAR }), status: 'liked', target: { at: 0, basis: 'instant' }, likedAgoMs: 60_000 },
+  },
   { name: 'popup-no-video', ...POPUP, status: { videoId: null } },
   { name: 'popup-no-answer', ...POPUP, status: 'no-answer' },
   // A fixed theme wins over the one of the system, in both color schemes.
   { name: 'popup-theme-light', ...POPUP, settings: { theme: 'light' }, status: { videoId: null } },
   { name: 'options-theme-dark', ...OPTIONS, size: [1100, 900], settings: { theme: 'dark' } },
-  { name: 'options-default', ...OPTIONS },
+  { name: 'options-default', ...OPTIONS, update: { latest: null, checkedAt: CHECKED_AT } },
+  { name: 'options-update-available', ...OPTIONS, update: NEWER_RELEASE },
   {
     name: 'options-custom-lists',
     ...OPTIONS,

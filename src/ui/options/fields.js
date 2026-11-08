@@ -32,6 +32,10 @@ export const FIELDS = Object.freeze({
   minutesValue: timingPart('minutes', 'value'),
   lists: { get: (settings) => settings.lists, set: (settings, value) => ({ ...settings, lists: value }) },
   theme: { get: (settings) => settings.theme, set: (settings, value) => ({ ...settings, theme: value }) },
+  updateCheckMinutes: {
+    get: (settings) => settings.updateCheckMinutes,
+    set: (settings, value) => ({ ...settings, updateCheckMinutes: value }),
+  },
 });
 
 export const NUMBER_RANGES = Object.freeze({ percentValue: PERCENT_RANGE, minutesValue: MINUTES_RANGE });

@@ -8,6 +8,7 @@
  * modules, which receive the shared parts as `page`.
  */
 import './options.css';
+import { UPDATE_CHECK_CHOICES } from '../../core/update.js';
 import { api } from '../../platform/api.js';
 import { createStore } from '../../platform/storage.js';
 import { createActionRunner } from '../shared/actions.js';
@@ -21,6 +22,7 @@ import { FIELDS, lockedThreshold, NUMBER_RANGES, validNumber } from './fields.js
 import { createHistorySection } from './history-section.js';
 import { createListsSection } from './lists-section.js';
 import { highlightSections } from './menu.js';
+import { createUpdateSection } from './update-section.js';
 
 const LOG_PREFIX = '[YouTube Auto Like]';
 
@@ -52,6 +54,7 @@ function confirmChange(key, substitutions, revert) {
 const page = { doc: document, byId, t, lang, store, notice, act, confirmChange, state, refresh: () => fill() };
 const lists = createListsSection(page);
 const history = createHistorySection(page);
+const updates = createUpdateSection(page, api);
 
 function renderCount() {
   byId('like-count').textContent = state.likeCount === null ? '' : formatLikeCount(state.likeCount, lang, t);
@@ -90,6 +93,7 @@ function fill() {
   byId('threshold-lock').hidden = !locked;
   renderParts(byId('summary'), ruleParts(settings, t, lang));
   lists.render();
+  updates.render();
 }
 
 async function changeField(field, value) {
@@ -108,6 +112,10 @@ async function changeField(field, value) {
 function inputValue(input, field) {
   if (input.type === 'radio') return input.value;
   if (input.type === 'checkbox') return input.checked;
+  if (input.tagName === 'SELECT') {
+    const value = Number(input.value);
+    return UPDATE_CHECK_CHOICES.includes(value) ? value : null;
+  }
   const range = NUMBER_RANGES[field];
   const value = validNumber(input.valueAsNumber, range);
   if (value === null) {
@@ -148,6 +156,7 @@ function listen() {
   byId('reset-count').addEventListener('click', () => act(resetCount));
   lists.listen();
   history.listen();
+  updates.listen();
 
   store.onSettingsChange((settings) => {
     state.settings = settings;
@@ -166,6 +175,7 @@ async function start() {
     state.settings = await store.loadSettings();
     state.likeCount = await store.loadLikeCount();
     await history.start();
+    await updates.start();
   } catch (error) {
     console.error(LOG_PREFIX, 'could not load the settings', error);
     notice.show(t('noticeLoadFailed'), { error: true });

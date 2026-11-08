@@ -20,6 +20,17 @@
   "switchActive": { "message": "Active", "description": "State shown next to the switch when the extension is on." },
   "switchPaused": { "message": "Paused", "description": "State shown next to the switch when the extension is off." },
   "pausedBanner": { "message": "The extension likes nothing while it is paused." },
+  "badgeUpdate": { "message": "NEW", "description": "Badge on the toolbar icon when a new version is out; 4 characters at most." },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: version $VERSION$ is out",
+    "description": "Tooltip of the toolbar icon when a new version is out.",
+    "placeholders": { "version": { "content": "$1", "example": "3.1.0" } }
+  },
+  "updateFooter": {
+    "message": "Version $VERSION$ is out ↗",
+    "description": "Link to the release page, in place of the version number at the bottom of the popup.",
+    "placeholders": { "version": { "content": "$1", "example": "3.1.0" } }
+  },
 
   "sectionThisVideo": { "message": "This video", "description": "Heading of the popup section about the video in the current tab." },
   "sectionRule": { "message": "Active rule", "description": "Heading of the popup section that sums up the settings in one sentence." },
@@ -202,7 +213,7 @@
     "message": "Stop excluding $TITLE$",
     "placeholders": { "title": { "content": "$1", "example": "le moooonstre" } }
   },
-  "listSearch": { "message": "Search a channel" },
+  "listSearch": { "message": "Search the list" },
   "listImport": { "message": "Import" },
   "listExport": { "message": "Export" },
   "listEmpty": { "message": "No channel in this list." },
@@ -233,6 +244,35 @@
   "themeSystem": { "message": "Same as the system" },
   "themeLight": { "message": "Light" },
   "themeDark": { "message": "Dark" },
+  "updatesLabel": { "message": "Look for new versions" },
+  "updatesHint": { "message": "Asks GitHub, where the extension is published; GitHub then sees your IP address." },
+  "updateEvery0": { "message": "Never" },
+  "updateEvery30": { "message": "Every 30 minutes" },
+  "updateEvery60": { "message": "Every hour" },
+  "updateEvery360": { "message": "Every 6 hours" },
+  "updateEvery1440": { "message": "Every day" },
+  "updateEvery10080": { "message": "Every week" },
+  "updateCheckNow": { "message": "Check now" },
+  "updateStatusOff": { "message": "New versions are not looked for." },
+  "updateStatusNever": { "message": "Not checked yet." },
+  "updateStatusChecking": { "message": "Checking…" },
+  "updateStatusAvailable": {
+    "message": "Version $VERSION$ is out ↗",
+    "placeholders": { "version": { "content": "$1", "example": "3.1.0" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Checked $WHEN$: you have the latest version.",
+    "placeholders": { "when": { "content": "$1", "example": "5 minutes ago" } }
+  },
+  "updateStatusNone": {
+    "message": "Checked $WHEN$: no version published yet.",
+    "placeholders": { "when": { "content": "$1", "example": "5 minutes ago" } }
+  },
+  "updateStatusFailed": {
+    "message": "The last check failed $WHEN$; the next one will try again.",
+    "placeholders": { "when": { "content": "$1", "example": "5 minutes ago" } }
+  },
+  "noticeCheckFailed": { "message": "The check could not be made." },
   "likeCountHint": { "message": "Since the extension was installed, or since the last reset. Resetting it changes nothing else." },
   "likeCountReset": { "message": "Reset" },
 

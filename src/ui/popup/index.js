@@ -7,6 +7,7 @@
  * a button keeps the keyboard focus while the remaining time ticks.
  */
 import './popup.css';
+import { availableUpdate } from '../../core/update.js';
 import { api } from '../../platform/api.js';
 import { Message } from '../../platform/messages.js';
 import { createStore } from '../../platform/storage.js';
@@ -30,12 +31,15 @@ const lang = t('locale');
 const store = createStore(api);
 const byId = (id) => document.getElementById(id);
 
+const VERSION = api.runtime.getManifest().version;
+
 const state = {
   settings: null,
   tabId: null,
   // undefined until the tab has been asked; null when it did not answer.
   status: undefined,
   likeCount: null,
+  update: null,
 };
 let refreshing = false;
 
@@ -89,6 +93,16 @@ function render() {
   draw('rule', ruleParts(settings, t, lang), (parts) => renderParts(byId('rule'), parts));
   draw('count', state.likeCount, (count) => {
     byId('like-count').textContent = count === null ? '' : formatLikeCount(count, lang, t);
+  });
+  // A new version takes the place of the version number.
+  const update = settings.updateCheckMinutes > 0 && state.update ? availableUpdate(state.update, VERSION) : null;
+  draw('update', update, (release) => {
+    const link = byId('update-link');
+    link.hidden = !release;
+    byId('version').hidden = Boolean(release);
+    if (!release) return;
+    link.href = release.url;
+    link.textContent = t('updateFooter', [release.version]);
   });
 }
 
@@ -219,15 +233,20 @@ function listen() {
     state.likeCount = count;
     render();
   });
+  store.onUpdateStateChange((update) => {
+    state.update = update;
+    render();
+  });
 }
 
 async function start() {
   document.documentElement.lang = lang;
   translatePage(document, t);
-  byId('version').textContent = t('versionLabel', [api.runtime.getManifest().version]);
+  byId('version').textContent = t('versionLabel', [VERSION]);
   try {
     state.settings = await store.loadSettings();
     state.likeCount = await store.loadLikeCount();
+    state.update = await store.loadUpdateState();
   } catch (error) {
     console.error(LOG_PREFIX, 'could not load the settings', error);
     notice.show(t('noticeLoadFailed'), { error: true });

@@ -23,9 +23,9 @@
     "open_in_tab": true
   },
   "content_security_policy": {
-    "extension_pages": "default-src 'self'; script-src 'self'; object-src 'none'; img-src 'self' https://yt3.ggpht.com https://yt3.googleusercontent.com https://yt4.ggpht.com; base-uri 'none'; form-action 'none'"
+    "extension_pages": "default-src 'self'; script-src 'self'; object-src 'none'; img-src 'self' https://yt3.ggpht.com https://yt3.googleusercontent.com https://yt4.ggpht.com; connect-src https://api.github.com; base-uri 'none'; form-action 'none'"
   },
-  "permissions": ["storage"],
+  "permissions": ["storage", "alarms"],
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*"],

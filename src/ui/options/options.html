@@ -129,6 +129,21 @@
         </div>
       </div>
       <div class="row-toggle">
+        <label for="update-every"><span data-i18n="updatesLabel"></span><span class="hint" data-i18n="updatesHint"></span></label>
+        <select class="select" id="update-every" data-field="updateCheckMinutes">
+          <option value="0" data-i18n="updateEvery0"></option>
+          <option value="30" data-i18n="updateEvery30"></option>
+          <option value="60" data-i18n="updateEvery60"></option>
+          <option value="360" data-i18n="updateEvery360"></option>
+          <option value="1440" data-i18n="updateEvery1440"></option>
+          <option value="10080" data-i18n="updateEvery10080"></option>
+        </select>
+      </div>
+      <div class="row-toggle">
+        <p class="update-line" role="status"><span id="update-status"></span><a id="update-status-link" target="_blank" rel="noopener noreferrer" hidden></a></p>
+        <button type="button" class="btn" id="update-check" data-i18n="updateCheckNow"></button>
+      </div>
+      <div class="row-toggle">
         <div><span id="like-count"></span><span class="hint" data-i18n="likeCountHint"></span></div>
         <button type="button" class="btn" id="reset-count" data-i18n="likeCountReset"></button>
       </div>

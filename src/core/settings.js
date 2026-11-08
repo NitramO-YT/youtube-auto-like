@@ -8,6 +8,7 @@
  */
 import { normalizeLists } from './channels.js';
 import { normalizeExcludedVideos } from './excluded-videos.js';
+import { UPDATE_CHECK_CHOICES } from './update.js';
 
 export const SETTINGS_SCHEMA_VERSION = 1;
 
@@ -33,7 +34,7 @@ const DEFAULTS = {
     percent: { enabled: true, value: 50 },
     minutes: { enabled: false, value: 2 },
   },
-  notifyUpdates: true,
+  updateCheckMinutes: 30,
   theme: 'system',
 };
 
@@ -85,7 +86,7 @@ export function normalizeSettings(raw) {
         value: numberInRange(minutes.value, MINUTES_RANGE, defaults.timing.minutes.value),
       },
     },
-    notifyUpdates: booleanOr(input.notifyUpdates, defaults.notifyUpdates),
+    updateCheckMinutes: oneOf(input.updateCheckMinutes, UPDATE_CHECK_CHOICES, defaults.updateCheckMinutes),
     theme: oneOf(input.theme, THEMES, defaults.theme),
   };
 

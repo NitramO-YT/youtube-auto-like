@@ -397,6 +397,26 @@ main {
 .seg.compact {
   margin: 0;
 }
+.select {
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+}
+.update-line {
+  margin: 0;
+  font-size: 13px;
+}
+.update-line .error {
+  color: var(--error);
+}
+.update-line a {
+  color: var(--accent);
+  font-weight: 650;
+}
 
 /* Embedded in the popup (shared/embed.js): the popup shows the switch, the
    paused banner and the way back; the page is only its form. */

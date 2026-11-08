@@ -7,7 +7,7 @@
  * script reads back from the DOM.
  */
 (() => {
-  const { messages, settings, stats, history, status } = window.PREVIEW;
+  const { messages, settings, stats, history, update, status } = window.PREVIEW;
   const root = document.documentElement;
   const errors = [];
   const record = (text) => {
@@ -36,7 +36,7 @@
       .replace(/\$([1-9])/g, (_, rank) => substitutions[rank - 1] ?? '');
   }
 
-  const data = { settings, stats, history };
+  const data = { settings, stats, history, update };
   const listeners = [];
 
   window.chrome = {
@@ -47,6 +47,8 @@
       // root: the extension folder, relative to the preview page.
       getURL: (path) => new URL(window.PREVIEW.root + path, window.location.href).href,
       openOptionsPage: async () => {},
+      // "Check now": the background answers with the state it keeps.
+      sendMessage: async () => ({ state: data.update ?? null }),
     },
     storage: {
       local: {

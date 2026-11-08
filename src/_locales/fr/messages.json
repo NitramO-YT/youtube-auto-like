@@ -8,6 +8,15 @@
   "switchActive": { "message": "Actif" },
   "switchPaused": { "message": "En pause" },
   "pausedBanner": { "message": "L'extension ne like rien tant qu'elle est en pause." },
+  "badgeUpdate": { "message": "MAJ" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like : la version $VERSION$ est disponible",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Version $VERSION$ disponible ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
 
   "sectionThisVideo": { "message": "Cette vidéo" },
   "sectionRule": { "message": "Règle active" },
@@ -176,7 +185,7 @@
     "message": "Ne plus exclure $TITLE$",
     "placeholders": { "title": { "content": "$1" } }
   },
-  "listSearch": { "message": "Rechercher une chaîne" },
+  "listSearch": { "message": "Rechercher dans la liste" },
   "listImport": { "message": "Importer" },
   "listExport": { "message": "Exporter" },
   "listEmpty": { "message": "Aucune chaîne dans cette liste." },
@@ -207,6 +216,35 @@
   "themeSystem": { "message": "Comme le système" },
   "themeLight": { "message": "Clair" },
   "themeDark": { "message": "Sombre" },
+  "updatesLabel": { "message": "Rechercher les nouvelles versions" },
+  "updatesHint": { "message": "Interroge GitHub, où l'extension est publiée ; GitHub voit alors votre adresse IP." },
+  "updateEvery0": { "message": "Jamais" },
+  "updateEvery30": { "message": "Toutes les 30 minutes" },
+  "updateEvery60": { "message": "Toutes les heures" },
+  "updateEvery360": { "message": "Toutes les 6 heures" },
+  "updateEvery1440": { "message": "Chaque jour" },
+  "updateEvery10080": { "message": "Chaque semaine" },
+  "updateCheckNow": { "message": "Vérifier maintenant" },
+  "updateStatusOff": { "message": "Les nouvelles versions ne sont pas recherchées." },
+  "updateStatusNever": { "message": "Pas encore vérifié." },
+  "updateStatusChecking": { "message": "Vérification…" },
+  "updateStatusAvailable": {
+    "message": "La version $VERSION$ est disponible ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Vérifié $WHEN$ : vous avez la dernière version.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Vérifié $WHEN$ : aucune version publiée pour l'instant.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "La dernière vérification a échoué $WHEN$ ; la suivante réessaiera.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "La vérification n'a pas pu être faite." },
   "likeCountHint": { "message": "Depuis l'installation de l'extension, ou depuis la dernière remise à zéro. Le remettre à zéro ne change rien d'autre." },
   "likeCountReset": { "message": "Remettre à zéro" },
 

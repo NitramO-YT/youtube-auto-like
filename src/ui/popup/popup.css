@@ -131,6 +131,15 @@ body {
   border: 0;
 }
 
+.update-link {
+  color: var(--accent);
+  font-weight: 650;
+  text-decoration: none;
+}
+.update-link:hover {
+  text-decoration: underline;
+}
+
 .foot {
   display: flex;
   justify-content: space-between;

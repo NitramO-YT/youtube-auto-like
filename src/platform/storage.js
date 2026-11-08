@@ -8,10 +8,12 @@
  */
 import { addToHistory, normalizeHistory } from '../core/history.js';
 import { normalizeSettings } from '../core/settings.js';
+import { normalizeUpdateState } from '../core/update.js';
 
 export const SETTINGS_KEY = 'settings';
 export const STATS_KEY = 'stats';
 export const HISTORY_KEY = 'history';
+export const UPDATE_KEY = 'update';
 
 function validCount(value) {
   return Number.isInteger(value) && value >= 0 ? value : 0;
@@ -90,6 +92,27 @@ export function createStore(api) {
       const normalized = normalizeHistory(history);
       await area.set({ [HISTORY_KEY]: normalized });
       return normalized;
+    },
+
+    /** The state of the checks for a new version (see normalizeUpdateState). */
+    async loadUpdateState() {
+      const stored = await area.get(UPDATE_KEY);
+      return normalizeUpdateState(stored[UPDATE_KEY]);
+    },
+
+    async saveUpdateState(state) {
+      const normalized = normalizeUpdateState(state);
+      await area.set({ [UPDATE_KEY]: normalized });
+      return normalized;
+    },
+
+    /** Calls listener with the new state of the checks, normalized, after each change. */
+    onUpdateStateChange(listener) {
+      api.storage.onChanged.addListener((changes, areaName) => {
+        if (areaName === 'local' && UPDATE_KEY in changes) {
+          listener(normalizeUpdateState(changes[UPDATE_KEY].newValue));
+        }
+      });
     },
 
     /** Calls listener with the new history, normalized, after each change. */

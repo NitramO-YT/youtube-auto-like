@@ -1,13 +1,16 @@
 /**
- * Messages from the extension's own pages (popup) to the liker of a YouTube
- * tab, through runtime messaging. The liker answers only messages sent by
- * this extension, and only these types.
+ * Messages between the parts of the extension, through runtime messaging:
+ * from the popup to the liker of a YouTube tab (status, like now, skip), and
+ * from the extension pages to the background (check for a new version now).
+ * Each receiver answers only messages sent by this extension, and only these
+ * types.
  */
 
 export const Message = Object.freeze({
   GET_STATUS: 'get-status',
   LIKE_NOW: 'like-now',
   SKIP_VIDEO: 'skip-video',
+  CHECK_UPDATES: 'check-updates',
 });
 
 const TYPES = new Set(Object.values(Message));
