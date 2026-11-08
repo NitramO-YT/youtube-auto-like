@@ -8,11 +8,17 @@
  * Between the moment step() is called and the moment its result is stored,
  * nothing is awaited: a command from the popup, applied to `session` in the
  * meantime, is therefore never overwritten by an older state.
+ *
+ * It stops for good once cut off from the extension (disabled, reloaded,
+ * updated or removed), or once a newer copy of it runs in the page (see
+ * ../instance.js): a page never keeps liking on settings it can no longer
+ * read, and never holds two likers.
  */
 import { historyEntry } from '../../core/history.js';
 import { api } from '../../platform/api.js';
 import { acceptedMessage, Message } from '../../platform/messages.js';
 import { createStore } from '../../platform/storage.js';
+import { claimInstance, isConnected } from '../instance.js';
 import { ISOLATED_SOURCE, PAGE_SOURCE, SNAPSHOT, SNAPSHOT_REQUEST, validateSnapshot } from '../protocol.js';
 import { findLikeButton, readChannelAvatar, readPlayback, readRating } from '../youtube/dom.js';
 import { surfaceFromUrl, videoIdFromUrl } from '../youtube/surface.js';
@@ -24,6 +30,9 @@ const SNAPSHOT_TIMEOUT_MS = 500;
 const LOG_PREFIX = '[YouTube Auto Like]';
 
 const store = createStore(api);
+const hasTurn = claimInstance(globalThis, Symbol.for('youtube-auto-like:liker'));
+let timer = null;
+let stopped = false;
 let settings = null;
 let session = null;
 let lastObservation = null;
@@ -35,6 +44,21 @@ let busy = false;
 
 function log(...args) {
   console.debug(LOG_PREFIX, ...args);
+}
+
+/** Whether this copy may go on: still connected to the extension, and the newest one in the page. */
+function mayRun() {
+  if (stopped) return false;
+  if (hasTurn() && isConnected(api)) return true;
+  stopped = true;
+  clearInterval(timer);
+  document.removeEventListener('yt-navigate-finish', onNavigate);
+  console.info(LOG_PREFIX, hasTurn() ? 'cut off from the extension: this page no longer likes until it is reloaded' : 'a newer copy of the extension takes over');
+  return false;
+}
+
+function onNavigate() {
+  tick();
 }
 
 /** Asks the page reader for its snapshot; null if it does not answer in time. */
@@ -75,7 +99,7 @@ function describe(current) {
 }
 
 async function tick() {
-  if (busy || !settings) return;
+  if (busy || !settings || !mayRun()) return;
   busy = true;
   try {
     const videoId = videoIdFromUrl(window.location.href);
@@ -94,7 +118,9 @@ async function tick() {
 
     const surface = surfaceFromUrl(window.location.href);
     const snapshot = await requestSnapshot();
-    // The page may have moved to another video while the reader answered.
+    // The page may have moved to another video while the reader answered,
+    // and the extension may have been disabled or updated meanwhile.
+    if (!mayRun()) return;
     if (!session || videoIdFromUrl(window.location.href) !== session.videoId) return;
     if (surfaceFromUrl(window.location.href) !== surface) return;
 
@@ -143,6 +169,7 @@ const COMMANDS = {
 };
 
 function onPopupMessage(message, sender, sendResponse) {
+  if (!mayRun()) return;
   const type = acceptedMessage(message, sender, api.runtime.id);
   if (!type) return;
   const onVideo = session && session.videoId === videoIdFromUrl(window.location.href);
@@ -166,8 +193,8 @@ async function start() {
     settings = updated;
   });
   api.runtime.onMessage.addListener(onPopupMessage);
-  document.addEventListener('yt-navigate-finish', () => tick());
-  setInterval(tick, TICK_MS);
+  document.addEventListener('yt-navigate-finish', onNavigate);
+  timer = setInterval(tick, TICK_MS);
   tick();
 }
 

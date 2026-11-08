@@ -1,6 +1,8 @@
 /**
  * Background service worker: looks for a new version at the frequency set
- * in the settings, and shows a badge on the toolbar icon when one is out.
+ * in the settings, and shows a badge on the toolbar icon when one is out;
+ * brings the content scripts to the YouTube tabs already open when the
+ * extension is installed or updated.
  *
  * Chromium stops the service worker after a short idle time, so nothing is
  * kept in memory: the schedule is an alarm, everything else is in storage,
@@ -10,6 +12,7 @@ import { availableUpdate, isCheckDue } from '../core/update.js';
 import { api } from '../platform/api.js';
 import { acceptedMessage, Message } from '../platform/messages.js';
 import { createStore } from '../platform/storage.js';
+import { injectIntoOpenTabs } from './inject.js';
 import { checkForUpdate } from './updates.js';
 
 const ALARM = 'update-check';
@@ -58,7 +61,13 @@ function run(task, what) {
   return task().catch((error) => console.error(LOG_PREFIX, `could not ${what}`, error));
 }
 
-api.runtime.onInstalled.addListener(() => {
+// Installing or updating the extension (an unpacked one reloaded included);
+// the other reasons, a browser update for instance, leave the scripts of the
+// open tabs running.
+const INJECTING_REASONS = ['install', 'update'];
+
+api.runtime.onInstalled.addListener(({ reason }) => {
+  if (INJECTING_REASONS.includes(reason)) run(() => injectIntoOpenTabs(api), 'reach the YouTube tabs already open');
   run(() => schedule().then(() => check({ onlyIfDue: true })), 'set the version checks up');
 });
 api.runtime.onStartup.addListener(() => {

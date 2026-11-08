@@ -25,7 +25,8 @@
   "content_security_policy": {
     "extension_pages": "default-src 'self'; script-src 'self'; object-src 'none'; img-src 'self' https://yt3.ggpht.com https://yt3.googleusercontent.com https://yt4.ggpht.com; connect-src https://api.github.com; base-uri 'none'; form-action 'none'"
   },
-  "permissions": ["storage", "alarms"],
+  "permissions": ["storage", "alarms", "scripting"],
+  "host_permissions": ["https://www.youtube.com/*"],
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*"],
