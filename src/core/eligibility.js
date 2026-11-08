@@ -3,8 +3,10 @@
  * reason codes let the popup tell the user what the extension does with the
  * video in front of them.
  *
- * The list rules (allowlist or blocklist, combined with likeWhat by "and" or
- * "or") follow Taknok/youtube-auto-like.
+ * Order of the rules: a rating the user gave wins over everything; then the
+ * Shorts and normal video switches; then the "never like" list; then the
+ * "always like" list; then the base rule (subscribed channels, every channel,
+ * or the "always like" list only).
  */
 import { isChannelListed, isValidChannelId } from './channels.js';
 
@@ -17,12 +19,13 @@ export const Reason = Object.freeze({
   SHORTS_OFF: 'shorts-off',
   NORMAL_VIDEOS_OFF: 'normal-videos-off',
   NOT_SUBSCRIBED: 'not-subscribed',
-  NOT_IN_ALLOWLIST: 'not-in-allowlist',
-  IN_BLOCKLIST: 'in-blocklist',
+  IN_NEVER_LIST: 'in-never-list',
+  NOT_IN_ALWAYS_LIST: 'not-in-always-list',
 });
 
 const verdict = (eligible, reason) => ({ eligible, reason });
 const unknown = verdict(false, Reason.UNKNOWN_STATE);
+const eligible = verdict(true, Reason.ELIGIBLE);
 
 /**
  * @param {object} video State read from the page: channelId (string),
@@ -43,26 +46,16 @@ export function evaluateEligibility(video, settings) {
   if (video.isShort && !settings.likeShorts) return verdict(false, Reason.SHORTS_OFF);
   if (!video.isShort && !settings.likeNormalVideos) return verdict(false, Reason.NORMAL_VIDEOS_OFF);
 
-  let audienceOk = true;
-  if (settings.likeWhat === 'subscribed') {
-    if (typeof video.subscribed !== 'boolean') return unknown;
-    audienceOk = video.subscribed;
-  }
-  if (!settings.list.enabled) {
-    return audienceOk ? verdict(true, Reason.ELIGIBLE) : verdict(false, Reason.NOT_SUBSCRIBED);
+  const { always, never } = settings.lists;
+  const channelMatters = always.length > 0 || never.length > 0 || settings.likeWhat === 'alwaysList';
+  if (channelMatters) {
+    if (!isValidChannelId(video.channelId)) return unknown;
+    if (isChannelListed(never, video.channelId)) return verdict(false, Reason.IN_NEVER_LIST);
+    if (isChannelListed(always, video.channelId)) return eligible;
   }
 
-  if (!isValidChannelId(video.channelId)) return unknown;
-  const isAllowlist = settings.list.mode === 'allowlist';
-  const listed = isChannelListed(settings.channels, video.channelId);
-  const listOk = isAllowlist ? listed : !listed;
-  const listReason = isAllowlist ? Reason.NOT_IN_ALLOWLIST : Reason.IN_BLOCKLIST;
-
-  if (settings.list.combine === 'or') {
-    // Either condition is enough; when both fail, the list is the rule the
-    // user set explicitly, so it is the one reported.
-    return audienceOk || listOk ? verdict(true, Reason.ELIGIBLE) : verdict(false, listReason);
-  }
-  if (!audienceOk) return verdict(false, Reason.NOT_SUBSCRIBED);
-  return listOk ? verdict(true, Reason.ELIGIBLE) : verdict(false, listReason);
+  if (settings.likeWhat === 'all') return eligible;
+  if (settings.likeWhat === 'alwaysList') return verdict(false, Reason.NOT_IN_ALWAYS_LIST);
+  if (typeof video.subscribed !== 'boolean') return unknown;
+  return video.subscribed ? eligible : verdict(false, Reason.NOT_SUBSCRIBED);
 }

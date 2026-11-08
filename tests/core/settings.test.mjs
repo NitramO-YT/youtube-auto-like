@@ -7,10 +7,10 @@ const CHANNEL = 'UC9orcd4I_3Uy_8_UAz2r48g';
 describe('defaultSettings', () => {
   it('returns a fresh copy each time', () => {
     const first = defaultSettings();
-    first.list.enabled = true;
-    first.channels.push({ id: CHANNEL, name: 'x' });
-    assert.equal(defaultSettings().list.enabled, false);
-    assert.deepEqual(defaultSettings().channels, []);
+    first.enabled = false;
+    first.lists.always.push({ id: CHANNEL, name: 'x', addedAt: null });
+    assert.equal(defaultSettings().enabled, true);
+    assert.deepEqual(defaultSettings().lists, { always: [], never: [] });
   });
 
   it('is already normalized', () => {
@@ -29,14 +29,20 @@ describe('normalizeSettings', () => {
     const custom = {
       schemaVersion: SETTINGS_SCHEMA_VERSION,
       enabled: false,
-      likeWhat: 'all',
+      likeWhat: 'alwaysList',
       likeNormalVideos: false,
       likeShorts: false,
-      list: { enabled: true, mode: 'allowlist', combine: 'or' },
-      channels: [{ id: CHANNEL, name: 'COLAS' }],
+      lists: { always: [{ id: CHANNEL, name: 'COLAS', addedAt: '2026-11-08T21:00:00.000Z' }], never: [] },
       timing: { mode: 'custom', percent: { enabled: false, value: 0 }, minutes: { enabled: true, value: 600 } },
+      notifyUpdates: false,
     };
     assert.deepEqual(normalizeSettings(custom), custom);
+  });
+
+  it('accepts each base rule', () => {
+    for (const likeWhat of ['subscribed', 'all', 'alwaysList']) {
+      assert.equal(normalizeSettings({ likeWhat }).likeWhat, likeWhat);
+    }
   });
 
   it('replaces each invalid value with its default, field by field', () => {
@@ -44,24 +50,23 @@ describe('normalizeSettings', () => {
       enabled: 'yes',
       likeWhat: 'none',
       likeShorts: false,
-      list: { enabled: 1, mode: 'white', combine: 'and' },
       timing: { mode: 'later', percent: { enabled: true, value: 101 }, minutes: { value: Number.NaN } },
+      notifyUpdates: 'often',
     });
     const defaults = defaultSettings();
     assert.equal(normalized.enabled, defaults.enabled);
     assert.equal(normalized.likeWhat, defaults.likeWhat);
     assert.equal(normalized.likeShorts, false);
-    assert.deepEqual(normalized.list, { enabled: false, mode: 'blocklist', combine: 'and' });
     assert.equal(normalized.timing.mode, defaults.timing.mode);
     assert.equal(normalized.timing.percent.value, defaults.timing.percent.value);
     assert.equal(normalized.timing.minutes.value, defaults.timing.minutes.value);
+    assert.equal(normalized.notifyUpdates, defaults.notifyUpdates);
   });
 
-  it('drops unknown keys and always sets the current schema version', () => {
-    const normalized = normalizeSettings({ like_what: 'all', schemaVersion: 99, debug: true });
+  it('drops unknown keys, including those of the single list of earlier designs', () => {
+    const normalized = normalizeSettings({ list: { enabled: true, mode: 'allowlist' }, channels: [{ id: CHANNEL }], debug: true });
+    for (const key of ['list', 'channels', 'debug']) assert.equal(key in normalized, false);
     assert.equal(normalized.schemaVersion, SETTINGS_SCHEMA_VERSION);
-    assert.equal('like_what' in normalized, false);
-    assert.equal('debug' in normalized, false);
   });
 
   it('enables the percentage threshold of a custom timing that has none', () => {
@@ -71,8 +76,8 @@ describe('normalizeSettings', () => {
     assert.deepEqual(normalized.timing.percent, { enabled: true, value: 30 });
   });
 
-  it('cleans the channel list', () => {
-    const normalized = normalizeSettings({ channels: [{ id: CHANNEL, name: ' COLAS ' }, { id: 'nope' }] });
-    assert.deepEqual(normalized.channels, [{ id: CHANNEL, name: 'COLAS' }]);
+  it('cleans the channel lists', () => {
+    const normalized = normalizeSettings({ lists: { always: [{ id: CHANNEL, name: ' COLAS ' }, { id: 'nope' }], never: 'x' } });
+    assert.deepEqual(normalized.lists, { always: [{ id: CHANNEL, name: 'COLAS', addedAt: null }], never: [] });
   });
 });

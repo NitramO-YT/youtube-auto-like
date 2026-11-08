@@ -15,10 +15,11 @@ const video = (overrides = {}) => ({
   ...overrides,
 });
 
-const settings = (overrides = {}) => normalizeSettings({ ...overrides });
+const entry = (id) => ({ id, name: '', addedAt: null });
+const lists = ({ always = [], never = [] } = {}) => ({ always: always.map(entry), never: never.map(entry) });
 
 const check = (videoOverrides, settingsOverrides) =>
-  evaluateEligibility(video(videoOverrides), settings(settingsOverrides));
+  evaluateEligibility(video(videoOverrides), normalizeSettings({ ...settingsOverrides }));
 
 describe('evaluateEligibility', () => {
   it('likes a fresh video of a subscribed channel with the default settings', () => {
@@ -40,76 +41,59 @@ describe('evaluateEligibility', () => {
       assert.equal(check({ subscribed: null }).reason, Reason.UNKNOWN_STATE);
     });
 
-    it('ignores an unknown subscription when every video is liked', () => {
+    it('ignores an unknown subscription when every channel is liked', () => {
       assert.equal(check({ subscribed: null }, { likeWhat: 'all' }).eligible, true);
     });
 
-    it('refuses when the channel is unknown and the list is in use', () => {
-      const list = { list: { enabled: true, mode: 'blocklist' } };
-      assert.equal(check({ channelId: null }, list).reason, Reason.UNKNOWN_STATE);
-      assert.equal(check({ channelId: 'not-an-id' }, list).reason, Reason.UNKNOWN_STATE);
-      assert.equal(check({ channelId: null }).eligible, true, 'the channel does not matter without a list');
+    it('ignores an unknown subscription for a channel of the "always" list', () => {
+      assert.equal(check({ subscribed: null }, { lists: lists({ always: [COLAS] }) }).eligible, true);
+    });
+
+    it('refuses when the channel is unknown and a list or the list-only rule is in use', () => {
+      assert.equal(check({ channelId: null }, { lists: lists({ never: [QOQSIK] }) }).reason, Reason.UNKNOWN_STATE);
+      assert.equal(check({ channelId: 'not-an-id' }, { likeWhat: 'alwaysList' }).reason, Reason.UNKNOWN_STATE);
+      assert.equal(check({ channelId: null }).eligible, true, 'the channel does not matter without lists');
     });
   });
 
-  it('never touches a video already rated', () => {
+  it('never touches a video already rated, whatever the lists say', () => {
     assert.equal(check({ liked: true }).reason, Reason.ALREADY_LIKED);
     assert.equal(check({ disliked: true }).reason, Reason.ALREADY_DISLIKED);
-    assert.equal(check({ liked: true }, { likeWhat: 'all' }).eligible, false);
+    assert.equal(check({ disliked: true }, { lists: lists({ always: [COLAS] }) }).reason, Reason.ALREADY_DISLIKED);
   });
 
-  it('applies the Shorts and normal video switches', () => {
+  it('applies the Shorts and normal video switches before the lists', () => {
     assert.equal(check({ isShort: true }, { likeShorts: false }).reason, Reason.SHORTS_OFF);
-    assert.equal(check({ isShort: true }, { likeNormalVideos: false }).eligible, true);
+    assert.equal(check({ isShort: true }, { likeShorts: false, lists: lists({ always: [COLAS] }) }).reason, Reason.SHORTS_OFF);
     assert.equal(check({ isShort: false }, { likeNormalVideos: false }).reason, Reason.NORMAL_VIDEOS_OFF);
-    assert.equal(check({ isShort: false }, { likeShorts: false }).eligible, true);
+    assert.equal(check({ isShort: true }, { likeNormalVideos: false }).eligible, true);
   });
 
-  it('likes only subscribed channels in subscribed mode, every channel in all mode', () => {
-    assert.equal(check({ subscribed: false }).reason, Reason.NOT_SUBSCRIBED);
-    assert.equal(check({ subscribed: false }, { likeWhat: 'all' }).eligible, true);
-  });
-
-  // Every combination of subscription, list mode, combination and presence
-  // in the list, against the expected verdict.
-  describe('channel list', () => {
+  // Every base rule, for a channel in neither list, in "always" and in
+  // "never", subscribed or not.
+  describe('base rule and lists', () => {
     const cases = [
-      // likeWhat, mode, combine, subscribed, listed, eligible, reason when not eligible
-      ['subscribed', 'allowlist', 'and', true, true, true],
-      ['subscribed', 'allowlist', 'and', true, false, false, Reason.NOT_IN_ALLOWLIST],
-      ['subscribed', 'allowlist', 'and', false, true, false, Reason.NOT_SUBSCRIBED],
-      ['subscribed', 'allowlist', 'or', false, true, true],
-      ['subscribed', 'allowlist', 'or', true, false, true],
-      ['subscribed', 'allowlist', 'or', false, false, false, Reason.NOT_IN_ALLOWLIST],
-      ['subscribed', 'blocklist', 'and', true, false, true],
-      ['subscribed', 'blocklist', 'and', true, true, false, Reason.IN_BLOCKLIST],
-      ['subscribed', 'blocklist', 'and', false, false, false, Reason.NOT_SUBSCRIBED],
-      ['subscribed', 'blocklist', 'or', false, false, true],
-      ['subscribed', 'blocklist', 'or', true, true, true],
-      ['subscribed', 'blocklist', 'or', false, true, false, Reason.IN_BLOCKLIST],
-      ['all', 'allowlist', 'and', false, true, true],
-      ['all', 'allowlist', 'and', false, false, false, Reason.NOT_IN_ALLOWLIST],
-      ['all', 'blocklist', 'and', false, true, false, Reason.IN_BLOCKLIST],
-      ['all', 'blocklist', 'and', false, false, true],
+      // likeWhat, list of the channel, subscribed, eligible, reason when not
+      ['subscribed', null, true, true],
+      ['subscribed', null, false, false, Reason.NOT_SUBSCRIBED],
+      ['subscribed', 'always', false, true],
+      ['subscribed', 'never', true, false, Reason.IN_NEVER_LIST],
+      ['all', null, false, true],
+      ['all', 'always', false, true],
+      ['all', 'never', true, false, Reason.IN_NEVER_LIST],
+      ['alwaysList', null, true, false, Reason.NOT_IN_ALWAYS_LIST],
+      ['alwaysList', 'always', false, true],
+      ['alwaysList', 'never', true, false, Reason.IN_NEVER_LIST],
     ];
-    for (const [likeWhat, mode, combine, subscribed, listed, eligible, reason] of cases) {
-      const label = `${likeWhat}, ${mode} ${combine}, ${subscribed ? 'subscribed' : 'not subscribed'}, ${listed ? 'listed' : 'not listed'}`;
+    for (const [likeWhat, listName, subscribed, eligible, reason] of cases) {
+      const label = `${likeWhat}, ${listName ?? 'no list'}, ${subscribed ? 'subscribed' : 'not subscribed'}`;
       it(`${label}: ${eligible ? 'like' : reason}`, () => {
-        const result = check(
-          { subscribed, channelId: COLAS },
-          {
-            likeWhat,
-            list: { enabled: true, mode, combine },
-            channels: listed ? [{ id: COLAS, name: 'COLAS' }] : [{ id: QOQSIK, name: 'Qoqsik' }],
-          },
-        );
-        assert.deepEqual(result, { eligible, reason: eligible ? Reason.ELIGIBLE : reason });
+        // Another channel in the other list, so that a list is never empty by accident.
+        const settingsLists = listName === 'always' ? lists({ always: [COLAS], never: [QOQSIK] })
+          : listName === 'never' ? lists({ always: [QOQSIK], never: [COLAS] })
+          : lists({ always: [QOQSIK] });
+        assert.deepEqual(check({ subscribed }, { likeWhat, lists: settingsLists }), { eligible, reason: eligible ? Reason.ELIGIBLE : reason });
       });
     }
-  });
-
-  it('ignores the channel list while it is disabled', () => {
-    const blocked = { list: { enabled: false, mode: 'blocklist' }, channels: [{ id: COLAS, name: 'COLAS' }] };
-    assert.equal(check({}, blocked).eligible, true);
   });
 });
