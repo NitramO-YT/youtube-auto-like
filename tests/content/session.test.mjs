@@ -8,7 +8,6 @@ import {
   isFinal,
   Status,
   step,
-  UNKNOWN_STATE_TIMEOUT_MS,
 } from '../../src/content/isolated/session.js';
 
 const VIDEO_ID = 'aeP4eG-gO10';
@@ -126,10 +125,19 @@ describe('step', () => {
       });
     }
 
-    it('gives up after the timeout', () => {
-      const result = step(start(), observation({ snapshot: null }), instant, T0 + UNKNOWN_STATE_TIMEOUT_MS + 1);
-      assert.equal(result.session.status, Status.GAVE_UP);
-      assert.ok(isFinal(result.session));
+    // Seen in Brave on 8 November 2026: YouTube renders the buttons of a Short
+    // only once the user moves the mouse over the page, possibly long after
+    // the Short started.
+    it('keeps waiting for as long as the page stays unreadable, then likes', () => {
+      let session = start();
+      for (const elapsed of [1_000, 30_001, 300_000]) {
+        const result = step(session, observation({ liked: null, disliked: null }), instant, T0 + elapsed);
+        assert.equal(result.action, null);
+        assert.equal(result.session.status, Status.READING);
+        assert.equal(isFinal(result.session), false);
+        session = result.session;
+      }
+      assert.equal(step(session, observation(), instant, T0 + 300_001).action, 'click');
     });
 
     it('recovers when the page becomes readable in time', () => {

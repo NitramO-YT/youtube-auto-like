@@ -5,12 +5,14 @@
  * carries out the action it returns, so every rule of the like cycle is
  * tested without a browser. A video gets at most one click; once a final
  * status is reached, nothing more happens until the next video.
+ *
+ * An unreadable page is waited for without a time limit: YouTube renders the
+ * buttons of a Short only once the user moves the mouse over the page, which
+ * may happen long after the Short started.
  */
 import { evaluateEligibility, Reason } from '../../core/eligibility.js';
 import { likeTime } from '../../core/like-time.js';
 
-// How long the page may stay unreadable before the liker gives up on a video.
-export const UNKNOWN_STATE_TIMEOUT_MS = 30_000;
 // How long a click has to show on the button (aria-pressed="true").
 export const CLICK_CONFIRM_TIMEOUT_MS = 5_000;
 
@@ -22,10 +24,9 @@ export const Status = Object.freeze({
   LIKED: 'liked',
   SKIPPED: 'skipped',
   CLICK_FAILED: 'click-failed',
-  GAVE_UP: 'gave-up',
 });
 
-const FINAL_STATUSES = new Set([Status.LIKED, Status.SKIPPED, Status.CLICK_FAILED, Status.GAVE_UP]);
+const FINAL_STATUSES = new Set([Status.LIKED, Status.SKIPPED, Status.CLICK_FAILED]);
 
 export const isFinal = (session) => FINAL_STATUSES.has(session.status);
 
@@ -67,10 +68,7 @@ export function step(session, observation, settings, now) {
     return update(session, {});
   }
 
-  const unreadable = () =>
-    now - session.startedAt > UNKNOWN_STATE_TIMEOUT_MS
-      ? update(session, { status: Status.GAVE_UP, reason: Reason.UNKNOWN_STATE })
-      : update(session, { status: Status.READING, reason: Reason.UNKNOWN_STATE });
+  const unreadable = () => update(session, { status: Status.READING, reason: Reason.UNKNOWN_STATE });
 
   // The URL, the player and the surface showing the rating buttons must all
   // point to the same video: while YouTube switches videos, they briefly
