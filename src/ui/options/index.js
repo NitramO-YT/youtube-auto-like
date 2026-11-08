@@ -17,6 +17,7 @@ import { moveChannel } from '../shared/lists.js';
 import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
 import { FIELDS, filterChannels, lockedThreshold, NUMBER_RANGES, validNumber } from './fields.js';
+import { currentSection } from './sections.js';
 
 const LOG_PREFIX = '[YouTube Auto Like]';
 const CHANNEL_URL = 'https://www.youtube.com/channel/';
@@ -231,28 +232,48 @@ function selectTab(name, focus = false) {
 
 // ---- Wiring ----
 
-// How far below the top of the window a section's top must be to count as
-// read: the sticky header, and a little margin.
+// Height under which a section counts as read at the top of the page: the
+// sticky header, and a little margin.
 const SECTION_OFFSET_PX = 120;
+// User input that may scroll the page, and so ends a choice made in the menu.
+const SCROLL_INPUTS = ['wheel', 'touchstart', 'keydown'];
 
 /**
- * Marks in the menu the section being read: the last one whose top has
- * passed under the header, or the last one of the page once it is scrolled
- * to the bottom, since a short last section never reaches the top. A page
- * that does not scroll at all is read from its first section.
+ * Marks in the menu the section being read (see sections.js). A section
+ * chosen in the menu stays marked until the user scrolls again, even when
+ * the page cannot scroll far enough to bring it to the reading line.
  */
 function highlightSections() {
   const links = [...byId('nav').querySelectorAll('a')];
   const sections = [...form.querySelectorAll('section')];
+  let chosen = null;
+  const mark = (id) => {
+    for (const link of links) link.setAttribute('aria-current', String(link.hash === `#${id}`));
+  };
   // Browsers fire scroll at most once per frame, and the update reads the
   // position of five sections: it runs on each scroll event as it comes.
   const update = () => {
-    const atBottom = window.scrollY > 0 && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
-    const current = atBottom
-      ? sections.at(-1)
-      : (sections.findLast((section) => section.getBoundingClientRect().top <= SECTION_OFFSET_PX) ?? sections[0]);
-    for (const link of links) link.setAttribute('aria-current', String(link.hash === `#${current.id}`));
+    if (chosen) return;
+    const index = currentSection(
+      sections.map((section) => section.getBoundingClientRect().top),
+      {
+        scrollY: window.scrollY,
+        scrollMax: document.documentElement.scrollHeight - window.innerHeight,
+        height: window.innerHeight,
+        offset: SECTION_OFFSET_PX,
+      },
+    );
+    mark(sections[index].id);
   };
+  byId('nav').addEventListener('click', (event) => {
+    const link = event.target.closest('a');
+    if (!link) return;
+    chosen = link.hash.slice(1);
+    mark(chosen);
+  });
+  for (const type of SCROLL_INPUTS) {
+    window.addEventListener(type, () => (chosen = null), { passive: true, capture: true });
+  }
   window.addEventListener('scroll', update, { passive: true });
   update();
 }
