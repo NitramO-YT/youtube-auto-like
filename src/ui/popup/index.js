@@ -73,6 +73,13 @@ function render() {
   byId('no-video').hidden = Boolean(view) || status === undefined;
   byId('no-video-hint').hidden = status !== null;
   if (view) {
+    draw('title', view.title, (title) => {
+      const element = byId('video-title');
+      element.hidden = !title;
+      element.textContent = title ?? '';
+      // Cut to two lines on screen; the full title on hover.
+      element.title = title ?? '';
+    });
     draw('channel', view.channel, (channel) => renderChannel(byId('video-channel'), channel));
     draw('card', view.card, (card) => renderCard(byId('video-card'), card));
     draw('actions', view.actions, (actions) => renderActions(byId('video-actions'), actions, t));

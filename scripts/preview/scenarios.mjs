@@ -16,6 +16,7 @@ const OPTIONS = { page: 'ui/options/options.html', size: [1100, 1700], status: '
 
 const video = {
   videoId: 'aeP4eG-gO10',
+  title: "J'AI CONSTRUIT MON ATELIER DE RÊVE !",
   isShort: false,
   isLive: false,
   reason: null,
@@ -38,7 +39,14 @@ export const SCENARIOS = [
     name: 'popup-waiting',
     ...POPUP,
     settings: halfway,
-    status: { ...video, channel: channel(true, { id: 'UCaaaaaaaaaaaaaaaaaaaaaa', name: 'Benjamin Workshop' }), status: 'waiting', target: { at: 562.5, basis: 'percent' } },
+    status: {
+      ...video,
+      // Long enough to be cut to two lines.
+      title: "Restauration complète d'un établi de menuisier ancien : démontage, décapage, recollage et finition à l'huile dure",
+      channel: channel(true, { id: 'UCaaaaaaaaaaaaaaaaaaaaaa', name: 'Benjamin Workshop' }),
+      status: 'waiting',
+      target: { at: 562.5, basis: 'percent' },
+    },
   },
   {
     name: 'popup-not-subscribed',

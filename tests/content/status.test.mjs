@@ -13,6 +13,7 @@ const observation = (overrides = {}) => ({
   snapshot: {
     videoId: VIDEO_ID,
     surfaceVideoId: VIDEO_ID,
+    title: "J'AI CONSTRUIT MON ATELIER DE RÊVE !",
     channelId: COLAS,
     channelName: 'COLAS',
     isShort: false,
@@ -32,6 +33,7 @@ describe('popupStatus', () => {
     const session = { ...createSession(VIDEO_ID, 0, 0.5), status: Status.WAITING, target: { at: 562.5, basis: 'percent' } };
     assert.deepEqual(popupStatus(session, observation(), normalizeSettings({})), {
       videoId: VIDEO_ID,
+      title: "J'AI CONSTRUIT MON ATELIER DE RÊVE !",
       isShort: false,
       isLive: false,
       channel: { id: COLAS, name: 'COLAS', avatarUrl: AVATAR, subscribed: true },

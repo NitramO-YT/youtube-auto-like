@@ -6,7 +6,7 @@ import { element, fakeDocument } from '../helpers/fake-dom.mjs';
 
 // Shapes observed in Brave on 8 November 2026.
 const response = (videoId, overrides = {}) => ({
-  videoDetails: { videoId, channelId: 'UC9orcd4I_3Uy_8_UAz2r48g', author: 'COLAS', ...overrides.details },
+  videoDetails: { videoId, title: `Title of ${videoId}`, channelId: 'UC9orcd4I_3Uy_8_UAz2r48g', author: 'COLAS', ...overrides.details },
   microformat: { playerMicroformatRenderer: { isShortsEligible: false, ...overrides.microformat } },
 });
 
@@ -109,6 +109,7 @@ describe('readSnapshot on the watch page', () => {
     assert.deepEqual(readSnapshot(watchPage(), Surface.WATCH), {
       videoId: 'aeP4eG-gO10',
       surfaceVideoId: 'aeP4eG-gO10',
+      title: 'Title of aeP4eG-gO10',
       channelId: 'UC9orcd4I_3Uy_8_UAz2r48g',
       channelName: 'COLAS',
       isShort: false,
@@ -136,6 +137,7 @@ describe('readSnapshot on the watch page', () => {
     assert.deepEqual(readSnapshot(fakeDocument(), Surface.WATCH), {
       videoId: null,
       surfaceVideoId: null,
+      title: '',
       channelId: null,
       channelName: '',
       isShort: null,
@@ -159,6 +161,7 @@ describe('readSnapshot in the Shorts player', () => {
     assert.deepEqual(readSnapshot(shortsPage(), Surface.SHORTS), {
       videoId: 'JgL5gMtA2X4',
       surfaceVideoId: 'JgL5gMtA2X4',
+      title: 'Title of JgL5gMtA2X4',
       channelId: 'UC9orcd4I_3Uy_8_UAz2r48g',
       channelName: 'COLAS',
       isShort: true,

@@ -5,7 +5,7 @@
  *
  * Watch page:
  * - ytd-watch-flexy ytd-player .getPlayer().getPlayerResponse(): videoDetails
- *   (videoId, channelId, author, isLive) and microformat
+ *   (videoId, title, channelId, author, isLive) and microformat
  *   .playerMicroformatRenderer.isShortsEligible, which stays true for a Short
  *   opened in the watch page by a redirecting extension.
  * - ytd-watch-flexy, attribute video-id: the video its buttons belong to.
@@ -172,6 +172,7 @@ export function readSnapshot(doc, surface) {
   return {
     videoId: details?.videoId ?? null,
     surfaceVideoId,
+    title: typeof details?.title === 'string' ? details.title : '',
     channelId: details?.channelId ?? null,
     channelName: details?.author ?? '',
     isShort:

@@ -170,6 +170,11 @@ describe('videoView', () => {
     assert.equal(videoView(status({ isLive: true }), defaults, en, 'en', NOW).channel.meta, 'Subscribed · Live');
   });
 
+  it('gives the title of the video, or none when the page has not given it', () => {
+    assert.equal(videoView(status({ title: 'le moooonstre' }), defaults, en, 'en', NOW).title, 'le moooonstre');
+    assert.equal(videoView(status({ title: '' }), defaults, en, 'en', NOW).title, null);
+  });
+
   it('gives nothing when the tab shows no video', () => {
     assert.equal(videoView({ videoId: null }, defaults, en, 'en', NOW), null);
     assert.equal(videoView(null, defaults, en, 'en', NOW), null);

@@ -16,6 +16,11 @@ export const SNAPSHOT = 'snapshot';
 
 const VIDEO_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/;
 const MAX_NAME_LENGTH = 200;
+// YouTube limits a title to 100 characters; the margin keeps a title intact
+// if that limit grows.
+const MAX_TITLE_LENGTH = 300;
+
+const textOf = (value, maxLength) => (typeof value === 'string' ? value.slice(0, maxLength) : '');
 
 export function isValidVideoId(id) {
   return typeof id === 'string' && VIDEO_ID_PATTERN.test(id);
@@ -32,8 +37,9 @@ function validateRatingAtLoad(value) {
 }
 
 /**
- * @returns {object|null} { videoId, surfaceVideoId, channelId, channelName,
- *   isShort, isLive, subscribed, likeAtLoad, dislikeAtLoad }. videoId is the
+ * @returns {object|null} { videoId, surfaceVideoId, title, channelId,
+ *   channelName, isShort, isLive, subscribed, likeAtLoad, dislikeAtLoad }.
+ *   videoId is the
  *   video of the player, surfaceVideoId the one the rating buttons on screen
  *   belong to; likeAtLoad and dislikeAtLoad are { toggled, videoId }, the
  *   state of each button at page load and the video it rates. Each field the
@@ -46,8 +52,9 @@ export function validateSnapshot(payload) {
   return {
     videoId: payload.videoId,
     surfaceVideoId: isValidVideoId(payload.surfaceVideoId) ? payload.surfaceVideoId : null,
+    title: textOf(payload.title, MAX_TITLE_LENGTH),
     channelId: isValidChannelId(payload.channelId) ? payload.channelId : null,
-    channelName: typeof payload.channelName === 'string' ? payload.channelName.slice(0, MAX_NAME_LENGTH) : '',
+    channelName: textOf(payload.channelName, MAX_NAME_LENGTH),
     isShort: booleanOrNull(payload.isShort),
     isLive: booleanOrNull(payload.isLive),
     subscribed: booleanOrNull(payload.subscribed),

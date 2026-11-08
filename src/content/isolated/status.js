@@ -10,7 +10,7 @@ import { evaluateVideo } from './session.js';
  * @param {object} session From session.js.
  * @param {object|null} observation The last observation, with avatarUrl.
  * @param {object} settings From normalizeSettings.
- * @returns {object} { videoId, isShort, isLive, channel, status, reason,
+ * @returns {object} { videoId, title, isShort, isLive, channel, status, reason,
  *   target, elapsed, duration, likedAt, ifEnabled }. channel is null until
  *   the page has given a channel ID; elapsed is the playback position, or the
  *   time watched for a live stream. ifEnabled, only while the extension is
@@ -27,6 +27,7 @@ export function popupStatus(session, observation, settings) {
 
   return {
     videoId: session.videoId,
+    title: readable ? snapshot.title : '',
     isShort: readable ? snapshot.isShort : null,
     isLive,
     channel: channelId

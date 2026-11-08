@@ -5,6 +5,7 @@ import { isValidVideoId, validateSnapshot } from '../../src/content/protocol.js'
 const SNAPSHOT = {
   videoId: 'aeP4eG-gO10',
   surfaceVideoId: 'aeP4eG-gO10',
+  title: "J'AI CONSTRUIT MON ATELIER DE RÊVE !",
   channelId: 'UC9orcd4I_3Uy_8_UAz2r48g',
   channelName: 'COLAS',
   isShort: false,
@@ -39,6 +40,7 @@ describe('validateSnapshot', () => {
       validateSnapshot({
         videoId: SNAPSHOT.videoId,
         surfaceVideoId: 'not an id',
+        title: ['<b>', 'title</b>'],
         channelId: '@COLAS.',
         channelName: { toString: () => 'x' },
         isShort: 'false',
@@ -50,6 +52,7 @@ describe('validateSnapshot', () => {
       {
         videoId: SNAPSHOT.videoId,
         surfaceVideoId: null,
+        title: '',
         channelId: null,
         channelName: '',
         isShort: null,
@@ -61,9 +64,10 @@ describe('validateSnapshot', () => {
     );
   });
 
-  it('drops extra fields and cuts an oversized channel name', () => {
-    const result = validateSnapshot({ ...SNAPSHOT, channelName: 'x'.repeat(5000), click: true, liked: false });
+  it('drops extra fields and cuts an oversized channel name or title', () => {
+    const result = validateSnapshot({ ...SNAPSHOT, channelName: 'x'.repeat(5000), title: 'y'.repeat(5000), click: true, liked: false });
     assert.equal(result.channelName.length, 200);
+    assert.equal(result.title.length, 300);
     assert.equal('click' in result, false);
     assert.equal('liked' in result, false);
   });

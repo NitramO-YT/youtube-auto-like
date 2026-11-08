@@ -157,7 +157,7 @@ function channelMeta(status, t) {
  * Everything the popup shows about the video, or null when the tab shows
  * no video.
  *
- * @returns {{ channel: object|null, card: object, actions: string[] } | null}
+ * @returns {{ title: string|null, channel: object|null, card: object, actions: string[] } | null}
  */
 export function videoView(status, settings, t, lang, now) {
   if (!status?.videoId) return null;
@@ -170,5 +170,10 @@ export function videoView(status, settings, t, lang, now) {
         meta: channelMeta(status, t),
       }
     : null;
-  return { channel, card: statusCard(status, settings, t, lang, now), actions: actions(status, settings) };
+  return {
+    title: status.title || null,
+    channel,
+    card: statusCard(status, settings, t, lang, now),
+    actions: actions(status, settings),
+  };
 }
