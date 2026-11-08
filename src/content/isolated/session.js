@@ -6,6 +6,13 @@
  * tested without a browser. A video gets at most one click; once a final
  * status is reached, nothing more happens until the next video.
  *
+ * Only a rating the user gave is final (SKIPPED): it is never undone. Every
+ * other reason not to like (not subscribed, channel list, Shorts or videos
+ * switched off, extension disabled) keeps being checked (NOT_ELIGIBLE), so
+ * that subscribing during the video, or changing a setting, takes effect on
+ * the video being watched. The subscription state is read live: it follows a
+ * subscription made after the page loaded (checked in Brave on both surfaces).
+ *
  * An unreadable page is waited for without a time limit: YouTube renders the
  * buttons of a Short only once the user moves the mouse over the page, which
  * may happen long after the Short started.
@@ -30,9 +37,12 @@ export const Status = Object.freeze({
   WAITING_AD: 'waiting-ad',
   CONFIRMING: 'confirming',
   LIKED: 'liked',
+  NOT_ELIGIBLE: 'not-eligible',
   SKIPPED: 'skipped',
   CLICK_FAILED: 'click-failed',
 });
+
+const USER_RATINGS = new Set([Reason.ALREADY_LIKED, Reason.ALREADY_DISLIKED]);
 
 const FINAL_STATUSES = new Set([Status.LIKED, Status.SKIPPED, Status.CLICK_FAILED]);
 
@@ -131,9 +141,9 @@ export function step(session, observation, settings, now) {
     settings,
   );
   if (!verdict.eligible) {
-    return verdict.reason === Reason.UNKNOWN_STATE
-      ? unreadable()
-      : update(session, { status: Status.SKIPPED, reason: verdict.reason });
+    if (verdict.reason === Reason.UNKNOWN_STATE) return unreadable();
+    const status = USER_RATINGS.has(verdict.reason) ? Status.SKIPPED : Status.NOT_ELIGIBLE;
+    return update(session, { status, reason: verdict.reason, readySince: null });
   }
 
   if (settings.timing.mode === 'instant') return ready({ target: { at: 0, basis: 'instant' } });

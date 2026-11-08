@@ -105,6 +105,36 @@ describe('step', () => {
     });
   });
 
+  // The subscription state follows a subscription made after the page loaded
+  // (checked in Brave on 8 November 2026, watch page and Shorts player).
+  describe('changes during the video', () => {
+    const notSubscribed = observation({ snapshot: snapshot({ subscribed: false }) });
+
+    it('likes the video once the user subscribes to the channel during it', () => {
+      const before = settle(start(), notSubscribed, instant, T0).session;
+      const subscribed = step(before, observation(), instant, T0 + 10_000);
+      assert.equal(subscribed.action, null, 'waits for the state to hold');
+      assert.equal(step(subscribed.session, observation(), instant, T0 + 10_000 + STABLE_FOR_MS).action, 'click');
+    });
+
+    it('does not like after a subscription seen for less than STABLE_FOR_MS', () => {
+      const subscribed = step(settle(start(), notSubscribed, instant, T0).session, observation(), instant, T0 + 10_000);
+      assert.equal(step(subscribed.session, notSubscribed, instant, T0 + 10_000 + STABLE_FOR_MS).action, null);
+    });
+
+    it('likes the video once the extension is enabled again', () => {
+      const disabled = settle(start(), observation(), normalizeSettings({ enabled: false }), T0).session;
+      assert.equal(disabled.reason, Reason.DISABLED);
+      assert.equal(settle(disabled, observation(), instant, T0 + 5000).action, 'click');
+    });
+
+    it('keeps a rating given by the user final, whatever changes after', () => {
+      const liked = step(start(), observation({ liked: true }), instant, T0).session;
+      assert.ok(isFinal(liked));
+      assert.equal(settle(liked, observation(), instant, T0 + 5000).action, null);
+    });
+  });
+
   describe('never clicks twice', () => {
     it('waits for the confirmation without clicking again', () => {
       const pending = step(clicked(), observation(), instant, T0 + 2000);
@@ -137,10 +167,12 @@ describe('step', () => {
       );
     });
 
-    it('skips a channel the user is not subscribed to', () => {
-      const result = step(start(), observation({ snapshot: snapshot({ subscribed: false }) }), instant, T0);
-      assert.equal(result.session.status, Status.SKIPPED);
+    it('does not like a channel the user is not subscribed to, and keeps watching', () => {
+      const result = settle(start(), observation({ snapshot: snapshot({ subscribed: false }) }), instant, T0);
+      assert.equal(result.action, null);
+      assert.equal(result.session.status, Status.NOT_ELIGIBLE);
       assert.equal(result.session.reason, Reason.NOT_SUBSCRIBED);
+      assert.equal(isFinal(result.session), false);
     });
 
     // Seen in Brave on 8 November 2026, at every load of a liked Short opened
