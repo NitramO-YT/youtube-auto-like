@@ -43,6 +43,13 @@ for (const target of TARGETS) {
       }
     });
 
+    it('ships every content script it declares', async () => {
+      const scripts = (manifest.content_scripts ?? []).flatMap((entry) => entry.js ?? []);
+      for (const script of scripts) {
+        await access(path.join(outDir, script));
+      }
+    });
+
     it('defines every __MSG_ key it uses, in every locale', async () => {
       const keys = new Set(
         collectStrings(manifest).flatMap((text) => [...text.matchAll(MESSAGE_PATTERN)].map((m) => m[1])),

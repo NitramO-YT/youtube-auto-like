@@ -12,4 +12,7 @@ export const STATIC_DIRS = ['_locales', 'icons'];
 // Scripts bundled by esbuild, one per extension context (service worker,
 // content script, page), as { in: 'path/to/source.js', out: 'path/to/output' }.
 // The output name has no extension: esbuild adds .js.
-export const ENTRY_POINTS = [];
+export const ENTRY_POINTS = [
+  { in: 'content/page/index.js', out: 'content/page' },
+  { in: 'content/isolated/index.js', out: 'content/isolated' },
+];
