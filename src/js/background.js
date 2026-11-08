@@ -1,1 +1,0 @@
-import './utils/check-updates';
