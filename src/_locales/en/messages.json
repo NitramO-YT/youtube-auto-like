@@ -203,6 +203,17 @@
   },
   "listOpenChannel": { "message": "Open the channel on YouTube" },
 
+  "navHistory": { "message": "History" },
+  "historyHeading": { "message": "Likes made by the extension" },
+  "historyHint": {
+    "message": "The last $COUNT$, newest first, kept in this browser only.",
+    "placeholders": { "count": { "content": "$1", "example": "500" } }
+  },
+  "historyEmpty": { "message": "No like made by the extension yet." },
+  "historyUntitled": { "message": "Video without a title" },
+  "historyClear": { "message": "Clear the history" },
+  "noticeHistoryCleared": { "message": "History cleared" },
+
   "moreHeading": { "message": "More" },
   "themeLabel": { "message": "Theme" },
   "themeSystem": { "message": "Same as the system" },

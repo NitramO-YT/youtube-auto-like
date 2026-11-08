@@ -9,6 +9,7 @@
  * nothing is awaited: a command from the popup, applied to `session` in the
  * meantime, is therefore never overwritten by an older state.
  */
+import { historyEntry } from '../../core/history.js';
 import { api } from '../../platform/api.js';
 import { acceptedMessage, Message } from '../../platform/messages.js';
 import { createStore } from '../../platform/storage.js';
@@ -26,6 +27,10 @@ const store = createStore(api);
 let settings = null;
 let session = null;
 let lastObservation = null;
+// What the page showed when the like button was clicked: step() had just
+// checked that it describes the video of the session. The history entry is
+// made from it, the page being possibly unreadable when the like confirms.
+let clickedSnapshot = null;
 let busy = false;
 
 function log(...args) {
@@ -82,6 +87,7 @@ async function tick() {
     if (!session || session.videoId !== videoId) {
       session = createSession(videoId, Date.now(), Math.random());
       lastObservation = null;
+      clickedSnapshot = null;
       log(`video ${videoId}`);
     }
     if (isFinal(session)) return;
@@ -100,6 +106,7 @@ async function tick() {
       const button = findLikeButton(document, surface);
       if (button) {
         button.click();
+        clickedSnapshot = observation.snapshot;
       } else {
         next = { ...next, status: Status.CLICK_FAILED };
       }
@@ -109,7 +116,9 @@ async function tick() {
       log(`video ${next.videoId}: ${describe(next)}`);
     }
     if (next.status === Status.LIKED && session.status !== Status.LIKED) {
-      store.incrementLikeCount().catch((error) => console.error(LOG_PREFIX, 'could not update the like count', error));
+      store
+        .recordLike(historyEntry(next.videoId, clickedSnapshot, next.likedAt))
+        .catch((error) => console.error(LOG_PREFIX, 'could not record the like', error));
     }
     session = next;
     lastObservation = observation;

@@ -177,6 +177,17 @@
   },
   "listOpenChannel": { "message": "Ouvrir la chaîne sur YouTube" },
 
+  "navHistory": { "message": "Historique" },
+  "historyHeading": { "message": "Likes posés par l'extension" },
+  "historyHint": {
+    "message": "Les $COUNT$ derniers, du plus récent au plus ancien, gardés uniquement dans ce navigateur.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Aucun like posé par l'extension pour l'instant." },
+  "historyUntitled": { "message": "Vidéo sans titre" },
+  "historyClear": { "message": "Effacer l'historique" },
+  "noticeHistoryCleared": { "message": "Historique effacé" },
+
   "moreHeading": { "message": "Divers" },
   "themeLabel": { "message": "Thème" },
   "themeSystem": { "message": "Comme le système" },

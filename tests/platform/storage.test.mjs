@@ -1,8 +1,17 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { defaultSettings } from '../../src/core/settings.js';
-import { createStore, SETTINGS_KEY, STATS_KEY } from '../../src/platform/storage.js';
+import { createStore, HISTORY_KEY, SETTINGS_KEY, STATS_KEY } from '../../src/platform/storage.js';
 import { fakeStorageApi as fakeApi } from '../helpers/fake-storage.mjs';
+
+const LIKE = {
+  videoId: 'aeP4eG-gO10',
+  title: "J'AI CONSTRUIT MON ATELIER DE RÊVE !",
+  channelId: 'UC9orcd4I_3Uy_8_UAz2r48g',
+  channelName: 'COLAS',
+  isShort: false,
+  likedAt: '2026-11-08T21:00:00.000Z',
+};
 
 describe('createStore', () => {
   it('loads the defaults when nothing is stored', async () => {
@@ -50,7 +59,7 @@ describe('createStore', () => {
     const store = createStore(api);
     const received = [];
     store.onLikeCountChange((count) => received.push(count));
-    await store.incrementLikeCount();
+    await store.recordLike(LIKE);
     await api.storage.local.set({ [STATS_KEY]: { likeCount: 'many' } });
     await api.storage.local.set({ [SETTINGS_KEY]: {} });
     assert.deepEqual(received, [1, 0]);
@@ -59,9 +68,33 @@ describe('createStore', () => {
   it('counts likes, starting from zero or from a corrupted value', async () => {
     const store = createStore(fakeApi({ [STATS_KEY]: { likeCount: -3 } }));
     assert.equal(await store.loadLikeCount(), 0);
-    assert.equal(await store.incrementLikeCount(), 1);
-    assert.equal(await store.incrementLikeCount(), 2);
+    assert.equal(await store.recordLike(LIKE), 1);
+    assert.equal(await store.recordLike({ ...LIKE, videoId: 'EkDC9elBHHc' }), 2);
     assert.equal(await store.loadLikeCount(), 2);
+  });
+
+  it('adds each like to the history, newest first, in the same write as the count', async () => {
+    const api = fakeApi({ [HISTORY_KEY]: [{ ...LIKE, likedAt: '2026-11-08T20:00:00.000Z' }, 'corrupted'] });
+    const store = createStore(api);
+    const writes = [];
+    store.onHistoryChange((history) => writes.push(history.length));
+    await store.recordLike({ ...LIKE, videoId: 'EkDC9elBHHc', isShort: true });
+    assert.deepEqual((await store.loadHistory()).map((entry) => entry.videoId), ['EkDC9elBHHc', 'aeP4eG-gO10']);
+    assert.equal(api.data[STATS_KEY].likeCount, 1);
+    assert.deepEqual(writes, [2]);
+  });
+
+  it('loads a corrupted history as its valid entries only', async () => {
+    const store = createStore(fakeApi({ [HISTORY_KEY]: [LIKE, 'text', { videoId: 'bad' }, { ...LIKE, script: '<img>' }] }));
+    assert.deepEqual(await store.loadHistory(), [LIKE]);
+    assert.deepEqual(await createStore(fakeApi({ [HISTORY_KEY]: 'not a list' })).loadHistory(), []);
+  });
+
+  it('replaces the history, keeping valid entries only', async () => {
+    const store = createStore(fakeApi());
+    assert.deepEqual(await store.setHistory([LIKE, { videoId: 'bad' }]), [LIKE]);
+    assert.deepEqual(await store.setHistory([]), []);
+    assert.deepEqual(await store.loadHistory(), []);
   });
 
   it('sets the like count, refusing what is not a count', async () => {

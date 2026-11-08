@@ -1,14 +1,17 @@
 /**
- * Settings and statistics in storage.local. Everything read goes through
- * normalizeSettings, so a value written by an older version, by hand or by
- * an import never reaches the rest of the extension as is.
+ * Settings, statistics and history of likes in storage.local. Everything
+ * read goes through normalizeSettings or normalizeHistory, so a value written
+ * by an older version, by hand or by an import never reaches the rest of the
+ * extension as is.
  *
  * The API is passed in, so that tests can use a fake one.
  */
+import { addToHistory, normalizeHistory } from '../core/history.js';
 import { normalizeSettings } from '../core/settings.js';
 
 export const SETTINGS_KEY = 'settings';
 export const STATS_KEY = 'stats';
+export const HISTORY_KEY = 'history';
 
 function validCount(value) {
   return Number.isInteger(value) && value >= 0 ? value : 0;
@@ -60,8 +63,42 @@ export function createStore(api) {
       });
     },
 
-    async incrementLikeCount() {
-      return this.setLikeCount((await this.loadLikeCount()) + 1);
+    /**
+     * Counts a like the extension made and adds it to the history, in one
+     * write. Two tabs confirming a like at the very same moment could each
+     * write over the other's count and entry: storage.local has no
+     * transaction, and the likes themselves are not affected.
+     *
+     * @param {object} entry { videoId, title, channelId, channelName, isShort, likedAt }
+     * @returns {Promise<number>} The new like count.
+     */
+    async recordLike(entry) {
+      const stored = await area.get([STATS_KEY, HISTORY_KEY]);
+      const likeCount = validCount(stored[STATS_KEY]?.likeCount) + 1;
+      const history = addToHistory(normalizeHistory(stored[HISTORY_KEY]), entry);
+      await area.set({ [STATS_KEY]: { likeCount }, [HISTORY_KEY]: history });
+      return likeCount;
+    },
+
+    async loadHistory() {
+      const stored = await area.get(HISTORY_KEY);
+      return normalizeHistory(stored[HISTORY_KEY]);
+    },
+
+    /** Replaces the history (clearing it, or its undo). */
+    async setHistory(history) {
+      const normalized = normalizeHistory(history);
+      await area.set({ [HISTORY_KEY]: normalized });
+      return normalized;
+    },
+
+    /** Calls listener with the new history, normalized, after each change. */
+    onHistoryChange(listener) {
+      api.storage.onChanged.addListener((changes, areaName) => {
+        if (areaName === 'local' && HISTORY_KEY in changes) {
+          listener(normalizeHistory(changes[HISTORY_KEY].newValue));
+        }
+      });
     },
 
     /** Sets the like count (reset, or its undo); a value that is not a count gives 0. */

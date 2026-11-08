@@ -8,23 +8,21 @@
  * expected type and size, and anything else makes the snapshot unusable.
  */
 import { isValidChannelId } from '../core/channels.js';
+import { isValidVideoId } from '../core/video.js';
+
+export { isValidVideoId };
 
 export const PAGE_SOURCE = 'youtube-auto-like:page';
 export const ISOLATED_SOURCE = 'youtube-auto-like:isolated';
 export const SNAPSHOT_REQUEST = 'snapshot-request';
 export const SNAPSHOT = 'snapshot';
 
-const VIDEO_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/;
 const MAX_NAME_LENGTH = 200;
 // YouTube limits a title to 100 characters; the margin keeps a title intact
 // if that limit grows.
 const MAX_TITLE_LENGTH = 300;
 
 const textOf = (value, maxLength) => (typeof value === 'string' ? value.slice(0, maxLength) : '');
-
-export function isValidVideoId(id) {
-  return typeof id === 'string' && VIDEO_ID_PATTERN.test(id);
-}
 
 const booleanOrNull = (value) => (typeof value === 'boolean' ? value : null);
 

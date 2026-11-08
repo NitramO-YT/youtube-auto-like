@@ -85,6 +85,11 @@ export const SCENARIOS = [
         never: [{ id: COLAS, name: 'COLAS', addedAt: '2026-10-28T10:00:00.000Z' }],
       },
     },
+    history: [
+      { videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelId: COLAS, channelName: 'COLAS', isShort: true, likedAt: '2026-11-08T21:12:00.000Z' },
+      { videoId: 'aeP4eG-gO10', title: "J'AI CONSTRUIT MON ATELIER DE RÊVE !", channelId: COLAS, channelName: 'COLAS', isShort: false, likedAt: '2026-11-08T20:40:00.000Z' },
+      { videoId: 'Bw7eq26hMDw', title: '', channelId: null, channelName: '', isShort: false, likedAt: '2026-11-08T18:05:00.000Z' },
+    ],
   },
   { name: 'options-narrow', ...OPTIONS, size: [390, 1600], settings: { enabled: false, timing: { mode: 'random' } } },
   // The options page as the frame of the popup shows it.

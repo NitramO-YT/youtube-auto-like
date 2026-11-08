@@ -368,6 +368,17 @@ main {
   margin: 0;
 }
 
+/* "History": the rows of the lists, with the history's own scroll. */
+#history-rows {
+  max-height: 420px;
+  overflow-y: auto;
+}
+.section-tools {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
 /* "More". */
 .row-toggle {
   display: flex;

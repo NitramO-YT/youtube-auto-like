@@ -7,7 +7,7 @@
  * script reads back from the DOM.
  */
 (() => {
-  const { messages, settings, stats, status } = window.PREVIEW;
+  const { messages, settings, stats, history, status } = window.PREVIEW;
   const root = document.documentElement;
   const errors = [];
   const record = (text) => {
@@ -36,7 +36,7 @@
       .replace(/\$([1-9])/g, (_, rank) => substitutions[rank - 1] ?? '');
   }
 
-  const data = { settings, stats };
+  const data = { settings, stats, history };
   const listeners = [];
 
   window.chrome = {
@@ -50,8 +50,12 @@
     },
     storage: {
       local: {
-        async get(key) {
-          return key in data && data[key] !== undefined ? { [key]: structuredClone(data[key]) } : {};
+        // One key or a list of keys; absent keys are left out of the result.
+        async get(keys) {
+          const wanted = Array.isArray(keys) ? keys : [keys];
+          return Object.fromEntries(
+            wanted.filter((key) => data[key] !== undefined).map((key) => [key, structuredClone(data[key])]),
+          );
         },
         async set(items) {
           const changes = {};

@@ -43,7 +43,15 @@ async function writePreviewPage(extensionDir, scenario, locale, version) {
   const id = `preview-${scenario.name}-${locale}`;
   const messages = await readJson(path.join(extensionDir, '_locales', locale, 'messages.json'));
   const root = `${path.relative(path.dirname(pageFile), extensionDir).split(path.sep).join('/')}/`;
-  const preview = { messages, version, root, settings: scenario.settings, stats: scenario.stats ?? { likeCount: 1248 }, status: scenario.status };
+  const preview = {
+    messages,
+    version,
+    root,
+    settings: scenario.settings,
+    stats: scenario.stats ?? { likeCount: 1248 },
+    history: scenario.history,
+    status: scenario.status,
+  };
   await writeFile(path.join(path.dirname(pageFile), `${id}.data.js`), `window.PREVIEW = ${JSON.stringify(preview)};\n`);
   const fakeApi = path.relative(path.dirname(pageFile), path.join(extensionDir, 'preview-fake-api.js'));
   const html = injectScripts(await readFile(pageFile, 'utf8'), [`${id}.data.js`, fakeApi.split(path.sep).join('/')]);
