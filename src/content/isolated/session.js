@@ -96,7 +96,11 @@ export function step(session, observation, settings, now) {
   }
 
   if (settings.timing.mode === 'instant') {
-    return update(session, { status: Status.CONFIRMING, clickedAt: now, target: { at: 0, basis: 'instant' } }, 'click');
+    return update(
+      session,
+      { status: Status.CONFIRMING, reason: null, clickedAt: now, target: { at: 0, basis: 'instant' } },
+      'click',
+    );
   }
 
   // An ad plays in the same video element: its time and duration are not

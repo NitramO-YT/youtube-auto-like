@@ -136,6 +136,17 @@ describe('step', () => {
       const reading = step(start(), observation({ snapshot: null }), instant, T0 + 1000).session;
       assert.equal(step(reading, observation(), instant, T0 + 2000).action, 'click');
     });
+
+    // Seen in Brave on 8 November 2026: the reason of the reading phase was
+    // still reported once the video was liked.
+    it('clears the reason of the reading phase once the page is readable', () => {
+      for (const settings of [instant, halfway]) {
+        const reading = step(start(), observation({ snapshot: null }), settings, T0 + 1000).session;
+        const next = step(reading, observation({ position: 900 }), settings, T0 + 2000).session;
+        assert.equal(next.reason, null);
+        assert.equal(step(next, observation({ liked: true }), settings, T0 + 3000).session.reason, null);
+      }
+    });
   });
 
   describe('delayed timing', () => {
