@@ -9,12 +9,20 @@
  * An unreadable page is waited for without a time limit: YouTube renders the
  * buttons of a Short only once the user moves the mouse over the page, which
  * may happen long after the Short started.
+ *
+ * A video is clicked only once it has been ready to like (readable, unrated,
+ * at the like time, no ad) on observations at least STABLE_FOR_MS apart: on a
+ * liked Short opened in the watch page, the like button was seen "not
+ * pressed" for a moment while the page loaded, and a single observation
+ * cannot tell such a moment from the real state.
  */
 import { evaluateEligibility, Reason } from '../../core/eligibility.js';
 import { likeTime } from '../../core/like-time.js';
 
 // How long a click has to show on the button (aria-pressed="true").
 export const CLICK_CONFIRM_TIMEOUT_MS = 5_000;
+// How long a video must stay ready to like before the click.
+export const STABLE_FOR_MS = 1_000;
 
 export const Status = Object.freeze({
   READING: 'reading',
@@ -42,6 +50,7 @@ export function createSession(videoId, now, random) {
     startedAt: now,
     random,
     liveStart: null,
+    readySince: null,
     clickedAt: null,
     target: null,
     status: Status.READING,
@@ -91,7 +100,13 @@ export function step(session, observation, settings, now) {
     return update(session, {});
   }
 
-  const unreadable = () => update(session, { status: Status.READING, reason: Reason.UNKNOWN_STATE });
+  const unreadable = () => update(session, { status: Status.READING, reason: Reason.UNKNOWN_STATE, readySince: null });
+
+  // Clicks once the video has stayed ready for STABLE_FOR_MS; until then, waits.
+  const ready = (changes) =>
+    session.readySince !== null && now - session.readySince >= STABLE_FOR_MS
+      ? update(session, { ...changes, status: Status.CONFIRMING, reason: null, clickedAt: now }, 'click')
+      : update(session, { ...changes, status: Status.WAITING, reason: null, readySince: session.readySince ?? now });
 
   // The URL, the player and the surface showing the rating buttons must all
   // point to the same video: while YouTube switches videos, they briefly
@@ -117,17 +132,11 @@ export function step(session, observation, settings, now) {
       : update(session, { status: Status.SKIPPED, reason: verdict.reason });
   }
 
-  if (settings.timing.mode === 'instant') {
-    return update(
-      session,
-      { status: Status.CONFIRMING, reason: null, clickedAt: now, target: { at: 0, basis: 'instant' } },
-      'click',
-    );
-  }
+  if (settings.timing.mode === 'instant') return ready({ target: { at: 0, basis: 'instant' } });
 
   // An ad plays in the same video element: its time and duration are not
   // those of the video.
-  if (observation.adPlaying) return update(session, { status: Status.WAITING_AD, reason: null });
+  if (observation.adPlaying) return update(session, { status: Status.WAITING_AD, reason: null, readySince: null });
 
   if (typeof snapshot.isLive !== 'boolean' || typeof observation.position !== 'number' || Number.isNaN(observation.position)) {
     return unreadable();
@@ -135,11 +144,9 @@ export function step(session, observation, settings, now) {
 
   const liveStart = snapshot.isLive ? (session.liveStart ?? observation.position) : null;
   const target = likeTime(settings, { duration: observation.duration, isLive: snapshot.isLive }, session.random);
-  if (!target) return update(session, { status: Status.WAITING, reason: null, liveStart, target: null });
+  if (!target) return update(session, { status: Status.WAITING, reason: null, liveStart, target: null, readySince: null });
 
   const position = snapshot.isLive ? observation.position - liveStart : observation.position;
-  if (position >= target.at) {
-    return update(session, { status: Status.CONFIRMING, reason: null, clickedAt: now, liveStart, target }, 'click');
-  }
-  return update(session, { status: Status.WAITING, reason: null, liveStart, target });
+  if (position >= target.at) return ready({ liveStart, target });
+  return update(session, { status: Status.WAITING, reason: null, liveStart, target, readySince: null });
 }
