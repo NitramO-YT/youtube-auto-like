@@ -18,6 +18,14 @@
  *   ID, and its yt-reel-channel-bar-view-model holds the subscription (see
  *   shortsSubscription).
  *
+ * Rating at page load, on both surfaces: the toggle-button-view-model of the
+ * like and dislike buttons holds .data.isToggled, the state YouTube sent with
+ * the page, and the ID of the video its button rates
+ * (likeEndpoint.target.videoId, inside the commands of the button). The
+ * liker has read aria-pressed="false" on a video liked at page load (a Short
+ * opened in the watch page, Brave, 8 November 2026): the button alone cannot
+ * prove that a video is not liked yet.
+ *
  * Every access is guarded: a missing piece gives null, never an exception.
  */
 import { Surface } from './surface.js';
@@ -25,9 +33,17 @@ import { Surface } from './surface.js';
 const WATCH_PAGE = 'ytd-watch-flexy';
 const WATCH_PLAYER = 'ytd-watch-flexy ytd-player';
 const WATCH_SUBSCRIBE = 'ytd-watch-metadata ytd-subscribe-button-renderer';
+const WATCH_RATING_BAR = 'ytd-menu-renderer.ytd-watch-metadata segmented-like-dislike-button-view-model';
 const SHORTS_PLAYER = '#shorts-player';
 const SHORT = 'ytd-reel-video-renderer';
+const SHORTS_RATING_BAR = 'reel-action-bar-view-model';
+const LIKE_TOGGLE = 'like-button-view-model toggle-button-view-model';
+const DISLIKE_TOGGLE = 'dislike-button-view-model toggle-button-view-model';
 const SHORTS_CHANNEL_BAR = 'yt-reel-channel-bar-view-model';
+// Depth of the like command below defaultButtonViewModel: 6 levels on the
+// watch page, 3 in the Shorts player (checked on 8 November 2026), with some
+// margin.
+const MAX_COMMAND_DEPTH = 10;
 const SHORTS_SUBSCRIBE_BUTTON = 'yt-subscribe-button-view-model button';
 // Look of the subscribe button: filled while not subscribed, tonal once
 // subscribed (classes from Taknok/youtube-auto-like; the tonal one is not yet
@@ -61,12 +77,42 @@ export function shortsSubscription(short) {
   return null;
 }
 
+/** The video ID of the first likeEndpoint found in a button's data, or null. */
+function likeTarget(value, depth = 0) {
+  if (!value || typeof value !== 'object' || depth > MAX_COMMAND_DEPTH) return null;
+  const target = value.likeEndpoint?.target?.videoId;
+  if (typeof target === 'string') return target;
+  for (const child of Object.values(value)) {
+    const found = likeTarget(child, depth + 1);
+    if (found) return found;
+  }
+  return null;
+}
+
+/** { toggled, videoId } from a toggle-button-view-model, null when absent. */
+export function ratingAtLoad(toggle) {
+  const data = toggle?.data;
+  if (!data || typeof data !== 'object') return null;
+  return {
+    toggled: typeof data.isToggled === 'boolean' ? data.isToggled : null,
+    videoId: guarded(() => likeTarget(data.defaultButtonViewModel)),
+  };
+}
+
+function ratingsAtLoad(bar) {
+  return {
+    likeAtLoad: ratingAtLoad(bar?.querySelector(LIKE_TOGGLE)),
+    dislikeAtLoad: ratingAtLoad(bar?.querySelector(DISLIKE_TOGGLE)),
+  };
+}
+
 function watchSources(doc) {
   const subscribed = doc.querySelector(WATCH_SUBSCRIBE)?.data?.subscribed;
   return {
     response: guarded(() => doc.querySelector(WATCH_PLAYER)?.getPlayer?.()?.getPlayerResponse?.()),
     surfaceVideoId: doc.querySelector(WATCH_PAGE)?.getAttribute('video-id') ?? null,
     subscribed: typeof subscribed === 'boolean' ? subscribed : null,
+    ...ratingsAtLoad(doc.querySelector(WATCH_RATING_BAR)),
   };
 }
 
@@ -77,6 +123,7 @@ function shortsSources(doc) {
     response: guarded(() => player?.getPlayerResponse?.()),
     surfaceVideoId: short?.data?.command?.reelWatchEndpoint?.videoId ?? null,
     subscribed: shortsSubscription(short),
+    ...ratingsAtLoad(short?.querySelector(SHORTS_RATING_BAR)),
   };
 }
 
@@ -86,7 +133,7 @@ function shortsSources(doc) {
  */
 export function readSnapshot(doc, surface) {
   if (surface !== Surface.WATCH && surface !== Surface.SHORTS) return null;
-  const { response, surfaceVideoId, subscribed } =
+  const { response, surfaceVideoId, subscribed, likeAtLoad, dislikeAtLoad } =
     surface === Surface.SHORTS ? shortsSources(doc) : watchSources(doc);
   const details = response?.videoDetails;
   const microformat = response?.microformat?.playerMicroformatRenderer;
@@ -104,5 +151,7 @@ export function readSnapshot(doc, surface) {
     // videoDetails.isLive is only present on a stream that is live.
     isLive: details ? details.isLive === true : null,
     subscribed,
+    likeAtLoad,
+    dislikeAtLoad,
   };
 }

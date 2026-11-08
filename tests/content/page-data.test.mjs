@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { readSnapshot, shortsSubscription } from '../../src/content/youtube/page-data.js';
+import { ratingAtLoad, readSnapshot, shortsSubscription } from '../../src/content/youtube/page-data.js';
 import { Surface } from '../../src/content/youtube/surface.js';
 import { element, fakeDocument } from '../helpers/fake-dom.mjs';
 
@@ -10,11 +10,55 @@ const response = (videoId, overrides = {}) => ({
   microformat: { playerMicroformatRenderer: { isShortsEligible: false, ...overrides.microformat } },
 });
 
-const watchPage = ({ playerResponse = response('aeP4eG-gO10'), surfaceVideoId = 'aeP4eG-gO10', subscribed = true } = {}) =>
+// Button data as observed: the like command sits in a serialCommand on the
+// watch page, directly under onTap in the Shorts player.
+const watchToggle = (videoId, isToggled) =>
+  element({
+    props: {
+      data: {
+        isToggled,
+        defaultButtonViewModel: {
+          buttonViewModel: {
+            onTap: {
+              serialCommand: {
+                commands: [{ logGestureCommand: {} }, { innertubeCommand: { likeEndpoint: { target: { videoId } } } }],
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+
+const shortsToggle = (videoId, isToggled) =>
+  element({
+    props: {
+      data: {
+        isToggled,
+        defaultButtonViewModel: { buttonViewModel: { onTap: { innertubeCommand: { likeEndpoint: { target: { videoId } } } } } },
+      },
+    },
+  });
+
+const LIKE_TOGGLE = 'like-button-view-model toggle-button-view-model';
+const DISLIKE_TOGGLE = 'dislike-button-view-model toggle-button-view-model';
+
+const watchPage = ({
+  playerResponse = response('aeP4eG-gO10'),
+  surfaceVideoId = 'aeP4eG-gO10',
+  subscribed = true,
+  liked = true,
+} = {}) =>
   fakeDocument({
     'ytd-watch-flexy ytd-player': element({ props: { getPlayer: () => ({ getPlayerResponse: () => playerResponse }) } }),
     'ytd-watch-flexy': element({ attributes: surfaceVideoId === null ? {} : { 'video-id': surfaceVideoId } }),
     'ytd-watch-metadata ytd-subscribe-button-renderer': element({ props: { data: { subscribed } } }),
+    'ytd-menu-renderer.ytd-watch-metadata segmented-like-dislike-button-view-model': element({
+      children: {
+        [LIKE_TOGGLE]: watchToggle('aeP4eG-gO10', liked),
+        [DISLIKE_TOGGLE]: watchToggle('aeP4eG-gO10', false),
+      },
+    }),
   });
 
 const channelBar = ({ listsButton, buttonClasses = [] }) =>
@@ -26,7 +70,11 @@ const channelBar = ({ listsButton, buttonClasses = [] }) =>
 const short = (videoId, bar) =>
   element({
     props: { data: { command: { reelWatchEndpoint: { videoId } } } },
-    children: bar ? { 'yt-reel-channel-bar-view-model': bar } : {},
+    children: {
+      ...(bar && { 'yt-reel-channel-bar-view-model': bar }),
+      // Dislike replaced by Return YouTube Dislike: no dislike component.
+      'reel-action-bar-view-model': element({ children: { [LIKE_TOGGLE]: shortsToggle(videoId, false) } }),
+    },
   });
 
 const shortsPage = ({ videoId = 'JgL5gMtA2X4', shortVideoId = videoId, bar = channelBar({ listsButton: false }) } = {}) =>
@@ -38,7 +86,7 @@ const shortsPage = ({ videoId = 'JgL5gMtA2X4', shortVideoId = videoId, bar = cha
   });
 
 describe('readSnapshot on the watch page', () => {
-  it('reads a regular video of a subscribed channel', () => {
+  it('reads a regular video of a subscribed channel, liked at load', () => {
     assert.deepEqual(readSnapshot(watchPage(), Surface.WATCH), {
       videoId: 'aeP4eG-gO10',
       surfaceVideoId: 'aeP4eG-gO10',
@@ -47,6 +95,8 @@ describe('readSnapshot on the watch page', () => {
       isShort: false,
       isLive: false,
       subscribed: true,
+      likeAtLoad: { toggled: true, videoId: 'aeP4eG-gO10' },
+      dislikeAtLoad: { toggled: false, videoId: 'aeP4eG-gO10' },
     });
   });
 
@@ -72,6 +122,8 @@ describe('readSnapshot on the watch page', () => {
       isShort: null,
       isLive: null,
       subscribed: null,
+      likeAtLoad: null,
+      dislikeAtLoad: null,
     });
   });
 
@@ -93,6 +145,8 @@ describe('readSnapshot in the Shorts player', () => {
       isShort: true,
       isLive: false,
       subscribed: true,
+      likeAtLoad: { toggled: false, videoId: 'JgL5gMtA2X4' },
+      dislikeAtLoad: null,
     });
   });
 
@@ -116,6 +170,25 @@ describe('readSnapshot in the Shorts player', () => {
 describe('readSnapshot without a video surface', () => {
   it('returns null', () => {
     assert.equal(readSnapshot(watchPage(), null), null);
+  });
+});
+
+describe('ratingAtLoad', () => {
+  it('reads the state at load and the rated video, in both command shapes', () => {
+    assert.deepEqual(ratingAtLoad(watchToggle('JgL5gMtA2X4', true)), { toggled: true, videoId: 'JgL5gMtA2X4' });
+    assert.deepEqual(ratingAtLoad(shortsToggle('JgL5gMtA2X4', false)), { toggled: false, videoId: 'JgL5gMtA2X4' });
+  });
+
+  it('gives null for a missing component and null fields for missing data', () => {
+    assert.equal(ratingAtLoad(null), null);
+    assert.equal(ratingAtLoad(element({})), null);
+    assert.deepEqual(ratingAtLoad(element({ props: { data: { isToggled: 'yes' } } })), { toggled: null, videoId: null });
+  });
+
+  it('does not search the like command indefinitely deep', () => {
+    let deep = { likeEndpoint: { target: { videoId: 'JgL5gMtA2X4' } } };
+    for (let level = 0; level < 20; level++) deep = { next: deep };
+    assert.equal(ratingAtLoad(element({ props: { data: { isToggled: false, defaultButtonViewModel: deep } } })).videoId, null);
   });
 });
 

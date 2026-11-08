@@ -23,12 +23,22 @@ export function isValidVideoId(id) {
 
 const booleanOrNull = (value) => (typeof value === 'boolean' ? value : null);
 
+function validateRatingAtLoad(value) {
+  if (!value || typeof value !== 'object') return null;
+  return {
+    toggled: booleanOrNull(value.toggled),
+    videoId: isValidVideoId(value.videoId) ? value.videoId : null,
+  };
+}
+
 /**
  * @returns {object|null} { videoId, surfaceVideoId, channelId, channelName,
- *   isShort, isLive, subscribed }. videoId is the video of the player,
- *   surfaceVideoId the one the rating buttons on screen belong to. Each field
- *   the page did not provide is null; the whole snapshot is null when the
- *   payload has no valid videoId.
+ *   isShort, isLive, subscribed, likeAtLoad, dislikeAtLoad }. videoId is the
+ *   video of the player, surfaceVideoId the one the rating buttons on screen
+ *   belong to; likeAtLoad and dislikeAtLoad are { toggled, videoId }, the
+ *   state of each button at page load and the video it rates. Each field the
+ *   page did not provide is null; the whole snapshot is null when the payload
+ *   has no valid videoId.
  */
 export function validateSnapshot(payload) {
   if (!payload || typeof payload !== 'object') return null;
@@ -41,5 +51,7 @@ export function validateSnapshot(payload) {
     isShort: booleanOrNull(payload.isShort),
     isLive: booleanOrNull(payload.isLive),
     subscribed: booleanOrNull(payload.subscribed),
+    likeAtLoad: validateRatingAtLoad(payload.likeAtLoad),
+    dislikeAtLoad: validateRatingAtLoad(payload.dislikeAtLoad),
   };
 }

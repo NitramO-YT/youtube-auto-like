@@ -52,6 +52,29 @@ export function createSession(videoId, now, random) {
 const update = (session, changes, action = null) => ({ session: { ...session, ...changes }, action });
 
 /**
+ * Whether a button counts as pressed: true when the page shows it pressed or
+ * YouTube sent it pressed with the page, false only when both say no, null
+ * when unknown. The state at load must be about this video: a button left
+ * with the data of the previous video gives null.
+ *
+ * @param {boolean|null} shown aria-pressed of the button.
+ * @param {object|null} atLoad { toggled, videoId } from the snapshot.
+ * @param {boolean} required Whether the state at load must be known: always
+ *   for the like button, and not for a dislike button replaced by another
+ *   extension, which carries no data.
+ */
+function pressedState(shown, atLoad, videoId, required) {
+  if (shown === true) return true;
+  if (atLoad) {
+    if (atLoad.videoId !== videoId || atLoad.toggled === null) return null;
+    if (atLoad.toggled) return true;
+  } else if (required) {
+    return null;
+  }
+  return shown === false ? false : null;
+}
+
+/**
  * @param {object} session
  * @param {object} observation { snapshot (from validateSnapshot, or null),
  *   liked, disliked, position, duration, adPlaying }
@@ -83,8 +106,8 @@ export function step(session, observation, settings, now) {
       channelId: snapshot.channelId,
       isShort: snapshot.isShort,
       subscribed: snapshot.subscribed,
-      liked: observation.liked,
-      disliked: observation.disliked,
+      liked: pressedState(observation.liked, snapshot.likeAtLoad, session.videoId, true),
+      disliked: pressedState(observation.disliked, snapshot.dislikeAtLoad, session.videoId, false),
     },
     settings,
   );

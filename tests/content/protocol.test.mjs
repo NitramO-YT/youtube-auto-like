@@ -10,6 +10,8 @@ const SNAPSHOT = {
   isShort: false,
   isLive: false,
   subscribed: true,
+  likeAtLoad: { toggled: true, videoId: 'aeP4eG-gO10' },
+  dislikeAtLoad: { toggled: false, videoId: 'aeP4eG-gO10' },
 };
 
 describe('isValidVideoId', () => {
@@ -42,6 +44,8 @@ describe('validateSnapshot', () => {
         isShort: 'false',
         isLive: 0,
         subscribed: 'yes',
+        likeAtLoad: { toggled: 'true', videoId: 'bad' },
+        dislikeAtLoad: 'pressed',
       }),
       {
         videoId: SNAPSHOT.videoId,
@@ -51,6 +55,8 @@ describe('validateSnapshot', () => {
         isShort: null,
         isLive: null,
         subscribed: null,
+        likeAtLoad: { toggled: null, videoId: null },
+        dislikeAtLoad: null,
       },
     );
   });

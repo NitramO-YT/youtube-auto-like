@@ -21,6 +21,8 @@ const snapshot = (overrides = {}) => ({
   isShort: false,
   isLive: false,
   subscribed: true,
+  likeAtLoad: { toggled: false, videoId: VIDEO_ID },
+  dislikeAtLoad: { toggled: false, videoId: VIDEO_ID },
   ...overrides,
 });
 
@@ -99,6 +101,32 @@ describe('step', () => {
       assert.equal(result.session.reason, Reason.NOT_SUBSCRIBED);
     });
 
+    // Seen in Brave on 8 November 2026, at every load of a liked Short opened
+    // in the watch page: the button read "not pressed" while YouTube had sent
+    // the video as liked, and the liker clicked.
+    it('never clicks a video liked at page load, even while its button shows it unliked', () => {
+      const result = step(start(), observation({ snapshot: snapshot({ likeAtLoad: { toggled: true, videoId: VIDEO_ID } }) }), instant, T0);
+      assert.equal(result.action, null);
+      assert.equal(result.session.status, Status.SKIPPED);
+      assert.equal(result.session.reason, Reason.ALREADY_LIKED);
+    });
+
+    it('skips a video disliked at page load', () => {
+      const result = step(start(), observation({ snapshot: snapshot({ dislikeAtLoad: { toggled: true, videoId: VIDEO_ID } }) }), instant, T0);
+      assert.equal(result.session.reason, Reason.ALREADY_DISLIKED);
+    });
+
+    it('leaves alone a video whose like the user removed after the page loaded', () => {
+      const result = step(
+        start(),
+        observation({ liked: false, snapshot: snapshot({ likeAtLoad: { toggled: true, videoId: VIDEO_ID } }) }),
+        instant,
+        T0,
+      );
+      assert.equal(result.action, null);
+      assert.equal(result.session.reason, Reason.ALREADY_LIKED);
+    });
+
     it('stops when the user rates the video during the wait', () => {
       const waiting = step(start(), observation({ position: 10 }), halfway, T0).session;
       const result = step(waiting, observation({ position: 20, liked: true }), halfway, T0 + 10_000);
@@ -113,6 +141,12 @@ describe('step', () => {
       'player still on the previous video': { snapshot: snapshot({ videoId: 'aaaaaaaaaaa' }) },
       'surface still showing the previous video': { snapshot: snapshot({ surfaceVideoId: 'aaaaaaaaaaa' }) },
       'surface without a video ID': { snapshot: snapshot({ surfaceVideoId: null }) },
+      'like state at load missing': { snapshot: snapshot({ likeAtLoad: null }) },
+      'like state at load unknown': { snapshot: snapshot({ likeAtLoad: { toggled: null, videoId: VIDEO_ID } }) },
+      'like button still holding the previous video': { snapshot: snapshot({ likeAtLoad: { toggled: false, videoId: 'aaaaaaaaaaa' } }) },
+      'dislike button still holding the previous video': {
+        snapshot: snapshot({ dislikeAtLoad: { toggled: false, videoId: 'aaaaaaaaaaa' } }),
+      },
       'like state unknown': { liked: null },
       'subscription unknown': { snapshot: snapshot({ subscribed: null }) },
     };
@@ -138,6 +172,14 @@ describe('step', () => {
         session = result.session;
       }
       assert.equal(step(session, observation(), instant, T0 + 300_001).action, 'click');
+    });
+
+    it('accepts a dislike button with no state at load, replaced by another extension', () => {
+      assert.equal(step(start(), observation({ snapshot: snapshot({ dislikeAtLoad: null }) }), instant, T0).action, 'click');
+      assert.equal(
+        step(start(), observation({ disliked: true, snapshot: snapshot({ dislikeAtLoad: null }) }), instant, T0).session.reason,
+        Reason.ALREADY_DISLIKED,
+      );
     });
 
     it('recovers when the page becomes readable in time', () => {
