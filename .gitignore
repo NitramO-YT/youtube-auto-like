@@ -6,4 +6,9 @@ dist/
 # Packed extensions, distributed through GitHub releases
 releases/
 
+# Private key signing the CRX (scripts/extension-identity.mjs): never
+# committed, and never lost, since losing it changes the extension ID
+extension-key.pem
+*.pem
+
 .DS_Store
