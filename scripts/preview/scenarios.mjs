@@ -131,6 +131,24 @@ export const SCENARIOS = [
       { videoId: 'Bw7eq26hMDw', title: '', channelId: null, channelName: '', isShort: false, likedAt: '2026-11-08T18:05:00.000Z' },
     ],
   },
+  {
+    // Long lists: "Show more" under the lists and the history.
+    name: 'options-long-lists',
+    ...OPTIONS,
+    settings: {
+      lists: {
+        always: Array.from({ length: 30 }, (_, i) => ({ id: `UC${String(i).padStart(22, '0')}`, name: `Chaîne ${i + 1}`, addedAt: '2026-11-08T20:00:00.000Z' })),
+      },
+    },
+    history: Array.from({ length: 45 }, (_, i) => ({
+      videoId: `video${String(i).padStart(6, '0')}`,
+      title: `Vidéo ${i + 1}`,
+      channelId: COLAS,
+      channelName: 'COLAS',
+      isShort: i % 3 === 0,
+      likedAt: new Date(Date.UTC(2026, 10, 8, 20, 0) - i * 60_000).toISOString(),
+    })),
+  },
   { name: 'options-narrow', ...OPTIONS, size: [390, 1600], settings: { enabled: false, timing: { mode: 'random' } } },
   // The options page as the frame of the popup shows it.
   { name: 'options-embedded', ...OPTIONS, query: '?embedded', size: [340, 470], settings: { enabled: false } },

@@ -241,6 +241,14 @@
     "message": "Remove $NAME$ from this list",
     "placeholders": { "name": { "content": "$1", "example": "COLAS" } }
   },
+  "listShownOf": {
+    "message": "$SHOWN$ of $TOTAL$",
+    "placeholders": { "shown": { "content": "$1", "example": "20" }, "total": { "content": "$2", "example": "500" } }
+  },
+  "listShowMore": {
+    "message": "Show $COUNT$ more",
+    "placeholders": { "count": { "content": "$1", "example": "20" } }
+  },
   "listOpenChannel": { "message": "Open the channel on YouTube" },
 
   "navHistory": { "message": "History" },

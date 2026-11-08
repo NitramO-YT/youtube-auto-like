@@ -213,6 +213,14 @@
     "message": "Retirer $NAME$ de cette liste",
     "placeholders": { "name": { "content": "$1" } }
   },
+  "listShownOf": {
+    "message": "$SHOWN$ sur $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Afficher $COUNT$ de plus",
+    "placeholders": { "count": { "content": "$1" } }
+  },
   "listOpenChannel": { "message": "Ouvrir la chaîne sur YouTube" },
 
   "navHistory": { "message": "Historique" },

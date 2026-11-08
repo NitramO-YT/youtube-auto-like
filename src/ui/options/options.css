@@ -379,10 +379,15 @@ main {
   margin: 0;
 }
 
-/* "History": the rows of the lists, with the history's own scroll. */
-#history-rows {
-  max-height: 420px;
-  overflow-y: auto;
+/* Under a long list: how many entries are shown, and "Show more" (pager.js). */
+.more-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--muted);
 }
 .section-tools {
   display: flex;

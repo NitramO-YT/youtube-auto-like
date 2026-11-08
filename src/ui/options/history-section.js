@@ -10,11 +10,14 @@ import { videoUrl } from '../../core/video.js';
 import { createAvatar, initialOf } from '../shared/avatar.js';
 import { el } from '../shared/dom.js';
 import { formatNumber } from '../shared/format.js';
+import { PAGE_SIZE, renderMore } from './pager.js';
 
 export function createHistorySection(page) {
   const { doc, byId, t, lang, store, act, confirmChange } = page;
   const dateTimeFormat = new Intl.DateTimeFormat(lang, { dateStyle: 'medium', timeStyle: 'short' });
   let history = [];
+  // How many likes are shown (see pager.js).
+  let limit = PAGE_SIZE;
   let drawn = null;
 
   function row(entry) {
@@ -31,12 +34,15 @@ export function createHistorySection(page) {
   }
 
   function render() {
-    const key = JSON.stringify(history);
-    if (key === drawn) return;
-    drawn = key;
-    byId('history-rows').replaceChildren(...history.map(row));
+    const shown = history.slice(0, limit);
+    const key = JSON.stringify(shown);
+    if (key !== drawn) {
+      drawn = key;
+      byId('history-rows').replaceChildren(...shown.map(row));
+    }
     byId('history-empty').hidden = history.length > 0;
     byId('history-clear').disabled = history.length === 0;
+    renderMore({ row: byId('history-more'), count: byId('history-more-count'), button: byId('history-more-button') }, shown.length, history.length, t, lang);
   }
 
   async function clear() {
@@ -58,6 +64,10 @@ export function createHistorySection(page) {
 
   function listen() {
     byId('history-clear').addEventListener('click', () => act(clear));
+    byId('history-more-button').addEventListener('click', () => {
+      limit += PAGE_SIZE;
+      render();
+    });
     store.onHistoryChange((changed) => {
       history = changed;
       render();

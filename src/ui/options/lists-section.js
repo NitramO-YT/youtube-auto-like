@@ -16,6 +16,7 @@ import { el, icon } from '../shared/dom.js';
 import { formatNumber, pluralKey } from '../shared/format.js';
 import { moveChannel, setVideoExcluded } from '../shared/lists.js';
 import { filterChannels, filterVideos } from './fields.js';
+import { PAGE_SIZE, renderMore } from './pager.js';
 
 const CHANNEL_URL = 'https://www.youtube.com/channel/';
 const TAB_NAMES = ['always', 'never', 'videos'];
@@ -25,6 +26,9 @@ export function createListsSection(page) {
   const dateFormat = new Intl.DateTimeFormat(lang, { dateStyle: 'medium' });
   let tab = 'always';
   let query = '';
+  // How many entries of the tab are shown (see pager.js); back to one page
+  // on another tab or another search.
+  let limit = PAGE_SIZE;
   let drawnRows = null;
 
   function row({ id, avatar, name, href, linkTitle, meta, removeLabel }) {
@@ -105,16 +109,18 @@ export function createListsSection(page) {
     byId('list-panel').setAttribute('aria-labelledby', `tab-${tab}`);
 
     const current = TABS[tab];
-    const shown = current.filter(current.entries(), query);
-    // Rebuilding up to 5,000 rows only when they change.
+    const found = current.filter(current.entries(), query);
+    const shown = found.slice(0, limit);
+    // Rebuilding the rows only when they change.
     const key = JSON.stringify([tab, shown]);
     if (key !== drawnRows) {
       drawnRows = key;
       byId('list-rows').replaceChildren(...shown.map(current.row));
     }
     const empty = byId('list-empty');
-    empty.hidden = shown.length > 0;
+    empty.hidden = found.length > 0;
     empty.textContent = t(current.entries().length === 0 ? 'listEmpty' : 'listNoMatch');
+    renderMore({ row: byId('list-more'), count: byId('list-more-count'), button: byId('list-more-button') }, shown.length, found.length, t, lang);
   }
 
   async function remove(id) {
@@ -175,6 +181,7 @@ export function createListsSection(page) {
 
   function selectTab(name, focus = false) {
     tab = name;
+    limit = PAGE_SIZE;
     render();
     if (focus) byId(`tab-${name}`).focus();
   }
@@ -189,6 +196,11 @@ export function createListsSection(page) {
     });
     byId('list-search').addEventListener('input', (event) => {
       query = event.target.value;
+      limit = PAGE_SIZE;
+      render();
+    });
+    byId('list-more-button').addEventListener('click', () => {
+      limit += PAGE_SIZE;
       render();
     });
     byId('list-rows').addEventListener('click', (event) => {
