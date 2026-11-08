@@ -1,87 +1,115 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { findLikeButton, readPlayback, readRating, videoIdFromUrl, watchPageVideoId } from '../../src/content/youtube/dom.js';
+import { findLikeButton, readPlayback, readRating } from '../../src/content/youtube/dom.js';
+import { Surface } from '../../src/content/youtube/surface.js';
 import { element, fakeDocument } from '../helpers/fake-dom.mjs';
 
-const RATING_BAR = 'ytd-menu-renderer.ytd-watch-metadata segmented-like-dislike-button-view-model';
-const LIKE = 'like-button-view-model button';
-const DISLIKE = 'dislike-button-view-model button';
+const WATCH_BAR = 'ytd-menu-renderer.ytd-watch-metadata segmented-like-dislike-button-view-model';
+const SHORTS_BAR = 'reel-action-bar-view-model';
+const LIKE = 'like-button-view-model button[aria-pressed]';
+const DISLIKE = 'dislike-button-view-model button[aria-pressed]';
+const REPLACED_DISLIKE = ':scope > div button[aria-pressed]';
 
-const ratingPage = (like, dislike) =>
-  fakeDocument({
-    [RATING_BAR]: element({
-      children: {
-        ...(like !== undefined && { [LIKE]: element({ attributes: like === null ? {} : { 'aria-pressed': like } }) }),
-        ...(dislike !== undefined && { [DISLIKE]: element({ attributes: dislike === null ? {} : { 'aria-pressed': dislike } }) }),
-      },
-    }),
+const button = (pressed) => element({ attributes: pressed === null ? {} : { 'aria-pressed': pressed } });
+
+const bar = (buttons) =>
+  element({
+    children: Object.fromEntries(Object.entries(buttons).map(([selector, pressed]) => [selector, button(pressed)])),
   });
 
-describe('videoIdFromUrl', () => {
-  it('reads watch and Shorts URLs', () => {
-    assert.equal(videoIdFromUrl('https://www.youtube.com/watch?v=aeP4eG-gO10'), 'aeP4eG-gO10');
-    assert.equal(videoIdFromUrl('https://www.youtube.com/watch?v=rB6_IFAKzec&t=2703s'), 'rB6_IFAKzec');
-    assert.equal(videoIdFromUrl('https://www.youtube.com/shorts/JgL5gMtA2X4'), 'JgL5gMtA2X4');
+const watchPage = (buttons) => fakeDocument({ [WATCH_BAR]: bar(buttons) });
+
+// A page in the Shorts player: the rating bar is read inside the Short that
+// contains #shorts-player.
+const shortsPage = (buttons, { playerInShort = true } = {}) => {
+  const short = element({ children: { [SHORTS_BAR]: bar(buttons) } });
+  const player = element({ ancestors: playerInShort ? { 'ytd-reel-video-renderer': short } : {} });
+  return fakeDocument({ '#shorts-player': player, [SHORTS_BAR]: bar({ [LIKE]: 'true', [DISLIKE]: 'true' }) });
+};
+
+describe('readRating on the watch page', () => {
+  it('reads aria-pressed of both buttons', () => {
+    assert.deepEqual(readRating(watchPage({ [LIKE]: 'true', [DISLIKE]: 'false' }), Surface.WATCH), { liked: true, disliked: false });
+    assert.deepEqual(readRating(watchPage({ [LIKE]: 'false', [DISLIKE]: 'true' }), Surface.WATCH), { liked: false, disliked: true });
   });
 
-  it('returns null for other pages and for malformed URLs', () => {
-    for (const href of [
-      'https://www.youtube.com/',
-      'https://www.youtube.com/@COLAS./videos',
-      'https://www.youtube.com/watch',
-      'not a url',
-    ]) {
-      assert.equal(videoIdFromUrl(href), null, href);
-    }
+  it('gives null for a missing button or an unexpected value', () => {
+    assert.deepEqual(readRating(fakeDocument(), Surface.WATCH), { liked: null, disliked: null });
+    assert.deepEqual(readRating(watchPage({ [LIKE]: 'mixed', [DISLIKE]: 'false' }), Surface.WATCH), { liked: null, disliked: false });
+  });
+
+  it('does not look for a replaced dislike button outside the Shorts player', () => {
+    assert.deepEqual(readRating(watchPage({ [LIKE]: 'false', [REPLACED_DISLIKE]: 'false' }), Surface.WATCH), {
+      liked: false,
+      disliked: null,
+    });
   });
 });
 
-describe('readRating', () => {
-  it('reads aria-pressed of both buttons', () => {
-    assert.deepEqual(readRating(ratingPage('true', 'false')), { liked: true, disliked: false });
-    assert.deepEqual(readRating(ratingPage('false', 'true')), { liked: false, disliked: true });
+describe('readRating in the Shorts player', () => {
+  it('reads the buttons of the Short that holds the player, not those of another Short', () => {
+    assert.deepEqual(readRating(shortsPage({ [LIKE]: 'false', [DISLIKE]: 'false' }), Surface.SHORTS), {
+      liked: false,
+      disliked: false,
+    });
   });
 
-  it('gives null for a missing button, a missing attribute or an unexpected value', () => {
-    assert.deepEqual(readRating(fakeDocument()), { liked: null, disliked: null });
-    assert.deepEqual(readRating(ratingPage(null, 'mixed')), { liked: null, disliked: null });
-    assert.deepEqual(readRating(ratingPage('false')), { liked: false, disliked: null });
+  it('falls back on a dislike button that replaced the native one', () => {
+    assert.deepEqual(readRating(shortsPage({ [LIKE]: 'false', [REPLACED_DISLIKE]: 'true' }), Surface.SHORTS), {
+      liked: false,
+      disliked: true,
+    });
+  });
+
+  it('prefers the native dislike button when both are present', () => {
+    assert.equal(readRating(shortsPage({ [LIKE]: 'false', [DISLIKE]: 'false', [REPLACED_DISLIKE]: 'true' }), Surface.SHORTS).disliked, false);
+  });
+
+  it('gives null when the player is in no Short', () => {
+    assert.deepEqual(readRating(shortsPage({ [LIKE]: 'false', [DISLIKE]: 'false' }, { playerInShort: false }), Surface.SHORTS), {
+      liked: null,
+      disliked: null,
+    });
   });
 });
 
 describe('findLikeButton', () => {
-  it('finds the like button in the rating bar of the watch page', () => {
-    const page = ratingPage('false', 'false');
-    assert.equal(findLikeButton(page), page.querySelector(RATING_BAR).querySelector(LIKE));
-    assert.equal(findLikeButton(fakeDocument()), null);
+  it('finds the like button of each surface', () => {
+    const watch = watchPage({ [LIKE]: 'false', [DISLIKE]: 'false' });
+    assert.equal(findLikeButton(watch, Surface.WATCH), watch.querySelector(WATCH_BAR).querySelector(LIKE));
+    const shorts = shortsPage({ [LIKE]: 'false', [DISLIKE]: 'false' });
+    const expected = shorts.querySelector('#shorts-player').closest('ytd-reel-video-renderer').querySelector(SHORTS_BAR).querySelector(LIKE);
+    assert.equal(findLikeButton(shorts, Surface.SHORTS), expected);
   });
-});
 
-describe('watchPageVideoId', () => {
-  it('reads the video-id attribute of the watch page', () => {
-    const page = fakeDocument({ 'ytd-watch-flexy': element({ attributes: { 'video-id': 'aeP4eG-gO10' } }) });
-    assert.equal(watchPageVideoId(page), 'aeP4eG-gO10');
-    assert.equal(watchPageVideoId(fakeDocument()), null);
+  it('finds nothing without a surface or a rating bar', () => {
+    assert.equal(findLikeButton(fakeDocument(), Surface.WATCH), null);
+    assert.equal(findLikeButton(watchPage({ [LIKE]: 'false' }), null), null);
   });
 });
 
 describe('readPlayback', () => {
-  const page = (classes) =>
+  const page = (playerSelector, classes) =>
     fakeDocument({
-      '#movie_player': element({ classes }),
-      '#movie_player video.video-stream': element({ props: { currentTime: 42.5, duration: 1125.121 } }),
+      [playerSelector]: element({ classes }),
+      [`${playerSelector} video.video-stream`]: element({ props: { currentTime: 42.5, duration: 1125.121 } }),
     });
 
-  it('reads the position and the duration of the video', () => {
-    assert.deepEqual(readPlayback(page(['playing-mode'])), { position: 42.5, duration: 1125.121, adPlaying: false });
+  it('reads the position and the duration of the video of each surface', () => {
+    assert.deepEqual(readPlayback(page('#movie_player', ['playing-mode']), Surface.WATCH), { position: 42.5, duration: 1125.121, adPlaying: false });
+    assert.deepEqual(readPlayback(page('#shorts-player', []), Surface.SHORTS), { position: 42.5, duration: 1125.121, adPlaying: false });
+  });
+
+  it('reads the video of the surface shown, not the hidden one of the other surface', () => {
+    assert.deepEqual(readPlayback(page('#movie_player', []), Surface.SHORTS), { position: null, duration: null, adPlaying: false });
   });
 
   it('detects an ad from the classes of the player', () => {
-    assert.equal(readPlayback(page(['ad-showing'])).adPlaying, true);
-    assert.equal(readPlayback(page(['ad-interrupting'])).adPlaying, true);
+    assert.equal(readPlayback(page('#movie_player', ['ad-showing']), Surface.WATCH).adPlaying, true);
+    assert.equal(readPlayback(page('#shorts-player', ['ad-interrupting']), Surface.SHORTS).adPlaying, true);
   });
 
   it('gives null values when there is no video', () => {
-    assert.deepEqual(readPlayback(fakeDocument()), { position: null, duration: null, adPlaying: false });
+    assert.deepEqual(readPlayback(fakeDocument(), Surface.WATCH), { position: null, duration: null, adPlaying: false });
   });
 });

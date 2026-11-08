@@ -7,7 +7,8 @@
 import { api } from '../../platform/api.js';
 import { createStore } from '../../platform/storage.js';
 import { ISOLATED_SOURCE, PAGE_SOURCE, SNAPSHOT, SNAPSHOT_REQUEST, validateSnapshot } from '../protocol.js';
-import { findLikeButton, readPlayback, readRating, videoIdFromUrl, watchPageVideoId } from '../youtube/dom.js';
+import { findLikeButton, readPlayback, readRating } from '../youtube/dom.js';
+import { surfaceFromUrl, videoIdFromUrl } from '../youtube/surface.js';
 import { createSession, isFinal, Status, step } from './session.js';
 
 const TICK_MS = 1000;
@@ -44,12 +45,11 @@ function requestSnapshot() {
   });
 }
 
-function observe(snapshot) {
+function observe(snapshot, surface) {
   return {
     snapshot,
-    pageVideoId: watchPageVideoId(document),
-    ...readRating(document),
-    ...readPlayback(document),
+    ...readRating(document, surface),
+    ...readPlayback(document, surface),
   };
 }
 
@@ -75,15 +75,17 @@ async function tick() {
     }
     if (isFinal(session)) return;
 
+    const surface = surfaceFromUrl(window.location.href);
     const snapshot = await requestSnapshot();
     // The page may have moved to another video while the reader answered.
     if (videoIdFromUrl(window.location.href) !== session.videoId) return;
+    if (surfaceFromUrl(window.location.href) !== surface) return;
 
     // From here to the click, nothing is awaited: the rating that step() saw
     // is still the one on the page when the button is clicked.
-    let { session: next, action } = step(session, observe(snapshot), settings, Date.now());
+    let { session: next, action } = step(session, observe(snapshot, surface), settings, Date.now());
     if (action === 'click') {
-      const button = findLikeButton(document);
+      const button = findLikeButton(document, surface);
       if (button) {
         button.click();
       } else {

@@ -24,15 +24,18 @@ export function isValidVideoId(id) {
 const booleanOrNull = (value) => (typeof value === 'boolean' ? value : null);
 
 /**
- * @returns {object|null} { videoId, channelId, channelName, isShort, isLive,
- *   subscribed }, where the three booleans are null when the page did not
- *   provide them; null when the payload is not a usable snapshot.
+ * @returns {object|null} { videoId, surfaceVideoId, channelId, channelName,
+ *   isShort, isLive, subscribed }. videoId is the video of the player,
+ *   surfaceVideoId the one the rating buttons on screen belong to. Each field
+ *   the page did not provide is null; the whole snapshot is null when the
+ *   payload has no valid videoId.
  */
 export function validateSnapshot(payload) {
   if (!payload || typeof payload !== 'object') return null;
   if (!isValidVideoId(payload.videoId)) return null;
   return {
     videoId: payload.videoId,
+    surfaceVideoId: isValidVideoId(payload.surfaceVideoId) ? payload.surfaceVideoId : null,
     channelId: isValidChannelId(payload.channelId) ? payload.channelId : null,
     channelName: typeof payload.channelName === 'string' ? payload.channelName.slice(0, MAX_NAME_LENGTH) : '',
     isShort: booleanOrNull(payload.isShort),

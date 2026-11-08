@@ -4,6 +4,7 @@ import { isValidVideoId, validateSnapshot } from '../../src/content/protocol.js'
 
 const SNAPSHOT = {
   videoId: 'aeP4eG-gO10',
+  surfaceVideoId: 'aeP4eG-gO10',
   channelId: 'UC9orcd4I_3Uy_8_UAz2r48g',
   channelName: 'COLAS',
   isShort: false,
@@ -35,13 +36,22 @@ describe('validateSnapshot', () => {
     assert.deepEqual(
       validateSnapshot({
         videoId: SNAPSHOT.videoId,
+        surfaceVideoId: 'not an id',
         channelId: '@COLAS.',
         channelName: { toString: () => 'x' },
         isShort: 'false',
         isLive: 0,
         subscribed: 'yes',
       }),
-      { videoId: SNAPSHOT.videoId, channelId: null, channelName: '', isShort: null, isLive: null, subscribed: null },
+      {
+        videoId: SNAPSHOT.videoId,
+        surfaceVideoId: null,
+        channelId: null,
+        channelName: '',
+        isShort: null,
+        isLive: null,
+        subscribed: null,
+      },
     );
   });
 

@@ -53,7 +53,7 @@ const update = (session, changes, action = null) => ({ session: { ...session, ..
 /**
  * @param {object} session
  * @param {object} observation { snapshot (from validateSnapshot, or null),
- *   pageVideoId, liked, disliked, position, duration, adPlaying }
+ *   liked, disliked, position, duration, adPlaying }
  * @param {object} settings From normalizeSettings.
  * @param {number} now Milliseconds.
  * @returns {{ session: object, action: 'click' | null }}
@@ -72,10 +72,11 @@ export function step(session, observation, settings, now) {
       ? update(session, { status: Status.GAVE_UP, reason: Reason.UNKNOWN_STATE })
       : update(session, { status: Status.READING, reason: Reason.UNKNOWN_STATE });
 
-  // The URL, the player and the watch page must all show the same video:
-  // while YouTube switches videos, they briefly disagree.
+  // The URL, the player and the surface showing the rating buttons must all
+  // point to the same video: while YouTube switches videos, they briefly
+  // disagree.
   const { snapshot } = observation;
-  if (!snapshot || snapshot.videoId !== session.videoId || observation.pageVideoId !== session.videoId) {
+  if (!snapshot || snapshot.videoId !== session.videoId || snapshot.surfaceVideoId !== session.videoId) {
     return unreadable();
   }
 

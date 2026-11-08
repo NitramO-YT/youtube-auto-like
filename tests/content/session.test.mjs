@@ -16,6 +16,7 @@ const T0 = 1_000_000;
 
 const snapshot = (overrides = {}) => ({
   videoId: VIDEO_ID,
+  surfaceVideoId: VIDEO_ID,
   channelId: 'UC9orcd4I_3Uy_8_UAz2r48g',
   channelName: 'COLAS',
   isShort: false,
@@ -26,7 +27,6 @@ const snapshot = (overrides = {}) => ({
 
 const observation = (overrides = {}) => ({
   snapshot: snapshot(),
-  pageVideoId: VIDEO_ID,
   liked: false,
   disliked: false,
   position: 0,
@@ -112,8 +112,8 @@ describe('step', () => {
     const unreadableCases = {
       'no snapshot': { snapshot: null },
       'player still on the previous video': { snapshot: snapshot({ videoId: 'aaaaaaaaaaa' }) },
-      'watch page still on the previous video': { pageVideoId: 'aaaaaaaaaaa' },
-      'watch page without video-id': { pageVideoId: null },
+      'surface still showing the previous video': { snapshot: snapshot({ surfaceVideoId: 'aaaaaaaaaaa' }) },
+      'surface without a video ID': { snapshot: snapshot({ surfaceVideoId: null }) },
       'like state unknown': { liked: null },
       'subscription unknown': { snapshot: snapshot({ subscribed: null }) },
     };

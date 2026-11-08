@@ -1,41 +1,50 @@
 /**
- * What the liker reads from, and does to, the DOM of a watch page, from the
- * isolated world. Checked in Brave on 8 November 2026.
+ * What the liker reads from, and does to, the DOM of the surface playing the
+ * video, from the isolated world. Checked in Brave on 8 November 2026.
  *
  * The rating is read from the aria-pressed attribute of the buttons, which
  * follows every click. The data.isToggled property of the same components
  * keeps the state of the page load and misses any later click, so it must
  * not be used.
+ *
+ * In the Shorts player, everything is read inside the Short that contains
+ * #shorts-player, which is the one being played even when the page holds
+ * several.
  */
+import { Surface } from './surface.js';
 
-const RATING_BAR = 'ytd-menu-renderer.ytd-watch-metadata segmented-like-dislike-button-view-model';
-const LIKE_BUTTON = 'like-button-view-model button';
-const DISLIKE_BUTTON = 'dislike-button-view-model button';
-// The watch page carries the ID of the video its metadata, buttons included,
-// belongs to (attribute used by Taknok/youtube-auto-like).
-const WATCH_PAGE = 'ytd-watch-flexy';
-const PLAYER = '#movie_player';
-const VIDEO = '#movie_player video.video-stream';
+const SELECTORS = {
+  [Surface.WATCH]: {
+    ratingBar: 'ytd-menu-renderer.ytd-watch-metadata segmented-like-dislike-button-view-model',
+    player: '#movie_player',
+    video: '#movie_player video.video-stream',
+  },
+  [Surface.SHORTS]: {
+    ratingBar: 'reel-action-bar-view-model',
+    player: '#shorts-player',
+    video: '#shorts-player video.video-stream',
+  },
+};
+const SHORT = 'ytd-reel-video-renderer';
+// The like component holds two buttons; the one with aria-pressed is the toggle.
+const LIKE_BUTTON = 'like-button-view-model button[aria-pressed]';
+const DISLIKE_BUTTON = 'dislike-button-view-model button[aria-pressed]';
+// In the Shorts action bar, an extension such as Return YouTube Dislike can
+// replace the native dislike component with its own button, a direct child
+// wrapper of the bar that also carries aria-pressed.
+const REPLACED_SHORTS_DISLIKE_BUTTON = ':scope > div button[aria-pressed]';
 // Classes of the player while an ad plays (from Taknok/youtube-auto-like; not
 // yet observed in this project).
 const AD_CLASSES = ['ad-showing', 'ad-interrupting'];
 
-/** The ID of the video a URL points to, or null for any other page. */
-export function videoIdFromUrl(href) {
-  let url;
-  try {
-    url = new URL(href);
-  } catch {
-    return null;
+function ratingBar(doc, surface) {
+  const selectors = SELECTORS[surface];
+  if (!selectors) return null;
+  if (surface === Surface.SHORTS) {
+    const short = doc.querySelector(selectors.player)?.closest(SHORT);
+    return short?.querySelector(selectors.ratingBar) ?? null;
   }
-  if (url.pathname === '/watch') return url.searchParams.get('v');
-  const short = url.pathname.match(/^\/shorts\/([^/?#]+)/);
-  return short ? short[1] : null;
-}
-
-/** The video ID the watch page shows the buttons of, or null. */
-export function watchPageVideoId(doc) {
-  return doc.querySelector(WATCH_PAGE)?.getAttribute('video-id') ?? null;
+  return doc.querySelector(selectors.ratingBar);
 }
 
 function pressed(button) {
@@ -45,23 +54,28 @@ function pressed(button) {
   return null;
 }
 
-export function findLikeButton(doc) {
-  return doc.querySelector(RATING_BAR)?.querySelector(LIKE_BUTTON) ?? null;
+export function findLikeButton(doc, surface) {
+  return ratingBar(doc, surface)?.querySelector(LIKE_BUTTON) ?? null;
 }
 
 /** { liked, disliked }, each null when its button is missing or unreadable. */
-export function readRating(doc) {
-  const bar = doc.querySelector(RATING_BAR);
+export function readRating(doc, surface) {
+  const bar = ratingBar(doc, surface);
+  let dislike = bar?.querySelector(DISLIKE_BUTTON) ?? null;
+  if (!dislike && surface === Surface.SHORTS) {
+    dislike = bar?.querySelector(REPLACED_SHORTS_DISLIKE_BUTTON) ?? null;
+  }
   return {
     liked: pressed(bar?.querySelector(LIKE_BUTTON)),
-    disliked: pressed(bar?.querySelector(DISLIKE_BUTTON)),
+    disliked: pressed(dislike),
   };
 }
 
 /** { position, duration, adPlaying }, with null values when no video is found. */
-export function readPlayback(doc) {
-  const video = doc.querySelector(VIDEO);
-  const player = doc.querySelector(PLAYER);
+export function readPlayback(doc, surface) {
+  const selectors = SELECTORS[surface];
+  const video = selectors ? doc.querySelector(selectors.video) : null;
+  const player = selectors ? doc.querySelector(selectors.player) : null;
   return {
     position: video ? video.currentTime : null,
     duration: video ? video.duration : null,
