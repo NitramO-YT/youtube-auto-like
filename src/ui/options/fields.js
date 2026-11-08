@@ -40,6 +40,20 @@ export const FIELDS = Object.freeze({
 
 export const NUMBER_RANGES = Object.freeze({ percentValue: PERCENT_RANGE, minutesValue: MINUTES_RANGE });
 
+// Units of a custom check frequency, in minutes, largest first.
+export const FREQUENCY_UNITS = Object.freeze([1440, 60, 1]);
+
+/** A frequency in minutes as a count of the largest unit that divides it: 90 → { count: 90, unit: 1 }, 2880 → { count: 2, unit: 1440 }. */
+export function splitMinutes(minutes) {
+  const unit = FREQUENCY_UNITS.find((candidate) => minutes % candidate === 0);
+  return { count: minutes / unit, unit };
+}
+
+/** Minutes from a count typed and a unit chosen, or null when the count is not a whole positive number. */
+export function toMinutes(count, unit) {
+  return Number.isInteger(count) && count > 0 && FREQUENCY_UNITS.includes(unit) ? count * unit : null;
+}
+
 /** The number typed in a field, or null when it is empty or out of its range. */
 export function validNumber(value, range) {
   return typeof value === 'number' && Number.isFinite(value) && value >= range.min && value <= range.max ? value : null;

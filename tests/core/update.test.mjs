@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { availableUpdate, isNewer, normalizeUpdateState, parseLatestRelease, parseVersion } from '../../src/core/update.js';
+import { availableUpdate, isNewer, isValidCheckFrequency, normalizeUpdateState, parseLatestRelease, parseVersion } from '../../src/core/update.js';
 
 // Shape of the GitHub API answer, as read on 8 November 2026 for
 // austencm/youtube-auto-like, with this repository's address.
@@ -26,6 +26,13 @@ describe('versions', () => {
     assert.equal(isNewer('3.0.0', '3.0.0'), false);
     assert.equal(isNewer('2.8.1', '3.0.0'), false);
     assert.equal(isNewer('nope', '3.0.0'), false);
+  });
+});
+
+describe('isValidCheckFrequency', () => {
+  it('accepts never, and whole numbers of minutes from 5 minutes to 30 days', () => {
+    for (const minutes of [0, 5, 30, 90, 43200]) assert.equal(isValidCheckFrequency(minutes), true, String(minutes));
+    for (const minutes of [1, 4, 43201, 7.5, -30, '30', null]) assert.equal(isValidCheckFrequency(minutes), false, String(minutes));
   });
 });
 

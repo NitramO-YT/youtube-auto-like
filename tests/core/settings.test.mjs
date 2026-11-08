@@ -59,7 +59,7 @@ describe('normalizeSettings', () => {
       likeWhat: 'none',
       likeShorts: false,
       timing: { mode: 'later', percent: { enabled: true, value: 101 }, minutes: { value: Number.NaN } },
-      updateCheckMinutes: 5,
+      updateCheckMinutes: 3,
       theme: 'sepia',
     });
     const defaults = defaultSettings();
@@ -70,7 +70,7 @@ describe('normalizeSettings', () => {
     assert.equal(normalized.timing.mode, defaults.timing.mode);
     assert.equal(normalized.timing.percent.value, defaults.timing.percent.value);
     assert.equal(normalized.timing.minutes.value, defaults.timing.minutes.value);
-    assert.equal(normalized.updateCheckMinutes, 30, 'only the frequencies offered are kept');
+    assert.equal(normalized.updateCheckMinutes, 30, 'checks less than 5 minutes apart are refused');
   });
 
   it('drops unknown keys, including those of the single list of earlier designs', () => {

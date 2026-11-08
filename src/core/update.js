@@ -12,8 +12,17 @@ const RELEASE_PAGE_PREFIX = `https://github.com/${REPOSITORY}/releases/`;
 const VERSION_PATTERN = /^v?(\d{1,4})\.(\d{1,4})\.(\d{1,4})$/;
 const MAX_URL_LENGTH = 300;
 
-// How often to look for a new version, in minutes; 0 never looks.
+// How often to look for a new version, in minutes; 0 never looks. The
+// choices offered first, then any whole number of minutes in the range:
+// GitHub allows 60 unauthenticated requests an hour per IP address, so
+// checks are 5 minutes apart at least (12 an hour); 30 days at most.
 export const UPDATE_CHECK_CHOICES = Object.freeze([0, 30, 60, 360, 1440, 10080]);
+export const UPDATE_CHECK_RANGE = Object.freeze({ min: 5, max: 30 * 1440 });
+
+/** Whether minutes is a frequency the checks accept: 0, or a whole number in UPDATE_CHECK_RANGE. */
+export function isValidCheckFrequency(minutes) {
+  return minutes === 0 || (Number.isInteger(minutes) && minutes >= UPDATE_CHECK_RANGE.min && minutes <= UPDATE_CHECK_RANGE.max);
+}
 
 /** [major, minor, patch] of "3.1.0" or "v3.1.0", or null for anything else. */
 export function parseVersion(text) {

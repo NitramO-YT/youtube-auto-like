@@ -8,7 +8,7 @@
  */
 import { normalizeLists } from './channels.js';
 import { normalizeExcludedVideos } from './excluded-videos.js';
-import { UPDATE_CHECK_CHOICES } from './update.js';
+import { isValidCheckFrequency } from './update.js';
 
 export const SETTINGS_SCHEMA_VERSION = 1;
 
@@ -86,7 +86,7 @@ export function normalizeSettings(raw) {
         value: numberInRange(minutes.value, MINUTES_RANGE, defaults.timing.minutes.value),
       },
     },
-    updateCheckMinutes: oneOf(input.updateCheckMinutes, UPDATE_CHECK_CHOICES, defaults.updateCheckMinutes),
+    updateCheckMinutes: isValidCheckFrequency(input.updateCheckMinutes) ? input.updateCheckMinutes : defaults.updateCheckMinutes,
     theme: oneOf(input.theme, THEMES, defaults.theme),
   };
 

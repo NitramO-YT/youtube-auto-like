@@ -130,14 +130,26 @@
       </div>
       <div class="row-toggle">
         <label for="update-every"><span data-i18n="updatesLabel"></span><span class="hint" data-i18n="updatesHint"></span></label>
-        <select class="select" id="update-every" data-field="updateCheckMinutes">
-          <option value="0" data-i18n="updateEvery0"></option>
-          <option value="30" data-i18n="updateEvery30"></option>
-          <option value="60" data-i18n="updateEvery60"></option>
-          <option value="360" data-i18n="updateEvery360"></option>
-          <option value="1440" data-i18n="updateEvery1440"></option>
-          <option value="10080" data-i18n="updateEvery10080"></option>
-        </select>
+        <div class="frequency">
+          <select class="select" id="update-every">
+            <option value="0" data-i18n="updateEvery0"></option>
+            <option value="30" data-i18n="updateEvery30"></option>
+            <option value="60" data-i18n="updateEvery60"></option>
+            <option value="360" data-i18n="updateEvery360"></option>
+            <option value="1440" data-i18n="updateEvery1440"></option>
+            <option value="10080" data-i18n="updateEvery10080"></option>
+            <option value="custom" data-i18n="updateEveryCustom"></option>
+          </select>
+          <span class="frequency-custom" id="update-custom" hidden>
+            <span data-i18n="updateEveryPrefix"></span>
+            <input class="number" type="number" id="update-custom-count" min="1" step="1" data-i18n-aria-label="updateCustomCount">
+            <select class="select" id="update-custom-unit" data-i18n-aria-label="updateCustomUnit">
+              <option value="1"></option>
+              <option value="60"></option>
+              <option value="1440"></option>
+            </select>
+          </span>
+        </div>
       </div>
       <div class="row-toggle">
         <p class="update-line" role="status"><span id="update-status"></span><a id="update-status-link" target="_blank" rel="noopener noreferrer" hidden></a></p>

@@ -1,7 +1,16 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { normalizeSettings } from '../../src/core/settings.js';
-import { FIELDS, filterChannels, filterVideos, lockedThreshold, NUMBER_RANGES, validNumber } from '../../src/ui/options/fields.js';
+import {
+  FIELDS,
+  filterChannels,
+  filterVideos,
+  lockedThreshold,
+  NUMBER_RANGES,
+  splitMinutes,
+  toMinutes,
+  validNumber,
+} from '../../src/ui/options/fields.js';
 
 const timing = (mode, percent, minutes) => ({ mode, percent: { enabled: percent, value: 50 }, minutes: { enabled: minutes, value: 2 } });
 
@@ -41,6 +50,21 @@ describe('validNumber', () => {
       assert.equal(validNumber(value, NUMBER_RANGES.percentValue), null, String(value));
     }
     assert.equal(validNumber(601, NUMBER_RANGES.minutesValue), null);
+  });
+});
+
+describe('custom check frequency', () => {
+  it('shows minutes in the largest unit that divides them', () => {
+    assert.deepEqual(splitMinutes(90), { count: 90, unit: 1 });
+    assert.deepEqual(splitMinutes(120), { count: 2, unit: 60 });
+    assert.deepEqual(splitMinutes(2880), { count: 2, unit: 1440 });
+  });
+
+  it('turns a count and a unit back into minutes, refusing anything but a whole positive count', () => {
+    assert.equal(toMinutes(2, 60), 120);
+    assert.equal(toMinutes(3, 1440), 4320);
+    for (const count of [0, -1, 1.5, Number.NaN]) assert.equal(toMinutes(count, 60), null, String(count));
+    assert.equal(toMinutes(2, 7), null);
   });
 });
 

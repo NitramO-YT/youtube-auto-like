@@ -8,7 +8,6 @@
  * modules, which receive the shared parts as `page`.
  */
 import './options.css';
-import { UPDATE_CHECK_CHOICES } from '../../core/update.js';
 import { api } from '../../platform/api.js';
 import { createStore } from '../../platform/storage.js';
 import { createActionRunner } from '../shared/actions.js';
@@ -51,7 +50,19 @@ function confirmChange(key, substitutions, revert) {
   });
 }
 
-const page = { doc: document, byId, t, lang, store, notice, act, confirmChange, state, refresh: () => fill() };
+const page = {
+  doc: document,
+  byId,
+  t,
+  lang,
+  store,
+  notice,
+  act,
+  confirmChange,
+  state,
+  refresh: () => fill(),
+  changeField: (field, value) => changeField(field, value),
+};
 const lists = createListsSection(page);
 const history = createHistorySection(page);
 const updates = createUpdateSection(page, api);
@@ -112,10 +123,6 @@ async function changeField(field, value) {
 function inputValue(input, field) {
   if (input.type === 'radio') return input.value;
   if (input.type === 'checkbox') return input.checked;
-  if (input.tagName === 'SELECT') {
-    const value = Number(input.value);
-    return UPDATE_CHECK_CHOICES.includes(value) ? value : null;
-  }
   const range = NUMBER_RANGES[field];
   const value = validNumber(input.valueAsNumber, range);
   if (value === null) {
