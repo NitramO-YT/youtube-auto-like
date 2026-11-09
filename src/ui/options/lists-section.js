@@ -9,6 +9,7 @@
  *   act, confirmChange, state, refresh }; state.settings holds the settings
  *   shown, refresh redraws the page from them.
  */
+import { LinkKind, channelPageUrl } from '../../core/channel-links.js';
 import { videoUrl } from '../../core/video.js';
 import { createAvatar, initialOf } from '../shared/avatar.js';
 import { el, icon } from '../shared/dom.js';
@@ -17,7 +18,6 @@ import { moveChannel, setVideoExcluded } from '../shared/lists.js';
 import { filterChannels, filterVideos } from './fields.js';
 import { createPager } from './pager.js';
 
-const CHANNEL_URL = 'https://www.youtube.com/channel/';
 const TAB_NAMES = ['always', 'never', 'videos'];
 
 export function createListsSection(page) {
@@ -63,7 +63,7 @@ export function createListsSection(page) {
         id: channel.id,
         avatar: { id: channel.id, initial: initialOf(channel.name), avatarUrl: channel.avatarUrl },
         name,
-        href: CHANNEL_URL + channel.id,
+        href: channelPageUrl({ kind: LinkKind.CHANNEL_ID, channelId: channel.id }),
         linkTitle: t('listOpenChannel'),
         meta: channel.addedAt ? t('listAddedOn', [dateFormat.format(new Date(channel.addedAt))]) : '',
         removeLabel: t('listRemove', [name]),

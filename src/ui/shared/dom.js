@@ -25,15 +25,17 @@ export function el(doc, tag, className, text) {
 }
 
 /**
- * An element whose parts are joined by " · ", each in a <bdi>: a part takes
- * its direction from its own text, so a Latin channel name next to a date
- * does not reorder the line on an Arabic page.
+ * An element whose parts (texts or elements) are joined by " · ", each in a
+ * <bdi>: a part takes its direction from its own text, so a Latin channel
+ * name next to a date does not reorder the line on an Arabic page.
  */
 export function joinedParts(doc, tag, className, parts) {
   const element = el(doc, tag, className);
   parts.forEach((part, index) => {
     if (index > 0) element.append(' · ');
-    element.append(el(doc, 'bdi', null, part));
+    const isolate = el(doc, 'bdi');
+    isolate.append(part);
+    element.append(isolate);
   });
   return element;
 }

@@ -6,6 +6,7 @@
  *
  * @param {object} page From index.js (see lists-section.js).
  */
+import { LinkKind, channelPageUrl } from '../../core/channel-links.js';
 import { listOf } from '../../core/channels.js';
 import { MAX_HISTORY } from '../../core/history.js';
 import { videoUrl } from '../../core/video.js';
@@ -53,6 +54,17 @@ export function createHistorySection(page) {
     return select;
   }
 
+  /** The channel of a like: a link to its page when its ID is known, its name alone otherwise. */
+  function channelPart(entry) {
+    if (!entry.channelName) return null;
+    if (!entry.channelId) return entry.channelName;
+    const link = el(doc, 'a', 'channel-link', entry.channelName);
+    link.href = channelPageUrl({ kind: LinkKind.CHANNEL_ID, channelId: entry.channelId });
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    return link;
+  }
+
   function row(entry, choice) {
     const item = el(doc, 'li', 'row');
     const title = el(doc, 'div', 'title');
@@ -60,7 +72,7 @@ export function createHistorySection(page) {
     link.href = videoUrl(entry);
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    const meta = [entry.channelName, t(entry.isShort ? 'kindShort' : 'kindVideo'), dateTimeFormat.format(new Date(entry.likedAt))];
+    const meta = [channelPart(entry), t(entry.isShort ? 'kindShort' : 'kindVideo'), dateTimeFormat.format(new Date(entry.likedAt))];
     title.append(link, joinedParts(doc, 'span', 'meta', meta.filter(Boolean)));
     item.append(
       createAvatar(doc, { id: entry.channelId ?? entry.videoId, initial: initialOf(entry.channelName), avatarUrl: entry.channelAvatarUrl }),

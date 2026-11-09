@@ -355,6 +355,16 @@ main {
   color: var(--muted);
   font-size: 12px;
 }
+/* The channel of a like, in the history: a link that reads as the rest of the line until hovered. */
+.row .meta .channel-link {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+.row .meta .channel-link:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
 /* The choice for the channel of a like, in the history. */
 .row .row-choice {
   flex: none;
