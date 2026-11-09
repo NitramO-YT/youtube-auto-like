@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { formatAgo, formatClock, formatDuration, formatLikeCount } from '../../src/ui/shared/format.js';
+import { formatAgo, formatClock, formatDuration, formatLikeCount, formatterFor } from '../../src/ui/shared/format.js';
 import { translator } from '../helpers/fake-i18n.mjs';
 
 const en = translator('en');
@@ -35,6 +35,19 @@ describe('formatLikeCount', () => {
     assert.equal(formatLikeCount(0, 'en', en), '0 videos liked');
     assert.equal(formatLikeCount(0, 'fr', fr), '0 vidéo likée');
     assert.equal(formatLikeCount(1248, 'en', en), '1,248 videos liked');
+  });
+});
+
+describe('formatterFor', () => {
+  const date = new Date(Date.UTC(2026, 10, 9, 12));
+  const options = { dateStyle: 'long', timeZone: 'UTC' };
+
+  it('formats in the language of the moment, and follows when it changes', () => {
+    let lang = 'fr';
+    const format = formatterFor(() => lang, options);
+    assert.equal(format.format(date), '9 novembre 2026');
+    lang = 'en';
+    assert.equal(format.format(date), 'November 9, 2026');
   });
 });
 

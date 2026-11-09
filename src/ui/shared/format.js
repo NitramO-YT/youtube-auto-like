@@ -43,6 +43,22 @@ export function pluralKey(count, lang, oneKey, otherKey) {
   return new Intl.PluralRules(lang).select(count) === 'one' ? oneKey : otherKey;
 }
 
+/**
+ * A date format in a language that can change (the setting of the language):
+ * { format(date) }, in the language langOf() answers, made again only when
+ * it answers another one.
+ */
+export function formatterFor(langOf, options) {
+  let made = null;
+  return {
+    format(date) {
+      const lang = langOf();
+      if (made?.lang !== lang) made = { lang, format: new Intl.DateTimeFormat(lang, options) };
+      return made.format.format(date);
+    },
+  };
+}
+
 /** "1 248 vidéos likées", with the plural rules of the language. */
 export function formatLikeCount(count, lang, t) {
   return t(pluralKey(count, lang, 'likeCountOne', 'likeCountOther'), [formatNumber(count, lang)]);

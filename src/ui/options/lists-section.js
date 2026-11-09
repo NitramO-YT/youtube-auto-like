@@ -7,13 +7,14 @@
  *
  * @param {object} page From index.js: { doc, byId, t, lang, store, notice,
  *   act, confirmChange, state, refresh }; state.settings holds the settings
- *   shown, refresh redraws the page from them.
+ *   shown, refresh redraws the page from them. t, lang and act always hold
+ *   the current language: read lang when drawing, not once.
  */
 import { LinkKind, channelPageUrl } from '../../core/channel-links.js';
 import { videoUrl } from '../../core/video.js';
 import { createAvatar, initialOf } from '../shared/avatar.js';
 import { el, icon } from '../shared/dom.js';
-import { formatNumber } from '../shared/format.js';
+import { formatNumber, formatterFor } from '../shared/format.js';
 import { moveChannel, setVideoExcluded } from '../shared/lists.js';
 import { filterChannels, filterVideos } from './fields.js';
 import { createPager } from './pager.js';
@@ -21,15 +22,15 @@ import { createPager } from './pager.js';
 const TAB_NAMES = ['always', 'never', 'videos'];
 
 export function createListsSection(page) {
-  const { doc, byId, t, lang, store, act, confirmChange, state } = page;
-  const dateFormat = new Intl.DateTimeFormat(lang, { dateStyle: 'medium' });
+  const { doc, byId, t, store, act, confirmChange, state } = page;
+  const dateFormat = formatterFor(() => page.lang, { dateStyle: 'medium' });
   let tab = 'always';
   let query = '';
   let drawnRows = null;
   // Back to the first page on another tab or another search.
   const pager = createPager(
     { rows: byId('list-rows'), row: byId('list-more'), count: byId('list-more-count'), more: byId('list-more-button'), all: byId('list-all-button') },
-    { t, lang, redraw: () => render() },
+    { locale: page, redraw: () => render() },
   );
 
   function row({ id, avatar, name, href, linkTitle, meta, removeLabel }) {
@@ -104,7 +105,7 @@ export function createListsSection(page) {
 
   function render() {
     for (const name of TAB_NAMES) {
-      byId(`count-${name}`).textContent = formatNumber(TABS[name].entries().length, lang);
+      byId(`count-${name}`).textContent = formatNumber(TABS[name].entries().length, page.lang);
       const button = byId(`tab-${name}`);
       button.setAttribute('aria-selected', String(name === tab));
       button.tabIndex = name === tab ? 0 : -1;

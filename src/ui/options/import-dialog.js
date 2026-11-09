@@ -49,7 +49,7 @@ function rememberMode(storage, mode) {
 }
 
 export function createImportDialog(page, { lookUp = (lines, onProgress) => lookUpLines(lines, fetch, onProgress), storage = window.localStorage } = {}) {
-  const { doc, byId, t, lang, store, confirmChange, state } = page;
+  const { doc, byId, t, store, confirmChange, state } = page;
   const element = byId('import-dialog');
   const dialog = setUpDialog(element);
   const status = byId('import-status');
@@ -101,11 +101,11 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
     byId('import-source-detail').textContent =
       source.kind === 'file'
         ? t('importSourceFile')
-        : t(pluralKey(source.lines.length, lang, 'importSourceLinksOne', 'importSourceLinksOther'), [formatNumber(source.lines.length, lang)]);
+        : t(pluralKey(source.lines.length, page.lang,'importSourceLinksOne', 'importSourceLinksOther'), [formatNumber(source.lines.length, page.lang)]);
     if (source.kind === 'file') {
       const counts = { always: source.data.lists.always.length, never: source.data.lists.never.length, videos: source.data.excludedVideos.length };
       for (const part of IMPORT_PARTS) {
-        byId(`import-part-${part}`).textContent = t('partWithCount', [t(PART_LABELS[part]), formatNumber(counts[part], lang)]);
+        byId(`import-part-${part}`).textContent = t('partWithCount', [t(PART_LABELS[part]), formatNumber(counts[part], page.lang)]);
         doc.querySelector(`input[name="import-part"][value="${part}"]`).checked = counts[part] > 0;
       }
     }
@@ -139,7 +139,7 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
         return;
       }
       if (lines.length > MAX_LINKS) {
-        sourceError('addTooMany', [formatNumber(MAX_LINKS, lang)]);
+        sourceError('addTooMany', [formatNumber(MAX_LINKS, page.lang)]);
         return;
       }
       source = { kind: 'links', name, size, lines, results: null };
@@ -172,7 +172,7 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
       result = plan();
     } catch (error) {
       if (!(error instanceof ListFullError)) throw error;
-      setStatus(status, t('importListFull', [formatNumber(error.max, lang)]), { error: true });
+      setStatus(status, t('importListFull', [formatNumber(error.max, page.lang)]), { error: true });
       byId('import-lines').replaceChildren();
       byId('import-apply').disabled = true;
       return;
@@ -180,7 +180,7 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
     const { report } = result;
     const changes = importChanges(report);
     setStatus(status, Object.keys(report).length === 0 ? t('importNoPart') : changes ? null : t('reportNothing'));
-    byId('import-lines').replaceChildren(...reportLines(report, t, lang).map((line) => el(doc, 'li', null, line)));
+    byId('import-lines').replaceChildren(...reportLines(report, t, page.lang).map((line) => el(doc, 'li', null, line)));
     const failures = source.kind === 'links' ? lookupLines(source.results, state.settings.lists, checked('import-target')[0], t).filter((line) => !line.ok) : [];
     byId('import-failures').replaceChildren(
       ...failures.map(({ line, text }) => {
@@ -194,7 +194,7 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
     const removed = removedCount(report);
     byId('import-confirm-row').hidden = removed === 0;
     if (removed === 0) byId('import-confirm').checked = false;
-    byId('import-confirm-text').textContent = t(pluralKey(removed, lang, 'importConfirmOne', 'importConfirmOther'), [formatNumber(removed, lang)]);
+    byId('import-confirm-text').textContent = t(pluralKey(removed, page.lang,'importConfirmOne', 'importConfirmOther'), [formatNumber(removed, page.lang)]);
     byId('import-apply').disabled = !changes || (removed > 0 && !byId('import-confirm').checked);
   }
 
@@ -209,9 +209,9 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
       byId('import-analyse').disabled = true;
       byId('import-report').hidden = false;
       const asked = source;
-      setStatus(status, t('addSearching', [formatNumber(0, lang), formatNumber(asked.lines.length, lang)]));
+      setStatus(status, t('addSearching', [formatNumber(0, page.lang), formatNumber(asked.lines.length, page.lang)]));
       try {
-        const results = await lookUp(asked.lines, (done, total) => setStatus(status, t('addSearching', [formatNumber(done, lang), formatNumber(total, lang)])));
+        const results = await lookUp(asked.lines, (done, total) => setStatus(status, t('addSearching', [formatNumber(done, page.lang), formatNumber(total, page.lang)])));
         // Another source may have been chosen while YouTube answered.
         if (source !== asked) return;
         source.results = results;
@@ -238,13 +238,13 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
         return { ...current, lists: result.lists, excludedVideos: result.excludedVideos };
       });
     } catch (error) {
-      setStatus(status, failureText(error, t, lang), { error: true });
+      setStatus(status, failureText(error, t, page.lang), { error: true });
       return;
     }
     rememberMode(storage, byId('import-remember').checked ? chosenMode : null);
     dialog.close();
     page.refresh();
-    confirmChange('noticeImportDone', [totalsLine(report, t, lang)], async () => {
+    confirmChange('noticeImportDone', [totalsLine(report, t, page.lang)], async () => {
       state.settings = await store.updateSettings((current) => ({ ...current, ...previous }));
     });
   }

@@ -22,7 +22,7 @@ function download(doc, text, type, name) {
 }
 
 export function createExportDialog(page) {
-  const { doc, byId, t, lang, state } = page;
+  const { doc, byId, t, state } = page;
   const dialog = setUpDialog(byId('export-dialog'));
   const videosBox = doc.querySelector('input[name="export-part"][value="videos"]');
 
@@ -68,7 +68,7 @@ export function createExportDialog(page) {
     const { lists, excludedVideos } = state.settings;
     const counts = { always: lists.always.length, never: lists.never.length, videos: excludedVideos.length };
     for (const part of IMPORT_PARTS) {
-      byId(`export-part-${part}`).textContent = t('partWithCount', [t(PART_LABELS[part]), formatNumber(counts[part], lang)]);
+      byId(`export-part-${part}`).textContent = t('partWithCount', [t(PART_LABELS[part]), formatNumber(counts[part], page.lang)]);
     }
     byId('export-error').hidden = true;
     showFormat();

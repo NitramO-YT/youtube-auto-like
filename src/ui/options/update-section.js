@@ -24,7 +24,7 @@ const UNIT_NAMES = {
 };
 
 export function createUpdateSection(page, api) {
-  const { doc, byId, t, lang, store, notice, act, state } = page;
+  const { doc, byId, t, store, notice, act, state } = page;
   const version = api.runtime.getManifest().version;
   let updateState = null;
   let checking = false;
@@ -36,7 +36,7 @@ export function createUpdateSection(page, api) {
     const count = byId('update-custom-count').valueAsNumber;
     for (const option of byId('update-custom-unit').options) {
       const [one, other] = UNIT_NAMES[option.value];
-      option.textContent = t(pluralKey(Number.isFinite(count) ? count : 2, lang, one, other));
+      option.textContent = t(pluralKey(Number.isFinite(count) ? count : 2, page.lang,one, other));
     }
   }
 
@@ -62,7 +62,7 @@ export function createUpdateSection(page, api) {
     if (!state.settings) return;
     renderFrequency();
     if (!updateState) return;
-    const status = updateStatus(updateState, state.settings, version, t, lang, Date.now());
+    const status = updateStatus(updateState, state.settings, version, t, page.lang,Date.now());
     const text = byId('update-status');
     const link = byId('update-status-link');
     text.textContent = checking ? t('updateStatusChecking') : status.url ? '' : status.text;

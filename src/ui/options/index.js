@@ -12,7 +12,7 @@ import { AUTO_LANGUAGE, LOCALES } from '../../core/locales.js';
 import { api } from '../../platform/api.js';
 import { createStore } from '../../platform/storage.js';
 import { createActionRunner } from '../shared/actions.js';
-import { markReady, renderParts } from '../shared/dom.js';
+import { crossFade, markReady, renderParts } from '../shared/dom.js';
 import { formatLikeCount, formatNumber } from '../shared/format.js';
 import { createTranslator, translatePage } from '../shared/i18n.js';
 import { directionOf, languageLabel, loadLanguage } from '../shared/locale.js';
@@ -39,10 +39,14 @@ const form = byId('form');
 const state = { settings: null, likeCount: null };
 
 // The texts, in the language of the browser until start() has read the one
-// of the settings; the sections, which format dates and numbers in it, are
-// made once it is known (setUp).
+// of the settings, and again in another when the setting changes
+// (applyLanguage). The sections read them through page.t and page.lang
+// when they draw, so they follow the change without being made again.
 let t = createTranslator((key, substitutions) => api.i18n.getMessage(key, substitutions));
 let lang = t('locale');
+// The language setting the page is shown in (or being switched to): fill()
+// compares it with the settings, whoever changed them, this page or another.
+let shownLanguage = null;
 let act = null;
 let page = null;
 let lists = null;
@@ -67,17 +71,19 @@ function confirmChange(key, substitutions, revert) {
   });
 }
 
-/** Makes the sections and dialogs, in the language t and lang now hold. */
+/** Makes the sections and dialogs. */
 function setUp() {
-  act = createActionRunner(notice, t, lang);
   page = {
     doc: document,
     byId,
-    t,
-    lang,
+    // Always the current language: t and act are swapped by applyLanguage.
+    t: (key, substitutions) => t(key, substitutions),
+    get lang() {
+      return lang;
+    },
     store,
     notice,
-    act,
+    act: (action) => act(action),
     confirmChange,
     state,
     refresh: () => fill(),
@@ -144,6 +150,7 @@ function renderCount() {
 function fill() {
   const { settings } = state;
   if (!settings) return;
+  if (settings.language !== shownLanguage) changeLanguage(settings.language);
   applyTheme(document, settings.theme, window.localStorage);
   const paused = !settings.enabled;
   document.body.classList.toggle('paused', paused);
@@ -246,11 +253,6 @@ function listen() {
   for (const dialog of Object.values(dialogs)) dialog.listen();
 
   store.onSettingsChange((settings) => {
-    // Another language: the page is drawn again in it, from the start.
-    if (settings.language !== state.settings.language) {
-      window.location.reload();
-      return;
-    }
     state.settings = settings;
     fill();
   });
@@ -260,20 +262,46 @@ function listen() {
   });
 }
 
+/** Puts the page in the language t and lang now hold: its fixed texts, and the choices of the language. */
+function applyLanguage() {
+  act = createActionRunner(notice, t, lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = directionOf(lang);
+  translatePage(document, t);
+  fillLanguages();
+}
+
+/**
+ * Draws the page again in another language, where it stands: same section,
+ * same tab, same scroll, as a cross-fade where the browser can (view
+ * transitions).
+ */
+async function changeLanguage(language) {
+  shownLanguage = language;
+  const loaded = await loadLanguage(api, language);
+  // A later change of language wins over this one.
+  if (shownLanguage !== language) return;
+  const switchLanguage = () => {
+    ({ t, lang } = loaded);
+    applyLanguage();
+    fill();
+    renderCount();
+  };
+  crossFade(document, switchLanguage);
+}
+
 async function start() {
   try {
     state.settings = await store.loadSettings();
-    ({ t, lang } = await loadLanguage(api, state.settings.language));
+    shownLanguage = state.settings.language;
+    ({ t, lang } = await loadLanguage(api, shownLanguage));
   } catch (error) {
     console.error(LOG_PREFIX, 'could not load the settings', error);
     notice.show(t('noticeLoadFailed'), { error: true });
     return;
   }
   setUp();
-  document.documentElement.lang = lang;
-  document.documentElement.dir = directionOf(lang);
-  translatePage(document, t);
-  fillLanguages();
+  applyLanguage();
   try {
     state.likeCount = await store.loadLikeCount();
     await history.start();

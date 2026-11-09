@@ -27,10 +27,12 @@ export function pagerLabels(shown, total, pageSize, t, lang) {
 /**
  * @param {{ rows: Element, row: Element, count: Element, more: Element, all: Element }} elements
  *   rows: the list; row: the line under it, with count and the two buttons.
- * @param {{ t: Function, lang: string, redraw: Function }} options redraw
- *   draws the list again, calling slice and render.
+ * @param {{ locale: { t: Function, lang: string }, redraw: Function }} options
+ *   locale gives the current language when the line is drawn (the page,
+ *   whose language can change); redraw draws the list again, calling slice
+ *   and render.
  */
-export function createPager(elements, { t, lang, redraw }) {
+export function createPager(elements, { locale, redraw }) {
   let pageSize = 20;
   let limit = pageSize;
 
@@ -65,7 +67,7 @@ export function createPager(elements, { t, lang, redraw }) {
     },
     /** The line under the list: how many rows are shown, and the buttons. */
     render(shown, total) {
-      const labels = pagerLabels(shown, total, pageSize || total, t, lang);
+      const labels = pagerLabels(shown, total, pageSize || total, locale.t, locale.lang);
       elements.row.hidden = labels.hidden;
       if (labels.hidden) return;
       elements.count.textContent = labels.count;

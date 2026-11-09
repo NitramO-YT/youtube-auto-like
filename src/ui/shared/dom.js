@@ -60,6 +60,15 @@ export function markReady(doc) {
   doc.defaultView.requestAnimationFrame(() => doc.documentElement.setAttribute('data-ready', ''));
 }
 
+/**
+ * Applies change to the page as a cross-fade where the browser has view
+ * transitions (theme.css skips it for reduced motion), at once elsewhere.
+ */
+export function crossFade(doc, change) {
+  if (typeof doc.startViewTransition === 'function') doc.startViewTransition(change);
+  else change();
+}
+
 /** Fills container with parts from emphasized or ruleParts: strong ones in <strong>. */
 export function renderParts(container, parts) {
   const doc = container.ownerDocument;

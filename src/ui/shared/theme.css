@@ -53,6 +53,16 @@ body {
   word-break: keep-all;
 }
 
+/* The cross-fade of a change of language (crossFade in dom.js) is skipped
+   for those who ask their system for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
 [hidden] {
   display: none !important;
 }

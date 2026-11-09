@@ -17,7 +17,7 @@ import { formatNumber, pluralKey } from '../shared/format.js';
 import { setStatus, setUpDialog } from './dialog.js';
 
 export function createReportSection(page, api) {
-  const { byId, t, lang, store, act, confirmChange, state } = page;
+  const { byId, t, store, act, confirmChange, state } = page;
   const version = api.runtime.getManifest().version;
   const dialog = setUpDialog(byId('report-dialog'));
   let journal = [];
@@ -25,7 +25,7 @@ export function createReportSection(page, api) {
   function render() {
     const debug = state.settings?.debug ?? false;
     byId('journal-row').hidden = !debug && journal.length === 0;
-    byId('journal-count').textContent = t(pluralKey(journal.length, lang, 'journalCountOne', 'journalCountOther'), [formatNumber(journal.length, lang)]);
+    byId('journal-count').textContent = t(pluralKey(journal.length, page.lang,'journalCountOne', 'journalCountOther'), [formatNumber(journal.length, page.lang)]);
     byId('journal-copy').disabled = journal.length === 0;
     byId('journal-clear').disabled = journal.length === 0;
   }
@@ -68,7 +68,7 @@ export function createReportSection(page, api) {
     const box = byId('report-journal');
     box.checked = journal.length > 0;
     box.disabled = journal.length === 0;
-    byId('report-journal-label').textContent = t(pluralKey(journal.length, lang, 'reportJournalOne', 'reportJournalOther'), [formatNumber(journal.length, lang)]);
+    byId('report-journal-label').textContent = t(pluralKey(journal.length, page.lang,'reportJournalOne', 'reportJournalOther'), [formatNumber(journal.length, page.lang)]);
     byId('report-debug-off').hidden = state.settings.debug || journal.length > 0;
     showReport();
     dialog.open();

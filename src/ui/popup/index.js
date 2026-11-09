@@ -13,7 +13,7 @@ import { api } from '../../platform/api.js';
 import { Message } from '../../platform/messages.js';
 import { createStore } from '../../platform/storage.js';
 import { createActionRunner } from '../shared/actions.js';
-import { markReady, renderParts } from '../shared/dom.js';
+import { crossFade, markReady, renderParts } from '../shared/dom.js';
 import { embeddedOptionsUrl } from '../shared/embed.js';
 import { formatLikeCount } from '../shared/format.js';
 import { createTranslator, translatePage } from '../shared/i18n.js';
@@ -29,7 +29,8 @@ import { Action, channelPageView, videoView } from './view.js';
 const REFRESH_MS = 1000;
 const LOG_PREFIX = '[YouTube Auto Like]';
 
-// In the language of the browser until start() has read the one of the settings.
+// In the language of the browser until start() has read the one of the
+// settings, and again in another when the setting changes (changeLanguage).
 let t = createTranslator((key, substitutions) => api.i18n.getMessage(key, substitutions));
 let lang = t('locale');
 const store = createStore(api);
@@ -46,6 +47,9 @@ const state = {
   update: null,
 };
 let refreshing = false;
+// The language setting the popup is shown in (or being switched to):
+// render() compares it with the settings, whoever changed them.
+let shownLanguage = null;
 
 const notice = createNotice(
   { box: byId('notice'), text: byId('notice-text'), undoButton: byId('notice-undo') },
@@ -64,6 +68,7 @@ function draw(name, model, paint) {
 function render() {
   const { settings, status } = state;
   if (!settings) return;
+  if (settings.language !== shownLanguage) changeLanguage(settings.language);
 
   draw('theme', settings.theme, (theme) => applyTheme(document, theme, window.localStorage));
   const paused = !settings.enabled;
@@ -212,12 +217,46 @@ function showSettings(open) {
   if (open && !frame.getAttribute('src')) frame.src = embeddedOptionsUrl((path) => api.runtime.getURL(path));
   byId('main-view').hidden = open;
   byId('settings-view').hidden = !open;
+  labelSettingsToggle();
+  (open ? byId('open-full-page') : byId('settings-toggle')).focus();
+}
+
+/** The settings button says what it does now: show the settings, or go back to the video. */
+function labelSettingsToggle() {
+  const open = !byId('settings-view').hidden;
   const toggle = byId('settings-toggle');
   toggle.setAttribute('aria-expanded', String(open));
   const label = t(open ? 'settingsHide' : 'settingsShow');
   toggle.setAttribute('aria-label', label);
   toggle.title = label;
-  (open ? byId('open-full-page') : toggle).focus();
+}
+
+/** Puts the popup in the language t and lang now hold, its fixed texts first. */
+function applyLanguage() {
+  act = createActionRunner(notice, t, lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = directionOf(lang);
+  translatePage(document, t);
+  byId('version').textContent = t('versionLabel', [VERSION]);
+  labelSettingsToggle();
+}
+
+/**
+ * Draws the popup again in another language, on the same view, as a
+ * cross-fade where the browser can (view transitions). The settings in
+ * their frame follow by themselves (options page).
+ */
+async function changeLanguage(language) {
+  shownLanguage = language;
+  const loaded = await loadLanguage(api, language);
+  // A later change of language wins over this one.
+  if (shownLanguage !== language) return;
+  crossFade(document, () => {
+    ({ t, lang } = loaded);
+    applyLanguage();
+    drawn.clear();
+    render();
+  });
 }
 
 const ACTIONS = {
@@ -270,11 +309,6 @@ function listen() {
     );
   });
   store.onSettingsChange((settings) => {
-    // Another language: the popup is drawn again in it, from the start.
-    if (settings.language !== state.settings.language) {
-      window.location.reload();
-      return;
-    }
     state.settings = settings;
     render();
   });
@@ -291,17 +325,14 @@ function listen() {
 async function start() {
   try {
     state.settings = await store.loadSettings();
-    ({ t, lang } = await loadLanguage(api, state.settings.language));
-    act = createActionRunner(notice, t, lang);
+    shownLanguage = state.settings.language;
+    ({ t, lang } = await loadLanguage(api, shownLanguage));
   } catch (error) {
     console.error(LOG_PREFIX, 'could not load the settings', error);
     notice.show(t('noticeLoadFailed'), { error: true });
     return;
   }
-  document.documentElement.lang = lang;
-  document.documentElement.dir = directionOf(lang);
-  translatePage(document, t);
-  byId('version').textContent = t('versionLabel', [VERSION]);
+  applyLanguage();
   try {
     state.likeCount = await store.loadLikeCount();
     state.update = await store.loadUpdateState();

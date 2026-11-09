@@ -13,7 +13,7 @@ import { videoUrl } from '../../core/video.js';
 import { createAvatar, initialOf } from '../shared/avatar.js';
 import { ChannelChoice, channelChoice, listForChoice, moveNoticeKey } from '../shared/channel-choice.js';
 import { el, joinedParts } from '../shared/dom.js';
-import { formatNumber } from '../shared/format.js';
+import { formatNumber, formatterFor } from '../shared/format.js';
 import { moveChannel } from '../shared/lists.js';
 import { createPager } from './pager.js';
 
@@ -25,8 +25,8 @@ const CHOICE_OPTIONS = [
 ];
 
 export function createHistorySection(page) {
-  const { doc, byId, t, lang, store, act, confirmChange, state } = page;
-  const dateTimeFormat = new Intl.DateTimeFormat(lang, { dateStyle: 'medium', timeStyle: 'short' });
+  const { doc, byId, t, store, act, confirmChange, state } = page;
+  const dateTimeFormat = formatterFor(() => page.lang, { dateStyle: 'medium', timeStyle: 'short' });
   let history = [];
   let drawn = null;
   const pager = createPager(
@@ -37,7 +37,7 @@ export function createHistorySection(page) {
       more: byId('history-more-button'),
       all: byId('history-all-button'),
     },
-    { t, lang, redraw: () => render() },
+    { locale: page, redraw: () => render() },
   );
 
   /** The select of the channel choice of a row, for the channel of entry. */
@@ -127,7 +127,7 @@ export function createHistorySection(page) {
 
   /** Loads the history and shows it; throws when storage cannot be read. */
   async function start() {
-    byId('history-hint').textContent = t('historyHint', [formatNumber(MAX_HISTORY, lang)]);
+    byId('history-hint').textContent = t('historyHint', [formatNumber(MAX_HISTORY, page.lang)]);
     history = await store.loadHistory();
     render();
   }

@@ -23,7 +23,7 @@ import { setStatus, setUpDialog } from './dialog.js';
 import { lookupLines, PART_LABELS } from './import-report.js';
 
 export function createAddDialog(page, { lookUp = (lines, onProgress) => lookUpLines(lines, fetch, onProgress) } = {}) {
-  const { doc, byId, t, lang, store, confirmChange, state } = page;
+  const { doc, byId, t, store, confirmChange, state } = page;
   const dialog = setUpDialog(byId('add-dialog'));
   const status = byId('add-status');
   // The lookup of the text shown, kept while only the target list changes.
@@ -61,11 +61,11 @@ export function createAddDialog(page, { lookUp = (lines, onProgress) => lookUpLi
       setStatus(status, count ? null : t('addNothing'));
     } catch (error) {
       if (!(error instanceof ListFullError)) throw error;
-      setStatus(status, t('noticeListFull', [formatNumber(error.max, lang)]), { error: true });
+      setStatus(status, t('noticeListFull', [formatNumber(error.max, page.lang)]), { error: true });
     }
     const apply = byId('add-apply');
     apply.disabled = count === 0;
-    apply.textContent = t(pluralKey(count, lang, 'addApplyOne', 'addApplyOther'), [formatNumber(count, lang)]);
+    apply.textContent = t(pluralKey(count, page.lang,'addApplyOne', 'addApplyOther'), [formatNumber(count, page.lang)]);
   }
 
   function reset() {
@@ -87,14 +87,14 @@ export function createAddDialog(page, { lookUp = (lines, onProgress) => lookUpLi
       return;
     }
     if (lines.length > MAX_LINKS) {
-      setStatus(status, t('addTooMany', [formatNumber(MAX_LINKS, lang)]), { error: true });
+      setStatus(status, t('addTooMany', [formatNumber(MAX_LINKS, page.lang)]), { error: true });
       return;
     }
     searching = true;
     byId('add-search').disabled = true;
-    setStatus(status, t('addSearching', [formatNumber(0, lang), formatNumber(lines.length, lang)]));
+    setStatus(status, t('addSearching', [formatNumber(0, page.lang), formatNumber(lines.length, page.lang)]));
     try {
-      const found = await lookUp(lines, (done, total) => setStatus(status, t('addSearching', [formatNumber(done, lang), formatNumber(total, lang)])));
+      const found = await lookUp(lines, (done, total) => setStatus(status, t('addSearching', [formatNumber(done, page.lang), formatNumber(total, page.lang)])));
       // The text may have changed while YouTube answered.
       if (readLinkLines(byId('add-lines').value).join('\n') === lines.join('\n')) {
         results = found;
@@ -119,13 +119,13 @@ export function createAddDialog(page, { lookUp = (lines, onProgress) => lookUpLi
         return { ...current, lists: plan.lists };
       });
     } catch (error) {
-      setStatus(status, failureText(error, t, lang), { error: true });
+      setStatus(status, failureText(error, t, page.lang), { error: true });
       return;
     }
     dialog.close();
     page.refresh();
     const changed = report.added + report.moved;
-    confirmChange(pluralKey(changed, lang, 'noticeChannelsAddedOne', 'noticeChannelsAddedOther'), [formatNumber(changed, lang), t(PART_LABELS[list])], async () => {
+    confirmChange(pluralKey(changed, page.lang,'noticeChannelsAddedOne', 'noticeChannelsAddedOther'), [formatNumber(changed, page.lang), t(PART_LABELS[list])], async () => {
       state.settings = await store.updateSettings((current) => ({ ...current, lists: previous }));
     });
   }
