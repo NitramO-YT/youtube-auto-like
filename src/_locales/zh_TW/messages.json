@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "自動為你選擇的頻道的 YouTube 影片按讚。" },
+
+  "locale": { "message": "zh-TW" },
+
+  "switchLabel": { "message": "自動為影片按讚" },
+  "switchActive": { "message": "已啟用" },
+  "switchPaused": { "message": "已暫停" },
+  "pausedBanner": { "message": "暫停期間，擴充功能不會為任何影片按讚。" },
+  "badgeUpdate": { "message": "新版" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like：已推出 $VERSION$ 版",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "已推出 $VERSION$ 版 ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "這部影片" },
+  "sectionThisChannel": { "message": "這個頻道" },
+  "sectionRule": { "message": "目前的規則" },
+  "openSettings": { "message": "變更設定 →" },
+  "settingsShow": { "message": "顯示設定" },
+  "settingsHide": { "message": "返回影片" },
+  "openFullPage": { "message": "在完整頁面開啟 ↗" },
+  "noVideo": { "message": "在 YouTube 上開啟影片或 Short，即可查看擴充功能如何處理；開啟頻道頁面，則可選擇是否為該頻道的影片按讚。" },
+  "noVideoHint": { "message": "如果影片已經開啟，請重新載入頁面。" },
+
+  "channelUnknown": { "message": "不明頻道" },
+  "channelSubscribed": { "message": "已訂閱" },
+  "channelNotSubscribed": { "message": "未訂閱" },
+  "kindVideo": { "message": "影片" },
+  "kindVideoDuration": {
+    "message": "影片 $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "直播" },
+
+  "statusLikedTitle": { "message": "已自動按讚" },
+  "statusLikedDetail": {
+    "message": "$WHEN$，$HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "一開啟就按讚" },
+  "likedHowLikeNow": { "message": "依你的要求" },
+  "likedHowAt": {
+    "message": "在影片的 $TIME$",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "觀看 $DURATION$ 後",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "將在影片播放到 $PERCENT$% 時按讚",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "將在播放 $MINUTES$ 分鐘後按讚",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "將在隨機時間點按讚" },
+  "statusWaitBeforeEnd": { "message": "將在結束前一刻按讚" },
+  "statusWaitRemaining": {
+    "message": "還要播放 $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "即將按讚" },
+  "statusWaitDuration": { "message": "正在等待影片長度" },
+  "statusWaitAd": { "message": "正在等待廣告結束" },
+  "statusWaitAdDetail": { "message": "不計入廣告時間。" },
+  "statusReading": { "message": "正在讀取頁面…" },
+  "statusReadingDetail": { "message": "在 Short 上，YouTube 有時要等滑鼠移到影片上方才會顯示按鈕。" },
+  "statusConfirming": { "message": "正在確認是否已成功按讚…" },
+  "statusFailedTitle": { "message": "無法確認按讚" },
+  "statusFailedDetail": { "message": "「喜歡」按鈕沒有反應。請重新載入頁面再試一次。" },
+
+  "statusAlreadyLikedTitle": { "message": "已經按讚" },
+  "statusNotLikedTitle": { "message": "未按讚" },
+  "reasonAlreadyLiked": { "message": "這部影片已經按過讚：擴充功能不會變動。" },
+  "reasonAlreadyDisliked": { "message": "你已對這部影片按下「不喜歡」：擴充功能不會變動。" },
+  "reasonSkippedByUser": { "message": "你要求這次不要按讚。下次觀看時仍可能按讚。" },
+  "reasonVideoExcluded": { "message": "你已排除這部影片：除非取消排除，否則永遠不會按讚。" },
+  "reasonNotSubscribed": { "message": "你沒有訂閱這個頻道。訂閱後就會為影片按讚。" },
+  "reasonNotInAlwaysList": { "message": "只會為「一律按讚」清單中的頻道按讚。" },
+  "reasonInNeverList": { "message": "這個頻道在你的「一律不按讚」清單中。" },
+  "reasonShortsOff": { "message": "根據你的設定，不會為 Shorts 按讚。" },
+  "reasonNormalVideosOff": { "message": "根據你的設定，只會為 Shorts 按讚。" },
+  "statusWouldLike": { "message": "會按讚" },
+  "statusWouldLikeDetail": { "message": "前提是擴充功能已啟用。" },
+
+  "actionLikeNow": { "message": "立即按讚" },
+  "actionSkip": { "message": "這次不要" },
+  "actionRestart": { "message": "重新處理這部影片" },
+  "actionRetry": { "message": "再試一次" },
+  "removedLikeTitle": { "message": "已收回讚" },
+  "removedLikeRestart": { "message": "你收回了讚。重新處理後，擴充功能會再次檢查這部影片。" },
+  "removedDislikeTitle": { "message": "已收回「不喜歡」" },
+  "removedDislikeRestart": { "message": "你收回了「不喜歡」。重新處理後，擴充功能會再次檢查這部影片。" },
+  "likeRemovedNextOpening": { "message": "下次開啟影片時會再次按讚。" },
+  "likeRemovedAt": {
+    "message": "播放再次經過 $TIME$ 時會重新按讚。",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "我收回讚的影片要重新按讚" },
+  "relikeHint": { "message": "在播放再次經過預定時間點時，也就是你倒轉到該時間點之前之後；若為「一開啟就按讚」，則在下次開啟時。也適用於你自己按過讚的影片。" },
+  "actionResume": { "message": "取消「這次不要」" },
+  "actionExcludeVideo": { "message": "永遠不為這部影片按讚" },
+  "actionUnexcludeVideo": { "message": "取消排除這部影片" },
+  "channelChoiceLegend": { "message": "為這個頻道的影片按讚" },
+  "channelChoiceAlways": { "message": "一律" },
+  "channelChoiceAuto": { "message": "依設定" },
+  "channelChoiceNever": { "message": "一律不" },
+
+  "noticeAddedAlways": { "message": "已加入「一律按讚」" },
+  "noticeAddedNever": { "message": "已加入「一律不按讚」" },
+  "noticeRemovedNever": { "message": "已從「一律不按讚」移除" },
+  "noticeSkipped": { "message": "這次不按讚" },
+  "noticeVideoExcluded": { "message": "已加入排除的影片" },
+  "noticeVideoUnexcluded": { "message": "已從排除的影片移除" },
+  "noticeUndo": { "message": "復原" },
+  "noticeUndone": { "message": "已復原" },
+  "noticeSaveFailed": { "message": "無法儲存變更。" },
+  "noticeStorageFull": { "message": "擴充功能的儲存空間已滿：請從清單中移除一些頻道或排除的影片，然後再試一次。" },
+  "noticeLoadFailed": { "message": "無法讀取設定。" },
+  "noticeListFull": {
+    "message": "這份清單已滿（最多 $COUNT$ 個項目）。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "頁面沒有回應。請重新載入後再試一次。" },
+  "noticeSaved": { "message": "已儲存" },
+  "noticeRemovedAlways": { "message": "已從「一律按讚」移除" },
+  "noticeImportDone": {
+    "message": "匯入完成：$CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "已將 $COUNT$ 個頻道加入「$LIST$」",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "已將 $COUNT$ 個頻道加入「$LIST$」",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "取消" },
+  "dialogClose": { "message": "關閉" },
+  "noticeCopied": { "message": "已複製" },
+  "noticeCopyFailed": { "message": "無法複製：請選取文字後自行複製。" },
+  "noticeJournalCleared": { "message": "已清除記錄" },
+
+  "languageLabel": { "message": "語言" },
+  "languageHint": { "message": "瀏覽器的語言，或你選擇的其他語言。翻譯需要修正嗎？歡迎到 GitHub 提出建議。" },
+  "languageAuto": { "message": "瀏覽器的語言" },
+
+  "debugLabel": { "message": "偵錯模式" },
+  "debugHint": { "message": "記錄擴充功能的動作，以便回報問題：最近 200 個步驟，含你觀看過的影片 ID，只儲存在這個瀏覽器中。關閉時不會留下記錄。" },
+  "journalCountOne": { "message": "記錄：$COUNT$ 筆", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "記錄：$COUNT$ 筆", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "複製記錄" },
+  "journalClear": { "message": "清除記錄" },
+
+  "navAbout": { "message": "關於" },
+  "aboutHeading": { "message": "關於" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like，$VERSION$ 版",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "開發者" },
+  "aboutOrigin": { "message": "原始專案" },
+  "aboutFirefox": { "message": "Firefox 分支" },
+  "aboutLicense": { "message": "授權" },
+  "aboutInvite": { "message": "前往 GitHub 存放區了解詳情、追蹤新版本或提出改進建議。遇到問題了嗎？請使用下方按鈕回報。" },
+  "aboutRepository": { "message": "在 GitHub 上查看專案" },
+  "reportOpen": { "message": "回報問題" },
+  "reportHint": { "message": "請在 GitHub 上開啟的 issue 中描述問題：系統會附上這份報告，協助了解問題。傳送前請先閱讀；其中不含你的頻道清單。" },
+  "reportJournalOne": {
+    "message": "附上記錄（$COUNT$ 筆，含你觀看過的影片 ID）",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "附上記錄（$COUNT$ 筆，含你觀看過的影片 ID）",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "目前沒有記錄。如要附上記錄：請在「其他」中開啟偵錯模式，重現出問題的操作，然後回到這裡。" },
+  "reportTextLabel": { "message": "報告" },
+  "reportCopy": { "message": "複製報告" },
+  "reportIssue": { "message": "在 GitHub 上開啟 issue" },
+  "reportCut": { "message": "報告太長，無法完整放進 issue 網址，因此會在那裡被截短。請複製完整報告並貼到 issue 中。" },
+  "dialogAnalyse": { "message": "分析" },
+  "partWithCount": {
+    "message": "$PART$（$COUNT$）",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "新增頻道" },
+  "addHint": { "message": "貼上頻道或影片的連結，或 @帳號代碼，每行一個。擴充功能會像你開啟頻道頁面一樣，向 YouTube 查詢是哪個頻道。" },
+  "addLinesLabel": { "message": "連結或 @帳號代碼" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@name\n@name\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "加入清單" },
+  "addSearch": { "message": "查詢" },
+  "addSearching": {
+    "message": "正在向 YouTube 查詢… $DONE$/$TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "新增" },
+  "addApplyOne": {
+    "message": "新增 $COUNT$ 個頻道",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "新增 $COUNT$ 個頻道",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "沒有可新增的頻道：全部都已在清單中，或找不到任何頻道。" },
+  "addEmpty": { "message": "請至少貼上一個連結或 @帳號代碼。" },
+  "addTooMany": {
+    "message": "每次最多 $MAX$ 行。",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "將新增" },
+  "lookupAlready": { "message": "已在清單中" },
+  "lookupMoved": {
+    "message": "將從「$FROM$」移到「$TO$」",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "與前面某一行是同一個頻道" },
+  "lookupNotALink": { "message": "不是 YouTube 頻道或影片的連結，也不是 @帳號代碼" },
+  "lookupNotFound": { "message": "YouTube 上沒有這個頻道或影片" },
+  "lookupUnreadable": { "message": "YouTube 沒有提供頻道資訊。如果從未在這個瀏覽器開啟過 YouTube，請先開啟一次並選擇 Cookie 設定，然後再試一次" },
+
+  "importTitle": { "message": "匯入清單" },
+  "importHint": { "message": "擴充功能匯出的檔案，或頻道連結清單（每行一個）。按下「匯入」前不會儲存任何內容：「分析」會先顯示將執行的變更。" },
+  "importDropHere": { "message": "將檔案拖放到這裡，或" },
+  "importBrowse": { "message": "瀏覽檔案" },
+  "importPasteHint": { "message": "也可以在這個視窗中貼上檔案或文字（Ctrl+V）。" },
+  "importChange": { "message": "更換" },
+  "importRemove": { "message": "移除" },
+  "importPasted": { "message": "貼上的文字" },
+  "importSourceFile": { "message": "擴充功能匯出的檔案" },
+  "importSourceLinksOne": {
+    "message": "連結清單，$COUNT$ 行",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "連結清單，$COUNT$ 行",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "這既不是擴充功能匯出的檔案，也不是連結清單。" },
+  "importNoSource": { "message": "請先選擇檔案或貼上文字。" },
+  "importNoPart": { "message": "請至少勾選一個要匯入的部分。" },
+  "importListFull": {
+    "message": "清單項目將超過 $COUNT$ 個：不會匯入任何內容。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "匯入內容" },
+  "importLinksTarget": { "message": "將這些頻道放入" },
+  "importModeLabel": { "message": "已存在的項目" },
+  "importModeAddNew": { "message": "只新增新的項目" },
+  "importModeAddNewHint": { "message": "已在某個清單中的頻道維持不變。" },
+  "importModeFollow": { "message": "新增並依照檔案" },
+  "importModeFollowHint": { "message": "已存在的頻道會移到檔案指定的清單。" },
+  "importModeReplace": { "message": "全部以檔案取代" },
+  "importModeReplaceHint": { "message": "勾選的部分會變得與檔案完全相同：檔案中沒有的項目會被移除。" },
+  "importRemember": { "message": "記住我的選擇" },
+  "importApply": { "message": "匯入" },
+  "importConfirmOne": {
+    "message": "我確認要移除檔案中沒有的 $COUNT$ 個項目。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "我確認要移除檔案中沒有的 $COUNT$ 個項目。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$：$COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "沒有變更" },
+  "reportNothing": { "message": "沒有變更：所有項目都已存在。" },
+  "reportAddedOne": { "message": "新增 $COUNT$ 個", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "新增 $COUNT$ 個", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "移動 $COUNT$ 個", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "移動 $COUNT$ 個", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "已存在 $COUNT$ 個", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "已存在 $COUNT$ 個", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "移除 $COUNT$ 個", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "移除 $COUNT$ 個", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "匯出清單" },
+  "exportPartsLabel": { "message": "匯出內容" },
+  "exportFormatLabel": { "message": "格式" },
+  "exportFormatJson": { "message": "擴充功能檔案（JSON）" },
+  "exportFormatJsonHint": { "message": "可原封不動地重新匯入，包含頻道的日期和圖片。" },
+  "exportFormatLinks": { "message": "連結清單（文字）" },
+  "exportFormatLinksHint": { "message": "每行一個頻道連結及其名稱，方便閱讀或分享。不含排除的影片。" },
+  "exportDownload": { "message": "下載" },
+  "exportNothing": { "message": "請至少勾選一份清單。" },
+  "noticeImportInvalid": { "message": "這個檔案不是 YouTube Auto Like 匯出的清單。" },
+  "noticeImportTooBig": { "message": "這個檔案太大，不可能是頻道清單。" },
+  "noticeCountReset": { "message": "計數器已重設" },
+  "noticeNumberInvalid": {
+    "message": "請輸入 $MIN$ 到 $MAX$ 之間的數字。",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "YouTube Auto Like 設定" },
+  "optionsTitle": { "message": "設定" },
+  "navSections": { "message": "章節" },
+  "navChannels": { "message": "哪些頻道" },
+  "navVideos": { "message": "哪些影片" },
+  "navWhen": { "message": "何時按讚" },
+  "navLists": { "message": "我的清單" },
+  "navMore": { "message": "其他" },
+
+  "channelsHeading": { "message": "要為哪些頻道的影片按讚？" },
+  "channelsHint": { "message": "「一律不按讚」清單永遠優先。" },
+  "likeWhatSubscribed": { "message": "我訂閱的頻道" },
+  "likeWhatSubscribedHint": { "message": "以及我的「一律按讚」清單中的頻道。" },
+  "recommended": { "message": "建議" },
+  "likeWhatAll": { "message": "所有頻道" },
+  "likeWhatAllHint": { "message": "你觀看的每部影片都會按讚。" },
+  "likeWhatList": { "message": "只限我的「一律按讚」清單" },
+  "likeWhatListHint": { "message": "不論是否訂閱，其他頻道都不會按讚。" },
+
+  "videosHeading": { "message": "哪些影片？" },
+  "videosHint": { "message": "即使在一般播放器中開啟，也能辨識出 Shorts。" },
+  "likeNormalVideos": { "message": "影片" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "何時按讚？" },
+  "whenHint": { "message": "你自己按下「喜歡」或「不喜歡」的影片，一律不會變動。" },
+  "modeInstant": { "message": "一開啟就按讚" },
+  "modeCustom": { "message": "過一段時間後" },
+  "modeRandom": { "message": "在隨機時間點" },
+  "thresholdAfter": { "message": "播放" },
+  "thresholdPercentUnit": { "message": "% 後" },
+  "thresholdMinutesUnit": { "message": "分鐘後" },
+  "percentLabel": { "message": "影片百分比" },
+  "minutesLabel": { "message": "播放分鐘數" },
+  "thresholdKeepOne": { "message": "兩個門檻至少會保留一個勾選。" },
+  "thresholdsHint": { "message": "先達到的門檻會觸發按讚。較短的影片會在結束前兩秒按讚。直播只計算你開始觀看後的分鐘數；沒有分鐘門檻時，一開啟就按讚。不計入廣告。" },
+  "randomHint": { "message": "每部影片隨機選擇一個時間點。直播一開啟就按讚。" },
+  "summaryLabel": { "message": "摘要：" },
+
+  "listsHeading": { "message": "我的頻道清單" },
+  "listsHint": { "message": "可透過連結或 @帳號代碼、在影片或頻道頁面上的圖示視窗，或從記錄中新增頻道。影片則從圖示視窗排除。" },
+  "listAlways": { "message": "一律按讚" },
+  "listNever": { "message": "一律不按讚" },
+  "listVideos": { "message": "排除的影片" },
+  "listExcludedOn": {
+    "message": "排除於 $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "取消排除「$TITLE$」",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "搜尋清單" },
+  "listImport": { "message": "匯入" },
+  "listExport": { "message": "匯出" },
+  "listEmpty": { "message": "清單中沒有頻道。可透過連結或 @帳號代碼、在影片或頻道頁面上的圖示視窗，或從記錄中新增。" },
+  "listEmptyVideos": { "message": "沒有排除的影片。如要排除影片，請在觀看時開啟圖示視窗，然後選擇「永遠不為這部影片按讚」。" },
+  "listNoMatch": { "message": "沒有符合搜尋的頻道。" },
+  "listAddedOn": {
+    "message": "新增於 $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "從清單移除 $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$/$TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "再顯示 $COUNT$ 個",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "全部顯示（$COUNT$）",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "清單和記錄中顯示的行數" },
+  "listPageSizeHint": { "message": "其餘的行可透過「再顯示…」或「全部顯示」查看。長清單會在清單內捲動，不會拉長頁面。" },
+  "listPageSizeAll": { "message": "全部" },
+  "listOpenChannel": { "message": "在 YouTube 上開啟頻道" },
+
+  "navHistory": { "message": "記錄" },
+  "historyHeading": { "message": "擴充功能的按讚記錄" },
+  "historyHint": {
+    "message": "最近 $COUNT$ 筆，最新的在前，只儲存在這個瀏覽器中。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "擴充功能還沒有為任何影片按讚。" },
+  "historyUntitled": { "message": "無標題影片" },
+  "historyChannelChoice": {
+    "message": "為「$NAME$」的影片按讚",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "清除記錄" },
+  "noticeHistoryCleared": { "message": "已清除記錄" },
+
+  "moreHeading": { "message": "其他" },
+  "themeLabel": { "message": "主題" },
+  "themeSystem": { "message": "依系統設定" },
+  "themeLight": { "message": "淺色" },
+  "themeDark": { "message": "深色" },
+  "updatesLabel": { "message": "檢查新版本" },
+  "updatesHint": { "message": "向發布擴充功能的 GitHub 查詢；GitHub 因此會看到你的 IP 位址。" },
+  "updateEvery0": { "message": "永不" },
+  "updateEvery30": { "message": "每 30 分鐘" },
+  "updateEvery60": { "message": "每小時" },
+  "updateEvery360": { "message": "每 6 小時" },
+  "updateEvery1440": { "message": "每天" },
+  "updateEvery10080": { "message": "每週" },
+  "updateEveryCustom": { "message": "自訂…" },
+  "updateEveryPrefix": { "message": "每" },
+  "updateCustomCount": { "message": "兩次檢查之間的分鐘、小時或天數" },
+  "updateCustomUnit": { "message": "單位" },
+  "unitMinutesOne": { "message": "分鐘" },
+  "unitMinutesOther": { "message": "分鐘" },
+  "unitHoursOne": { "message": "小時" },
+  "unitHoursOther": { "message": "小時" },
+  "unitDaysOne": { "message": "天" },
+  "unitDaysOther": { "message": "天" },
+  "noticeFrequencyInvalid": { "message": "請輸入 5 分鐘到 30 天之間的時間。" },
+  "updateCheckNow": { "message": "立即檢查" },
+  "updateStatusOff": { "message": "不檢查新版本。" },
+  "updateStatusNever": { "message": "尚未檢查。" },
+  "updateStatusChecking": { "message": "正在檢查…" },
+  "updateStatusAvailable": {
+    "message": "已推出 $VERSION$ 版 ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "$WHEN$檢查：你使用的是最新版本。",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "$WHEN$檢查：尚未發布任何版本。",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "上次檢查失敗（$WHEN$）；下次會再試一次。",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "無法檢查。" },
+  "likeCountHint": { "message": "自安裝擴充功能或上次重設以來。重設不會變更其他任何內容。" },
+  "likeCountReset": { "message": "重設" },
+
+  "ruleSentence": {
+    "message": "$WHEN$為$CHANNELS$$WHAT$按讚。",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "不會為任何內容按讚：影片和 Shorts 都已關閉。" },
+  "ruleWhatBoth": { "message": "影片和 Shorts " },
+  "ruleWhatVideos": { "message": "影片" },
+  "ruleWhatShorts": { "message": " Shorts " },
+  "ruleChannelsSubscribed": { "message": "已訂閱頻道的" },
+  "ruleChannelsSubscribedAndList": { "message": "已訂閱頻道及「一律按讚」清單頻道的" },
+  "ruleChannelsAll": { "message": "所有頻道的" },
+  "ruleChannelsList": { "message": "「一律按讚」清單頻道的" },
+  "ruleWhenInstant": { "message": "一開啟就" },
+  "ruleWhenPercent": {
+    "message": "在播放到 $PERCENT$% 時",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "在播放 $MINUTES$ 分鐘後",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "在播放到 $PERCENT$% 或播放 $MINUTES$ 分鐘後（以先到者為準）",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "在隨機時間點" },
+
+  "likeCountOne": {
+    "message": "已為 $COUNT$ 部影片按讚",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "已為 $COUNT$ 部影片按讚",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ 秒",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ 分 $SECONDS$ 秒",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ 小時 $MINUTES$ 分",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
