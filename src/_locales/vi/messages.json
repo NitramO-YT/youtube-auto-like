@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Tự động thích video YouTube từ các kênh bạn chọn." },
+
+  "locale": { "message": "vi" },
+
+  "switchLabel": { "message": "Tự động thích video" },
+  "switchActive": { "message": "Bật" },
+  "switchPaused": { "message": "Tạm dừng" },
+  "pausedBanner": { "message": "Tiện ích không thích gì cả khi đang tạm dừng." },
+  "badgeUpdate": { "message": "MỚI" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: đã có phiên bản $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Đã có phiên bản $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Video này" },
+  "sectionThisChannel": { "message": "Kênh này" },
+  "sectionRule": { "message": "Quy tắc đang áp dụng" },
+  "openSettings": { "message": "Thay đổi cài đặt →" },
+  "settingsShow": { "message": "Hiện cài đặt" },
+  "settingsHide": { "message": "Quay lại video" },
+  "openFullPage": { "message": "Mở toàn trang ↗" },
+  "noVideo": { "message": "Mở một video hoặc Short trên YouTube để xem tiện ích làm gì với nó, hoặc mở trang của một kênh để chọn có thích video của kênh đó hay không." },
+  "noVideoHint": { "message": "Nếu video đã mở sẵn, hãy tải lại trang." },
+
+  "channelUnknown": { "message": "Kênh không xác định" },
+  "channelSubscribed": { "message": "Đã đăng ký" },
+  "channelNotSubscribed": { "message": "Chưa đăng ký" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "Video $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Phát trực tiếp" },
+
+  "statusLikedTitle": { "message": "Đã tự động thích" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "ngay khi mở" },
+  "likedHowLikeNow": { "message": "theo yêu cầu của bạn" },
+  "likedHowAt": {
+    "message": "tại $TIME$ của video",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "sau $DURATION$ xem",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Sẽ thích ở $PERCENT$% video",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Sẽ thích sau $MINUTES$ phút phát",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Sẽ thích vào một thời điểm ngẫu nhiên" },
+  "statusWaitBeforeEnd": { "message": "Sẽ thích ngay trước khi kết thúc" },
+  "statusWaitRemaining": {
+    "message": "Còn $DURATION$ phát",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Sẽ thích trong giây lát" },
+  "statusWaitDuration": { "message": "Đang chờ thời lượng video" },
+  "statusWaitAd": { "message": "Đang chờ quảng cáo kết thúc" },
+  "statusWaitAdDetail": { "message": "Thời gian quảng cáo không được tính." },
+  "statusReading": { "message": "Đang đọc trang…" },
+  "statusReadingDetail": { "message": "Với Short, đôi khi YouTube chỉ hiện các nút khi chuột di chuyển trên video." },
+  "statusConfirming": { "message": "Đang kiểm tra lượt thích đã được ghi nhận chưa…" },
+  "statusFailedTitle": { "message": "Không thể xác nhận lượt thích" },
+  "statusFailedDetail": { "message": "Nút “Thích” không phản hồi. Hãy tải lại trang để thử lại." },
+
+  "statusAlreadyLikedTitle": { "message": "Đã thích" },
+  "statusNotLikedTitle": { "message": "Chưa thích" },
+  "reasonAlreadyLiked": { "message": "Video này đã được thích: tiện ích không động đến." },
+  "reasonAlreadyDisliked": { "message": "Bạn đã nhấn “Không thích” video này: tiện ích không động đến." },
+  "reasonSkippedByUser": { "message": "Bạn đã yêu cầu không thích lần này. Video có thể được thích khi bạn xem lại." },
+  "reasonVideoExcluded": { "message": "Bạn đã loại trừ video này: video sẽ không bao giờ được thích cho đến khi bạn bỏ loại trừ." },
+  "reasonNotSubscribed": { "message": "Bạn chưa đăng ký kênh này. Video sẽ được thích nếu bạn đăng ký." },
+  "reasonNotInAlwaysList": { "message": "Chỉ các kênh trong danh sách “Luôn thích” của bạn mới được thích." },
+  "reasonInNeverList": { "message": "Kênh này nằm trong danh sách “Không bao giờ thích” của bạn." },
+  "reasonShortsOff": { "message": "Theo cài đặt của bạn, Shorts không được thích." },
+  "reasonNormalVideosOff": { "message": "Theo cài đặt của bạn, chỉ Shorts được thích." },
+  "statusWouldLike": { "message": "Sẽ được thích" },
+  "statusWouldLikeDetail": { "message": "nếu tiện ích đang bật." },
+
+  "actionLikeNow": { "message": "Thích ngay" },
+  "actionSkip": { "message": "Lần này thì không" },
+  "actionRestart": { "message": "Bắt đầu lại cho video này" },
+  "actionRetry": { "message": "Thử lại" },
+  "removedLikeTitle": { "message": "Đã bỏ thích" },
+  "removedLikeRestart": { "message": "Bạn đã bỏ thích. Hãy bắt đầu lại để tiện ích kiểm tra lại video." },
+  "removedDislikeTitle": { "message": "Đã bỏ “Không thích”" },
+  "removedDislikeRestart": { "message": "Bạn đã bỏ “Không thích”. Hãy bắt đầu lại để tiện ích kiểm tra lại video." },
+  "likeRemovedNextOpening": { "message": "Video sẽ được thích lại vào lần mở tiếp theo." },
+  "likeRemovedAt": {
+    "message": "Video sẽ được thích lại khi phát lại qua $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Thích lại video mà tôi bỏ thích" },
+  "relikeHint": { "message": "Khi phát lại qua thời điểm dự kiến, tức là sau khi bạn tua ngược về trước đó; với “Ngay khi mở”, vào lần mở tiếp theo. Áp dụng cả cho video mà chính bạn đã thích." },
+  "actionResume": { "message": "Hủy “Lần này thì không”" },
+  "actionExcludeVideo": { "message": "Không bao giờ thích video này" },
+  "actionUnexcludeVideo": { "message": "Bỏ loại trừ video này" },
+  "channelChoiceLegend": { "message": "Thích video của kênh này" },
+  "channelChoiceAlways": { "message": "Luôn luôn" },
+  "channelChoiceAuto": { "message": "Theo cài đặt" },
+  "channelChoiceNever": { "message": "Không bao giờ" },
+
+  "noticeAddedAlways": { "message": "Đã thêm vào “Luôn thích”" },
+  "noticeAddedNever": { "message": "Đã thêm vào “Không bao giờ thích”" },
+  "noticeRemovedNever": { "message": "Đã xóa khỏi “Không bao giờ thích”" },
+  "noticeSkipped": { "message": "Lần này không thích" },
+  "noticeVideoExcluded": { "message": "Đã thêm vào video bị loại trừ" },
+  "noticeVideoUnexcluded": { "message": "Đã xóa khỏi video bị loại trừ" },
+  "noticeUndo": { "message": "Hoàn tác" },
+  "noticeUndone": { "message": "Đã hoàn tác" },
+  "noticeSaveFailed": { "message": "Không thể lưu thay đổi." },
+  "noticeStorageFull": { "message": "Bộ nhớ của tiện ích đã đầy: hãy xóa bớt kênh hoặc video bị loại trừ khỏi danh sách rồi thử lại." },
+  "noticeLoadFailed": { "message": "Không thể đọc cài đặt." },
+  "noticeListFull": {
+    "message": "Danh sách này đã đầy (tối đa $COUNT$ mục).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Trang không phản hồi. Hãy tải lại trang rồi thử lại." },
+  "noticeSaved": { "message": "Đã lưu" },
+  "noticeRemovedAlways": { "message": "Đã xóa khỏi “Luôn thích”" },
+  "noticeImportDone": {
+    "message": "Đã nhập xong: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "Đã thêm $COUNT$ kênh vào “$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "Đã thêm $COUNT$ kênh vào “$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Hủy" },
+  "dialogClose": { "message": "Đóng" },
+  "noticeCopied": { "message": "Đã sao chép" },
+  "noticeCopyFailed": { "message": "Không thể sao chép: hãy chọn văn bản và tự sao chép." },
+  "noticeJournalCleared": { "message": "Đã xóa nhật ký" },
+
+  "languageLabel": { "message": "Ngôn ngữ" },
+  "languageHint": { "message": "Ngôn ngữ của trình duyệt, hoặc một ngôn ngữ khác do bạn chọn. Bản dịch cần sửa? Hãy đề xuất trên GitHub." },
+  "languageAuto": { "message": "Ngôn ngữ của trình duyệt" },
+
+  "debugLabel": { "message": "Chế độ gỡ lỗi" },
+  "debugHint": { "message": "Ghi nhật ký những gì tiện ích làm, để báo cáo sự cố: 200 bước gần nhất kèm ID của các video bạn đã xem, chỉ lưu trong trình duyệt này. Khi tắt, không có nhật ký nào được ghi." },
+  "journalCountOne": { "message": "Nhật ký: $COUNT$ mục", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Nhật ký: $COUNT$ mục", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Sao chép nhật ký" },
+  "journalClear": { "message": "Xóa nhật ký" },
+
+  "navAbout": { "message": "Giới thiệu" },
+  "aboutHeading": { "message": "Giới thiệu" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, phiên bản $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Phát triển bởi" },
+  "aboutOrigin": { "message": "Dự án gốc" },
+  "aboutFirefox": { "message": "Bản fork cho Firefox" },
+  "aboutLicense": { "message": "Giấy phép" },
+  "aboutInvite": { "message": "Truy cập kho lưu trữ GitHub để tìm hiểu thêm, theo dõi các phiên bản mới hoặc đề xuất cải tiến. Gặp sự cố? Hãy báo cáo bằng nút bên dưới." },
+  "aboutRepository": { "message": "Xem dự án trên GitHub" },
+  "reportOpen": { "message": "Báo cáo sự cố" },
+  "reportHint": { "message": "Mô tả sự cố trong issue mở trên GitHub: báo cáo này được đính kèm để giúp hiểu rõ sự cố. Hãy đọc trước khi gửi; danh sách kênh của bạn không có trong đó." },
+  "reportJournalOne": {
+    "message": "Đính kèm nhật ký ($COUNT$ mục, kèm ID của các video bạn đã xem)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Đính kèm nhật ký ($COUNT$ mục, kèm ID của các video bạn đã xem)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Chưa có nhật ký nào được ghi. Để đính kèm: bật chế độ gỡ lỗi trong “Khác”, làm lại thao tác gặp lỗi, rồi quay lại đây." },
+  "reportTextLabel": { "message": "Báo cáo" },
+  "reportCopy": { "message": "Sao chép báo cáo" },
+  "reportIssue": { "message": "Mở issue trên GitHub" },
+  "reportCut": { "message": "Báo cáo quá dài so với địa chỉ của issue nên đã bị cắt bớt ở đó. Hãy sao chép toàn bộ báo cáo và dán vào issue." },
+  "dialogAnalyse": { "message": "Phân tích" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Thêm kênh" },
+  "addHint": { "message": "Dán đường liên kết đến kênh hoặc video, hoặc @tên người dùng, mỗi dòng một mục. Tiện ích sẽ hỏi YouTube đó là kênh nào, giống như khi bạn mở trang của kênh." },
+  "addLinesLabel": { "message": "Đường liên kết hoặc @tên người dùng" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@ten\n@ten\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "Vào danh sách" },
+  "addSearch": { "message": "Tìm" },
+  "addSearching": {
+    "message": "Đang hỏi YouTube… $DONE$/$TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Thêm" },
+  "addApplyOne": {
+    "message": "Thêm $COUNT$ kênh",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Thêm $COUNT$ kênh",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Không có kênh nào để thêm: tất cả đã có trong danh sách, hoặc không tìm thấy kênh nào." },
+  "addEmpty": { "message": "Hãy dán ít nhất một đường liên kết hoặc @tên người dùng." },
+  "addTooMany": {
+    "message": "Tối đa $MAX$ dòng mỗi lần.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "sẽ được thêm" },
+  "lookupAlready": { "message": "đã có trong danh sách" },
+  "lookupMoved": {
+    "message": "sẽ được chuyển từ “$FROM$” sang “$TO$”",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "cùng kênh với một dòng phía trên" },
+  "lookupNotALink": { "message": "không phải đường liên kết đến kênh hay video YouTube, cũng không phải @tên người dùng" },
+  "lookupNotFound": { "message": "kênh hoặc video không tồn tại trên YouTube" },
+  "lookupUnreadable": { "message": "YouTube không cho biết kênh. Nếu chưa từng mở YouTube trong trình duyệt này, hãy mở một lần và chọn tùy chọn cookie, rồi thử lại" },
+
+  "importTitle": { "message": "Nhập danh sách" },
+  "importHint": { "message": "Tệp do tiện ích xuất, hoặc danh sách đường liên kết đến kênh, mỗi dòng một mục. Không có gì được lưu trước khi nhấn “Nhập”: “Phân tích” sẽ cho thấy trước những gì sẽ thực hiện." },
+  "importDropHere": { "message": "Thả tệp vào đây, hoặc" },
+  "importBrowse": { "message": "duyệt tìm tệp" },
+  "importPasteHint": { "message": "Bạn cũng có thể dán tệp hoặc văn bản (Ctrl+V) vào cửa sổ này." },
+  "importChange": { "message": "Đổi" },
+  "importRemove": { "message": "Xóa" },
+  "importPasted": { "message": "Văn bản đã dán" },
+  "importSourceFile": { "message": "Tệp do tiện ích xuất" },
+  "importSourceLinksOne": {
+    "message": "Danh sách liên kết, $COUNT$ dòng",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Danh sách liên kết, $COUNT$ dòng",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Đây không phải tệp xuất của tiện ích, cũng không phải danh sách liên kết." },
+  "importNoSource": { "message": "Hãy chọn tệp hoặc dán văn bản trước." },
+  "importNoPart": { "message": "Hãy chọn ít nhất một phần để nhập." },
+  "importListFull": {
+    "message": "Một danh sách sẽ có hơn $COUNT$ mục: sẽ không có gì được nhập.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Nội dung được nhập" },
+  "importLinksTarget": { "message": "Đưa các kênh này vào" },
+  "importModeLabel": { "message": "Các mục đã có" },
+  "importModeAddNew": { "message": "Chỉ thêm mục mới" },
+  "importModeAddNewHint": { "message": "Kênh đã có trong một danh sách sẽ giữ nguyên vị trí." },
+  "importModeFollow": { "message": "Thêm và làm theo tệp" },
+  "importModeFollowHint": { "message": "Kênh đã có sẽ được chuyển sang danh sách mà tệp chỉ định." },
+  "importModeReplace": { "message": "Thay thế tất cả bằng tệp" },
+  "importModeReplaceHint": { "message": "Các phần được chọn sẽ giống hệt trong tệp: những gì không có trong tệp sẽ bị xóa." },
+  "importRemember": { "message": "Ghi nhớ lựa chọn" },
+  "importApply": { "message": "Nhập" },
+  "importConfirmOne": {
+    "message": "Tôi xác nhận xóa $COUNT$ mục không có trong tệp.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Tôi xác nhận xóa $COUNT$ mục không có trong tệp.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "không thay đổi" },
+  "reportNothing": { "message": "Không thay đổi gì: mọi thứ đã có sẵn." },
+  "reportAddedOne": { "message": "$COUNT$ mới", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "$COUNT$ mới", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ được chuyển", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "$COUNT$ được chuyển", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ đã có", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ đã có", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ bị xóa", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ bị xóa", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Xuất danh sách" },
+  "exportPartsLabel": { "message": "Nội dung được xuất" },
+  "exportFormatLabel": { "message": "Định dạng" },
+  "exportFormatJson": { "message": "Tệp của tiện ích (JSON)" },
+  "exportFormatJsonHint": { "message": "Có thể nhập lại nguyên trạng, kèm ngày và hình ảnh của kênh." },
+  "exportFormatLinks": { "message": "Danh sách liên kết (văn bản)" },
+  "exportFormatLinksHint": { "message": "Mỗi dòng một đường liên kết đến kênh kèm tên, để đọc hoặc chia sẻ. Không gồm video bị loại trừ." },
+  "exportDownload": { "message": "Tải xuống" },
+  "exportNothing": { "message": "Hãy chọn ít nhất một danh sách." },
+  "noticeImportInvalid": { "message": "Tệp này không phải danh sách do YouTube Auto Like xuất." },
+  "noticeImportTooBig": { "message": "Tệp này quá lớn để là một danh sách kênh." },
+  "noticeCountReset": { "message": "Đã đặt lại bộ đếm" },
+  "noticeNumberInvalid": {
+    "message": "Hãy nhập một số từ $MIN$ đến $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Cài đặt YouTube Auto Like" },
+  "optionsTitle": { "message": "Cài đặt" },
+  "navSections": { "message": "Mục" },
+  "navChannels": { "message": "Kênh nào" },
+  "navVideos": { "message": "Video nào" },
+  "navWhen": { "message": "Khi nào thích" },
+  "navLists": { "message": "Danh sách của tôi" },
+  "navMore": { "message": "Khác" },
+
+  "channelsHeading": { "message": "Thích video của những kênh nào?" },
+  "channelsHint": { "message": "Danh sách “Không bao giờ thích” luôn được ưu tiên." },
+  "likeWhatSubscribed": { "message": "Các kênh tôi đã đăng ký" },
+  "likeWhatSubscribedHint": { "message": "cùng các kênh trong danh sách “Luôn thích” của tôi." },
+  "recommended": { "message": "Nên dùng" },
+  "likeWhatAll": { "message": "Tất cả các kênh" },
+  "likeWhatAllHint": { "message": "mọi video bạn xem đều được thích." },
+  "likeWhatList": { "message": "Chỉ danh sách “Luôn thích” của tôi" },
+  "likeWhatListHint": { "message": "đăng ký hay không, ngoài ra không thích gì khác." },
+
+  "videosHeading": { "message": "Video nào?" },
+  "videosHint": { "message": "Shorts vẫn được nhận ra ngay cả khi mở trong trình phát thông thường." },
+  "likeNormalVideos": { "message": "Video" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Khi nào thích?" },
+  "whenHint": { "message": "Video mà chính bạn nhấn “Thích” hoặc “Không thích” sẽ không bao giờ bị động đến." },
+  "modeInstant": { "message": "Ngay khi mở" },
+  "modeCustom": { "message": "Sau một lúc" },
+  "modeRandom": { "message": "Vào thời điểm ngẫu nhiên" },
+  "thresholdAfter": { "message": "sau" },
+  "thresholdPercentUnit": { "message": "% video" },
+  "thresholdMinutesUnit": { "message": "phút phát" },
+  "percentLabel": { "message": "Phần trăm video" },
+  "minutesLabel": { "message": "Số phút phát" },
+  "thresholdKeepOne": { "message": "Ít nhất một trong hai ngưỡng luôn được chọn." },
+  "thresholdsHint": { "message": "Ngưỡng nào đạt trước sẽ kích hoạt lượt thích. Video ngắn hơn được thích hai giây trước khi kết thúc. Với phát trực tiếp, chỉ tính số phút kể từ khi bạn bắt đầu xem; nếu không có ngưỡng phút, video được thích ngay khi mở. Quảng cáo không được tính." },
+  "randomHint": { "message": "Một thời điểm được chọn ngẫu nhiên trong mỗi video. Phát trực tiếp được thích ngay khi mở." },
+  "summaryLabel": { "message": "Tóm tắt:" },
+
+  "listsHeading": { "message": "Danh sách kênh của tôi" },
+  "listsHint": { "message": "Thêm kênh bằng đường liên kết hoặc @tên người dùng, từ cửa sổ của biểu tượng trên một video hoặc trang kênh, hoặc từ lịch sử. Loại trừ video từ cửa sổ của biểu tượng." },
+  "listAlways": { "message": "Luôn thích" },
+  "listNever": { "message": "Không bao giờ thích" },
+  "listVideos": { "message": "Video bị loại trừ" },
+  "listExcludedOn": {
+    "message": "loại trừ ngày $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Bỏ loại trừ $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Tìm trong danh sách" },
+  "listImport": { "message": "Nhập" },
+  "listExport": { "message": "Xuất" },
+  "listEmpty": { "message": "Danh sách chưa có kênh nào. Thêm bằng đường liên kết hoặc @tên người dùng, từ cửa sổ của biểu tượng trên một video hoặc trang kênh, hoặc từ lịch sử." },
+  "listEmptyVideos": { "message": "Chưa có video nào bị loại trừ. Để loại trừ một video, hãy mở cửa sổ của biểu tượng khi đang xem và chọn “Không bao giờ thích video này”." },
+  "listNoMatch": { "message": "Không có kênh nào khớp với nội dung tìm kiếm." },
+  "listAddedOn": {
+    "message": "thêm ngày $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Xóa $NAME$ khỏi danh sách",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$/$TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Hiện thêm $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Hiện tất cả ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Số dòng hiển thị trong danh sách và lịch sử" },
+  "listPageSizeHint": { "message": "Các dòng còn lại hiện ra bằng “Hiện thêm …” hoặc “Hiện tất cả”. Danh sách dài cuộn bên trong, không làm trang dài thêm." },
+  "listPageSizeAll": { "message": "Tất cả" },
+  "listOpenChannel": { "message": "Mở kênh trên YouTube" },
+
+  "navHistory": { "message": "Lịch sử" },
+  "historyHeading": { "message": "Lượt thích của tiện ích" },
+  "historyHint": {
+    "message": "$COUNT$ lượt gần nhất, mới nhất trước, chỉ lưu trong trình duyệt này.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Tiện ích chưa thích video nào." },
+  "historyUntitled": { "message": "Video không có tiêu đề" },
+  "historyChannelChoice": {
+    "message": "Thích video của $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Xóa lịch sử" },
+  "noticeHistoryCleared": { "message": "Đã xóa lịch sử" },
+
+  "moreHeading": { "message": "Khác" },
+  "themeLabel": { "message": "Giao diện" },
+  "themeSystem": { "message": "Theo hệ thống" },
+  "themeLight": { "message": "Sáng" },
+  "themeDark": { "message": "Tối" },
+  "updatesLabel": { "message": "Tìm phiên bản mới" },
+  "updatesHint": { "message": "Hỏi GitHub, nơi tiện ích được phát hành; khi đó GitHub thấy địa chỉ IP của bạn." },
+  "updateEvery0": { "message": "Không bao giờ" },
+  "updateEvery30": { "message": "Mỗi 30 phút" },
+  "updateEvery60": { "message": "Mỗi giờ" },
+  "updateEvery360": { "message": "Mỗi 6 giờ" },
+  "updateEvery1440": { "message": "Mỗi ngày" },
+  "updateEvery10080": { "message": "Mỗi tuần" },
+  "updateEveryCustom": { "message": "Tùy chỉnh…" },
+  "updateEveryPrefix": { "message": "Mỗi" },
+  "updateCustomCount": { "message": "Số phút, giờ hoặc ngày giữa hai lần kiểm tra" },
+  "updateCustomUnit": { "message": "Đơn vị" },
+  "unitMinutesOne": { "message": "phút" },
+  "unitMinutesOther": { "message": "phút" },
+  "unitHoursOne": { "message": "giờ" },
+  "unitHoursOther": { "message": "giờ" },
+  "unitDaysOne": { "message": "ngày" },
+  "unitDaysOther": { "message": "ngày" },
+  "noticeFrequencyInvalid": { "message": "Hãy nhập khoảng thời gian từ 5 phút đến 30 ngày." },
+  "updateCheckNow": { "message": "Kiểm tra ngay" },
+  "updateStatusOff": { "message": "Không tìm phiên bản mới." },
+  "updateStatusNever": { "message": "Chưa kiểm tra." },
+  "updateStatusChecking": { "message": "Đang kiểm tra…" },
+  "updateStatusAvailable": {
+    "message": "Đã có phiên bản $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Đã kiểm tra $WHEN$: bạn đang dùng phiên bản mới nhất.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Đã kiểm tra $WHEN$: chưa có phiên bản nào được phát hành.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Lần kiểm tra gần nhất thất bại $WHEN$; lần sau sẽ thử lại.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Không thể kiểm tra." },
+  "likeCountHint": { "message": "Kể từ khi cài đặt tiện ích, hoặc kể từ lần đặt lại gần nhất. Đặt lại không thay đổi gì khác." },
+  "likeCountReset": { "message": "Đặt lại" },
+
+  "ruleSentence": {
+    "message": "Thích $WHAT$ $CHANNELS$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Không thích gì cả: cả video và Shorts đều đang tắt." },
+  "ruleWhatBoth": { "message": "video và Shorts" },
+  "ruleWhatVideos": { "message": "video" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "của các kênh bạn đã đăng ký" },
+  "ruleChannelsSubscribedAndList": { "message": "của các kênh bạn đã đăng ký và trong danh sách “Luôn thích” của bạn" },
+  "ruleChannelsAll": { "message": "của tất cả các kênh" },
+  "ruleChannelsList": { "message": "của các kênh trong danh sách “Luôn thích” của bạn" },
+  "ruleWhenInstant": { "message": "ngay khi mở" },
+  "ruleWhenPercent": {
+    "message": "ở $PERCENT$% video",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "sau $MINUTES$ phút phát",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "ở $PERCENT$% video hoặc sau $MINUTES$ phút phát, tùy điều nào đến trước",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "vào thời điểm ngẫu nhiên" },
+
+  "likeCountOne": {
+    "message": "Đã thích $COUNT$ video",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "Đã thích $COUNT$ video",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ giây",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ phút $SECONDS$ giây",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ giờ $MINUTES$ phút",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
