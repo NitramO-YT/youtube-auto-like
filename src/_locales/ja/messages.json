@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "選んだチャンネルの YouTube 動画に自動で高評価を付けます。" },
+
+  "locale": { "message": "ja" },
+
+  "switchLabel": { "message": "動画に自動で高評価を付ける" },
+  "switchActive": { "message": "有効" },
+  "switchPaused": { "message": "一時停止中" },
+  "pausedBanner": { "message": "一時停止中は、拡張機能は何にも高評価を付けません。" },
+  "badgeUpdate": { "message": "NEW" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: バージョン $VERSION$ が公開されました",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "バージョン $VERSION$ が公開されました ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "この動画" },
+  "sectionThisChannel": { "message": "このチャンネル" },
+  "sectionRule": { "message": "現在のルール" },
+  "openSettings": { "message": "設定を変更 →" },
+  "settingsShow": { "message": "設定を表示" },
+  "settingsHide": { "message": "動画に戻る" },
+  "openFullPage": { "message": "全画面のページで開く ↗" },
+  "noVideo": { "message": "YouTube で動画やショートを開くと、拡張機能がその動画をどう扱うかが表示されます。チャンネルのページを開くと、その動画に高評価を付けるかどうかを選べます。" },
+  "noVideoHint": { "message": "すでに動画を開いている場合は、そのページを再読み込みしてください。" },
+
+  "channelUnknown": { "message": "不明なチャンネル" },
+  "channelSubscribed": { "message": "登録済み" },
+  "channelNotSubscribed": { "message": "未登録" },
+  "kindVideo": { "message": "動画" },
+  "kindVideoDuration": {
+    "message": "$DURATION$ の動画",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "ショート" },
+  "kindLive": { "message": "ライブ配信" },
+
+  "statusLikedTitle": { "message": "自動で高評価しました" },
+  "statusLikedDetail": {
+    "message": "$WHEN$、$HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "開いてすぐに" },
+  "likedHowLikeNow": { "message": "あなたの操作で" },
+  "likedHowAt": {
+    "message": "動画の $TIME$ の時点で",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "$DURATION$ 視聴した後に",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "動画の $PERCENT$% の時点で高評価します",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "$MINUTES$ 分再生した後に高評価します",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "ランダムなタイミングで高評価します" },
+  "statusWaitBeforeEnd": { "message": "終わる直前に高評価します" },
+  "statusWaitRemaining": {
+    "message": "再生残り $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "まもなく高評価します" },
+  "statusWaitDuration": { "message": "動画の長さを待っています" },
+  "statusWaitAd": { "message": "広告の終了を待っています" },
+  "statusWaitAdDetail": { "message": "広告の時間は数えません。" },
+  "statusReading": { "message": "ページを読み取っています…" },
+  "statusReadingDetail": { "message": "ショートでは、マウスが動画の上を通るまで YouTube がボタンを表示しないことがあります。" },
+  "statusConfirming": { "message": "高評価が反映されたか確認しています…" },
+  "statusFailedTitle": { "message": "高評価を確認できませんでした" },
+  "statusFailedDetail": { "message": "高評価ボタンが反応しませんでした。ページを再読み込みして、もう一度お試しください。" },
+
+  "statusAlreadyLikedTitle": { "message": "高評価済み" },
+  "statusNotLikedTitle": { "message": "高評価なし" },
+  "reasonAlreadyLiked": { "message": "この動画にはすでに高評価が付いていました。拡張機能はそのままにします。" },
+  "reasonAlreadyDisliked": { "message": "あなたはこの動画に低評価を付けています。拡張機能はそのままにします。" },
+  "reasonSkippedByUser": { "message": "今回は高評価しないよう指定しました。次に見たときには高評価されることがあります。" },
+  "reasonVideoExcluded": { "message": "この動画は除外されています。除外を解除するまで高評価されません。" },
+  "reasonNotSubscribed": { "message": "このチャンネルは登録していません。登録すると高評価されます。" },
+  "reasonNotInAlwaysList": { "message": "「常に高評価」リストのチャンネルだけが高評価されます。" },
+  "reasonInNeverList": { "message": "このチャンネルは「高評価しない」リストに入っています。" },
+  "reasonShortsOff": { "message": "設定により、ショートには高評価を付けません。" },
+  "reasonNormalVideosOff": { "message": "設定により、ショートだけに高評価を付けます。" },
+  "statusWouldLike": { "message": "高評価されます" },
+  "statusWouldLikeDetail": { "message": "（拡張機能が有効な場合）" },
+
+  "actionLikeNow": { "message": "今すぐ高評価" },
+  "actionSkip": { "message": "今回はしない" },
+  "actionRestart": { "message": "この動画をやり直す" },
+  "actionRetry": { "message": "再試行" },
+  "removedLikeTitle": { "message": "高評価が取り消されました" },
+  "removedLikeRestart": { "message": "あなたが高評価を取り消しました。やり直すと、拡張機能がこの動画をもう一度確認します。" },
+  "removedDislikeTitle": { "message": "低評価が取り消されました" },
+  "removedDislikeRestart": { "message": "あなたが低評価を取り消しました。やり直すと、拡張機能がこの動画をもう一度確認します。" },
+  "likeRemovedNextOpening": { "message": "次にこの動画を開いたときに、もう一度高評価します。" },
+  "likeRemovedAt": {
+    "message": "再生がもう一度 $TIME$ を過ぎたときに、もう一度高評価します。",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "高評価を取り消した動画に、もう一度高評価する" },
+  "relikeHint": { "message": "予定の時点よりも前に戻った後、再生がもう一度その時点を過ぎたときに付けます。「開いてすぐ」の場合は、次に動画を開いたときです。自分で高評価した動画にも適用されます。" },
+  "actionResume": { "message": "「今回はしない」を取り消す" },
+  "actionExcludeVideo": { "message": "この動画には高評価しない" },
+  "actionUnexcludeVideo": { "message": "この動画の除外を解除" },
+  "channelChoiceLegend": { "message": "このチャンネルの動画を高評価" },
+  "channelChoiceAlways": { "message": "常に" },
+  "channelChoiceAuto": { "message": "設定どおり" },
+  "channelChoiceNever": { "message": "しない" },
+
+  "noticeAddedAlways": { "message": "「常に高評価」に追加しました" },
+  "noticeAddedNever": { "message": "「高評価しない」に追加しました" },
+  "noticeRemovedNever": { "message": "「高評価しない」から削除しました" },
+  "noticeSkipped": { "message": "今回は高評価しません" },
+  "noticeVideoExcluded": { "message": "除外した動画に追加しました" },
+  "noticeVideoUnexcluded": { "message": "除外した動画から削除しました" },
+  "noticeUndo": { "message": "元に戻す" },
+  "noticeUndone": { "message": "元に戻しました" },
+  "noticeSaveFailed": { "message": "変更を保存できませんでした。" },
+  "noticeStorageFull": { "message": "拡張機能の保存領域がいっぱいです。リストからチャンネルや除外した動画を削除して、もう一度お試しください。" },
+  "noticeLoadFailed": { "message": "設定を読み込めませんでした。" },
+  "noticeListFull": {
+    "message": "このリストはいっぱいです（最大 $COUNT$ 件）。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "ページが応答しませんでした。再読み込みして、もう一度お試しください。" },
+  "noticeSaved": { "message": "保存しました" },
+  "noticeRemovedAlways": { "message": "「常に高評価」から削除しました" },
+  "noticeImportDone": {
+    "message": "インポート完了: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "「$LIST$」に $COUNT$ 件のチャンネルを追加しました",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "「$LIST$」に $COUNT$ 件のチャンネルを追加しました",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "キャンセル" },
+  "dialogClose": { "message": "閉じる" },
+  "noticeCopied": { "message": "コピーしました" },
+  "noticeCopyFailed": { "message": "コピーできませんでした。テキストを選択して手動でコピーしてください。" },
+  "noticeJournalCleared": { "message": "ログを消去しました" },
+
+  "languageLabel": { "message": "言語" },
+  "languageHint": { "message": "ブラウザの言語、または好きな言語を選べます。翻訳の誤りは GitHub でお知らせください。" },
+  "languageAuto": { "message": "ブラウザの言語" },
+
+  "debugLabel": { "message": "デバッグモード" },
+  "debugHint": { "message": "問題を報告するために、拡張機能の動作をログに記録します。視聴した動画の ID を含む直近 200 件の手順を、このブラウザにだけ保存します。オフのときはログを記録しません。" },
+  "journalCountOne": { "message": "ログ: $COUNT$ 件", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "ログ: $COUNT$ 件", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "ログをコピー" },
+  "journalClear": { "message": "ログを消去" },
+
+  "navAbout": { "message": "情報" },
+  "aboutHeading": { "message": "この拡張機能について" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like バージョン $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "開発" },
+  "aboutOrigin": { "message": "元のプロジェクト" },
+  "aboutFirefox": { "message": "Firefox 版のフォーク" },
+  "aboutLicense": { "message": "ライセンス" },
+  "aboutInvite": { "message": "詳しく知りたい、新しいバージョンを追いたい、改善を提案したい場合は、GitHub のリポジトリをご覧ください。問題がありましたら、下のボタンから報告してください。" },
+  "aboutRepository": { "message": "GitHub でプロジェクトを見る" },
+  "reportOpen": { "message": "問題を報告" },
+  "reportHint": { "message": "GitHub で開く issue に問題の内容を書いてください。理解の助けとしてこのレポートが添付されます。送信前に内容を確認してください。チャンネルのリストは含まれません。" },
+  "reportJournalOne": {
+    "message": "ログを添付する（$COUNT$ 件、視聴した動画の ID を含む）",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "ログを添付する（$COUNT$ 件、視聴した動画の ID を含む）",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "ログは記録されていません。添付するには、「その他」でデバッグモードをオンにし、問題の操作をもう一度行ってから、ここに戻ってください。" },
+  "reportTextLabel": { "message": "レポート" },
+  "reportCopy": { "message": "レポートをコピー" },
+  "reportIssue": { "message": "GitHub で issue を開く" },
+  "reportCut": { "message": "レポートが長すぎるため、issue のアドレスでは短縮されます。レポート全体をコピーして issue に貼り付けてください。" },
+  "dialogAnalyse": { "message": "分析" },
+  "partWithCount": {
+    "message": "$PART$（$COUNT$）",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "チャンネルを追加" },
+  "addHint": { "message": "チャンネルや動画のリンク、または @ハンドルを 1 行に 1 つずつ貼り付けてください。拡張機能は、そのページを開いたときと同じように、どのチャンネルかを YouTube に問い合わせます。" },
+  "addLinesLabel": { "message": "リンクまたは @ハンドル" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@name\n@name\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "追加先のリスト" },
+  "addSearch": { "message": "検索" },
+  "addSearching": {
+    "message": "YouTube に問い合わせ中… $DONE$ / $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "追加" },
+  "addApplyOne": {
+    "message": "$COUNT$ 件のチャンネルを追加",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "$COUNT$ 件のチャンネルを追加",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "追加するチャンネルはありません。すべてこのリストにあるか、見つかりませんでした。" },
+  "addEmpty": { "message": "リンクまたは @ハンドルを 1 つ以上貼り付けてください。" },
+  "addTooMany": {
+    "message": "一度に最大 $MAX$ 行までです。",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "追加されます" },
+  "lookupAlready": { "message": "すでにこのリストにあります" },
+  "lookupMoved": {
+    "message": "「$FROM$」から「$TO$」に移ります",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "前の行と同じチャンネル" },
+  "lookupNotALink": { "message": "YouTube のチャンネルや動画のリンクでも @ハンドルでもありません" },
+  "lookupNotFound": { "message": "このチャンネルまたは動画は YouTube にありません" },
+  "lookupUnreadable": { "message": "YouTube がチャンネルを返しませんでした。このブラウザで YouTube を一度も開いていない場合は、一度開いて Cookie の選択をしてから、もう一度お試しください" },
+
+  "importTitle": { "message": "リストをインポート" },
+  "importHint": { "message": "拡張機能でエクスポートしたファイル、または 1 行に 1 つのチャンネルのリンクを並べたリスト。「インポート」を押すまで何も保存されません。「分析」で先に結果を確認できます。" },
+  "importDropHere": { "message": "ここにファイルをドロップするか、" },
+  "importBrowse": { "message": "ファイルを選択" },
+  "importPasteHint": { "message": "このウィンドウにファイルやテキストを貼り付けることもできます（Ctrl+V）。" },
+  "importChange": { "message": "変更" },
+  "importRemove": { "message": "削除" },
+  "importPasted": { "message": "貼り付けたテキスト" },
+  "importSourceFile": { "message": "拡張機能でエクスポートしたファイル" },
+  "importSourceLinksOne": {
+    "message": "リンクのリスト（$COUNT$ 行）",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "リンクのリスト（$COUNT$ 行）",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "拡張機能のエクスポートでも、リンクのリストでもありません。" },
+  "importNoSource": { "message": "先にファイルを選ぶか、テキストを貼り付けてください。" },
+  "importNoPart": { "message": "インポートする項目を 1 つ以上選んでください。" },
+  "importListFull": {
+    "message": "リストが $COUNT$ 件を超えてしまうため、何もインポートされません。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "インポートする内容" },
+  "importLinksTarget": { "message": "これらのチャンネルの追加先" },
+  "importModeLabel": { "message": "すでにある項目" },
+  "importModeAddNew": { "message": "新しいものだけ追加" },
+  "importModeAddNewHint": { "message": "すでにリストにあるチャンネルはそのままです。" },
+  "importModeFollow": { "message": "追加してファイルに合わせる" },
+  "importModeFollowHint": { "message": "すでにあるチャンネルは、ファイルで指定されたリストに移ります。" },
+  "importModeReplace": { "message": "すべてファイルの内容に置き換える" },
+  "importModeReplaceHint": { "message": "選んだ項目はファイルとまったく同じになります。ファイルにないものは削除されます。" },
+  "importRemember": { "message": "選択を記憶する" },
+  "importApply": { "message": "インポート" },
+  "importConfirmOne": {
+    "message": "ファイルにない $COUNT$ 件の削除を確認しました。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "ファイルにない $COUNT$ 件の削除を確認しました。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "変更なし" },
+  "reportNothing": { "message": "変更はありません。すべてすでにあります。" },
+  "reportAddedOne": { "message": "新規 $COUNT$ 件", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "新規 $COUNT$ 件", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "移動 $COUNT$ 件", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "移動 $COUNT$ 件", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "既存 $COUNT$ 件", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "既存 $COUNT$ 件", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "削除 $COUNT$ 件", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "削除 $COUNT$ 件", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "リストをエクスポート" },
+  "exportPartsLabel": { "message": "エクスポートする内容" },
+  "exportFormatLabel": { "message": "形式" },
+  "exportFormatJson": { "message": "拡張機能のファイル（JSON）" },
+  "exportFormatJsonHint": { "message": "チャンネルの日付や画像も含めて、そのまま再インポートできます。" },
+  "exportFormatLinks": { "message": "リンクのリスト（テキスト）" },
+  "exportFormatLinksHint": { "message": "1 行に 1 つ、チャンネルのリンクと名前を並べたもの。読んだり共有したりするためのものです。除外した動画は含まれません。" },
+  "exportDownload": { "message": "ダウンロード" },
+  "exportNothing": { "message": "リストを 1 つ以上選んでください。" },
+  "noticeImportInvalid": { "message": "このファイルは YouTube Auto Like でエクスポートしたリストではありません。" },
+  "noticeImportTooBig": { "message": "このファイルはチャンネルのリストにしては大きすぎます。" },
+  "noticeCountReset": { "message": "カウンターをリセットしました" },
+  "noticeNumberInvalid": {
+    "message": "$MIN$ から $MAX$ までの数を入力してください。",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "YouTube Auto Like の設定" },
+  "optionsTitle": { "message": "設定" },
+  "navSections": { "message": "セクション" },
+  "navChannels": { "message": "対象のチャンネル" },
+  "navVideos": { "message": "対象の動画" },
+  "navWhen": { "message": "高評価のタイミング" },
+  "navLists": { "message": "マイリスト" },
+  "navMore": { "message": "その他" },
+
+  "channelsHeading": { "message": "どのチャンネルに高評価しますか？" },
+  "channelsHint": { "message": "「高評価しない」リストが常に優先されます。" },
+  "likeWhatSubscribed": { "message": "登録しているチャンネル" },
+  "likeWhatSubscribedHint": { "message": "と、「常に高評価」リストのチャンネル。" },
+  "recommended": { "message": "おすすめ" },
+  "likeWhatAll": { "message": "すべてのチャンネル" },
+  "likeWhatAllHint": { "message": "視聴したすべての動画に高評価します。" },
+  "likeWhatList": { "message": "「常に高評価」リストだけ" },
+  "likeWhatListHint": { "message": "登録の有無に関係なく、それ以外には高評価しません。" },
+
+  "videosHeading": { "message": "どの動画に？" },
+  "videosHint": { "message": "ショートは、通常のプレーヤーで開いた場合も認識されます。" },
+  "likeNormalVideos": { "message": "動画" },
+  "likeShorts": { "message": "ショート" },
+
+  "whenHeading": { "message": "いつ高評価しますか？" },
+  "whenHint": { "message": "自分で高評価や低評価を付けた動画には、決して手を加えません。" },
+  "modeInstant": { "message": "開いてすぐ" },
+  "modeCustom": { "message": "しばらくしてから" },
+  "modeRandom": { "message": "ランダムなタイミング" },
+  "thresholdAfter": { "message": "経過後:" },
+  "thresholdPercentUnit": { "message": "% （動画の割合）" },
+  "thresholdMinutesUnit": { "message": "分（再生時間）" },
+  "percentLabel": { "message": "動画の割合" },
+  "minutesLabel": { "message": "再生時間（分）" },
+  "thresholdKeepOne": { "message": "2 つのしきい値のうち、少なくとも 1 つはオンのままになります。" },
+  "thresholdsHint": { "message": "先に達したしきい値で高評価します。それより短い動画は、終わる 2 秒前に高評価します。ライブ配信では、視聴を始めた時点からの分数だけを数えます。分数のしきい値がない場合は、開いてすぐに高評価します。広告は数えません。" },
+  "randomHint": { "message": "動画ごとにランダムに選んだタイミング。ライブ配信は開いてすぐに高評価します。" },
+  "summaryLabel": { "message": "まとめ:" },
+
+  "listsHeading": { "message": "チャンネルのリスト" },
+  "listsHint": { "message": "リンクや @ハンドルで、または動画やチャンネルのページでアイコンのウィンドウから、あるいは履歴からチャンネルを追加できます。動画の除外はアイコンのウィンドウから行います。" },
+  "listAlways": { "message": "常に高評価" },
+  "listNever": { "message": "高評価しない" },
+  "listVideos": { "message": "除外した動画" },
+  "listExcludedOn": {
+    "message": "$DATE$ に除外",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "除外を解除: $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "リストを検索" },
+  "listImport": { "message": "インポート" },
+  "listExport": { "message": "エクスポート" },
+  "listEmpty": { "message": "このリストにチャンネルはありません。リンクや @ハンドルで、または動画やチャンネルのページでアイコンのウィンドウから、あるいは履歴から追加できます。" },
+  "listEmptyVideos": { "message": "除外した動画はありません。動画を除外するには、視聴中にアイコンのウィンドウを開いて「この動画には高評価しない」を選んでください。" },
+  "listNoMatch": { "message": "この検索に一致するチャンネルはありません。" },
+  "listAddedOn": {
+    "message": "$DATE$ に追加",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "このリストから削除: $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ / $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "さらに $COUNT$ 件表示",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "すべて表示（$COUNT$）",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "リストと履歴に表示する行数" },
+  "listPageSizeHint": { "message": "残りは「さらに表示」または「すべて表示」で表示されます。長いリストはページを伸ばさずに、その中でスクロールします。" },
+  "listPageSizeAll": { "message": "すべて" },
+  "listOpenChannel": { "message": "YouTube でチャンネルを開く" },
+
+  "navHistory": { "message": "履歴" },
+  "historyHeading": { "message": "拡張機能が付けた高評価" },
+  "historyHint": {
+    "message": "新しい順に直近 $COUNT$ 件。このブラウザにだけ保存されます。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "拡張機能はまだ何も高評価していません。" },
+  "historyUntitled": { "message": "タイトルのない動画" },
+  "historyChannelChoice": {
+    "message": "$NAME$ の動画を高評価",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "履歴を消去" },
+  "noticeHistoryCleared": { "message": "履歴を消去しました" },
+
+  "moreHeading": { "message": "その他" },
+  "themeLabel": { "message": "テーマ" },
+  "themeSystem": { "message": "システムと同じ" },
+  "themeLight": { "message": "ライト" },
+  "themeDark": { "message": "ダーク" },
+  "updatesLabel": { "message": "新しいバージョンを確認" },
+  "updatesHint": { "message": "拡張機能が公開されている GitHub に問い合わせます。その際、GitHub にはあなたの IP アドレスが見えます。" },
+  "updateEvery0": { "message": "確認しない" },
+  "updateEvery30": { "message": "30 分ごと" },
+  "updateEvery60": { "message": "1 時間ごと" },
+  "updateEvery360": { "message": "6 時間ごと" },
+  "updateEvery1440": { "message": "毎日" },
+  "updateEvery10080": { "message": "毎週" },
+  "updateEveryCustom": { "message": "カスタム…" },
+  "updateEveryPrefix": { "message": "間隔" },
+  "updateCustomCount": { "message": "2 回の確認の間の分数、時間数、日数" },
+  "updateCustomUnit": { "message": "単位" },
+  "unitMinutesOne": { "message": "分ごと" },
+  "unitMinutesOther": { "message": "分ごと" },
+  "unitHoursOne": { "message": "時間ごと" },
+  "unitHoursOther": { "message": "時間ごと" },
+  "unitDaysOne": { "message": "日ごと" },
+  "unitDaysOther": { "message": "日ごと" },
+  "noticeFrequencyInvalid": { "message": "5 分から 30 日までの長さを入力してください。" },
+  "updateCheckNow": { "message": "今すぐ確認" },
+  "updateStatusOff": { "message": "新しいバージョンは確認しません。" },
+  "updateStatusNever": { "message": "まだ確認していません。" },
+  "updateStatusChecking": { "message": "確認中…" },
+  "updateStatusAvailable": {
+    "message": "バージョン $VERSION$ が公開されました ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "$WHEN$に確認: 最新バージョンです。",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "$WHEN$に確認: まだ公開されたバージョンはありません。",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "$WHEN$の確認に失敗しました。次回もう一度試します。",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "確認できませんでした。" },
+  "likeCountHint": { "message": "拡張機能のインストール以降、または最後のリセット以降の数です。リセットしても他には何も変わりません。" },
+  "likeCountReset": { "message": "リセット" },
+
+  "ruleSentence": {
+    "message": "$CHANNELS$の$WHAT$に$WHEN$高評価します。",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "何にも高評価しません。動画とショートがどちらもオフです。" },
+  "ruleWhatBoth": { "message": "動画とショート" },
+  "ruleWhatVideos": { "message": "動画" },
+  "ruleWhatShorts": { "message": "ショート" },
+  "ruleChannelsSubscribed": { "message": "登録しているチャンネル" },
+  "ruleChannelsSubscribedAndList": { "message": "登録しているチャンネルと「常に高評価」リストのチャンネル" },
+  "ruleChannelsAll": { "message": "すべてのチャンネル" },
+  "ruleChannelsList": { "message": "「常に高評価」リストのチャンネル" },
+  "ruleWhenInstant": { "message": "開いてすぐに" },
+  "ruleWhenPercent": {
+    "message": "動画の $PERCENT$% の時点で",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "$MINUTES$ 分再生した後に",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "動画の $PERCENT$% の時点か $MINUTES$ 分再生した後の、早いほうで",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "ランダムなタイミングで" },
+
+  "likeCountOne": {
+    "message": "高評価した動画: $COUNT$ 本",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "高評価した動画: $COUNT$ 本",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ 秒",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ 分 $SECONDS$ 秒",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ 時間 $MINUTES$ 分",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
