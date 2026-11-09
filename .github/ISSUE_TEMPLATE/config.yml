@@ -1,0 +1,12 @@
+# Shown above the templates when someone opens a new issue. Blank issues stay
+# enabled: "Report a problem" in the extension opens one, with the report in
+# its body.
+blank_issues_enabled: true
+contact_links:
+  - name: 🦊 The Firefox version
+    url: https://github.com/Taknok/youtube-auto-like/issues
+    about:
+      This extension runs in Chromium-based browsers (Brave, Chrome, Edge...). For Firefox, the extension maintained by Taknok has its own tracker.
+  - name: 🔒 A security vulnerability
+    url: https://github.com/NitramO-YT/youtube-auto-like/security/policy
+    about: Report it privately, following the security policy, never in a public issue.

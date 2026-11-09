@@ -1,61 +1,101 @@
-<img width="100" height="100" src="https://i.imgur.com/CwAIwN6.png" align="right" />
+[ ![🇫🇷 Français](https://img.shields.io/badge/%F0%9F%87%AB%F0%9F%87%B7-Fran%C3%A7ais-blue) ](README.fr.md)
+
+<img width="96" height="96" src="assets/icon.svg" align="right" alt="" />
 
 # YouTube Auto Like
 
-Never forget to like a video again.
+Likes the YouTube videos you choose, automatically: the channels you subscribe to, every channel, or only your own list, as soon as a video opens or after a while.
 
-![](https://img.shields.io/github/downloads/austencm/youtube-auto-like/total?style=flat)
-![](https://img.shields.io/github/downloads/austencm/youtube-auto-like/latest/total?style=flat)
-![](https://img.shields.io/github/v/release/austencm/youtube-auto-like)
-![](https://img.shields.io/github/release-date/austencm/youtube-auto-like)
+> [!NOTE]
+> This is the maintained continuation of [austencm/youtube-auto-like](https://github.com/austencm/youtube-auto-like), for Chromium-based browsers (Brave, Chrome, Edge…). It is not run by its original author: see [About this fork](#about-this-fork).
 
-Tested with Chrome, but it should work with any Chromium-based browser. [Firefox version here](https://addons.mozilla.org/en-US/firefox/addon/youtube_auto_like/).
+## What it does
 
-## Install
+- **Likes what you choose:** the channels you subscribe to, every channel, or only your “Always like” list; videos, Shorts, or both.
+- **When you choose:** as soon as the video opens, after a share of the video or a number of minutes, or at a random moment. Ads are not counted.
+- **Never against you:** a video you liked or disliked yourself is never touched, and in doubt the extension does nothing and says why.
+- **Two lists:** “Always like” and “Never like”, which always wins. Add a channel from the toolbar popup on one of its videos or on its page, from the history of likes, or by pasting links and @handles.
+- **This video only, or never:** skip a video this time, or exclude it for good.
+- **Shows what it does:** the toolbar popup tells what happens to the video you watch and why, with the actions that change it.
+- **Your lists, yours:** export them as a file or a list of links, import them back with a preview of what changes.
+- **Light and dark themes, English and French.**
 
-> **Git users:** You can clone the repo and skip to step 3. Load the `/dist` directory and pull to update.
+## About this fork
 
-1. Download the latest release: https://github.com/austencm/youtube-auto-like/releases/latest/download/release.zip
-1. Unzip `release.zip` somewhere safe
-1. Open your extensions page in Chrome (in the top right, click the <img width="18" height="18" src="https://lh3.googleusercontent.com/5nlvcUtFevZLAkSJALBl5Fa8thP_-mGFnUngJLuAFzt0jws-Lr09I9mIfawW4vKiT6k=w36-h36" alt="puzzle piece"> icon, then "Manage Extensions" (at the bottom of the popup)
-1. Turn on Developer Mode (in the top right)
-1. Click 'Load unpacked' and select the unzipped `release` folder
+[YouTube Auto Like](https://github.com/austencm/youtube-auto-like) was created by Austen Morgan in 2016. Its last release, `v2.8.1`, dates from December 2023, and it has not been maintained since. [Taknok](https://github.com/Taknok/youtube-auto-like) has kept a fork alive for Firefox since 2017, which does not run in Chromium-based browsers.
 
-> ☝️ Extensions loaded this way are unable to update automatically. See below for instructions.
+This fork brings it back for Chromium-based browsers, rewritten for Manifest V3, with a new interface. It builds on the knowledge of both projects, and credits them: the structure and the update alert of the original, the reading of YouTube's pages and the rules of Taknok's fork.
 
-## Update
+Versions continue the original numbering: `3.0.0` is the first version of this fork.
 
-Keep an eye out for a badge on the extension icon when an update is available.
+## Where can I get it?
 
-1. Click the icon for a download link, or download the latest release [here](https://github.com/austencm/youtube-auto-like/releases/latest/download/release.zip)
-1. Unzip `release.zip` and replace your current extension files with the latest
-1. Go to your extensions page, find YouTube Auto Like, and click the refresh icon (restarting Chrome also works)
+Two channels, each with a link that never changes:
 
-> ☝️ Using the same folder ensures Chrome will consider this the same extension and save your settings. If change the folder, you'll need to follow the install instructions again and reconfigure your settings.
+| Channel | What it is | Link |
+| --- | --- | --- |
+| **Latest** | The most recent version. | [Latest release](https://github.com/NitramO-YT/youtube-auto-like/releases/latest) |
+| **Beta** | The next version, to try it before everyone else. | [Beta release](https://github.com/NitramO-YT/youtube-auto-like/releases/tag/beta) |
 
-## Translations
+Each release provides:
 
-Feel free to contribute with a [pull request](https://github.com/austencm/youtube-auto-like/pulls) or grab [the JSON file](https://raw.githubusercontent.com/austencm/youtube-auto-like/master/app/_locales/en/messages.json), translate it, and [send it back to me](mailto:heyausten@gmail.com).
+- `youtube-auto-like.zip`, to load unpacked: the way that works in every Chromium-based browser;
+- `youtube-auto-like.crx`, the signed package. Browsers often refuse a package that does not come from their store: if yours does, use the zip.
 
-## Acknowledgments
+Each file comes with a `.sha256` checksum file. The latest zip is always at
+`https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/youtube-auto-like.zip`.
 
-| Name                                           | Contribution                                                                               |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| [@Taknok](https://github.com/Taknok)           | Firefox edition<br />Language-independent button selection method<br />ES, FR translations |
-| [@JKetelaar](https://github.com/JKetelaar)     | NL translation                                                                             |
-| [@Szmyk](https://github.com/Szmyk)             | PL translation                                                                             |
-| [@moweME](https://github.com/moweME)           | DE translation                                                                             |
-| [@mariovalney](https://github.com/mariovalney) | pt_BR translation                                                                          |
-| [@Borian23](https://github.com/Borian23)       | PL translation                                                                             |
-| [@UtkuGARIP](https://github.com/UtkuGARIP)     | TR translation                                                                             |
-| [@Makishima](https://github.com/Makishima)     | RU translation                                                                             |
-| [@wthueb](https://github.com/wthueb)           | Selector fix                                                                               |
-| [@netravnen](https://github.com/netravnen)     | DK translation                                                                             |
-| [@adamoudad](https://github.com/adamoudad)     | FR translation help                                                                        |
-| [@Fast0n](https://github.com/Fast0n)           | IT translation                                                                             |
-| [@msmafra](https://github.com/msmafra)         | pt_BR translation help                                                                     |
-| [@Starmania](https://github.com/Starmania)     | FR translation help                                                                        |
+### Installing the zip
 
-## Support
+1. Download `youtube-auto-like.zip` and unzip it into a folder you will keep (the browser loads the extension from there).
+2. Open `chrome://extensions` (`brave://extensions` in Brave, `edge://extensions` in Edge).
+3. Turn on the **Developer mode**.
+4. Click **Load unpacked** and choose the unzipped folder.
 
-<a href="https://www.buymeacoffee.com/austen"><img src="https://img.buymeacoffee.com/button-api/?text=Donate a cat snack&emoji=🍣&slug=austen&button_colour=ff0000&font_colour=ffffff&font_family=Lato&outline_colour=ffffff&coffee_colour=FFDD00" alt="🍣 Donate a cat snack" /></a>
+### Updating
+
+The extension checks for a new version on GitHub, every 30 minutes by default (settings, under More). When one is out, its icon shows a badge, and the popup links to it.
+
+To update an unpacked extension, replace the content of its folder with the new zip, then click the reload button of the extension in the extensions page. Your settings and lists are kept: the extension keeps the same ID from one version to the next.
+
+### Checking a download
+
+Put the `.sha256` file next to the downloaded file, then run:
+
+```sh
+sha256sum -c youtube-auto-like.zip.sha256
+```
+
+## Privacy
+
+Everything the extension keeps stays in your browser: your settings, your lists, the history of the likes it made, and, only while the debug mode is on, its journal. Nothing is sent to the author, and there is no tracking.
+
+The extension connects to two places only:
+
+- **GitHub** (`api.github.com`), to check for a new version, at the frequency you choose, or never. GitHub sees your IP address.
+- **YouTube**, only when you add channels by link or import a list of links, to find which channel each link is. These requests carry your YouTube cookies, as opening the page would.
+
+### Permissions
+
+| Permission | Why |
+| --- | --- |
+| Access to `www.youtube.com` | Read the video you watch, click its like button, and find a channel from a link. |
+| `storage` | Keep your settings, lists and history in the browser. |
+| `alarms` | Check for a new version at the frequency you chose. |
+| `scripting` | Start on the YouTube tabs already open when the extension is installed or updated, without reloading them. |
+
+## I have a problem
+
+Open the settings of the extension, then **About › Report a problem**. It opens an issue already holding the version, the browser and the settings. To include what the extension did, turn the **debug mode** on (settings, under More), do again what goes wrong, then report.
+
+For a security vulnerability, follow the [security policy](SECURITY.md) instead.
+
+The Firefox extension is a separate project: report its problems to [Taknok/youtube-auto-like](https://github.com/Taknok/youtube-auto-like/issues).
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md): how to build, test and try the extension, how the code is organized, and how to help with translations.
+
+## License
+
+[MIT](LICENSE). Copyright (c) 2016 Austen Morgan, Copyright (c) 2026 Martin (NitramO).

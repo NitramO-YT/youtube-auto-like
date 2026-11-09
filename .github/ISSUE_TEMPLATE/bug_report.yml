@@ -1,0 +1,73 @@
+name: 🐛 Bug report
+description: Something the extension does wrong, or does not do
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **The quickest way:** in the extension, open the settings, then **About › Report a problem**. It opens an issue already holding the version, the browser and the settings, and the debug journal if you keep it in.
+
+        For a security vulnerability, follow the [security policy](https://github.com/NitramO-YT/youtube-auto-like/security/policy) instead of opening a public issue.
+  - type: textarea
+    id: the-problem
+    attributes:
+      label: The problem
+      description: What you did, what you expected, and what the extension did instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: A video or channel where it happens helps a lot, if you are fine sharing it.
+      placeholder: |
+        1. Open the video '...'
+        2. Wait until '...'
+        3. See that '...'
+  - type: input
+    id: version
+    attributes:
+      label: Extension version
+      description: Shown in the settings, under About, and at the bottom of the toolbar popup.
+      placeholder: 3.0.0
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Brave
+        - Google Chrome
+        - Chromium
+        - Microsoft Edge
+        - Vivaldi
+        - Opera
+        - Something else, described below
+    validations:
+      required: true
+  - type: input
+    id: browser-version
+    attributes:
+      label: Browser version
+      description: Found at chrome://version or brave://version.
+  - type: dropdown
+    id: package
+    attributes:
+      label: Installed from
+      options:
+        - The .zip, loaded unpacked
+        - The .crx
+        - Built from source
+        - Something else, described below
+  - type: textarea
+    id: report
+    attributes:
+      label: Report and journal
+      description: The report copied from About › Report a problem, if the issue was not opened from there. Turn the debug mode on in the settings, do again what goes wrong, then copy the report to include the journal.
+      render: text
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Screenshots, other extensions that act on YouTube, anything else that may matter.

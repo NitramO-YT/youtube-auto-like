@@ -1,0 +1,21 @@
+name: ⭐ Feature request
+description: Something the extension could do, or do better
+labels: [enhancement]
+body:
+  - type: textarea
+    id: the-need
+    attributes:
+      label: What you would like
+      description: What you are trying to do, and what is missing or awkward today.
+    validations:
+      required: true
+  - type: textarea
+    id: the-idea
+    attributes:
+      label: How it could work
+      description: An idea of how it could look or behave, if you have one.
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Screenshots, examples from other extensions, anything else that helps.
