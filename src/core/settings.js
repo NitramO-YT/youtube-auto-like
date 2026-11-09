@@ -22,6 +22,9 @@ export const THEMES = ['system', 'light', 'dark'];
 // Rows the lists and the history of the options page show at first, and add
 // at each "Show more"; 0 shows them all.
 export const LIST_PAGE_SIZES = Object.freeze([10, 20, 50, 100, 0]);
+// Order of the rows of the lists of the options page: by date added, newest
+// or oldest first, or by name, from A to Z or from Z to A.
+export const LIST_SORTS = Object.freeze(['added-desc', 'added-asc', 'name-asc', 'name-desc']);
 export const PERCENT_RANGE = Object.freeze({ min: 0, max: 100 });
 export const MINUTES_RANGE = Object.freeze({ min: 0, max: 600 });
 
@@ -44,6 +47,8 @@ const DEFAULTS = {
   relikeAfterRemoval: false,
   theme: 'system',
   listPageSize: 20,
+  // Newest first: the order in which channels and videos are stored.
+  listSort: 'added-desc',
   // Keeps the journal of what the extension does (core/journal.js), for the
   // report of a problem; off by default, the journal naming the videos watched.
   debug: false,
@@ -103,6 +108,7 @@ export function normalizeSettings(raw) {
     relikeAfterRemoval: booleanOr(input.relikeAfterRemoval, defaults.relikeAfterRemoval),
     theme: oneOf(input.theme, THEMES, defaults.theme),
     listPageSize: oneOf(input.listPageSize, LIST_PAGE_SIZES, defaults.listPageSize),
+    listSort: oneOf(input.listSort, LIST_SORTS, defaults.listSort),
     debug: booleanOr(input.debug, defaults.debug),
     language: oneOf(input.language, LANGUAGES, defaults.language),
   };

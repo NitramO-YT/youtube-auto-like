@@ -105,6 +105,12 @@
       </div>
       <div class="list-tools">
         <input class="search" type="search" id="list-search" data-i18n-placeholder="listSearch" data-i18n-aria-label="listSearch">
+        <select class="select" id="list-sort" data-field="listSort" data-i18n-aria-label="listSortLabel" data-i18n-title="listSortLabel">
+          <option value="added-desc" data-i18n="listSortAddedDesc"></option>
+          <option value="added-asc" data-i18n="listSortAddedAsc"></option>
+          <option value="name-asc" data-i18n="listSortNameAsc"></option>
+          <option value="name-desc" data-i18n="listSortNameDesc"></option>
+        </select>
         <button type="button" class="btn primary" id="add-channels" data-dialog="add" data-i18n="addChannels"></button>
         <button type="button" class="btn" id="import" data-dialog="import" data-i18n="listImport"></button>
         <button type="button" class="btn" id="export" data-dialog="export" data-i18n="listExport"></button>

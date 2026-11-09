@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "搜索列表" },
+  "listSortLabel": { "message": "列表排序" },
+  "listSortAddedDesc": { "message": "最新优先" },
+  "listSortAddedAsc": { "message": "最早优先" },
+  "listSortNameAsc": { "message": "名称升序" },
+  "listSortNameDesc": { "message": "名称降序" },
   "listImport": { "message": "导入" },
   "listExport": { "message": "导出" },
   "listEmpty": { "message": "列表中没有频道。可通过链接或 @账号名、在视频或频道页面上的图标窗口，或从历史记录中添加。" },

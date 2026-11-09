@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Tìm trong danh sách" },
+  "listSortLabel": { "message": "Sắp xếp danh sách" },
+  "listSortAddedDesc": { "message": "Mới nhất trước" },
+  "listSortAddedAsc": { "message": "Cũ nhất trước" },
+  "listSortNameAsc": { "message": "Từ A đến Z" },
+  "listSortNameDesc": { "message": "Từ Z đến A" },
   "listImport": { "message": "Nhập" },
   "listExport": { "message": "Xuất" },
   "listEmpty": { "message": "Danh sách chưa có kênh nào. Thêm bằng đường liên kết hoặc @tên người dùng, từ cửa sổ của biểu tượng trên một video hoặc trang kênh, hoặc từ lịch sử." },

@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Rechercher dans la liste" },
+  "listSortLabel": { "message": "Trier la liste" },
+  "listSortAddedDesc": { "message": "Plus récents d'abord" },
+  "listSortAddedAsc": { "message": "Plus anciens d'abord" },
+  "listSortNameAsc": { "message": "De A à Z" },
+  "listSortNameDesc": { "message": "De Z à A" },
   "listImport": { "message": "Importer" },
   "listExport": { "message": "Exporter" },
   "listEmpty": { "message": "Aucune chaîne dans cette liste. Ajoutez-en par lien ou par @nom, depuis la fenêtre de l'icône sur une vidéo ou la page d'une chaîne, ou depuis l'historique." },

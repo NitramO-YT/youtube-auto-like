@@ -7,6 +7,7 @@ import {
   filterVideos,
   lockedThreshold,
   NUMBER_RANGES,
+  sortEntries,
   splitMinutes,
   toMinutes,
   validNumber,
@@ -109,5 +110,37 @@ describe('filterVideos', () => {
     assert.deepEqual(filterVideos(videos, 'reve').map((v) => v.videoId), ['aeP4eG-gO10']);
     assert.deepEqual(filterVideos(videos, 'qoqsik').map((v) => v.videoId), ['trLwaRWXeJY']);
     assert.deepEqual(filterVideos(videos, 'EkDC9').map((v) => v.videoId), ['EkDC9elBHHc']);
+  });
+});
+
+describe('sortEntries', () => {
+  const channels = [
+    { id: 'a', name: 'Élodie', addedAt: '2026-11-02T10:00:00.000Z' },
+    { id: 'b', name: 'colas', addedAt: '2026-11-08T10:00:00.000Z' },
+    { id: 'c', name: 'Chaîne 10', addedAt: null },
+    { id: 'd', name: 'Chaîne 2', addedAt: '2026-10-01T10:00:00.000Z' },
+    { id: 'e', name: '', addedAt: '2026-11-05T10:00:00.000Z' },
+  ];
+  const by = { nameOf: (channel) => channel.name, addedOf: (channel) => channel.addedAt };
+  const ids = (order) => sortEntries(channels, order, by, 'fr').map((channel) => channel.id);
+
+  it('orders by date added, newest or oldest first, the undated last', () => {
+    assert.deepEqual(ids('added-desc'), ['b', 'e', 'a', 'd', 'c']);
+    assert.deepEqual(ids('added-asc'), ['d', 'a', 'e', 'b', 'c']);
+  });
+
+  it('orders by name in the language, ignoring case and accents, 2 before 10, the unnamed last', () => {
+    assert.deepEqual(ids('name-asc'), ['d', 'c', 'b', 'a', 'e']);
+    assert.deepEqual(ids('name-desc'), ['a', 'b', 'c', 'd', 'e']);
+  });
+
+  it('keeps the stored order of entries that compare equal, and leaves the list given untouched', () => {
+    const twins = [
+      { id: 'x', name: 'Same', addedAt: null },
+      { id: 'y', name: 'same', addedAt: null },
+    ];
+    assert.deepEqual(sortEntries(twins, 'name-asc', by, 'en').map((channel) => channel.id), ['x', 'y']);
+    assert.deepEqual(sortEntries(twins, 'name-desc', by, 'en').map((channel) => channel.id), ['x', 'y']);
+    assert.deepEqual(channels.map((channel) => channel.id), ['a', 'b', 'c', 'd', 'e']);
   });
 });

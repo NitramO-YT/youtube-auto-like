@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "搜尋清單" },
+  "listSortLabel": { "message": "清單排序" },
+  "listSortAddedDesc": { "message": "最新的在前" },
+  "listSortAddedAsc": { "message": "最舊的在前" },
+  "listSortNameAsc": { "message": "名稱遞增" },
+  "listSortNameDesc": { "message": "名稱遞減" },
   "listImport": { "message": "匯入" },
   "listExport": { "message": "匯出" },
   "listEmpty": { "message": "清單中沒有頻道。可透過連結或 @帳號代碼、在影片或頻道頁面上的圖示視窗，或從記錄中新增。" },

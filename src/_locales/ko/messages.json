@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "목록 검색" },
+  "listSortLabel": { "message": "목록 정렬" },
+  "listSortAddedDesc": { "message": "최신순" },
+  "listSortAddedAsc": { "message": "오래된순" },
+  "listSortNameAsc": { "message": "이름 오름차순" },
+  "listSortNameDesc": { "message": "이름 내림차순" },
   "listImport": { "message": "가져오기" },
   "listExport": { "message": "내보내기" },
   "listEmpty": { "message": "목록에 채널이 없습니다. 링크나 @핸들, 동영상이나 채널 페이지의 아이콘 창, 또는 기록에서 추가하세요." },

@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Cerca nella lista" },
+  "listSortLabel": { "message": "Ordina la lista" },
+  "listSortAddedDesc": { "message": "Più recenti prima" },
+  "listSortAddedAsc": { "message": "Meno recenti prima" },
+  "listSortNameAsc": { "message": "Dalla A alla Z" },
+  "listSortNameDesc": { "message": "Dalla Z alla A" },
   "listImport": { "message": "Importa" },
   "listExport": { "message": "Esporta" },
   "listEmpty": { "message": "Nessun canale in questa lista. Aggiungine tramite link o @handle, dalla finestra dell'icona su un video o sulla pagina di un canale, oppure dalla cronologia." },

@@ -389,6 +389,11 @@
     "placeholders": { "title": { "content": "$1", "example": "le moooonstre" } }
   },
   "listSearch": { "message": "Search the list" },
+  "listSortLabel": { "message": "Sort the list" },
+  "listSortAddedDesc": { "message": "Newest first" },
+  "listSortAddedAsc": { "message": "Oldest first" },
+  "listSortNameAsc": { "message": "A to Z" },
+  "listSortNameDesc": { "message": "Z to A" },
   "listImport": { "message": "Import" },
   "listExport": { "message": "Export" },
   "listEmpty": { "message": "No channel in this list. Add some by link or @handle, from the toolbar popup on a video or a channel page, or from the history." },

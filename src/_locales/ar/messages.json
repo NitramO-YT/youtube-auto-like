@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "البحث في القائمة" },
+  "listSortLabel": { "message": "ترتيب القائمة" },
+  "listSortAddedDesc": { "message": "الأحدث أولًا" },
+  "listSortAddedAsc": { "message": "الأقدم أولًا" },
+  "listSortNameAsc": { "message": "أبجديًا من أ إلى ي" },
+  "listSortNameDesc": { "message": "أبجديًا من ي إلى أ" },
   "listImport": { "message": "استيراد" },
   "listExport": { "message": "تصدير" },
   "listEmpty": { "message": "لا توجد قنوات في القائمة. أضفها برابط أو باسم معرِّف، من نافذة الأيقونة على فيديو أو صفحة قناة، أو من سجل الإعجابات." },

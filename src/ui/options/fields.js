@@ -3,7 +3,7 @@
  * that each rule is tested without a page.
  */
 import { LANGUAGES } from '../../core/locales.js';
-import { LIST_PAGE_SIZES, MINUTES_RANGE, PERCENT_RANGE } from '../../core/settings.js';
+import { LIST_PAGE_SIZES, LIST_SORTS, MINUTES_RANGE, PERCENT_RANGE } from '../../core/settings.js';
 
 const timingPart = (part, key) => ({
   get: (settings) => settings.timing[part][key],
@@ -38,6 +38,11 @@ export const FIELDS = Object.freeze({
     get: (settings) => settings.listPageSize,
     set: (settings, value) => ({ ...settings, listPageSize: value }),
     choices: LIST_PAGE_SIZES,
+  },
+  listSort: {
+    get: (settings) => settings.listSort,
+    set: (settings, value) => ({ ...settings, listSort: value }),
+    choices: LIST_SORTS,
   },
   relikeAfterRemoval: {
     get: (settings) => settings.relikeAfterRemoval,
@@ -111,4 +116,30 @@ export function filterChannels(channels, query) {
 /** The videos whose title, channel name or ID contains the query, in their order. */
 export function filterVideos(videos, query) {
   return filterBy(videos, query, (video) => [video.title, video.channelName, video.videoId]);
+}
+
+/**
+ * The entries in the order of the listSort setting: by date added (addedOf,
+ * an ISO date), newest or oldest first, or by name (nameOf), in the
+ * alphabetical order of lang, without regard to case or accents, "2" before
+ * "10". Entries without a date or a name come last, in their stored order;
+ * entries that compare equal keep it too.
+ */
+export function sortEntries(entries, order, { nameOf, addedOf }, lang) {
+  const byName = order === 'name-asc' || order === 'name-desc';
+  const direction = order === 'added-desc' || order === 'name-desc' ? -1 : 1;
+  const collator = new Intl.Collator(lang, { sensitivity: 'base', numeric: true });
+  const keyOf = (entry) => {
+    if (byName) return nameOf(entry) || null;
+    const time = Date.parse(addedOf(entry) ?? '');
+    return Number.isFinite(time) ? time : null;
+  };
+  return entries
+    .map((entry, index) => ({ entry, index, key: keyOf(entry) }))
+    .sort((a, b) => {
+      if (a.key === null || b.key === null) return Number(a.key === null) - Number(b.key === null) || a.index - b.index;
+      const compared = byName ? collator.compare(a.key, b.key) : a.key - b.key;
+      return compared * direction || a.index - b.index;
+    })
+    .map(({ entry }) => entry);
 }

@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Maghanap sa listahan" },
+  "listSortLabel": { "message": "Ayusin ang listahan" },
+  "listSortAddedDesc": { "message": "Pinakabago muna" },
+  "listSortAddedAsc": { "message": "Pinakaluma muna" },
+  "listSortNameAsc": { "message": "A hanggang Z" },
+  "listSortNameDesc": { "message": "Z hanggang A" },
   "listImport": { "message": "Mag-import" },
   "listExport": { "message": "Mag-export" },
   "listEmpty": { "message": "Walang channel sa listahan. Magdagdag gamit ang link o @handle, mula sa window ng icon sa isang video o page ng channel, o mula sa history." },

@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Hae listasta" },
+  "listSortLabel": { "message": "Lajittele lista" },
+  "listSortAddedDesc": { "message": "Uusin ensin" },
+  "listSortAddedAsc": { "message": "Vanhin ensin" },
+  "listSortNameAsc": { "message": "A–Ö" },
+  "listSortNameDesc": { "message": "Ö–A" },
   "listImport": { "message": "Tuo" },
   "listExport": { "message": "Vie" },
   "listEmpty": { "message": "Listalla ei ole kanavia. Lisää niitä linkillä tai @kahvalla, kuvakkeen ikkunasta videolla tai kanavan sivulla, tai historiasta." },

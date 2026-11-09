@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Søg i listen" },
+  "listSortLabel": { "message": "Sortér listen" },
+  "listSortAddedDesc": { "message": "Nyeste først" },
+  "listSortAddedAsc": { "message": "Ældste først" },
+  "listSortNameAsc": { "message": "A til Å" },
+  "listSortNameDesc": { "message": "Å til A" },
   "listImport": { "message": "Importér" },
   "listExport": { "message": "Eksportér" },
   "listEmpty": { "message": "Ingen kanaler på listen. Tilføj via link eller @handle, fra ikonets vindue på en video eller en kanalside eller fra historikken." },

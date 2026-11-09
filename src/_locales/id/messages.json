@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Cari di daftar" },
+  "listSortLabel": { "message": "Urutkan daftar" },
+  "listSortAddedDesc": { "message": "Terbaru dulu" },
+  "listSortAddedAsc": { "message": "Terlama dulu" },
+  "listSortNameAsc": { "message": "A sampai Z" },
+  "listSortNameDesc": { "message": "Z sampai A" },
   "listImport": { "message": "Impor" },
   "listExport": { "message": "Ekspor" },
   "listEmpty": { "message": "Tidak ada channel di daftar. Tambahkan lewat link atau @nama sebutan, dari jendela ikon di video atau halaman channel, atau dari histori." },

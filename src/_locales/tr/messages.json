@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Listede ara" },
+  "listSortLabel": { "message": "Listeyi sırala" },
+  "listSortAddedDesc": { "message": "Önce en yeni" },
+  "listSortAddedAsc": { "message": "Önce en eski" },
+  "listSortNameAsc": { "message": "A'dan Z'ye" },
+  "listSortNameDesc": { "message": "Z'den A'ya" },
   "listImport": { "message": "İçe aktar" },
   "listExport": { "message": "Dışa aktar" },
   "listEmpty": { "message": "Bu listede kanal yok. Bağlantı veya @kullanıcı adıyla, bir videoda ya da kanal sayfasında simge penceresinden veya geçmişten ekleyin." },

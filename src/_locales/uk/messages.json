@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Пошук у списку" },
+  "listSortLabel": { "message": "Сортування списку" },
+  "listSortAddedDesc": { "message": "Спочатку нові" },
+  "listSortAddedAsc": { "message": "Спочатку старі" },
+  "listSortNameAsc": { "message": "Від А до Я" },
+  "listSortNameDesc": { "message": "Від Я до А" },
   "listImport": { "message": "Імпорт" },
   "listExport": { "message": "Експорт" },
   "listEmpty": { "message": "У цьому списку немає каналів. Додайте їх за посиланням або @псевдонімом, з вікна значка на відео чи сторінці каналу або з історії." },

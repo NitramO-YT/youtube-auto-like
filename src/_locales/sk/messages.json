@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Hľadať v zozname" },
+  "listSortLabel": { "message": "Zoradiť zoznam" },
+  "listSortAddedDesc": { "message": "Od najnovších" },
+  "listSortAddedAsc": { "message": "Od najstarších" },
+  "listSortNameAsc": { "message": "Od A po Z" },
+  "listSortNameDesc": { "message": "Od Z po A" },
   "listImport": { "message": "Importovať" },
   "listExport": { "message": "Exportovať" },
   "listEmpty": { "message": "Zoznam neobsahuje žiadny kanál. Pridajte ich odkazom alebo @identifikátorom, z okna ikony na videu alebo na stránke kanála, alebo z histórie." },

@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "ค้นหาในรายการ" },
+  "listSortLabel": { "message": "เรียงลำดับรายการ" },
+  "listSortAddedDesc": { "message": "ใหม่สุดก่อน" },
+  "listSortAddedAsc": { "message": "เก่าสุดก่อน" },
+  "listSortNameAsc": { "message": "ตามชื่อ ก–ฮ" },
+  "listSortNameDesc": { "message": "ตามชื่อ ฮ–ก" },
   "listImport": { "message": "นำเข้า" },
   "listExport": { "message": "ส่งออก" },
   "listEmpty": { "message": "ไม่มีช่องในรายการ เพิ่มได้ด้วยลิงก์หรือ @แฮนเดิล จากหน้าต่างของไอคอนบนวิดีโอหรือหน้าช่อง หรือจากประวัติ" },

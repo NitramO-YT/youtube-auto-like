@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Поиск по списку" },
+  "listSortLabel": { "message": "Сортировка списка" },
+  "listSortAddedDesc": { "message": "Сначала новые" },
+  "listSortAddedAsc": { "message": "Сначала старые" },
+  "listSortNameAsc": { "message": "От А до Я" },
+  "listSortNameDesc": { "message": "От Я до А" },
   "listImport": { "message": "Импорт" },
   "listExport": { "message": "Экспорт" },
   "listEmpty": { "message": "В этом списке нет каналов. Добавьте их по ссылке или @псевдониму, из окна значка на видео или странице канала либо из истории." },

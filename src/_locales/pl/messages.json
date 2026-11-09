@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Szukaj na liście" },
+  "listSortLabel": { "message": "Sortuj listę" },
+  "listSortAddedDesc": { "message": "Od najnowszych" },
+  "listSortAddedAsc": { "message": "Od najstarszych" },
+  "listSortNameAsc": { "message": "Od A do Z" },
+  "listSortNameDesc": { "message": "Od Z do A" },
   "listImport": { "message": "Importuj" },
   "listExport": { "message": "Eksportuj" },
   "listEmpty": { "message": "Na tej liście nie ma kanałów. Dodaj je przez link lub @nazwę, z okna ikony na filmie lub stronie kanału albo z historii." },

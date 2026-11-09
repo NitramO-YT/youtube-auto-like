@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Keresés a listában" },
+  "listSortLabel": { "message": "Lista rendezése" },
+  "listSortAddedDesc": { "message": "Legújabb elöl" },
+  "listSortAddedAsc": { "message": "Legrégebbi elöl" },
+  "listSortNameAsc": { "message": "A–Z" },
+  "listSortNameDesc": { "message": "Z–A" },
   "listImport": { "message": "Importálás" },
   "listExport": { "message": "Exportálás" },
   "listEmpty": { "message": "Nincs csatorna a listán. Adj hozzá hivatkozással vagy @identifikátorral, az ikon ablakából egy videón vagy csatornaoldalon, illetve az előzményekből." },

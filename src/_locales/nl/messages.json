@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "In de lijst zoeken" },
+  "listSortLabel": { "message": "Lijst sorteren" },
+  "listSortAddedDesc": { "message": "Nieuwste eerst" },
+  "listSortAddedAsc": { "message": "Oudste eerst" },
+  "listSortNameAsc": { "message": "A tot Z" },
+  "listSortNameDesc": { "message": "Z tot A" },
   "listImport": { "message": "Importeren" },
   "listExport": { "message": "Exporteren" },
   "listEmpty": { "message": "Geen kanaal in deze lijst. Voeg er toe via een link of @handle, via het venster van het pictogram op een video of de pagina van een kanaal, of via de geschiedenis." },

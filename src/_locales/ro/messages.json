@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Caută în listă" },
+  "listSortLabel": { "message": "Sortează lista" },
+  "listSortAddedDesc": { "message": "Cele mai noi întâi" },
+  "listSortAddedAsc": { "message": "Cele mai vechi întâi" },
+  "listSortNameAsc": { "message": "De la A la Z" },
+  "listSortNameDesc": { "message": "De la Z la A" },
   "listImport": { "message": "Importă" },
   "listExport": { "message": "Exportă" },
   "listEmpty": { "message": "Niciun canal în listă. Adaugă prin link sau @identificator, din fereastra pictogramei pe un videoclip sau pe pagina unui canal, ori din istoric." },

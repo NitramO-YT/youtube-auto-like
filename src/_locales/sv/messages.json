@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Sök i listan" },
+  "listSortLabel": { "message": "Sortera listan" },
+  "listSortAddedDesc": { "message": "Nyast först" },
+  "listSortAddedAsc": { "message": "Äldst först" },
+  "listSortNameAsc": { "message": "A till Ö" },
+  "listSortNameDesc": { "message": "Ö till A" },
   "listImport": { "message": "Importera" },
   "listExport": { "message": "Exportera" },
   "listEmpty": { "message": "Ingen kanal i listan. Lägg till via länk eller @handtag, från ikonens fönster på en video eller en kanalsida, eller från historiken." },

@@ -361,6 +361,11 @@
     "placeholders": { "title": { "content": "$1" } }
   },
   "listSearch": { "message": "Liste durchsuchen" },
+  "listSortLabel": { "message": "Liste sortieren" },
+  "listSortAddedDesc": { "message": "Neueste zuerst" },
+  "listSortAddedAsc": { "message": "Älteste zuerst" },
+  "listSortNameAsc": { "message": "A bis Z" },
+  "listSortNameDesc": { "message": "Z bis A" },
   "listImport": { "message": "Importieren" },
   "listExport": { "message": "Exportieren" },
   "listEmpty": { "message": "Kein Kanal in dieser Liste. Füge welche per Link oder @Handle hinzu, über das Erweiterungsfenster auf einem Video oder einer Kanalseite oder über den Verlauf." },

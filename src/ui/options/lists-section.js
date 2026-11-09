@@ -1,6 +1,7 @@
 /**
  * "My lists" on the options page, in three tabs: the two channel lists and
- * the excluded videos. Each tab has its search and its removal with undo.
+ * the excluded videos. Each tab has its search, the order of the listSort
+ * setting, and its removal with undo.
  * Adding channels, the import and the export are dialogs of their own
  * (add-dialog.js, import-dialog.js, export-dialog.js), opened by the buttons
  * carrying data-dialog (see index.js).
@@ -16,7 +17,7 @@ import { createAvatar, initialOf } from '../shared/avatar.js';
 import { el, icon } from '../shared/dom.js';
 import { formatNumber, formatterFor } from '../shared/format.js';
 import { moveChannel, setVideoExcluded } from '../shared/lists.js';
-import { filterChannels, filterVideos } from './fields.js';
+import { filterChannels, filterVideos, sortEntries } from './fields.js';
 import { createPager } from './pager.js';
 
 const TAB_NAMES = ['always', 'never', 'videos'];
@@ -57,6 +58,8 @@ export function createListsSection(page) {
     emptyKey: 'listEmpty',
     entries: () => state.settings.lists[list],
     filter: filterChannels,
+    nameOf: (channel) => channel.name,
+    addedOf: (channel) => channel.addedAt,
     idOf: (channel) => channel.id,
     row: (channel) => {
       const name = channel.name || t('channelUnknown');
@@ -83,6 +86,8 @@ export function createListsSection(page) {
       emptyKey: 'listEmptyVideos',
       entries: () => state.settings.excludedVideos,
       filter: filterVideos,
+      nameOf: (video) => video.title,
+      addedOf: (video) => video.addedAt,
       idOf: (video) => video.videoId,
       row: (video) => {
         const name = video.title || t('historyUntitled');
@@ -113,7 +118,7 @@ export function createListsSection(page) {
     byId('list-panel').setAttribute('aria-labelledby', `tab-${tab}`);
 
     const current = TABS[tab];
-    const found = current.filter(current.entries(), query);
+    const found = sortEntries(current.filter(current.entries(), query), state.settings.listSort, current, page.lang);
     pager.setPageSize(state.settings.listPageSize);
     const shown = pager.slice(found);
     // Rebuilding the rows only when they change.
