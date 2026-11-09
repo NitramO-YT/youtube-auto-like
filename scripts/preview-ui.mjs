@@ -6,9 +6,10 @@
  * error. It never touches the browser profile in use: the browser runs on a
  * temporary profile, and the extension is built apart from dist/chromium/.
  *
- * Usage: npm run preview [-- --out <dir>] [--only <text>] [--browser <path>]
+ * Usage: npm run preview [-- --out <dir>] [--only <text>] [--locales <list>] [--browser <path>]
  *   --out      folder of the screenshots (default dist/preview/)
  *   --only     keeps the scenarios whose name contains <text>
+ *   --locales  languages to show, comma-separated (default: every one)
  *   --browser  Chromium-based browser to run; also PREVIEW_BROWSER
  *
  * Exits with code 1 when a page reports an error or cannot be checked.
@@ -86,6 +87,7 @@ async function main() {
     options: {
       out: { type: 'string', default: path.join(ROOT, 'dist', 'preview') },
       only: { type: 'string', default: '' },
+      locales: { type: 'string', default: '' },
       browser: { type: 'string', default: process.env.PREVIEW_BROWSER ?? '' },
     },
   });
@@ -108,7 +110,15 @@ async function main() {
   await rm(outDir, { recursive: true, force: true });
   await buildExtension({ target: 'chromium', srcDir: path.join(ROOT, 'src'), outDir: extensionDir, version });
   await copyFile(path.join(ROOT, 'scripts', 'preview', 'fake-api.js'), path.join(extensionDir, 'preview-fake-api.js'));
-  const locales = (await readdir(path.join(extensionDir, '_locales'))).sort();
+  const available = (await readdir(path.join(extensionDir, '_locales'))).sort();
+  const asked = values.locales ? values.locales.split(',').map((locale) => locale.trim()) : available;
+  const unknown = asked.filter((locale) => !available.includes(locale));
+  if (unknown.length > 0) {
+    console.error(`Unknown language: ${unknown.join(', ')}. Known: ${available.join(', ')}.`);
+    process.exitCode = 1;
+    return;
+  }
+  const locales = asked;
   const profileDir = await mkdtemp(path.join(tmpdir(), 'yal-preview-profile-'));
 
   let failures = 0;

@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Gibt YouTube-Videos der ausgewählten Kanäle automatisch ein „Mag ich“." },
+
+  "locale": { "message": "de" },
+
+  "switchLabel": { "message": "Videos automatisch mit „Mag ich“ bewerten" },
+  "switchActive": { "message": "Aktiv" },
+  "switchPaused": { "message": "Pausiert" },
+  "pausedBanner": { "message": "Solange die Erweiterung pausiert ist, bewertet sie nichts." },
+  "badgeUpdate": { "message": "NEU" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: Version $VERSION$ ist erschienen",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Version $VERSION$ ist erschienen ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Dieses Video" },
+  "sectionThisChannel": { "message": "Dieser Kanal" },
+  "sectionRule": { "message": "Aktive Regel" },
+  "openSettings": { "message": "Einstellungen ändern →" },
+  "settingsShow": { "message": "Einstellungen anzeigen" },
+  "settingsHide": { "message": "Zurück zum Video" },
+  "openFullPage": { "message": "Auf ganzer Seite öffnen ↗" },
+  "noVideo": { "message": "Öffne ein Video oder einen Short auf YouTube, um zu sehen, was die Erweiterung damit macht, oder eine Kanalseite, um zu wählen, ob seine Videos bewertet werden." },
+  "noVideoHint": { "message": "Ist bereits ein Video geöffnet, lade seine Seite neu." },
+
+  "channelUnknown": { "message": "Unbekannter Kanal" },
+  "channelSubscribed": { "message": "Abonniert" },
+  "channelNotSubscribed": { "message": "Nicht abonniert" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "Video, $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Livestream" },
+
+  "statusLikedTitle": { "message": "Automatisch mit „Mag ich“ bewertet" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "gleich beim Öffnen" },
+  "likedHowLikeNow": { "message": "auf deinen Wunsch" },
+  "likedHowAt": {
+    "message": "bei $TIME$ im Video",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "nach $DURATION$ Zuschauen",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Wird bei $PERCENT$ % des Videos bewertet",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Wird nach $MINUTES$ Min. Wiedergabe bewertet",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Wird zu einem zufälligen Zeitpunkt bewertet" },
+  "statusWaitBeforeEnd": { "message": "Wird kurz vor dem Ende bewertet" },
+  "statusWaitRemaining": {
+    "message": "noch $DURATION$ Wiedergabe",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Wird gleich bewertet" },
+  "statusWaitDuration": { "message": "Warte auf die Länge des Videos" },
+  "statusWaitAd": { "message": "Warte auf das Ende der Werbung" },
+  "statusWaitAdDetail": { "message": "Werbezeit wird nicht mitgezählt." },
+  "statusReading": { "message": "Seite wird gelesen …" },
+  "statusReadingDetail": { "message": "Bei einem Short zeigt YouTube seine Schaltflächen manchmal erst, wenn sich die Maus über das Video bewegt." },
+  "statusConfirming": { "message": "Prüfe, ob die Bewertung angekommen ist …" },
+  "statusFailedTitle": { "message": "Die Bewertung konnte nicht bestätigt werden" },
+  "statusFailedDetail": { "message": "Die „Mag ich“-Schaltfläche hat nicht reagiert. Lade die Seite neu, um es erneut zu versuchen." },
+
+  "statusAlreadyLikedTitle": { "message": "Bereits mit „Mag ich“ bewertet" },
+  "statusNotLikedTitle": { "message": "Nicht bewertet" },
+  "reasonAlreadyLiked": { "message": "Dieses Video hatte bereits ein „Mag ich“: Die Erweiterung lässt es, wie es ist." },
+  "reasonAlreadyDisliked": { "message": "Du hast dieses Video mit „Mag ich nicht“ bewertet: Die Erweiterung lässt es, wie es ist." },
+  "reasonSkippedByUser": { "message": "Du hast gebeten, es diesmal nicht zu bewerten. Beim nächsten Ansehen kann es bewertet werden." },
+  "reasonVideoExcluded": { "message": "Du hast dieses Video ausgeschlossen: Es wird nie bewertet, bis du den Ausschluss aufhebst." },
+  "reasonNotSubscribed": { "message": "Du hast diesen Kanal nicht abonniert. Es wird bewertet, wenn du ihn abonnierst." },
+  "reasonNotInAlwaysList": { "message": "Nur die Kanäle deiner Liste „Immer bewerten“ werden bewertet." },
+  "reasonInNeverList": { "message": "Dieser Kanal steht in deiner Liste „Nie bewerten“." },
+  "reasonShortsOff": { "message": "Shorts werden laut deinen Einstellungen nicht bewertet." },
+  "reasonNormalVideosOff": { "message": "Laut deinen Einstellungen werden nur Shorts bewertet." },
+  "statusWouldLike": { "message": "Würde bewertet" },
+  "statusWouldLikeDetail": { "message": "wenn die Erweiterung aktiv wäre." },
+
+  "actionLikeNow": { "message": "Jetzt bewerten" },
+  "actionSkip": { "message": "Diesmal nicht" },
+  "actionRestart": { "message": "Für dieses Video neu starten" },
+  "actionRetry": { "message": "Erneut versuchen" },
+  "removedLikeTitle": { "message": "„Mag ich“ entfernt" },
+  "removedLikeRestart": { "message": "Du hast das „Mag ich“ entfernt. Starte neu, damit die Erweiterung dieses Video erneut prüft." },
+  "removedDislikeTitle": { "message": "„Mag ich nicht“ entfernt" },
+  "removedDislikeRestart": { "message": "Du hast das „Mag ich nicht“ entfernt. Starte neu, damit die Erweiterung dieses Video erneut prüft." },
+  "likeRemovedNextOpening": { "message": "Es wird beim nächsten Öffnen des Videos erneut bewertet." },
+  "likeRemovedAt": {
+    "message": "Es wird erneut bewertet, wenn die Wiedergabe wieder $TIME$ passiert.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Ein Video erneut bewerten, dessen „Mag ich“ ich entferne" },
+  "relikeHint": { "message": "Wenn die Wiedergabe den geplanten Zeitpunkt erneut passiert, also nach einem Zurückspulen davor; mit „Gleich beim Öffnen“ beim nächsten Öffnen des Videos. Gilt auch für ein Video, das du selbst bewertet hattest." },
+  "actionResume": { "message": "„Diesmal nicht“ rückgängig machen" },
+  "actionExcludeVideo": { "message": "Dieses Video nie bewerten" },
+  "actionUnexcludeVideo": { "message": "Ausschluss dieses Videos aufheben" },
+  "channelChoiceLegend": { "message": "Videos dieses Kanals bewerten" },
+  "channelChoiceAlways": { "message": "Immer" },
+  "channelChoiceAuto": { "message": "Laut Einstellungen" },
+  "channelChoiceNever": { "message": "Nie" },
+
+  "noticeAddedAlways": { "message": "Zu „Immer bewerten“ hinzugefügt" },
+  "noticeAddedNever": { "message": "Zu „Nie bewerten“ hinzugefügt" },
+  "noticeRemovedNever": { "message": "Aus „Nie bewerten“ entfernt" },
+  "noticeSkipped": { "message": "Diesmal nicht bewertet" },
+  "noticeVideoExcluded": { "message": "Zu den ausgeschlossenen Videos hinzugefügt" },
+  "noticeVideoUnexcluded": { "message": "Aus den ausgeschlossenen Videos entfernt" },
+  "noticeUndo": { "message": "Rückgängig" },
+  "noticeUndone": { "message": "Rückgängig gemacht" },
+  "noticeSaveFailed": { "message": "Die Änderung konnte nicht gespeichert werden." },
+  "noticeStorageFull": { "message": "Der Speicher der Erweiterung ist voll: Entferne Kanäle oder ausgeschlossene Videos aus deinen Listen und versuche es erneut." },
+  "noticeLoadFailed": { "message": "Die Einstellungen konnten nicht gelesen werden." },
+  "noticeListFull": {
+    "message": "Diese Liste ist voll (höchstens $COUNT$ Einträge).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Die Seite hat nicht geantwortet. Lade sie neu und versuche es erneut." },
+  "noticeSaved": { "message": "Gespeichert" },
+  "noticeRemovedAlways": { "message": "Aus „Immer bewerten“ entfernt" },
+  "noticeImportDone": {
+    "message": "Import abgeschlossen: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ Kanal zu „$LIST$“ hinzugefügt",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "$COUNT$ Kanäle zu „$LIST$“ hinzugefügt",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Abbrechen" },
+  "dialogClose": { "message": "Schließen" },
+  "noticeCopied": { "message": "Kopiert" },
+  "noticeCopyFailed": { "message": "Kopieren nicht möglich: Markiere den Text und kopiere ihn selbst." },
+  "noticeJournalCleared": { "message": "Protokoll gelöscht" },
+
+  "languageLabel": { "message": "Sprache" },
+  "languageHint": { "message": "Die des Browsers oder eine andere deiner Wahl. Eine Übersetzung ist falsch? Schlag die Korrektur auf GitHub vor." },
+  "languageAuto": { "message": "Die des Browsers" },
+
+  "debugLabel": { "message": "Debug-Modus" },
+  "debugHint": { "message": "Führt ein Protokoll dessen, was die Erweiterung tut, um ein Problem zu melden: die letzten 200 Schritte, mit den IDs der angesehenen Videos, nur in diesem Browser gespeichert. Ausgeschaltet wird kein Protokoll geführt." },
+  "journalCountOne": { "message": "Protokoll: $COUNT$ Eintrag", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Protokoll: $COUNT$ Einträge", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Protokoll kopieren" },
+  "journalClear": { "message": "Protokoll löschen" },
+
+  "navAbout": { "message": "Über" },
+  "aboutHeading": { "message": "Über" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, Version $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Entwickelt von" },
+  "aboutOrigin": { "message": "Ursprüngliches Projekt" },
+  "aboutFirefox": { "message": "Fork für Firefox" },
+  "aboutLicense": { "message": "Lizenz" },
+  "aboutInvite": { "message": "Um mehr zu erfahren, neuen Versionen zu folgen oder eine Verbesserung vorzuschlagen, besuche das GitHub-Repository. Ein Problem? Melde es mit der Schaltfläche unten." },
+  "aboutRepository": { "message": "Projekt auf GitHub ansehen" },
+  "reportOpen": { "message": "Problem melden" },
+  "reportHint": { "message": "Beschreibe das Problem in dem Issue, das sich auf GitHub öffnet: Dieser Bericht wird angehängt, um es zu verstehen. Lies ihn vor dem Absenden; deine Kanallisten sind nicht darin enthalten." },
+  "reportJournalOne": {
+    "message": "Protokoll anhängen ($COUNT$ Eintrag, mit den IDs der angesehenen Videos)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Protokoll anhängen ($COUNT$ Einträge, mit den IDs der angesehenen Videos)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Es wurde kein Protokoll geführt. Um eines anzuhängen: Schalte den Debug-Modus unter „Weiteres“ ein, wiederhole, was nicht funktioniert, und komm dann hierher zurück." },
+  "reportTextLabel": { "message": "Bericht" },
+  "reportCopy": { "message": "Bericht kopieren" },
+  "reportIssue": { "message": "Issue auf GitHub öffnen" },
+  "reportCut": { "message": "Der Bericht ist zu lang für die Adresse des Issues: Er wird dort gekürzt. Kopiere den vollständigen Bericht und füge ihn in das Issue ein." },
+  "dialogAnalyse": { "message": "Analysieren" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Kanäle hinzufügen" },
+  "addHint": { "message": "Füge Links zu Kanälen oder Videos oder @Handles ein, einen pro Zeile. Die Erweiterung fragt YouTube, um welchen Kanal es sich handelt, als würdest du seine Seite öffnen." },
+  "addLinesLabel": { "message": "Links oder @Handles" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@name\n@name\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "In die Liste" },
+  "addSearch": { "message": "Suchen" },
+  "addSearching": {
+    "message": "Frage YouTube … $DONE$ von $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Hinzufügen" },
+  "addApplyOne": {
+    "message": "$COUNT$ Kanal hinzufügen",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "$COUNT$ Kanäle hinzufügen",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Kein Kanal hinzuzufügen: Alle sind bereits in dieser Liste, oder keiner wurde gefunden." },
+  "addEmpty": { "message": "Füge mindestens einen Link oder ein @Handle ein." },
+  "addTooMany": {
+    "message": "Höchstens $MAX$ Zeilen auf einmal.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "wird hinzugefügt" },
+  "lookupAlready": { "message": "bereits in dieser Liste" },
+  "lookupMoved": {
+    "message": "wechselt von „$FROM$“ zu „$TO$“",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "derselbe Kanal wie in einer früheren Zeile" },
+  "lookupNotALink": { "message": "weder ein Link zu einem YouTube-Kanal oder -Video noch ein @Handle" },
+  "lookupNotFound": { "message": "dieser Kanal oder dieses Video existiert auf YouTube nicht" },
+  "lookupUnreadable": { "message": "YouTube hat den Kanal nicht genannt. Wurde YouTube in diesem Browser noch nie geöffnet, öffne es einmal, triff deine Cookie-Auswahl und versuche es erneut" },
+
+  "importTitle": { "message": "Listen importieren" },
+  "importHint": { "message": "Eine von der Erweiterung exportierte Datei oder eine Liste von Kanallinks, einer pro Zeile. Vor „Importieren“ wird nichts gespeichert: „Analysieren“ zeigt zuerst, was geschehen wird." },
+  "importDropHere": { "message": "Datei hierher ziehen oder" },
+  "importBrowse": { "message": "Dateien durchsuchen" },
+  "importPasteHint": { "message": "Du kannst auch eine Datei oder Text in dieses Fenster einfügen (Strg+V)." },
+  "importChange": { "message": "Ändern" },
+  "importRemove": { "message": "Entfernen" },
+  "importPasted": { "message": "Eingefügter Text" },
+  "importSourceFile": { "message": "Von der Erweiterung exportierte Datei" },
+  "importSourceLinksOne": {
+    "message": "Liste von Links, $COUNT$ Zeile",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Liste von Links, $COUNT$ Zeilen",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Das ist weder ein Export der Erweiterung noch eine Liste von Links." },
+  "importNoSource": { "message": "Wähle zuerst eine Datei oder füge Text ein." },
+  "importNoPart": { "message": "Wähle mindestens einen Teil zum Importieren." },
+  "importListFull": {
+    "message": "Eine Liste würde $COUNT$ Einträge überschreiten: Es würde nichts importiert.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Was importiert wird" },
+  "importLinksTarget": { "message": "Diese Kanäle eintragen in" },
+  "importModeLabel": { "message": "Bereits vorhandene Einträge" },
+  "importModeAddNew": { "message": "Nur die neuen hinzufügen" },
+  "importModeAddNewHint": { "message": "Ein Kanal, der schon in einer Liste steht, bleibt, wo er ist." },
+  "importModeFollow": { "message": "Hinzufügen und der Datei folgen" },
+  "importModeFollowHint": { "message": "Ein bereits vorhandener Kanal wechselt in die Liste, die ihm die Datei gibt." },
+  "importModeReplace": { "message": "Alles durch die Datei ersetzen" },
+  "importModeReplaceHint": { "message": "Die ausgewählten Teile werden genau die der Datei: Was sie nicht enthält, wird entfernt." },
+  "importRemember": { "message": "Meine Wahl merken" },
+  "importApply": { "message": "Importieren" },
+  "importConfirmOne": {
+    "message": "Ich bestätige das Entfernen von $COUNT$ Eintrag, der in der Datei fehlt.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Ich bestätige das Entfernen der $COUNT$ Einträge, die in der Datei fehlen.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "keine Änderung" },
+  "reportNothing": { "message": "Keine Änderung: Alles ist bereits vorhanden." },
+  "reportAddedOne": { "message": "$COUNT$ neu", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "$COUNT$ neu", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ verschoben", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "$COUNT$ verschoben", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ bereits vorhanden", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ bereits vorhanden", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ entfernt", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ entfernt", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Listen exportieren" },
+  "exportPartsLabel": { "message": "Was exportiert wird" },
+  "exportFormatLabel": { "message": "Format" },
+  "exportFormatJson": { "message": "Datei der Erweiterung (JSON)" },
+  "exportFormatJsonHint": { "message": "Lässt sich unverändert wieder importieren, mit den Daten und Bildern der Kanäle." },
+  "exportFormatLinks": { "message": "Liste von Links (Text)" },
+  "exportFormatLinksHint": { "message": "Ein Kanallink pro Zeile, mit seinem Namen, zum Lesen oder Teilen. Ausgeschlossene Videos sind nicht enthalten." },
+  "exportDownload": { "message": "Herunterladen" },
+  "exportNothing": { "message": "Wähle mindestens eine Liste." },
+  "noticeImportInvalid": { "message": "Diese Datei ist keine von YouTube Auto Like exportierte Liste." },
+  "noticeImportTooBig": { "message": "Diese Datei ist zu groß, um eine Kanalliste zu sein." },
+  "noticeCountReset": { "message": "Zähler zurückgesetzt" },
+  "noticeNumberInvalid": {
+    "message": "Gib eine Zahl von $MIN$ bis $MAX$ ein.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Einstellungen von YouTube Auto Like" },
+  "optionsTitle": { "message": "Einstellungen" },
+  "navSections": { "message": "Abschnitte" },
+  "navChannels": { "message": "Welche Kanäle" },
+  "navVideos": { "message": "Welche Videos" },
+  "navWhen": { "message": "Wann bewerten" },
+  "navLists": { "message": "Meine Listen" },
+  "navMore": { "message": "Weiteres" },
+
+  "channelsHeading": { "message": "Welche Kanäle bewerten?" },
+  "channelsHint": { "message": "Die Liste „Nie bewerten“ hat immer Vorrang." },
+  "likeWhatSubscribed": { "message": "Die Kanäle, die ich abonniert habe" },
+  "likeWhatSubscribedHint": { "message": "plus die meiner Liste „Immer bewerten“." },
+  "recommended": { "message": "Empfohlen" },
+  "likeWhatAll": { "message": "Alle Kanäle" },
+  "likeWhatAllHint": { "message": "jedes angesehene Video wird bewertet." },
+  "likeWhatList": { "message": "Nur meine Liste „Immer bewerten“" },
+  "likeWhatListHint": { "message": "ob abonniert oder nicht, sonst wird nichts bewertet." },
+
+  "videosHeading": { "message": "Welche Videos?" },
+  "videosHint": { "message": "Shorts werden auch erkannt, wenn sie im normalen Player geöffnet werden." },
+  "likeNormalVideos": { "message": "Videos" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Wann bewerten?" },
+  "whenHint": { "message": "Ein Video, das du selbst mit „Mag ich“ oder „Mag ich nicht“ bewertest, wird nie angerührt." },
+  "modeInstant": { "message": "Gleich beim Öffnen" },
+  "modeCustom": { "message": "Nach einer Weile" },
+  "modeRandom": { "message": "Zu einem zufälligen Zeitpunkt" },
+  "thresholdAfter": { "message": "nach" },
+  "thresholdPercentUnit": { "message": "% des Videos" },
+  "thresholdMinutesUnit": { "message": "Minuten Wiedergabe" },
+  "percentLabel": { "message": "Prozent des Videos" },
+  "minutesLabel": { "message": "Minuten Wiedergabe" },
+  "thresholdKeepOne": { "message": "Mindestens eine Schwelle bleibt ausgewählt." },
+  "thresholdsHint": { "message": "Die zuerst erreichte Schwelle löst die Bewertung aus. Ein kürzeres Video wird zwei Sekunden vor seinem Ende bewertet. Bei einem Livestream zählen nur die Minuten, ab dem Moment, in dem du zu schauen begonnen hast; ohne Minutenschwelle wird er gleich beim Öffnen bewertet. Werbung wird nicht mitgezählt." },
+  "randomHint": { "message": "Ein zufällig gewählter Zeitpunkt in jedem Video. Ein Livestream wird gleich beim Öffnen bewertet." },
+  "summaryLabel": { "message": "Zusammenfassung:" },
+
+  "listsHeading": { "message": "Meine Kanallisten" },
+  "listsHint": { "message": "Füge Kanäle per Link oder @Handle hinzu, über das Erweiterungsfenster auf einem Video oder einer Kanalseite oder über den Verlauf. Ein Video wird über das Erweiterungsfenster ausgeschlossen." },
+  "listAlways": { "message": "Immer bewerten" },
+  "listNever": { "message": "Nie bewerten" },
+  "listVideos": { "message": "Ausgeschlossene Videos" },
+  "listExcludedOn": {
+    "message": "ausgeschlossen am $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Ausschluss von $TITLE$ aufheben",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Liste durchsuchen" },
+  "listImport": { "message": "Importieren" },
+  "listExport": { "message": "Exportieren" },
+  "listEmpty": { "message": "Kein Kanal in dieser Liste. Füge welche per Link oder @Handle hinzu, über das Erweiterungsfenster auf einem Video oder einer Kanalseite oder über den Verlauf." },
+  "listEmptyVideos": { "message": "Kein ausgeschlossenes Video. Um ein Video auszuschließen, öffne das Erweiterungsfenster, während du es ansiehst, und wähle „Dieses Video nie bewerten“." },
+  "listNoMatch": { "message": "Kein Kanal passt zu dieser Suche." },
+  "listAddedOn": {
+    "message": "hinzugefügt am $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "$NAME$ aus dieser Liste entfernen",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ von $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "$COUNT$ weitere anzeigen",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Alle anzeigen ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Angezeigte Zeilen in den Listen und im Verlauf" },
+  "listPageSizeHint": { "message": "Die weiteren erscheinen mit „Weitere anzeigen“ oder „Alle anzeigen“. Eine lange Liste scrollt in sich, ohne die Seite zu verlängern." },
+  "listPageSizeAll": { "message": "Alle" },
+  "listOpenChannel": { "message": "Kanal auf YouTube öffnen" },
+
+  "navHistory": { "message": "Verlauf" },
+  "historyHeading": { "message": "Bewertungen der Erweiterung" },
+  "historyHint": {
+    "message": "Die letzten $COUNT$, die neuesten zuerst, nur in diesem Browser gespeichert.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Die Erweiterung hat noch nichts bewertet." },
+  "historyUntitled": { "message": "Video ohne Titel" },
+  "historyChannelChoice": {
+    "message": "Videos von $NAME$ bewerten",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Verlauf löschen" },
+  "noticeHistoryCleared": { "message": "Verlauf gelöscht" },
+
+  "moreHeading": { "message": "Weiteres" },
+  "themeLabel": { "message": "Design" },
+  "themeSystem": { "message": "Wie das System" },
+  "themeLight": { "message": "Hell" },
+  "themeDark": { "message": "Dunkel" },
+  "updatesLabel": { "message": "Nach neuen Versionen suchen" },
+  "updatesHint": { "message": "Fragt bei GitHub nach, wo die Erweiterung veröffentlicht wird; GitHub sieht dabei deine IP-Adresse." },
+  "updateEvery0": { "message": "Nie" },
+  "updateEvery30": { "message": "Alle 30 Minuten" },
+  "updateEvery60": { "message": "Jede Stunde" },
+  "updateEvery360": { "message": "Alle 6 Stunden" },
+  "updateEvery1440": { "message": "Jeden Tag" },
+  "updateEvery10080": { "message": "Jede Woche" },
+  "updateEveryCustom": { "message": "Benutzerdefiniert …" },
+  "updateEveryPrefix": { "message": "Alle" },
+  "updateCustomCount": { "message": "Anzahl Minuten, Stunden oder Tage zwischen zwei Prüfungen" },
+  "updateCustomUnit": { "message": "Einheit" },
+  "unitMinutesOne": { "message": "Minute" },
+  "unitMinutesOther": { "message": "Minuten" },
+  "unitHoursOne": { "message": "Stunde" },
+  "unitHoursOther": { "message": "Stunden" },
+  "unitDaysOne": { "message": "Tag" },
+  "unitDaysOther": { "message": "Tage" },
+  "noticeFrequencyInvalid": { "message": "Gib eine Dauer von 5 Minuten bis 30 Tagen ein." },
+  "updateCheckNow": { "message": "Jetzt prüfen" },
+  "updateStatusOff": { "message": "Es wird nicht nach neuen Versionen gesucht." },
+  "updateStatusNever": { "message": "Noch nicht geprüft." },
+  "updateStatusChecking": { "message": "Wird geprüft …" },
+  "updateStatusAvailable": {
+    "message": "Version $VERSION$ ist erschienen ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Geprüft $WHEN$: Du hast die neueste Version.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Geprüft $WHEN$: noch keine Version veröffentlicht.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Die letzte Prüfung ist $WHEN$ fehlgeschlagen; die nächste versucht es erneut.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Die Prüfung konnte nicht durchgeführt werden." },
+  "likeCountHint": { "message": "Seit der Installation der Erweiterung oder seit dem letzten Zurücksetzen. Das Zurücksetzen ändert nichts anderes." },
+  "likeCountReset": { "message": "Zurücksetzen" },
+
+  "ruleSentence": {
+    "message": "Bewertet $WHAT$ $CHANNELS$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Bewertet nichts: Videos und Shorts sind beide ausgeschaltet." },
+  "ruleWhatBoth": { "message": "Videos und Shorts" },
+  "ruleWhatVideos": { "message": "Videos" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "der Kanäle, die du abonniert hast," },
+  "ruleChannelsSubscribedAndList": { "message": "der Kanäle, die du abonniert hast, und der deiner Liste „Immer bewerten“" },
+  "ruleChannelsAll": { "message": "aller Kanäle" },
+  "ruleChannelsList": { "message": "der Kanäle deiner Liste „Immer bewerten“" },
+  "ruleWhenInstant": { "message": "gleich beim Öffnen" },
+  "ruleWhenPercent": {
+    "message": "bei $PERCENT$ % des Videos",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "nach $MINUTES$ Min. Wiedergabe",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "bei $PERCENT$ % des Videos oder nach $MINUTES$ Min. Wiedergabe, je nachdem, was zuerst eintritt",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "zu einem zufälligen Zeitpunkt" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ Video bewertet",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ Videos bewertet",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ Min. $SECONDS$ s",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ Std. $MINUTES$ Min.",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
