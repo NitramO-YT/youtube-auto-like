@@ -58,7 +58,32 @@ reason is not obvious from the title.
 
 The texts are in `src/_locales/<language>/messages.json`: English (`en`) is
 the reference, and every language must define the same keys (a test checks
-it). Corrections to an existing language are welcome as pull requests.
+it). Corrections to an existing language are welcome as pull requests: only
+English and French have been reviewed by native speakers so far.
+
+The 28 languages: Arabic (`ar`), Chinese (`zh_CN`, `zh_TW`), Czech (`cs`),
+Danish (`da`), Dutch (`nl`), English (`en`), Filipino (`fil`), Finnish (`fi`),
+French (`fr`), German (`de`), Hindi (`hi`), Hungarian (`hu`), Indonesian
+(`id`), Italian (`it`), Japanese (`ja`), Korean (`ko`), Polish (`pl`),
+Portuguese (`pt_BR`), Romanian (`ro`), Russian (`ru`), Slovak (`sk`), Spanish
+(`es`), Swedish (`sv`), Thai (`th`), Turkish (`tr`), Ukrainian (`uk`) and
+Vietnamese (`vi`).
+
+A few rules hold for every language:
+
+- **YouTube's own words**: the name of the like button, "Shorts", "channel"
+  and "subscribed" as YouTube shows them in that language.
+- **Two plural forms only**: the extension picks between the "one" and the
+  "other" text. In a language with more forms, write the counted texts so that
+  one form fits every number ("Channels added: 5").
+- **No em dash** (a test checks it).
+- **A new language** also goes in `LOCALES` in `src/core/locales.js`, with its
+  name in itself and the country of its flag. A language written from right to
+  left also goes in `RIGHT_TO_LEFT` in `src/ui/shared/locale.js` (a test
+  compares it with the browser's data).
+- **Check it on screenshots**: `npm run preview -- --locales <code>` shows the
+  pages in that language; the popup must keep to its width and to 600 pixels of
+  height.
 
 ## Publishing a release (maintainer)
 

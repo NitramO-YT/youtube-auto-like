@@ -18,7 +18,7 @@ Likes the YouTube videos you choose, automatically: the channels you subscribe t
 - **This video only, or never:** skip a video this time, or exclude it for good.
 - **Shows what it does:** the toolbar popup tells what happens to the video you watch and why, with the actions that change it.
 - **Your lists, yours:** export them as a file or a list of links, import them back with a preview of what changes.
-- **Light and dark themes, English and French.**
+- **Light and dark themes, 28 languages:** the browser's, or the one you pick in the settings. Only English and French have been reviewed by native speakers so far: corrections are welcome (see [Contributing](#contributing)).
 
 ## About this fork
 

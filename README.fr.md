@@ -18,7 +18,7 @@ Like automatiquement les vidéos YouTube que vous choisissez : celles des chaîn
 - **Pas cette fois, ou jamais :** écartez une vidéo pour ce visionnage, ou excluez-la pour de bon.
 - **Montre ce qu'elle fait :** la fenêtre de l'icône dit ce qui arrive à la vidéo regardée et pourquoi, avec les actions qui le changent.
 - **Vos listes vous appartiennent :** exportez-les en fichier ou en liste de liens, réimportez-les en voyant d'abord ce qui change.
-- **Thèmes clair et sombre, en français et en anglais.**
+- **Thèmes clair et sombre, 28 langues :** celle du navigateur, ou celle que vous choisissez dans les réglages. Seuls le français et l'anglais ont été relus par des locuteurs natifs pour l'instant : les corrections sont bienvenues (voir [Contribuer](#contribuer)).
 
 ## À propos de ce fork
 
