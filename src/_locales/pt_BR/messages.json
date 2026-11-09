@@ -93,7 +93,7 @@
   "statusWouldLike": { "message": "Seria marcado com “Gostei”" },
   "statusWouldLikeDetail": { "message": "se a extensão estivesse ativa." },
 
-  "actionLikeNow": { "message": "Marcar “Gostei” agora" },
+  "actionLikeNow": { "message": "Marcar agora" },
   "actionSkip": { "message": "Desta vez não" },
   "actionRestart": { "message": "Reiniciar para este vídeo" },
   "actionRetry": { "message": "Tentar de novo" },
