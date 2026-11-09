@@ -11,6 +11,29 @@ import { createTranslator } from './i18n.js';
 
 const LOG_PREFIX = '[YouTube Auto Like]';
 
+/** The flag emoji of a country (two regional indicator symbols). */
+export function flagOf(region) {
+  return String.fromCodePoint(...[...region.toUpperCase()].map((letter) => 0x1f1a5 + letter.charCodeAt(0)));
+}
+
+/**
+ * How a language of the extension shows in the choice of the settings, for
+ * a page in lang: "🇬🇧 Anglais - English", its flag, its name in lang (from
+ * the browser, Intl.DisplayNames), then its name in itself; only the latter
+ * when both are the same.
+ */
+export function languageLabel(code, lang) {
+  const { name, region } = LOCALES[code];
+  let local = null;
+  try {
+    local = new Intl.DisplayNames([lang], { type: 'language' }).of(code.replace('_', '-'));
+  } catch {
+    // A browser without the names of languages shows the name in itself only.
+  }
+  const shown = local ? local.charAt(0).toLocaleUpperCase(lang) + local.slice(1) : null;
+  return shown && shown !== name ? `${flagOf(region)} ${shown} - ${name}` : `${flagOf(region)} ${name}`;
+}
+
 /** getMessage over the content of a messages.json; '' for a key it lacks. */
 export function messagesResolver(messages) {
   return (key, substitutions = []) => {

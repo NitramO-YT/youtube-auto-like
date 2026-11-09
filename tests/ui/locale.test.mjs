@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it, mock } from 'node:test';
-import { loadLanguage, messagesResolver } from '../../src/ui/shared/locale.js';
+import { LOCALES } from '../../src/core/locales.js';
+import { flagOf, languageLabel, loadLanguage, messagesResolver } from '../../src/ui/shared/locale.js';
 import { fakeGetMessage, loadMessages } from '../helpers/fake-i18n.mjs';
 
 // The extension API, answering in English like a browser in English.
@@ -12,6 +13,23 @@ const fetchLocale = async (url) => {
   const locale = url.match(/_locales\/(\w+)\//)[1];
   return { json: async () => loadMessages(locale) };
 };
+
+describe('languageLabel', () => {
+  it('shows the flag, the name in the page language, then the name in itself', () => {
+    assert.equal(languageLabel('en', 'fr'), '🇬🇧 Anglais - English');
+    assert.equal(languageLabel('fr', 'en'), '🇫🇷 French - Français');
+  });
+
+  it('shows the name once for the language of the page itself', () => {
+    assert.equal(languageLabel('fr', 'fr'), '🇫🇷 Français');
+    assert.equal(languageLabel('en', 'en'), '🇬🇧 English');
+  });
+
+  it('makes a flag of each country of the languages', () => {
+    assert.equal(flagOf('gb'), '\u{1F1EC}\u{1F1E7}');
+    for (const { region } of Object.values(LOCALES)) assert.equal([...flagOf(region)].length, 2, region);
+  });
+});
 
 describe('messagesResolver', () => {
   it('resolves placeholders like the browser does', () => {

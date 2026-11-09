@@ -1,11 +1,12 @@
 /**
  * The languages of the extension: one folder of src/_locales each (a test
- * checks that both agree), with its name in that language, for the choice
- * of the settings. "auto" follows the language of the browser.
+ * checks that both agree). For the choice of the settings, each has its name
+ * in itself and the country whose flag stands for it (ISO 3166-1 alpha-2).
+ * "auto" follows the language of the browser.
  */
 export const LOCALES = Object.freeze({
-  en: 'English',
-  fr: 'Français',
+  en: Object.freeze({ name: 'English', region: 'GB' }),
+  fr: Object.freeze({ name: 'Français', region: 'FR' }),
 });
 
 export const AUTO_LANGUAGE = 'auto';

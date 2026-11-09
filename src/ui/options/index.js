@@ -15,7 +15,7 @@ import { createActionRunner } from '../shared/actions.js';
 import { markReady, renderParts } from '../shared/dom.js';
 import { formatLikeCount, formatNumber } from '../shared/format.js';
 import { createTranslator, translatePage } from '../shared/i18n.js';
-import { loadLanguage } from '../shared/locale.js';
+import { languageLabel, loadLanguage } from '../shared/locale.js';
 import { dialogFromHash, dialogPageUrl, isEmbedded } from '../shared/embed.js';
 import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
@@ -95,19 +95,25 @@ function setUp() {
   };
 }
 
-/** The choices of the language: the browser's, then each language in its own name. */
+/**
+ * The choices of the language: the browser's, then each language as
+ * languageLabel shows it, in the alphabetical order of the page language.
+ */
 function fillLanguages() {
   const select = byId('language');
   const auto = document.createElement('option');
   auto.value = AUTO_LANGUAGE;
   auto.textContent = t('languageAuto');
+  const choices = Object.keys(LOCALES).map((code) => ({ code, label: languageLabel(code, lang) }));
+  // Sorted on the names, after the flag and its space.
+  const name = (label) => label.slice(label.indexOf(' ') + 1);
+  choices.sort((a, b) => name(a.label).localeCompare(name(b.label), lang));
   select.replaceChildren(
     auto,
-    ...Object.entries(LOCALES).map(([code, name]) => {
+    ...choices.map(({ code, label }) => {
       const option = document.createElement('option');
       option.value = code;
-      option.textContent = name;
-      option.lang = code.replace('_', '-');
+      option.textContent = label;
       return option;
     }),
   );
