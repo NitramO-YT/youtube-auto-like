@@ -1,0 +1,49 @@
+import assert from 'node:assert/strict';
+import { describe, it, mock } from 'node:test';
+import { loadLanguage, messagesResolver } from '../../src/ui/shared/locale.js';
+import { fakeGetMessage, loadMessages } from '../helpers/fake-i18n.mjs';
+
+// The extension API, answering in English like a browser in English.
+const api = {
+  i18n: { getMessage: fakeGetMessage('en') },
+  runtime: { getURL: (file) => `chrome-extension://id/${file}` },
+};
+const fetchLocale = async (url) => {
+  const locale = url.match(/_locales\/(\w+)\//)[1];
+  return { json: async () => loadMessages(locale) };
+};
+
+describe('messagesResolver', () => {
+  it('resolves placeholders like the browser does', () => {
+    const getMessage = messagesResolver(loadMessages('fr'));
+    assert.equal(getMessage('aboutVersion', ['3.0.0']), 'YouTube Auto Like, version 3.0.0');
+    assert.equal(getMessage('lookupMoved', ['A', 'B']), 'passera de « A » à « B »');
+    assert.equal(getMessage('noSuchKey'), '');
+    assert.equal(getMessage('__proto__'), '');
+  });
+});
+
+describe('loadLanguage', () => {
+  it('follows the browser with "auto", and reads a chosen language from its file', async () => {
+    const auto = await loadLanguage(api, 'auto', fetchLocale);
+    assert.equal(auto.lang, 'en');
+    assert.equal(auto.t('navAbout'), 'About');
+    const fr = await loadLanguage(api, 'fr', fetchLocale);
+    assert.equal(fr.lang, 'fr');
+    assert.equal(fr.t('navAbout'), 'À propos');
+  });
+
+  it('falls back to the browser for an unknown language or a file that cannot be read', async () => {
+    assert.equal((await loadLanguage(api, 'xx', fetchLocale)).t('navAbout'), 'About');
+    const error = mock.method(console, 'error', () => {});
+    try {
+      const broken = await loadLanguage(api, 'fr', async () => {
+        throw new TypeError('Failed to fetch');
+      });
+      assert.equal(broken.t('navAbout'), 'About');
+      assert.equal(error.mock.callCount(), 1);
+    } finally {
+      error.mock.restore();
+    }
+  });
+});

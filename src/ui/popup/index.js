@@ -17,6 +17,7 @@ import { markReady, renderParts } from '../shared/dom.js';
 import { embeddedOptionsUrl } from '../shared/embed.js';
 import { formatLikeCount } from '../shared/format.js';
 import { createTranslator, translatePage } from '../shared/i18n.js';
+import { loadLanguage } from '../shared/locale.js';
 import { moveChannel, setVideoExcluded } from '../shared/lists.js';
 import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
@@ -28,8 +29,9 @@ import { Action, channelPageView, videoView } from './view.js';
 const REFRESH_MS = 1000;
 const LOG_PREFIX = '[YouTube Auto Like]';
 
-const t = createTranslator((key, substitutions) => api.i18n.getMessage(key, substitutions));
-const lang = t('locale');
+// In the language of the browser until start() has read the one of the settings.
+let t = createTranslator((key, substitutions) => api.i18n.getMessage(key, substitutions));
+let lang = t('locale');
 const store = createStore(api);
 const byId = (id) => document.getElementById(id);
 
@@ -49,7 +51,7 @@ const notice = createNotice(
   { box: byId('notice'), text: byId('notice-text'), undoButton: byId('notice-undo') },
   { run: (action) => act(action) },
 );
-const act = createActionRunner(notice, t, lang);
+let act = createActionRunner(notice, t, lang);
 
 const drawn = new Map();
 function draw(name, model, paint) {
@@ -268,6 +270,11 @@ function listen() {
     );
   });
   store.onSettingsChange((settings) => {
+    // Another language: the popup is drawn again in it, from the start.
+    if (settings.language !== state.settings.language) {
+      window.location.reload();
+      return;
+    }
     state.settings = settings;
     render();
   });
@@ -282,11 +289,19 @@ function listen() {
 }
 
 async function start() {
+  try {
+    state.settings = await store.loadSettings();
+    ({ t, lang } = await loadLanguage(api, state.settings.language));
+    act = createActionRunner(notice, t, lang);
+  } catch (error) {
+    console.error(LOG_PREFIX, 'could not load the settings', error);
+    notice.show(t('noticeLoadFailed'), { error: true });
+    return;
+  }
   document.documentElement.lang = lang;
   translatePage(document, t);
   byId('version').textContent = t('versionLabel', [VERSION]);
   try {
-    state.settings = await store.loadSettings();
     state.likeCount = await store.loadLikeCount();
     state.update = await store.loadUpdateState();
   } catch (error) {

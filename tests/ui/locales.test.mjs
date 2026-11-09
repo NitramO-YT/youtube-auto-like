@@ -3,6 +3,7 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { LOCALES as EXTENSION_LOCALES } from '../../src/core/locales.js';
 import { LOCALES, loadMessages } from '../helpers/fake-i18n.mjs';
 
 // What would show a key instead of a text, or leave a translation behind.
@@ -23,6 +24,11 @@ const referencedNames = (message) => [...message.matchAll(/\$(\w+)\$/g)].map((ma
 describe('locales', () => {
   const messages = Object.fromEntries(LOCALES.map((locale) => [locale, loadMessages(locale)]));
   const keys = Object.keys(messages.en).sort();
+
+  it('are the languages offered in the settings, each named in itself', () => {
+    assert.deepEqual(Object.keys(EXTENSION_LOCALES).sort(), LOCALES);
+    for (const locale of LOCALES) assert.ok(messages[locale].locale?.message, `${locale} gives its locale`);
+  });
 
   it('define the same keys, with the same placeholders, in every language', () => {
     for (const locale of LOCALES) {

@@ -2,6 +2,7 @@
  * The settings the options page edits, and the rules of its form. Pure, so
  * that each rule is tested without a page.
  */
+import { LANGUAGES } from '../../core/locales.js';
 import { LIST_PAGE_SIZES, MINUTES_RANGE, PERCENT_RANGE } from '../../core/settings.js';
 
 const timingPart = (part, key) => ({
@@ -49,6 +50,11 @@ export const FIELDS = Object.freeze({
   debug: {
     get: (settings) => settings.debug,
     set: (settings, value) => ({ ...settings, debug: value }),
+  },
+  language: {
+    get: (settings) => settings.language,
+    set: (settings, value) => ({ ...settings, language: value }),
+    choices: LANGUAGES,
   },
 });
 

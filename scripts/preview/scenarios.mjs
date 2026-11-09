@@ -214,6 +214,8 @@ export const SCENARIOS = [
       { at: '2026-11-09T02:10:04.000Z', videoId: 'aeP4eG-gO10', text: 'liked, at 0 s (instant)' },
     ],
   },
+  // A language chosen in the settings wins over the one of the browser.
+  { name: 'popup-language-fr', ...POPUP, settings: { language: 'fr' }, status: { videoId: null } },
   { name: 'options-narrow', ...OPTIONS, size: [390, 1600], settings: { enabled: false, timing: { mode: 'random' } } },
   // The options page as the frame of the popup shows it.
   { name: 'options-embedded', ...OPTIONS, query: '?embedded', size: [340, 470], settings: { enabled: false } },

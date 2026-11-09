@@ -153,6 +153,10 @@
   "noticeCopyFailed": { "message": "Copie impossible : sélectionnez le texte et copiez-le vous-même." },
   "noticeJournalCleared": { "message": "Journal effacé" },
 
+  "languageLabel": { "message": "Langue" },
+  "languageHint": { "message": "Celle du navigateur, ou une autre au choix. Une traduction à corriger ? Proposez-le sur GitHub." },
+  "languageAuto": { "message": "Celle du navigateur" },
+
   "debugLabel": { "message": "Mode débogage" },
   "debugHint": { "message": "Tient un journal de ce que fait l'extension, pour signaler un problème : les 200 dernières étapes, avec les identifiants des vidéos regardées, gardées dans ce navigateur seulement. Désactivé, aucun journal n'est tenu." },
   "journalCountOne": { "message": "Journal : $COUNT$ entrée", "placeholders": { "count": { "content": "$1" } } },

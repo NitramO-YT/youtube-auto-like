@@ -44,8 +44,10 @@ describe('normalizeSettings', () => {
       theme: 'dark',
       listPageSize: 0,
       debug: true,
+      language: 'fr',
     };
     assert.deepEqual(normalizeSettings(custom), custom);
+    assert.equal(normalizeSettings({ language: 'xx' }).language, 'auto');
   });
 
   it('accepts each theme', () => {

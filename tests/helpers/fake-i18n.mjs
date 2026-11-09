@@ -7,10 +7,11 @@
  * Unlike the browser, which returns an empty string, an unknown key throws:
  * a test that reaches a missing text fails instead of passing silently.
  */
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { createTranslator } from '../../src/ui/shared/i18n.js';
 
-export const LOCALES = ['en', 'fr'];
+// Every language folder of the extension, so that each one added is tested.
+export const LOCALES = readdirSync(new URL('../../src/_locales/', import.meta.url)).sort();
 
 export function loadMessages(locale) {
   return JSON.parse(readFileSync(new URL(`../../src/_locales/${locale}/messages.json`, import.meta.url), 'utf8'));

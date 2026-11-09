@@ -178,6 +178,10 @@
   "noticeCopyFailed": { "message": "Could not copy: select the text and copy it yourself." },
   "noticeJournalCleared": { "message": "Journal cleared" },
 
+  "languageLabel": { "message": "Language" },
+  "languageHint": { "message": "The browser's, or another one of your choice. A translation to correct? Suggest it on GitHub." },
+  "languageAuto": { "message": "The browser's" },
+
   "debugLabel": { "message": "Debug mode" },
   "debugHint": { "message": "Keeps a journal of what the extension does, to report a problem: the last 200 steps, with the IDs of the videos watched, kept in this browser only. Off, no journal is kept." },
   "journalCountOne": { "message": "Journal: $COUNT$ entry", "placeholders": { "count": { "content": "$1", "example": "1" } } },

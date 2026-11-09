@@ -8,12 +8,14 @@
  * modules, which receive the shared parts as `page`.
  */
 import './options.css';
+import { AUTO_LANGUAGE, LOCALES } from '../../core/locales.js';
 import { api } from '../../platform/api.js';
 import { createStore } from '../../platform/storage.js';
 import { createActionRunner } from '../shared/actions.js';
 import { markReady, renderParts } from '../shared/dom.js';
 import { formatLikeCount, formatNumber } from '../shared/format.js';
 import { createTranslator, translatePage } from '../shared/i18n.js';
+import { loadLanguage } from '../shared/locale.js';
 import { dialogFromHash, dialogPageUrl, isEmbedded } from '../shared/embed.js';
 import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
@@ -30,19 +32,29 @@ import { createUpdateSection } from './update-section.js';
 
 const LOG_PREFIX = '[YouTube Auto Like]';
 
-const t = createTranslator((key, substitutions) => api.i18n.getMessage(key, substitutions));
-const lang = t('locale');
 const store = createStore(api);
 const byId = (id) => document.getElementById(id);
 const form = byId('form');
 
 const state = { settings: null, likeCount: null };
 
+// The texts, in the language of the browser until start() has read the one
+// of the settings; the sections, which format dates and numbers in it, are
+// made once it is known (setUp).
+let t = createTranslator((key, substitutions) => api.i18n.getMessage(key, substitutions));
+let lang = t('locale');
+let act = null;
+let page = null;
+let lists = null;
+let history = null;
+let updates = null;
+let report = null;
+let dialogs = null;
+
 const notice = createNotice(
   { box: byId('notice'), text: byId('notice-text'), undoButton: byId('notice-undo') },
   { run: (action) => act(action) },
 );
-const act = createActionRunner(notice, t, lang);
 
 /** Shows a notice for a change, whose undo applies revert and confirms it. */
 function confirmChange(key, substitutions, revert) {
@@ -55,29 +67,51 @@ function confirmChange(key, substitutions, revert) {
   });
 }
 
-const page = {
-  doc: document,
-  byId,
-  t,
-  lang,
-  store,
-  notice,
-  act,
-  confirmChange,
-  state,
-  refresh: () => fill(),
-  changeField: (field, value) => changeField(field, value),
-};
-const lists = createListsSection(page);
-const history = createHistorySection(page);
-const updates = createUpdateSection(page, api);
-const report = createReportSection(page, api);
-const dialogs = {
-  add: createAddDialog(page),
-  import: createImportDialog(page),
-  export: createExportDialog(page),
-  report: { open: report.open, listen: () => {} },
-};
+/** Makes the sections and dialogs, in the language t and lang now hold. */
+function setUp() {
+  act = createActionRunner(notice, t, lang);
+  page = {
+    doc: document,
+    byId,
+    t,
+    lang,
+    store,
+    notice,
+    act,
+    confirmChange,
+    state,
+    refresh: () => fill(),
+    changeField: (field, value) => changeField(field, value),
+  };
+  lists = createListsSection(page);
+  history = createHistorySection(page);
+  updates = createUpdateSection(page, api);
+  report = createReportSection(page, api);
+  dialogs = {
+    add: createAddDialog(page),
+    import: createImportDialog(page),
+    export: createExportDialog(page),
+    report: { open: report.open, listen: () => {} },
+  };
+}
+
+/** The choices of the language: the browser's, then each language in its own name. */
+function fillLanguages() {
+  const select = byId('language');
+  const auto = document.createElement('option');
+  auto.value = AUTO_LANGUAGE;
+  auto.textContent = t('languageAuto');
+  select.replaceChildren(
+    auto,
+    ...Object.entries(LOCALES).map(([code, name]) => {
+      const option = document.createElement('option');
+      option.value = code;
+      option.textContent = name;
+      option.lang = code.replace('_', '-');
+      return option;
+    }),
+  );
+}
 
 /**
  * Opens a dialog of the lists. In the frame of the popup, too small for
@@ -154,8 +188,8 @@ function inputValue(input, field) {
   if (input.type === 'radio') return input.value;
   if (input.type === 'checkbox') return input.checked;
   if (input.tagName === 'SELECT') {
-    const value = Number(input.value);
-    return FIELDS[field].choices.includes(value) ? value : null;
+    // Choices are numbers (rows shown) or words (languages).
+    return FIELDS[field].choices.find((choice) => String(choice) === input.value) ?? null;
   }
   const range = NUMBER_RANGES[field];
   const value = validNumber(input.valueAsNumber, range);
@@ -206,6 +240,11 @@ function listen() {
   for (const dialog of Object.values(dialogs)) dialog.listen();
 
   store.onSettingsChange((settings) => {
+    // Another language: the page is drawn again in it, from the start.
+    if (settings.language !== state.settings.language) {
+      window.location.reload();
+      return;
+    }
     state.settings = settings;
     fill();
   });
@@ -216,10 +255,19 @@ function listen() {
 }
 
 async function start() {
-  document.documentElement.lang = lang;
-  translatePage(document, t);
   try {
     state.settings = await store.loadSettings();
+    ({ t, lang } = await loadLanguage(api, state.settings.language));
+  } catch (error) {
+    console.error(LOG_PREFIX, 'could not load the settings', error);
+    notice.show(t('noticeLoadFailed'), { error: true });
+    return;
+  }
+  setUp();
+  document.documentElement.lang = lang;
+  translatePage(document, t);
+  fillLanguages();
+  try {
     state.likeCount = await store.loadLikeCount();
     await history.start();
     await updates.start();

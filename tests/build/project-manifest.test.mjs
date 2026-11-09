@@ -90,13 +90,15 @@ for (const target of TARGETS) {
       assert.deepEqual(directives['object-src'], ["'none'"]);
     });
 
-    it('lets extension pages connect only to the API that publishes the releases and to YouTube', () => {
+    it('lets extension pages connect only to their own files, the API that publishes the releases and YouTube', () => {
       const connect = manifest.content_security_policy.extension_pages
         .split(';')
         .map((directive) => directive.trim().split(/\s+/))
         .find(([name]) => name === 'connect-src');
-      // YouTube: the channel pages and oEmbed that name a pasted channel (core/channel-links.js).
-      assert.deepEqual(connect.slice(1), [new URL(LATEST_RELEASE_API).origin, YOUTUBE_ORIGIN]);
+      // 'self': the messages.json of a language chosen in the settings
+      // (ui/shared/locale.js); YouTube: the channel pages and oEmbed that
+      // name a pasted channel (core/channel-links.js).
+      assert.deepEqual(connect.slice(1), ["'self'", new URL(LATEST_RELEASE_API).origin, YOUTUBE_ORIGIN]);
     });
 
     it('ships the background service worker it declares', async () => {

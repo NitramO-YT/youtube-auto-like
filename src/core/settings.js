@@ -8,6 +8,7 @@
  */
 import { normalizeLists } from './channels.js';
 import { normalizeExcludedVideos } from './excluded-videos.js';
+import { AUTO_LANGUAGE, LANGUAGES } from './locales.js';
 import { isValidCheckFrequency } from './update.js';
 
 export const SETTINGS_SCHEMA_VERSION = 1;
@@ -46,6 +47,8 @@ const DEFAULTS = {
   // Keeps the journal of what the extension does (core/journal.js), for the
   // report of a problem; off by default, the journal naming the videos watched.
   debug: false,
+  // Language of the extension pages: the browser's, or one of core/locales.js.
+  language: AUTO_LANGUAGE,
 };
 
 export function defaultSettings() {
@@ -101,6 +104,7 @@ export function normalizeSettings(raw) {
     theme: oneOf(input.theme, THEMES, defaults.theme),
     listPageSize: oneOf(input.listPageSize, LIST_PAGE_SIZES, defaults.listPageSize),
     debug: booleanOr(input.debug, defaults.debug),
+    language: oneOf(input.language, LANGUAGES, defaults.language),
   };
 
   // A custom timing with no threshold enabled would leave the user waiting
