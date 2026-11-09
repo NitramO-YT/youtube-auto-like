@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Markerer automatisk YouTube-videoer med »Synes godt om« fra de kanaler, du vælger." },
+
+  "locale": { "message": "da" },
+
+  "switchLabel": { "message": "Markér automatisk videoer med »Synes godt om«" },
+  "switchActive": { "message": "Aktiv" },
+  "switchPaused": { "message": "Pauset" },
+  "pausedBanner": { "message": "Udvidelsen markerer intet, mens den er sat på pause." },
+  "badgeUpdate": { "message": "NY" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: version $VERSION$ er udgivet",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Version $VERSION$ er udgivet ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Denne video" },
+  "sectionThisChannel": { "message": "Denne kanal" },
+  "sectionRule": { "message": "Gældende regel" },
+  "openSettings": { "message": "Skift indstillinger →" },
+  "settingsShow": { "message": "Vis indstillinger" },
+  "settingsHide": { "message": "Tilbage til videoen" },
+  "openFullPage": { "message": "Åbn på en hel side ↗" },
+  "noVideo": { "message": "Åbn en video eller en Short på YouTube for at se, hvad udvidelsen gør med den, eller en kanalside for at vælge, om dens videoer skal markeres." },
+  "noVideoHint": { "message": "Hvis en video allerede er åben, så genindlæs siden." },
+
+  "channelUnknown": { "message": "Ukendt kanal" },
+  "channelSubscribed": { "message": "Abonnerer" },
+  "channelNotSubscribed": { "message": "Abonnerer ikke" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "Video på $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Livestream" },
+
+  "statusLikedTitle": { "message": "Automatisk markeret med »Synes godt om«" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "straks ved åbning" },
+  "likedHowLikeNow": { "message": "på din anmodning" },
+  "likedHowAt": {
+    "message": "ved $TIME$ i videoen",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "efter $DURATION$ visning",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Markeres ved $PERCENT$ % af videoen",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Markeres efter $MINUTES$ min afspilning",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Markeres på et tilfældigt tidspunkt" },
+  "statusWaitBeforeEnd": { "message": "Markeres lige før slutningen" },
+  "statusWaitRemaining": {
+    "message": "$DURATION$ afspilning tilbage",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Markeres om et øjeblik" },
+  "statusWaitDuration": { "message": "Venter på videoens længde" },
+  "statusWaitAd": { "message": "Venter på, at reklamen slutter" },
+  "statusWaitAdDetail": { "message": "Reklametid tælles ikke med." },
+  "statusReading": { "message": "Læser siden…" },
+  "statusReadingDetail": { "message": "På en Short viser YouTube nogle gange først knapperne, når musen bevæger sig over videoen." },
+  "statusConfirming": { "message": "Kontrollerer, at markeringen gik igennem…" },
+  "statusFailedTitle": { "message": "Markeringen kunne ikke bekræftes" },
+  "statusFailedDetail": { "message": "Knappen »Synes godt om« reagerede ikke. Genindlæs siden for at prøve igen." },
+
+  "statusAlreadyLikedTitle": { "message": "Allerede markeret" },
+  "statusNotLikedTitle": { "message": "Ikke markeret" },
+  "reasonAlreadyLiked": { "message": "Denne video var allerede markeret med »Synes godt om«: udvidelsen lader den være." },
+  "reasonAlreadyDisliked": { "message": "Du har markeret denne video med »Synes ikke om«: udvidelsen lader den være." },
+  "reasonSkippedByUser": { "message": "Du bad om, at den ikke blev markeret denne gang. Den kan markeres, når du ser den igen." },
+  "reasonVideoExcluded": { "message": "Du har udelukket denne video: den markeres aldrig, før du ophæver udelukkelsen." },
+  "reasonNotSubscribed": { "message": "Du abonnerer ikke på denne kanal. Videoen markeres, hvis du begynder at abonnere." },
+  "reasonNotInAlwaysList": { "message": "Kun kanalerne på din liste »Markér altid« markeres." },
+  "reasonInNeverList": { "message": "Denne kanal er på din liste »Markér aldrig«." },
+  "reasonShortsOff": { "message": "Shorts markeres ikke ifølge dine indstillinger." },
+  "reasonNormalVideosOff": { "message": "Kun Shorts markeres ifølge dine indstillinger." },
+  "statusWouldLike": { "message": "Ville blive markeret" },
+  "statusWouldLikeDetail": { "message": "hvis udvidelsen var aktiv." },
+
+  "actionLikeNow": { "message": "Markér nu" },
+  "actionSkip": { "message": "Ikke denne gang" },
+  "actionRestart": { "message": "Start forfra for denne video" },
+  "actionRetry": { "message": "Prøv igen" },
+  "removedLikeTitle": { "message": "Markering fjernet" },
+  "removedLikeRestart": { "message": "Du fjernede »Synes godt om«. Start forfra, så udvidelsen kontrollerer videoen igen." },
+  "removedDislikeTitle": { "message": "»Synes ikke om« fjernet" },
+  "removedDislikeRestart": { "message": "Du fjernede »Synes ikke om«. Start forfra, så udvidelsen kontrollerer videoen igen." },
+  "likeRemovedNextOpening": { "message": "Den markeres igen, næste gang videoen åbnes." },
+  "likeRemovedAt": {
+    "message": "Den markeres igen, når afspilningen igen passerer $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Markér igen en video, hvis markering jeg fjerner" },
+  "relikeHint": { "message": "Når afspilningen igen passerer det planlagte tidspunkt, altså efter at du har spolet tilbage til før det; med »Straks ved åbning« næste gang videoen åbnes. Gælder også en video, du selv havde markeret." },
+  "actionResume": { "message": "Fortryd »Ikke denne gang«" },
+  "actionExcludeVideo": { "message": "Markér aldrig denne video" },
+  "actionUnexcludeVideo": { "message": "Ophæv udelukkelsen af denne video" },
+  "channelChoiceLegend": { "message": "Markér videoer fra denne kanal" },
+  "channelChoiceAlways": { "message": "Altid" },
+  "channelChoiceAuto": { "message": "Efter indstillinger" },
+  "channelChoiceNever": { "message": "Aldrig" },
+
+  "noticeAddedAlways": { "message": "Føjet til »Markér altid«" },
+  "noticeAddedNever": { "message": "Føjet til »Markér aldrig«" },
+  "noticeRemovedNever": { "message": "Fjernet fra »Markér aldrig«" },
+  "noticeSkipped": { "message": "Ikke markeret denne gang" },
+  "noticeVideoExcluded": { "message": "Føjet til de udelukkede videoer" },
+  "noticeVideoUnexcluded": { "message": "Fjernet fra de udelukkede videoer" },
+  "noticeUndo": { "message": "Fortryd" },
+  "noticeUndone": { "message": "Fortrudt" },
+  "noticeSaveFailed": { "message": "Ændringen kunne ikke gemmes." },
+  "noticeStorageFull": { "message": "Udvidelsens lager er fuldt: fjern kanaler eller udelukkede videoer fra dine lister, og prøv igen." },
+  "noticeLoadFailed": { "message": "Indstillingerne kunne ikke læses." },
+  "noticeListFull": {
+    "message": "Denne liste er fuld (højst $COUNT$ poster).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Siden svarede ikke. Genindlæs den, og prøv igen." },
+  "noticeSaved": { "message": "Gemt" },
+  "noticeRemovedAlways": { "message": "Fjernet fra »Markér altid«" },
+  "noticeImportDone": {
+    "message": "Import gennemført: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ kanal føjet til »$LIST$«",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "$COUNT$ kanaler føjet til »$LIST$«",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Annuller" },
+  "dialogClose": { "message": "Luk" },
+  "noticeCopied": { "message": "Kopieret" },
+  "noticeCopyFailed": { "message": "Kopieringen mislykkedes: vælg teksten, og kopiér den selv." },
+  "noticeJournalCleared": { "message": "Loggen er ryddet" },
+
+  "languageLabel": { "message": "Sprog" },
+  "languageHint": { "message": "Browserens, eller et andet, du vælger. En oversættelse, der skal rettes? Foreslå det på GitHub." },
+  "languageAuto": { "message": "Browserens" },
+
+  "debugLabel": { "message": "Fejlfindingstilstand" },
+  "debugHint": { "message": "Til en log over, hvad udvidelsen gør, når du vil rapportere et problem: de seneste 200 trin med id'erne på de videoer, du har set, gemt kun i denne browser. Slået fra føres der ingen log." },
+  "journalCountOne": { "message": "Log: $COUNT$ post", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Log: $COUNT$ poster", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Kopiér loggen" },
+  "journalClear": { "message": "Ryd loggen" },
+
+  "navAbout": { "message": "Om" },
+  "aboutHeading": { "message": "Om" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, version $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Udviklet af" },
+  "aboutOrigin": { "message": "Oprindeligt projekt" },
+  "aboutFirefox": { "message": "Fork til Firefox" },
+  "aboutLicense": { "message": "Licens" },
+  "aboutInvite": { "message": "Besøg GitHub-repositoriet for at få mere at vide, følge nye versioner eller foreslå en forbedring. Et problem? Rapportér det med knappen nedenfor." },
+  "aboutRepository": { "message": "Se projektet på GitHub" },
+  "reportOpen": { "message": "Rapportér et problem" },
+  "reportHint": { "message": "Beskriv problemet i det issue, der åbnes på GitHub: denne rapport vedhæftes for at hjælpe med at forstå det. Læs den, før du sender; dine kanallister er ikke med." },
+  "reportJournalOne": {
+    "message": "Vedhæft loggen ($COUNT$ post med id'erne på de videoer, du har set)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Vedhæft loggen ($COUNT$ poster med id'erne på de videoer, du har set)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Der er ikke ført nogen log. For at vedhæfte en: slå fejlfindingstilstand til under »Mere«, gentag det, der går galt, og vend så tilbage hertil." },
+  "reportTextLabel": { "message": "Rapport" },
+  "reportCopy": { "message": "Kopiér rapporten" },
+  "reportIssue": { "message": "Åbn et issue på GitHub" },
+  "reportCut": { "message": "Rapporten er for lang til issuets adresse, så den forkortes der. Kopiér hele rapporten, og indsæt den i issuet." },
+  "dialogAnalyse": { "message": "Analysér" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Tilføj kanaler" },
+  "addHint": { "message": "Indsæt links til kanaler eller videoer, eller @handles, ét pr. linje. Udvidelsen spørger YouTube, hvilken kanal det drejer sig om, som hvis du åbnede dens side." },
+  "addLinesLabel": { "message": "Links eller @handles" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@navn\n@navn\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "På listen" },
+  "addSearch": { "message": "Søg" },
+  "addSearching": {
+    "message": "Spørger YouTube… $DONE$ af $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Tilføj" },
+  "addApplyOne": {
+    "message": "Tilføj $COUNT$ kanal",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Tilføj $COUNT$ kanaler",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Ingen kanal at tilføje: alle er allerede på listen, eller ingen blev fundet." },
+  "addEmpty": { "message": "Indsæt mindst ét link eller ét @handle." },
+  "addTooMany": {
+    "message": "Højst $MAX$ linjer ad gangen.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "tilføjes" },
+  "lookupAlready": { "message": "er allerede på listen" },
+  "lookupMoved": {
+    "message": "flyttes fra »$FROM$« til »$TO$«",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "samme kanal som en tidligere linje" },
+  "lookupNotALink": { "message": "hverken et link til en YouTube-kanal eller -video eller et @handle" },
+  "lookupNotFound": { "message": "kanalen eller videoen findes ikke på YouTube" },
+  "lookupUnreadable": { "message": "YouTube oplyste ikke kanalen. Hvis YouTube aldrig er blevet åbnet i denne browser, så åbn det én gang og træf dit valg om cookies, og prøv derefter igen" },
+
+  "importTitle": { "message": "Importér lister" },
+  "importHint": { "message": "En fil, som udvidelsen har eksporteret, eller en liste med kanallinks, ét pr. linje. Intet gemmes før »Importér«: »Analysér« viser først, hvad der vil ske." },
+  "importDropHere": { "message": "Slip en fil her, eller" },
+  "importBrowse": { "message": "gennemse dine filer" },
+  "importPasteHint": { "message": "Du kan også indsætte en fil eller tekst (Ctrl+V) i dette vindue." },
+  "importChange": { "message": "Skift" },
+  "importRemove": { "message": "Fjern" },
+  "importPasted": { "message": "Indsat tekst" },
+  "importSourceFile": { "message": "Fil eksporteret af udvidelsen" },
+  "importSourceLinksOne": {
+    "message": "Liste med links, $COUNT$ linje",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Liste med links, $COUNT$ linjer",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Dette er hverken en eksport fra udvidelsen eller en liste med links." },
+  "importNoSource": { "message": "Vælg først en fil, eller indsæt tekst." },
+  "importNoPart": { "message": "Vælg mindst én del, der skal importeres." },
+  "importListFull": {
+    "message": "En liste ville få mere end $COUNT$ poster: intet ville blive importeret.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Hvad der importeres" },
+  "importLinksTarget": { "message": "Læg disse kanaler på" },
+  "importModeLabel": { "message": "Poster, der allerede findes" },
+  "importModeAddNew": { "message": "Tilføj kun de nye" },
+  "importModeAddNewHint": { "message": "En kanal, der allerede er på en liste, bliver, hvor den er." },
+  "importModeFollow": { "message": "Tilføj og følg filen" },
+  "importModeFollowHint": { "message": "En kanal, der allerede findes, flyttes til den liste, filen angiver." },
+  "importModeReplace": { "message": "Erstat alt med filen" },
+  "importModeReplaceHint": { "message": "De valgte dele bliver præcis som i filen: det, der ikke er i den, fjernes." },
+  "importRemember": { "message": "Husk mit valg" },
+  "importApply": { "message": "Importér" },
+  "importConfirmOne": {
+    "message": "Jeg bekræfter, at $COUNT$ post, der mangler i filen, fjernes.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Jeg bekræfter, at de $COUNT$ poster, der mangler i filen, fjernes.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "ingen ændringer" },
+  "reportNothing": { "message": "Ingen ændringer: alt findes allerede." },
+  "reportAddedOne": { "message": "$COUNT$ ny", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "$COUNT$ nye", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ flyttet", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "$COUNT$ flyttet", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ fandtes allerede", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ fandtes allerede", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ fjernet", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ fjernet", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Eksportér lister" },
+  "exportPartsLabel": { "message": "Hvad der eksporteres" },
+  "exportFormatLabel": { "message": "Format" },
+  "exportFormatJson": { "message": "Udvidelsens fil (JSON)" },
+  "exportFormatJsonHint": { "message": "Importeres igen, som den er, med kanalernes datoer og billeder." },
+  "exportFormatLinks": { "message": "Liste med links (tekst)" },
+  "exportFormatLinksHint": { "message": "Ét kanallink pr. linje med kanalens navn, til at læse eller dele. Udelukkede videoer er ikke med." },
+  "exportDownload": { "message": "Download" },
+  "exportNothing": { "message": "Vælg mindst én liste." },
+  "noticeImportInvalid": { "message": "Denne fil er ikke en liste eksporteret af YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "Denne fil er for stor til at være en kanalliste." },
+  "noticeCountReset": { "message": "Tælleren er nulstillet" },
+  "noticeNumberInvalid": {
+    "message": "Angiv et tal fra $MIN$ til $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Indstillinger for YouTube Auto Like" },
+  "optionsTitle": { "message": "Indstillinger" },
+  "navSections": { "message": "Afsnit" },
+  "navChannels": { "message": "Hvilke kanaler" },
+  "navVideos": { "message": "Hvilke videoer" },
+  "navWhen": { "message": "Hvornår markere" },
+  "navLists": { "message": "Mine lister" },
+  "navMore": { "message": "Mere" },
+
+  "channelsHeading": { "message": "Hvilke kanaler skal markeres?" },
+  "channelsHint": { "message": "Listen »Markér aldrig« går altid forud." },
+  "likeWhatSubscribed": { "message": "Kanaler, jeg abonnerer på" },
+  "likeWhatSubscribedHint": { "message": "plus dem på min liste »Markér altid«." },
+  "recommended": { "message": "Anbefalet" },
+  "likeWhatAll": { "message": "Alle kanaler" },
+  "likeWhatAllHint": { "message": "hver video, du ser, markeres." },
+  "likeWhatList": { "message": "Kun min liste »Markér altid«" },
+  "likeWhatListHint": { "message": "abonnement eller ej, intet andet markeres." },
+
+  "videosHeading": { "message": "Hvilke videoer?" },
+  "videosHint": { "message": "Shorts genkendes også, når de åbnes i den almindelige afspiller." },
+  "likeNormalVideos": { "message": "Videoer" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Hvornår skal de markeres?" },
+  "whenHint": { "message": "En video, som du selv markerer med »Synes godt om« eller »Synes ikke om«, røres aldrig." },
+  "modeInstant": { "message": "Straks ved åbning" },
+  "modeCustom": { "message": "Efter et stykke tid" },
+  "modeRandom": { "message": "På et tilfældigt tidspunkt" },
+  "thresholdAfter": { "message": "efter" },
+  "thresholdPercentUnit": { "message": "% af videoen" },
+  "thresholdMinutesUnit": { "message": "minutters afspilning" },
+  "percentLabel": { "message": "Procent af videoen" },
+  "minutesLabel": { "message": "Minutters afspilning" },
+  "thresholdKeepOne": { "message": "Mindst én af de to grænser forbliver valgt." },
+  "thresholdsHint": { "message": "Den grænse, der nås først, udløser markeringen. En kortere video markeres to sekunder før slutningen. I en livestream tælles kun minutterne, fra du begyndte at se; uden minutgrænse markeres den straks ved åbning. Reklamer tælles ikke med." },
+  "randomHint": { "message": "Et tilfældigt valgt tidspunkt i hver video. En livestream markeres straks ved åbning." },
+  "summaryLabel": { "message": "Sammenfatning:" },
+
+  "listsHeading": { "message": "Mine kanallister" },
+  "listsHint": { "message": "Tilføj kanaler via link eller @handle, fra ikonets vindue på en video eller en kanalside eller fra historikken. En video udelukkes fra ikonets vindue." },
+  "listAlways": { "message": "Markér altid" },
+  "listNever": { "message": "Markér aldrig" },
+  "listVideos": { "message": "Udelukkede videoer" },
+  "listExcludedOn": {
+    "message": "udelukket $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Ophæv udelukkelsen af $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Søg i listen" },
+  "listImport": { "message": "Importér" },
+  "listExport": { "message": "Eksportér" },
+  "listEmpty": { "message": "Ingen kanaler på listen. Tilføj via link eller @handle, fra ikonets vindue på en video eller en kanalside eller fra historikken." },
+  "listEmptyVideos": { "message": "Ingen udelukkede videoer. For at udelukke en video skal du åbne ikonets vindue, mens du ser den, og vælge »Markér aldrig denne video«." },
+  "listNoMatch": { "message": "Ingen kanal matcher søgningen." },
+  "listAddedOn": {
+    "message": "tilføjet $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Fjern $NAME$ fra listen",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ af $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Vis $COUNT$ mere",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Vis alle ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Linjer vist i listerne og historikken" },
+  "listPageSizeHint": { "message": "De øvrige vises med »Vis … mere« eller »Vis alle«. En lang liste ruller inden i sig selv uden at gøre siden længere." },
+  "listPageSizeAll": { "message": "Alle" },
+  "listOpenChannel": { "message": "Åbn kanalen på YouTube" },
+
+  "navHistory": { "message": "Historik" },
+  "historyHeading": { "message": "Udvidelsens markeringer" },
+  "historyHint": {
+    "message": "De seneste $COUNT$, nyeste først, gemt kun i denne browser.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Udvidelsen har ikke markeret noget endnu." },
+  "historyUntitled": { "message": "Video uden titel" },
+  "historyChannelChoice": {
+    "message": "Markér videoer fra $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Ryd historikken" },
+  "noticeHistoryCleared": { "message": "Historikken er ryddet" },
+
+  "moreHeading": { "message": "Mere" },
+  "themeLabel": { "message": "Tema" },
+  "themeSystem": { "message": "Som systemet" },
+  "themeLight": { "message": "Lyst" },
+  "themeDark": { "message": "Mørkt" },
+  "updatesLabel": { "message": "Søg efter nye versioner" },
+  "updatesHint": { "message": "Spørger GitHub, hvor udvidelsen udgives; GitHub ser derved din IP-adresse." },
+  "updateEvery0": { "message": "Aldrig" },
+  "updateEvery30": { "message": "Hvert 30. minut" },
+  "updateEvery60": { "message": "Hver time" },
+  "updateEvery360": { "message": "Hver 6. time" },
+  "updateEvery1440": { "message": "Hver dag" },
+  "updateEvery10080": { "message": "Hver uge" },
+  "updateEveryCustom": { "message": "Tilpasset…" },
+  "updateEveryPrefix": { "message": "Med" },
+  "updateCustomCount": { "message": "Antal minutter, timer eller dage mellem to kontroller" },
+  "updateCustomUnit": { "message": "Enhed" },
+  "unitMinutesOne": { "message": "minuts mellemrum" },
+  "unitMinutesOther": { "message": "minutters mellemrum" },
+  "unitHoursOne": { "message": "times mellemrum" },
+  "unitHoursOther": { "message": "timers mellemrum" },
+  "unitDaysOne": { "message": "dags mellemrum" },
+  "unitDaysOther": { "message": "dages mellemrum" },
+  "noticeFrequencyInvalid": { "message": "Angiv en tid fra 5 minutter til 30 dage." },
+  "updateCheckNow": { "message": "Kontrollér nu" },
+  "updateStatusOff": { "message": "Der søges ikke efter nye versioner." },
+  "updateStatusNever": { "message": "Ikke kontrolleret endnu." },
+  "updateStatusChecking": { "message": "Kontrollerer…" },
+  "updateStatusAvailable": {
+    "message": "Version $VERSION$ er udgivet ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Kontrolleret $WHEN$: du har den nyeste version.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Kontrolleret $WHEN$: ingen version udgivet endnu.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Den seneste kontrol mislykkedes $WHEN$; den næste prøver igen.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Kontrollen kunne ikke udføres." },
+  "likeCountHint": { "message": "Siden udvidelsen blev installeret, eller siden den seneste nulstilling. Nulstilling ændrer intet andet." },
+  "likeCountReset": { "message": "Nulstil" },
+
+  "ruleSentence": {
+    "message": "Markerer $WHAT$ $CHANNELS$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Markerer intet: både videoer og Shorts er slået fra." },
+  "ruleWhatBoth": { "message": "videoer og Shorts" },
+  "ruleWhatVideos": { "message": "videoer" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "fra dine abonnementer" },
+  "ruleChannelsSubscribedAndList": { "message": "fra dine abonnementer og din liste »Markér altid«" },
+  "ruleChannelsAll": { "message": "fra alle kanaler" },
+  "ruleChannelsList": { "message": "fra kanalerne på din liste »Markér altid«" },
+  "ruleWhenInstant": { "message": "straks ved åbning" },
+  "ruleWhenPercent": {
+    "message": "ved $PERCENT$ % af videoen",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "efter $MINUTES$ min afspilning",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "ved $PERCENT$ % af videoen eller efter $MINUTES$ min afspilning, alt efter hvad der kommer først",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "på et tilfældigt tidspunkt" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ video markeret",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ videoer markeret",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$ s",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ t $MINUTES$ min",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
