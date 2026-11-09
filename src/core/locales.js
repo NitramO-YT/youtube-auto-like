@@ -29,6 +29,7 @@ export const LOCALES = Object.freeze({
   tr: Object.freeze({ name: 'Türkçe', region: 'TR' }),
   uk: Object.freeze({ name: 'Українська', region: 'UA' }),
   vi: Object.freeze({ name: 'Tiếng Việt', region: 'VN' }),
+  zh_CN: Object.freeze({ name: '中文（简体）', region: 'CN' }),
   zh_TW: Object.freeze({ name: '中文（台灣）', region: 'TW' }),
 });
 

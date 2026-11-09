@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "自动为你选择的频道的 YouTube 视频点赞。" },
+
+  "locale": { "message": "zh-CN" },
+
+  "switchLabel": { "message": "自动为视频点赞" },
+  "switchActive": { "message": "已启用" },
+  "switchPaused": { "message": "已暂停" },
+  "pausedBanner": { "message": "暂停期间，扩展程序不会为任何视频点赞。" },
+  "badgeUpdate": { "message": "新版" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like：$VERSION$ 版已发布",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "$VERSION$ 版已发布 ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "此视频" },
+  "sectionThisChannel": { "message": "此频道" },
+  "sectionRule": { "message": "当前规则" },
+  "openSettings": { "message": "更改设置 →" },
+  "settingsShow": { "message": "显示设置" },
+  "settingsHide": { "message": "返回视频" },
+  "openFullPage": { "message": "在完整页面中打开 ↗" },
+  "noVideo": { "message": "在 YouTube 上打开视频或 Short，即可查看扩展程序如何处理它；打开频道页面，则可选择是否为该频道的视频点赞。" },
+  "noVideoHint": { "message": "如果视频已经打开，请重新加载页面。" },
+
+  "channelUnknown": { "message": "未知频道" },
+  "channelSubscribed": { "message": "已订阅" },
+  "channelNotSubscribed": { "message": "未订阅" },
+  "kindVideo": { "message": "视频" },
+  "kindVideoDuration": {
+    "message": "视频 $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "直播" },
+
+  "statusLikedTitle": { "message": "已自动点赞" },
+  "statusLikedDetail": {
+    "message": "$WHEN$，$HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "一打开就点赞" },
+  "likedHowLikeNow": { "message": "应你的要求" },
+  "likedHowAt": {
+    "message": "在视频的 $TIME$",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "观看 $DURATION$ 后",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "将在视频播放到 $PERCENT$% 时点赞",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "将在播放 $MINUTES$ 分钟后点赞",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "将在随机时间点点赞" },
+  "statusWaitBeforeEnd": { "message": "将在结束前一刻点赞" },
+  "statusWaitRemaining": {
+    "message": "还需播放 $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "即将点赞" },
+  "statusWaitDuration": { "message": "正在等待视频时长" },
+  "statusWaitAd": { "message": "正在等待广告结束" },
+  "statusWaitAdDetail": { "message": "广告时间不计入。" },
+  "statusReading": { "message": "正在读取页面…" },
+  "statusReadingDetail": { "message": "在 Short 上，YouTube 有时要等鼠标移到视频上方才会显示按钮。" },
+  "statusConfirming": { "message": "正在确认是否点赞成功…" },
+  "statusFailedTitle": { "message": "无法确认点赞" },
+  "statusFailedDetail": { "message": "点赞按钮没有反应。请重新加载页面后再试一次。" },
+
+  "statusAlreadyLikedTitle": { "message": "已经点赞" },
+  "statusNotLikedTitle": { "message": "未点赞" },
+  "reasonAlreadyLiked": { "message": "此视频已经点过赞：扩展程序不会改动。" },
+  "reasonAlreadyDisliked": { "message": "你已对此视频点踩：扩展程序不会改动。" },
+  "reasonSkippedByUser": { "message": "你要求这次不点赞。下次观看时仍可能点赞。" },
+  "reasonVideoExcluded": { "message": "你已排除此视频：除非取消排除，否则永远不会点赞。" },
+  "reasonNotSubscribed": { "message": "你没有订阅此频道。订阅后就会为视频点赞。" },
+  "reasonNotInAlwaysList": { "message": "只会为“始终点赞”列表中的频道点赞。" },
+  "reasonInNeverList": { "message": "此频道在你的“从不点赞”列表中。" },
+  "reasonShortsOff": { "message": "根据你的设置，不会为 Shorts 点赞。" },
+  "reasonNormalVideosOff": { "message": "根据你的设置，只会为 Shorts 点赞。" },
+  "statusWouldLike": { "message": "会点赞" },
+  "statusWouldLikeDetail": { "message": "前提是扩展程序已启用。" },
+
+  "actionLikeNow": { "message": "立即点赞" },
+  "actionSkip": { "message": "这次不要" },
+  "actionRestart": { "message": "重新处理此视频" },
+  "actionRetry": { "message": "再试一次" },
+  "removedLikeTitle": { "message": "已取消点赞" },
+  "removedLikeRestart": { "message": "你取消了点赞。重新处理后，扩展程序会再次检查此视频。" },
+  "removedDislikeTitle": { "message": "已取消点踩" },
+  "removedDislikeRestart": { "message": "你取消了点踩。重新处理后，扩展程序会再次检查此视频。" },
+  "likeRemovedNextOpening": { "message": "下次打开视频时会再次点赞。" },
+  "likeRemovedAt": {
+    "message": "播放再次经过 $TIME$ 时会重新点赞。",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "我取消点赞的视频要重新点赞" },
+  "relikeHint": { "message": "在播放再次经过预定时间点时，也就是你倒回到该时间点之前之后；若为“一打开就点赞”，则在下次打开时。也适用于你自己点过赞的视频。" },
+  "actionResume": { "message": "取消“这次不要”" },
+  "actionExcludeVideo": { "message": "永远不为此视频点赞" },
+  "actionUnexcludeVideo": { "message": "取消排除此视频" },
+  "channelChoiceLegend": { "message": "为此频道的视频点赞" },
+  "channelChoiceAlways": { "message": "始终" },
+  "channelChoiceAuto": { "message": "按设置" },
+  "channelChoiceNever": { "message": "从不" },
+
+  "noticeAddedAlways": { "message": "已加入“始终点赞”" },
+  "noticeAddedNever": { "message": "已加入“从不点赞”" },
+  "noticeRemovedNever": { "message": "已从“从不点赞”中移除" },
+  "noticeSkipped": { "message": "这次不点赞" },
+  "noticeVideoExcluded": { "message": "已加入排除的视频" },
+  "noticeVideoUnexcluded": { "message": "已从排除的视频中移除" },
+  "noticeUndo": { "message": "撤消" },
+  "noticeUndone": { "message": "已撤消" },
+  "noticeSaveFailed": { "message": "无法保存更改。" },
+  "noticeStorageFull": { "message": "扩展程序的存储空间已满：请从列表中移除一些频道或排除的视频，然后再试一次。" },
+  "noticeLoadFailed": { "message": "无法读取设置。" },
+  "noticeListFull": {
+    "message": "此列表已满（最多 $COUNT$ 项）。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "页面没有响应。请重新加载后再试一次。" },
+  "noticeSaved": { "message": "已保存" },
+  "noticeRemovedAlways": { "message": "已从“始终点赞”中移除" },
+  "noticeImportDone": {
+    "message": "导入完成：$CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "已将 $COUNT$ 个频道加入“$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "已将 $COUNT$ 个频道加入“$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "取消" },
+  "dialogClose": { "message": "关闭" },
+  "noticeCopied": { "message": "已复制" },
+  "noticeCopyFailed": { "message": "无法复制：请选中文字后自行复制。" },
+  "noticeJournalCleared": { "message": "已清除日志" },
+
+  "languageLabel": { "message": "语言" },
+  "languageHint": { "message": "浏览器的语言，或你选择的其他语言。翻译需要修改？欢迎到 GitHub 提出建议。" },
+  "languageAuto": { "message": "浏览器的语言" },
+
+  "debugLabel": { "message": "调试模式" },
+  "debugHint": { "message": "记录扩展程序的操作，以便报告问题：最近 200 个步骤，包含你观看过的视频 ID，只保存在此浏览器中。关闭时不记录日志。" },
+  "journalCountOne": { "message": "日志：$COUNT$ 条", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "日志：$COUNT$ 条", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "复制日志" },
+  "journalClear": { "message": "清除日志" },
+
+  "navAbout": { "message": "关于" },
+  "aboutHeading": { "message": "关于" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like，$VERSION$ 版",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "开发者" },
+  "aboutOrigin": { "message": "原始项目" },
+  "aboutFirefox": { "message": "Firefox 分支" },
+  "aboutLicense": { "message": "许可证" },
+  "aboutInvite": { "message": "前往 GitHub 仓库了解详情、关注新版本或提出改进建议。遇到问题？请使用下方按钮报告。" },
+  "aboutRepository": { "message": "在 GitHub 上查看项目" },
+  "reportOpen": { "message": "报告问题" },
+  "reportHint": { "message": "请在 GitHub 上打开的 issue 中描述问题：系统会附上这份报告，帮助理解问题。发送前请先阅读；其中不包含你的频道列表。" },
+  "reportJournalOne": {
+    "message": "附上日志（$COUNT$ 条，包含你观看过的视频 ID）",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "附上日志（$COUNT$ 条，包含你观看过的视频 ID）",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "目前没有日志。如需附上日志：请在“其他”中开启调试模式，重现出问题的操作，然后回到这里。" },
+  "reportTextLabel": { "message": "报告" },
+  "reportCopy": { "message": "复制报告" },
+  "reportIssue": { "message": "在 GitHub 上打开 issue" },
+  "reportCut": { "message": "报告太长，无法完整放入 issue 网址，因此在那里会被截短。请复制完整报告并粘贴到 issue 中。" },
+  "dialogAnalyse": { "message": "分析" },
+  "partWithCount": {
+    "message": "$PART$（$COUNT$）",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "添加频道" },
+  "addHint": { "message": "粘贴频道或视频的链接，或 @账号名，每行一个。扩展程序会像你打开频道页面一样，向 YouTube 查询是哪个频道。" },
+  "addLinesLabel": { "message": "链接或 @账号名" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@name\n@name\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "加入列表" },
+  "addSearch": { "message": "查询" },
+  "addSearching": {
+    "message": "正在向 YouTube 查询… $DONE$/$TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "添加" },
+  "addApplyOne": {
+    "message": "添加 $COUNT$ 个频道",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "添加 $COUNT$ 个频道",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "没有可添加的频道：全部都已在列表中，或找不到任何频道。" },
+  "addEmpty": { "message": "请至少粘贴一个链接或 @账号名。" },
+  "addTooMany": {
+    "message": "每次最多 $MAX$ 行。",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "将添加" },
+  "lookupAlready": { "message": "已在列表中" },
+  "lookupMoved": {
+    "message": "将从“$FROM$”移到“$TO$”",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "与前面某一行是同一个频道" },
+  "lookupNotALink": { "message": "不是 YouTube 频道或视频的链接，也不是 @账号名" },
+  "lookupNotFound": { "message": "YouTube 上没有此频道或视频" },
+  "lookupUnreadable": { "message": "YouTube 没有提供频道信息。如果从未在此浏览器中打开过 YouTube，请先打开一次并选择 Cookie 设置，然后再试一次" },
+
+  "importTitle": { "message": "导入列表" },
+  "importHint": { "message": "扩展程序导出的文件，或频道链接列表（每行一个）。点击“导入”前不会保存任何内容：“分析”会先显示将执行的更改。" },
+  "importDropHere": { "message": "将文件拖放到这里，或" },
+  "importBrowse": { "message": "浏览文件" },
+  "importPasteHint": { "message": "也可以在此窗口中粘贴文件或文字（Ctrl+V）。" },
+  "importChange": { "message": "更换" },
+  "importRemove": { "message": "移除" },
+  "importPasted": { "message": "粘贴的文字" },
+  "importSourceFile": { "message": "扩展程序导出的文件" },
+  "importSourceLinksOne": {
+    "message": "链接列表，$COUNT$ 行",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "链接列表，$COUNT$ 行",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "这既不是扩展程序导出的文件，也不是链接列表。" },
+  "importNoSource": { "message": "请先选择文件或粘贴文字。" },
+  "importNoPart": { "message": "请至少勾选一个要导入的部分。" },
+  "importListFull": {
+    "message": "列表项将超过 $COUNT$ 个：不会导入任何内容。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "导入内容" },
+  "importLinksTarget": { "message": "将这些频道放入" },
+  "importModeLabel": { "message": "已存在的项" },
+  "importModeAddNew": { "message": "只添加新的项" },
+  "importModeAddNewHint": { "message": "已在某个列表中的频道保持不变。" },
+  "importModeFollow": { "message": "添加并按文件调整" },
+  "importModeFollowHint": { "message": "已存在的频道会移到文件指定的列表。" },
+  "importModeReplace": { "message": "全部用文件替换" },
+  "importModeReplaceHint": { "message": "勾选的部分会变得与文件完全相同：文件中没有的项会被移除。" },
+  "importRemember": { "message": "记住我的选择" },
+  "importApply": { "message": "导入" },
+  "importConfirmOne": {
+    "message": "我确认移除文件中没有的 $COUNT$ 项。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "我确认移除文件中没有的 $COUNT$ 项。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$：$COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "没有更改" },
+  "reportNothing": { "message": "没有更改：所有项都已存在。" },
+  "reportAddedOne": { "message": "新增 $COUNT$ 项", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "新增 $COUNT$ 项", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "移动 $COUNT$ 项", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "移动 $COUNT$ 项", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "已存在 $COUNT$ 项", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "已存在 $COUNT$ 项", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "移除 $COUNT$ 项", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "移除 $COUNT$ 项", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "导出列表" },
+  "exportPartsLabel": { "message": "导出内容" },
+  "exportFormatLabel": { "message": "格式" },
+  "exportFormatJson": { "message": "扩展程序文件（JSON）" },
+  "exportFormatJsonHint": { "message": "可原样重新导入，包括频道的日期和图片。" },
+  "exportFormatLinks": { "message": "链接列表（文本）" },
+  "exportFormatLinksHint": { "message": "每行一个频道链接及其名称，方便阅读或分享。不包括排除的视频。" },
+  "exportDownload": { "message": "下载" },
+  "exportNothing": { "message": "请至少勾选一个列表。" },
+  "noticeImportInvalid": { "message": "此文件不是 YouTube Auto Like 导出的列表。" },
+  "noticeImportTooBig": { "message": "此文件太大，不可能是频道列表。" },
+  "noticeCountReset": { "message": "计数器已重置" },
+  "noticeNumberInvalid": {
+    "message": "请输入 $MIN$ 到 $MAX$ 之间的数字。",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "YouTube Auto Like 设置" },
+  "optionsTitle": { "message": "设置" },
+  "navSections": { "message": "章节" },
+  "navChannels": { "message": "哪些频道" },
+  "navVideos": { "message": "哪些视频" },
+  "navWhen": { "message": "何时点赞" },
+  "navLists": { "message": "我的列表" },
+  "navMore": { "message": "其他" },
+
+  "channelsHeading": { "message": "要为哪些频道的视频点赞？" },
+  "channelsHint": { "message": "“从不点赞”列表始终优先。" },
+  "likeWhatSubscribed": { "message": "我订阅的频道" },
+  "likeWhatSubscribedHint": { "message": "以及我的“始终点赞”列表中的频道。" },
+  "recommended": { "message": "推荐" },
+  "likeWhatAll": { "message": "所有频道" },
+  "likeWhatAllHint": { "message": "你观看的每个视频都会点赞。" },
+  "likeWhatList": { "message": "仅限我的“始终点赞”列表" },
+  "likeWhatListHint": { "message": "无论是否订阅，其他频道都不会点赞。" },
+
+  "videosHeading": { "message": "哪些视频？" },
+  "videosHint": { "message": "即使在普通播放器中打开，也能识别出 Shorts。" },
+  "likeNormalVideos": { "message": "视频" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "何时点赞？" },
+  "whenHint": { "message": "你自己点赞或点踩的视频，一律不会改动。" },
+  "modeInstant": { "message": "一打开就点赞" },
+  "modeCustom": { "message": "过一段时间后" },
+  "modeRandom": { "message": "在随机时间点" },
+  "thresholdAfter": { "message": "播放" },
+  "thresholdPercentUnit": { "message": "% 后" },
+  "thresholdMinutesUnit": { "message": "分钟后" },
+  "percentLabel": { "message": "视频百分比" },
+  "minutesLabel": { "message": "播放分钟数" },
+  "thresholdKeepOne": { "message": "两个阈值至少会保留一个勾选。" },
+  "thresholdsHint": { "message": "先达到的阈值会触发点赞。较短的视频会在结束前两秒点赞。直播只计算你开始观看后的分钟数；没有分钟阈值时，一打开就点赞。广告不计入。" },
+  "randomHint": { "message": "每个视频随机选择一个时间点。直播一打开就点赞。" },
+  "summaryLabel": { "message": "摘要：" },
+
+  "listsHeading": { "message": "我的频道列表" },
+  "listsHint": { "message": "可通过链接或 @账号名、在视频或频道页面上的图标窗口，或从历史记录中添加频道。视频则在图标窗口中排除。" },
+  "listAlways": { "message": "始终点赞" },
+  "listNever": { "message": "从不点赞" },
+  "listVideos": { "message": "排除的视频" },
+  "listExcludedOn": {
+    "message": "排除于 $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "取消排除“$TITLE$”",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "搜索列表" },
+  "listImport": { "message": "导入" },
+  "listExport": { "message": "导出" },
+  "listEmpty": { "message": "列表中没有频道。可通过链接或 @账号名、在视频或频道页面上的图标窗口，或从历史记录中添加。" },
+  "listEmptyVideos": { "message": "没有排除的视频。如需排除视频，请在观看时打开图标窗口，然后选择“永远不为此视频点赞”。" },
+  "listNoMatch": { "message": "没有与搜索匹配的频道。" },
+  "listAddedOn": {
+    "message": "添加于 $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "从列表中移除 $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$/$TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "再显示 $COUNT$ 个",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "全部显示（$COUNT$）",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "列表和历史记录中显示的行数" },
+  "listPageSizeHint": { "message": "其余的行可通过“再显示…”或“全部显示”查看。长列表在列表内滚动，不会拉长页面。" },
+  "listPageSizeAll": { "message": "全部" },
+  "listOpenChannel": { "message": "在 YouTube 上打开频道" },
+
+  "navHistory": { "message": "历史记录" },
+  "historyHeading": { "message": "扩展程序的点赞记录" },
+  "historyHint": {
+    "message": "最近 $COUNT$ 条，最新的在前，只保存在此浏览器中。",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "扩展程序还没有为任何视频点赞。" },
+  "historyUntitled": { "message": "无标题视频" },
+  "historyChannelChoice": {
+    "message": "为“$NAME$”的视频点赞",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "清除历史记录" },
+  "noticeHistoryCleared": { "message": "已清除历史记录" },
+
+  "moreHeading": { "message": "其他" },
+  "themeLabel": { "message": "主题" },
+  "themeSystem": { "message": "跟随系统" },
+  "themeLight": { "message": "浅色" },
+  "themeDark": { "message": "深色" },
+  "updatesLabel": { "message": "检查新版本" },
+  "updatesHint": { "message": "向发布扩展程序的 GitHub 查询；GitHub 因此会看到你的 IP 地址。" },
+  "updateEvery0": { "message": "从不" },
+  "updateEvery30": { "message": "每 30 分钟" },
+  "updateEvery60": { "message": "每小时" },
+  "updateEvery360": { "message": "每 6 小时" },
+  "updateEvery1440": { "message": "每天" },
+  "updateEvery10080": { "message": "每周" },
+  "updateEveryCustom": { "message": "自定义…" },
+  "updateEveryPrefix": { "message": "每" },
+  "updateCustomCount": { "message": "两次检查之间的分钟、小时或天数" },
+  "updateCustomUnit": { "message": "单位" },
+  "unitMinutesOne": { "message": "分钟" },
+  "unitMinutesOther": { "message": "分钟" },
+  "unitHoursOne": { "message": "小时" },
+  "unitHoursOther": { "message": "小时" },
+  "unitDaysOne": { "message": "天" },
+  "unitDaysOther": { "message": "天" },
+  "noticeFrequencyInvalid": { "message": "请输入 5 分钟到 30 天之间的时间。" },
+  "updateCheckNow": { "message": "立即检查" },
+  "updateStatusOff": { "message": "不检查新版本。" },
+  "updateStatusNever": { "message": "尚未检查。" },
+  "updateStatusChecking": { "message": "正在检查…" },
+  "updateStatusAvailable": {
+    "message": "$VERSION$ 版已发布 ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "$WHEN$检查：你使用的是最新版本。",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "$WHEN$检查：尚未发布任何版本。",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "上次检查失败（$WHEN$）；下次会再试一次。",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "无法检查。" },
+  "likeCountHint": { "message": "自安装扩展程序或上次重置以来。重置不会更改其他任何内容。" },
+  "likeCountReset": { "message": "重置" },
+
+  "ruleSentence": {
+    "message": "$WHEN$为$CHANNELS$$WHAT$点赞。",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "不会为任何内容点赞：视频和 Shorts 都已关闭。" },
+  "ruleWhatBoth": { "message": "视频和 Shorts " },
+  "ruleWhatVideos": { "message": "视频" },
+  "ruleWhatShorts": { "message": " Shorts " },
+  "ruleChannelsSubscribed": { "message": "已订阅频道的" },
+  "ruleChannelsSubscribedAndList": { "message": "已订阅频道及“始终点赞”列表频道的" },
+  "ruleChannelsAll": { "message": "所有频道的" },
+  "ruleChannelsList": { "message": "“始终点赞”列表频道的" },
+  "ruleWhenInstant": { "message": "一打开就" },
+  "ruleWhenPercent": {
+    "message": "在播放到 $PERCENT$% 时",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "在播放 $MINUTES$ 分钟后",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "在播放到 $PERCENT$% 或播放 $MINUTES$ 分钟后（以先到者为准）",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "在随机时间点" },
+
+  "likeCountOne": {
+    "message": "已为 $COUNT$ 个视频点赞",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "已为 $COUNT$ 个视频点赞",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ 秒",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ 分 $SECONDS$ 秒",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ 小时 $MINUTES$ 分",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
