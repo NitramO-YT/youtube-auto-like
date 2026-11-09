@@ -572,13 +572,31 @@ main {
   margin-top: 10px;
 }
 
-/* "More". */
+/* "More": the label of each row first, its control at the end. The control
+   goes under the label only when both do not fit side by side: a select is
+   as wide as its longest option, and the names of the languages make it
+   wider than a narrow window allows next to its label. */
 .row-toggle {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 8px 16px;
   padding: 10px 0;
+}
+.row-toggle > :first-child {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+.row-toggle > :last-child:not(:first-child) {
+  margin-inline-start: auto;
+  max-width: 100%;
+}
+.row-toggle .select {
+  max-width: 100%;
+}
+.row-toggle .more-buttons {
+  justify-content: flex-end;
 }
 .row-toggle .hint {
   margin: 0;
