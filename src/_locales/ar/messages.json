@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "يسجّل الإعجاب تلقائيًا بفيديوهات YouTube من القنوات التي تختارها." },
+
+  "locale": { "message": "ar" },
+
+  "switchLabel": { "message": "تسجيل الإعجاب بالفيديوهات تلقائيًا" },
+  "switchActive": { "message": "مفعّل" },
+  "switchPaused": { "message": "متوقف مؤقتًا" },
+  "pausedBanner": { "message": "لا تسجّل الإضافة أي إعجاب أثناء إيقافها مؤقتًا." },
+  "badgeUpdate": { "message": "جديد" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: صدر الإصدار $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "صدر الإصدار $VERSION$ ↖",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "هذا الفيديو" },
+  "sectionThisChannel": { "message": "هذه القناة" },
+  "sectionRule": { "message": "القاعدة المطبّقة" },
+  "openSettings": { "message": "تغيير الإعدادات ←" },
+  "settingsShow": { "message": "عرض الإعدادات" },
+  "settingsHide": { "message": "العودة إلى الفيديو" },
+  "openFullPage": { "message": "فتح في صفحة كاملة ↖" },
+  "noVideo": { "message": "افتح فيديو أو Short على YouTube لترى ما تفعله الإضافة به، أو صفحة قناة لتختار ما إذا كان سيتم تسجيل الإعجاب بفيديوهاتها." },
+  "noVideoHint": { "message": "إذا كان الفيديو مفتوحًا بالفعل، فأعد تحميل الصفحة." },
+
+  "channelUnknown": { "message": "قناة غير معروفة" },
+  "channelSubscribed": { "message": "مشترك" },
+  "channelNotSubscribed": { "message": "غير مشترك" },
+  "kindVideo": { "message": "فيديو" },
+  "kindVideoDuration": {
+    "message": "فيديو مدته $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "بث مباشر" },
+
+  "statusLikedTitle": { "message": "تم تسجيل الإعجاب تلقائيًا" },
+  "statusLikedDetail": {
+    "message": "$WHEN$، $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "فور الفتح" },
+  "likedHowLikeNow": { "message": "بناءً على طلبك" },
+  "likedHowAt": {
+    "message": "عند $TIME$ من الفيديو",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "بعد مشاهدة $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "سيتم تسجيل الإعجاب عند $PERCENT$% من الفيديو",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "سيتم تسجيل الإعجاب بعد $MINUTES$ د من التشغيل",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "سيتم تسجيل الإعجاب في لحظة عشوائية" },
+  "statusWaitBeforeEnd": { "message": "سيتم تسجيل الإعجاب قبيل النهاية" },
+  "statusWaitRemaining": {
+    "message": "المتبقي من التشغيل: $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "سيتم تسجيل الإعجاب بعد لحظات" },
+  "statusWaitDuration": { "message": "في انتظار معرفة مدة الفيديو" },
+  "statusWaitAd": { "message": "في انتظار انتهاء الإعلان" },
+  "statusWaitAdDetail": { "message": "لا يُحتسب وقت الإعلانات." },
+  "statusReading": { "message": "جارٍ قراءة الصفحة…" },
+  "statusReadingDetail": { "message": "في فيديوهات Shorts، قد لا يعرض YouTube الأزرار إلا عند تحريك الماوس فوق الفيديو." },
+  "statusConfirming": { "message": "جارٍ التحقق من تسجيل الإعجاب…" },
+  "statusFailedTitle": { "message": "تعذّر التأكد من تسجيل الإعجاب" },
+  "statusFailedDetail": { "message": "لم يستجب زر «أعجبني». أعد تحميل الصفحة للمحاولة مرة أخرى." },
+
+  "statusAlreadyLikedTitle": { "message": "تم الإعجاب مسبقًا" },
+  "statusNotLikedTitle": { "message": "لم يتم تسجيل الإعجاب" },
+  "reasonAlreadyLiked": { "message": "تم تسجيل الإعجاب بهذا الفيديو مسبقًا: لن تغيّره الإضافة." },
+  "reasonAlreadyDisliked": { "message": "اخترت «لم يعجبني» لهذا الفيديو: لن تغيّره الإضافة." },
+  "reasonSkippedByUser": { "message": "طلبت عدم تسجيل الإعجاب هذه المرة. قد يتم تسجيله عند مشاهدته مرة أخرى." },
+  "reasonVideoExcluded": { "message": "استبعدت هذا الفيديو: لن يتم تسجيل الإعجاب به أبدًا إلى أن تلغي الاستبعاد." },
+  "reasonNotSubscribed": { "message": "أنت غير مشترك في هذه القناة. سيتم تسجيل الإعجاب بالفيديو إذا اشتركت." },
+  "reasonNotInAlwaysList": { "message": "يتم تسجيل الإعجاب بقنوات قائمة «إعجاب دائمًا» فقط." },
+  "reasonInNeverList": { "message": "هذه القناة في قائمة «لا إعجاب أبدًا»." },
+  "reasonShortsOff": { "message": "حسب إعداداتك، لا يتم تسجيل الإعجاب بفيديوهات Shorts." },
+  "reasonNormalVideosOff": { "message": "حسب إعداداتك، يتم تسجيل الإعجاب بفيديوهات Shorts فقط." },
+  "statusWouldLike": { "message": "سيتم تسجيل الإعجاب" },
+  "statusWouldLikeDetail": { "message": "لو كانت الإضافة مفعّلة." },
+
+  "actionLikeNow": { "message": "الإعجاب الآن" },
+  "actionSkip": { "message": "ليس هذه المرة" },
+  "actionRestart": { "message": "إعادة البدء لهذا الفيديو" },
+  "actionRetry": { "message": "إعادة المحاولة" },
+  "removedLikeTitle": { "message": "تمت إزالة الإعجاب" },
+  "removedLikeRestart": { "message": "أزلت الإعجاب. أعد البدء لتتحقق الإضافة من الفيديو مرة أخرى." },
+  "removedDislikeTitle": { "message": "تمت إزالة «لم يعجبني»" },
+  "removedDislikeRestart": { "message": "أزلت «لم يعجبني». أعد البدء لتتحقق الإضافة من الفيديو مرة أخرى." },
+  "likeRemovedNextOpening": { "message": "سيتم تسجيل الإعجاب مرة أخرى عند فتح الفيديو في المرة القادمة." },
+  "likeRemovedAt": {
+    "message": "سيتم تسجيل الإعجاب مرة أخرى عندما يتجاوز التشغيل $TIME$ من جديد.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "إعادة الإعجاب بفيديو أزلت إعجابي به" },
+  "relikeHint": { "message": "عندما يتجاوز التشغيل اللحظة المحددة من جديد، أي بعد أن ترجع إلى ما قبلها؛ وفي وضع «فور الفتح»، عند الفتح التالي. ينطبق ذلك أيضًا على فيديو سجّلت الإعجاب به بنفسك." },
+  "actionResume": { "message": "إلغاء «ليس هذه المرة»" },
+  "actionExcludeVideo": { "message": "عدم الإعجاب بهذا الفيديو أبدًا" },
+  "actionUnexcludeVideo": { "message": "إلغاء استبعاد هذا الفيديو" },
+  "channelChoiceLegend": { "message": "الإعجاب بفيديوهات هذه القناة" },
+  "channelChoiceAlways": { "message": "دائمًا" },
+  "channelChoiceAuto": { "message": "حسب الإعدادات" },
+  "channelChoiceNever": { "message": "أبدًا" },
+
+  "noticeAddedAlways": { "message": "تمت الإضافة إلى «إعجاب دائمًا»" },
+  "noticeAddedNever": { "message": "تمت الإضافة إلى «لا إعجاب أبدًا»" },
+  "noticeRemovedNever": { "message": "تمت الإزالة من «لا إعجاب أبدًا»" },
+  "noticeSkipped": { "message": "لم يتم الإعجاب هذه المرة" },
+  "noticeVideoExcluded": { "message": "تمت الإضافة إلى الفيديوهات المستبعدة" },
+  "noticeVideoUnexcluded": { "message": "تمت الإزالة من الفيديوهات المستبعدة" },
+  "noticeUndo": { "message": "تراجع" },
+  "noticeUndone": { "message": "تم التراجع" },
+  "noticeSaveFailed": { "message": "تعذّر حفظ التغيير." },
+  "noticeStorageFull": { "message": "مساحة تخزين الإضافة ممتلئة: أزل بعض القنوات أو الفيديوهات المستبعدة من قوائمك، ثم حاول مرة أخرى." },
+  "noticeLoadFailed": { "message": "تعذّرت قراءة الإعدادات." },
+  "noticeListFull": {
+    "message": "هذه القائمة ممتلئة (الحد الأقصى: $COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "لم تستجب الصفحة. أعد تحميلها ثم حاول مرة أخرى." },
+  "noticeSaved": { "message": "تم الحفظ" },
+  "noticeRemovedAlways": { "message": "تمت الإزالة من «إعجاب دائمًا»" },
+  "noticeImportDone": {
+    "message": "اكتمل الاستيراد: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "القنوات المضافة إلى «$LIST$»: $COUNT$",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "القنوات المضافة إلى «$LIST$»: $COUNT$",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "إلغاء" },
+  "dialogClose": { "message": "إغلاق" },
+  "noticeCopied": { "message": "تم النسخ" },
+  "noticeCopyFailed": { "message": "تعذّر النسخ: حدّد النص وانسخه بنفسك." },
+  "noticeJournalCleared": { "message": "تم مسح سجل التصحيح" },
+
+  "languageLabel": { "message": "اللغة" },
+  "languageHint": { "message": "لغة المتصفح، أو لغة أخرى تختارها. هل هناك ترجمة تحتاج إلى تصحيح؟ اقترح ذلك على GitHub." },
+  "languageAuto": { "message": "لغة المتصفح" },
+
+  "debugLabel": { "message": "وضع تصحيح الأخطاء" },
+  "debugHint": { "message": "سجل بما تفعله الإضافة، للإبلاغ عن مشكلة: آخر 200 خطوة مع معرّفات الفيديوهات التي شاهدتها، محفوظة في هذا المتصفح فقط. عند إيقاف هذا الوضع، لا يُحتفظ بأي سجل." },
+  "journalCountOne": { "message": "عدد إدخالات سجل التصحيح: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "عدد إدخالات سجل التصحيح: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "نسخ سجل التصحيح" },
+  "journalClear": { "message": "مسح سجل التصحيح" },
+
+  "navAbout": { "message": "حول" },
+  "aboutHeading": { "message": "حول" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like، الإصدار $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "تطوير" },
+  "aboutOrigin": { "message": "المشروع الأصلي" },
+  "aboutFirefox": { "message": "نسخة متفرعة لـ Firefox" },
+  "aboutLicense": { "message": "الترخيص" },
+  "aboutInvite": { "message": "زر مستودع GitHub لمعرفة المزيد أو متابعة الإصدارات الجديدة أو اقتراح تحسين. هل تواجه مشكلة؟ أبلغ عنها بالزر أدناه." },
+  "aboutRepository": { "message": "عرض المشروع على GitHub" },
+  "reportOpen": { "message": "الإبلاغ عن مشكلة" },
+  "reportHint": { "message": "صِف المشكلة في الـ issue الذي يُفتح على GitHub: يُرفق هذا التقرير للمساعدة على فهمها. اقرأه قبل الإرسال؛ لا يتضمن قوائم قنواتك." },
+  "reportJournalOne": {
+    "message": "إرفاق سجل التصحيح (عدد الإدخالات: $COUNT$، مع معرّفات الفيديوهات التي شاهدتها)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "إرفاق سجل التصحيح (عدد الإدخالات: $COUNT$، مع معرّفات الفيديوهات التي شاهدتها)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "لم يُحتفظ بأي سجل. لإرفاق سجل: فعّل وضع تصحيح الأخطاء في «المزيد»، وكرّر ما لا يعمل، ثم عُد إلى هنا." },
+  "reportTextLabel": { "message": "التقرير" },
+  "reportCopy": { "message": "نسخ التقرير" },
+  "reportIssue": { "message": "فتح issue على GitHub" },
+  "reportCut": { "message": "التقرير أطول من أن يتسع له عنوان الـ issue، لذا يُختصر هناك. انسخ التقرير كاملًا والصقه في الـ issue." },
+  "dialogAnalyse": { "message": "تحليل" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "إضافة قنوات" },
+  "addHint": { "message": "الصق روابط قنوات أو فيديوهات، أو أسماء معرِّفة تبدأ بـ @، عنصرًا واحدًا في كل سطر. تسأل الإضافة YouTube عن القناة المقصودة، كما لو فتحت صفحتها." },
+  "addLinesLabel": { "message": "روابط أو أسماء معرِّفة (@)" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@name\n@name\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "إلى القائمة" },
+  "addSearch": { "message": "بحث" },
+  "addSearching": {
+    "message": "جارٍ سؤال YouTube… $DONE$ من $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "إضافة" },
+  "addApplyOne": {
+    "message": "إضافة القنوات ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "إضافة القنوات ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "لا توجد قناة لإضافتها: كلها موجودة في القائمة بالفعل، أو لم يُعثر على أي قناة." },
+  "addEmpty": { "message": "الصق رابطًا أو اسمًا معرِّفًا واحدًا على الأقل." },
+  "addTooMany": {
+    "message": "الحد الأقصى للأسطر في كل مرة: $MAX$.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "ستُضاف" },
+  "lookupAlready": { "message": "موجودة في القائمة بالفعل" },
+  "lookupMoved": {
+    "message": "ستُنقل من «$FROM$» إلى «$TO$»",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "القناة نفسها في سطر سابق" },
+  "lookupNotALink": { "message": "ليس رابط قناة أو فيديو على YouTube ولا اسمًا معرِّفًا" },
+  "lookupNotFound": { "message": "القناة أو الفيديو غير موجود على YouTube" },
+  "lookupUnreadable": { "message": "لم يحدد YouTube القناة. إذا لم يُفتح YouTube من قبل في هذا المتصفح، فافتحه مرة واحدة واختر إعدادات ملفات تعريف الارتباط، ثم حاول مرة أخرى" },
+
+  "importTitle": { "message": "استيراد القوائم" },
+  "importHint": { "message": "ملف صدّرته الإضافة، أو قائمة روابط قنوات، رابط في كل سطر. لا يُحفظ أي شيء قبل «استيراد»: يعرض «تحليل» أولًا ما سيتم." },
+  "importDropHere": { "message": "أفلت ملفًا هنا، أو" },
+  "importBrowse": { "message": "تصفّح ملفاتك" },
+  "importPasteHint": { "message": "يمكنك أيضًا لصق ملف أو نص (Ctrl+V) في هذه النافذة." },
+  "importChange": { "message": "تغيير" },
+  "importRemove": { "message": "إزالة" },
+  "importPasted": { "message": "نص ملصوق" },
+  "importSourceFile": { "message": "ملف صدّرته الإضافة" },
+  "importSourceLinksOne": {
+    "message": "قائمة روابط، عدد الأسطر: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "قائمة روابط، عدد الأسطر: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "هذا ليس ملفًا صدّرته الإضافة ولا قائمة روابط." },
+  "importNoSource": { "message": "اختر ملفًا أولًا، أو الصق نصًا." },
+  "importNoPart": { "message": "حدّد جزءًا واحدًا على الأقل لاستيراده." },
+  "importListFull": {
+    "message": "ستتجاوز إحدى القوائم الحد الأقصى ($COUNT$): لن يُستورد أي شيء.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "ما سيُستورد" },
+  "importLinksTarget": { "message": "ضع هذه القنوات في" },
+  "importModeLabel": { "message": "الإدخالات الموجودة بالفعل" },
+  "importModeAddNew": { "message": "إضافة الجديدة فقط" },
+  "importModeAddNewHint": { "message": "تبقى القناة الموجودة في قائمة ما في مكانها." },
+  "importModeFollow": { "message": "الإضافة واتباع الملف" },
+  "importModeFollowHint": { "message": "تُنقل القناة الموجودة إلى القائمة التي يحددها الملف." },
+  "importModeReplace": { "message": "استبدال الكل بالملف" },
+  "importModeReplaceHint": { "message": "تصبح الأجزاء المحددة مطابقة للملف تمامًا: يُزال ما ليس فيه." },
+  "importRemember": { "message": "تذكّر اختياري" },
+  "importApply": { "message": "استيراد" },
+  "importConfirmOne": {
+    "message": "أؤكد إزالة الإدخالات غير الموجودة في الملف (العدد: $COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "أؤكد إزالة الإدخالات غير الموجودة في الملف (العدد: $COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "لا تغيير" },
+  "reportNothing": { "message": "لا تغيير: كل شيء موجود بالفعل." },
+  "reportAddedOne": { "message": "جديدة: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "جديدة: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "منقولة: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "منقولة: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "موجودة: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "موجودة: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "مُزالة: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "مُزالة: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "تصدير القوائم" },
+  "exportPartsLabel": { "message": "ما سيُصدَّر" },
+  "exportFormatLabel": { "message": "التنسيق" },
+  "exportFormatJson": { "message": "ملف الإضافة (JSON)" },
+  "exportFormatJsonHint": { "message": "يُستورد من جديد كما هو، مع تواريخ القنوات وصورها." },
+  "exportFormatLinks": { "message": "قائمة روابط (نص)" },
+  "exportFormatLinksHint": { "message": "رابط قناة في كل سطر مع اسمها، للقراءة أو المشاركة. لا يتضمن الفيديوهات المستبعدة." },
+  "exportDownload": { "message": "تنزيل" },
+  "exportNothing": { "message": "حدّد قائمة واحدة على الأقل." },
+  "noticeImportInvalid": { "message": "هذا الملف ليس قائمة صدّرتها YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "هذا الملف أكبر من أن يكون قائمة قنوات." },
+  "noticeCountReset": { "message": "تمت إعادة تعيين العدّاد" },
+  "noticeNumberInvalid": {
+    "message": "أدخل رقمًا من $MIN$ إلى $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "إعدادات YouTube Auto Like" },
+  "optionsTitle": { "message": "الإعدادات" },
+  "navSections": { "message": "الأقسام" },
+  "navChannels": { "message": "أي القنوات" },
+  "navVideos": { "message": "أي الفيديوهات" },
+  "navWhen": { "message": "متى يتم الإعجاب" },
+  "navLists": { "message": "قوائمي" },
+  "navMore": { "message": "المزيد" },
+
+  "channelsHeading": { "message": "بفيديوهات أي القنوات يتم الإعجاب؟" },
+  "channelsHint": { "message": "قائمة «لا إعجاب أبدًا» لها الأولوية دائمًا." },
+  "likeWhatSubscribed": { "message": "القنوات التي أشترك فيها" },
+  "likeWhatSubscribedHint": { "message": "بالإضافة إلى قنوات قائمتي «إعجاب دائمًا»." },
+  "recommended": { "message": "مستحسن" },
+  "likeWhatAll": { "message": "كل القنوات" },
+  "likeWhatAllHint": { "message": "يتم الإعجاب بكل فيديو تشاهده." },
+  "likeWhatList": { "message": "قائمتي «إعجاب دائمًا» فقط" },
+  "likeWhatListHint": { "message": "سواء اشتركت أم لا، لا يتم الإعجاب بأي شيء آخر." },
+
+  "videosHeading": { "message": "أي الفيديوهات؟" },
+  "videosHint": { "message": "يتم التعرف على Shorts حتى عند فتحها في المشغّل العادي." },
+  "likeNormalVideos": { "message": "الفيديوهات" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "متى يتم الإعجاب؟" },
+  "whenHint": { "message": "لا يُمس أبدًا أي فيديو اخترت له بنفسك «أعجبني» أو «لم يعجبني»." },
+  "modeInstant": { "message": "فور الفتح" },
+  "modeCustom": { "message": "بعد فترة" },
+  "modeRandom": { "message": "في لحظة عشوائية" },
+  "thresholdAfter": { "message": "بعد" },
+  "thresholdPercentUnit": { "message": "% من الفيديو" },
+  "thresholdMinutesUnit": { "message": "د من التشغيل" },
+  "percentLabel": { "message": "النسبة المئوية من الفيديو" },
+  "minutesLabel": { "message": "دقائق التشغيل" },
+  "thresholdKeepOne": { "message": "يظل أحد الحدّين على الأقل محددًا." },
+  "thresholdsHint": { "message": "يؤدي الحد الذي يُبلغ أولًا إلى تسجيل الإعجاب. يتم الإعجاب بالفيديو الأقصر قبل نهايته بثانيتين. في البث المباشر، لا تُحتسب إلا الدقائق منذ بدء المشاهدة؛ وبدون حد بالدقائق، يتم الإعجاب به فور الفتح. لا تُحتسب الإعلانات." },
+  "randomHint": { "message": "لحظة تُختار عشوائيًا في كل فيديو. يتم الإعجاب بالبث المباشر فور الفتح." },
+  "summaryLabel": { "message": "الملخص:" },
+
+  "listsHeading": { "message": "قوائم قنواتي" },
+  "listsHint": { "message": "أضف قنوات برابط أو باسم معرِّف، من نافذة الأيقونة على فيديو أو صفحة قناة، أو من سجل الإعجابات. يُستبعد الفيديو من نافذة الأيقونة." },
+  "listAlways": { "message": "إعجاب دائمًا" },
+  "listNever": { "message": "لا إعجاب أبدًا" },
+  "listVideos": { "message": "الفيديوهات المستبعدة" },
+  "listExcludedOn": {
+    "message": "استُبعد في $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "إلغاء استبعاد $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "البحث في القائمة" },
+  "listImport": { "message": "استيراد" },
+  "listExport": { "message": "تصدير" },
+  "listEmpty": { "message": "لا توجد قنوات في القائمة. أضفها برابط أو باسم معرِّف، من نافذة الأيقونة على فيديو أو صفحة قناة، أو من سجل الإعجابات." },
+  "listEmptyVideos": { "message": "لا توجد فيديوهات مستبعدة. لاستبعاد فيديو، افتح نافذة الأيقونة أثناء مشاهدته واختر «عدم الإعجاب بهذا الفيديو أبدًا»." },
+  "listNoMatch": { "message": "لا توجد قناة تطابق البحث." },
+  "listAddedOn": {
+    "message": "أضيفت في $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "إزالة $NAME$ من القائمة",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ من $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "عرض المزيد ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "عرض الكل ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "الأسطر المعروضة في القوائم وسجل الإعجابات" },
+  "listPageSizeHint": { "message": "تظهر البقية عبر «عرض المزيد» أو «عرض الكل». تُمرَّر القائمة الطويلة داخلها دون أن تطيل الصفحة." },
+  "listPageSizeAll": { "message": "الكل" },
+  "listOpenChannel": { "message": "فتح القناة على YouTube" },
+
+  "navHistory": { "message": "سجل الإعجابات" },
+  "historyHeading": { "message": "إعجابات الإضافة" },
+  "historyHint": {
+    "message": "آخر $COUNT$، الأحدث أولًا، محفوظة في هذا المتصفح فقط.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "لم تسجّل الإضافة أي إعجاب بعد." },
+  "historyUntitled": { "message": "فيديو بلا عنوان" },
+  "historyChannelChoice": {
+    "message": "الإعجاب بفيديوهات $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "مسح سجل الإعجابات" },
+  "noticeHistoryCleared": { "message": "تم مسح سجل الإعجابات" },
+
+  "moreHeading": { "message": "المزيد" },
+  "themeLabel": { "message": "المظهر" },
+  "themeSystem": { "message": "حسب النظام" },
+  "themeLight": { "message": "فاتح" },
+  "themeDark": { "message": "داكن" },
+  "updatesLabel": { "message": "البحث عن إصدارات جديدة" },
+  "updatesHint": { "message": "يسأل GitHub، حيث تُنشر الإضافة؛ وبذلك يرى GitHub عنوان IP الخاص بك." },
+  "updateEvery0": { "message": "أبدًا" },
+  "updateEvery30": { "message": "كل 30 دقيقة" },
+  "updateEvery60": { "message": "كل ساعة" },
+  "updateEvery360": { "message": "كل 6 ساعات" },
+  "updateEvery1440": { "message": "كل يوم" },
+  "updateEvery10080": { "message": "كل أسبوع" },
+  "updateEveryCustom": { "message": "مخصص…" },
+  "updateEveryPrefix": { "message": "كل" },
+  "updateCustomCount": { "message": "عدد الدقائق أو الساعات أو الأيام بين فحصين" },
+  "updateCustomUnit": { "message": "الوحدة" },
+  "unitMinutesOne": { "message": "دقيقة" },
+  "unitMinutesOther": { "message": "دقائق" },
+  "unitHoursOne": { "message": "ساعة" },
+  "unitHoursOther": { "message": "ساعات" },
+  "unitDaysOne": { "message": "يوم" },
+  "unitDaysOther": { "message": "أيام" },
+  "noticeFrequencyInvalid": { "message": "أدخل مدة من 5 دقائق إلى 30 يومًا." },
+  "updateCheckNow": { "message": "التحقق الآن" },
+  "updateStatusOff": { "message": "لا يتم البحث عن إصدارات جديدة." },
+  "updateStatusNever": { "message": "لم يتم التحقق بعد." },
+  "updateStatusChecking": { "message": "جارٍ التحقق…" },
+  "updateStatusAvailable": {
+    "message": "صدر الإصدار $VERSION$ ↖",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "تم التحقق $WHEN$: لديك أحدث إصدار.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "تم التحقق $WHEN$: لم يُنشر أي إصدار بعد.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "فشل آخر تحقق $WHEN$؛ وسيحاول التحقق التالي مرة أخرى.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "تعذّر إجراء التحقق." },
+  "likeCountHint": { "message": "منذ تثبيت الإضافة، أو منذ آخر إعادة تعيين. لا تغيّر إعادة التعيين أي شيء آخر." },
+  "likeCountReset": { "message": "إعادة تعيين" },
+
+  "ruleSentence": {
+    "message": "الإعجاب تلقائيًا: $WHAT$ $CHANNELS$، $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "لا إعجاب بأي شيء: الفيديوهات وShorts كلاهما متوقف." },
+  "ruleWhatBoth": { "message": "الفيديوهات وShorts" },
+  "ruleWhatVideos": { "message": "الفيديوهات" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "من القنوات التي تشترك فيها" },
+  "ruleChannelsSubscribedAndList": { "message": "من القنوات التي تشترك فيها ومن قائمة «إعجاب دائمًا»" },
+  "ruleChannelsAll": { "message": "من كل القنوات" },
+  "ruleChannelsList": { "message": "من قائمة «إعجاب دائمًا»" },
+  "ruleWhenInstant": { "message": "فور الفتح" },
+  "ruleWhenPercent": {
+    "message": "عند $PERCENT$% من الفيديو",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "بعد $MINUTES$ د من التشغيل",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "عند $PERCENT$% من الفيديو أو بعد $MINUTES$ د من التشغيل، أيهما أسبق",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "في لحظة عشوائية" },
+
+  "likeCountOne": {
+    "message": "الفيديوهات المعجب بها: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "الفيديوهات المعجب بها: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ ث",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ د $SECONDS$ ث",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ س $MINUTES$ د",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}

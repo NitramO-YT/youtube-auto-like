@@ -5,6 +5,7 @@
  * "auto" follows the language of the browser.
  */
 export const LOCALES = Object.freeze({
+  ar: Object.freeze({ name: 'العربية', region: 'SA' }),
   cs: Object.freeze({ name: 'Čeština', region: 'CZ' }),
   da: Object.freeze({ name: 'Dansk', region: 'DK' }),
   de: Object.freeze({ name: 'Deutsch', region: 'DE' }),
