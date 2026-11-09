@@ -1,9 +1,10 @@
 /**
  * The file the options page exports the lists to, and imports them from:
  * JSON, { format, version, exportedAt, always, never, excludedVideos }. The
- * channel lists hold { id, name, addedAt } entries, the excluded videos
- * { videoId, title, channelName, isShort, addedAt } ones. excludedVideos may
- * be missing from a file.
+ * channel lists hold { id, name, avatarUrl, addedAt } entries, the excluded
+ * videos { videoId, title, channelName, channelAvatarUrl, isShort, addedAt }
+ * ones. excludedVideos may be missing from a file, and avatars from its
+ * entries.
  *
  * An imported file is untrusted: its size is bounded, its format must be
  * this one, and its lists go through normalizeLists and
@@ -14,8 +15,10 @@ import { normalizeExcludedVideos } from './excluded-videos.js';
 
 export const LISTS_FILE_FORMAT = 'youtube-auto-like/channel-lists';
 export const LISTS_FILE_VERSION = 1;
-// Two lists of MAX_CHANNELS entries take well under 2 MB.
-export const MAX_LISTS_FILE_BYTES = 2 * 1024 * 1024;
+// Every list full, with names, titles and avatar addresses at their maximum
+// length, makes a file of about 19.4 MB (tests/core/lists-file.test.mjs):
+// any export of the extension is accepted back.
+export const MAX_LISTS_FILE_BYTES = 24 * 1024 * 1024;
 
 export const ImportError = Object.freeze({
   TOO_BIG: 'too-big',

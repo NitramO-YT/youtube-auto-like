@@ -37,7 +37,10 @@ export function createHistorySection(page) {
     link.rel = 'noopener noreferrer';
     const meta = [entry.channelName, t(entry.isShort ? 'kindShort' : 'kindVideo'), dateTimeFormat.format(new Date(entry.likedAt))];
     title.append(link, el(doc, 'span', 'meta', meta.filter(Boolean).join(' · ')));
-    item.append(createAvatar(doc, { id: entry.channelId ?? entry.videoId, initial: initialOf(entry.channelName) }), title);
+    item.append(
+      createAvatar(doc, { id: entry.channelId ?? entry.videoId, initial: initialOf(entry.channelName), avatarUrl: entry.channelAvatarUrl }),
+      title,
+    );
     return item;
   }
 

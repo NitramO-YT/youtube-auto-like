@@ -11,7 +11,7 @@ import { placeVideo } from '../../core/excluded-videos.js';
  * change; the undo puts it back there, with the date it had.
  *
  * @param {object} store From createStore.
- * @param {{ id: string, name?: string|null }} channel
+ * @param {{ id: string, name?: string|null, avatarUrl?: string|null }} channel
  * @param {'always'|'never'|null} target
  * @returns {Promise<{ settings: object, undo: () => Promise<object> }>}
  * @throws {ListFullError} when the target list is full; nothing is saved.
@@ -29,7 +29,11 @@ export async function moveChannel(store, channel, target, now = new Date()) {
       ...current,
       lists: placeChannel(
         current.lists,
-        { id: channel.id, name: before.entry?.name || channel.name || '' },
+        {
+          id: channel.id,
+          name: before.entry?.name || channel.name || '',
+          avatarUrl: before.entry?.avatarUrl ?? channel.avatarUrl ?? null,
+        },
         before.list,
         before.entry?.addedAt ?? date,
       ),
@@ -42,7 +46,7 @@ export async function moveChannel(store, channel, target, now = new Date()) {
  * entry it had is read from the settings as stored; the undo puts it back
  * as it was.
  *
- * @param {{ videoId: string, title?: string, channelName?: string, isShort?: boolean }} video
+ * @param {{ videoId: string, title?: string, channelName?: string, channelAvatarUrl?: string|null, isShort?: boolean }} video
  * @param {boolean} exclude
  * @returns {Promise<{ settings: object, undo: () => Promise<object> }>}
  * @throws {ListFullError} when the list is full; nothing is saved.

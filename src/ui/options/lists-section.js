@@ -61,7 +61,7 @@ export function createListsSection(page) {
       const name = channel.name || t('channelUnknown');
       return row({
         id: channel.id,
-        avatar: { id: channel.id, initial: initialOf(channel.name) },
+        avatar: { id: channel.id, initial: initialOf(channel.name), avatarUrl: channel.avatarUrl },
         name,
         href: CHANNEL_URL + channel.id,
         linkTitle: t('listOpenChannel'),
@@ -87,7 +87,7 @@ export function createListsSection(page) {
         const added = video.addedAt ? t('listExcludedOn', [dateFormat.format(new Date(video.addedAt))]) : '';
         return row({
           id: video.videoId,
-          avatar: { id: video.videoId, initial: initialOf(video.channelName) },
+          avatar: { id: video.videoId, initial: initialOf(video.channelName), avatarUrl: video.channelAvatarUrl },
           name,
           href: videoUrl(video),
           meta: [video.channelName, t(video.isShort ? 'kindShort' : 'kindVideo'), added].filter(Boolean).join(' · '),

@@ -36,10 +36,11 @@ let stopped = false;
 let settings = null;
 let session = null;
 let lastObservation = null;
-// What the page showed when the like button was clicked: step() had just
-// checked that it describes the video of the session. The history entry is
-// made from it, the page being possibly unreadable when the like confirms.
-let clickedSnapshot = null;
+// The observation of the page when the like button was clicked: step() had
+// just checked that its snapshot describes the video of the session. The
+// history entry is made from it, the page being possibly unreadable when
+// the like confirms.
+let clicked = null;
 let busy = false;
 
 function log(...args) {
@@ -111,7 +112,7 @@ async function tick() {
     if (!session || session.videoId !== videoId) {
       session = createSession(videoId, Date.now(), Math.random());
       lastObservation = null;
-      clickedSnapshot = null;
+      clicked = null;
       log(`video ${videoId}`);
     }
     // A final video is still observed, for the popup and for a like the
@@ -133,7 +134,7 @@ async function tick() {
       const button = findLikeButton(document, surface);
       if (button) {
         button.click();
-        clickedSnapshot = observation.snapshot;
+        clicked = observation;
       } else {
         next = { ...next, status: Status.CLICK_FAILED };
       }
@@ -144,7 +145,7 @@ async function tick() {
     }
     if (next.status === Status.LIKED && session.status !== Status.LIKED) {
       store
-        .recordLike(historyEntry(next.videoId, clickedSnapshot, next.likedAt))
+        .recordLike(historyEntry(next.videoId, clicked?.snapshot ?? null, next.likedAt, clicked?.avatarUrl ?? null))
         .catch((error) => console.error(LOG_PREFIX, 'could not record the like', error));
     }
     session = next;
@@ -168,7 +169,7 @@ const COMMANDS = {
   [Message.SKIP_VIDEO]: skipVideo,
   [Message.RESUME_VIDEO]: resumeVideo,
   [Message.RESTART_VIDEO]: (current) => {
-    clickedSnapshot = null;
+    clicked = null;
     return restartVideo(current, Date.now(), Math.random());
   },
 };

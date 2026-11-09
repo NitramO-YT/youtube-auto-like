@@ -9,6 +9,7 @@ const LIKE = {
   title: "J'AI CONSTRUIT MON ATELIER DE RÊVE !",
   channelId: 'UC9orcd4I_3Uy_8_UAz2r48g',
   channelName: 'COLAS',
+  channelAvatarUrl: 'https://yt3.googleusercontent.com/3fhLCThebQlwuSDXM9SEapaTSVFB3EuXHCKtDzFhnugoLLb71I05xsU_yi5-qLMoT0Ve4PQQ=s88-c-k-c0x00ffffff-no-rj-mo',
   isShort: false,
   likedAt: '2026-11-08T21:00:00.000Z',
 };

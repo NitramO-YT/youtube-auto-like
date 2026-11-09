@@ -4,6 +4,8 @@ import { addToHistory, historyEntry, MAX_HISTORY, normalizeHistory } from '../..
 import { videoUrl } from '../../src/core/video.js';
 
 const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
+// Avatar of COLAS on its public page, 8 November 2026.
+const AVATAR = 'https://yt3.googleusercontent.com/3fhLCThebQlwuSDXM9SEapaTSVFB3EuXHCKtDzFhnugoLLb71I05xsU_yi5-qLMoT0Ve4PQQ=s88-c-k-c0x00ffffff-no-rj-mo';
 const like = (videoId, overrides = {}) => ({
   videoId,
   title: `Title of ${videoId}`,
@@ -60,21 +62,30 @@ describe('normalizeHistory', () => {
 });
 
 describe('historyEntry', () => {
-  it('describes the like from the snapshot taken at the click', () => {
+  it('describes the like from the snapshot and the avatar read at the click', () => {
     const snapshot = { title: 'le moooonstre', channelId: COLAS, channelName: 'COLAS', isShort: true };
-    assert.deepEqual(historyEntry('EkDC9elBHHc', snapshot, Date.parse('2026-11-08T21:00:00.000Z')), {
-      videoId: 'EkDC9elBHHc',
-      title: 'le moooonstre',
-      channelId: COLAS,
-      channelName: 'COLAS',
-      isShort: true,
-      likedAt: '2026-11-08T21:00:00.000Z',
-    });
+    const entry = historyEntry('EkDC9elBHHc', snapshot, Date.parse('2026-11-08T21:00:00.000Z'), AVATAR);
+    assert.deepEqual(addToHistory([], entry), [
+      {
+        videoId: 'EkDC9elBHHc',
+        title: 'le moooonstre',
+        channelId: COLAS,
+        channelName: 'COLAS',
+        channelAvatarUrl: AVATAR,
+        isShort: true,
+        likedAt: '2026-11-08T21:00:00.000Z',
+      },
+    ]);
   });
 
-  it('keeps the video and the date without a snapshot', () => {
-    const entry = historyEntry('EkDC9elBHHc', null, Date.parse('2026-11-08T21:00:00.000Z'));
-    assert.deepEqual(addToHistory([], entry).map((e) => [e.videoId, e.title, e.channelId]), [['EkDC9elBHHc', '', null]]);
+  it('keeps the video and the date without a snapshot, even with an avatar', () => {
+    const entry = historyEntry('EkDC9elBHHc', null, Date.parse('2026-11-08T21:00:00.000Z'), AVATAR);
+    assert.deepEqual(addToHistory([], entry).map((e) => [e.videoId, e.title, e.channelId, e.channelAvatarUrl]), [['EkDC9elBHHc', '', null, null]]);
+  });
+
+  it('does not store an avatar from another server', () => {
+    const entry = historyEntry('EkDC9elBHHc', { channelId: COLAS }, Date.parse('2026-11-08T21:00:00.000Z'), 'https://example.com/a.png');
+    assert.equal(addToHistory([], entry)[0].channelAvatarUrl, null);
   });
 });
 

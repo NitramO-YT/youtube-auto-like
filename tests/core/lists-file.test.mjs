@@ -1,20 +1,59 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { normalizeLists } from '../../src/core/channels.js';
+import { MAX_STORED_AVATAR_URL_LENGTH } from '../../src/core/avatar.js';
+import { MAX_CHANNELS, MAX_NAME_LENGTH, normalizeLists } from '../../src/core/channels.js';
+import {
+  MAX_EXCLUDED_VIDEOS,
+  MAX_NAME_LENGTH as MAX_VIDEO_CHANNEL_NAME_LENGTH,
+  MAX_TITLE_LENGTH,
+  normalizeExcludedVideos,
+} from '../../src/core/excluded-videos.js';
 import { ImportError, listsFileName, MAX_LISTS_FILE_BYTES, parseListsFile, serializeLists } from '../../src/core/lists-file.js';
 
 const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
 const QOQSIK = 'UCfefITu3BR2ix7ZUSrxj16w';
+const AVATAR = 'https://yt3.googleusercontent.com/3fhLCThebQlwuSDXM9SEapaTSVFB3EuXHCKtDzFhnugoLLb71I05xsU_yi5-qLMoT0Ve4PQQ=s88-c-k-c0x00ffffff-no-rj-mo';
 const lists = normalizeLists({
-  always: [{ id: COLAS, name: 'COLAS', addedAt: '2026-11-08T21:00:00.000Z' }],
+  always: [{ id: COLAS, name: 'COLAS', avatarUrl: AVATAR, addedAt: '2026-11-08T21:00:00.000Z' }],
   never: [{ id: QOQSIK, name: 'qoqsik', addedAt: null }],
 });
-const excludedVideos = [{ videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelName: 'COLAS', isShort: true, addedAt: '2026-11-08T21:30:00.000Z' }];
+const excludedVideos = normalizeExcludedVideos([
+  { videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelName: 'COLAS', channelAvatarUrl: AVATAR, isShort: true, addedAt: '2026-11-08T21:30:00.000Z' },
+]);
 
 describe('lists file', () => {
-  it('reads back what it exports', () => {
+  it('reads back what it exports, avatars included', () => {
     const text = serializeLists(lists, excludedVideos, '2026-11-08T22:00:00.000Z');
+    assert.equal(lists.always[0].avatarUrl, AVATAR);
+    assert.equal(excludedVideos[0].channelAvatarUrl, AVATAR);
     assert.deepEqual(parseListsFile(text, text.length), { lists, excludedVideos });
+  });
+
+  it('accepts back the largest export the extension can make', () => {
+    // Characters taking three bytes in UTF-8, every text and list at its maximum.
+    const longest = (length) => '漢'.repeat(length);
+    const avatar = `https://yt3.ggpht.com/${'a'.repeat(MAX_STORED_AVATAR_URL_LENGTH - 'https://yt3.ggpht.com/'.length)}`;
+    const date = '2026-11-09T12:00:00.000Z';
+    const channel = (n) => ({ id: `UC${String(n).padStart(22, '0')}`, name: longest(MAX_NAME_LENGTH), avatarUrl: avatar, addedAt: date });
+    const full = normalizeLists({
+      always: Array.from({ length: MAX_CHANNELS }, (_, n) => channel(n)),
+      never: Array.from({ length: MAX_CHANNELS }, (_, n) => channel(MAX_CHANNELS + n)),
+    });
+    const videos = normalizeExcludedVideos(
+      Array.from({ length: MAX_EXCLUDED_VIDEOS }, (_, n) => ({
+        videoId: String(n).padStart(11, '0'),
+        title: longest(MAX_TITLE_LENGTH),
+        channelName: longest(MAX_VIDEO_CHANNEL_NAME_LENGTH),
+        channelAvatarUrl: avatar,
+        addedAt: date,
+      })),
+    );
+    assert.equal(full.always.length + full.never.length, 2 * MAX_CHANNELS);
+    assert.equal(full.always[0].avatarUrl, avatar);
+    const text = serializeLists(full, videos, date);
+    const size = Buffer.byteLength(text);
+    assert.ok(size <= MAX_LISTS_FILE_BYTES, `${size} bytes`);
+    assert.ok(!parseListsFile(text, size).error);
   });
 
   it('reads a file without excluded videos', () => {
@@ -36,8 +75,8 @@ describe('lists file', () => {
       settings: { enabled: false },
     });
     assert.deepEqual(parseListsFile(text, text.length), {
-      lists: { always: [{ id: COLAS, name: 'COLAS', addedAt: null }], never: [] },
-      excludedVideos: [{ videoId: 'EkDC9elBHHc', title: '', channelName: '', isShort: false, addedAt: null }],
+      lists: { always: [{ id: COLAS, name: 'COLAS', avatarUrl: null, addedAt: null }], never: [] },
+      excludedVideos: [{ videoId: 'EkDC9elBHHc', title: '', channelName: '', channelAvatarUrl: null, isShort: false, addedAt: null }],
     });
   });
 

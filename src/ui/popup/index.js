@@ -156,7 +156,7 @@ function moveNoticeKey(target) {
 async function moveVideoChannel(target) {
   const channel = state.status?.channel;
   if (!channel) return;
-  const { settings, undo } = await moveChannel(store, { id: channel.id, name: channel.name }, target);
+  const { settings, undo } = await moveChannel(store, { id: channel.id, name: channel.name, avatarUrl: channel.avatarUrl }, target);
   state.settings = settings;
   render();
   notice.show(t(moveNoticeKey(target)), {
@@ -172,7 +172,13 @@ async function moveVideoChannel(target) {
 async function excludeVideo(exclude) {
   const { status } = state;
   if (!status?.videoId) return;
-  const video = { videoId: status.videoId, title: status.title, channelName: status.channel?.name ?? '', isShort: status.isShort === true };
+  const video = {
+    videoId: status.videoId,
+    title: status.title,
+    channelName: status.channel?.name ?? '',
+    channelAvatarUrl: status.channel?.avatarUrl ?? null,
+    isShort: status.isShort === true,
+  };
   const { settings, undo } = await setVideoExcluded(store, video, exclude);
   state.settings = settings;
   render();

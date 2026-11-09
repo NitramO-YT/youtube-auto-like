@@ -3,6 +3,8 @@ import { describe, it } from 'node:test';
 import { defaultSettings, normalizeSettings, SETTINGS_SCHEMA_VERSION } from '../../src/core/settings.js';
 
 const CHANNEL = 'UC9orcd4I_3Uy_8_UAz2r48g';
+// Avatar of COLAS on its public page, 8 November 2026.
+const AVATAR = 'https://yt3.googleusercontent.com/3fhLCThebQlwuSDXM9SEapaTSVFB3EuXHCKtDzFhnugoLLb71I05xsU_yi5-qLMoT0Ve4PQQ=s88-c-k-c0x00ffffff-no-rj-mo';
 
 describe('defaultSettings', () => {
   it('returns a fresh copy each time', () => {
@@ -32,8 +34,10 @@ describe('normalizeSettings', () => {
       likeWhat: 'alwaysList',
       likeNormalVideos: false,
       likeShorts: false,
-      lists: { always: [{ id: CHANNEL, name: 'COLAS', addedAt: '2026-11-08T21:00:00.000Z' }], never: [] },
-      excludedVideos: [{ videoId: 'aeP4eG-gO10', title: 'Atelier', channelName: 'COLAS', isShort: false, addedAt: '2026-11-08T21:00:00.000Z' }],
+      lists: { always: [{ id: CHANNEL, name: 'COLAS', avatarUrl: AVATAR, addedAt: '2026-11-08T21:00:00.000Z' }], never: [] },
+      excludedVideos: [
+        { videoId: 'aeP4eG-gO10', title: 'Atelier', channelName: 'COLAS', channelAvatarUrl: AVATAR, isShort: false, addedAt: '2026-11-08T21:00:00.000Z' },
+      ],
       timing: { mode: 'custom', percent: { enabled: false, value: 0 }, minutes: { enabled: true, value: 600 } },
       updateCheckMinutes: 0,
       relikeAfterRemoval: true,
@@ -92,6 +96,6 @@ describe('normalizeSettings', () => {
 
   it('cleans the channel lists', () => {
     const normalized = normalizeSettings({ lists: { always: [{ id: CHANNEL, name: ' COLAS ' }, { id: 'nope' }], never: 'x' } });
-    assert.deepEqual(normalized.lists, { always: [{ id: CHANNEL, name: 'COLAS', addedAt: null }], never: [] });
+    assert.deepEqual(normalized.lists, { always: [{ id: CHANNEL, name: 'COLAS', avatarUrl: null, addedAt: null }], never: [] });
   });
 });

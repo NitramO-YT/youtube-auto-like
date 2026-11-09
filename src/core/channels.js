@@ -1,13 +1,15 @@
 /**
  * The user's two channel lists: "always like" and "never like". Channels are
  * identified by their channel ID, which never changes, unlike their name or
- * handle; the name is kept for display only. A channel is in one list at
+ * handle; the name and the avatar address are kept for display only. Each
+ * entry is { id, name, avatarUrl, addedAt }. A channel is in one list at
  * most.
  */
+import { storedAvatarUrl } from './avatar.js';
 
 // "UC" followed by 22 base64url characters.
 const CHANNEL_ID_PATTERN = /^UC[A-Za-z0-9_-]{22}$/;
-const MAX_NAME_LENGTH = 200;
+export const MAX_NAME_LENGTH = 200;
 export const MAX_CHANNELS = 5000;
 export const LIST_NAMES = ['always', 'never'];
 
@@ -44,7 +46,7 @@ export function normalizeChannels(raw) {
     }
     seen.add(entry.id);
     const name = typeof entry.name === 'string' ? entry.name.trim().slice(0, MAX_NAME_LENGTH) : '';
-    channels.push({ id: entry.id, name, addedAt: validDate(entry.addedAt) });
+    channels.push({ id: entry.id, name, avatarUrl: storedAvatarUrl(entry.avatarUrl), addedAt: validDate(entry.addedAt) });
   }
   return channels;
 }
@@ -73,25 +75,28 @@ export function listOf(lists, channelId) {
 /**
  * Moves a channel to a list, or out of both with target null. Returns new
  * lists; the inputs are not modified. A channel already in the target list
- * keeps its place and its addedAt, only its name is refreshed. Throws
- * ListFullError when the target list is full.
+ * keeps its place and its addedAt; its name and its avatar are refreshed
+ * when the channel given has them. Throws ListFullError when the target
+ * list is full.
  *
  * @param {object} lists { always, never }
- * @param {object} channel { id, name }
+ * @param {object} channel { id, name, avatarUrl? }
  * @param {'always'|'never'|null} target
  * @param {string} now ISO date of the change, kept as addedAt.
  */
 export function placeChannel(lists, channel, target, now) {
   if (!isValidChannelId(channel?.id)) throw new Error(`Invalid channel ID: ${channel?.id}`);
   if (target !== null && !LIST_NAMES.includes(target)) throw new Error(`Unknown list: ${target}`);
-  const [entry] = normalizeChannels([{ id: channel.id, name: channel.name, addedAt: now }]);
+  const [entry] = normalizeChannels([{ id: channel.id, name: channel.name, avatarUrl: channel.avatarUrl, addedAt: now }]);
   const without = (list) => list.filter((existing) => existing.id !== channel.id);
   const next = { always: without(lists.always), never: without(lists.never) };
   if (target === null) return next;
 
   if (isChannelListed(lists[target], channel.id)) {
     next[target] = lists[target].map((existing) =>
-      existing.id === channel.id ? { ...existing, name: entry.name || existing.name } : existing,
+      existing.id === channel.id
+        ? { ...existing, name: entry.name || existing.name, avatarUrl: entry.avatarUrl ?? existing.avatarUrl ?? null }
+        : existing,
     );
     return next;
   }

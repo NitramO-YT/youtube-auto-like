@@ -1,11 +1,12 @@
 /**
  * History of the likes the extension made: the last MAX_HISTORY videos,
  * newest first, kept in the browser only. Each entry is
- * { videoId, title, channelId, channelName, isShort, likedAt }.
+ * { videoId, title, channelId, channelName, channelAvatarUrl, isShort, likedAt }.
  *
  * Like the settings, the history read from storage is untrusted:
  * normalizeHistory keeps valid entries with known fields and bounded texts.
  */
+import { storedAvatarUrl } from './avatar.js';
 import { isValidChannelId } from './channels.js';
 import { isValidVideoId } from './video.js';
 
@@ -24,6 +25,7 @@ function normalizeEntry(entry) {
     title: text(entry.title, MAX_TITLE_LENGTH),
     channelId: isValidChannelId(entry.channelId) ? entry.channelId : null,
     channelName: text(entry.channelName, MAX_NAME_LENGTH),
+    channelAvatarUrl: storedAvatarUrl(entry.channelAvatarUrl),
     isShort: entry.isShort === true,
     likedAt,
   };
@@ -56,20 +58,23 @@ export function addToHistory(history, entry) {
 }
 
 /**
- * The history entry of a like, from the snapshot of the page taken when the
- * like button was clicked (see validateSnapshot in content/protocol.js).
- * Without a snapshot, the entry keeps the video ID and the date only.
+ * The history entry of a like, from what the page showed when the like
+ * button was clicked: the snapshot of the page reader (see validateSnapshot
+ * in content/protocol.js) and the channel avatar read in the page. Without
+ * a snapshot, the entry keeps the video ID and the date only.
  *
  * @param {string} videoId
  * @param {object|null} snapshot
  * @param {number} likedAt Milliseconds.
+ * @param {string|null} channelAvatarUrl
  */
-export function historyEntry(videoId, snapshot, likedAt) {
+export function historyEntry(videoId, snapshot, likedAt, channelAvatarUrl = null) {
   return {
     videoId,
     title: snapshot?.title ?? '',
     channelId: snapshot?.channelId ?? null,
     channelName: snapshot?.channelName ?? '',
+    channelAvatarUrl: snapshot ? channelAvatarUrl : null,
     isShort: snapshot?.isShort === true,
     likedAt: new Date(likedAt).toISOString(),
   };

@@ -17,6 +17,9 @@ const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
 const QOQSIK = 'UCfefITu3BR2ix7ZUSrxj16w';
 const WAKED = 'UChQjbzNlo8xD154bJS3yb8A';
 const NOW = '2026-11-08T21:00:00.000Z';
+// Avatar of COLAS on its public page, 8 November 2026.
+const AVATAR = 'https://yt3.googleusercontent.com/3fhLCThebQlwuSDXM9SEapaTSVFB3EuXHCKtDzFhnugoLLb71I05xsU_yi5-qLMoT0Ve4PQQ=s88-c-k-c0x00ffffff-no-rj-mo';
+const OTHER_AVATAR = 'https://yt3.ggpht.com/other=s88-c-k-c0x00ffffff-no-rj';
 
 const manyChannels = (count) =>
   Array.from({ length: count }, (_, i) => ({ id: `UC${String(i).padStart(22, '0')}`, name: '' }));
@@ -36,21 +39,26 @@ describe('normalizeChannels', () => {
     for (const raw of [undefined, null, {}, 'list', 3]) assert.deepEqual(normalizeChannels(raw), []);
   });
 
-  it('keeps valid entries in order, trims names, keeps valid dates and drops the rest', () => {
+  it('keeps valid entries in order, trims names, keeps valid dates and avatars, and drops the rest', () => {
     assert.deepEqual(
       normalizeChannels([
-        { id: QOQSIK, name: '  Qoqsik  ', addedAt: NOW },
+        { id: QOQSIK, name: '  Qoqsik  ', avatarUrl: AVATAR, addedAt: NOW },
         null,
         { id: 'invalid', name: 'x' },
-        { id: COLAS, addedAt: 'not a date' },
+        { id: COLAS, addedAt: 'not a date', avatarUrl: 'https://example.com/avatar.png' },
         { id: COLAS, name: 'duplicate' },
         { id: QOQSIK, name: 42, extra: true },
       ]),
       [
-        { id: QOQSIK, name: 'Qoqsik', addedAt: NOW },
-        { id: COLAS, name: '', addedAt: null },
+        { id: QOQSIK, name: 'Qoqsik', avatarUrl: AVATAR, addedAt: NOW },
+        { id: COLAS, name: '', avatarUrl: null, addedAt: null },
       ],
     );
+  });
+
+  it('drops an avatar address too long to be stored', () => {
+    const long = `https://yt3.ggpht.com/${'a'.repeat(400)}`;
+    assert.equal(normalizeChannels([{ id: COLAS, avatarUrl: long }])[0].avatarUrl, null);
   });
 
   it('cuts very long names and stops at the maximum count', () => {
@@ -87,10 +95,15 @@ describe('placeChannel', () => {
   const empty = { always: [], never: [] };
 
   it('adds a channel at the top of a list, with the date of the change', () => {
-    const lists = placeChannel({ always: [{ id: QOQSIK, name: 'qoqsik', addedAt: null }], never: [] }, { id: COLAS, name: 'COLAS' }, 'always', NOW);
+    const lists = placeChannel(
+      { always: [{ id: QOQSIK, name: 'qoqsik', avatarUrl: null, addedAt: null }], never: [] },
+      { id: COLAS, name: 'COLAS', avatarUrl: AVATAR },
+      'always',
+      NOW,
+    );
     assert.deepEqual(lists.always, [
-      { id: COLAS, name: 'COLAS', addedAt: NOW },
-      { id: QOQSIK, name: 'qoqsik', addedAt: null },
+      { id: COLAS, name: 'COLAS', avatarUrl: AVATAR, addedAt: NOW },
+      { id: QOQSIK, name: 'qoqsik', avatarUrl: null, addedAt: null },
     ]);
   });
 
@@ -106,10 +119,19 @@ describe('placeChannel', () => {
     assert.deepEqual(lists, empty);
   });
 
-  it('keeps the place and date of a channel already in the target list, and refreshes its name', () => {
-    const before = { always: [{ id: QOQSIK, name: 'q', addedAt: null }, { id: COLAS, name: 'old', addedAt: '2026-01-01T00:00:00.000Z' }], never: [] };
-    const after = placeChannel(before, { id: COLAS, name: 'COLAS' }, 'always', NOW);
-    assert.deepEqual(after.always[1], { id: COLAS, name: 'COLAS', addedAt: '2026-01-01T00:00:00.000Z' });
+  it('keeps the place and date of a channel already in the target list, and refreshes its name and avatar', () => {
+    const before = {
+      always: [{ id: QOQSIK, name: 'q', addedAt: null }, { id: COLAS, name: 'old', avatarUrl: OTHER_AVATAR, addedAt: '2026-01-01T00:00:00.000Z' }],
+      never: [],
+    };
+    const after = placeChannel(before, { id: COLAS, name: 'COLAS', avatarUrl: AVATAR }, 'always', NOW);
+    assert.deepEqual(after.always[1], { id: COLAS, name: 'COLAS', avatarUrl: AVATAR, addedAt: '2026-01-01T00:00:00.000Z' });
+  });
+
+  it('keeps the name and avatar of a channel already listed when the channel given has none', () => {
+    const before = { always: [{ id: COLAS, name: 'COLAS', avatarUrl: AVATAR, addedAt: NOW }], never: [] };
+    const after = placeChannel(before, { id: COLAS }, 'always', NOW);
+    assert.deepEqual(after.always[0], { id: COLAS, name: 'COLAS', avatarUrl: AVATAR, addedAt: NOW });
   });
 
   it('leaves its input unchanged', () => {

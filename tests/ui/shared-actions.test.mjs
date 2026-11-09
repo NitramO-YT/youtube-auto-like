@@ -9,6 +9,8 @@ import { translator } from '../helpers/fake-i18n.mjs';
 import { fakeStorageApi } from '../helpers/fake-storage.mjs';
 
 const COLAS = { id: 'UC9orcd4I_3Uy_8_UAz2r48g', name: 'COLAS' };
+// Avatar of COLAS on its public page, 8 November 2026.
+const AVATAR = 'https://yt3.googleusercontent.com/3fhLCThebQlwuSDXM9SEapaTSVFB3EuXHCKtDzFhnugoLLb71I05xsU_yi5-qLMoT0Ve4PQQ=s88-c-k-c0x00ffffff-no-rj-mo';
 const OLD = '2026-01-01T00:00:00.000Z';
 const NOW = new Date('2026-11-08T21:00:00.000Z');
 const storeWith = (lists) => createStore(fakeStorageApi({ settings: { lists } }));
@@ -31,6 +33,12 @@ describe('moveChannel', () => {
     assert.equal(listOf(removed.settings.lists, COLAS.id), null);
   });
 
+  it('gives back its avatar to a channel taken out of a list, at the undo', async () => {
+    const store = storeWith({ always: [{ ...COLAS, avatarUrl: AVATAR, addedAt: OLD }] });
+    const { undo } = await moveChannel(store, { id: COLAS.id }, null, NOW);
+    assert.deepEqual((await undo()).lists.always, [{ ...COLAS, avatarUrl: AVATAR, addedAt: OLD }]);
+  });
+
   it('saves nothing when the list is full', async () => {
     const full = normalizeChannels(Array.from({ length: MAX_CHANNELS }, (_, i) => ({ id: `UC${String(i).padStart(22, '0')}` })));
     const api = fakeStorageApi({ settings: { lists: { always: full } } });
@@ -40,7 +48,7 @@ describe('moveChannel', () => {
 });
 
 describe('setVideoExcluded', () => {
-  const VIDEO = { videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelName: 'COLAS', isShort: true };
+  const VIDEO = { videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelName: 'COLAS', channelAvatarUrl: AVATAR, isShort: true };
 
   it('excludes a video, and the undo takes it out again', async () => {
     const store = storeWith({});

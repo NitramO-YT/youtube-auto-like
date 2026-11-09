@@ -1,15 +1,16 @@
 /**
  * Videos the user excluded for good ("Never like this video"): never liked
  * until the user takes them out of the list. Each entry is
- * { videoId, title, channelName, isShort, addedAt }; the video ID is what
- * counts, the rest is for display.
+ * { videoId, title, channelName, channelAvatarUrl, isShort, addedAt }; the
+ * video ID is what counts, the rest is for display.
  */
+import { storedAvatarUrl } from './avatar.js';
 import { ListFullError } from './channels.js';
 import { isValidVideoId } from './video.js';
 
 export const MAX_EXCLUDED_VIDEOS = 5000;
-const MAX_TITLE_LENGTH = 300;
-const MAX_NAME_LENGTH = 200;
+export const MAX_TITLE_LENGTH = 300;
+export const MAX_NAME_LENGTH = 200;
 
 const text = (value, maxLength) => (typeof value === 'string' ? value.slice(0, maxLength) : '');
 const validDate = (value) =>
@@ -21,6 +22,7 @@ function normalizeEntry(entry) {
     videoId: entry.videoId,
     title: text(entry.title, MAX_TITLE_LENGTH),
     channelName: text(entry.channelName, MAX_NAME_LENGTH),
+    channelAvatarUrl: storedAvatarUrl(entry.channelAvatarUrl),
     isShort: entry.isShort === true,
     addedAt: validDate(entry.addedAt),
   };
@@ -71,7 +73,7 @@ export function mergeExcludedVideos(current, imported) {
  * with exclude false. A video already excluded keeps its place and its date.
  * Returns a new list; the input is not modified.
  *
- * @param {object} video { videoId, title, channelName, isShort, addedAt }
+ * @param {object} video { videoId, title, channelName, channelAvatarUrl, isShort, addedAt }
  * @throws {Error} for an invalid video ID; ListFullError when the list is full.
  */
 export function placeVideo(videos, video, exclude) {
