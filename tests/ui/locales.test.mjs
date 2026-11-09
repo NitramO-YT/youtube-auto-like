@@ -30,6 +30,12 @@ describe('locales', () => {
     for (const locale of LOCALES) assert.ok(messages[locale].locale?.message, `${locale} gives its locale`);
   });
 
+  it('hold no em dash, a typographic choice of the project for every language', () => {
+    for (const locale of LOCALES) {
+      for (const [key, entry] of Object.entries(messages[locale])) assert.ok(!entry.message.includes('—'), `${locale} ${key}`);
+    }
+  });
+
   it('define the same keys, with the same placeholders, in every language', () => {
     for (const locale of LOCALES) {
       assert.deepEqual(Object.keys(messages[locale]).sort(), keys, locale);

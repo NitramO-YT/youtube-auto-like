@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Automatycznie polubia filmy na YouTube z wybranych przez ciebie kanałów." },
+
+  "locale": { "message": "pl" },
+
+  "switchLabel": { "message": "Automatycznie polubiaj filmy" },
+  "switchActive": { "message": "Włączone" },
+  "switchPaused": { "message": "Wstrzymane" },
+  "pausedBanner": { "message": "Gdy rozszerzenie jest wstrzymane, niczego nie polubia." },
+  "badgeUpdate": { "message": "NOWE" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: dostępna jest wersja $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Dostępna jest wersja $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Ten film" },
+  "sectionThisChannel": { "message": "Ten kanał" },
+  "sectionRule": { "message": "Aktywna reguła" },
+  "openSettings": { "message": "Zmień ustawienia →" },
+  "settingsShow": { "message": "Pokaż ustawienia" },
+  "settingsHide": { "message": "Wróć do filmu" },
+  "openFullPage": { "message": "Otwórz na pełnej stronie ↗" },
+  "noVideo": { "message": "Otwórz film lub Shorta na YouTube, aby zobaczyć, co robi z nim rozszerzenie, albo stronę kanału, aby wybrać, czy jego filmy będą polubiane." },
+  "noVideoHint": { "message": "Jeśli film jest już otwarty, załaduj jego stronę ponownie." },
+
+  "channelUnknown": { "message": "Nieznany kanał" },
+  "channelSubscribed": { "message": "Subskrybujesz" },
+  "channelNotSubscribed": { "message": "Nie subskrybujesz" },
+  "kindVideo": { "message": "Film" },
+  "kindVideoDuration": {
+    "message": "Film, $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Transmisja na żywo" },
+
+  "statusLikedTitle": { "message": "Polubiony automatycznie" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "zaraz po otwarciu" },
+  "likedHowLikeNow": { "message": "na twoją prośbę" },
+  "likedHowAt": {
+    "message": "w momencie $TIME$ filmu",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "po $DURATION$ oglądania",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Zostanie polubiony przy $PERCENT$% filmu",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Zostanie polubiony po $MINUTES$ min odtwarzania",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Zostanie polubiony w losowym momencie" },
+  "statusWaitBeforeEnd": { "message": "Zostanie polubiony tuż przed końcem" },
+  "statusWaitRemaining": {
+    "message": "pozostało $DURATION$ odtwarzania",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Polubienie za chwilę" },
+  "statusWaitDuration": { "message": "Czekam na długość filmu" },
+  "statusWaitAd": { "message": "Czekam na koniec reklamy" },
+  "statusWaitAdDetail": { "message": "Czas reklam nie jest liczony." },
+  "statusReading": { "message": "Odczytywanie strony…" },
+  "statusReadingDetail": { "message": "W Shortach YouTube czasem pokazuje przyciski dopiero, gdy kursor przesunie się nad filmem." },
+  "statusConfirming": { "message": "Sprawdzam, czy polubienie zostało zapisane…" },
+  "statusFailedTitle": { "message": "Nie udało się potwierdzić polubienia" },
+  "statusFailedDetail": { "message": "Przycisk „Podoba mi się” nie zareagował. Załaduj stronę ponownie, aby spróbować jeszcze raz." },
+
+  "statusAlreadyLikedTitle": { "message": "Już polubiony" },
+  "statusNotLikedTitle": { "message": "Niepolubiony" },
+  "reasonAlreadyLiked": { "message": "Ten film był już polubiony: rozszerzenie zostawia go bez zmian." },
+  "reasonAlreadyDisliked": { "message": "Oznaczyłeś ten film jako „Nie podoba mi się”: rozszerzenie zostawia go bez zmian." },
+  "reasonSkippedByUser": { "message": "Poprosiłeś, by tym razem go nie polubiać. Może zostać polubiony, gdy obejrzysz go ponownie." },
+  "reasonVideoExcluded": { "message": "Wykluczyłeś ten film: nigdy nie jest polubiany, dopóki nie cofniesz wykluczenia." },
+  "reasonNotSubscribed": { "message": "Nie subskrybujesz tego kanału. Film zostanie polubiony, jeśli zasubskrybujesz." },
+  "reasonNotInAlwaysList": { "message": "Polubiane są tylko kanały z twojej listy „Zawsze polubiaj”." },
+  "reasonInNeverList": { "message": "Ten kanał jest na twojej liście „Nigdy nie polubiaj”." },
+  "reasonShortsOff": { "message": "Zgodnie z ustawieniami Shorty nie są polubiane." },
+  "reasonNormalVideosOff": { "message": "Zgodnie z ustawieniami polubiane są tylko Shorty." },
+  "statusWouldLike": { "message": "Zostałby polubiony" },
+  "statusWouldLikeDetail": { "message": "gdyby rozszerzenie było włączone." },
+
+  "actionLikeNow": { "message": "Polub teraz" },
+  "actionSkip": { "message": "Nie tym razem" },
+  "actionRestart": { "message": "Zacznij od nowa dla tego filmu" },
+  "actionRetry": { "message": "Spróbuj ponownie" },
+  "removedLikeTitle": { "message": "Polubienie usunięte" },
+  "removedLikeRestart": { "message": "Usunąłeś polubienie. Zacznij od nowa, aby rozszerzenie ponownie sprawdziło ten film." },
+  "removedDislikeTitle": { "message": "„Nie podoba mi się” usunięte" },
+  "removedDislikeRestart": { "message": "Usunąłeś „Nie podoba mi się”. Zacznij od nowa, aby rozszerzenie ponownie sprawdziło ten film." },
+  "likeRemovedNextOpening": { "message": "Zostanie polubiony ponownie przy następnym otwarciu filmu." },
+  "likeRemovedAt": {
+    "message": "Zostanie polubiony ponownie, gdy odtwarzanie znów minie $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Ponownie polub film, z którego usunę polubienie" },
+  "relikeHint": { "message": "Gdy odtwarzanie znów minie zaplanowany moment, czyli po cofnięciu się przed niego; przy „Zaraz po otwarciu”: przy następnym otwarciu filmu. Dotyczy też filmu, który polubiłeś sam." },
+  "actionResume": { "message": "Cofnij „Nie tym razem”" },
+  "actionExcludeVideo": { "message": "Nigdy nie polubiaj tego filmu" },
+  "actionUnexcludeVideo": { "message": "Cofnij wykluczenie tego filmu" },
+  "channelChoiceLegend": { "message": "Polubiaj filmy z tego kanału" },
+  "channelChoiceAlways": { "message": "Zawsze" },
+  "channelChoiceAuto": { "message": "Wg ustawień" },
+  "channelChoiceNever": { "message": "Nigdy" },
+
+  "noticeAddedAlways": { "message": "Dodano do „Zawsze polubiaj”" },
+  "noticeAddedNever": { "message": "Dodano do „Nigdy nie polubiaj”" },
+  "noticeRemovedNever": { "message": "Usunięto z „Nigdy nie polubiaj”" },
+  "noticeSkipped": { "message": "Tym razem bez polubienia" },
+  "noticeVideoExcluded": { "message": "Dodano do wykluczonych filmów" },
+  "noticeVideoUnexcluded": { "message": "Usunięto z wykluczonych filmów" },
+  "noticeUndo": { "message": "Cofnij" },
+  "noticeUndone": { "message": "Cofnięto" },
+  "noticeSaveFailed": { "message": "Nie udało się zapisać zmiany." },
+  "noticeStorageFull": { "message": "Pamięć rozszerzenia jest pełna: usuń kanały lub wykluczone filmy ze swoich list i spróbuj ponownie." },
+  "noticeLoadFailed": { "message": "Nie udało się odczytać ustawień." },
+  "noticeListFull": {
+    "message": "Ta lista jest pełna (maksymalna liczba wpisów: $COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Strona nie odpowiedziała. Załaduj ją ponownie i spróbuj jeszcze raz." },
+  "noticeSaved": { "message": "Zapisano" },
+  "noticeRemovedAlways": { "message": "Usunięto z „Zawsze polubiaj”" },
+  "noticeImportDone": {
+    "message": "Import zakończony: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "Dodano $COUNT$ kanał do „$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "Kanały dodane do „$LIST$”: $COUNT$",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Anuluj" },
+  "dialogClose": { "message": "Zamknij" },
+  "noticeCopied": { "message": "Skopiowano" },
+  "noticeCopyFailed": { "message": "Nie można skopiować: zaznacz tekst i skopiuj go samodzielnie." },
+  "noticeJournalCleared": { "message": "Dziennik wyczyszczony" },
+
+  "languageLabel": { "message": "Język" },
+  "languageHint": { "message": "Język przeglądarki lub inny do wyboru. Tłumaczenie do poprawy? Zaproponuj to na GitHubie." },
+  "languageAuto": { "message": "Język przeglądarki" },
+
+  "debugLabel": { "message": "Tryb debugowania" },
+  "debugHint": { "message": "Prowadzi dziennik działań rozszerzenia, aby zgłosić problem: ostatnie 200 kroków, z identyfikatorami obejrzanych filmów, przechowywane tylko w tej przeglądarce. Gdy jest wyłączony, dziennik nie jest prowadzony." },
+  "journalCountOne": { "message": "Wpisy w dzienniku: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Wpisy w dzienniku: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Kopiuj dziennik" },
+  "journalClear": { "message": "Wyczyść dziennik" },
+
+  "navAbout": { "message": "O rozszerzeniu" },
+  "aboutHeading": { "message": "O rozszerzeniu" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, wersja $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Autor" },
+  "aboutOrigin": { "message": "Projekt pierwotny" },
+  "aboutFirefox": { "message": "Fork dla Firefoksa" },
+  "aboutLicense": { "message": "Licencja" },
+  "aboutInvite": { "message": "Aby dowiedzieć się więcej, śledzić nowe wersje lub zaproponować ulepszenie, odwiedź repozytorium na GitHubie. Problem? Zgłoś go przyciskiem poniżej." },
+  "aboutRepository": { "message": "Zobacz projekt na GitHubie" },
+  "reportOpen": { "message": "Zgłoś problem" },
+  "reportHint": { "message": "Opisz problem w zgłoszeniu, które otworzy się na GitHubie: ten raport zostanie dołączony, aby pomóc go zrozumieć. Przeczytaj go przed wysłaniem; twoich list kanałów w nim nie ma." },
+  "reportJournalOne": {
+    "message": "Dołącz dziennik (wpisy: $COUNT$, z identyfikatorami obejrzanych filmów)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Dołącz dziennik (wpisy: $COUNT$, z identyfikatorami obejrzanych filmów)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Dziennik nie był prowadzony. Aby go dołączyć: włącz tryb debugowania w sekcji „Więcej”, powtórz to, co nie działa, i wróć tutaj." },
+  "reportTextLabel": { "message": "Raport" },
+  "reportCopy": { "message": "Kopiuj raport" },
+  "reportIssue": { "message": "Otwórz zgłoszenie na GitHubie" },
+  "reportCut": { "message": "Raport jest za długi dla adresu zgłoszenia: tam zostaje skrócony. Skopiuj pełny raport i wklej go do zgłoszenia." },
+  "dialogAnalyse": { "message": "Analizuj" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Dodaj kanały" },
+  "addHint": { "message": "Wklej linki do kanałów lub filmów albo @nazwy, po jednym w wierszu. Rozszerzenie pyta YouTube, o który kanał chodzi, tak jakbyś otworzył jego stronę." },
+  "addLinesLabel": { "message": "Linki lub @nazwy" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@nazwa\n@nazwa\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "Do listy" },
+  "addSearch": { "message": "Wyszukaj" },
+  "addSearching": {
+    "message": "Pytam YouTube… $DONE$ z $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Dodaj" },
+  "addApplyOne": {
+    "message": "Dodaj $COUNT$ kanał",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Dodaj kanały ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Brak kanałów do dodania: wszystkie są już na tej liście albo żadnego nie znaleziono." },
+  "addEmpty": { "message": "Wklej co najmniej jeden link lub @nazwę." },
+  "addTooMany": {
+    "message": "Maksymalna liczba wierszy naraz: $MAX$.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "zostanie dodany" },
+  "lookupAlready": { "message": "już jest na tej liście" },
+  "lookupMoved": {
+    "message": "przejdzie z „$FROM$” do „$TO$”",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "ten sam kanał co we wcześniejszym wierszu" },
+  "lookupNotALink": { "message": "ani link do kanału lub filmu YouTube, ani @nazwa" },
+  "lookupNotFound": { "message": "taki kanał lub film nie istnieje na YouTube" },
+  "lookupUnreadable": { "message": "YouTube nie podał kanału. Jeśli YouTube nigdy nie był otwarty w tej przeglądarce, otwórz go raz i dokonaj wyboru w sprawie plików cookie, a potem spróbuj ponownie" },
+
+  "importTitle": { "message": "Importuj listy" },
+  "importHint": { "message": "Plik wyeksportowany przez rozszerzenie albo lista linków do kanałów, po jednym w wierszu. Przed „Importuj” nic nie jest zapisywane: „Analizuj” najpierw pokazuje, co zostanie zrobione." },
+  "importDropHere": { "message": "Upuść tu plik albo" },
+  "importBrowse": { "message": "przeglądaj pliki" },
+  "importPasteHint": { "message": "Możesz też wkleić plik lub tekst (Ctrl+V) w tym oknie." },
+  "importChange": { "message": "Zmień" },
+  "importRemove": { "message": "Usuń" },
+  "importPasted": { "message": "Wklejony tekst" },
+  "importSourceFile": { "message": "Plik wyeksportowany przez rozszerzenie" },
+  "importSourceLinksOne": {
+    "message": "Lista linków, wiersze: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Lista linków, wiersze: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "To nie jest ani eksport rozszerzenia, ani lista linków." },
+  "importNoSource": { "message": "Najpierw wybierz plik albo wklej tekst." },
+  "importNoPart": { "message": "Zaznacz co najmniej jedną część do zaimportowania." },
+  "importListFull": {
+    "message": "Lista przekroczyłaby maksymalną liczbę wpisów ($COUNT$): nic nie zostałoby zaimportowane.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Co jest importowane" },
+  "importLinksTarget": { "message": "Umieść te kanały na liście" },
+  "importModeLabel": { "message": "Wpisy, które już istnieją" },
+  "importModeAddNew": { "message": "Dodaj tylko nowe" },
+  "importModeAddNewHint": { "message": "Kanał, który już jest na liście, zostaje na swoim miejscu." },
+  "importModeFollow": { "message": "Dodaj i zastosuj plik" },
+  "importModeFollowHint": { "message": "Istniejący kanał przechodzi na listę, którą wskazuje plik." },
+  "importModeReplace": { "message": "Zastąp wszystko plikiem" },
+  "importModeReplaceHint": { "message": "Zaznaczone części stają się dokładnie takie jak w pliku: to, czego w nim nie ma, zostaje usunięte." },
+  "importRemember": { "message": "Zapamiętaj mój wybór" },
+  "importApply": { "message": "Importuj" },
+  "importConfirmOne": {
+    "message": "Potwierdzam usunięcie wpisów nieobecnych w pliku ($COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Potwierdzam usunięcie wpisów nieobecnych w pliku ($COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "bez zmian" },
+  "reportNothing": { "message": "Bez zmian: wszystko już jest." },
+  "reportAddedOne": { "message": "nowe: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "nowe: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "przeniesione: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "przeniesione: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "już obecne: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "już obecne: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "usunięte: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "usunięte: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Eksportuj listy" },
+  "exportPartsLabel": { "message": "Co jest eksportowane" },
+  "exportFormatLabel": { "message": "Format" },
+  "exportFormatJson": { "message": "Plik rozszerzenia (JSON)" },
+  "exportFormatJsonHint": { "message": "Importuje się z powrotem bez zmian, z datami i obrazami kanałów." },
+  "exportFormatLinks": { "message": "Lista linków (tekst)" },
+  "exportFormatLinksHint": { "message": "Jeden link do kanału w wierszu, z jego nazwą, do przeczytania lub udostępnienia. Wykluczonych filmów tu nie ma." },
+  "exportDownload": { "message": "Pobierz" },
+  "exportNothing": { "message": "Zaznacz co najmniej jedną listę." },
+  "noticeImportInvalid": { "message": "Ten plik nie jest listą wyeksportowaną przez YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "Ten plik jest za duży, by był listą kanałów." },
+  "noticeCountReset": { "message": "Licznik wyzerowany" },
+  "noticeNumberInvalid": {
+    "message": "Wpisz liczbę od $MIN$ do $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Ustawienia YouTube Auto Like" },
+  "optionsTitle": { "message": "Ustawienia" },
+  "navSections": { "message": "Sekcje" },
+  "navChannels": { "message": "Które kanały" },
+  "navVideos": { "message": "Które filmy" },
+  "navWhen": { "message": "Kiedy polubiać" },
+  "navLists": { "message": "Moje listy" },
+  "navMore": { "message": "Więcej" },
+
+  "channelsHeading": { "message": "Które kanały polubiać?" },
+  "channelsHint": { "message": "Lista „Nigdy nie polubiaj” ma zawsze pierwszeństwo." },
+  "likeWhatSubscribed": { "message": "Kanały, które subskrybuję" },
+  "likeWhatSubscribedHint": { "message": "oraz te z mojej listy „Zawsze polubiaj”." },
+  "recommended": { "message": "Zalecane" },
+  "likeWhatAll": { "message": "Wszystkie kanały" },
+  "likeWhatAllHint": { "message": "każdy obejrzany film jest polubiany." },
+  "likeWhatList": { "message": "Tylko moja lista „Zawsze polubiaj”" },
+  "likeWhatListHint": { "message": "subskrybowane czy nie, nic innego nie jest polubiane." },
+
+  "videosHeading": { "message": "Które filmy?" },
+  "videosHint": { "message": "Shorty są rozpoznawane nawet po otwarciu w zwykłym odtwarzaczu." },
+  "likeNormalVideos": { "message": "Filmy" },
+  "likeShorts": { "message": "Shorty" },
+
+  "whenHeading": { "message": "Kiedy polubiać?" },
+  "whenHint": { "message": "Film, który sam oznaczysz jako „Podoba mi się” lub „Nie podoba mi się”, nigdy nie jest ruszany." },
+  "modeInstant": { "message": "Zaraz po otwarciu" },
+  "modeCustom": { "message": "Po chwili" },
+  "modeRandom": { "message": "W losowym momencie" },
+  "thresholdAfter": { "message": "po" },
+  "thresholdPercentUnit": { "message": "% filmu" },
+  "thresholdMinutesUnit": { "message": "min odtwarzania" },
+  "percentLabel": { "message": "Procent filmu" },
+  "minutesLabel": { "message": "Minuty odtwarzania" },
+  "thresholdKeepOne": { "message": "Co najmniej jeden z dwóch progów pozostaje zaznaczony." },
+  "thresholdsHint": { "message": "Polubienie uruchamia pierwszy osiągnięty próg. Krótszy film jest polubiany dwie sekundy przed końcem. W transmisji na żywo liczą się tylko minuty, od chwili, gdy zacząłeś oglądać; bez progu w minutach jest polubiana zaraz po otwarciu. Reklamy nie są liczone." },
+  "randomHint": { "message": "Moment losowany w każdym filmie. Transmisja na żywo jest polubiana zaraz po otwarciu." },
+  "summaryLabel": { "message": "Podsumowanie:" },
+
+  "listsHeading": { "message": "Moje listy kanałów" },
+  "listsHint": { "message": "Dodawaj kanały przez link lub @nazwę, z okna ikony na filmie lub stronie kanału albo z historii. Film wyklucza się z okna ikony." },
+  "listAlways": { "message": "Zawsze polubiaj" },
+  "listNever": { "message": "Nigdy nie polubiaj" },
+  "listVideos": { "message": "Wykluczone filmy" },
+  "listExcludedOn": {
+    "message": "wykluczony $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Cofnij wykluczenie: $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Szukaj na liście" },
+  "listImport": { "message": "Importuj" },
+  "listExport": { "message": "Eksportuj" },
+  "listEmpty": { "message": "Na tej liście nie ma kanałów. Dodaj je przez link lub @nazwę, z okna ikony na filmie lub stronie kanału albo z historii." },
+  "listEmptyVideos": { "message": "Brak wykluczonych filmów. Aby wykluczyć film, otwórz okno ikony podczas oglądania i wybierz „Nigdy nie polubiaj tego filmu”." },
+  "listNoMatch": { "message": "Żaden kanał nie pasuje do tego wyszukiwania." },
+  "listAddedOn": {
+    "message": "dodany $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Usuń z tej listy: $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ z $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Pokaż jeszcze $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Pokaż wszystko ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Wiersze widoczne na listach i w historii" },
+  "listPageSizeHint": { "message": "Pozostałe pojawiają się po kliknięciu „Pokaż jeszcze” lub „Pokaż wszystko”. Długa lista przewija się wewnątrz, nie wydłużając strony." },
+  "listPageSizeAll": { "message": "Wszystkie" },
+  "listOpenChannel": { "message": "Otwórz kanał na YouTube" },
+
+  "navHistory": { "message": "Historia" },
+  "historyHeading": { "message": "Polubienia rozszerzenia" },
+  "historyHint": {
+    "message": "Najnowsze polubienia (maksymalnie $COUNT$), od najnowszego, przechowywane tylko w tej przeglądarce.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Rozszerzenie jeszcze niczego nie polubiło." },
+  "historyUntitled": { "message": "Film bez tytułu" },
+  "historyChannelChoice": {
+    "message": "Polubiaj filmy kanału $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Wyczyść historię" },
+  "noticeHistoryCleared": { "message": "Historia wyczyszczona" },
+
+  "moreHeading": { "message": "Więcej" },
+  "themeLabel": { "message": "Motyw" },
+  "themeSystem": { "message": "Jak w systemie" },
+  "themeLight": { "message": "Jasny" },
+  "themeDark": { "message": "Ciemny" },
+  "updatesLabel": { "message": "Szukaj nowych wersji" },
+  "updatesHint": { "message": "Pyta GitHub, gdzie rozszerzenie jest publikowane; GitHub widzi wtedy twój adres IP." },
+  "updateEvery0": { "message": "Nigdy" },
+  "updateEvery30": { "message": "Co 30 min" },
+  "updateEvery60": { "message": "Co godzinę" },
+  "updateEvery360": { "message": "Co 6 godz." },
+  "updateEvery1440": { "message": "Codziennie" },
+  "updateEvery10080": { "message": "Co tydzień" },
+  "updateEveryCustom": { "message": "Własne…" },
+  "updateEveryPrefix": { "message": "Co" },
+  "updateCustomCount": { "message": "Liczba minut, godzin lub dni między dwoma sprawdzeniami" },
+  "updateCustomUnit": { "message": "Jednostka" },
+  "unitMinutesOne": { "message": "minutę" },
+  "unitMinutesOther": { "message": "min" },
+  "unitHoursOne": { "message": "godzinę" },
+  "unitHoursOther": { "message": "godz." },
+  "unitDaysOne": { "message": "dzień" },
+  "unitDaysOther": { "message": "dni" },
+  "noticeFrequencyInvalid": { "message": "Wpisz czas od 5 minut do 30 dni." },
+  "updateCheckNow": { "message": "Sprawdź teraz" },
+  "updateStatusOff": { "message": "Nowe wersje nie są wyszukiwane." },
+  "updateStatusNever": { "message": "Jeszcze nie sprawdzono." },
+  "updateStatusChecking": { "message": "Sprawdzanie…" },
+  "updateStatusAvailable": {
+    "message": "Dostępna jest wersja $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Sprawdzono $WHEN$: masz najnowszą wersję.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Sprawdzono $WHEN$: nie opublikowano jeszcze żadnej wersji.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Ostatnie sprawdzenie nie powiodło się $WHEN$; następne spróbuje ponownie.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Nie udało się sprawdzić." },
+  "likeCountHint": { "message": "Od instalacji rozszerzenia lub od ostatniego wyzerowania. Wyzerowanie niczego więcej nie zmienia." },
+  "likeCountReset": { "message": "Wyzeruj" },
+
+  "ruleSentence": {
+    "message": "Polubia $WHAT$ $CHANNELS$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Niczego nie polubia: filmy i Shorty są wyłączone." },
+  "ruleWhatBoth": { "message": "filmy i Shorty" },
+  "ruleWhatVideos": { "message": "filmy" },
+  "ruleWhatShorts": { "message": "Shorty" },
+  "ruleChannelsSubscribed": { "message": "z kanałów, które subskrybujesz," },
+  "ruleChannelsSubscribedAndList": { "message": "z kanałów, które subskrybujesz, i z twojej listy „Zawsze polubiaj”," },
+  "ruleChannelsAll": { "message": "ze wszystkich kanałów" },
+  "ruleChannelsList": { "message": "z kanałów z twojej listy „Zawsze polubiaj”" },
+  "ruleWhenInstant": { "message": "zaraz po otwarciu" },
+  "ruleWhenPercent": {
+    "message": "przy $PERCENT$% filmu",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "po $MINUTES$ min odtwarzania",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "przy $PERCENT$% filmu lub po $MINUTES$ min odtwarzania, zależnie od tego, co nastąpi pierwsze",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "w losowym momencie" },
+
+  "likeCountOne": {
+    "message": "Polubione filmy: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "Polubione filmy: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$ s",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ godz. $MINUTES$ min",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
