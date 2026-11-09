@@ -221,6 +221,13 @@
     "message": "Afficher $COUNT$ de plus",
     "placeholders": { "count": { "content": "$1" } }
   },
+  "listShowAll": {
+    "message": "Tout afficher ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Lignes affichées dans les listes et l'historique" },
+  "listPageSizeHint": { "message": "Les suivantes s'affichent avec « Afficher de plus » ou « Tout afficher », et défilent à l'intérieur de la liste." },
+  "listPageSizeAll": { "message": "Toutes" },
   "listOpenChannel": { "message": "Ouvrir la chaîne sur YouTube" },
 
   "navHistory": { "message": "Historique" },

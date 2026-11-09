@@ -111,7 +111,7 @@
       <div id="list-panel" role="tabpanel" aria-labelledby="tab-always">
         <ul class="rows" id="list-rows"></ul>
         <p class="list-empty" id="list-empty" hidden></p>
-        <div class="more-row" id="list-more" hidden><span id="list-more-count"></span><button type="button" class="btn" id="list-more-button"></button></div>
+        <div class="more-row" id="list-more" hidden><span id="list-more-count"></span><span class="more-buttons"><button type="button" class="btn" id="list-more-button"></button><button type="button" class="btn" id="list-all-button"></button></span></div>
       </div>
     </section>
 
@@ -120,7 +120,7 @@
       <p class="hint" id="history-hint"></p>
       <ul class="rows" id="history-rows"></ul>
       <p class="list-empty" id="history-empty" data-i18n="historyEmpty" hidden></p>
-      <div class="more-row" id="history-more" hidden><span id="history-more-count"></span><button type="button" class="btn" id="history-more-button"></button></div>
+      <div class="more-row" id="history-more" hidden><span id="history-more-count"></span><span class="more-buttons"><button type="button" class="btn" id="history-more-button"></button><button type="button" class="btn" id="history-all-button"></button></span></div>
       <div class="section-tools"><button type="button" class="btn" id="history-clear" data-i18n="historyClear"></button></div>
     </section>
 
@@ -133,6 +133,16 @@
           <label><input type="radio" name="theme" value="light" data-field="theme"><span data-i18n="themeLight"></span></label>
           <label><input type="radio" name="theme" value="dark" data-field="theme"><span data-i18n="themeDark"></span></label>
         </div>
+      </div>
+      <div class="row-toggle">
+        <label for="list-page-size"><span data-i18n="listPageSizeLabel"></span><span class="hint" data-i18n="listPageSizeHint"></span></label>
+        <select class="select" id="list-page-size" data-field="listPageSize">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="0" data-i18n="listPageSizeAll"></option>
+        </select>
       </div>
       <div class="row-toggle">
         <label for="update-every"><span data-i18n="updatesLabel"></span><span class="hint" data-i18n="updatesHint"></span></label>

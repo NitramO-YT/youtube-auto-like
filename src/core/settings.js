@@ -18,6 +18,9 @@ export const LIKE_WHAT = ['subscribed', 'all', 'alwaysList'];
 export const TIMING_MODES = ['instant', 'custom', 'random'];
 // Theme of the extension pages: the one of the system, or a fixed one.
 export const THEMES = ['system', 'light', 'dark'];
+// Rows the lists and the history of the options page show at first, and add
+// at each "Show more"; 0 shows them all.
+export const LIST_PAGE_SIZES = Object.freeze([10, 20, 50, 100, 0]);
 export const PERCENT_RANGE = Object.freeze({ min: 0, max: 100 });
 export const MINUTES_RANGE = Object.freeze({ min: 0, max: 600 });
 
@@ -39,6 +42,7 @@ const DEFAULTS = {
   // again (off: it stays removed).
   relikeAfterRemoval: false,
   theme: 'system',
+  listPageSize: 20,
 };
 
 export function defaultSettings() {
@@ -92,6 +96,7 @@ export function normalizeSettings(raw) {
     updateCheckMinutes: isValidCheckFrequency(input.updateCheckMinutes) ? input.updateCheckMinutes : defaults.updateCheckMinutes,
     relikeAfterRemoval: booleanOr(input.relikeAfterRemoval, defaults.relikeAfterRemoval),
     theme: oneOf(input.theme, THEMES, defaults.theme),
+    listPageSize: oneOf(input.listPageSize, LIST_PAGE_SIZES, defaults.listPageSize),
   };
 
   // A custom timing with no threshold enabled would leave the user waiting

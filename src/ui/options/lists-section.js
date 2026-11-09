@@ -16,7 +16,7 @@ import { el, icon } from '../shared/dom.js';
 import { formatNumber, pluralKey } from '../shared/format.js';
 import { moveChannel, setVideoExcluded } from '../shared/lists.js';
 import { filterChannels, filterVideos } from './fields.js';
-import { PAGE_SIZE, renderMore } from './pager.js';
+import { createPager } from './pager.js';
 
 const CHANNEL_URL = 'https://www.youtube.com/channel/';
 const TAB_NAMES = ['always', 'never', 'videos'];
@@ -26,10 +26,12 @@ export function createListsSection(page) {
   const dateFormat = new Intl.DateTimeFormat(lang, { dateStyle: 'medium' });
   let tab = 'always';
   let query = '';
-  // How many entries of the tab are shown (see pager.js); back to one page
-  // on another tab or another search.
-  let limit = PAGE_SIZE;
   let drawnRows = null;
+  // Back to the first page on another tab or another search.
+  const pager = createPager(
+    { rows: byId('list-rows'), row: byId('list-more'), count: byId('list-more-count'), more: byId('list-more-button'), all: byId('list-all-button') },
+    { t, lang, redraw: () => render() },
+  );
 
   function row({ id, avatar, name, href, linkTitle, meta, removeLabel }) {
     const item = el(doc, 'li', 'row');
@@ -110,7 +112,8 @@ export function createListsSection(page) {
 
     const current = TABS[tab];
     const found = current.filter(current.entries(), query);
-    const shown = found.slice(0, limit);
+    pager.setPageSize(state.settings.listPageSize);
+    const shown = pager.slice(found);
     // Rebuilding the rows only when they change.
     const key = JSON.stringify([tab, shown]);
     if (key !== drawnRows) {
@@ -120,7 +123,7 @@ export function createListsSection(page) {
     const empty = byId('list-empty');
     empty.hidden = found.length > 0;
     empty.textContent = t(current.entries().length === 0 ? 'listEmpty' : 'listNoMatch');
-    renderMore({ row: byId('list-more'), count: byId('list-more-count'), button: byId('list-more-button') }, shown.length, found.length, t, lang);
+    pager.render(shown.length, found.length);
   }
 
   async function remove(id) {
@@ -181,7 +184,7 @@ export function createListsSection(page) {
 
   function selectTab(name, focus = false) {
     tab = name;
-    limit = PAGE_SIZE;
+    pager.reset();
     render();
     if (focus) byId(`tab-${name}`).focus();
   }
@@ -196,11 +199,7 @@ export function createListsSection(page) {
     });
     byId('list-search').addEventListener('input', (event) => {
       query = event.target.value;
-      limit = PAGE_SIZE;
-      render();
-    });
-    byId('list-more-button').addEventListener('click', () => {
-      limit += PAGE_SIZE;
+      pager.reset();
       render();
     });
     byId('list-rows').addEventListener('click', (event) => {

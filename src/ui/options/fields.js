@@ -2,7 +2,7 @@
  * The settings the options page edits, and the rules of its form. Pure, so
  * that each rule is tested without a page.
  */
-import { MINUTES_RANGE, PERCENT_RANGE } from '../../core/settings.js';
+import { LIST_PAGE_SIZES, MINUTES_RANGE, PERCENT_RANGE } from '../../core/settings.js';
 
 const timingPart = (part, key) => ({
   get: (settings) => settings.timing[part][key],
@@ -32,6 +32,12 @@ export const FIELDS = Object.freeze({
   minutesValue: timingPart('minutes', 'value'),
   lists: { get: (settings) => settings.lists, set: (settings, value) => ({ ...settings, lists: value }) },
   theme: { get: (settings) => settings.theme, set: (settings, value) => ({ ...settings, theme: value }) },
+  // A choice in a list: choices are the values it accepts.
+  listPageSize: {
+    get: (settings) => settings.listPageSize,
+    set: (settings, value) => ({ ...settings, listPageSize: value }),
+    choices: LIST_PAGE_SIZES,
+  },
   relikeAfterRemoval: {
     get: (settings) => settings.relikeAfterRemoval,
     set: (settings, value) => ({ ...settings, relikeAfterRemoval: value }),

@@ -10,15 +10,23 @@ import { videoUrl } from '../../core/video.js';
 import { createAvatar, initialOf } from '../shared/avatar.js';
 import { el } from '../shared/dom.js';
 import { formatNumber } from '../shared/format.js';
-import { PAGE_SIZE, renderMore } from './pager.js';
+import { createPager } from './pager.js';
 
 export function createHistorySection(page) {
-  const { doc, byId, t, lang, store, act, confirmChange } = page;
+  const { doc, byId, t, lang, store, act, confirmChange, state } = page;
   const dateTimeFormat = new Intl.DateTimeFormat(lang, { dateStyle: 'medium', timeStyle: 'short' });
   let history = [];
-  // How many likes are shown (see pager.js).
-  let limit = PAGE_SIZE;
   let drawn = null;
+  const pager = createPager(
+    {
+      rows: byId('history-rows'),
+      row: byId('history-more'),
+      count: byId('history-more-count'),
+      more: byId('history-more-button'),
+      all: byId('history-all-button'),
+    },
+    { t, lang, redraw: () => render() },
+  );
 
   function row(entry) {
     const item = el(doc, 'li', 'row');
@@ -34,7 +42,8 @@ export function createHistorySection(page) {
   }
 
   function render() {
-    const shown = history.slice(0, limit);
+    if (state.settings) pager.setPageSize(state.settings.listPageSize);
+    const shown = pager.slice(history);
     const key = JSON.stringify(shown);
     if (key !== drawn) {
       drawn = key;
@@ -42,7 +51,7 @@ export function createHistorySection(page) {
     }
     byId('history-empty').hidden = history.length > 0;
     byId('history-clear').disabled = history.length === 0;
-    renderMore({ row: byId('history-more'), count: byId('history-more-count'), button: byId('history-more-button') }, shown.length, history.length, t, lang);
+    pager.render(shown.length, history.length);
   }
 
   async function clear() {
@@ -64,15 +73,11 @@ export function createHistorySection(page) {
 
   function listen() {
     byId('history-clear').addEventListener('click', () => act(clear));
-    byId('history-more-button').addEventListener('click', () => {
-      limit += PAGE_SIZE;
-      render();
-    });
     store.onHistoryChange((changed) => {
       history = changed;
       render();
     });
   }
 
-  return { start, listen };
+  return { start, listen, render };
 }

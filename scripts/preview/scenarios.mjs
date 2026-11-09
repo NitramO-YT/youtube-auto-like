@@ -149,6 +149,28 @@ export const SCENARIOS = [
       likedAt: new Date(Date.UTC(2026, 10, 8, 20, 0) - i * 60_000).toISOString(),
     })),
   },
+  {
+    // The history full (MAX_HISTORY) and a list as long, to judge the pages of 20.
+    name: 'options-500',
+    ...OPTIONS,
+    settings: {
+      lists: {
+        always: Array.from({ length: 500 }, (_, i) => ({
+          id: `UC${String(i).padStart(22, '0')}`,
+          name: `Chaîne d'exemple ${i + 1}`,
+          addedAt: new Date(Date.UTC(2026, 10, 8) - i * 3_600_000).toISOString(),
+        })),
+      },
+    },
+    history: Array.from({ length: 500 }, (_, i) => ({
+      videoId: `video${String(i).padStart(6, '0')}`,
+      title: `Titre d'une vidéo d'exemple numéro ${i + 1}`,
+      channelId: `UC${String(i % 40).padStart(22, '0')}`,
+      channelName: `Chaîne d'exemple ${(i % 40) + 1}`,
+      isShort: i % 4 === 0,
+      likedAt: new Date(Date.UTC(2026, 10, 8, 23, 0) - i * 1_800_000).toISOString(),
+    })),
+  },
   { name: 'options-narrow', ...OPTIONS, size: [390, 1600], settings: { enabled: false, timing: { mode: 'random' } } },
   // The options page as the frame of the popup shows it.
   { name: 'options-embedded', ...OPTIONS, query: '?embedded', size: [340, 470], settings: { enabled: false } },

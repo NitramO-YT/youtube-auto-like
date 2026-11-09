@@ -249,6 +249,13 @@
     "message": "Show $COUNT$ more",
     "placeholders": { "count": { "content": "$1", "example": "20" } }
   },
+  "listShowAll": {
+    "message": "Show all ($COUNT$)",
+    "placeholders": { "count": { "content": "$1", "example": "500" } }
+  },
+  "listPageSizeLabel": { "message": "Rows shown in the lists and the history" },
+  "listPageSizeHint": { "message": "The others show with “Show more” or “Show all”, and scroll inside the list." },
+  "listPageSizeAll": { "message": "All" },
   "listOpenChannel": { "message": "Open the channel on YouTube" },
 
   "navHistory": { "message": "History" },

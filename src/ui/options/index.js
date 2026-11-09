@@ -104,6 +104,7 @@ function fill() {
   byId('threshold-lock').hidden = !locked;
   renderParts(byId('summary'), ruleParts(settings, t, lang));
   lists.render();
+  history.render();
   updates.render();
 }
 
@@ -123,6 +124,10 @@ async function changeField(field, value) {
 function inputValue(input, field) {
   if (input.type === 'radio') return input.value;
   if (input.type === 'checkbox') return input.checked;
+  if (input.tagName === 'SELECT') {
+    const value = Number(input.value);
+    return FIELDS[field].choices.includes(value) ? value : null;
+  }
   const range = NUMBER_RANGES[field];
   const value = validNumber(input.valueAsNumber, range);
   if (value === null) {

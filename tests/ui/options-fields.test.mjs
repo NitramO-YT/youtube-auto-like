@@ -31,6 +31,7 @@ describe('FIELDS', () => {
       ['theme', 'dark'],
       ['updateCheckMinutes', 1440],
       ['relikeAfterRemoval', true],
+      ['listPageSize', 50],
     ]) {
       const changed = FIELDS[name].set(settings, value);
       assert.deepEqual(FIELDS[name].get(changed), value, name);

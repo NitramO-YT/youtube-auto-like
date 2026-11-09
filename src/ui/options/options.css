@@ -379,15 +379,26 @@ main {
   margin: 0;
 }
 
-/* Under a long list: how many entries are shown, and "Show more" (pager.js). */
+/* Under a long list: how many rows are shown, "Show more" and "Show all";
+   past the first page, the rows scroll inside the list (pager.js). */
 .more-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   margin-top: 10px;
   font-size: 12.5px;
   color: var(--muted);
+}
+.more-buttons {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.rows.boxed {
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .section-tools {
   display: flex;

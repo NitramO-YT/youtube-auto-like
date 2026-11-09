@@ -38,6 +38,7 @@ describe('normalizeSettings', () => {
       updateCheckMinutes: 0,
       relikeAfterRemoval: true,
       theme: 'dark',
+      listPageSize: 0,
     };
     assert.deepEqual(normalizeSettings(custom), custom);
   });
@@ -61,6 +62,7 @@ describe('normalizeSettings', () => {
       likeShorts: false,
       timing: { mode: 'later', percent: { enabled: true, value: 101 }, minutes: { value: Number.NaN } },
       updateCheckMinutes: 3,
+      listPageSize: 7,
       theme: 'sepia',
     });
     const defaults = defaultSettings();
@@ -72,6 +74,7 @@ describe('normalizeSettings', () => {
     assert.equal(normalized.timing.percent.value, defaults.timing.percent.value);
     assert.equal(normalized.timing.minutes.value, defaults.timing.minutes.value);
     assert.equal(normalized.updateCheckMinutes, 30, 'checks less than 5 minutes apart are refused');
+    assert.equal(normalized.listPageSize, 20, 'only the row counts offered are kept');
   });
 
   it('drops unknown keys, including those of the single list of earlier designs', () => {
