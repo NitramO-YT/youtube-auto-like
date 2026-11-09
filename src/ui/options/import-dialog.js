@@ -20,6 +20,7 @@ import { MAX_LINKS } from '../../core/channel-links.js';
 import { ListFullError, normalizeChannels } from '../../core/channels.js';
 import { ImportError, MAX_LISTS_FILE_BYTES, parseListsFile, readLinkLines } from '../../core/lists-file.js';
 import { IMPORT_MODES, IMPORT_PARTS, importChanges, ImportMode, planImport } from '../../core/lists-import.js';
+import { failureText } from '../shared/actions.js';
 import { el } from '../shared/dom.js';
 import { formatNumber, pluralKey } from '../shared/format.js';
 import { lookUpLines } from './channel-lookup.js';
@@ -237,9 +238,7 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
         return { ...current, lists: result.lists, excludedVideos: result.excludedVideos };
       });
     } catch (error) {
-      const full = error instanceof ListFullError;
-      if (!full) console.error('[YouTube Auto Like] could not import', error);
-      setStatus(status, full ? t('importListFull', [formatNumber(error.max, lang)]) : t('noticeSaveFailed'), { error: true });
+      setStatus(status, failureText(error, t, lang), { error: true });
       return;
     }
     rememberMode(storage, byId('import-remember').checked ? chosenMode : null);

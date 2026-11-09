@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { describe, it, mock } from 'node:test';
 import { ListFullError, listOf, MAX_CHANNELS, normalizeChannels } from '../../src/core/channels.js';
 import { createStore } from '../../src/platform/storage.js';
-import { createActionRunner } from '../../src/ui/shared/actions.js';
+import { createActionRunner, isStorageFull } from '../../src/ui/shared/actions.js';
 import { moveChannel, setVideoExcluded } from '../../src/ui/shared/lists.js';
 import { createNotice } from '../../src/ui/shared/notice.js';
 import { translator } from '../helpers/fake-i18n.mjs';
@@ -129,6 +129,20 @@ describe('createActionRunner', () => {
       ['This list is full (5,000 entries at most).', true],
       ['The change could not be saved.', true],
     ]);
+  });
+
+  it('explains a full storage, without logging it as an unknown failure', async () => {
+    const shown = [];
+    const act = createActionRunner({ show: (text) => shown.push(text) }, en, 'en');
+    const error = mock.method(console, 'error', () => {});
+    try {
+      await act(() => Promise.reject(new Error('QUOTA_BYTES quota exceeded')));
+      assert.equal(error.mock.callCount(), 0);
+    } finally {
+      error.mock.restore();
+    }
+    assert.deepEqual(shown, ['The storage of the extension is full: remove channels or excluded videos from your lists, then try again.']);
+    assert.equal(isStorageFull(new Error('storage down')), false);
   });
 
   it('runs an action asked while another runs once that one is done, never dropping it', async () => {

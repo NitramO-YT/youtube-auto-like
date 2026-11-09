@@ -14,6 +14,7 @@ import { MAX_LINKS } from '../../core/channel-links.js';
 import { ListFullError, normalizeChannels } from '../../core/channels.js';
 import { readLinkLines } from '../../core/lists-file.js';
 import { ImportMode, planImport } from '../../core/lists-import.js';
+import { failureText } from '../shared/actions.js';
 import { createAvatar, initialOf } from '../shared/avatar.js';
 import { el } from '../shared/dom.js';
 import { formatNumber, pluralKey } from '../shared/format.js';
@@ -118,9 +119,7 @@ export function createAddDialog(page, { lookUp = (lines, onProgress) => lookUpLi
         return { ...current, lists: plan.lists };
       });
     } catch (error) {
-      const full = error instanceof ListFullError;
-      if (!full) console.error('[YouTube Auto Like] could not add the channels', error);
-      setStatus(status, full ? t('noticeListFull', [formatNumber(error.max, lang)]) : t('noticeSaveFailed'), { error: true });
+      setStatus(status, failureText(error, t, lang), { error: true });
       return;
     }
     dialog.close();

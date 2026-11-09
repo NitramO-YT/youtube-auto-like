@@ -125,6 +125,7 @@
   "noticeUndo": { "message": "Annuler" },
   "noticeUndone": { "message": "Annulé" },
   "noticeSaveFailed": { "message": "Le changement n'a pas pu être enregistré." },
+  "noticeStorageFull": { "message": "Le stockage de l'extension est plein : retirez des chaînes ou des vidéos exclues de vos listes, puis réessayez." },
   "noticeLoadFailed": { "message": "Les réglages n'ont pas pu être lus." },
   "noticeListFull": {
     "message": "Cette liste est pleine ($COUNT$ entrées au maximum).",

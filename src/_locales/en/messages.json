@@ -150,6 +150,7 @@
   "noticeUndo": { "message": "Undo" },
   "noticeUndone": { "message": "Undone" },
   "noticeSaveFailed": { "message": "The change could not be saved." },
+  "noticeStorageFull": { "message": "The storage of the extension is full: remove channels or excluded videos from your lists, then try again." },
   "noticeLoadFailed": { "message": "The settings could not be read." },
   "noticeListFull": {
     "message": "This list is full ($COUNT$ entries at most).",

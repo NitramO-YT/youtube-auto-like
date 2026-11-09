@@ -29,6 +29,13 @@ describe('videoIdFromUrl', () => {
     assert.equal(videoIdFromUrl('https://www.youtube.com/shorts/JgL5gMtA2X4'), 'JgL5gMtA2X4');
   });
 
+  it('reads the video playing in a playlist or a mix, which changes with each next video', () => {
+    const inPlaylist = 'https://www.youtube.com/watch?v=aeP4eG-gO10&list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG&index=3';
+    assert.equal(surfaceFromUrl(inPlaylist), Surface.WATCH);
+    assert.equal(videoIdFromUrl(inPlaylist), 'aeP4eG-gO10');
+    assert.equal(videoIdFromUrl('https://www.youtube.com/watch?v=Bw7eq26hMDw&list=RDaeP4eG-gO10&start_radio=1&index=2'), 'Bw7eq26hMDw');
+  });
+
   it('returns null for other pages and for malformed URLs', () => {
     for (const href of [
       'https://www.youtube.com/',
