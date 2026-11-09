@@ -15,7 +15,7 @@ import { createActionRunner } from '../shared/actions.js';
 import { markReady, renderParts } from '../shared/dom.js';
 import { formatLikeCount, formatNumber } from '../shared/format.js';
 import { createTranslator, translatePage } from '../shared/i18n.js';
-import { languageLabel, loadLanguage } from '../shared/locale.js';
+import { directionOf, languageLabel, loadLanguage } from '../shared/locale.js';
 import { dialogFromHash, dialogPageUrl, isEmbedded } from '../shared/embed.js';
 import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
@@ -271,6 +271,7 @@ async function start() {
   }
   setUp();
   document.documentElement.lang = lang;
+  document.documentElement.dir = directionOf(lang);
   translatePage(document, t);
   fillLanguages();
   try {

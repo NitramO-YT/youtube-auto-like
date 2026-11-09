@@ -17,7 +17,7 @@ import { markReady, renderParts } from '../shared/dom.js';
 import { embeddedOptionsUrl } from '../shared/embed.js';
 import { formatLikeCount } from '../shared/format.js';
 import { createTranslator, translatePage } from '../shared/i18n.js';
-import { loadLanguage } from '../shared/locale.js';
+import { directionOf, loadLanguage } from '../shared/locale.js';
 import { moveChannel, setVideoExcluded } from '../shared/lists.js';
 import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
@@ -299,6 +299,7 @@ async function start() {
     return;
   }
   document.documentElement.lang = lang;
+  document.documentElement.dir = directionOf(lang);
   translatePage(document, t);
   byId('version').textContent = t('versionLabel', [VERSION]);
   try {

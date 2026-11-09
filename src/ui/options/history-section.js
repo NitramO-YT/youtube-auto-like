@@ -11,7 +11,7 @@ import { MAX_HISTORY } from '../../core/history.js';
 import { videoUrl } from '../../core/video.js';
 import { createAvatar, initialOf } from '../shared/avatar.js';
 import { ChannelChoice, channelChoice, listForChoice, moveNoticeKey } from '../shared/channel-choice.js';
-import { el } from '../shared/dom.js';
+import { el, joinedParts } from '../shared/dom.js';
 import { formatNumber } from '../shared/format.js';
 import { moveChannel } from '../shared/lists.js';
 import { createPager } from './pager.js';
@@ -61,7 +61,7 @@ export function createHistorySection(page) {
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     const meta = [entry.channelName, t(entry.isShort ? 'kindShort' : 'kindVideo'), dateTimeFormat.format(new Date(entry.likedAt))];
-    title.append(link, el(doc, 'span', 'meta', meta.filter(Boolean).join(' · ')));
+    title.append(link, joinedParts(doc, 'span', 'meta', meta.filter(Boolean)));
     item.append(
       createAvatar(doc, { id: entry.channelId ?? entry.videoId, initial: initialOf(entry.channelName), avatarUrl: entry.channelAvatarUrl }),
       title,

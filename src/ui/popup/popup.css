@@ -44,7 +44,11 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
+/* Titles and names come from YouTube, in any language: plaintext takes
+   their direction from their own text, not from the page (an English title
+   on an Arabic page, or the reverse). */
 .video-title {
+  unicode-bidi: plaintext;
   margin: 0 0 10px;
   font-weight: 650;
   overflow-wrap: anywhere;
@@ -62,6 +66,7 @@ body {
   margin-bottom: 10px;
 }
 .channel .title {
+  unicode-bidi: plaintext;
   font-weight: 600;
   overflow-wrap: anywhere;
 }

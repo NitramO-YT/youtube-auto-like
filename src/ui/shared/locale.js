@@ -11,6 +11,14 @@ import { createTranslator } from './i18n.js';
 
 const LOG_PREFIX = '[YouTube Auto Like]';
 
+/** Languages written from right to left, by their primary subtag. */
+const RIGHT_TO_LEFT = new Set(['ar', 'fa', 'he', 'ur']);
+
+/** The dir attribute of a page in lang: 'rtl' or 'ltr'. */
+export function directionOf(lang) {
+  return RIGHT_TO_LEFT.has(String(lang).split(/[-_]/)[0].toLowerCase()) ? 'rtl' : 'ltr';
+}
+
 /** The flag emoji of a country (two regional indicator symbols). */
 export function flagOf(region) {
   return String.fromCodePoint(...[...region.toUpperCase()].map((letter) => 0x1f1a5 + letter.charCodeAt(0)));

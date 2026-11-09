@@ -107,7 +107,7 @@ body {
   content: '';
   position: absolute;
   top: 2px;
-  left: 2px;
+  inset-inline-start: 2px;
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -120,13 +120,13 @@ body {
   transition: background 0.15s;
 }
 :root[data-ready] .switch .track::after {
-  transition: left 0.15s;
+  transition: inset-inline-start 0.15s;
 }
 .switch[aria-checked='true'] .track {
   background: var(--success);
 }
 .switch[aria-checked='true'] .track::after {
-  left: 16px;
+  inset-inline-start: 16px;
 }
 
 .btn {
@@ -202,7 +202,7 @@ body {
   position: relative;
 }
 .seg label + label {
-  border-left: 1px solid var(--border);
+  border-inline-start: 1px solid var(--border);
 }
 .seg label:has(input:checked) {
   background: var(--accent);

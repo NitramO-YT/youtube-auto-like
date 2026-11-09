@@ -24,6 +24,20 @@ export function el(doc, tag, className, text) {
   return element;
 }
 
+/**
+ * An element whose parts are joined by " · ", each in a <bdi>: a part takes
+ * its direction from its own text, so a Latin channel name next to a date
+ * does not reorder the line on an Arabic page.
+ */
+export function joinedParts(doc, tag, className, parts) {
+  const element = el(doc, tag, className);
+  parts.forEach((part, index) => {
+    if (index > 0) element.append(' · ');
+    element.append(el(doc, 'bdi', null, part));
+  });
+  return element;
+}
+
 /** A decorative icon (aria-hidden); an unknown name gives the clock. */
 export function icon(doc, name) {
   const svg = doc.createElementNS(SVG_NS, 'svg');

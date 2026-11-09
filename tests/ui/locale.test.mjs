@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it, mock } from 'node:test';
 import { LOCALES } from '../../src/core/locales.js';
-import { flagOf, languageLabel, loadLanguage, messagesResolver } from '../../src/ui/shared/locale.js';
+import { directionOf, flagOf, languageLabel, loadLanguage, messagesResolver } from '../../src/ui/shared/locale.js';
 import { fakeGetMessage, loadMessages } from '../helpers/fake-i18n.mjs';
 
 // The extension API, answering in English like a browser in English.
@@ -28,6 +28,26 @@ describe('languageLabel', () => {
   it('makes a flag of each country of the languages', () => {
     assert.equal(flagOf('gb'), '\u{1F1EC}\u{1F1E7}');
     for (const { region } of Object.values(LOCALES)) assert.equal([...flagOf(region)].length, 2, region);
+  });
+});
+
+describe('directionOf', () => {
+  it('writes Arabic from right to left, with or without a region', () => {
+    assert.equal(directionOf('ar'), 'rtl');
+    assert.equal(directionOf('ar-EG'), 'rtl');
+  });
+
+  it('writes the other languages from left to right', () => {
+    assert.equal(directionOf('fr'), 'ltr');
+    assert.equal(directionOf('zh-TW'), 'ltr');
+    assert.equal(directionOf(''), 'ltr');
+  });
+
+  it('agrees with the browser data for every language of the extension', () => {
+    for (const code of Object.keys(LOCALES)) {
+      const lang = loadMessages(code).locale.message;
+      assert.equal(directionOf(lang), new Intl.Locale(lang).getTextInfo().direction, code);
+    }
   });
 });
 

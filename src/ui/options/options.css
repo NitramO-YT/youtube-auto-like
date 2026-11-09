@@ -57,7 +57,7 @@ body {
   border-radius: 12px;
 }
 nav {
-  border-right: 1px solid var(--border);
+  border-inline-end: 1px solid var(--border);
   padding: 16px 12px;
   display: grid;
   align-content: start;
@@ -166,7 +166,7 @@ main {
   border-radius: 999px;
   background: var(--success-soft);
   color: var(--success);
-  margin-left: 6px;
+  margin-inline-start: 6px;
   font-weight: 600;
   vertical-align: 1px;
 }
@@ -286,7 +286,7 @@ main {
 }
 .tabs .count {
   opacity: 0.75;
-  margin-left: 6px;
+  margin-inline-start: 6px;
 }
 .list-tools {
   display: flex;
@@ -338,7 +338,10 @@ main {
   flex: 1;
   min-width: 0;
 }
+/* Channel names and video titles come from YouTube, in any language:
+   plaintext takes their direction from their own text, not from the page. */
 .row .title a {
+  unicode-bidi: plaintext;
   color: var(--text);
   text-decoration: none;
   font-weight: 600;
@@ -439,7 +442,7 @@ main {
 }
 .report-lines {
   margin: 0;
-  padding-left: 18px;
+  padding-inline-start: 18px;
   font-size: 13px;
 }
 .report-lines:empty,
@@ -470,6 +473,7 @@ main {
   min-width: 0;
 }
 .lookup-row .name {
+  unicode-bidi: plaintext;
   display: block;
   font-weight: 600;
   overflow-wrap: anywhere;
@@ -524,7 +528,7 @@ main {
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  text-align: left;
+  text-align: start;
 }
 .drop-filled > div {
   flex: 1;
@@ -683,7 +687,7 @@ main {
     display: grid;
   }
   .seg label + label {
-    border-left: 0;
+    border-inline-start: 0;
     border-top: 1px solid var(--border);
   }
   .search {
