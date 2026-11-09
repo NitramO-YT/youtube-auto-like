@@ -113,7 +113,7 @@
   "actionUnexcludeVideo": { "message": "Deixar de excluir este vídeo" },
   "channelChoiceLegend": { "message": "Marcar os vídeos deste canal" },
   "channelChoiceAlways": { "message": "Sempre" },
-  "channelChoiceAuto": { "message": "Conforme minhas configurações" },
+  "channelChoiceAuto": { "message": "Pelas configurações" },
   "channelChoiceNever": { "message": "Nunca" },
 
   "noticeAddedAlways": { "message": "Adicionado a “Sempre marcar”" },
