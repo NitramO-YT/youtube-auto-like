@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "आपके चुने गए चैनलों के YouTube वीडियो अपने-आप पसंद करता है।" },
+
+  "locale": { "message": "hi" },
+
+  "switchLabel": { "message": "वीडियो अपने-आप पसंद करें" },
+  "switchActive": { "message": "चालू" },
+  "switchPaused": { "message": "रुका हुआ" },
+  "pausedBanner": { "message": "रुके रहने के दौरान एक्सटेंशन कुछ भी पसंद नहीं करता।" },
+  "badgeUpdate": { "message": "नया" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: वर्शन $VERSION$ जारी हुआ",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "वर्शन $VERSION$ जारी हुआ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "यह वीडियो" },
+  "sectionThisChannel": { "message": "यह चैनल" },
+  "sectionRule": { "message": "लागू नियम" },
+  "openSettings": { "message": "सेटिंग बदलें →" },
+  "settingsShow": { "message": "सेटिंग दिखाएं" },
+  "settingsHide": { "message": "वीडियो पर वापस जाएं" },
+  "openFullPage": { "message": "पूरे पेज पर खोलें ↗" },
+  "noVideo": { "message": "YouTube पर कोई वीडियो या Short खोलें, ताकि आप देख सकें कि एक्सटेंशन उसके साथ क्या करता है, या किसी चैनल का पेज खोलें, ताकि आप चुन सकें कि उसके वीडियो पसंद किए जाएं या नहीं।" },
+  "noVideoHint": { "message": "अगर कोई वीडियो पहले से खुला है, तो पेज फिर से लोड करें।" },
+
+  "channelUnknown": { "message": "अज्ञात चैनल" },
+  "channelSubscribed": { "message": "सदस्यता ली हुई है" },
+  "channelNotSubscribed": { "message": "सदस्यता नहीं ली है" },
+  "kindVideo": { "message": "वीडियो" },
+  "kindVideoDuration": {
+    "message": "वीडियो, $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "लाइव स्ट्रीम" },
+
+  "statusLikedTitle": { "message": "अपने-आप पसंद किया गया" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "खुलते ही" },
+  "likedHowLikeNow": { "message": "आपके कहने पर" },
+  "likedHowAt": {
+    "message": "वीडियो के $TIME$ पर",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "$DURATION$ देखने के बाद",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "वीडियो के $PERCENT$% पर पसंद किया जाएगा",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "$MINUTES$ मिनट चलने के बाद पसंद किया जाएगा",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "किसी रैंडम पल पर पसंद किया जाएगा" },
+  "statusWaitBeforeEnd": { "message": "खत्म होने से ठीक पहले पसंद किया जाएगा" },
+  "statusWaitRemaining": {
+    "message": "$DURATION$ प्लेबैक बाकी",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "बस कुछ ही पल में पसंद किया जाएगा" },
+  "statusWaitDuration": { "message": "वीडियो की अवधि का इंतज़ार" },
+  "statusWaitAd": { "message": "विज्ञापन खत्म होने का इंतज़ार" },
+  "statusWaitAdDetail": { "message": "विज्ञापन का समय नहीं गिना जाता।" },
+  "statusReading": { "message": "पेज पढ़ा जा रहा है…" },
+  "statusReadingDetail": { "message": "Short पर YouTube कभी-कभी बटन तभी दिखाता है, जब माउस वीडियो के ऊपर हिलता है।" },
+  "statusConfirming": { "message": "जांच हो रही है कि पसंद दर्ज हुई या नहीं…" },
+  "statusFailedTitle": { "message": "पसंद की पुष्टि नहीं हो सकी" },
+  "statusFailedDetail": { "message": "“पसंद करें” बटन ने कोई प्रतिक्रिया नहीं दी। फिर से कोशिश करने के लिए पेज दोबारा लोड करें।" },
+
+  "statusAlreadyLikedTitle": { "message": "पहले से पसंद किया हुआ" },
+  "statusNotLikedTitle": { "message": "पसंद नहीं किया गया" },
+  "reasonAlreadyLiked": { "message": "यह वीडियो पहले से पसंद किया हुआ था: एक्सटेंशन इसे नहीं छूता।" },
+  "reasonAlreadyDisliked": { "message": "आपने इस वीडियो को नापसंद किया है: एक्सटेंशन इसे नहीं छूता।" },
+  "reasonSkippedByUser": { "message": "आपने कहा था कि इस बार इसे पसंद न किया जाए। अगली बार देखने पर इसे पसंद किया जा सकता है।" },
+  "reasonVideoExcluded": { "message": "आपने इस वीडियो को बाहर रखा है: जब तक आप इसे वापस नहीं लेते, इसे कभी पसंद नहीं किया जाएगा।" },
+  "reasonNotSubscribed": { "message": "आपने इस चैनल की सदस्यता नहीं ली है। सदस्यता लेने पर वीडियो पसंद किया जाएगा।" },
+  "reasonNotInAlwaysList": { "message": "सिर्फ़ आपकी “हमेशा पसंद करें” सूची के चैनल पसंद किए जाते हैं।" },
+  "reasonInNeverList": { "message": "यह चैनल आपकी “कभी पसंद न करें” सूची में है।" },
+  "reasonShortsOff": { "message": "आपकी सेटिंग के अनुसार Shorts पसंद नहीं किए जाते।" },
+  "reasonNormalVideosOff": { "message": "आपकी सेटिंग के अनुसार सिर्फ़ Shorts पसंद किए जाते हैं।" },
+  "statusWouldLike": { "message": "पसंद किया जाता" },
+  "statusWouldLikeDetail": { "message": "अगर एक्सटेंशन चालू होता।" },
+
+  "actionLikeNow": { "message": "अभी पसंद करें" },
+  "actionSkip": { "message": "इस बार नहीं" },
+  "actionRestart": { "message": "इस वीडियो के लिए फिर से शुरू करें" },
+  "actionRetry": { "message": "फिर से कोशिश करें" },
+  "removedLikeTitle": { "message": "पसंद हटाई गई" },
+  "removedLikeRestart": { "message": "आपने पसंद हटा दी। फिर से शुरू करें, ताकि एक्सटेंशन वीडियो को दोबारा जांचे।" },
+  "removedDislikeTitle": { "message": "नापसंद हटाई गई" },
+  "removedDislikeRestart": { "message": "आपने नापसंद हटा दी। फिर से शुरू करें, ताकि एक्सटेंशन वीडियो को दोबारा जांचे।" },
+  "likeRemovedNextOpening": { "message": "अगली बार वीडियो खुलने पर इसे फिर से पसंद किया जाएगा।" },
+  "likeRemovedAt": {
+    "message": "जब प्लेबैक फिर से $TIME$ पार करेगा, तब इसे फिर से पसंद किया जाएगा।",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "जिस वीडियो से मैं पसंद हटाऊं, उसे फिर से पसंद करें" },
+  "relikeHint": { "message": "जब प्लेबैक फिर से तय पल को पार करे, यानी आपके उससे पहले वापस जाने के बाद; “खुलते ही” मोड में, अगली बार खुलने पर। यह उस वीडियो पर भी लागू होता है जिसे आपने खुद पसंद किया था।" },
+  "actionResume": { "message": "“इस बार नहीं” रद्द करें" },
+  "actionExcludeVideo": { "message": "इस वीडियो को कभी पसंद न करें" },
+  "actionUnexcludeVideo": { "message": "इस वीडियो को बाहर रखना बंद करें" },
+  "channelChoiceLegend": { "message": "इस चैनल के वीडियो पसंद करें" },
+  "channelChoiceAlways": { "message": "हमेशा" },
+  "channelChoiceAuto": { "message": "सेटिंग के अनुसार" },
+  "channelChoiceNever": { "message": "कभी नहीं" },
+
+  "noticeAddedAlways": { "message": "“हमेशा पसंद करें” में जोड़ा गया" },
+  "noticeAddedNever": { "message": "“कभी पसंद न करें” में जोड़ा गया" },
+  "noticeRemovedNever": { "message": "“कभी पसंद न करें” से हटाया गया" },
+  "noticeSkipped": { "message": "इस बार पसंद नहीं किया गया" },
+  "noticeVideoExcluded": { "message": "बाहर रखे गए वीडियो में जोड़ा गया" },
+  "noticeVideoUnexcluded": { "message": "बाहर रखे गए वीडियो से हटाया गया" },
+  "noticeUndo": { "message": "पहले जैसा करें" },
+  "noticeUndone": { "message": "पहले जैसा किया गया" },
+  "noticeSaveFailed": { "message": "बदलाव सेव नहीं हो सका।" },
+  "noticeStorageFull": { "message": "एक्सटेंशन की स्टोरेज भर गई है: अपनी सूचियों से कुछ चैनल या बाहर रखे गए वीडियो हटाएं और फिर से कोशिश करें।" },
+  "noticeLoadFailed": { "message": "सेटिंग पढ़ी नहीं जा सकीं।" },
+  "noticeListFull": {
+    "message": "यह सूची भर गई है (ज़्यादा से ज़्यादा $COUNT$ एंट्री)।",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "पेज ने जवाब नहीं दिया। उसे दोबारा लोड करें और फिर से कोशिश करें।" },
+  "noticeSaved": { "message": "सेव हो गया" },
+  "noticeRemovedAlways": { "message": "“हमेशा पसंद करें” से हटाया गया" },
+  "noticeImportDone": {
+    "message": "इंपोर्ट पूरा हुआ: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "“$LIST$” में $COUNT$ चैनल जोड़ा गया",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "“$LIST$” में $COUNT$ चैनल जोड़े गए",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "रद्द करें" },
+  "dialogClose": { "message": "बंद करें" },
+  "noticeCopied": { "message": "कॉपी हो गया" },
+  "noticeCopyFailed": { "message": "कॉपी नहीं हो सका: टेक्स्ट चुनें और खुद कॉपी करें।" },
+  "noticeJournalCleared": { "message": "लॉग साफ़ किया गया" },
+
+  "languageLabel": { "message": "भाषा" },
+  "languageHint": { "message": "ब्राउज़र की भाषा, या आपकी चुनी हुई कोई दूसरी भाषा। अनुवाद में सुधार चाहिए? GitHub पर सुझाव दें।" },
+  "languageAuto": { "message": "ब्राउज़र की भाषा" },
+
+  "debugLabel": { "message": "डीबग मोड" },
+  "debugHint": { "message": "समस्या की रिपोर्ट करने के लिए एक्सटेंशन के कामों का लॉग: आखिरी 200 कदम, देखे गए वीडियो की ID के साथ, सिर्फ़ इसी ब्राउज़र में सेव। बंद होने पर कोई लॉग नहीं रखा जाता।" },
+  "journalCountOne": { "message": "लॉग: $COUNT$ एंट्री", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "लॉग: $COUNT$ एंट्री", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "लॉग कॉपी करें" },
+  "journalClear": { "message": "लॉग साफ़ करें" },
+
+  "navAbout": { "message": "जानकारी" },
+  "aboutHeading": { "message": "जानकारी" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, वर्शन $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "डेवलपर" },
+  "aboutOrigin": { "message": "मूल प्रोजेक्ट" },
+  "aboutFirefox": { "message": "Firefox के लिए फ़ोर्क" },
+  "aboutLicense": { "message": "लाइसेंस" },
+  "aboutInvite": { "message": "ज़्यादा जानने, नए वर्शन पर नज़र रखने या कोई सुधार सुझाने के लिए GitHub रिपॉज़िटरी पर जाएं। कोई समस्या है? नीचे दिए बटन से उसकी रिपोर्ट करें।" },
+  "aboutRepository": { "message": "GitHub पर प्रोजेक्ट देखें" },
+  "reportOpen": { "message": "समस्या की रिपोर्ट करें" },
+  "reportHint": { "message": "GitHub पर खुलने वाले issue में समस्या लिखें: इसे समझने में मदद के लिए यह रिपोर्ट साथ में जोड़ी जाती है। भेजने से पहले इसे पढ़ लें; इसमें आपकी चैनल सूचियां शामिल नहीं हैं।" },
+  "reportJournalOne": {
+    "message": "लॉग जोड़ें ($COUNT$ एंट्री, देखे गए वीडियो की ID के साथ)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "लॉग जोड़ें ($COUNT$ एंट्री, देखे गए वीडियो की ID के साथ)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "कोई लॉग नहीं रखा गया। लॉग जोड़ने के लिए: “अन्य” में डीबग मोड चालू करें, जो गड़बड़ होता है उसे दोहराएं, फिर यहां वापस आएं।" },
+  "reportTextLabel": { "message": "रिपोर्ट" },
+  "reportCopy": { "message": "रिपोर्ट कॉपी करें" },
+  "reportIssue": { "message": "GitHub पर issue खोलें" },
+  "reportCut": { "message": "रिपोर्ट issue के पते के लिए बहुत लंबी है, इसलिए वहां छोटी कर दी गई है। पूरी रिपोर्ट कॉपी करें और issue में चिपकाएं।" },
+  "dialogAnalyse": { "message": "जांचें" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "चैनल जोड़ें" },
+  "addHint": { "message": "चैनलों या वीडियो के लिंक, या @हैंडल चिपकाएं, हर लाइन में एक। एक्सटेंशन YouTube से पूछता है कि कौन-सा चैनल है, जैसे आप उसका पेज खोलते।" },
+  "addLinesLabel": { "message": "लिंक या @हैंडल" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@name\n@name\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "सूची में" },
+  "addSearch": { "message": "खोजें" },
+  "addSearching": {
+    "message": "YouTube से पूछा जा रहा है… $TOTAL$ में से $DONE$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "जोड़ें" },
+  "addApplyOne": {
+    "message": "$COUNT$ चैनल जोड़ें",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "$COUNT$ चैनल जोड़ें",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "जोड़ने के लिए कोई चैनल नहीं: सभी पहले से सूची में हैं, या कोई नहीं मिला।" },
+  "addEmpty": { "message": "कम से कम एक लिंक या @हैंडल चिपकाएं।" },
+  "addTooMany": {
+    "message": "एक बार में ज़्यादा से ज़्यादा $MAX$ लाइनें।",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "जोड़ा जाएगा" },
+  "lookupAlready": { "message": "पहले से सूची में है" },
+  "lookupMoved": {
+    "message": "“$FROM$” से “$TO$” में ले जाया जाएगा",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "पिछली किसी लाइन वाला ही चैनल" },
+  "lookupNotALink": { "message": "न YouTube चैनल या वीडियो का लिंक है, न @हैंडल" },
+  "lookupNotFound": { "message": "यह चैनल या वीडियो YouTube पर मौजूद नहीं है" },
+  "lookupUnreadable": { "message": "YouTube ने चैनल नहीं बताया। अगर इस ब्राउज़र में YouTube कभी नहीं खोला गया है, तो उसे एक बार खोलें और कुकी का विकल्प चुनें, फिर से कोशिश करें" },
+
+  "importTitle": { "message": "सूचियां इंपोर्ट करें" },
+  "importHint": { "message": "एक्सटेंशन से एक्सपोर्ट की गई फ़ाइल, या चैनल लिंक की सूची, हर लाइन में एक। “इंपोर्ट करें” से पहले कुछ भी सेव नहीं होता: “जांचें” पहले दिखाता है कि क्या किया जाएगा।" },
+  "importDropHere": { "message": "फ़ाइल यहां छोड़ें, या" },
+  "importBrowse": { "message": "अपनी फ़ाइलें ब्राउज़ करें" },
+  "importPasteHint": { "message": "आप इस विंडो में कोई फ़ाइल या टेक्स्ट (Ctrl+V) भी चिपका सकते हैं।" },
+  "importChange": { "message": "बदलें" },
+  "importRemove": { "message": "हटाएं" },
+  "importPasted": { "message": "चिपकाया गया टेक्स्ट" },
+  "importSourceFile": { "message": "एक्सटेंशन से एक्सपोर्ट की गई फ़ाइल" },
+  "importSourceLinksOne": {
+    "message": "लिंक की सूची, $COUNT$ लाइन",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "लिंक की सूची, $COUNT$ लाइनें",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "यह न एक्सटेंशन का एक्सपोर्ट है, न लिंक की सूची।" },
+  "importNoSource": { "message": "पहले कोई फ़ाइल चुनें, या टेक्स्ट चिपकाएं।" },
+  "importNoPart": { "message": "इंपोर्ट करने के लिए कम से कम एक हिस्सा चुनें।" },
+  "importListFull": {
+    "message": "किसी सूची में $COUNT$ से ज़्यादा एंट्री हो जाएंगी: कुछ भी इंपोर्ट नहीं होगा।",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "क्या इंपोर्ट होगा" },
+  "importLinksTarget": { "message": "इन चैनलों को यहां रखें" },
+  "importModeLabel": { "message": "पहले से मौजूद एंट्री" },
+  "importModeAddNew": { "message": "सिर्फ़ नई जोड़ें" },
+  "importModeAddNewHint": { "message": "जो चैनल पहले से किसी सूची में है, वह वहीं रहता है।" },
+  "importModeFollow": { "message": "जोड़ें और फ़ाइल के हिसाब से चलें" },
+  "importModeFollowHint": { "message": "पहले से मौजूद चैनल को उस सूची में ले जाया जाता है जो फ़ाइल बताती है।" },
+  "importModeReplace": { "message": "सब कुछ फ़ाइल से बदलें" },
+  "importModeReplaceHint": { "message": "चुने गए हिस्से बिल्कुल फ़ाइल जैसे हो जाते हैं: जो उसमें नहीं है, वह हटा दिया जाता है।" },
+  "importRemember": { "message": "मेरी पसंद याद रखें" },
+  "importApply": { "message": "इंपोर्ट करें" },
+  "importConfirmOne": {
+    "message": "पुष्टि: फ़ाइल में न मौजूद $COUNT$ एंट्री हटा दी जाएगी।",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "पुष्टि: फ़ाइल में न मौजूद $COUNT$ एंट्री हटा दी जाएंगी।",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "कोई बदलाव नहीं" },
+  "reportNothing": { "message": "कोई बदलाव नहीं: सब कुछ पहले से मौजूद है।" },
+  "reportAddedOne": { "message": "नई: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "नई: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "सूची बदली: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "सूची बदली: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "पहले से मौजूद: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "पहले से मौजूद: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "हटाई गई: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "हटाई गईं: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "सूचियां एक्सपोर्ट करें" },
+  "exportPartsLabel": { "message": "क्या एक्सपोर्ट होगा" },
+  "exportFormatLabel": { "message": "फ़ॉर्मैट" },
+  "exportFormatJson": { "message": "एक्सटेंशन की फ़ाइल (JSON)" },
+  "exportFormatJsonHint": { "message": "जैसी है वैसी ही दोबारा इंपोर्ट होती है, चैनलों की तारीखों और तस्वीरों के साथ।" },
+  "exportFormatLinks": { "message": "लिंक की सूची (टेक्स्ट)" },
+  "exportFormatLinksHint": { "message": "हर लाइन में एक चैनल लिंक, उसके नाम के साथ, पढ़ने या शेयर करने के लिए। बाहर रखे गए वीडियो इसमें शामिल नहीं हैं।" },
+  "exportDownload": { "message": "डाउनलोड करें" },
+  "exportNothing": { "message": "कम से कम एक सूची चुनें।" },
+  "noticeImportInvalid": { "message": "यह फ़ाइल YouTube Auto Like से एक्सपोर्ट की गई सूची नहीं है।" },
+  "noticeImportTooBig": { "message": "यह फ़ाइल चैनल सूची होने के लिए बहुत बड़ी है।" },
+  "noticeCountReset": { "message": "काउंटर रीसेट हो गया" },
+  "noticeNumberInvalid": {
+    "message": "$MIN$ से $MAX$ तक की कोई संख्या डालें।",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "YouTube Auto Like की सेटिंग" },
+  "optionsTitle": { "message": "सेटिंग" },
+  "navSections": { "message": "हिस्से" },
+  "navChannels": { "message": "कौन-से चैनल" },
+  "navVideos": { "message": "कौन-से वीडियो" },
+  "navWhen": { "message": "कब पसंद करें" },
+  "navLists": { "message": "मेरी सूचियां" },
+  "navMore": { "message": "अन्य" },
+
+  "channelsHeading": { "message": "किन चैनलों के वीडियो पसंद करें?" },
+  "channelsHint": { "message": "“कभी पसंद न करें” सूची हमेशा पहले आती है।" },
+  "likeWhatSubscribed": { "message": "जिन चैनलों की मैंने सदस्यता ली है" },
+  "likeWhatSubscribedHint": { "message": "और मेरी “हमेशा पसंद करें” सूची वाले चैनल।" },
+  "recommended": { "message": "सुझाया गया" },
+  "likeWhatAll": { "message": "सभी चैनल" },
+  "likeWhatAllHint": { "message": "आपका देखा हर वीडियो पसंद किया जाता है।" },
+  "likeWhatList": { "message": "सिर्फ़ मेरी “हमेशा पसंद करें” सूची" },
+  "likeWhatListHint": { "message": "सदस्यता हो या न हो, बाकी कुछ पसंद नहीं किया जाता।" },
+
+  "videosHeading": { "message": "कौन-से वीडियो?" },
+  "videosHint": { "message": "Shorts को सामान्य प्लेयर में खोलने पर भी पहचाना जाता है।" },
+  "likeNormalVideos": { "message": "वीडियो" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "कब पसंद करें?" },
+  "whenHint": { "message": "जिस वीडियो को आप खुद पसंद या नापसंद करते हैं, उसे कभी नहीं छुआ जाता।" },
+  "modeInstant": { "message": "खुलते ही" },
+  "modeCustom": { "message": "कुछ देर बाद" },
+  "modeRandom": { "message": "किसी रैंडम पल पर" },
+  "thresholdAfter": { "message": "पसंद करें" },
+  "thresholdPercentUnit": { "message": "% वीडियो चलने पर" },
+  "thresholdMinutesUnit": { "message": "मिनट चलने के बाद" },
+  "percentLabel": { "message": "वीडियो का प्रतिशत" },
+  "minutesLabel": { "message": "प्लेबैक के मिनट" },
+  "thresholdKeepOne": { "message": "दोनों सीमाओं में से कम से कम एक चुनी हुई रहती है।" },
+  "thresholdsHint": { "message": "जो सीमा पहले पूरी होती है, उसी पर वीडियो पसंद किया जाता है। छोटा वीडियो खत्म होने से दो सेकंड पहले पसंद किया जाता है। लाइव स्ट्रीम में सिर्फ़ देखना शुरू करने के बाद के मिनट गिने जाते हैं; मिनट की सीमा न हो, तो वह खुलते ही पसंद की जाती है। विज्ञापन नहीं गिने जाते।" },
+  "randomHint": { "message": "हर वीडियो में रैंडम तरीके से चुना गया एक पल। लाइव स्ट्रीम खुलते ही पसंद की जाती है।" },
+  "summaryLabel": { "message": "सारांश:" },
+
+  "listsHeading": { "message": "मेरी चैनल सूचियां" },
+  "listsHint": { "message": "लिंक या @हैंडल से, किसी वीडियो या चैनल पेज पर आइकन की विंडो से, या इतिहास से चैनल जोड़ें। वीडियो को आइकन की विंडो से बाहर रखा जाता है।" },
+  "listAlways": { "message": "हमेशा पसंद करें" },
+  "listNever": { "message": "कभी पसंद न करें" },
+  "listVideos": { "message": "बाहर रखे गए वीडियो" },
+  "listExcludedOn": {
+    "message": "$DATE$ को बाहर रखा गया",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "$TITLE$ को बाहर रखना बंद करें",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "सूची में खोजें" },
+  "listImport": { "message": "इंपोर्ट करें" },
+  "listExport": { "message": "एक्सपोर्ट करें" },
+  "listEmpty": { "message": "सूची में कोई चैनल नहीं है। लिंक या @हैंडल से, किसी वीडियो या चैनल पेज पर आइकन की विंडो से, या इतिहास से जोड़ें।" },
+  "listEmptyVideos": { "message": "कोई वीडियो बाहर नहीं रखा गया है। किसी वीडियो को बाहर रखने के लिए, उसे देखते समय आइकन की विंडो खोलें और “इस वीडियो को कभी पसंद न करें” चुनें।" },
+  "listNoMatch": { "message": "खोज से कोई चैनल मेल नहीं खाता।" },
+  "listAddedOn": {
+    "message": "$DATE$ को जोड़ा गया",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "$NAME$ को सूची से हटाएं",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$TOTAL$ में से $SHOWN$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "$COUNT$ और दिखाएं",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "सभी दिखाएं ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "सूचियों और इतिहास में दिखने वाली लाइनें" },
+  "listPageSizeHint": { "message": "बाकी लाइनें “… और दिखाएं” या “सभी दिखाएं” से दिखती हैं। लंबी सूची अपने अंदर ही स्क्रॉल होती है, पेज को लंबा नहीं करती।" },
+  "listPageSizeAll": { "message": "सभी" },
+  "listOpenChannel": { "message": "YouTube पर चैनल खोलें" },
+
+  "navHistory": { "message": "इतिहास" },
+  "historyHeading": { "message": "एक्सटेंशन ने क्या पसंद किया" },
+  "historyHint": {
+    "message": "आखिरी $COUNT$, सबसे नई पहले, सिर्फ़ इसी ब्राउज़र में सेव।",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "एक्सटेंशन ने अभी तक कुछ पसंद नहीं किया है।" },
+  "historyUntitled": { "message": "बिना शीर्षक वाला वीडियो" },
+  "historyChannelChoice": {
+    "message": "$NAME$ के वीडियो पसंद करें",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "इतिहास साफ़ करें" },
+  "noticeHistoryCleared": { "message": "इतिहास साफ़ किया गया" },
+
+  "moreHeading": { "message": "अन्य" },
+  "themeLabel": { "message": "थीम" },
+  "themeSystem": { "message": "सिस्टम के अनुसार" },
+  "themeLight": { "message": "हल्की" },
+  "themeDark": { "message": "गहरी" },
+  "updatesLabel": { "message": "नए वर्शन खोजें" },
+  "updatesHint": { "message": "GitHub से पूछता है, जहां एक्सटेंशन प्रकाशित होता है; इससे GitHub को आपका IP पता दिखता है।" },
+  "updateEvery0": { "message": "कभी नहीं" },
+  "updateEvery30": { "message": "हर 30 मिनट में" },
+  "updateEvery60": { "message": "हर घंटे" },
+  "updateEvery360": { "message": "हर 6 घंटे में" },
+  "updateEvery1440": { "message": "हर दिन" },
+  "updateEvery10080": { "message": "हर हफ़्ते" },
+  "updateEveryCustom": { "message": "अपनी पसंद से…" },
+  "updateEveryPrefix": { "message": "हर" },
+  "updateCustomCount": { "message": "दो जांचों के बीच मिनट, घंटे या दिन की संख्या" },
+  "updateCustomUnit": { "message": "इकाई" },
+  "unitMinutesOne": { "message": "मिनट में" },
+  "unitMinutesOther": { "message": "मिनट में" },
+  "unitHoursOne": { "message": "घंटे में" },
+  "unitHoursOther": { "message": "घंटे में" },
+  "unitDaysOne": { "message": "दिन में" },
+  "unitDaysOther": { "message": "दिन में" },
+  "noticeFrequencyInvalid": { "message": "5 मिनट से 30 दिन तक का समय डालें।" },
+  "updateCheckNow": { "message": "अभी जांचें" },
+  "updateStatusOff": { "message": "नए वर्शन नहीं खोजे जाते।" },
+  "updateStatusNever": { "message": "अभी तक जांच नहीं हुई।" },
+  "updateStatusChecking": { "message": "जांच हो रही है…" },
+  "updateStatusAvailable": {
+    "message": "वर्शन $VERSION$ जारी हुआ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "$WHEN$ जांचा गया: आपके पास सबसे नया वर्शन है।",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "$WHEN$ जांचा गया: अभी तक कोई वर्शन जारी नहीं हुआ।",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "पिछली जांच $WHEN$ नाकाम रही; अगली जांच फिर से कोशिश करेगी।",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "जांच नहीं हो सकी।" },
+  "likeCountHint": { "message": "एक्सटेंशन इंस्टॉल होने या पिछले रीसेट के बाद से। रीसेट करने से और कुछ नहीं बदलता।" },
+  "likeCountReset": { "message": "रीसेट करें" },
+
+  "ruleSentence": {
+    "message": "$CHANNELS$ के $WHAT$ $WHEN$ पसंद करता है।",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "कुछ भी पसंद नहीं करता: वीडियो और Shorts दोनों बंद हैं।" },
+  "ruleWhatBoth": { "message": "वीडियो और Shorts" },
+  "ruleWhatVideos": { "message": "वीडियो" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "सदस्यता वाले चैनलों" },
+  "ruleChannelsSubscribedAndList": { "message": "सदस्यता वाले और आपकी “हमेशा पसंद करें” सूची वाले चैनलों" },
+  "ruleChannelsAll": { "message": "सभी चैनलों" },
+  "ruleChannelsList": { "message": "आपकी “हमेशा पसंद करें” सूची वाले चैनलों" },
+  "ruleWhenInstant": { "message": "खुलते ही" },
+  "ruleWhenPercent": {
+    "message": "$PERCENT$% चलने पर",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "$MINUTES$ मिनट चलने के बाद",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "$PERCENT$% चलने पर या $MINUTES$ मिनट चलने के बाद, जो पहले हो",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "किसी रैंडम पल पर" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ वीडियो पसंद किया गया",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ वीडियो पसंद किए गए",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ सेकंड",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ मिनट $SECONDS$ सेकंड",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ घंटे $MINUTES$ मिनट",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
