@@ -7,7 +7,7 @@
 Likes the YouTube videos you choose, automatically: the channels you subscribe to, every channel, or only your own list, as soon as a video opens or after a while.
 
 > [!NOTE]
-> This is the maintained continuation of [austencm/youtube-auto-like](https://github.com/austencm/youtube-auto-like), for Chromium-based browsers (Brave, Chrome, Edge…). It is not run by its original author: see [About this fork](#about-this-fork).
+> This is the maintained continuation of [austencm/youtube-auto-like](https://github.com/austencm/youtube-auto-like), for Chromium-based browsers (Brave, Chrome, Edge…) and Firefox. It is not run by its original author: see [About this fork](#about-this-fork).
 
 ## What it does
 
@@ -24,7 +24,7 @@ Likes the YouTube videos you choose, automatically: the channels you subscribe t
 
 [YouTube Auto Like](https://github.com/austencm/youtube-auto-like) was created by Austen Morgan in 2016. Its last release, `v2.8.1`, dates from December 2023, and it has not been maintained since. [Taknok](https://github.com/Taknok/youtube-auto-like) has kept a fork alive for Firefox since 2017, which does not run in Chromium-based browsers.
 
-This fork brings it back for Chromium-based browsers, rewritten for Manifest V3, with a new interface. It builds on the knowledge of both projects, and credits them: the structure and the update alert of the original, the reading of YouTube's pages and the rules of Taknok's fork.
+This fork brings it back for Chromium-based browsers, rewritten for Manifest V3, with a new interface, and builds the same code for Firefox too. It builds on the knowledge of both projects, and credits them: the structure and the update alert of the original, the reading of YouTube's pages and the rules of Taknok's fork.
 
 Versions continue the original numbering: `3.0.0` is the first version of this fork.
 
@@ -41,9 +41,14 @@ Each release provides:
 
 - `youtube-auto-like.zip`, to load unpacked: the way that works in every Chromium-based browser;
 - `youtube-auto-like.crx`, the signed package. Browsers often refuse a package that does not come from their store: if yours does, use the zip.
+- `youtube-auto-like.xpi`, for Firefox 140 or later, signed by Mozilla.
 
 Each file comes with a `.sha256` checksum file. The latest zip is always at
 `https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/youtube-auto-like.zip`.
+
+### Installing in Firefox
+
+Open the [latest release](https://github.com/NitramO-YT/youtube-auto-like/releases/latest) in Firefox and click `youtube-auto-like.xpi`: Firefox asks whether to install it. Mozilla has signed it without listing it on its add-ons site, which Firefox requires of every extension it installs for good.
 
 ### Installing the zip
 
@@ -57,6 +62,8 @@ Each file comes with a `.sha256` checksum file. The latest zip is always at
 The extension checks for a new version on GitHub, every 30 minutes by default (settings, under More). When one is out, its icon shows a badge, and the popup links to it.
 
 To update an unpacked extension, replace the content of its folder with the new zip, then click the reload button of the extension in the extensions page. Your settings and lists are kept: the extension keeps the same ID from one version to the next.
+
+Firefox updates the extension by itself: it reads the `updates.json` file of the latest release, and installs the version it names.
 
 ### Checking a download
 
@@ -75,6 +82,8 @@ The extension connects to two places only:
 - **GitHub** (`api.github.com`), to check for a new version, at the frequency you choose, or never. GitHub sees your IP address.
 - **YouTube**, only when you add channels by link or import a list of links, to find which channel each link is. These requests carry your YouTube cookies, as opening the page would.
 
+In Firefox, Firefox itself, not the extension, also reads on GitHub the `updates.json` file that tells it about new versions.
+
 ### Permissions
 
 | Permission | Why |
@@ -90,7 +99,7 @@ Open the settings of the extension, then **About › Report a problem**. It open
 
 For a security vulnerability, follow the [security policy](SECURITY.md) instead.
 
-The Firefox extension is a separate project: report its problems to [Taknok/youtube-auto-like](https://github.com/Taknok/youtube-auto-like/issues).
+This applies to the Firefox version of this project too. [Taknok's fork](https://github.com/Taknok/youtube-auto-like) is another extension, with its own issues.
 
 ## Contributing
 

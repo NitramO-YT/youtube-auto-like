@@ -11,18 +11,29 @@ that would not fit the direction of the project.
 ## Setting up
 
 You need [Node.js](https://nodejs.org/) 22.2 or later (the packaging uses
-`zlib.crc32`) and a Chromium-based browser (Brave, Chrome, Chromium, Edge).
+`zlib.crc32`) and a Chromium-based browser (Brave, Chrome, Chromium, Edge),
+or Firefox 140 or later.
 
 ```bash
-npm install        # esbuild, the only dependency, pinned to an exact version
-npm run build      # builds the extension into dist/chromium/
-npm test           # runs the tests (node:test, no other dependency)
-npm run preview    # screenshots of the popup and the settings, in dist/preview/
+npm install                        # esbuild and web-ext, pinned to exact versions
+npm run build                      # builds the extension into dist/chromium/
+npm run build -- --target firefox  # builds it into dist/firefox/
+npm test                           # runs the tests (node:test)
+npm run preview                    # screenshots of the popup and the settings, in dist/preview/
 ```
 
 To try your build, open `chrome://extensions` (or `brave://extensions`), turn
 on the developer mode, click **Load unpacked** and choose `dist/chromium/`.
 After each `npm run build`, click the reload button of the extension.
+
+In Firefox, open `about:debugging#/runtime/this-firefox`, click **Load
+Temporary Add-on** and choose `dist/firefox/manifest.json`; it stays until
+Firefox closes. `npx web-ext lint --source-dir dist/firefox --self-hosted`
+checks the build with Mozilla's rules.
+
+Both builds come from the same sources: the browser layers in
+`src/manifest/` differ only in what each browser requires (a service worker
+or background scripts, the key of the Chromium ID or the Gecko ID).
 
 ## How the code is organized
 
@@ -91,14 +102,28 @@ The CRX is signed with `extension-key.pem`, which gives the extension its
 fixed ID. It is never committed, and never replaced: a new key would change the
 ID, and every installation would lose its settings.
 
-1. Set the new version in `package.json` (the manifest takes it from there).
+The Firefox version is signed by Mozilla, without being listed on its add-ons
+site (channel "unlisted"), with the maintainer's addons.mozilla.org API keys.
+Mozilla signs each version number only once, and receives the source code
+with the build (a `git archive` of the commit): sign from a committed tree,
+and only the version you publish.
+
+1. Set the new version in `package.json` (the manifest takes it from there),
+   and commit.
 2. Run `npm test`, then `npm run package`. It writes into `releases/`:
    `youtube-auto-like.zip`, `youtube-auto-like.crx`, and a `.sha256` file for
    each.
-3. Create the release on GitHub with the tag `vX.Y.Z` and the four files.
+3. Run `npm run sign-firefox` with the keys in `WEB_EXT_API_KEY` and
+   `WEB_EXT_API_SECRET` (`-- --dry-run` checks everything without sending).
+   It writes `youtube-auto-like.xpi`, its `.sha256`, and `updates.json`, which
+   Firefox reads to update the extension and which names the package at the
+   address of the tag `vX.Y.Z`.
+4. Create the release on GitHub with the tag `vX.Y.Z` and the seven files.
    - **Latest:** a normal release. Its files are then also at
      `https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/<file>`,
      an address that never changes.
    - **Beta:** a pre-release with the tag `beta`, moved to the new commit and
      whose files are replaced at each beta. The extension's own check for a
-     new version ignores pre-releases.
+     new version ignores pre-releases. For Firefox, a beta needs a version
+     number of its own, since Mozilla signs each number once, and its release
+     carries no `updates.json`: Firefox updates only from the Latest one.
