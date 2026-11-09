@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Automaticky označuje videa na YouTube jako „To se mi líbí“ u kanálů, které si zvolíte." },
+
+  "locale": { "message": "cs" },
+
+  "switchLabel": { "message": "Automaticky označovat videa „To se mi líbí“" },
+  "switchActive": { "message": "Zapnuto" },
+  "switchPaused": { "message": "Pozastaveno" },
+  "pausedBanner": { "message": "Když je rozšíření pozastavené, nic neoznačuje." },
+  "badgeUpdate": { "message": "NEW" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: vyšla verze $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Vyšla verze $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Toto video" },
+  "sectionThisChannel": { "message": "Tento kanál" },
+  "sectionRule": { "message": "Platné pravidlo" },
+  "openSettings": { "message": "Změnit nastavení →" },
+  "settingsShow": { "message": "Zobrazit nastavení" },
+  "settingsHide": { "message": "Zpět k videu" },
+  "openFullPage": { "message": "Otevřít na celé stránce ↗" },
+  "noVideo": { "message": "Otevřete na YouTube video nebo Short a uvidíte, co s ním rozšíření dělá, nebo stránku kanálu a vyberte, zda se mají jeho videa označovat." },
+  "noVideoHint": { "message": "Pokud už je video otevřené, načtěte stránku znovu." },
+
+  "channelUnknown": { "message": "Neznámý kanál" },
+  "channelSubscribed": { "message": "Odebíráte" },
+  "channelNotSubscribed": { "message": "Neodebíráte" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "Video, délka $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Živý přenos" },
+
+  "statusLikedTitle": { "message": "Automaticky označeno „To se mi líbí“" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "hned po otevření" },
+  "likedHowLikeNow": { "message": "na vaši žádost" },
+  "likedHowAt": {
+    "message": "v čase $TIME$ videa",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "po $DURATION$ sledování",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Označí se v $PERCENT$ % videa",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Označí se po $MINUTES$ min přehrávání",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Označí se v náhodném okamžiku" },
+  "statusWaitBeforeEnd": { "message": "Označí se těsně před koncem" },
+  "statusWaitRemaining": {
+    "message": "Zbývá $DURATION$ přehrávání",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Označí se za okamžik" },
+  "statusWaitDuration": { "message": "Čeká se na délku videa" },
+  "statusWaitAd": { "message": "Čeká se na konec reklamy" },
+  "statusWaitAdDetail": { "message": "Čas reklam se nepočítá." },
+  "statusReading": { "message": "Čtení stránky…" },
+  "statusReadingDetail": { "message": "U Shorts YouTube někdy zobrazí tlačítka až po pohybu myši nad videem." },
+  "statusConfirming": { "message": "Ověřuje se, že označení proběhlo…" },
+  "statusFailedTitle": { "message": "Označení se nepodařilo ověřit" },
+  "statusFailedDetail": { "message": "Tlačítko „To se mi líbí“ nereagovalo. Pro nový pokus načtěte stránku znovu." },
+
+  "statusAlreadyLikedTitle": { "message": "Už označeno" },
+  "statusNotLikedTitle": { "message": "Neoznačeno" },
+  "reasonAlreadyLiked": { "message": "Toto video už bylo označeno „To se mi líbí“: rozšíření ho nechá být." },
+  "reasonAlreadyDisliked": { "message": "Toto video jste označili „To se mi nelíbí“: rozšíření ho nechá být." },
+  "reasonSkippedByUser": { "message": "Požádali jste, aby se tentokrát neoznačovalo. Může se označit, až ho budete sledovat znovu." },
+  "reasonVideoExcluded": { "message": "Toto video jste vyloučili: nikdy se neoznačí, dokud vyloučení nezrušíte." },
+  "reasonNotSubscribed": { "message": "Tento kanál neodebíráte. Video se označí, pokud ho začnete odebírat." },
+  "reasonNotInAlwaysList": { "message": "Označují se jen kanály z vašeho seznamu „Vždy označovat“." },
+  "reasonInNeverList": { "message": "Tento kanál je ve vašem seznamu „Nikdy neoznačovat“." },
+  "reasonShortsOff": { "message": "Podle vašeho nastavení se Shorts neoznačují." },
+  "reasonNormalVideosOff": { "message": "Podle vašeho nastavení se označují jen Shorts." },
+  "statusWouldLike": { "message": "Označilo by se" },
+  "statusWouldLikeDetail": { "message": "kdyby bylo rozšíření zapnuté." },
+
+  "actionLikeNow": { "message": "Označit teď" },
+  "actionSkip": { "message": "Tentokrát ne" },
+  "actionRestart": { "message": "Začít u tohoto videa znovu" },
+  "actionRetry": { "message": "Zkusit znovu" },
+  "removedLikeTitle": { "message": "Označení odebráno" },
+  "removedLikeRestart": { "message": "Odebrali jste „To se mi líbí“. Začněte znovu, aby rozšíření video znovu zkontrolovalo." },
+  "removedDislikeTitle": { "message": "„To se mi nelíbí“ odebráno" },
+  "removedDislikeRestart": { "message": "Odebrali jste „To se mi nelíbí“. Začněte znovu, aby rozšíření video znovu zkontrolovalo." },
+  "likeRemovedNextOpening": { "message": "Znovu se označí při příštím otevření videa." },
+  "likeRemovedAt": {
+    "message": "Znovu se označí, až přehrávání opět projde časem $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Znovu označit video, u kterého označení odeberu" },
+  "relikeHint": { "message": "Až přehrávání znovu projde plánovaným okamžikem, tedy poté, co jste se vrátili před něj; v režimu „Hned po otevření“ při příštím otevření. Platí i pro video, které jste označili sami." },
+  "actionResume": { "message": "Zrušit „Tentokrát ne“" },
+  "actionExcludeVideo": { "message": "Toto video nikdy neoznačovat" },
+  "actionUnexcludeVideo": { "message": "Zrušit vyloučení tohoto videa" },
+  "channelChoiceLegend": { "message": "Označovat videa tohoto kanálu" },
+  "channelChoiceAlways": { "message": "Vždy" },
+  "channelChoiceAuto": { "message": "Podle nastavení" },
+  "channelChoiceNever": { "message": "Nikdy" },
+
+  "noticeAddedAlways": { "message": "Přidáno do „Vždy označovat“" },
+  "noticeAddedNever": { "message": "Přidáno do „Nikdy neoznačovat“" },
+  "noticeRemovedNever": { "message": "Odebráno z „Nikdy neoznačovat“" },
+  "noticeSkipped": { "message": "Tentokrát neoznačeno" },
+  "noticeVideoExcluded": { "message": "Přidáno do vyloučených videí" },
+  "noticeVideoUnexcluded": { "message": "Odebráno z vyloučených videí" },
+  "noticeUndo": { "message": "Zpět" },
+  "noticeUndone": { "message": "Vráceno" },
+  "noticeSaveFailed": { "message": "Změnu se nepodařilo uložit." },
+  "noticeStorageFull": { "message": "Úložiště rozšíření je plné: odeberte ze seznamů kanály nebo vyloučená videa a zkuste to znovu." },
+  "noticeLoadFailed": { "message": "Nastavení se nepodařilo načíst." },
+  "noticeListFull": {
+    "message": "Tento seznam je plný (nejvýše $COUNT$ položek).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Stránka neodpověděla. Načtěte ji znovu a zkuste to znovu." },
+  "noticeSaved": { "message": "Uloženo" },
+  "noticeRemovedAlways": { "message": "Odebráno z „Vždy označovat“" },
+  "noticeImportDone": {
+    "message": "Import dokončen: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ kanál přidán do „$LIST$“",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "Kanály přidané do „$LIST$“: $COUNT$",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Zrušit" },
+  "dialogClose": { "message": "Zavřít" },
+  "noticeCopied": { "message": "Zkopírováno" },
+  "noticeCopyFailed": { "message": "Kopírování se nezdařilo: vyberte text a zkopírujte ho sami." },
+  "noticeJournalCleared": { "message": "Protokol vymazán" },
+
+  "languageLabel": { "message": "Jazyk" },
+  "languageHint": { "message": "Jazyk prohlížeče, nebo jiný, který si vyberete. Překlad k opravě? Navrhněte to na GitHubu." },
+  "languageAuto": { "message": "Jazyk prohlížeče" },
+
+  "debugLabel": { "message": "Režim ladění" },
+  "debugHint": { "message": "Protokol toho, co rozšíření dělá, pro nahlášení problému: posledních 200 kroků s ID sledovaných videí, uložený jen v tomto prohlížeči. Když je režim vypnutý, protokol se nevede." },
+  "journalCountOne": { "message": "Protokol: $COUNT$ záznam", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Záznamy v protokolu: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Zkopírovat protokol" },
+  "journalClear": { "message": "Vymazat protokol" },
+
+  "navAbout": { "message": "O rozšíření" },
+  "aboutHeading": { "message": "O rozšíření" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, verze $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Vyvíjí" },
+  "aboutOrigin": { "message": "Původní projekt" },
+  "aboutFirefox": { "message": "Fork pro Firefox" },
+  "aboutLicense": { "message": "Licence" },
+  "aboutInvite": { "message": "Navštivte repozitář na GitHubu, kde se dozvíte víc, můžete sledovat nové verze nebo navrhnout vylepšení. Problém? Nahlaste ho tlačítkem níže." },
+  "aboutRepository": { "message": "Zobrazit projekt na GitHubu" },
+  "reportOpen": { "message": "Nahlásit problém" },
+  "reportHint": { "message": "Popište problém v issue, které se otevře na GitHubu: toto hlášení se přiloží, aby pomohlo ho pochopit. Před odesláním si ho přečtěte; vaše seznamy kanálů v něm nejsou." },
+  "reportJournalOne": {
+    "message": "Přiložit protokol ($COUNT$ záznam, s ID sledovaných videí)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Přiložit protokol (záznamy: $COUNT$, s ID sledovaných videí)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Žádný protokol se nevedl. Chcete-li ho přiložit: zapněte režim ladění v části „Další“, zopakujte to, co nefunguje, a pak se sem vraťte." },
+  "reportTextLabel": { "message": "Hlášení" },
+  "reportCopy": { "message": "Zkopírovat hlášení" },
+  "reportIssue": { "message": "Otevřít issue na GitHubu" },
+  "reportCut": { "message": "Hlášení je na adresu issue příliš dlouhé, proto je v ní zkrácené. Zkopírujte celé hlášení a vložte ho do issue." },
+  "dialogAnalyse": { "message": "Analyzovat" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Přidat kanály" },
+  "addHint": { "message": "Vložte odkazy na kanály nebo videa, nebo @identifikátory, jeden na řádek. Rozšíření se YouTubu zeptá, o který kanál jde, jako byste otevřeli jeho stránku." },
+  "addLinesLabel": { "message": "Odkazy nebo @identifikátory" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@nazev\n@nazev\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "Do seznamu" },
+  "addSearch": { "message": "Vyhledat" },
+  "addSearching": {
+    "message": "Dotaz na YouTube… $DONE$ z $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Přidat" },
+  "addApplyOne": {
+    "message": "Přidat $COUNT$ kanál",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Přidat kanály ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Žádný kanál k přidání: všechny už v seznamu jsou, nebo se žádný nenašel." },
+  "addEmpty": { "message": "Vložte aspoň jeden odkaz nebo @identifikátor." },
+  "addTooMany": {
+    "message": "Nejvýše $MAX$ řádků najednou.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "bude přidán" },
+  "lookupAlready": { "message": "už je v seznamu" },
+  "lookupMoved": {
+    "message": "přesune se z „$FROM$“ do „$TO$“",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "stejný kanál jako na předchozím řádku" },
+  "lookupNotALink": { "message": "není odkaz na kanál ani video YouTube, ani @identifikátor" },
+  "lookupNotFound": { "message": "kanál nebo video na YouTube neexistuje" },
+  "lookupUnreadable": { "message": "YouTube kanál neuvedl. Pokud jste YouTube v tomto prohlížeči nikdy neotevřeli, otevřete ho jednou a zvolte nastavení cookies, pak to zkuste znovu" },
+
+  "importTitle": { "message": "Importovat seznamy" },
+  "importHint": { "message": "Soubor exportovaný rozšířením, nebo seznam odkazů na kanály, jeden na řádek. Před „Importovat“ se nic neuloží: „Analyzovat“ nejdřív ukáže, co se provede." },
+  "importDropHere": { "message": "Přetáhněte sem soubor, nebo" },
+  "importBrowse": { "message": "procházejte soubory" },
+  "importPasteHint": { "message": "Do tohoto okna můžete také vložit soubor nebo text (Ctrl+V)." },
+  "importChange": { "message": "Změnit" },
+  "importRemove": { "message": "Odebrat" },
+  "importPasted": { "message": "Vložený text" },
+  "importSourceFile": { "message": "Soubor exportovaný rozšířením" },
+  "importSourceLinksOne": {
+    "message": "Seznam odkazů, $COUNT$ řádek",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Seznam odkazů, řádky: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Nejde o export rozšíření ani o seznam odkazů." },
+  "importNoSource": { "message": "Nejdřív vyberte soubor nebo vložte text." },
+  "importNoPart": { "message": "Zaškrtněte aspoň jednu část k importu." },
+  "importListFull": {
+    "message": "Seznam by měl víc než $COUNT$ položek: nic by se neimportovalo.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Co se importuje" },
+  "importLinksTarget": { "message": "Tyto kanály přidat do" },
+  "importModeLabel": { "message": "Položky, které už existují" },
+  "importModeAddNew": { "message": "Přidat jen nové" },
+  "importModeAddNewHint": { "message": "Kanál, který už je v některém seznamu, zůstane, kde je." },
+  "importModeFollow": { "message": "Přidat a řídit se souborem" },
+  "importModeFollowHint": { "message": "Kanál, který už existuje, se přesune do seznamu, který uvádí soubor." },
+  "importModeReplace": { "message": "Vše nahradit souborem" },
+  "importModeReplaceHint": { "message": "Zaškrtnuté části budou přesně jako v souboru: co v něm není, se odebere." },
+  "importRemember": { "message": "Zapamatovat si volbu" },
+  "importApply": { "message": "Importovat" },
+  "importConfirmOne": {
+    "message": "Potvrzuji odebrání $COUNT$ položky, která v souboru chybí.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Potvrzuji odebrání položek, které v souboru chybějí ($COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "beze změn" },
+  "reportNothing": { "message": "Žádné změny: vše už existuje." },
+  "reportAddedOne": { "message": "nové: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "nové: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "přesunuté: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "přesunuté: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "už existující: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "už existující: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "odebrané: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "odebrané: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Exportovat seznamy" },
+  "exportPartsLabel": { "message": "Co se exportuje" },
+  "exportFormatLabel": { "message": "Formát" },
+  "exportFormatJson": { "message": "Soubor rozšíření (JSON)" },
+  "exportFormatJsonHint": { "message": "Importuje se zpět tak, jak je, s daty a obrázky kanálů." },
+  "exportFormatLinks": { "message": "Seznam odkazů (text)" },
+  "exportFormatLinksHint": { "message": "Jeden odkaz na kanál na řádek, s jeho názvem, ke čtení nebo sdílení. Vyloučená videa v něm nejsou." },
+  "exportDownload": { "message": "Stáhnout" },
+  "exportNothing": { "message": "Zaškrtněte aspoň jeden seznam." },
+  "noticeImportInvalid": { "message": "Tento soubor není seznam exportovaný rozšířením YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "Tento soubor je na seznam kanálů příliš velký." },
+  "noticeCountReset": { "message": "Počítadlo vynulováno" },
+  "noticeNumberInvalid": {
+    "message": "Zadejte číslo od $MIN$ do $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Nastavení YouTube Auto Like" },
+  "optionsTitle": { "message": "Nastavení" },
+  "navSections": { "message": "Sekce" },
+  "navChannels": { "message": "Které kanály" },
+  "navVideos": { "message": "Která videa" },
+  "navWhen": { "message": "Kdy označovat" },
+  "navLists": { "message": "Moje seznamy" },
+  "navMore": { "message": "Další" },
+
+  "channelsHeading": { "message": "Videa kterých kanálů označovat?" },
+  "channelsHint": { "message": "Seznam „Nikdy neoznačovat“ má vždy přednost." },
+  "likeWhatSubscribed": { "message": "Kanály, které odebírám" },
+  "likeWhatSubscribedHint": { "message": "a ty z mého seznamu „Vždy označovat“." },
+  "recommended": { "message": "Doporučeno" },
+  "likeWhatAll": { "message": "Všechny kanály" },
+  "likeWhatAllHint": { "message": "označí se každé video, které sledujete." },
+  "likeWhatList": { "message": "Jen můj seznam „Vždy označovat“" },
+  "likeWhatListHint": { "message": "odebírané nebo ne, nic jiného se neoznačí." },
+
+  "videosHeading": { "message": "Která videa?" },
+  "videosHint": { "message": "Shorts se rozpoznají, i když se otevřou v běžném přehrávači." },
+  "likeNormalVideos": { "message": "Videa" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Kdy je označovat?" },
+  "whenHint": { "message": "Video, které sami označíte „To se mi líbí“ nebo „To se mi nelíbí“, se nikdy nemění." },
+  "modeInstant": { "message": "Hned po otevření" },
+  "modeCustom": { "message": "Po chvíli" },
+  "modeRandom": { "message": "V náhodném okamžiku" },
+  "thresholdAfter": { "message": "po" },
+  "thresholdPercentUnit": { "message": "% videa" },
+  "thresholdMinutesUnit": { "message": "min přehrávání" },
+  "percentLabel": { "message": "Procento videa" },
+  "minutesLabel": { "message": "Minuty přehrávání" },
+  "thresholdKeepOne": { "message": "Aspoň jedna ze dvou hranic zůstane zaškrtnutá." },
+  "thresholdsHint": { "message": "Označení spustí ta hranice, které se dosáhne dřív. Kratší video se označí dvě sekundy před koncem. U živého přenosu se počítají jen minuty od začátku sledování; bez hranice v minutách se označí hned po otevření. Reklamy se nepočítají." },
+  "randomHint": { "message": "Náhodně zvolený okamžik v každém videu. Živý přenos se označí hned po otevření." },
+  "summaryLabel": { "message": "Shrnutí:" },
+
+  "listsHeading": { "message": "Moje seznamy kanálů" },
+  "listsHint": { "message": "Kanály přidáte odkazem nebo @identifikátorem, z okna ikony na videu nebo na stránce kanálu, nebo z historie. Video vyloučíte z okna ikony." },
+  "listAlways": { "message": "Vždy označovat" },
+  "listNever": { "message": "Nikdy neoznačovat" },
+  "listVideos": { "message": "Vyloučená videa" },
+  "listExcludedOn": {
+    "message": "vyloučeno $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Zrušit vyloučení: $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Hledat v seznamu" },
+  "listImport": { "message": "Importovat" },
+  "listExport": { "message": "Exportovat" },
+  "listEmpty": { "message": "Seznam neobsahuje žádný kanál. Přidejte je odkazem nebo @identifikátorem, z okna ikony na videu nebo na stránce kanálu, nebo z historie." },
+  "listEmptyVideos": { "message": "Žádné vyloučené video. Video vyloučíte tak, že během sledování otevřete okno ikony a zvolíte „Toto video nikdy neoznačovat“." },
+  "listNoMatch": { "message": "Hledání neodpovídá žádný kanál." },
+  "listAddedOn": {
+    "message": "přidáno $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Odebrat ze seznamu: $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ z $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Zobrazit další ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Zobrazit vše ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Řádky zobrazené v seznamech a historii" },
+  "listPageSizeHint": { "message": "Ostatní se zobrazí pomocí „Zobrazit další“ nebo „Zobrazit vše“. Dlouhý seznam se posouvá uvnitř sebe, aniž by prodlužoval stránku." },
+  "listPageSizeAll": { "message": "Vše" },
+  "listOpenChannel": { "message": "Otevřít kanál na YouTube" },
+
+  "navHistory": { "message": "Historie" },
+  "historyHeading": { "message": "Označení rozšířením" },
+  "historyHint": {
+    "message": "Posledních $COUNT$, nejnovější první, uložené jen v tomto prohlížeči.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Rozšíření zatím nic neoznačilo." },
+  "historyUntitled": { "message": "Video bez názvu" },
+  "historyChannelChoice": {
+    "message": "Označovat videa kanálu $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Vymazat historii" },
+  "noticeHistoryCleared": { "message": "Historie vymazána" },
+
+  "moreHeading": { "message": "Další" },
+  "themeLabel": { "message": "Motiv" },
+  "themeSystem": { "message": "Podle systému" },
+  "themeLight": { "message": "Světlý" },
+  "themeDark": { "message": "Tmavý" },
+  "updatesLabel": { "message": "Hledat nové verze" },
+  "updatesHint": { "message": "Ptá se GitHubu, kde se rozšíření zveřejňuje; GitHub přitom vidí vaši IP adresu." },
+  "updateEvery0": { "message": "Nikdy" },
+  "updateEvery30": { "message": "Každých 30 minut" },
+  "updateEvery60": { "message": "Každou hodinu" },
+  "updateEvery360": { "message": "Každých 6 hodin" },
+  "updateEvery1440": { "message": "Každý den" },
+  "updateEvery10080": { "message": "Každý týden" },
+  "updateEveryCustom": { "message": "Vlastní…" },
+  "updateEveryPrefix": { "message": "Jednou za" },
+  "updateCustomCount": { "message": "Počet minut, hodin nebo dní mezi dvěma kontrolami" },
+  "updateCustomUnit": { "message": "Jednotka" },
+  "unitMinutesOne": { "message": "minutu" },
+  "unitMinutesOther": { "message": "min" },
+  "unitHoursOne": { "message": "hodinu" },
+  "unitHoursOther": { "message": "h" },
+  "unitDaysOne": { "message": "den" },
+  "unitDaysOther": { "message": "d" },
+  "noticeFrequencyInvalid": { "message": "Zadejte interval od 5 minut do 30 dní." },
+  "updateCheckNow": { "message": "Zkontrolovat teď" },
+  "updateStatusOff": { "message": "Nové verze se nehledají." },
+  "updateStatusNever": { "message": "Zatím nezkontrolováno." },
+  "updateStatusChecking": { "message": "Kontroluje se…" },
+  "updateStatusAvailable": {
+    "message": "Vyšla verze $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Zkontrolováno $WHEN$: máte nejnovější verzi.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Zkontrolováno $WHEN$: zatím nevyšla žádná verze.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Poslední kontrola selhala $WHEN$; příští to zkusí znovu.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Kontrolu se nepodařilo provést." },
+  "likeCountHint": { "message": "Od instalace rozšíření nebo od posledního vynulování. Vynulování nic jiného nemění." },
+  "likeCountReset": { "message": "Vynulovat" },
+
+  "ruleSentence": {
+    "message": "Označuje $WHAT$ $CHANNELS$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Neoznačuje nic: videa i Shorts jsou vypnuté." },
+  "ruleWhatBoth": { "message": "videa a Shorts" },
+  "ruleWhatVideos": { "message": "videa" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "odebíraných kanálů" },
+  "ruleChannelsSubscribedAndList": { "message": "odebíraných kanálů a kanálů z vašeho seznamu „Vždy označovat“" },
+  "ruleChannelsAll": { "message": "všech kanálů" },
+  "ruleChannelsList": { "message": "kanálů z vašeho seznamu „Vždy označovat“" },
+  "ruleWhenInstant": { "message": "hned po otevření" },
+  "ruleWhenPercent": {
+    "message": "v $PERCENT$ % videa",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "po $MINUTES$ min přehrávání",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "v $PERCENT$ % videa nebo po $MINUTES$ min přehrávání, podle toho, co nastane dřív",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "v náhodném okamžiku" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ označené video",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "Označená videa: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$ s",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ h $MINUTES$ min",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
