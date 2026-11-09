@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Automatikusan kedveli a YouTube-videókat az általad választott csatornákon." },
+
+  "locale": { "message": "hu" },
+
+  "switchLabel": { "message": "Videók automatikus kedvelése" },
+  "switchActive": { "message": "Aktív" },
+  "switchPaused": { "message": "Szünetel" },
+  "pausedBanner": { "message": "A bővítmény semmit sem kedvel, amíg szünetel." },
+  "badgeUpdate": { "message": "ÚJ" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: új verzió jelent meg ($VERSION$)",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Új verzió: $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Ez a videó" },
+  "sectionThisChannel": { "message": "Ez a csatorna" },
+  "sectionRule": { "message": "Érvényes szabály" },
+  "openSettings": { "message": "Beállítások módosítása →" },
+  "settingsShow": { "message": "Beállítások megjelenítése" },
+  "settingsHide": { "message": "Vissza a videóhoz" },
+  "openFullPage": { "message": "Megnyitás teljes oldalon ↗" },
+  "noVideo": { "message": "Nyiss meg egy videót vagy Shortot a YouTube-on, hogy lásd, mit tesz vele a bővítmény, vagy egy csatornaoldalt, hogy eldöntsd, kedvelje-e a videóit." },
+  "noVideoHint": { "message": "Ha egy videó már nyitva van, töltsd újra az oldalt." },
+
+  "channelUnknown": { "message": "Ismeretlen csatorna" },
+  "channelSubscribed": { "message": "Feliratkoztál" },
+  "channelNotSubscribed": { "message": "Nem iratkoztál fel" },
+  "kindVideo": { "message": "Videó" },
+  "kindVideoDuration": {
+    "message": "Videó, $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Élő közvetítés" },
+
+  "statusLikedTitle": { "message": "Automatikusan kedvelve" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "azonnal megnyitáskor" },
+  "likedHowLikeNow": { "message": "a kérésedre" },
+  "likedHowAt": {
+    "message": "a videó ezen pontján: $TIME$",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "$DURATION$ nézés után",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Kedvelés a videó $PERCENT$%-ánál",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Kedvelés $MINUTES$ perc lejátszás után",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Kedvelés véletlenszerű időpontban" },
+  "statusWaitBeforeEnd": { "message": "Kedvelés közvetlenül a vége előtt" },
+  "statusWaitRemaining": {
+    "message": "Hátralévő lejátszás: $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Kedvelés egy pillanat múlva" },
+  "statusWaitDuration": { "message": "Várakozás a videó hosszára" },
+  "statusWaitAd": { "message": "Várakozás a hirdetés végére" },
+  "statusWaitAdDetail": { "message": "A hirdetések ideje nem számít bele." },
+  "statusReading": { "message": "Az oldal olvasása…" },
+  "statusReadingDetail": { "message": "Shortsnál a YouTube néha csak akkor jeleníti meg a gombokat, ha az egér a videó fölött mozog." },
+  "statusConfirming": { "message": "Annak ellenőrzése, hogy a kedvelés megtörtént-e…" },
+  "statusFailedTitle": { "message": "A kedvelést nem sikerült megerősíteni" },
+  "statusFailedDetail": { "message": "A „Tetszik” gomb nem reagált. Az újrapróbálkozáshoz töltsd újra az oldalt." },
+
+  "statusAlreadyLikedTitle": { "message": "Már kedvelve" },
+  "statusNotLikedTitle": { "message": "Nincs kedvelve" },
+  "reasonAlreadyLiked": { "message": "Ezt a videót már kedvelted: a bővítmény nem nyúl hozzá." },
+  "reasonAlreadyDisliked": { "message": "Ennél a videónál a „Nem tetszik” gombot választottad: a bővítmény nem nyúl hozzá." },
+  "reasonSkippedByUser": { "message": "Azt kérted, hogy most ne kedvelje. Akkor kedvelheti, amikor újra megnézed." },
+  "reasonVideoExcluded": { "message": "Kizártad ezt a videót: soha nem kedveli, amíg meg nem szünteted a kizárást." },
+  "reasonNotSubscribed": { "message": "Nem iratkoztál fel erre a csatornára. A videót kedveli, ha feliratkozol." },
+  "reasonNotInAlwaysList": { "message": "Csak a „Mindig kedveld” listád csatornáit kedveli." },
+  "reasonInNeverList": { "message": "Ez a csatorna a „Soha ne kedveld” listádon van." },
+  "reasonShortsOff": { "message": "A beállításaid szerint a Shortsokat nem kedveli." },
+  "reasonNormalVideosOff": { "message": "A beállításaid szerint csak a Shortsokat kedveli." },
+  "statusWouldLike": { "message": "Kedvelné" },
+  "statusWouldLikeDetail": { "message": "ha a bővítmény aktív lenne." },
+
+  "actionLikeNow": { "message": "Kedvelés most" },
+  "actionSkip": { "message": "Most ne" },
+  "actionRestart": { "message": "Újrakezdés ennél a videónál" },
+  "actionRetry": { "message": "Újra" },
+  "removedLikeTitle": { "message": "Kedvelés visszavonva" },
+  "removedLikeRestart": { "message": "Visszavontad a kedvelést. Kezdd újra, hogy a bővítmény újra ellenőrizze a videót." },
+  "removedDislikeTitle": { "message": "„Nem tetszik” visszavonva" },
+  "removedDislikeRestart": { "message": "Visszavontad a „Nem tetszik” jelölést. Kezdd újra, hogy a bővítmény újra ellenőrizze a videót." },
+  "likeRemovedNextOpening": { "message": "A videó következő megnyitásakor újra kedveli." },
+  "likeRemovedAt": {
+    "message": "Újra kedveli, amikor a lejátszás ismét eléri ezt a pontot: $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Videó újrakedvelése, ha visszavonom a kedvelést" },
+  "relikeHint": { "message": "Amikor a lejátszás ismét túljut a tervezett ponton, vagyis miután visszatekertél elé; „Azonnal megnyitáskor” módban a következő megnyitáskor. Arra a videóra is vonatkozik, amelyet te magad kedveltél." },
+  "actionResume": { "message": "„Most ne” visszavonása" },
+  "actionExcludeVideo": { "message": "Soha ne kedvelje ezt a videót" },
+  "actionUnexcludeVideo": { "message": "Videó kizárásának megszüntetése" },
+  "channelChoiceLegend": { "message": "A csatorna videóinak kedvelése" },
+  "channelChoiceAlways": { "message": "Mindig" },
+  "channelChoiceAuto": { "message": "Beállítás szerint" },
+  "channelChoiceNever": { "message": "Soha" },
+
+  "noticeAddedAlways": { "message": "Hozzáadva: „Mindig kedveld”" },
+  "noticeAddedNever": { "message": "Hozzáadva: „Soha ne kedveld”" },
+  "noticeRemovedNever": { "message": "Eltávolítva: „Soha ne kedveld”" },
+  "noticeSkipped": { "message": "Most nincs kedvelve" },
+  "noticeVideoExcluded": { "message": "Hozzáadva a kizárt videókhoz" },
+  "noticeVideoUnexcluded": { "message": "Eltávolítva a kizárt videók közül" },
+  "noticeUndo": { "message": "Visszavonás" },
+  "noticeUndone": { "message": "Visszavonva" },
+  "noticeSaveFailed": { "message": "A módosítást nem sikerült menteni." },
+  "noticeStorageFull": { "message": "A bővítmény tárhelye megtelt: távolíts el csatornákat vagy kizárt videókat a listáidból, és próbáld újra." },
+  "noticeLoadFailed": { "message": "A beállításokat nem sikerült beolvasni." },
+  "noticeListFull": {
+    "message": "Ez a lista megtelt (legfeljebb $COUNT$ elem).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Az oldal nem válaszolt. Töltsd újra, és próbáld meg ismét." },
+  "noticeSaved": { "message": "Mentve" },
+  "noticeRemovedAlways": { "message": "Eltávolítva: „Mindig kedveld”" },
+  "noticeImportDone": {
+    "message": "Importálás kész: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ csatorna hozzáadva: „$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "$COUNT$ csatorna hozzáadva: „$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Mégse" },
+  "dialogClose": { "message": "Bezárás" },
+  "noticeCopied": { "message": "Másolva" },
+  "noticeCopyFailed": { "message": "A másolás nem sikerült: jelöld ki a szöveget, és másold ki magad." },
+  "noticeJournalCleared": { "message": "Napló törölve" },
+
+  "languageLabel": { "message": "Nyelv" },
+  "languageHint": { "message": "A böngésző nyelve, vagy egy általad választott. Javítanál egy fordítást? Javasold a GitHubon." },
+  "languageAuto": { "message": "A böngésző nyelve" },
+
+  "debugLabel": { "message": "Hibakeresési mód" },
+  "debugHint": { "message": "Napló a bővítmény működéséről, egy probléma bejelentéséhez: az utolsó 200 lépés a megnézett videók azonosítóival, csak ebben a böngészőben tárolva. Kikapcsolt módban nem készül napló." },
+  "journalCountOne": { "message": "Napló: $COUNT$ bejegyzés", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Napló: $COUNT$ bejegyzés", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Napló másolása" },
+  "journalClear": { "message": "Napló törlése" },
+
+  "navAbout": { "message": "Névjegy" },
+  "aboutHeading": { "message": "Névjegy" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, $VERSION$ verzió",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Fejlesztő" },
+  "aboutOrigin": { "message": "Eredeti projekt" },
+  "aboutFirefox": { "message": "Firefox-fork" },
+  "aboutLicense": { "message": "Licenc" },
+  "aboutInvite": { "message": "Látogass el a GitHub-tárolóba, hogy többet megtudj, kövesd az új verziókat, vagy javasolj fejlesztést. Probléma van? Jelentsd be az alábbi gombbal." },
+  "aboutRepository": { "message": "A projekt megtekintése a GitHubon" },
+  "reportOpen": { "message": "Probléma bejelentése" },
+  "reportHint": { "message": "Írd le a problémát a GitHubon megnyíló issue-ban: ez a jelentés csatolva lesz, hogy segítsen megérteni. Küldés előtt olvasd el; a csatornalistáid nincsenek benne." },
+  "reportJournalOne": {
+    "message": "Napló csatolása ($COUNT$ bejegyzés, a megnézett videók azonosítóival)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Napló csatolása ($COUNT$ bejegyzés, a megnézett videók azonosítóival)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Nem készült napló. Ha csatolni szeretnél egyet: kapcsold be a hibakeresési módot az „Egyebek” részben, ismételd meg, ami rosszul működik, majd térj vissza ide." },
+  "reportTextLabel": { "message": "Jelentés" },
+  "reportCopy": { "message": "Jelentés másolása" },
+  "reportIssue": { "message": "Issue nyitása a GitHubon" },
+  "reportCut": { "message": "A jelentés túl hosszú az issue címéhez, ezért ott le van rövidítve. Másold ki a teljes jelentést, és illeszd be az issue-ba." },
+  "dialogAnalyse": { "message": "Elemzés" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Csatornák hozzáadása" },
+  "addHint": { "message": "Illessz be csatorna- vagy videóhivatkozásokat, illetve @identifikátorokat, soronként egyet. A bővítmény megkérdezi a YouTube-ot, melyik csatornáról van szó, mintha megnyitnád az oldalát." },
+  "addLinesLabel": { "message": "Hivatkozások vagy @identifikátorok" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@nev\n@nev\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "Melyik listába" },
+  "addSearch": { "message": "Keresés" },
+  "addSearching": {
+    "message": "A YouTube lekérdezése… $DONE$/$TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Hozzáadás" },
+  "addApplyOne": {
+    "message": "$COUNT$ csatorna hozzáadása",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "$COUNT$ csatorna hozzáadása",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Nincs hozzáadandó csatorna: mind szerepel már a listán, vagy egyet sem talált." },
+  "addEmpty": { "message": "Illessz be legalább egy hivatkozást vagy @identifikátort." },
+  "addTooMany": {
+    "message": "Egyszerre legfeljebb $MAX$ sor.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "hozzá lesz adva" },
+  "lookupAlready": { "message": "már a listán van" },
+  "lookupMoved": {
+    "message": "átkerül innen: „$FROM$”, ide: „$TO$”",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "ugyanaz a csatorna, mint egy korábbi sorban" },
+  "lookupNotALink": { "message": "sem YouTube-csatorna vagy -videó hivatkozása, sem @identifikátor" },
+  "lookupNotFound": { "message": "a csatorna vagy a videó nem létezik a YouTube-on" },
+  "lookupUnreadable": { "message": "A YouTube nem adta meg a csatornát. Ha a YouTube-ot még soha nem nyitottad meg ebben a böngészőben, nyisd meg egyszer, és válaszd ki a sütikre vonatkozó beállítást, majd próbáld újra" },
+
+  "importTitle": { "message": "Listák importálása" },
+  "importHint": { "message": "A bővítmény által exportált fájl, vagy csatornahivatkozások listája, soronként egy. Az „Importálás” előtt semmi sem kerül mentésre: az „Elemzés” előbb megmutatja, mi fog történni." },
+  "importDropHere": { "message": "Húzz ide egy fájlt, vagy" },
+  "importBrowse": { "message": "tallózz a fájljaid között" },
+  "importPasteHint": { "message": "Ebbe az ablakba fájlt vagy szöveget is beilleszthetsz (Ctrl+V)." },
+  "importChange": { "message": "Csere" },
+  "importRemove": { "message": "Eltávolítás" },
+  "importPasted": { "message": "Beillesztett szöveg" },
+  "importSourceFile": { "message": "A bővítmény által exportált fájl" },
+  "importSourceLinksOne": {
+    "message": "Hivatkozáslista, $COUNT$ sor",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Hivatkozáslista, $COUNT$ sor",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Ez nem a bővítmény exportja, és nem is hivatkozáslista." },
+  "importNoSource": { "message": "Előbb válassz egy fájlt, vagy illessz be szöveget." },
+  "importNoPart": { "message": "Jelölj be legalább egy importálandó részt." },
+  "importListFull": {
+    "message": "Egy lista több mint $COUNT$ elemet tartalmazna: semmi sem lenne importálva.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Mit importál" },
+  "importLinksTarget": { "message": "Ezek a csatornák ide kerülnek" },
+  "importModeLabel": { "message": "Már létező elemek" },
+  "importModeAddNew": { "message": "Csak az újak hozzáadása" },
+  "importModeAddNewHint": { "message": "Egy listán már szereplő csatorna a helyén marad." },
+  "importModeFollow": { "message": "Hozzáadás és a fájl követése" },
+  "importModeFollowHint": { "message": "Egy már létező csatorna átkerül abba a listába, amelyet a fájl megad." },
+  "importModeReplace": { "message": "Minden cseréje a fájlra" },
+  "importModeReplaceHint": { "message": "A bejelölt részek pontosan olyanok lesznek, mint a fájlban: ami nincs benne, törlődik." },
+  "importRemember": { "message": "Választás megjegyzése" },
+  "importApply": { "message": "Importálás" },
+  "importConfirmOne": {
+    "message": "Megerősítem a fájlból hiányzó $COUNT$ elem törlését.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Megerősítem a fájlból hiányzó $COUNT$ elem törlését.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "nincs változás" },
+  "reportNothing": { "message": "Nincs változás: már minden megvan." },
+  "reportAddedOne": { "message": "$COUNT$ új", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "$COUNT$ új", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ áthelyezve", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "$COUNT$ áthelyezve", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ már megvolt", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ már megvolt", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ törölve", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ törölve", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Listák exportálása" },
+  "exportPartsLabel": { "message": "Mit exportál" },
+  "exportFormatLabel": { "message": "Formátum" },
+  "exportFormatJson": { "message": "A bővítmény fájlja (JSON)" },
+  "exportFormatJsonHint": { "message": "Változatlanul visszaimportálható, a csatornák dátumaival és képeivel." },
+  "exportFormatLinks": { "message": "Hivatkozáslista (szöveg)" },
+  "exportFormatLinksHint": { "message": "Soronként egy csatornahivatkozás a nevével, olvasásra vagy megosztásra. A kizárt videók nincsenek benne." },
+  "exportDownload": { "message": "Letöltés" },
+  "exportNothing": { "message": "Jelölj be legalább egy listát." },
+  "noticeImportInvalid": { "message": "Ez a fájl nem a YouTube Auto Like által exportált lista." },
+  "noticeImportTooBig": { "message": "Ez a fájl túl nagy ahhoz, hogy csatornalista legyen." },
+  "noticeCountReset": { "message": "Számláló nullázva" },
+  "noticeNumberInvalid": {
+    "message": "Adj meg egy számot $MIN$ és $MAX$ között.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "YouTube Auto Like beállításai" },
+  "optionsTitle": { "message": "Beállítások" },
+  "navSections": { "message": "Részek" },
+  "navChannels": { "message": "Mely csatornák" },
+  "navVideos": { "message": "Mely videók" },
+  "navWhen": { "message": "Mikor kedvelje" },
+  "navLists": { "message": "Saját listák" },
+  "navMore": { "message": "Egyebek" },
+
+  "channelsHeading": { "message": "Mely csatornák videóit kedvelje?" },
+  "channelsHint": { "message": "A „Soha ne kedveld” lista mindig elsőbbséget élvez." },
+  "likeWhatSubscribed": { "message": "Azok a csatornák, amelyekre feliratkoztam" },
+  "likeWhatSubscribedHint": { "message": "és a „Mindig kedveld” listám csatornái." },
+  "recommended": { "message": "Ajánlott" },
+  "likeWhatAll": { "message": "Minden csatorna" },
+  "likeWhatAllHint": { "message": "minden megnézett videót kedvel." },
+  "likeWhatList": { "message": "Csak a „Mindig kedveld” listám" },
+  "likeWhatListHint": { "message": "feliratkozás ide vagy oda, mást nem kedvel." },
+
+  "videosHeading": { "message": "Mely videókat?" },
+  "videosHint": { "message": "A Shortsokat akkor is felismeri, ha a hagyományos lejátszóban nyílnak meg." },
+  "likeNormalVideos": { "message": "Videók" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Mikor kedvelje őket?" },
+  "whenHint": { "message": "Ahhoz a videóhoz, amelyre te magad nyomsz „Tetszik” vagy „Nem tetszik” gombot, sosem nyúl." },
+  "modeInstant": { "message": "Azonnal megnyitáskor" },
+  "modeCustom": { "message": "Egy idő után" },
+  "modeRandom": { "message": "Véletlenszerű időpontban" },
+  "thresholdAfter": { "message": "kedvelés" },
+  "thresholdPercentUnit": { "message": "%-nál" },
+  "thresholdMinutesUnit": { "message": "perc lejátszás után" },
+  "percentLabel": { "message": "A videó százaléka" },
+  "minutesLabel": { "message": "Lejátszási percek" },
+  "thresholdKeepOne": { "message": "A két küszöb közül legalább egy bejelölve marad." },
+  "thresholdsHint": { "message": "Az elsőként elért küszöb indítja a kedvelést. A rövidebb videót két másodperccel a vége előtt kedveli. Élő közvetítésnél csak a nézés kezdete óta eltelt perceket számolja; perc-küszöb nélkül azonnal megnyitáskor kedveli. A hirdetések nem számítanak bele." },
+  "randomHint": { "message": "Minden videóban egy véletlenszerűen választott időpont. Az élő közvetítést azonnal megnyitáskor kedveli." },
+  "summaryLabel": { "message": "Összefoglalás:" },
+
+  "listsHeading": { "message": "Saját csatornalistáim" },
+  "listsHint": { "message": "Csatornát hivatkozással vagy @identifikátorral adhatsz hozzá, az ikon ablakából egy videón vagy csatornaoldalon, illetve az előzményekből. Videót az ikon ablakából zárhatsz ki." },
+  "listAlways": { "message": "Mindig kedveld" },
+  "listNever": { "message": "Soha ne kedveld" },
+  "listVideos": { "message": "Kizárt videók" },
+  "listExcludedOn": {
+    "message": "kizárva: $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Kizárás megszüntetése: $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Keresés a listában" },
+  "listImport": { "message": "Importálás" },
+  "listExport": { "message": "Exportálás" },
+  "listEmpty": { "message": "Nincs csatorna a listán. Adj hozzá hivatkozással vagy @identifikátorral, az ikon ablakából egy videón vagy csatornaoldalon, illetve az előzményekből." },
+  "listEmptyVideos": { "message": "Nincs kizárt videó. Videó kizárásához nyisd meg az ikon ablakát nézés közben, és válaszd a „Soha ne kedvelje ezt a videót” lehetőséget." },
+  "listNoMatch": { "message": "Egy csatorna sem felel meg a keresésnek." },
+  "listAddedOn": {
+    "message": "hozzáadva: $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Eltávolítás a listáról: $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$/$TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "További $COUNT$ megjelenítése",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Összes megjelenítése ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "A listákban és az előzményekben megjelenített sorok" },
+  "listPageSizeHint": { "message": "A többi a „További … megjelenítése” vagy az „Összes megjelenítése” gombbal jelenik meg. A hosszú lista önmagán belül görget, nem nyújtja meg az oldalt." },
+  "listPageSizeAll": { "message": "Összes" },
+  "listOpenChannel": { "message": "Csatorna megnyitása a YouTube-on" },
+
+  "navHistory": { "message": "Előzmények" },
+  "historyHeading": { "message": "A bővítmény kedvelései" },
+  "historyHint": {
+    "message": "Az utolsó $COUNT$, a legújabb elöl, csak ebben a böngészőben tárolva.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "A bővítmény még semmit sem kedvelt." },
+  "historyUntitled": { "message": "Cím nélküli videó" },
+  "historyChannelChoice": {
+    "message": "Csatorna videóinak kedvelése: $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Előzmények törlése" },
+  "noticeHistoryCleared": { "message": "Előzmények törölve" },
+
+  "moreHeading": { "message": "Egyebek" },
+  "themeLabel": { "message": "Téma" },
+  "themeSystem": { "message": "A rendszer szerint" },
+  "themeLight": { "message": "Világos" },
+  "themeDark": { "message": "Sötét" },
+  "updatesLabel": { "message": "Új verziók keresése" },
+  "updatesHint": { "message": "A GitHubot kérdezi, ahol a bővítmény megjelenik; a GitHub ilyenkor látja az IP-címedet." },
+  "updateEvery0": { "message": "Soha" },
+  "updateEvery30": { "message": "30 percenként" },
+  "updateEvery60": { "message": "Óránként" },
+  "updateEvery360": { "message": "6 óránként" },
+  "updateEvery1440": { "message": "Naponta" },
+  "updateEvery10080": { "message": "Hetente" },
+  "updateEveryCustom": { "message": "Egyéni…" },
+  "updateEveryPrefix": { "message": "Gyakoriság:" },
+  "updateCustomCount": { "message": "Két ellenőrzés között eltelt percek, órák vagy napok száma" },
+  "updateCustomUnit": { "message": "Mértékegység" },
+  "unitMinutesOne": { "message": "percenként" },
+  "unitMinutesOther": { "message": "percenként" },
+  "unitHoursOne": { "message": "óránként" },
+  "unitHoursOther": { "message": "óránként" },
+  "unitDaysOne": { "message": "naponként" },
+  "unitDaysOther": { "message": "naponként" },
+  "noticeFrequencyInvalid": { "message": "Adj meg 5 perc és 30 nap közötti időt." },
+  "updateCheckNow": { "message": "Ellenőrzés most" },
+  "updateStatusOff": { "message": "Nem keres új verziókat." },
+  "updateStatusNever": { "message": "Még nem volt ellenőrzés." },
+  "updateStatusChecking": { "message": "Ellenőrzés…" },
+  "updateStatusAvailable": {
+    "message": "Új verzió: $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Ellenőrizve $WHEN$: a legújabb verzió van telepítve.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Ellenőrizve $WHEN$: még nincs kiadott verzió.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "A legutóbbi ellenőrzés sikertelen volt ($WHEN$); a következő újra megpróbálja.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Az ellenőrzést nem sikerült elvégezni." },
+  "likeCountHint": { "message": "A bővítmény telepítése vagy a legutóbbi nullázás óta. A nullázás semmi mást nem változtat." },
+  "likeCountReset": { "message": "Nullázás" },
+
+  "ruleSentence": {
+    "message": "Kedveli $CHANNELS$ $WHAT$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Semmit sem kedvel: a videók és a Shortsok is ki vannak kapcsolva." },
+  "ruleWhatBoth": { "message": "videóit és Shortsait" },
+  "ruleWhatVideos": { "message": "videóit" },
+  "ruleWhatShorts": { "message": "Shortsait" },
+  "ruleChannelsSubscribed": { "message": "a feliratkozott csatornák" },
+  "ruleChannelsSubscribedAndList": { "message": "a feliratkozott és a „Mindig kedveld” listádban szereplő csatornák" },
+  "ruleChannelsAll": { "message": "az összes csatorna" },
+  "ruleChannelsList": { "message": "a „Mindig kedveld” listádban szereplő csatornák" },
+  "ruleWhenInstant": { "message": "azonnal megnyitáskor" },
+  "ruleWhenPercent": {
+    "message": "a videó $PERCENT$%-ánál",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "$MINUTES$ perc lejátszás után",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "a videó $PERCENT$%-ánál vagy $MINUTES$ perc lejátszás után, amelyik előbb jön",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "véletlenszerű időpontban" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ kedvelt videó",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ kedvelt videó",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ mp",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ perc $SECONDS$ mp",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ óra $MINUTES$ perc",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
