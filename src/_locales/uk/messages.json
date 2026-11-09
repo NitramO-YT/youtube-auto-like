@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Автоматично позначає «Подобається» відео YouTube з вибраних вами каналів." },
+
+  "locale": { "message": "uk" },
+
+  "switchLabel": { "message": "Автоматично позначати відео «Подобається»" },
+  "switchActive": { "message": "Увімкнено" },
+  "switchPaused": { "message": "На паузі" },
+  "pausedBanner": { "message": "Поки розширення на паузі, воно нічого не позначає." },
+  "badgeUpdate": { "message": "NEW" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: вийшла версія $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Вийшла версія $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Це відео" },
+  "sectionThisChannel": { "message": "Цей канал" },
+  "sectionRule": { "message": "Чинне правило" },
+  "openSettings": { "message": "Змінити налаштування →" },
+  "settingsShow": { "message": "Показати налаштування" },
+  "settingsHide": { "message": "Повернутися до відео" },
+  "openFullPage": { "message": "Відкрити на всю сторінку ↗" },
+  "noVideo": { "message": "Відкрийте відео або Short на YouTube, щоб побачити, що з ним робить розширення, або сторінку каналу, щоб вибрати, чи позначати його відео." },
+  "noVideoHint": { "message": "Якщо відео вже відкрите, перезавантажте його сторінку." },
+
+  "channelUnknown": { "message": "Невідомий канал" },
+  "channelSubscribed": { "message": "Ви підписані" },
+  "channelNotSubscribed": { "message": "Ви не підписані" },
+  "kindVideo": { "message": "Відео" },
+  "kindVideoDuration": {
+    "message": "Відео, $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Пряма трансляція" },
+
+  "statusLikedTitle": { "message": "Позначено «Подобається» автоматично" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "одразу після відкриття" },
+  "likedHowLikeNow": { "message": "на ваш запит" },
+  "likedHowAt": {
+    "message": "на $TIME$ відео",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "після $DURATION$ перегляду",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Буде позначено на $PERCENT$ % відео",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Буде позначено після $MINUTES$ хв відтворення",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Буде позначено у випадковий момент" },
+  "statusWaitBeforeEnd": { "message": "Буде позначено перед самим кінцем" },
+  "statusWaitRemaining": {
+    "message": "залишилося $DURATION$ відтворення",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Позначка за мить" },
+  "statusWaitDuration": { "message": "Очікування тривалості відео" },
+  "statusWaitAd": { "message": "Очікування кінця реклами" },
+  "statusWaitAdDetail": { "message": "Час реклами не враховується." },
+  "statusReading": { "message": "Читання сторінки…" },
+  "statusReadingDetail": { "message": "У Shorts YouTube іноді показує кнопки лише тоді, коли миша проходить над відео." },
+  "statusConfirming": { "message": "Перевірка, що позначку збережено…" },
+  "statusFailedTitle": { "message": "Не вдалося підтвердити позначку" },
+  "statusFailedDetail": { "message": "Кнопка «Подобається» не відреагувала. Перезавантажте сторінку, щоб спробувати знову." },
+
+  "statusAlreadyLikedTitle": { "message": "Уже позначено «Подобається»" },
+  "statusNotLikedTitle": { "message": "Не позначено" },
+  "reasonAlreadyLiked": { "message": "Це відео вже мало позначку «Подобається»: розширення залишає його як є." },
+  "reasonAlreadyDisliked": { "message": "Ви позначили це відео «Не подобається»: розширення залишає його як є." },
+  "reasonSkippedByUser": { "message": "Ви попросили не позначати його цього разу. Його можна буде позначити під час наступного перегляду." },
+  "reasonVideoExcluded": { "message": "Ви виключили це відео: воно ніколи не позначається, доки ви не скасуєте виключення." },
+  "reasonNotSubscribed": { "message": "Ви не підписані на цей канал. Відео буде позначено, якщо ви підпишетеся." },
+  "reasonNotInAlwaysList": { "message": "Позначаються лише канали з вашого списку «Завжди позначати»." },
+  "reasonInNeverList": { "message": "Цей канал у вашому списку «Ніколи не позначати»." },
+  "reasonShortsOff": { "message": "Згідно з вашими налаштуваннями, Shorts не позначаються." },
+  "reasonNormalVideosOff": { "message": "Згідно з вашими налаштуваннями, позначаються лише Shorts." },
+  "statusWouldLike": { "message": "Було б позначено" },
+  "statusWouldLikeDetail": { "message": "якби розширення було увімкнено." },
+
+  "actionLikeNow": { "message": "Позначити зараз" },
+  "actionSkip": { "message": "Не цього разу" },
+  "actionRestart": { "message": "Почати знову для цього відео" },
+  "actionRetry": { "message": "Повторити" },
+  "removedLikeTitle": { "message": "Позначку «Подобається» знято" },
+  "removedLikeRestart": { "message": "Ви зняли позначку «Подобається». Почніть знову, щоб розширення знову перевірило це відео." },
+  "removedDislikeTitle": { "message": "Позначку «Не подобається» знято" },
+  "removedDislikeRestart": { "message": "Ви зняли позначку «Не подобається». Почніть знову, щоб розширення знову перевірило це відео." },
+  "likeRemovedNextOpening": { "message": "Відео буде позначено знову під час наступного відкриття." },
+  "likeRemovedAt": {
+    "message": "Відео буде позначено знову, коли відтворення знову пройде $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Знову позначати відео, з якого я знімаю позначку" },
+  "relikeHint": { "message": "Коли відтворення знову проходить запланований момент, тобто після перемотування назад перед ним; з «Одразу після відкриття» під час наступного відкриття відео. Також для відео, яке ви позначили самі." },
+  "actionResume": { "message": "Скасувати «Не цього разу»" },
+  "actionExcludeVideo": { "message": "Ніколи не позначати це відео" },
+  "actionUnexcludeVideo": { "message": "Скасувати виключення цього відео" },
+  "channelChoiceLegend": { "message": "Позначати відео цього каналу" },
+  "channelChoiceAlways": { "message": "Завжди" },
+  "channelChoiceAuto": { "message": "За налаштуваннями" },
+  "channelChoiceNever": { "message": "Ніколи" },
+
+  "noticeAddedAlways": { "message": "Додано до «Завжди позначати»" },
+  "noticeAddedNever": { "message": "Додано до «Ніколи не позначати»" },
+  "noticeRemovedNever": { "message": "Вилучено з «Ніколи не позначати»" },
+  "noticeSkipped": { "message": "Цього разу без позначки" },
+  "noticeVideoExcluded": { "message": "Додано до виключених відео" },
+  "noticeVideoUnexcluded": { "message": "Вилучено з виключених відео" },
+  "noticeUndo": { "message": "Скасувати" },
+  "noticeUndone": { "message": "Скасовано" },
+  "noticeSaveFailed": { "message": "Не вдалося зберегти зміну." },
+  "noticeStorageFull": { "message": "Сховище розширення заповнене: вилучіть канали або виключені відео зі своїх списків і спробуйте знову." },
+  "noticeLoadFailed": { "message": "Не вдалося прочитати налаштування." },
+  "noticeListFull": {
+    "message": "Цей список заповнений (максимум записів: $COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Сторінка не відповіла. Перезавантажте її та спробуйте знову." },
+  "noticeSaved": { "message": "Збережено" },
+  "noticeRemovedAlways": { "message": "Вилучено з «Завжди позначати»" },
+  "noticeImportDone": {
+    "message": "Імпорт завершено: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "Каналів додано до «$LIST$»: $COUNT$",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "Каналів додано до «$LIST$»: $COUNT$",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Скасувати" },
+  "dialogClose": { "message": "Закрити" },
+  "noticeCopied": { "message": "Скопійовано" },
+  "noticeCopyFailed": { "message": "Не вдалося скопіювати: виділіть текст і скопіюйте його самі." },
+  "noticeJournalCleared": { "message": "Журнал очищено" },
+
+  "languageLabel": { "message": "Мова" },
+  "languageHint": { "message": "Мова браузера або інша на ваш вибір. Переклад можна покращити? Запропонуйте це на GitHub." },
+  "languageAuto": { "message": "Мова браузера" },
+
+  "debugLabel": { "message": "Режим налагодження" },
+  "debugHint": { "message": "Веде журнал дій розширення, щоб повідомити про проблему: останні 200 кроків з ідентифікаторами переглянутих відео, зберігаються лише в цьому браузері. Коли режим вимкнено, журнал не ведеться." },
+  "journalCountOne": { "message": "Записів у журналі: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Записів у журналі: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Копіювати журнал" },
+  "journalClear": { "message": "Очистити журнал" },
+
+  "navAbout": { "message": "Про розширення" },
+  "aboutHeading": { "message": "Про розширення" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, версія $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Розробник" },
+  "aboutOrigin": { "message": "Початковий проєкт" },
+  "aboutFirefox": { "message": "Форк для Firefox" },
+  "aboutLicense": { "message": "Ліцензія" },
+  "aboutInvite": { "message": "Щоб дізнатися більше, стежити за новими версіями чи запропонувати покращення, зайдіть до репозиторію на GitHub. Проблема? Повідомте про неї кнопкою нижче." },
+  "aboutRepository": { "message": "Проєкт на GitHub" },
+  "reportOpen": { "message": "Повідомити про проблему" },
+  "reportHint": { "message": "Опишіть проблему в issue, яке відкриється на GitHub: цей звіт додається, щоб допомогти її зрозуміти. Прочитайте його перед надсиланням; ваших списків каналів у ньому немає." },
+  "reportJournalOne": {
+    "message": "Додати журнал (записів: $COUNT$, з ідентифікаторами переглянутих відео)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Додати журнал (записів: $COUNT$, з ідентифікаторами переглянутих відео)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Журнал не вівся. Щоб додати його: увімкніть режим налагодження в розділі «Ще», повторіть те, що не працює, і поверніться сюди." },
+  "reportTextLabel": { "message": "Звіт" },
+  "reportCopy": { "message": "Копіювати звіт" },
+  "reportIssue": { "message": "Відкрити issue на GitHub" },
+  "reportCut": { "message": "Звіт задовгий для адреси issue: там його скорочено. Скопіюйте повний звіт і вставте його в issue." },
+  "dialogAnalyse": { "message": "Проаналізувати" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Додати канали" },
+  "addHint": { "message": "Вставте посилання на канали чи відео або @псевдоніми, по одному в рядку. Розширення запитує YouTube, про який канал ідеться, ніби ви відкрили його сторінку." },
+  "addLinesLabel": { "message": "Посилання або @псевдоніми" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@name\n@name\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "До списку" },
+  "addSearch": { "message": "Знайти" },
+  "addSearching": {
+    "message": "Запит до YouTube… $DONE$ з $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Додати" },
+  "addApplyOne": {
+    "message": "Додати канали ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Додати канали ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Нічого додавати: усі канали вже в цьому списку, або жодного не знайдено." },
+  "addEmpty": { "message": "Вставте хоча б одне посилання або @псевдонім." },
+  "addTooMany": {
+    "message": "Максимум рядків за раз: $MAX$.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "буде додано" },
+  "lookupAlready": { "message": "уже в цьому списку" },
+  "lookupMoved": {
+    "message": "перейде з «$FROM$» до «$TO$»",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "той самий канал, що в одному з попередніх рядків" },
+  "lookupNotALink": { "message": "не посилання на канал чи відео YouTube і не @псевдонім" },
+  "lookupNotFound": { "message": "такого каналу чи відео на YouTube немає" },
+  "lookupUnreadable": { "message": "YouTube не вказав канал. Якщо YouTube жодного разу не відкривався в цьому браузері, відкрийте його один раз і зробіть вибір щодо файлів cookie, потім спробуйте знову" },
+
+  "importTitle": { "message": "Імпорт списків" },
+  "importHint": { "message": "Файл, експортований розширенням, або список посилань на канали, по одному в рядку. До натискання «Імпортувати» нічого не зберігається: «Проаналізувати» спочатку показує, що буде зроблено." },
+  "importDropHere": { "message": "Перетягніть файл сюди або" },
+  "importBrowse": { "message": "виберіть його" },
+  "importPasteHint": { "message": "Можна також вставити файл або текст (Ctrl+V) у це вікно." },
+  "importChange": { "message": "Замінити" },
+  "importRemove": { "message": "Прибрати" },
+  "importPasted": { "message": "Вставлений текст" },
+  "importSourceFile": { "message": "Файл, експортований розширенням" },
+  "importSourceLinksOne": {
+    "message": "Список посилань, рядків: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Список посилань, рядків: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Це не експорт розширення і не список посилань." },
+  "importNoSource": { "message": "Спочатку виберіть файл або вставте текст." },
+  "importNoPart": { "message": "Позначте хоча б одну частину для імпорту." },
+  "importListFull": {
+    "message": "У списку стало б більше допустимої кількості записів ($COUNT$): нічого не було б імпортовано.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Що імпортується" },
+  "importLinksTarget": { "message": "Помістити ці канали до" },
+  "importModeLabel": { "message": "Наявні записи" },
+  "importModeAddNew": { "message": "Додати лише нові" },
+  "importModeAddNewHint": { "message": "Канал, який уже є в списку, залишається на місці." },
+  "importModeFollow": { "message": "Додати й дотримуватися файлу" },
+  "importModeFollowHint": { "message": "Наявний канал переходить до списку, який вказує файл." },
+  "importModeReplace": { "message": "Замінити все файлом" },
+  "importModeReplaceHint": { "message": "Позначені частини стають точно такими, як у файлі: те, чого в ньому немає, вилучається." },
+  "importRemember": { "message": "Запам'ятати мій вибір" },
+  "importApply": { "message": "Імпортувати" },
+  "importConfirmOne": {
+    "message": "Підтверджую вилучення записів, яких немає у файлі ($COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Підтверджую вилучення записів, яких немає у файлі ($COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "без змін" },
+  "reportNothing": { "message": "Без змін: усе вже на місці." },
+  "reportAddedOne": { "message": "нових: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "нових: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "переміщено: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "переміщено: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "уже є: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "уже є: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "вилучено: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "вилучено: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Експорт списків" },
+  "exportPartsLabel": { "message": "Що експортується" },
+  "exportFormatLabel": { "message": "Формат" },
+  "exportFormatJson": { "message": "Файл розширення (JSON)" },
+  "exportFormatJsonHint": { "message": "Імпортується назад без змін, з датами й зображеннями каналів." },
+  "exportFormatLinks": { "message": "Список посилань (текст)" },
+  "exportFormatLinksHint": { "message": "Одне посилання на канал у рядку, з його назвою, щоб прочитати чи поділитися. Виключених відео тут немає." },
+  "exportDownload": { "message": "Завантажити" },
+  "exportNothing": { "message": "Позначте хоча б один список." },
+  "noticeImportInvalid": { "message": "Цей файл не є списком, експортованим YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "Цей файл завеликий для списку каналів." },
+  "noticeCountReset": { "message": "Лічильник скинуто" },
+  "noticeNumberInvalid": {
+    "message": "Введіть число від $MIN$ до $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Налаштування YouTube Auto Like" },
+  "optionsTitle": { "message": "Налаштування" },
+  "navSections": { "message": "Розділи" },
+  "navChannels": { "message": "Які канали" },
+  "navVideos": { "message": "Які відео" },
+  "navWhen": { "message": "Коли позначати" },
+  "navLists": { "message": "Мої списки" },
+  "navMore": { "message": "Ще" },
+
+  "channelsHeading": { "message": "Які канали позначати?" },
+  "channelsHint": { "message": "Список «Ніколи не позначати» завжди має пріоритет." },
+  "likeWhatSubscribed": { "message": "Канали, на які я підписаний" },
+  "likeWhatSubscribedHint": { "message": "а також з мого списку «Завжди позначати»." },
+  "recommended": { "message": "Рекомендовано" },
+  "likeWhatAll": { "message": "Усі канали" },
+  "likeWhatAllHint": { "message": "кожне переглянуте відео позначається." },
+  "likeWhatList": { "message": "Лише мій список «Завжди позначати»" },
+  "likeWhatListHint": { "message": "з підпискою чи без, більше нічого не позначається." },
+
+  "videosHeading": { "message": "Які відео?" },
+  "videosHint": { "message": "Shorts розпізнаються, навіть якщо відкриті у звичайному програвачі." },
+  "likeNormalVideos": { "message": "Відео" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Коли позначати?" },
+  "whenHint": { "message": "Відео, яке ви самі позначили «Подобається» або «Не подобається», ніколи не чіпається." },
+  "modeInstant": { "message": "Одразу після відкриття" },
+  "modeCustom": { "message": "Через деякий час" },
+  "modeRandom": { "message": "У випадковий момент" },
+  "thresholdAfter": { "message": "після" },
+  "thresholdPercentUnit": { "message": "% відео" },
+  "thresholdMinutesUnit": { "message": "хв відтворення" },
+  "percentLabel": { "message": "Відсоток відео" },
+  "minutesLabel": { "message": "Хвилини відтворення" },
+  "thresholdKeepOne": { "message": "Принаймні один із двох порогів залишається позначеним." },
+  "thresholdsHint": { "message": "Позначку запускає перший досягнутий поріг. Коротше відео позначається за дві секунди до кінця. У прямій трансляції враховуються лише хвилини, з моменту, коли ви почали дивитися; без порогу в хвилинах трансляція позначається одразу після відкриття. Реклама не враховується." },
+  "randomHint": { "message": "Момент, вибраний випадково в кожному відео. Пряма трансляція позначається одразу після відкриття." },
+  "summaryLabel": { "message": "Підсумок:" },
+
+  "listsHeading": { "message": "Мої списки каналів" },
+  "listsHint": { "message": "Додавайте канали за посиланням або @псевдонімом, з вікна значка на відео чи сторінці каналу або з історії. Відео виключається з вікна значка." },
+  "listAlways": { "message": "Завжди позначати" },
+  "listNever": { "message": "Ніколи не позначати" },
+  "listVideos": { "message": "Виключені відео" },
+  "listExcludedOn": {
+    "message": "виключено $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Скасувати виключення: $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Пошук у списку" },
+  "listImport": { "message": "Імпорт" },
+  "listExport": { "message": "Експорт" },
+  "listEmpty": { "message": "У цьому списку немає каналів. Додайте їх за посиланням або @псевдонімом, з вікна значка на відео чи сторінці каналу або з історії." },
+  "listEmptyVideos": { "message": "Немає виключених відео. Щоб виключити відео, відкрийте вікно значка під час перегляду й виберіть «Ніколи не позначати це відео»." },
+  "listNoMatch": { "message": "Жоден канал не відповідає цьому пошуку." },
+  "listAddedOn": {
+    "message": "додано $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Вилучити з цього списку: $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ з $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Показати ще $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Показати все ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Рядків у списках та історії" },
+  "listPageSizeHint": { "message": "Решта з'являються за кнопками «Показати ще» або «Показати все». Довгий список прокручується всередині, не подовжуючи сторінку." },
+  "listPageSizeAll": { "message": "Усі" },
+  "listOpenChannel": { "message": "Відкрити канал на YouTube" },
+
+  "navHistory": { "message": "Історія" },
+  "historyHeading": { "message": "Позначки розширення" },
+  "historyHint": {
+    "message": "Останні позначки (не більше $COUNT$), від нових до старих, зберігаються лише в цьому браузері.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Розширення ще нічого не позначило." },
+  "historyUntitled": { "message": "Відео без назви" },
+  "historyChannelChoice": {
+    "message": "Позначати відео каналу $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Очистити історію" },
+  "noticeHistoryCleared": { "message": "Історію очищено" },
+
+  "moreHeading": { "message": "Ще" },
+  "themeLabel": { "message": "Тема" },
+  "themeSystem": { "message": "Як у системі" },
+  "themeLight": { "message": "Світла" },
+  "themeDark": { "message": "Темна" },
+  "updatesLabel": { "message": "Шукати нові версії" },
+  "updatesHint": { "message": "Звертається до GitHub, де публікується розширення; GitHub при цьому бачить вашу IP-адресу." },
+  "updateEvery0": { "message": "Ніколи" },
+  "updateEvery30": { "message": "Кожні 30 хв" },
+  "updateEvery60": { "message": "Щогодини" },
+  "updateEvery360": { "message": "Кожні 6 год" },
+  "updateEvery1440": { "message": "Щодня" },
+  "updateEvery10080": { "message": "Щотижня" },
+  "updateEveryCustom": { "message": "Своя частота…" },
+  "updateEveryPrefix": { "message": "Раз на" },
+  "updateCustomCount": { "message": "Кількість хвилин, годин або днів між двома перевірками" },
+  "updateCustomUnit": { "message": "Одиниця" },
+  "unitMinutesOne": { "message": "хв" },
+  "unitMinutesOther": { "message": "хв" },
+  "unitHoursOne": { "message": "год" },
+  "unitHoursOther": { "message": "год" },
+  "unitDaysOne": { "message": "дн." },
+  "unitDaysOther": { "message": "дн." },
+  "noticeFrequencyInvalid": { "message": "Введіть термін від 5 хвилин до 30 днів." },
+  "updateCheckNow": { "message": "Перевірити зараз" },
+  "updateStatusOff": { "message": "Нові версії не шукаються." },
+  "updateStatusNever": { "message": "Ще не перевірялося." },
+  "updateStatusChecking": { "message": "Перевірка…" },
+  "updateStatusAvailable": {
+    "message": "Вийшла версія $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Перевірено $WHEN$: у вас остання версія.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Перевірено $WHEN$: ще немає опублікованих версій.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Остання перевірка не вдалася $WHEN$; наступна спробує знову.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Не вдалося виконати перевірку." },
+  "likeCountHint": { "message": "З моменту встановлення розширення або з останнього скидання. Скидання більше нічого не змінює." },
+  "likeCountReset": { "message": "Скинути" },
+
+  "ruleSentence": {
+    "message": "Позначає $WHAT$ $CHANNELS$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Нічого не позначає: і відео, і Shorts вимкнено." },
+  "ruleWhatBoth": { "message": "відео й Shorts" },
+  "ruleWhatVideos": { "message": "відео" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "з каналів, на які ви підписані," },
+  "ruleChannelsSubscribedAndList": { "message": "з каналів, на які ви підписані, і з вашого списку «Завжди позначати»" },
+  "ruleChannelsAll": { "message": "з усіх каналів" },
+  "ruleChannelsList": { "message": "з каналів вашого списку «Завжди позначати»" },
+  "ruleWhenInstant": { "message": "одразу після відкриття" },
+  "ruleWhenPercent": {
+    "message": "на $PERCENT$ % відео",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "після $MINUTES$ хв відтворення",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "на $PERCENT$ % відео або після $MINUTES$ хв відтворення, залежно від того, що настане раніше",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "у випадковий момент" },
+
+  "likeCountOne": {
+    "message": "Позначено відео: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "Позначено відео: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ с",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ хв $SECONDS$ с",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ год $MINUTES$ хв",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
