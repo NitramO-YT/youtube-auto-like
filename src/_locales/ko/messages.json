@@ -158,11 +158,13 @@
   "languageAuto": { "message": "브라우저 언어" },
 
   "debugLabel": { "message": "디버그 모드" },
-  "debugHint": { "message": "문제를 신고할 때 쓰는 확장 프로그램 작업 로그입니다. 시청한 동영상의 ID가 포함된 최근 200단계가 이 브라우저에만 저장됩니다. 꺼져 있으면 로그를 남기지 않습니다." },
+  "debugHint": { "message": "문제를 신고할 때 쓰는 확장 프로그램 작업 로그입니다. 시청한 동영상의 ID와 설정·목록 변경 내용이 포함된 최근 200단계가 이 브라우저에만 저장됩니다. 꺼져 있으면 로그를 남기지 않습니다." },
   "journalCountOne": { "message": "로그: 항목 $COUNT$개", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "로그: 항목 $COUNT$개", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "로그 복사" },
   "journalClear": { "message": "로그 삭제" },
+  "journalShow": { "message": "로그 보기" },
+  "journalHide": { "message": "로그 숨기기" },
 
   "navAbout": { "message": "정보" },
   "aboutHeading": { "message": "정보" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "문제 신고" },
   "reportHint": { "message": "GitHub에서 열리는 issue에 문제를 설명해 주세요. 이해를 돕기 위해 이 보고서가 첨부됩니다. 보내기 전에 읽어 보세요. 채널 목록은 포함되지 않습니다." },
   "reportJournalOne": {
-    "message": "로그 첨부(항목 $COUNT$개, 시청한 동영상의 ID 포함)",
+    "message": "로그 첨부(항목 $COUNT$개, 시청한 동영상의 ID와 설정·목록 변경 내용 포함)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "로그 첨부(항목 $COUNT$개, 시청한 동영상의 ID 포함)",
+    "message": "로그 첨부(항목 $COUNT$개, 시청한 동영상의 ID와 설정·목록 변경 내용 포함)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "로그가 없습니다. 로그를 첨부하려면 ‘기타’에서 디버그 모드를 켜고, 문제가 되는 동작을 다시 한 다음, 여기로 돌아오세요." },

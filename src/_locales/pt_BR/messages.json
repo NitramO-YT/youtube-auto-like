@@ -158,11 +158,13 @@
   "languageAuto": { "message": "O do navegador" },
 
   "debugLabel": { "message": "Modo de depuração" },
-  "debugHint": { "message": "Mantém um registro do que a extensão faz, para relatar um problema: as últimas 200 etapas, com os identificadores dos vídeos assistidos, guardadas somente neste navegador. Desativado, nenhum registro é mantido." },
+  "debugHint": { "message": "Mantém um registro do que a extensão faz, para relatar um problema: as últimas 200 etapas, com os identificadores dos vídeos assistidos e as alterações nas configurações e listas, guardadas somente neste navegador. Desativado, nenhum registro é mantido." },
   "journalCountOne": { "message": "Registro: $COUNT$ entrada", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Registro: $COUNT$ entradas", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Copiar o registro" },
   "journalClear": { "message": "Apagar o registro" },
+  "journalShow": { "message": "Mostrar o registro" },
+  "journalHide": { "message": "Ocultar o registro" },
 
   "navAbout": { "message": "Sobre" },
   "aboutHeading": { "message": "Sobre" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Relatar um problema" },
   "reportHint": { "message": "Descreva o problema na issue que se abre no GitHub: este relatório é anexado para ajudar a entendê-lo. Leia-o antes de enviar; suas listas de canais não estão nele." },
   "reportJournalOne": {
-    "message": "Anexar o registro ($COUNT$ entrada, com os identificadores dos vídeos assistidos)",
+    "message": "Anexar o registro ($COUNT$ entrada, com os identificadores dos vídeos assistidos e as alterações nas configurações e listas)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Anexar o registro ($COUNT$ entradas, com os identificadores dos vídeos assistidos)",
+    "message": "Anexar o registro ($COUNT$ entradas, com os identificadores dos vídeos assistidos e as alterações nas configurações e listas)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Nenhum registro foi mantido. Para anexar um: ative o modo de depuração em “Mais”, refaça o que dá errado e volte aqui." },

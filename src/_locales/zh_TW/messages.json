@@ -158,11 +158,13 @@
   "languageAuto": { "message": "瀏覽器的語言" },
 
   "debugLabel": { "message": "偵錯模式" },
-  "debugHint": { "message": "記錄擴充功能的動作，以便回報問題：最近 200 個步驟，含你觀看過的影片 ID，只儲存在這個瀏覽器中。關閉時不會留下記錄。" },
+  "debugHint": { "message": "記錄擴充功能的動作，以便回報問題：最近 200 個步驟，含你觀看過的影片 ID 以及設定和清單的變更，只儲存在這個瀏覽器中。關閉時不會留下記錄。" },
   "journalCountOne": { "message": "記錄：$COUNT$ 筆", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "記錄：$COUNT$ 筆", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "複製記錄" },
   "journalClear": { "message": "清除記錄" },
+  "journalShow": { "message": "顯示記錄" },
+  "journalHide": { "message": "隱藏記錄" },
 
   "navAbout": { "message": "關於" },
   "aboutHeading": { "message": "關於" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "回報問題" },
   "reportHint": { "message": "請在 GitHub 上開啟的 issue 中描述問題：系統會附上這份報告，協助了解問題。傳送前請先閱讀；其中不含你的頻道清單。" },
   "reportJournalOne": {
-    "message": "附上記錄（$COUNT$ 筆，含你觀看過的影片 ID）",
+    "message": "附上記錄（$COUNT$ 筆，含你觀看過的影片 ID 以及設定和清單的變更）",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "附上記錄（$COUNT$ 筆，含你觀看過的影片 ID）",
+    "message": "附上記錄（$COUNT$ 筆，含你觀看過的影片 ID 以及設定和清單的變更）",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "目前沒有記錄。如要附上記錄：請在「其他」中開啟偵錯模式，重現出問題的操作，然後回到這裡。" },

@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Browserens" },
 
   "debugLabel": { "message": "Fejlfindingstilstand" },
-  "debugHint": { "message": "Til en log over, hvad udvidelsen gør, når du vil rapportere et problem: de seneste 200 trin med id'erne på de videoer, du har set, gemt kun i denne browser. Slået fra føres der ingen log." },
+  "debugHint": { "message": "Til en log over, hvad udvidelsen gør, når du vil rapportere et problem: de seneste 200 trin med id'erne på de videoer, du har set, og ændringerne af indstillinger og lister, gemt kun i denne browser. Slået fra føres der ingen log." },
   "journalCountOne": { "message": "Log: $COUNT$ post", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Log: $COUNT$ poster", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Kopiér loggen" },
   "journalClear": { "message": "Ryd loggen" },
+  "journalShow": { "message": "Vis loggen" },
+  "journalHide": { "message": "Skjul loggen" },
 
   "navAbout": { "message": "Om" },
   "aboutHeading": { "message": "Om" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Rapportér et problem" },
   "reportHint": { "message": "Beskriv problemet i det issue, der åbnes på GitHub: denne rapport vedhæftes for at hjælpe med at forstå det. Læs den, før du sender; dine kanallister er ikke med." },
   "reportJournalOne": {
-    "message": "Vedhæft loggen ($COUNT$ post med id'erne på de videoer, du har set)",
+    "message": "Vedhæft loggen ($COUNT$ post med id'erne på de videoer, du har set, og ændringerne af indstillinger og lister)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Vedhæft loggen ($COUNT$ poster med id'erne på de videoer, du har set)",
+    "message": "Vedhæft loggen ($COUNT$ poster med id'erne på de videoer, du har set, og ændringerne af indstillinger og lister)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Der er ikke ført nogen log. For at vedhæfte en: slå fejlfindingstilstand til under »Mere«, gentag det, der går galt, og vend så tilbage hertil." },

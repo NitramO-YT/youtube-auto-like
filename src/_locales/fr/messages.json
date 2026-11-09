@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Celle du navigateur" },
 
   "debugLabel": { "message": "Mode débogage" },
-  "debugHint": { "message": "Tient un journal de ce que fait l'extension, pour signaler un problème : les 200 dernières étapes, avec les identifiants des vidéos regardées, gardées dans ce navigateur seulement. Désactivé, aucun journal n'est tenu." },
+  "debugHint": { "message": "Tient un journal de ce que fait l'extension, pour signaler un problème : les 200 dernières étapes, avec les identifiants des vidéos regardées et les changements de réglages et de listes, gardées dans ce navigateur seulement. Désactivé, aucun journal n'est tenu." },
   "journalCountOne": { "message": "Journal : $COUNT$ entrée", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Journal : $COUNT$ entrées", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Copier le journal" },
   "journalClear": { "message": "Effacer le journal" },
+  "journalShow": { "message": "Afficher le journal" },
+  "journalHide": { "message": "Masquer le journal" },
 
   "navAbout": { "message": "À propos" },
   "aboutHeading": { "message": "À propos" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Signaler un problème" },
   "reportHint": { "message": "Décrivez le problème dans l'issue qui s'ouvre sur GitHub : ce rapport y est joint pour aider à le comprendre. Relisez-le avant de l'envoyer ; vos listes de chaînes n'y figurent pas." },
   "reportJournalOne": {
-    "message": "Joindre le journal ($COUNT$ entrée, avec les identifiants des vidéos regardées)",
+    "message": "Joindre le journal ($COUNT$ entrée, avec les identifiants des vidéos regardées et les changements de réglages et de listes)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Joindre le journal ($COUNT$ entrées, avec les identifiants des vidéos regardées)",
+    "message": "Joindre le journal ($COUNT$ entrées, avec les identifiants des vidéos regardées et les changements de réglages et de listes)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Aucun journal n'a été tenu. Pour en joindre un : activez le mode débogage dans « Divers », refaites ce qui pose problème, puis revenez ici." },

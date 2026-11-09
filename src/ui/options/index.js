@@ -32,7 +32,7 @@ import { createUpdateSection } from './update-section.js';
 
 const LOG_PREFIX = '[YouTube Auto Like]';
 
-const store = createStore(api);
+const store = createStore(api, { source: 'options' });
 const byId = (id) => document.getElementById(id);
 const form = byId('form');
 

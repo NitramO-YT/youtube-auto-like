@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Die van de browser" },
 
   "debugLabel": { "message": "Debugmodus" },
-  "debugHint": { "message": "Houdt een logboek bij van wat de extensie doet, om een probleem te melden: de laatste 200 stappen, met de ID's van de bekeken video's, alleen in deze browser bewaard. Uitgeschakeld wordt er geen logboek bijgehouden." },
+  "debugHint": { "message": "Houdt een logboek bij van wat de extensie doet, om een probleem te melden: de laatste 200 stappen, met de ID's van de bekeken video's en de wijzigingen in instellingen en lijsten, alleen in deze browser bewaard. Uitgeschakeld wordt er geen logboek bijgehouden." },
   "journalCountOne": { "message": "Logboek: $COUNT$ item", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Logboek: $COUNT$ items", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Logboek kopiëren" },
   "journalClear": { "message": "Logboek wissen" },
+  "journalShow": { "message": "Logboek tonen" },
+  "journalHide": { "message": "Logboek verbergen" },
 
   "navAbout": { "message": "Over" },
   "aboutHeading": { "message": "Over" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Een probleem melden" },
   "reportHint": { "message": "Beschrijf het probleem in de issue die op GitHub opent: dit rapport wordt bijgevoegd om het te helpen begrijpen. Lees het voor je het verstuurt; je kanaallijsten staan er niet in." },
   "reportJournalOne": {
-    "message": "Het logboek bijvoegen ($COUNT$ item, met de ID's van de bekeken video's)",
+    "message": "Het logboek bijvoegen ($COUNT$ item, met de ID's van de bekeken video's en de wijzigingen in instellingen en lijsten)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Het logboek bijvoegen ($COUNT$ items, met de ID's van de bekeken video's)",
+    "message": "Het logboek bijvoegen ($COUNT$ items, met de ID's van de bekeken video's en de wijzigingen in instellingen en lijsten)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Er is geen logboek bijgehouden. Om er een bij te voegen: zet de debugmodus aan onder ‘Meer’, doe opnieuw wat misgaat en kom dan hier terug." },

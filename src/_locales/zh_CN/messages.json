@@ -158,11 +158,13 @@
   "languageAuto": { "message": "浏览器的语言" },
 
   "debugLabel": { "message": "调试模式" },
-  "debugHint": { "message": "记录扩展程序的操作，以便报告问题：最近 200 个步骤，包含你观看过的视频 ID，只保存在此浏览器中。关闭时不记录日志。" },
+  "debugHint": { "message": "记录扩展程序的操作，以便报告问题：最近 200 个步骤，包含你观看过的视频 ID 以及设置和列表的更改，只保存在此浏览器中。关闭时不记录日志。" },
   "journalCountOne": { "message": "日志：$COUNT$ 条", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "日志：$COUNT$ 条", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "复制日志" },
   "journalClear": { "message": "清除日志" },
+  "journalShow": { "message": "显示日志" },
+  "journalHide": { "message": "隐藏日志" },
 
   "navAbout": { "message": "关于" },
   "aboutHeading": { "message": "关于" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "报告问题" },
   "reportHint": { "message": "请在 GitHub 上打开的 issue 中描述问题：系统会附上这份报告，帮助理解问题。发送前请先阅读；其中不包含你的频道列表。" },
   "reportJournalOne": {
-    "message": "附上日志（$COUNT$ 条，包含你观看过的视频 ID）",
+    "message": "附上日志（$COUNT$ 条，包含你观看过的视频 ID 以及设置和列表的更改）",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "附上日志（$COUNT$ 条，包含你观看过的视频 ID）",
+    "message": "附上日志（$COUNT$ 条，包含你观看过的视频 ID 以及设置和列表的更改）",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "目前没有日志。如需附上日志：请在“其他”中开启调试模式，重现出问题的操作，然后回到这里。" },

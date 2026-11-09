@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Wika ng browser" },
 
   "debugLabel": { "message": "Debug mode" },
-  "debugHint": { "message": "Para sa log ng ginagawa ng extension, kapag mag-uulat ng problema: ang huling 200 hakbang kasama ang mga ID ng mga video na pinanood mo, naka-save lang sa browser na ito. Kapag naka-off, walang log na itinatago." },
+  "debugHint": { "message": "Para sa log ng ginagawa ng extension, kapag mag-uulat ng problema: ang huling 200 hakbang kasama ang mga ID ng mga video na pinanood mo at ang mga pagbabago sa mga setting at listahan, naka-save lang sa browser na ito. Kapag naka-off, walang log na itinatago." },
   "journalCountOne": { "message": "Log: $COUNT$ entry", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Log: $COUNT$ entry", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Kopyahin ang log" },
   "journalClear": { "message": "I-clear ang log" },
+  "journalShow": { "message": "Ipakita ang log" },
+  "journalHide": { "message": "Itago ang log" },
 
   "navAbout": { "message": "Tungkol dito" },
   "aboutHeading": { "message": "Tungkol dito" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Mag-ulat ng problema" },
   "reportHint": { "message": "Ilarawan ang problema sa issue na bubukas sa GitHub: ilalakip ang ulat na ito para makatulong na maunawaan ito. Basahin ito bago ipadala; hindi kasama ang mga listahan mo ng channel." },
   "reportJournalOne": {
-    "message": "Ilakip ang log ($COUNT$ entry, kasama ang mga ID ng mga video na pinanood mo)",
+    "message": "Ilakip ang log ($COUNT$ entry, kasama ang mga ID ng mga video na pinanood mo at ang mga pagbabago sa mga setting at listahan)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Ilakip ang log ($COUNT$ entry, kasama ang mga ID ng mga video na pinanood mo)",
+    "message": "Ilakip ang log ($COUNT$ entry, kasama ang mga ID ng mga video na pinanood mo at ang mga pagbabago sa mga setting at listahan)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Walang log na naitago. Para maglakip ng log: i-on ang debug mode sa “Iba pa”, ulitin ang nagkakaproblema, saka bumalik dito." },

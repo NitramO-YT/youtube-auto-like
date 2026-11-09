@@ -198,10 +198,12 @@
       <div class="row-toggle" id="journal-row" hidden>
         <span id="journal-count"></span>
         <span class="more-buttons">
+          <button type="button" class="btn" id="journal-toggle" aria-expanded="false" aria-controls="journal-view"></button>
           <button type="button" class="btn" id="journal-copy" data-i18n="journalCopy"></button>
           <button type="button" class="btn" id="journal-clear" data-i18n="journalClear"></button>
         </span>
       </div>
+      <ol class="journal-view" id="journal-view" dir="ltr" tabindex="0" aria-labelledby="journal-count" hidden></ol>
     </section>
 
     <section class="block" id="about" aria-labelledby="about-heading">

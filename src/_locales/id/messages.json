@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Bahasa browser" },
 
   "debugLabel": { "message": "Mode debug" },
-  "debugHint": { "message": "Untuk log tentang apa yang dilakukan ekstensi, guna melaporkan masalah: 200 langkah terakhir dengan ID video yang Anda tonton, hanya disimpan di browser ini. Jika nonaktif, tidak ada log yang disimpan." },
+  "debugHint": { "message": "Untuk log tentang apa yang dilakukan ekstensi, guna melaporkan masalah: 200 langkah terakhir dengan ID video yang Anda tonton serta perubahan setelan dan daftar, hanya disimpan di browser ini. Jika nonaktif, tidak ada log yang disimpan." },
   "journalCountOne": { "message": "Log: $COUNT$ entri", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Log: $COUNT$ entri", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Salin log" },
   "journalClear": { "message": "Hapus log" },
+  "journalShow": { "message": "Tampilkan log" },
+  "journalHide": { "message": "Sembunyikan log" },
 
   "navAbout": { "message": "Tentang" },
   "aboutHeading": { "message": "Tentang" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Laporkan masalah" },
   "reportHint": { "message": "Jelaskan masalahnya di issue yang terbuka di GitHub: laporan ini dilampirkan untuk membantu memahaminya. Baca dulu sebelum mengirim; daftar channel Anda tidak disertakan." },
   "reportJournalOne": {
-    "message": "Lampirkan log ($COUNT$ entri, dengan ID video yang Anda tonton)",
+    "message": "Lampirkan log ($COUNT$ entri, dengan ID video yang Anda tonton serta perubahan setelan dan daftar)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Lampirkan log ($COUNT$ entri, dengan ID video yang Anda tonton)",
+    "message": "Lampirkan log ($COUNT$ entri, dengan ID video yang Anda tonton serta perubahan setelan dan daftar)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Tidak ada log yang disimpan. Untuk melampirkannya: aktifkan mode debug di “Lainnya”, ulangi hal yang bermasalah, lalu kembali ke sini." },

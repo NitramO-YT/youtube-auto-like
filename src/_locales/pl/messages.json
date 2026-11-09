@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Język przeglądarki" },
 
   "debugLabel": { "message": "Tryb debugowania" },
-  "debugHint": { "message": "Prowadzi dziennik działań rozszerzenia, aby zgłosić problem: ostatnie 200 kroków, z identyfikatorami obejrzanych filmów, przechowywane tylko w tej przeglądarce. Gdy jest wyłączony, dziennik nie jest prowadzony." },
+  "debugHint": { "message": "Prowadzi dziennik działań rozszerzenia, aby zgłosić problem: ostatnie 200 kroków, z identyfikatorami obejrzanych filmów i zmianami ustawień oraz list, przechowywane tylko w tej przeglądarce. Gdy jest wyłączony, dziennik nie jest prowadzony." },
   "journalCountOne": { "message": "Wpisy w dzienniku: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Wpisy w dzienniku: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Kopiuj dziennik" },
   "journalClear": { "message": "Wyczyść dziennik" },
+  "journalShow": { "message": "Pokaż dziennik" },
+  "journalHide": { "message": "Ukryj dziennik" },
 
   "navAbout": { "message": "O rozszerzeniu" },
   "aboutHeading": { "message": "O rozszerzeniu" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Zgłoś problem" },
   "reportHint": { "message": "Opisz problem w zgłoszeniu, które otworzy się na GitHubie: ten raport zostanie dołączony, aby pomóc go zrozumieć. Przeczytaj go przed wysłaniem; twoich list kanałów w nim nie ma." },
   "reportJournalOne": {
-    "message": "Dołącz dziennik (wpisy: $COUNT$, z identyfikatorami obejrzanych filmów)",
+    "message": "Dołącz dziennik (wpisy: $COUNT$, z identyfikatorami obejrzanych filmów i zmianami ustawień oraz list)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Dołącz dziennik (wpisy: $COUNT$, z identyfikatorami obejrzanych filmów)",
+    "message": "Dołącz dziennik (wpisy: $COUNT$, z identyfikatorami obejrzanych filmów i zmianami ustawień oraz list)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Dziennik nie był prowadzony. Aby go dołączyć: włącz tryb debugowania w sekcji „Więcej”, powtórz to, co nie działa, i wróć tutaj." },

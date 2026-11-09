@@ -50,7 +50,8 @@ const DEFAULTS = {
   // Newest first: the order in which channels and videos are stored.
   listSort: 'added-desc',
   // Keeps the journal of what the extension does (core/journal.js), for the
-  // report of a problem; off by default, the journal naming the videos watched.
+  // report of a problem; off by default, the journal naming the videos watched
+  // and the channels of the lists.
   debug: false,
   // Language of the extension pages: the browser's, or one of core/locales.js.
   language: AUTO_LANGUAGE,

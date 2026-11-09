@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Die des Browsers" },
 
   "debugLabel": { "message": "Debug-Modus" },
-  "debugHint": { "message": "Führt ein Protokoll dessen, was die Erweiterung tut, um ein Problem zu melden: die letzten 200 Schritte, mit den IDs der angesehenen Videos, nur in diesem Browser gespeichert. Ausgeschaltet wird kein Protokoll geführt." },
+  "debugHint": { "message": "Führt ein Protokoll dessen, was die Erweiterung tut, um ein Problem zu melden: die letzten 200 Schritte, mit den IDs der angesehenen Videos und den Änderungen an Einstellungen und Listen, nur in diesem Browser gespeichert. Ausgeschaltet wird kein Protokoll geführt." },
   "journalCountOne": { "message": "Protokoll: $COUNT$ Eintrag", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Protokoll: $COUNT$ Einträge", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Protokoll kopieren" },
   "journalClear": { "message": "Protokoll löschen" },
+  "journalShow": { "message": "Protokoll anzeigen" },
+  "journalHide": { "message": "Protokoll ausblenden" },
 
   "navAbout": { "message": "Über" },
   "aboutHeading": { "message": "Über" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Problem melden" },
   "reportHint": { "message": "Beschreibe das Problem in dem Issue, das sich auf GitHub öffnet: Dieser Bericht wird angehängt, um es zu verstehen. Lies ihn vor dem Absenden; deine Kanallisten sind nicht darin enthalten." },
   "reportJournalOne": {
-    "message": "Protokoll anhängen ($COUNT$ Eintrag, mit den IDs der angesehenen Videos)",
+    "message": "Protokoll anhängen ($COUNT$ Eintrag, mit den IDs der angesehenen Videos und den Änderungen an Einstellungen und Listen)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Protokoll anhängen ($COUNT$ Einträge, mit den IDs der angesehenen Videos)",
+    "message": "Protokoll anhängen ($COUNT$ Einträge, mit den IDs der angesehenen Videos und den Änderungen an Einstellungen und Listen)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Es wurde kein Protokoll geführt. Um eines anzuhängen: Schalte den Debug-Modus unter „Weiteres“ ein, wiederhole, was nicht funktioniert, und komm dann hierher zurück." },

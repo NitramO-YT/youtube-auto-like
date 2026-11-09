@@ -5,9 +5,14 @@
  * extension as is.
  *
  * The API is passed in, so that tests can use a fake one.
+ *
+ * While the debug mode is on, the changes a page makes to the settings, the
+ * like count and the history go into the journal, in the same write as the
+ * change, each line naming the page (source).
  */
 import { addToHistory, normalizeHistory } from '../core/history.js';
-import { addToJournal, normalizeJournal } from '../core/journal.js';
+import { addToJournal, journalEntry, normalizeJournal } from '../core/journal.js';
+import { settingsChanges } from '../core/settings-changes.js';
 import { normalizeSettings } from '../core/settings.js';
 import { normalizeUpdateState } from '../core/update.js';
 
@@ -21,8 +26,22 @@ function validCount(value) {
   return Number.isInteger(value) && value >= 0 ? value : 0;
 }
 
-export function createStore(api) {
+/**
+ * @param {object} api The extension API.
+ * @param {{ source?: string, now?: () => number }} options source names, in
+ *   the journal, the page making the changes ("popup", "options").
+ */
+export function createStore(api, { source = 'extension', now = Date.now } = {}) {
   const area = api.storage.local;
+
+  /** { journal } with lines added, to write along with a change; {} while the debug mode is off. */
+  function journalItems(stored, settings, lines) {
+    if (!settings.debug || lines.length === 0) return {};
+    const at = now();
+    const entries = lines.map(({ videoId, text }) => journalEntry(at, videoId, `${source}: ${text}`));
+    return { [JOURNAL_KEY]: addToJournal(normalizeJournal(stored[JOURNAL_KEY]), entries) };
+  }
+
   return {
     async loadSettings() {
       const stored = await area.get(SETTINGS_KEY);
@@ -41,7 +60,11 @@ export function createStore(api) {
      * loaded. change receives normalized settings and returns new ones.
      */
     async updateSettings(change) {
-      return this.saveSettings(change(await this.loadSettings()));
+      const stored = await area.get([SETTINGS_KEY, JOURNAL_KEY]);
+      const before = normalizeSettings(stored[SETTINGS_KEY]);
+      const after = normalizeSettings(change(before));
+      await area.set({ [SETTINGS_KEY]: after, ...journalItems(stored, after, settingsChanges(before, after)) });
+      return after;
     },
 
     /** Calls listener with the new settings, normalized, after each change. */
@@ -92,7 +115,10 @@ export function createStore(api) {
     /** Replaces the history (clearing it, or its undo). */
     async setHistory(history) {
       const normalized = normalizeHistory(history);
-      await area.set({ [HISTORY_KEY]: normalized });
+      const stored = await area.get([SETTINGS_KEY, HISTORY_KEY, JOURNAL_KEY]);
+      const previous = normalizeHistory(stored[HISTORY_KEY]).length;
+      const line = { videoId: null, text: `history set to ${normalized.length} likes (was ${previous})` };
+      await area.set({ [HISTORY_KEY]: normalized, ...journalItems(stored, normalizeSettings(stored[SETTINGS_KEY]), [line]) });
       return normalized;
     },
 
@@ -161,7 +187,9 @@ export function createStore(api) {
     /** Sets the like count (reset, or its undo); a value that is not a count gives 0. */
     async setLikeCount(count) {
       const likeCount = validCount(count);
-      await area.set({ [STATS_KEY]: { likeCount } });
+      const stored = await area.get([SETTINGS_KEY, STATS_KEY, JOURNAL_KEY]);
+      const line = { videoId: null, text: `like count set to ${likeCount} (was ${validCount(stored[STATS_KEY]?.likeCount)})` };
+      await area.set({ [STATS_KEY]: { likeCount }, ...journalItems(stored, normalizeSettings(stored[SETTINGS_KEY]), [line]) });
       return likeCount;
     },
   };

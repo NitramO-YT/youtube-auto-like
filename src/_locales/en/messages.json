@@ -183,11 +183,13 @@
   "languageAuto": { "message": "The browser's" },
 
   "debugLabel": { "message": "Debug mode" },
-  "debugHint": { "message": "Keeps a journal of what the extension does, to report a problem: the last 200 steps, with the IDs of the videos watched, kept in this browser only. Off, no journal is kept." },
+  "debugHint": { "message": "Keeps a journal of what the extension does, to report a problem: the last 200 steps, with the IDs of the videos watched and the changes to the settings and lists, kept in this browser only. Off, no journal is kept." },
   "journalCountOne": { "message": "Journal: $COUNT$ entry", "placeholders": { "count": { "content": "$1", "example": "1" } } },
   "journalCountOther": { "message": "Journal: $COUNT$ entries", "placeholders": { "count": { "content": "$1", "example": "42" } } },
   "journalCopy": { "message": "Copy the journal" },
   "journalClear": { "message": "Clear the journal" },
+  "journalShow": { "message": "Show the journal" },
+  "journalHide": { "message": "Hide the journal" },
 
   "navAbout": { "message": "About" },
   "aboutHeading": { "message": "About" },
@@ -204,11 +206,11 @@
   "reportOpen": { "message": "Report a problem" },
   "reportHint": { "message": "Describe the problem in the issue that opens on GitHub: this report is attached to help understand it. Read it before sending it; your channel lists are not in it." },
   "reportJournalOne": {
-    "message": "Attach the journal ($COUNT$ entry, with the IDs of the videos watched)",
+    "message": "Attach the journal ($COUNT$ entry, with the IDs of the videos watched and the changes to the settings and lists)",
     "placeholders": { "count": { "content": "$1", "example": "1" } }
   },
   "reportJournalOther": {
-    "message": "Attach the journal ($COUNT$ entries, with the IDs of the videos watched)",
+    "message": "Attach the journal ($COUNT$ entries, with the IDs of the videos watched and the changes to the settings and lists)",
     "placeholders": { "count": { "content": "$1", "example": "42" } }
   },
   "reportDebugOff": { "message": "No journal was kept. To attach one: turn the debug mode on in “More”, do again what goes wrong, then come back here." },

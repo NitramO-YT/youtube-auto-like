@@ -158,11 +158,13 @@
   "languageAuto": { "message": "ブラウザの言語" },
 
   "debugLabel": { "message": "デバッグモード" },
-  "debugHint": { "message": "問題を報告するために、拡張機能の動作をログに記録します。視聴した動画の ID を含む直近 200 件の手順を、このブラウザにだけ保存します。オフのときはログを記録しません。" },
+  "debugHint": { "message": "問題を報告するために、拡張機能の動作をログに記録します。視聴した動画の ID と設定・リストの変更 を含む直近 200 件の手順を、このブラウザにだけ保存します。オフのときはログを記録しません。" },
   "journalCountOne": { "message": "ログ: $COUNT$ 件", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "ログ: $COUNT$ 件", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "ログをコピー" },
   "journalClear": { "message": "ログを消去" },
+  "journalShow": { "message": "ログを表示" },
+  "journalHide": { "message": "ログを隠す" },
 
   "navAbout": { "message": "情報" },
   "aboutHeading": { "message": "この拡張機能について" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "問題を報告" },
   "reportHint": { "message": "GitHub で開く issue に問題の内容を書いてください。理解の助けとしてこのレポートが添付されます。送信前に内容を確認してください。チャンネルのリストは含まれません。" },
   "reportJournalOne": {
-    "message": "ログを添付する（$COUNT$ 件、視聴した動画の ID を含む）",
+    "message": "ログを添付する（$COUNT$ 件、視聴した動画の ID と設定・リストの変更 を含む）",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "ログを添付する（$COUNT$ 件、視聴した動画の ID を含む）",
+    "message": "ログを添付する（$COUNT$ 件、視聴した動画の ID と設定・リストの変更 を含む）",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "ログは記録されていません。添付するには、「その他」でデバッグモードをオンにし、問題の操作をもう一度行ってから、ここに戻ってください。" },

@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Jazyk prohlížeče" },
 
   "debugLabel": { "message": "Režim ladění" },
-  "debugHint": { "message": "Protokol toho, co rozšíření dělá, pro nahlášení problému: posledních 200 kroků s ID sledovaných videí, uložený jen v tomto prohlížeči. Když je režim vypnutý, protokol se nevede." },
+  "debugHint": { "message": "Protokol toho, co rozšíření dělá, pro nahlášení problému: posledních 200 kroků s ID sledovaných videí a změnami nastavení a seznamů, uložený jen v tomto prohlížeči. Když je režim vypnutý, protokol se nevede." },
   "journalCountOne": { "message": "Protokol: $COUNT$ záznam", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Záznamy v protokolu: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Zkopírovat protokol" },
   "journalClear": { "message": "Vymazat protokol" },
+  "journalShow": { "message": "Zobrazit protokol" },
+  "journalHide": { "message": "Skrýt protokol" },
 
   "navAbout": { "message": "O rozšíření" },
   "aboutHeading": { "message": "O rozšíření" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Nahlásit problém" },
   "reportHint": { "message": "Popište problém v issue, které se otevře na GitHubu: toto hlášení se přiloží, aby pomohlo ho pochopit. Před odesláním si ho přečtěte; vaše seznamy kanálů v něm nejsou." },
   "reportJournalOne": {
-    "message": "Přiložit protokol ($COUNT$ záznam, s ID sledovaných videí)",
+    "message": "Přiložit protokol ($COUNT$ záznam, s ID sledovaných videí a změnami nastavení a seznamů)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Přiložit protokol (záznamy: $COUNT$, s ID sledovaných videí)",
+    "message": "Přiložit protokol (záznamy: $COUNT$, s ID sledovaných videí a změnami nastavení a seznamů)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Žádný protokol se nevedl. Chcete-li ho přiložit: zapněte režim ladění v části „Další“, zopakujte to, co nefunguje, a pak se sem vraťte." },

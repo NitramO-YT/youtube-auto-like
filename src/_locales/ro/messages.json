@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Limba browserului" },
 
   "debugLabel": { "message": "Mod depanare" },
-  "debugHint": { "message": "Pentru un jurnal al acțiunilor extensiei, ca să raportezi o problemă: ultimii 200 de pași, cu ID-urile videoclipurilor vizionate, păstrați doar în acest browser. Cât timp este dezactivat, nu se ține niciun jurnal." },
+  "debugHint": { "message": "Pentru un jurnal al acțiunilor extensiei, ca să raportezi o problemă: ultimii 200 de pași, cu ID-urile videoclipurilor vizionate și modificările setărilor și listelor, păstrați doar în acest browser. Cât timp este dezactivat, nu se ține niciun jurnal." },
   "journalCountOne": { "message": "Jurnal: $COUNT$ intrare", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Intrări în jurnal: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Copiază jurnalul" },
   "journalClear": { "message": "Golește jurnalul" },
+  "journalShow": { "message": "Afișează jurnalul" },
+  "journalHide": { "message": "Ascunde jurnalul" },
 
   "navAbout": { "message": "Despre" },
   "aboutHeading": { "message": "Despre" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Raportează o problemă" },
   "reportHint": { "message": "Descrie problema în issue-ul care se deschide pe GitHub: acest raport este atașat ca să ajute la înțelegerea ei. Citește-l înainte de a-l trimite; listele tale de canale nu sunt incluse." },
   "reportJournalOne": {
-    "message": "Atașează jurnalul ($COUNT$ intrare, cu ID-urile videoclipurilor vizionate)",
+    "message": "Atașează jurnalul ($COUNT$ intrare, cu ID-urile videoclipurilor vizionate și modificările setărilor și listelor)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Atașează jurnalul (intrări: $COUNT$, cu ID-urile videoclipurilor vizionate)",
+    "message": "Atașează jurnalul (intrări: $COUNT$, cu ID-urile videoclipurilor vizionate și modificările setărilor și listelor)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Nu s-a ținut niciun jurnal. Ca să atașezi unul: activează modul depanare în „Altele”, repetă ce nu funcționează, apoi revino aici." },

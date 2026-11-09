@@ -158,11 +158,13 @@
   "languageAuto": { "message": "A böngésző nyelve" },
 
   "debugLabel": { "message": "Hibakeresési mód" },
-  "debugHint": { "message": "Napló a bővítmény működéséről, egy probléma bejelentéséhez: az utolsó 200 lépés a megnézett videók azonosítóival, csak ebben a böngészőben tárolva. Kikapcsolt módban nem készül napló." },
+  "debugHint": { "message": "Napló a bővítmény működéséről, egy probléma bejelentéséhez: az utolsó 200 lépés a megnézett videók azonosítóival, valamint a beállítások és listák módosításaival, csak ebben a böngészőben tárolva. Kikapcsolt módban nem készül napló." },
   "journalCountOne": { "message": "Napló: $COUNT$ bejegyzés", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Napló: $COUNT$ bejegyzés", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Napló másolása" },
   "journalClear": { "message": "Napló törlése" },
+  "journalShow": { "message": "Napló megjelenítése" },
+  "journalHide": { "message": "Napló elrejtése" },
 
   "navAbout": { "message": "Névjegy" },
   "aboutHeading": { "message": "Névjegy" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Probléma bejelentése" },
   "reportHint": { "message": "Írd le a problémát a GitHubon megnyíló issue-ban: ez a jelentés csatolva lesz, hogy segítsen megérteni. Küldés előtt olvasd el; a csatornalistáid nincsenek benne." },
   "reportJournalOne": {
-    "message": "Napló csatolása ($COUNT$ bejegyzés, a megnézett videók azonosítóival)",
+    "message": "Napló csatolása ($COUNT$ bejegyzés, a megnézett videók azonosítóival, valamint a beállítások és listák módosításaival)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Napló csatolása ($COUNT$ bejegyzés, a megnézett videók azonosítóival)",
+    "message": "Napló csatolása ($COUNT$ bejegyzés, a megnézett videók azonosítóival, valamint a beállítások és listák módosításaival)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Nem készült napló. Ha csatolni szeretnél egyet: kapcsold be a hibakeresési módot az „Egyebek” részben, ismételd meg, ami rosszul működik, majd térj vissza ide." },

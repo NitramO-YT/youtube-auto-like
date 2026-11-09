@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Selaimen kieli" },
 
   "debugLabel": { "message": "Vianetsintätila" },
-  "debugHint": { "message": "Loki laajennuksen toiminnasta ongelman ilmoittamista varten: viimeiset 200 vaihetta katsomiesi videoiden tunnisteineen, tallennettuna vain tähän selaimeen. Kun tila on pois päältä, lokia ei pidetä." },
+  "debugHint": { "message": "Loki laajennuksen toiminnasta ongelman ilmoittamista varten: viimeiset 200 vaihetta katsomiesi videoiden tunnisteineen sekä asetusten ja listojen muutoksineen, tallennettuna vain tähän selaimeen. Kun tila on pois päältä, lokia ei pidetä." },
   "journalCountOne": { "message": "Loki: $COUNT$ merkintä", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Loki: $COUNT$ merkintää", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Kopioi loki" },
   "journalClear": { "message": "Tyhjennä loki" },
+  "journalShow": { "message": "Näytä loki" },
+  "journalHide": { "message": "Piilota loki" },
 
   "navAbout": { "message": "Tietoja" },
   "aboutHeading": { "message": "Tietoja" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Ilmoita ongelmasta" },
   "reportHint": { "message": "Kuvaile ongelma GitHubiin avautuvassa ilmoituksessa: tämä raportti liitetään mukaan sen ymmärtämisen avuksi. Lue se ennen lähettämistä; kanavalistasi eivät ole mukana." },
   "reportJournalOne": {
-    "message": "Liitä loki ($COUNT$ merkintä, katsomiesi videoiden tunnisteineen)",
+    "message": "Liitä loki ($COUNT$ merkintä, katsomiesi videoiden tunnisteineen sekä asetusten ja listojen muutoksineen)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Liitä loki ($COUNT$ merkintää, katsomiesi videoiden tunnisteineen)",
+    "message": "Liitä loki ($COUNT$ merkintää, katsomiesi videoiden tunnisteineen sekä asetusten ja listojen muutoksineen)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Lokia ei ole pidetty. Liittääksesi sellaisen: ota vianetsintätila käyttöön kohdassa ”Muut”, toista se, mikä menee vikaan, ja palaa sitten tänne." },

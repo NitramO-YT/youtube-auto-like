@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Tarayıcının dili" },
 
   "debugLabel": { "message": "Hata ayıklama modu" },
-  "debugHint": { "message": "Bir sorunu bildirmek için uzantının yaptıklarının günlüğünü tutar: izlenen videoların kimlikleriyle birlikte son 200 adım, yalnızca bu tarayıcıda saklanır. Kapalıyken günlük tutulmaz." },
+  "debugHint": { "message": "Bir sorunu bildirmek için uzantının yaptıklarının günlüğünü tutar: izlenen videoların kimlikleri ve ayar ile liste değişiklikleriyle birlikte son 200 adım, yalnızca bu tarayıcıda saklanır. Kapalıyken günlük tutulmaz." },
   "journalCountOne": { "message": "Günlük: $COUNT$ kayıt", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Günlük: $COUNT$ kayıt", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Günlüğü kopyala" },
   "journalClear": { "message": "Günlüğü temizle" },
+  "journalShow": { "message": "Günlüğü göster" },
+  "journalHide": { "message": "Günlüğü gizle" },
 
   "navAbout": { "message": "Hakkında" },
   "aboutHeading": { "message": "Hakkında" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Sorun bildir" },
   "reportHint": { "message": "Sorunu GitHub'da açılan issue'da anlatın: bu rapor, sorunu anlamaya yardımcı olmak için eklenir. Göndermeden önce okuyun; kanal listeleriniz içinde yer almaz." },
   "reportJournalOne": {
-    "message": "Günlüğü ekle ($COUNT$ kayıt, izlenen videoların kimlikleriyle)",
+    "message": "Günlüğü ekle ($COUNT$ kayıt, izlenen videoların kimlikleri ve ayar ile liste değişiklikleriyle)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Günlüğü ekle ($COUNT$ kayıt, izlenen videoların kimlikleriyle)",
+    "message": "Günlüğü ekle ($COUNT$ kayıt, izlenen videoların kimlikleri ve ayar ile liste değişiklikleriyle)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Günlük tutulmadı. Eklemek için: “Diğer” bölümünde hata ayıklama modunu açın, sorun çıkaran şeyi tekrarlayın, sonra buraya dönün." },

@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Quella del browser" },
 
   "debugLabel": { "message": "Modalità debug" },
-  "debugHint": { "message": "Tiene un registro di ciò che fa l'estensione, per segnalare un problema: gli ultimi 200 passaggi, con gli identificativi dei video guardati, conservati solo in questo browser. Disattivata, non viene tenuto alcun registro." },
+  "debugHint": { "message": "Tiene un registro di ciò che fa l'estensione, per segnalare un problema: gli ultimi 200 passaggi, con gli identificativi dei video guardati e le modifiche a impostazioni e liste, conservati solo in questo browser. Disattivata, non viene tenuto alcun registro." },
   "journalCountOne": { "message": "Registro: $COUNT$ voce", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Registro: $COUNT$ voci", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Copia il registro" },
   "journalClear": { "message": "Cancella il registro" },
+  "journalShow": { "message": "Mostra il registro" },
+  "journalHide": { "message": "Nascondi il registro" },
 
   "navAbout": { "message": "Informazioni" },
   "aboutHeading": { "message": "Informazioni" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Segnala un problema" },
   "reportHint": { "message": "Descrivi il problema nella issue che si apre su GitHub: questo rapporto viene allegato per aiutare a capirlo. Rileggilo prima di inviarlo; le tue liste di canali non ci sono." },
   "reportJournalOne": {
-    "message": "Allega il registro ($COUNT$ voce, con gli identificativi dei video guardati)",
+    "message": "Allega il registro ($COUNT$ voce, con gli identificativi dei video guardati e le modifiche a impostazioni e liste)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Allega il registro ($COUNT$ voci, con gli identificativi dei video guardati)",
+    "message": "Allega il registro ($COUNT$ voci, con gli identificativi dei video guardati e le modifiche a impostazioni e liste)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Non è stato tenuto alcun registro. Per allegarne uno: attiva la modalità debug in «Altro», rifai ciò che non funziona, poi torna qui." },

@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Webbläsarens" },
 
   "debugLabel": { "message": "Felsökningsläge" },
-  "debugHint": { "message": "För en logg över vad tillägget gör, för att rapportera ett problem: de senaste 200 stegen, med ID:n för de videor du tittat på, sparade bara i den här webbläsaren. Avstängt förs ingen logg." },
+  "debugHint": { "message": "För en logg över vad tillägget gör, för att rapportera ett problem: de senaste 200 stegen, med ID:n för de videor du tittat på och ändringarna av inställningar och listor, sparade bara i den här webbläsaren. Avstängt förs ingen logg." },
   "journalCountOne": { "message": "Logg: $COUNT$ post", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Logg: $COUNT$ poster", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Kopiera loggen" },
   "journalClear": { "message": "Rensa loggen" },
+  "journalShow": { "message": "Visa loggen" },
+  "journalHide": { "message": "Dölj loggen" },
 
   "navAbout": { "message": "Om" },
   "aboutHeading": { "message": "Om" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Rapportera ett problem" },
   "reportHint": { "message": "Beskriv problemet i det ärende som öppnas på GitHub: den här rapporten bifogas för att hjälpa till att förstå det. Läs den innan du skickar; dina kanallistor finns inte med." },
   "reportJournalOne": {
-    "message": "Bifoga loggen ($COUNT$ post, med ID:n för de videor du tittat på)",
+    "message": "Bifoga loggen ($COUNT$ post, med ID:n för de videor du tittat på och ändringarna av inställningar och listor)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Bifoga loggen ($COUNT$ poster, med ID:n för de videor du tittat på)",
+    "message": "Bifoga loggen ($COUNT$ poster, med ID:n för de videor du tittat på och ändringarna av inställningar och listor)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Ingen logg har förts. För att bifoga en: slå på felsökningsläget under ”Mer”, gör om det som går fel och kom sedan tillbaka hit." },

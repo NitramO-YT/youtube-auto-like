@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Jazyk prehliadača" },
 
   "debugLabel": { "message": "Režim ladenia" },
-  "debugHint": { "message": "Protokol toho, čo rozšírenie robí, na nahlásenie problému: posledných 200 krokov s ID pozretých videí, uložený len v tomto prehliadači. Keď je režim vypnutý, protokol sa nevedie." },
+  "debugHint": { "message": "Protokol toho, čo rozšírenie robí, na nahlásenie problému: posledných 200 krokov s ID pozretých videí a zmenami nastavení a zoznamov, uložený len v tomto prehliadači. Keď je režim vypnutý, protokol sa nevedie." },
   "journalCountOne": { "message": "Protokol: $COUNT$ záznam", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Záznamy v protokole: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Skopírovať protokol" },
   "journalClear": { "message": "Vymazať protokol" },
+  "journalShow": { "message": "Zobraziť protokol" },
+  "journalHide": { "message": "Skryť protokol" },
 
   "navAbout": { "message": "O rozšírení" },
   "aboutHeading": { "message": "O rozšírení" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Nahlásiť problém" },
   "reportHint": { "message": "Opíšte problém v issue, ktoré sa otvorí na GitHube: toto hlásenie sa priloží, aby pomohlo ho pochopiť. Pred odoslaním si ho prečítajte; vaše zoznamy kanálov v ňom nie sú." },
   "reportJournalOne": {
-    "message": "Priložiť protokol ($COUNT$ záznam, s ID pozretých videí)",
+    "message": "Priložiť protokol ($COUNT$ záznam, s ID pozretých videí a zmenami nastavení a zoznamov)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Priložiť protokol (záznamy: $COUNT$, s ID pozretých videí)",
+    "message": "Priložiť protokol (záznamy: $COUNT$, s ID pozretých videí a zmenami nastavení a zoznamov)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Žiadny protokol sa neviedol. Ak ho chcete priložiť: zapnite režim ladenia v časti „Ďalšie“, zopakujte to, čo nefunguje, a potom sa sem vráťte." },

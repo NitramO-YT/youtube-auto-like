@@ -33,7 +33,7 @@ const LOG_PREFIX = '[YouTube Auto Like]';
 // settings, and again in another when the setting changes (changeLanguage).
 let t = createTranslator((key, substitutions) => api.i18n.getMessage(key, substitutions));
 let lang = t('locale');
-const store = createStore(api);
+const store = createStore(api, { source: 'popup' });
 const byId = (id) => document.getElementById(id);
 
 const VERSION = api.runtime.getManifest().version;

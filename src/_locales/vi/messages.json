@@ -158,11 +158,13 @@
   "languageAuto": { "message": "Ngôn ngữ của trình duyệt" },
 
   "debugLabel": { "message": "Chế độ gỡ lỗi" },
-  "debugHint": { "message": "Ghi nhật ký những gì tiện ích làm, để báo cáo sự cố: 200 bước gần nhất kèm ID của các video bạn đã xem, chỉ lưu trong trình duyệt này. Khi tắt, không có nhật ký nào được ghi." },
+  "debugHint": { "message": "Ghi nhật ký những gì tiện ích làm, để báo cáo sự cố: 200 bước gần nhất kèm ID của các video bạn đã xem và các thay đổi về cài đặt và danh sách, chỉ lưu trong trình duyệt này. Khi tắt, không có nhật ký nào được ghi." },
   "journalCountOne": { "message": "Nhật ký: $COUNT$ mục", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Nhật ký: $COUNT$ mục", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Sao chép nhật ký" },
   "journalClear": { "message": "Xóa nhật ký" },
+  "journalShow": { "message": "Hiện nhật ký" },
+  "journalHide": { "message": "Ẩn nhật ký" },
 
   "navAbout": { "message": "Giới thiệu" },
   "aboutHeading": { "message": "Giới thiệu" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Báo cáo sự cố" },
   "reportHint": { "message": "Mô tả sự cố trong issue mở trên GitHub: báo cáo này được đính kèm để giúp hiểu rõ sự cố. Hãy đọc trước khi gửi; danh sách kênh của bạn không có trong đó." },
   "reportJournalOne": {
-    "message": "Đính kèm nhật ký ($COUNT$ mục, kèm ID của các video bạn đã xem)",
+    "message": "Đính kèm nhật ký ($COUNT$ mục, kèm ID của các video bạn đã xem và các thay đổi về cài đặt và danh sách)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Đính kèm nhật ký ($COUNT$ mục, kèm ID của các video bạn đã xem)",
+    "message": "Đính kèm nhật ký ($COUNT$ mục, kèm ID của các video bạn đã xem và các thay đổi về cài đặt và danh sách)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "Chưa có nhật ký nào được ghi. Để đính kèm: bật chế độ gỡ lỗi trong “Khác”, làm lại thao tác gặp lỗi, rồi quay lại đây." },

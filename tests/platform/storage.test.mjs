@@ -118,4 +118,54 @@ describe('createStore', () => {
     assert.deepEqual(await store.setJournal([]), []);
     assert.deepEqual(await store.loadJournal(), []);
   });
+
+  describe('while the debug mode is on', () => {
+    const AT = Date.parse('2026-11-09T18:00:00.000Z');
+    const debugStore = (initial) => {
+      const api = fakeApi(initial);
+      const writes = [];
+      const set = api.storage.local.set;
+      api.storage.local.set = (items) => {
+        writes.push(Object.keys(items).sort());
+        return set(items);
+      };
+      return { api, writes, store: createStore(api, { source: 'popup', now: () => AT }) };
+    };
+
+    it('writes nothing in the journal while it is off', async () => {
+      const { api, store } = debugStore();
+      await store.updateSettings((settings) => ({ ...settings, theme: 'dark' }));
+      await store.setLikeCount(0);
+      await store.setHistory([]);
+      assert.equal(JOURNAL_KEY in api.data, false);
+    });
+
+    it('notes a change of the settings, from the page that made it, in the same write', async () => {
+      const { api, writes, store } = debugStore({ [JOURNAL_KEY]: [{ at: '2026-11-09T17:00:00.000Z', videoId: null, text: 'earlier' }] });
+      await store.updateSettings((settings) => ({ ...settings, debug: true }));
+      await store.updateSettings((settings) => ({ ...settings, likeWhat: 'all' }));
+      assert.deepEqual(writes, [[JOURNAL_KEY, SETTINGS_KEY], [JOURNAL_KEY, SETTINGS_KEY]]);
+      assert.deepEqual(api.data[JOURNAL_KEY], [
+        { at: '2026-11-09T17:00:00.000Z', videoId: null, text: 'earlier' },
+        { at: '2026-11-09T18:00:00.000Z', videoId: null, text: 'popup: setting debug: false -> true' },
+        { at: '2026-11-09T18:00:00.000Z', videoId: null, text: 'popup: setting likeWhat: subscribed -> all' },
+      ]);
+    });
+
+    it('stops noting once it is turned off, and notes nothing when nothing changed', async () => {
+      const { api, store } = debugStore({ [SETTINGS_KEY]: { debug: true } });
+      await store.updateSettings((settings) => settings);
+      await store.updateSettings((settings) => ({ ...settings, debug: false }));
+      assert.equal(JOURNAL_KEY in api.data, false);
+    });
+
+    it('notes a reset of the like count and a cleared history', async () => {
+      const { api, store } = debugStore({ [SETTINGS_KEY]: { debug: true }, [STATS_KEY]: { likeCount: 37 }, [HISTORY_KEY]: [LIKE] });
+      await store.setLikeCount(0);
+      await store.setHistory([]);
+      assert.deepEqual(api.data[JOURNAL_KEY].map((entry) => entry.text), ['popup: like count set to 0 (was 37)', 'popup: history set to 0 likes (was 1)']);
+      assert.equal(api.data[STATS_KEY].likeCount, 0);
+      assert.deepEqual(api.data[HISTORY_KEY], []);
+    });
+  });
 });

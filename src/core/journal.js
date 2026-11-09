@@ -1,13 +1,16 @@
 /**
  * Journal of what the extension does, for the debug mode and the report of
  * a problem: the steps of each video (read, waiting, clicked, liked, why it
- * is not liked) and the errors. Each entry is { at, videoId, text }: at the
- * ISO date, videoId the video concerned or null, text a short line in
- * English, the language of the reports.
+ * is not liked), the errors, and the changes the popup and the options page
+ * make to the settings, the lists, the like count and the history
+ * (core/settings-changes.js, platform/storage.js). Each entry is
+ * { at, videoId, text }: at the ISO date, videoId the video concerned or
+ * null, text a short line in English, the language of the reports.
  *
- * It holds the IDs of the videos watched: the liker keeps it only while the
- * debug mode is on, in this browser only, and a report includes it only
- * when the user leaves it in.
+ * It holds the IDs of the videos watched and the channels added to or
+ * removed from the lists: it is kept only while the debug mode is on, in
+ * this browser only, and a report includes it only when the user leaves it
+ * in.
  */
 import { isValidVideoId } from './video.js';
 

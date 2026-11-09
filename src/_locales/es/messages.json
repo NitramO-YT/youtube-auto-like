@@ -158,11 +158,13 @@
   "languageAuto": { "message": "El del navegador" },
 
   "debugLabel": { "message": "Modo de depuración" },
-  "debugHint": { "message": "Lleva un registro de lo que hace la extensión, para informar de un problema: los últimos 200 pasos, con los identificadores de los videos vistos, guardados solo en este navegador. Desactivado, no se lleva ningún registro." },
+  "debugHint": { "message": "Lleva un registro de lo que hace la extensión, para informar de un problema: los últimos 200 pasos, con los identificadores de los videos vistos y los cambios en la configuración y las listas, guardados solo en este navegador. Desactivado, no se lleva ningún registro." },
   "journalCountOne": { "message": "Registro: $COUNT$ entrada", "placeholders": { "count": { "content": "$1" } } },
   "journalCountOther": { "message": "Registro: $COUNT$ entradas", "placeholders": { "count": { "content": "$1" } } },
   "journalCopy": { "message": "Copiar el registro" },
   "journalClear": { "message": "Borrar el registro" },
+  "journalShow": { "message": "Mostrar el registro" },
+  "journalHide": { "message": "Ocultar el registro" },
 
   "navAbout": { "message": "Acerca de" },
   "aboutHeading": { "message": "Acerca de" },
@@ -179,11 +181,11 @@
   "reportOpen": { "message": "Informar de un problema" },
   "reportHint": { "message": "Describe el problema en la issue que se abre en GitHub: este informe se adjunta para ayudar a entenderlo. Léelo antes de enviarlo; tus listas de canales no aparecen en él." },
   "reportJournalOne": {
-    "message": "Adjuntar el registro ($COUNT$ entrada, con los identificadores de los videos vistos)",
+    "message": "Adjuntar el registro ($COUNT$ entrada, con los identificadores de los videos vistos y los cambios en la configuración y las listas)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportJournalOther": {
-    "message": "Adjuntar el registro ($COUNT$ entradas, con los identificadores de los videos vistos)",
+    "message": "Adjuntar el registro ($COUNT$ entradas, con los identificadores de los videos vistos y los cambios en la configuración y las listas)",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportDebugOff": { "message": "No se ha llevado ningún registro. Para adjuntar uno: activa el modo de depuración en «Más», repite lo que falla y vuelve aquí." },
