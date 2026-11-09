@@ -14,6 +14,7 @@ export const LOCALES = Object.freeze({
   pl: Object.freeze({ name: 'Polski', region: 'PL' }),
   pt_BR: Object.freeze({ name: 'Português (Brasil)', region: 'BR' }),
   ru: Object.freeze({ name: 'Русский', region: 'RU' }),
+  tr: Object.freeze({ name: 'Türkçe', region: 'TR' }),
 });
 
 export const AUTO_LANGUAGE = 'auto';

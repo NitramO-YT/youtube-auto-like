@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Seçtiğiniz kanalların YouTube videolarını otomatik olarak beğenir." },
+
+  "locale": { "message": "tr" },
+
+  "switchLabel": { "message": "Videoları otomatik olarak beğen" },
+  "switchActive": { "message": "Etkin" },
+  "switchPaused": { "message": "Duraklatıldı" },
+  "pausedBanner": { "message": "Uzantı duraklatıldığı sürece hiçbir şeyi beğenmez." },
+  "badgeUpdate": { "message": "YENİ" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: $VERSION$ sürümü çıktı",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "$VERSION$ sürümü çıktı ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Bu video" },
+  "sectionThisChannel": { "message": "Bu kanal" },
+  "sectionRule": { "message": "Etkin kural" },
+  "openSettings": { "message": "Ayarları değiştir →" },
+  "settingsShow": { "message": "Ayarları göster" },
+  "settingsHide": { "message": "Videoya dön" },
+  "openFullPage": { "message": "Tam sayfada aç ↗" },
+  "noVideo": { "message": "Uzantının ne yaptığını görmek için YouTube'da bir video veya Short açın; videolarının beğenilip beğenilmeyeceğini seçmek için de bir kanal sayfası açın." },
+  "noVideoHint": { "message": "Bir video zaten açıksa sayfasını yeniden yükleyin." },
+
+  "channelUnknown": { "message": "Bilinmeyen kanal" },
+  "channelSubscribed": { "message": "Abone olundu" },
+  "channelNotSubscribed": { "message": "Abone olunmadı" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "$DURATION$ video",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Canlı yayın" },
+
+  "statusLikedTitle": { "message": "Otomatik olarak beğenildi" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "açılır açılmaz" },
+  "likedHowLikeNow": { "message": "isteğiniz üzerine" },
+  "likedHowAt": {
+    "message": "videonun $TIME$ anında",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "$DURATION$ izledikten sonra",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Videonun %$PERCENT$ kısmında beğenilecek",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "$MINUTES$ dk oynatmadan sonra beğenilecek",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Rastgele bir anda beğenilecek" },
+  "statusWaitBeforeEnd": { "message": "Bitmeden hemen önce beğenilecek" },
+  "statusWaitRemaining": {
+    "message": "$DURATION$ oynatma kaldı",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Birazdan beğenilecek" },
+  "statusWaitDuration": { "message": "Video süresi bekleniyor" },
+  "statusWaitAd": { "message": "Reklamın bitmesi bekleniyor" },
+  "statusWaitAdDetail": { "message": "Reklam süresi sayılmaz." },
+  "statusReading": { "message": "Sayfa okunuyor…" },
+  "statusReadingDetail": { "message": "Bir Short'ta YouTube düğmelerini bazen ancak fare videonun üzerinden geçince gösterir." },
+  "statusConfirming": { "message": "Beğeninin kaydedildiği kontrol ediliyor…" },
+  "statusFailedTitle": { "message": "Beğeni doğrulanamadı" },
+  "statusFailedDetail": { "message": "“Beğen” düğmesi tepki vermedi. Yeniden denemek için sayfayı yeniden yükleyin." },
+
+  "statusAlreadyLikedTitle": { "message": "Zaten beğenilmiş" },
+  "statusNotLikedTitle": { "message": "Beğenilmedi" },
+  "reasonAlreadyLiked": { "message": "Bu videonun zaten bir beğenisi vardı: uzantı onu olduğu gibi bırakır." },
+  "reasonAlreadyDisliked": { "message": "Bu videoyu beğenmediniz: uzantı onu olduğu gibi bırakır." },
+  "reasonSkippedByUser": { "message": "Bu sefer beğenilmemesini istediniz. Tekrar izlediğinizde beğenilebilir." },
+  "reasonVideoExcluded": { "message": "Bu videoyu hariç tuttunuz: siz hariç tutmayı kaldırana kadar hiç beğenilmez." },
+  "reasonNotSubscribed": { "message": "Bu kanala abone değilsiniz. Abone olursanız beğenilecek." },
+  "reasonNotInAlwaysList": { "message": "Yalnızca “Her zaman beğen” listenizdeki kanallar beğenilir." },
+  "reasonInNeverList": { "message": "Bu kanal “Asla beğenme” listenizde." },
+  "reasonShortsOff": { "message": "Ayarlarınıza göre Short'lar beğenilmez." },
+  "reasonNormalVideosOff": { "message": "Ayarlarınıza göre yalnızca Short'lar beğenilir." },
+  "statusWouldLike": { "message": "Beğenilirdi" },
+  "statusWouldLikeDetail": { "message": "uzantı etkin olsaydı." },
+
+  "actionLikeNow": { "message": "Şimdi beğen" },
+  "actionSkip": { "message": "Bu sefer değil" },
+  "actionRestart": { "message": "Bu video için yeniden başlat" },
+  "actionRetry": { "message": "Tekrar dene" },
+  "removedLikeTitle": { "message": "Beğeni kaldırıldı" },
+  "removedLikeRestart": { "message": "Beğeniyi kaldırdınız. Uzantının bu videoyu yeniden denetlemesi için yeniden başlatın." },
+  "removedDislikeTitle": { "message": "Beğenmeme kaldırıldı" },
+  "removedDislikeRestart": { "message": "Beğenmemeyi kaldırdınız. Uzantının bu videoyu yeniden denetlemesi için yeniden başlatın." },
+  "likeRemovedNextOpening": { "message": "Video bir sonraki açılışında yeniden beğenilecek." },
+  "likeRemovedAt": {
+    "message": "Oynatma yeniden $TIME$ anını geçtiğinde tekrar beğenilecek.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Beğenisini kaldırdığım bir videoyu yeniden beğen" },
+  "relikeHint": { "message": "Oynatma planlanan anı yeniden geçtiğinde, yani o anın öncesine geri sarıldıktan sonra; “Açılır açılmaz” seçiliyse videonun bir sonraki açılışında. Kendinizin beğendiği bir video için de geçerlidir." },
+  "actionResume": { "message": "“Bu sefer değil”i geri al" },
+  "actionExcludeVideo": { "message": "Bu videoyu asla beğenme" },
+  "actionUnexcludeVideo": { "message": "Bu videoyu hariç tutmayı kaldır" },
+  "channelChoiceLegend": { "message": "Bu kanalın videolarını beğen" },
+  "channelChoiceAlways": { "message": "Her zaman" },
+  "channelChoiceAuto": { "message": "Ayarlarıma göre" },
+  "channelChoiceNever": { "message": "Asla" },
+
+  "noticeAddedAlways": { "message": "“Her zaman beğen” listesine eklendi" },
+  "noticeAddedNever": { "message": "“Asla beğenme” listesine eklendi" },
+  "noticeRemovedNever": { "message": "“Asla beğenme” listesinden çıkarıldı" },
+  "noticeSkipped": { "message": "Bu sefer beğenilmedi" },
+  "noticeVideoExcluded": { "message": "Hariç tutulan videolara eklendi" },
+  "noticeVideoUnexcluded": { "message": "Hariç tutulan videolardan çıkarıldı" },
+  "noticeUndo": { "message": "Geri al" },
+  "noticeUndone": { "message": "Geri alındı" },
+  "noticeSaveFailed": { "message": "Değişiklik kaydedilemedi." },
+  "noticeStorageFull": { "message": "Uzantının depolama alanı dolu: listelerinizden kanal veya hariç tutulan video çıkarın, sonra yeniden deneyin." },
+  "noticeLoadFailed": { "message": "Ayarlar okunamadı." },
+  "noticeListFull": {
+    "message": "Bu liste dolu (en fazla $COUNT$ öğe).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Sayfa yanıt vermedi. Yeniden yükleyip tekrar deneyin." },
+  "noticeSaved": { "message": "Kaydedildi" },
+  "noticeRemovedAlways": { "message": "“Her zaman beğen” listesinden çıkarıldı" },
+  "noticeImportDone": {
+    "message": "İçe aktarma tamamlandı: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "“$LIST$” listesine $COUNT$ kanal eklendi",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "“$LIST$” listesine $COUNT$ kanal eklendi",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "İptal" },
+  "dialogClose": { "message": "Kapat" },
+  "noticeCopied": { "message": "Kopyalandı" },
+  "noticeCopyFailed": { "message": "Kopyalanamadı: metni seçip kendiniz kopyalayın." },
+  "noticeJournalCleared": { "message": "Günlük temizlendi" },
+
+  "languageLabel": { "message": "Dil" },
+  "languageHint": { "message": "Tarayıcının dili ya da seçtiğiniz başka bir dil. Düzeltilecek bir çeviri mi var? GitHub'da önerin." },
+  "languageAuto": { "message": "Tarayıcının dili" },
+
+  "debugLabel": { "message": "Hata ayıklama modu" },
+  "debugHint": { "message": "Bir sorunu bildirmek için uzantının yaptıklarının günlüğünü tutar: izlenen videoların kimlikleriyle birlikte son 200 adım, yalnızca bu tarayıcıda saklanır. Kapalıyken günlük tutulmaz." },
+  "journalCountOne": { "message": "Günlük: $COUNT$ kayıt", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Günlük: $COUNT$ kayıt", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Günlüğü kopyala" },
+  "journalClear": { "message": "Günlüğü temizle" },
+
+  "navAbout": { "message": "Hakkında" },
+  "aboutHeading": { "message": "Hakkında" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, sürüm $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Geliştiren" },
+  "aboutOrigin": { "message": "Orijinal proje" },
+  "aboutFirefox": { "message": "Firefox çatalı" },
+  "aboutLicense": { "message": "Lisans" },
+  "aboutInvite": { "message": "Daha fazla bilgi almak, yeni sürümleri izlemek veya bir iyileştirme önermek için GitHub deposunu ziyaret edin. Bir sorun mu var? Aşağıdaki düğmeyle bildirin." },
+  "aboutRepository": { "message": "Projeyi GitHub'da görüntüle" },
+  "reportOpen": { "message": "Sorun bildir" },
+  "reportHint": { "message": "Sorunu GitHub'da açılan issue'da anlatın: bu rapor, sorunu anlamaya yardımcı olmak için eklenir. Göndermeden önce okuyun; kanal listeleriniz içinde yer almaz." },
+  "reportJournalOne": {
+    "message": "Günlüğü ekle ($COUNT$ kayıt, izlenen videoların kimlikleriyle)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Günlüğü ekle ($COUNT$ kayıt, izlenen videoların kimlikleriyle)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Günlük tutulmadı. Eklemek için: “Diğer” bölümünde hata ayıklama modunu açın, sorun çıkaran şeyi tekrarlayın, sonra buraya dönün." },
+  "reportTextLabel": { "message": "Rapor" },
+  "reportCopy": { "message": "Raporu kopyala" },
+  "reportIssue": { "message": "GitHub'da issue aç" },
+  "reportCut": { "message": "Rapor, issue adresi için çok uzun: orada kısaltılmış olarak görünür. Raporun tamamını kopyalayıp issue'ya yapıştırın." },
+  "dialogAnalyse": { "message": "Analiz et" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Kanal ekle" },
+  "addHint": { "message": "Kanal veya video bağlantılarını ya da @kullanıcı adlarını, her satıra bir tane olacak şekilde yapıştırın. Uzantı, sayfasını açmışsınız gibi YouTube'a hangi kanal olduğunu sorar." },
+  "addLinesLabel": { "message": "Bağlantılar veya @kullanıcı adları" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@ad\n@ad\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "Listeye" },
+  "addSearch": { "message": "Bul" },
+  "addSearching": {
+    "message": "YouTube'a soruluyor… $DONE$ / $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Ekle" },
+  "addApplyOne": {
+    "message": "$COUNT$ kanal ekle",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "$COUNT$ kanal ekle",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Eklenecek kanal yok: hepsi zaten bu listede ya da hiçbiri bulunamadı." },
+  "addEmpty": { "message": "En az bir bağlantı veya @kullanıcı adı yapıştırın." },
+  "addTooMany": {
+    "message": "Bir seferde en fazla $MAX$ satır.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "eklenecek" },
+  "lookupAlready": { "message": "zaten bu listede" },
+  "lookupMoved": {
+    "message": "“$FROM$” listesinden “$TO$” listesine geçecek",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "önceki bir satırla aynı kanal" },
+  "lookupNotALink": { "message": "ne bir YouTube kanalı ya da videosu bağlantısı ne de bir @kullanıcı adı" },
+  "lookupNotFound": { "message": "YouTube'da böyle bir kanal veya video yok" },
+  "lookupUnreadable": { "message": "YouTube kanalı bildirmedi. YouTube bu tarayıcıda hiç açılmadıysa bir kez açıp çerez tercihinizi yapın, sonra yeniden deneyin" },
+
+  "importTitle": { "message": "Listeleri içe aktar" },
+  "importHint": { "message": "Uzantının dışa aktardığı bir dosya ya da her satırda bir tane olmak üzere kanal bağlantılarından oluşan bir liste. “İçe aktar”dan önce hiçbir şey kaydedilmez: “Analiz et” önce ne yapılacağını gösterir." },
+  "importDropHere": { "message": "Bir dosyayı buraya bırakın veya" },
+  "importBrowse": { "message": "dosyalarınıza göz atın" },
+  "importPasteHint": { "message": "Bu pencereye bir dosya veya metin de yapıştırabilirsiniz (Ctrl+V)." },
+  "importChange": { "message": "Değiştir" },
+  "importRemove": { "message": "Kaldır" },
+  "importPasted": { "message": "Yapıştırılan metin" },
+  "importSourceFile": { "message": "Uzantının dışa aktardığı dosya" },
+  "importSourceLinksOne": {
+    "message": "Bağlantı listesi, $COUNT$ satır",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Bağlantı listesi, $COUNT$ satır",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Bu, ne uzantının bir dışa aktarımı ne de bir bağlantı listesi." },
+  "importNoSource": { "message": "Önce bir dosya seçin veya metin yapıştırın." },
+  "importNoPart": { "message": "İçe aktarılacak en az bir bölüm işaretleyin." },
+  "importListFull": {
+    "message": "Bir liste $COUNT$ öğeyi aşardı: hiçbir şey içe aktarılmazdı.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "İçe aktarılanlar" },
+  "importLinksTarget": { "message": "Bu kanalları şuraya koy" },
+  "importModeLabel": { "message": "Zaten var olan öğeler" },
+  "importModeAddNew": { "message": "Yalnızca yenileri ekle" },
+  "importModeAddNewHint": { "message": "Zaten bir listede olan kanal yerinde kalır." },
+  "importModeFollow": { "message": "Ekle ve dosyaya uy" },
+  "importModeFollowHint": { "message": "Zaten var olan bir kanal, dosyanın ona verdiği listeye geçer." },
+  "importModeReplace": { "message": "Her şeyi dosyayla değiştir" },
+  "importModeReplaceHint": { "message": "İşaretli bölümler tam olarak dosyadakiler olur: dosyada olmayanlar kaldırılır." },
+  "importRemember": { "message": "Seçimimi hatırla" },
+  "importApply": { "message": "İçe aktar" },
+  "importConfirmOne": {
+    "message": "Dosyada olmayan $COUNT$ öğenin kaldırılmasını onaylıyorum.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Dosyada olmayan $COUNT$ öğenin kaldırılmasını onaylıyorum.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "değişiklik yok" },
+  "reportNothing": { "message": "Değişiklik yok: her şey zaten mevcut." },
+  "reportAddedOne": { "message": "$COUNT$ yeni", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "$COUNT$ yeni", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ taşındı", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "$COUNT$ taşındı", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ zaten mevcut", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ zaten mevcut", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ kaldırıldı", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ kaldırıldı", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Listeleri dışa aktar" },
+  "exportPartsLabel": { "message": "Dışa aktarılanlar" },
+  "exportFormatLabel": { "message": "Biçim" },
+  "exportFormatJson": { "message": "Uzantı dosyası (JSON)" },
+  "exportFormatJsonHint": { "message": "Kanalların tarihleri ve resimleriyle birlikte olduğu gibi yeniden içe aktarılır." },
+  "exportFormatLinks": { "message": "Bağlantı listesi (metin)" },
+  "exportFormatLinksHint": { "message": "Okumak veya paylaşmak için her satırda adıyla birlikte bir kanal bağlantısı. Hariç tutulan videolar yer almaz." },
+  "exportDownload": { "message": "İndir" },
+  "exportNothing": { "message": "En az bir liste işaretleyin." },
+  "noticeImportInvalid": { "message": "Bu dosya, YouTube Auto Like'ın dışa aktardığı bir liste değil." },
+  "noticeImportTooBig": { "message": "Bu dosya, bir kanal listesi olamayacak kadar büyük." },
+  "noticeCountReset": { "message": "Sayaç sıfırlandı" },
+  "noticeNumberInvalid": {
+    "message": "$MIN$ ile $MAX$ arasında bir sayı girin.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "YouTube Auto Like ayarları" },
+  "optionsTitle": { "message": "Ayarlar" },
+  "navSections": { "message": "Bölümler" },
+  "navChannels": { "message": "Hangi kanallar" },
+  "navVideos": { "message": "Hangi videolar" },
+  "navWhen": { "message": "Ne zaman beğenilsin" },
+  "navLists": { "message": "Listelerim" },
+  "navMore": { "message": "Diğer" },
+
+  "channelsHeading": { "message": "Hangi kanallar beğenilsin?" },
+  "channelsHint": { "message": "“Asla beğenme” listesi her zaman önce gelir." },
+  "likeWhatSubscribed": { "message": "Abone olduğum kanallar" },
+  "likeWhatSubscribedHint": { "message": "artı “Her zaman beğen” listemdekiler." },
+  "recommended": { "message": "Önerilen" },
+  "likeWhatAll": { "message": "Tüm kanallar" },
+  "likeWhatAllHint": { "message": "izlenen her video beğenilir." },
+  "likeWhatList": { "message": "Yalnızca “Her zaman beğen” listem" },
+  "likeWhatListHint": { "message": "abone olunsun ya da olunmasın, başka hiçbir şey beğenilmez." },
+
+  "videosHeading": { "message": "Hangi videolar?" },
+  "videosHint": { "message": "Short'lar normal oynatıcıda açılsalar bile tanınır." },
+  "likeNormalVideos": { "message": "Videolar" },
+  "likeShorts": { "message": "Short'lar" },
+
+  "whenHeading": { "message": "Ne zaman beğenilsin?" },
+  "whenHint": { "message": "Kendiniz beğendiğiniz veya beğenmediğiniz bir videoya asla dokunulmaz." },
+  "modeInstant": { "message": "Açılır açılmaz" },
+  "modeCustom": { "message": "Bir süre sonra" },
+  "modeRandom": { "message": "Rastgele bir anda" },
+  "thresholdAfter": { "message": "Eşik:" },
+  "thresholdPercentUnit": { "message": "% video" },
+  "thresholdMinutesUnit": { "message": "dakika oynatma" },
+  "percentLabel": { "message": "Video yüzdesi" },
+  "minutesLabel": { "message": "Oynatma dakikası" },
+  "thresholdKeepOne": { "message": "İki eşikten en az biri işaretli kalır." },
+  "thresholdsHint": { "message": "İlk ulaşılan eşik beğeniyi tetikler. Daha kısa bir video, bitmesine iki saniye kala beğenilir. Canlı yayında yalnızca, izlemeye başladığınız andan itibaren dakikalar sayılır; dakika eşiği yoksa açılır açılmaz beğenilir. Reklamlar sayılmaz." },
+  "randomHint": { "message": "Her videoda rastgele seçilen bir an. Canlı yayın açılır açılmaz beğenilir." },
+  "summaryLabel": { "message": "Özet:" },
+
+  "listsHeading": { "message": "Kanal listelerim" },
+  "listsHint": { "message": "Kanalları bağlantı veya @kullanıcı adıyla, bir videoda ya da kanal sayfasında simge penceresinden veya geçmişten ekleyin. Bir video, simge penceresinden hariç tutulur." },
+  "listAlways": { "message": "Her zaman beğen" },
+  "listNever": { "message": "Asla beğenme" },
+  "listVideos": { "message": "Hariç tutulan videolar" },
+  "listExcludedOn": {
+    "message": "$DATE$ tarihinde hariç tutuldu",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Hariç tutmayı kaldır: $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Listede ara" },
+  "listImport": { "message": "İçe aktar" },
+  "listExport": { "message": "Dışa aktar" },
+  "listEmpty": { "message": "Bu listede kanal yok. Bağlantı veya @kullanıcı adıyla, bir videoda ya da kanal sayfasında simge penceresinden veya geçmişten ekleyin." },
+  "listEmptyVideos": { "message": "Hariç tutulan video yok. Bir videoyu hariç tutmak için izlerken simge penceresini açın ve “Bu videoyu asla beğenme”yi seçin." },
+  "listNoMatch": { "message": "Bu aramayla eşleşen kanal yok." },
+  "listAddedOn": {
+    "message": "$DATE$ tarihinde eklendi",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Bu listeden kaldır: $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ / $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "$COUNT$ tane daha göster",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Tümünü göster ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Listelerde ve geçmişte gösterilen satırlar" },
+  "listPageSizeHint": { "message": "Diğerleri “Daha göster” veya “Tümünü göster” ile görünür. Uzun bir liste sayfayı uzatmadan kendi içinde kayar." },
+  "listPageSizeAll": { "message": "Tümü" },
+  "listOpenChannel": { "message": "Kanalı YouTube'da aç" },
+
+  "navHistory": { "message": "Geçmiş" },
+  "historyHeading": { "message": "Uzantının beğenileri" },
+  "historyHint": {
+    "message": "Son $COUNT$ beğeni, en yeniden en eskiye, yalnızca bu tarayıcıda saklanır.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Uzantı henüz hiçbir şey beğenmedi." },
+  "historyUntitled": { "message": "Başlıksız video" },
+  "historyChannelChoice": {
+    "message": "$NAME$ videolarını beğen",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Geçmişi temizle" },
+  "noticeHistoryCleared": { "message": "Geçmiş temizlendi" },
+
+  "moreHeading": { "message": "Diğer" },
+  "themeLabel": { "message": "Tema" },
+  "themeSystem": { "message": "Sistemle aynı" },
+  "themeLight": { "message": "Açık" },
+  "themeDark": { "message": "Koyu" },
+  "updatesLabel": { "message": "Yeni sürümleri ara" },
+  "updatesHint": { "message": "Uzantının yayımlandığı GitHub'a sorar; GitHub bu sırada IP adresinizi görür." },
+  "updateEvery0": { "message": "Asla" },
+  "updateEvery30": { "message": "30 dakikada bir" },
+  "updateEvery60": { "message": "Saatte bir" },
+  "updateEvery360": { "message": "6 saatte bir" },
+  "updateEvery1440": { "message": "Her gün" },
+  "updateEvery10080": { "message": "Her hafta" },
+  "updateEveryCustom": { "message": "Özel…" },
+  "updateEveryPrefix": { "message": "Her" },
+  "updateCustomCount": { "message": "İki kontrol arasındaki dakika, saat veya gün sayısı" },
+  "updateCustomUnit": { "message": "Birim" },
+  "unitMinutesOne": { "message": "dakikada bir" },
+  "unitMinutesOther": { "message": "dakikada bir" },
+  "unitHoursOne": { "message": "saatte bir" },
+  "unitHoursOther": { "message": "saatte bir" },
+  "unitDaysOne": { "message": "günde bir" },
+  "unitDaysOther": { "message": "günde bir" },
+  "noticeFrequencyInvalid": { "message": "5 dakika ile 30 gün arasında bir süre girin." },
+  "updateCheckNow": { "message": "Şimdi kontrol et" },
+  "updateStatusOff": { "message": "Yeni sürümler aranmıyor." },
+  "updateStatusNever": { "message": "Henüz kontrol edilmedi." },
+  "updateStatusChecking": { "message": "Kontrol ediliyor…" },
+  "updateStatusAvailable": {
+    "message": "$VERSION$ sürümü çıktı ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Kontrol edildi ($WHEN$): en son sürüme sahipsiniz.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Kontrol edildi ($WHEN$): henüz yayımlanmış sürüm yok.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Son kontrol başarısız oldu ($WHEN$); bir sonraki yeniden deneyecek.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Kontrol yapılamadı." },
+  "likeCountHint": { "message": "Uzantı kurulduğundan ya da son sıfırlamadan beri. Sıfırlamak başka hiçbir şeyi değiştirmez." },
+  "likeCountReset": { "message": "Sıfırla" },
+
+  "ruleSentence": {
+    "message": "$CHANNELS$ $WHAT$ $WHEN$ beğenir.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Hiçbir şeyi beğenmez: videolar ve Short'lar kapalı." },
+  "ruleWhatBoth": { "message": "videoları ve Short'ları" },
+  "ruleWhatVideos": { "message": "videoları" },
+  "ruleWhatShorts": { "message": "Short'ları" },
+  "ruleChannelsSubscribed": { "message": "Abone olduğunuz kanalların" },
+  "ruleChannelsSubscribedAndList": { "message": "Abone olduğunuz kanalların ve “Her zaman beğen” listenizdekilerin" },
+  "ruleChannelsAll": { "message": "Tüm kanalların" },
+  "ruleChannelsList": { "message": "“Her zaman beğen” listenizdeki kanalların" },
+  "ruleWhenInstant": { "message": "açılır açılmaz" },
+  "ruleWhenPercent": {
+    "message": "videonun %$PERCENT$ kısmında",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "$MINUTES$ dk oynatmadan sonra",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "videonun %$PERCENT$ kısmında veya $MINUTES$ dk oynatmadan sonra, hangisi önce gelirse",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "rastgele bir anda" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ video beğenildi",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ video beğenildi",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ sn",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ dk $SECONDS$ sn",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ sa $MINUTES$ dk",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
