@@ -25,6 +25,7 @@ export const LOCALES = Object.freeze({
   ru: Object.freeze({ name: 'Русский', region: 'RU' }),
   sk: Object.freeze({ name: 'Slovenčina', region: 'SK' }),
   sv: Object.freeze({ name: 'Svenska', region: 'SE' }),
+  th: Object.freeze({ name: 'ไทย', region: 'TH' }),
   tr: Object.freeze({ name: 'Türkçe', region: 'TR' }),
   uk: Object.freeze({ name: 'Українська', region: 'UA' }),
   vi: Object.freeze({ name: 'Tiếng Việt', region: 'VN' }),

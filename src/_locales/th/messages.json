@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "กดชอบวิดีโอ YouTube จากช่องที่คุณเลือกโดยอัตโนมัติ" },
+
+  "locale": { "message": "th" },
+
+  "switchLabel": { "message": "กดชอบวิดีโอโดยอัตโนมัติ" },
+  "switchActive": { "message": "เปิดอยู่" },
+  "switchPaused": { "message": "หยุดชั่วคราว" },
+  "pausedBanner": { "message": "ส่วนขยายจะไม่กดชอบอะไรเลยขณะหยุดชั่วคราว" },
+  "badgeUpdate": { "message": "ใหม่" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: เวอร์ชัน $VERSION$ ออกแล้ว",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "เวอร์ชัน $VERSION$ ออกแล้ว ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "วิดีโอนี้" },
+  "sectionThisChannel": { "message": "ช่องนี้" },
+  "sectionRule": { "message": "กฎที่ใช้อยู่" },
+  "openSettings": { "message": "เปลี่ยนการตั้งค่า →" },
+  "settingsShow": { "message": "แสดงการตั้งค่า" },
+  "settingsHide": { "message": "กลับไปที่วิดีโอ" },
+  "openFullPage": { "message": "เปิดแบบเต็มหน้า ↗" },
+  "noVideo": { "message": "เปิดวิดีโอหรือ Short บน YouTube เพื่อดูว่าส่วนขยายทำอะไรกับวิดีโอนั้น หรือเปิดหน้าช่องเพื่อเลือกว่าจะกดชอบวิดีโอของช่องนั้นหรือไม่" },
+  "noVideoHint": { "message": "หากเปิดวิดีโออยู่แล้ว ให้โหลดหน้าใหม่" },
+
+  "channelUnknown": { "message": "ช่องที่ไม่รู้จัก" },
+  "channelSubscribed": { "message": "ติดตามแล้ว" },
+  "channelNotSubscribed": { "message": "ยังไม่ได้ติดตาม" },
+  "kindVideo": { "message": "วิดีโอ" },
+  "kindVideoDuration": {
+    "message": "วิดีโอ $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "สตรีมสด" },
+
+  "statusLikedTitle": { "message": "กดชอบโดยอัตโนมัติแล้ว" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "ทันทีที่เปิด" },
+  "likedHowLikeNow": { "message": "ตามที่คุณขอ" },
+  "likedHowAt": {
+    "message": "ที่ $TIME$ ของวิดีโอ",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "หลังจากดู $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "จะกดชอบที่ $PERCENT$% ของวิดีโอ",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "จะกดชอบหลังเล่นไป $MINUTES$ นาที",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "จะกดชอบในช่วงเวลาสุ่ม" },
+  "statusWaitBeforeEnd": { "message": "จะกดชอบก่อนจบเล็กน้อย" },
+  "statusWaitRemaining": {
+    "message": "เหลือเวลาเล่นอีก $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "จะกดชอบในอีกสักครู่" },
+  "statusWaitDuration": { "message": "กำลังรอความยาวของวิดีโอ" },
+  "statusWaitAd": { "message": "กำลังรอให้โฆษณาจบ" },
+  "statusWaitAdDetail": { "message": "ไม่นับเวลาโฆษณา" },
+  "statusReading": { "message": "กำลังอ่านหน้าเว็บ…" },
+  "statusReadingDetail": { "message": "สำหรับ Short บางครั้ง YouTube จะแสดงปุ่มก็ต่อเมื่อเลื่อนเมาส์บนวิดีโอ" },
+  "statusConfirming": { "message": "กำลังตรวจสอบว่ากดชอบสำเร็จหรือไม่…" },
+  "statusFailedTitle": { "message": "ยืนยันการกดชอบไม่ได้" },
+  "statusFailedDetail": { "message": "ปุ่ม “ชอบ” ไม่ตอบสนอง โหลดหน้าใหม่เพื่อลองอีกครั้ง" },
+
+  "statusAlreadyLikedTitle": { "message": "กดชอบไว้แล้ว" },
+  "statusNotLikedTitle": { "message": "ไม่ได้กดชอบ" },
+  "reasonAlreadyLiked": { "message": "วิดีโอนี้ถูกกดชอบไว้แล้ว: ส่วนขยายจะไม่แตะต้อง" },
+  "reasonAlreadyDisliked": { "message": "คุณกด “ไม่ชอบ” วิดีโอนี้: ส่วนขยายจะไม่แตะต้อง" },
+  "reasonSkippedByUser": { "message": "คุณขอไม่ให้กดชอบในครั้งนี้ วิดีโออาจถูกกดชอบเมื่อคุณดูอีกครั้ง" },
+  "reasonVideoExcluded": { "message": "คุณยกเว้นวิดีโอนี้ไว้: จะไม่มีการกดชอบจนกว่าคุณจะเลิกยกเว้น" },
+  "reasonNotSubscribed": { "message": "คุณไม่ได้ติดตามช่องนี้ วิดีโอจะถูกกดชอบหากคุณติดตาม" },
+  "reasonNotInAlwaysList": { "message": "จะกดชอบเฉพาะช่องในรายการ “กดชอบเสมอ” ของคุณ" },
+  "reasonInNeverList": { "message": "ช่องนี้อยู่ในรายการ “ไม่กดชอบ” ของคุณ" },
+  "reasonShortsOff": { "message": "ตามการตั้งค่าของคุณ จะไม่กดชอบ Shorts" },
+  "reasonNormalVideosOff": { "message": "ตามการตั้งค่าของคุณ จะกดชอบเฉพาะ Shorts" },
+  "statusWouldLike": { "message": "จะถูกกดชอบ" },
+  "statusWouldLikeDetail": { "message": "หากเปิดส่วนขยายอยู่" },
+
+  "actionLikeNow": { "message": "กดชอบเลย" },
+  "actionSkip": { "message": "ไม่ใช่ครั้งนี้" },
+  "actionRestart": { "message": "เริ่มใหม่สำหรับวิดีโอนี้" },
+  "actionRetry": { "message": "ลองอีกครั้ง" },
+  "removedLikeTitle": { "message": "ยกเลิกการกดชอบแล้ว" },
+  "removedLikeRestart": { "message": "คุณยกเลิกการกดชอบแล้ว เริ่มใหม่เพื่อให้ส่วนขยายตรวจสอบวิดีโออีกครั้ง" },
+  "removedDislikeTitle": { "message": "ยกเลิก “ไม่ชอบ” แล้ว" },
+  "removedDislikeRestart": { "message": "คุณยกเลิก “ไม่ชอบ” แล้ว เริ่มใหม่เพื่อให้ส่วนขยายตรวจสอบวิดีโออีกครั้ง" },
+  "likeRemovedNextOpening": { "message": "จะกดชอบอีกครั้งเมื่อเปิดวิดีโอครั้งถัดไป" },
+  "likeRemovedAt": {
+    "message": "จะกดชอบอีกครั้งเมื่อการเล่นผ่าน $TIME$ อีกครั้ง",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "กดชอบอีกครั้งในวิดีโอที่ฉันยกเลิกการกดชอบ" },
+  "relikeHint": { "message": "เมื่อการเล่นผ่านช่วงเวลาที่กำหนดอีกครั้ง คือหลังจากคุณกรอกลับไปก่อนหน้านั้น ในโหมด “ทันทีที่เปิด” จะกดชอบเมื่อเปิดครั้งถัดไป ใช้กับวิดีโอที่คุณกดชอบเองด้วย" },
+  "actionResume": { "message": "ยกเลิก “ไม่ใช่ครั้งนี้”" },
+  "actionExcludeVideo": { "message": "ไม่กดชอบวิดีโอนี้เลย" },
+  "actionUnexcludeVideo": { "message": "เลิกยกเว้นวิดีโอนี้" },
+  "channelChoiceLegend": { "message": "กดชอบวิดีโอของช่องนี้" },
+  "channelChoiceAlways": { "message": "เสมอ" },
+  "channelChoiceAuto": { "message": "ตามการตั้งค่า" },
+  "channelChoiceNever": { "message": "ไม่เลย" },
+
+  "noticeAddedAlways": { "message": "เพิ่มลงใน “กดชอบเสมอ” แล้ว" },
+  "noticeAddedNever": { "message": "เพิ่มลงใน “ไม่กดชอบ” แล้ว" },
+  "noticeRemovedNever": { "message": "นำออกจาก “ไม่กดชอบ” แล้ว" },
+  "noticeSkipped": { "message": "ไม่กดชอบในครั้งนี้" },
+  "noticeVideoExcluded": { "message": "เพิ่มลงในวิดีโอที่ยกเว้นแล้ว" },
+  "noticeVideoUnexcluded": { "message": "นำออกจากวิดีโอที่ยกเว้นแล้ว" },
+  "noticeUndo": { "message": "เลิกทำ" },
+  "noticeUndone": { "message": "เลิกทำแล้ว" },
+  "noticeSaveFailed": { "message": "บันทึกการเปลี่ยนแปลงไม่ได้" },
+  "noticeStorageFull": { "message": "พื้นที่จัดเก็บของส่วนขยายเต็มแล้ว: นำช่องหรือวิดีโอที่ยกเว้นออกจากรายการ แล้วลองอีกครั้ง" },
+  "noticeLoadFailed": { "message": "อ่านการตั้งค่าไม่ได้" },
+  "noticeListFull": {
+    "message": "รายการนี้เต็มแล้ว (สูงสุด $COUNT$ รายการ)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "หน้าเว็บไม่ตอบสนอง โหลดหน้าใหม่แล้วลองอีกครั้ง" },
+  "noticeSaved": { "message": "บันทึกแล้ว" },
+  "noticeRemovedAlways": { "message": "นำออกจาก “กดชอบเสมอ” แล้ว" },
+  "noticeImportDone": {
+    "message": "นำเข้าเสร็จแล้ว: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "เพิ่ม $COUNT$ ช่องลงใน “$LIST$” แล้ว",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "เพิ่ม $COUNT$ ช่องลงใน “$LIST$” แล้ว",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "ยกเลิก" },
+  "dialogClose": { "message": "ปิด" },
+  "noticeCopied": { "message": "คัดลอกแล้ว" },
+  "noticeCopyFailed": { "message": "คัดลอกไม่ได้: เลือกข้อความแล้วคัดลอกเอง" },
+  "noticeJournalCleared": { "message": "ล้างบันทึกแล้ว" },
+
+  "languageLabel": { "message": "ภาษา" },
+  "languageHint": { "message": "ภาษาของเบราว์เซอร์ หรือภาษาอื่นที่คุณเลือก มีคำแปลที่ต้องแก้ไหม เสนอได้ที่ GitHub" },
+  "languageAuto": { "message": "ภาษาของเบราว์เซอร์" },
+
+  "debugLabel": { "message": "โหมดดีบัก" },
+  "debugHint": { "message": "บันทึกสิ่งที่ส่วนขยายทำ เพื่อใช้รายงานปัญหา: 200 ขั้นตอนล่าสุดพร้อม ID ของวิดีโอที่คุณดู เก็บไว้ในเบราว์เซอร์นี้เท่านั้น เมื่อปิดอยู่จะไม่มีการบันทึก" },
+  "journalCountOne": { "message": "บันทึก: $COUNT$ รายการ", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "บันทึก: $COUNT$ รายการ", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "คัดลอกบันทึก" },
+  "journalClear": { "message": "ล้างบันทึก" },
+
+  "navAbout": { "message": "เกี่ยวกับ" },
+  "aboutHeading": { "message": "เกี่ยวกับ" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like เวอร์ชัน $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "พัฒนาโดย" },
+  "aboutOrigin": { "message": "โปรเจกต์ต้นฉบับ" },
+  "aboutFirefox": { "message": "Fork สำหรับ Firefox" },
+  "aboutLicense": { "message": "สัญญาอนุญาต" },
+  "aboutInvite": { "message": "ไปที่ที่เก็บ GitHub เพื่อดูข้อมูลเพิ่มเติม ติดตามเวอร์ชันใหม่ หรือเสนอการปรับปรุง หากพบปัญหา รายงานได้ด้วยปุ่มด้านล่าง" },
+  "aboutRepository": { "message": "ดูโปรเจกต์บน GitHub" },
+  "reportOpen": { "message": "รายงานปัญหา" },
+  "reportHint": { "message": "อธิบายปัญหาใน issue ที่เปิดขึ้นบน GitHub: รายงานนี้จะแนบไปด้วยเพื่อช่วยให้เข้าใจปัญหา อ่านก่อนส่ง รายการช่องของคุณไม่ได้รวมอยู่ด้วย" },
+  "reportJournalOne": {
+    "message": "แนบบันทึก ($COUNT$ รายการ พร้อม ID ของวิดีโอที่คุณดู)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "แนบบันทึก ($COUNT$ รายการ พร้อม ID ของวิดีโอที่คุณดู)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "ไม่มีการบันทึก หากต้องการแนบ: เปิดโหมดดีบักใน “อื่นๆ” ทำสิ่งที่มีปัญหาซ้ำ แล้วกลับมาที่นี่" },
+  "reportTextLabel": { "message": "รายงาน" },
+  "reportCopy": { "message": "คัดลอกรายงาน" },
+  "reportIssue": { "message": "เปิด issue บน GitHub" },
+  "reportCut": { "message": "รายงานยาวเกินไปสำหรับที่อยู่ของ issue จึงถูกตัดให้สั้นลงที่นั่น คัดลอกรายงานทั้งหมดแล้ววางลงใน issue" },
+  "dialogAnalyse": { "message": "วิเคราะห์" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "เพิ่มช่อง" },
+  "addHint": { "message": "วางลิงก์ของช่องหรือวิดีโอ หรือ @แฮนเดิล บรรทัดละหนึ่งรายการ ส่วนขยายจะถาม YouTube ว่าเป็นช่องใด เหมือนกับที่คุณเปิดหน้าของช่องนั้น" },
+  "addLinesLabel": { "message": "ลิงก์หรือ @แฮนเดิล" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@name\n@name\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "ลงในรายการ" },
+  "addSearch": { "message": "ค้นหา" },
+  "addSearching": {
+    "message": "กำลังถาม YouTube… $DONE$/$TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "เพิ่ม" },
+  "addApplyOne": {
+    "message": "เพิ่ม $COUNT$ ช่อง",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "เพิ่ม $COUNT$ ช่อง",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "ไม่มีช่องให้เพิ่ม: ทุกช่องอยู่ในรายการแล้ว หรือไม่พบช่องใดเลย" },
+  "addEmpty": { "message": "วางลิงก์หรือ @แฮนเดิลอย่างน้อยหนึ่งรายการ" },
+  "addTooMany": {
+    "message": "ครั้งละไม่เกิน $MAX$ บรรทัด",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "จะถูกเพิ่ม" },
+  "lookupAlready": { "message": "อยู่ในรายการแล้ว" },
+  "lookupMoved": {
+    "message": "จะย้ายจาก “$FROM$” ไปยัง “$TO$”",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "ช่องเดียวกับบรรทัดก่อนหน้า" },
+  "lookupNotALink": { "message": "ไม่ใช่ลิงก์ของช่องหรือวิดีโอ YouTube และไม่ใช่ @แฮนเดิล" },
+  "lookupNotFound": { "message": "ไม่มีช่องหรือวิดีโอนี้บน YouTube" },
+  "lookupUnreadable": { "message": "YouTube ไม่ได้ระบุช่อง หากไม่เคยเปิด YouTube ในเบราว์เซอร์นี้ ให้เปิดหนึ่งครั้งแล้วเลือกตัวเลือกคุกกี้ จากนั้นลองอีกครั้ง" },
+
+  "importTitle": { "message": "นำเข้ารายการ" },
+  "importHint": { "message": "ไฟล์ที่ส่วนขยายส่งออก หรือรายการลิงก์ของช่อง บรรทัดละหนึ่งรายการ จะยังไม่บันทึกอะไรจนกว่าจะกด “นำเข้า”: “วิเคราะห์” จะแสดงก่อนว่าจะเกิดอะไรขึ้น" },
+  "importDropHere": { "message": "วางไฟล์ที่นี่ หรือ" },
+  "importBrowse": { "message": "เลือกไฟล์" },
+  "importPasteHint": { "message": "คุณยังวางไฟล์หรือข้อความ (Ctrl+V) ลงในหน้าต่างนี้ได้" },
+  "importChange": { "message": "เปลี่ยน" },
+  "importRemove": { "message": "นำออก" },
+  "importPasted": { "message": "ข้อความที่วาง" },
+  "importSourceFile": { "message": "ไฟล์ที่ส่วนขยายส่งออก" },
+  "importSourceLinksOne": {
+    "message": "รายการลิงก์ $COUNT$ บรรทัด",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "รายการลิงก์ $COUNT$ บรรทัด",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "นี่ไม่ใช่ไฟล์ที่ส่วนขยายส่งออก และไม่ใช่รายการลิงก์" },
+  "importNoSource": { "message": "เลือกไฟล์หรือวางข้อความก่อน" },
+  "importNoPart": { "message": "เลือกอย่างน้อยหนึ่งส่วนที่จะนำเข้า" },
+  "importListFull": {
+    "message": "รายการจะมีเกิน $COUNT$ รายการ: จะไม่มีการนำเข้าใดๆ",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "สิ่งที่จะนำเข้า" },
+  "importLinksTarget": { "message": "ใส่ช่องเหล่านี้ลงใน" },
+  "importModeLabel": { "message": "รายการที่มีอยู่แล้ว" },
+  "importModeAddNew": { "message": "เพิ่มเฉพาะรายการใหม่" },
+  "importModeAddNewHint": { "message": "ช่องที่อยู่ในรายการใดรายการหนึ่งแล้วจะอยู่ที่เดิม" },
+  "importModeFollow": { "message": "เพิ่มและทำตามไฟล์" },
+  "importModeFollowHint": { "message": "ช่องที่มีอยู่แล้วจะถูกย้ายไปยังรายการที่ไฟล์ระบุ" },
+  "importModeReplace": { "message": "แทนที่ทั้งหมดด้วยไฟล์" },
+  "importModeReplaceHint": { "message": "ส่วนที่เลือกจะเหมือนในไฟล์ทุกประการ: สิ่งที่ไม่มีในไฟล์จะถูกนำออก" },
+  "importRemember": { "message": "จดจำตัวเลือกของฉัน" },
+  "importApply": { "message": "นำเข้า" },
+  "importConfirmOne": {
+    "message": "ฉันยืนยันการนำออก $COUNT$ รายการที่ไม่มีในไฟล์",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "ฉันยืนยันการนำออก $COUNT$ รายการที่ไม่มีในไฟล์",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "ไม่มีการเปลี่ยนแปลง" },
+  "reportNothing": { "message": "ไม่มีการเปลี่ยนแปลง: มีทุกอย่างอยู่แล้ว" },
+  "reportAddedOne": { "message": "ใหม่ $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "ใหม่ $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "ย้าย $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "ย้าย $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "มีอยู่แล้ว $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "มีอยู่แล้ว $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "นำออก $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "นำออก $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "ส่งออกรายการ" },
+  "exportPartsLabel": { "message": "สิ่งที่จะส่งออก" },
+  "exportFormatLabel": { "message": "รูปแบบ" },
+  "exportFormatJson": { "message": "ไฟล์ของส่วนขยาย (JSON)" },
+  "exportFormatJsonHint": { "message": "นำเข้ากลับได้ตามเดิม พร้อมวันที่และรูปของช่อง" },
+  "exportFormatLinks": { "message": "รายการลิงก์ (ข้อความ)" },
+  "exportFormatLinksHint": { "message": "บรรทัดละหนึ่งลิงก์ของช่องพร้อมชื่อ สำหรับอ่านหรือแชร์ ไม่รวมวิดีโอที่ยกเว้น" },
+  "exportDownload": { "message": "ดาวน์โหลด" },
+  "exportNothing": { "message": "เลือกอย่างน้อยหนึ่งรายการ" },
+  "noticeImportInvalid": { "message": "ไฟล์นี้ไม่ใช่รายการที่ส่งออกจาก YouTube Auto Like" },
+  "noticeImportTooBig": { "message": "ไฟล์นี้ใหญ่เกินกว่าจะเป็นรายการช่อง" },
+  "noticeCountReset": { "message": "รีเซ็ตตัวนับแล้ว" },
+  "noticeNumberInvalid": {
+    "message": "ป้อนตัวเลขตั้งแต่ $MIN$ ถึง $MAX$",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "การตั้งค่า YouTube Auto Like" },
+  "optionsTitle": { "message": "การตั้งค่า" },
+  "navSections": { "message": "ส่วนต่างๆ" },
+  "navChannels": { "message": "ช่องใดบ้าง" },
+  "navVideos": { "message": "วิดีโอใดบ้าง" },
+  "navWhen": { "message": "กดชอบเมื่อใด" },
+  "navLists": { "message": "รายการของฉัน" },
+  "navMore": { "message": "อื่นๆ" },
+
+  "channelsHeading": { "message": "กดชอบวิดีโอของช่องใดบ้าง" },
+  "channelsHint": { "message": "รายการ “ไม่กดชอบ” มีลำดับความสำคัญเหนือกว่าเสมอ" },
+  "likeWhatSubscribed": { "message": "ช่องที่ฉันติดตาม" },
+  "likeWhatSubscribedHint": { "message": "รวมถึงช่องในรายการ “กดชอบเสมอ” ของฉัน" },
+  "recommended": { "message": "แนะนำ" },
+  "likeWhatAll": { "message": "ทุกช่อง" },
+  "likeWhatAllHint": { "message": "ทุกวิดีโอที่คุณดูจะถูกกดชอบ" },
+  "likeWhatList": { "message": "เฉพาะรายการ “กดชอบเสมอ” ของฉัน" },
+  "likeWhatListHint": { "message": "จะติดตามหรือไม่ก็ตาม จะไม่กดชอบช่องอื่น" },
+
+  "videosHeading": { "message": "วิดีโอใดบ้าง" },
+  "videosHint": { "message": "ระบบจะจดจำ Shorts ได้แม้เปิดในเครื่องเล่นปกติ" },
+  "likeNormalVideos": { "message": "วิดีโอ" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "กดชอบเมื่อใด" },
+  "whenHint": { "message": "วิดีโอที่คุณกด “ชอบ” หรือ “ไม่ชอบ” เองจะไม่ถูกแตะต้อง" },
+  "modeInstant": { "message": "ทันทีที่เปิด" },
+  "modeCustom": { "message": "หลังผ่านไปสักพัก" },
+  "modeRandom": { "message": "ในช่วงเวลาสุ่ม" },
+  "thresholdAfter": { "message": "หลังเล่นไป" },
+  "thresholdPercentUnit": { "message": "% ของวิดีโอ" },
+  "thresholdMinutesUnit": { "message": "นาที" },
+  "percentLabel": { "message": "เปอร์เซ็นต์ของวิดีโอ" },
+  "minutesLabel": { "message": "นาทีที่เล่น" },
+  "thresholdKeepOne": { "message": "เกณฑ์อย่างน้อยหนึ่งในสองข้อจะยังคงถูกเลือกไว้" },
+  "thresholdsHint": { "message": "เกณฑ์ที่ถึงก่อนจะทำให้กดชอบ วิดีโอที่สั้นกว่าจะถูกกดชอบสองวินาทีก่อนจบ สำหรับสตรีมสด จะนับเฉพาะนาทีนับจากที่คุณเริ่มดู ถ้าไม่มีเกณฑ์เป็นนาที จะกดชอบทันทีที่เปิด ไม่นับโฆษณา" },
+  "randomHint": { "message": "ช่วงเวลาที่สุ่มเลือกในแต่ละวิดีโอ สตรีมสดจะถูกกดชอบทันทีที่เปิด" },
+  "summaryLabel": { "message": "สรุป:" },
+
+  "listsHeading": { "message": "รายการช่องของฉัน" },
+  "listsHint": { "message": "เพิ่มช่องได้ด้วยลิงก์หรือ @แฮนเดิล จากหน้าต่างของไอคอนบนวิดีโอหรือหน้าช่อง หรือจากประวัติ ยกเว้นวิดีโอได้จากหน้าต่างของไอคอน" },
+  "listAlways": { "message": "กดชอบเสมอ" },
+  "listNever": { "message": "ไม่กดชอบ" },
+  "listVideos": { "message": "วิดีโอที่ยกเว้น" },
+  "listExcludedOn": {
+    "message": "ยกเว้นเมื่อ $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "เลิกยกเว้น $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "ค้นหาในรายการ" },
+  "listImport": { "message": "นำเข้า" },
+  "listExport": { "message": "ส่งออก" },
+  "listEmpty": { "message": "ไม่มีช่องในรายการ เพิ่มได้ด้วยลิงก์หรือ @แฮนเดิล จากหน้าต่างของไอคอนบนวิดีโอหรือหน้าช่อง หรือจากประวัติ" },
+  "listEmptyVideos": { "message": "ไม่มีวิดีโอที่ยกเว้น หากต้องการยกเว้นวิดีโอ ให้เปิดหน้าต่างของไอคอนขณะดูแล้วเลือก “ไม่กดชอบวิดีโอนี้เลย”" },
+  "listNoMatch": { "message": "ไม่มีช่องที่ตรงกับการค้นหา" },
+  "listAddedOn": {
+    "message": "เพิ่มเมื่อ $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "นำ $NAME$ ออกจากรายการ",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$/$TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "แสดงเพิ่มอีก $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "แสดงทั้งหมด ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "จำนวนบรรทัดที่แสดงในรายการและประวัติ" },
+  "listPageSizeHint": { "message": "บรรทัดที่เหลือจะแสดงด้วย “แสดงเพิ่มอีก …” หรือ “แสดงทั้งหมด” รายการยาวจะเลื่อนอยู่ภายในตัวเองโดยไม่ทำให้หน้ายาวขึ้น" },
+  "listPageSizeAll": { "message": "ทั้งหมด" },
+  "listOpenChannel": { "message": "เปิดช่องบน YouTube" },
+
+  "navHistory": { "message": "ประวัติ" },
+  "historyHeading": { "message": "การกดชอบของส่วนขยาย" },
+  "historyHint": {
+    "message": "$COUNT$ รายการล่าสุด ใหม่สุดก่อน เก็บไว้ในเบราว์เซอร์นี้เท่านั้น",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "ส่วนขยายยังไม่ได้กดชอบอะไรเลย" },
+  "historyUntitled": { "message": "วิดีโอไม่มีชื่อ" },
+  "historyChannelChoice": {
+    "message": "กดชอบวิดีโอของ $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "ล้างประวัติ" },
+  "noticeHistoryCleared": { "message": "ล้างประวัติแล้ว" },
+
+  "moreHeading": { "message": "อื่นๆ" },
+  "themeLabel": { "message": "ธีม" },
+  "themeSystem": { "message": "ตามระบบ" },
+  "themeLight": { "message": "สว่าง" },
+  "themeDark": { "message": "มืด" },
+  "updatesLabel": { "message": "ค้นหาเวอร์ชันใหม่" },
+  "updatesHint": { "message": "ถาม GitHub ซึ่งเป็นที่เผยแพร่ส่วนขยาย GitHub จึงเห็นที่อยู่ IP ของคุณ" },
+  "updateEvery0": { "message": "ไม่เลย" },
+  "updateEvery30": { "message": "ทุก 30 นาที" },
+  "updateEvery60": { "message": "ทุกชั่วโมง" },
+  "updateEvery360": { "message": "ทุก 6 ชั่วโมง" },
+  "updateEvery1440": { "message": "ทุกวัน" },
+  "updateEvery10080": { "message": "ทุกสัปดาห์" },
+  "updateEveryCustom": { "message": "กำหนดเอง…" },
+  "updateEveryPrefix": { "message": "ทุก" },
+  "updateCustomCount": { "message": "จำนวนนาที ชั่วโมง หรือวันระหว่างการตรวจสอบสองครั้ง" },
+  "updateCustomUnit": { "message": "หน่วย" },
+  "unitMinutesOne": { "message": "นาที" },
+  "unitMinutesOther": { "message": "นาที" },
+  "unitHoursOne": { "message": "ชั่วโมง" },
+  "unitHoursOther": { "message": "ชั่วโมง" },
+  "unitDaysOne": { "message": "วัน" },
+  "unitDaysOther": { "message": "วัน" },
+  "noticeFrequencyInvalid": { "message": "ป้อนเวลาตั้งแต่ 5 นาทีถึง 30 วัน" },
+  "updateCheckNow": { "message": "ตรวจสอบตอนนี้" },
+  "updateStatusOff": { "message": "ไม่ค้นหาเวอร์ชันใหม่" },
+  "updateStatusNever": { "message": "ยังไม่ได้ตรวจสอบ" },
+  "updateStatusChecking": { "message": "กำลังตรวจสอบ…" },
+  "updateStatusAvailable": {
+    "message": "เวอร์ชัน $VERSION$ ออกแล้ว ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "ตรวจสอบเมื่อ $WHEN$: คุณใช้เวอร์ชันล่าสุดอยู่",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "ตรวจสอบเมื่อ $WHEN$: ยังไม่มีเวอร์ชันที่เผยแพร่",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "การตรวจสอบล่าสุดล้มเหลวเมื่อ $WHEN$ ครั้งถัดไปจะลองอีกครั้ง",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "ตรวจสอบไม่ได้" },
+  "likeCountHint": { "message": "นับตั้งแต่ติดตั้งส่วนขยาย หรือตั้งแต่การรีเซ็ตครั้งล่าสุด การรีเซ็ตไม่เปลี่ยนแปลงสิ่งอื่น" },
+  "likeCountReset": { "message": "รีเซ็ต" },
+
+  "ruleSentence": {
+    "message": "กดชอบ $WHAT$ $CHANNELS$ $WHEN$",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "ไม่กดชอบอะไรเลย: ปิดทั้งวิดีโอและ Shorts อยู่" },
+  "ruleWhatBoth": { "message": "วิดีโอและ Shorts" },
+  "ruleWhatVideos": { "message": "วิดีโอ" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "จากช่องที่คุณติดตาม" },
+  "ruleChannelsSubscribedAndList": { "message": "จากช่องที่คุณติดตามและรายการ “กดชอบเสมอ” ของคุณ" },
+  "ruleChannelsAll": { "message": "จากทุกช่อง" },
+  "ruleChannelsList": { "message": "จากรายการ “กดชอบเสมอ” ของคุณ" },
+  "ruleWhenInstant": { "message": "ทันทีที่เปิด" },
+  "ruleWhenPercent": {
+    "message": "ที่ $PERCENT$% ของวิดีโอ",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "หลังเล่นไป $MINUTES$ นาที",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "ที่ $PERCENT$% ของวิดีโอหรือหลังเล่นไป $MINUTES$ นาที แล้วแต่อย่างใดถึงก่อน",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "ในช่วงเวลาสุ่ม" },
+
+  "likeCountOne": {
+    "message": "กดชอบแล้ว $COUNT$ วิดีโอ",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "กดชอบแล้ว $COUNT$ วิดีโอ",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ วินาที",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ นาที $SECONDS$ วินาที",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ ชั่วโมง $MINUTES$ นาที",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
