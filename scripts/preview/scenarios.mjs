@@ -12,7 +12,7 @@ const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
 const COLAS_AVATAR =
   'https://yt3.googleusercontent.com/3fhLCThebQlwuSDXM9SEapaTSVFB3EuXHCKtDzFhnugoLLb71I05xsU_yi5-qLMoT0Ve4PQQ=s88-c-k-c0x00ffffff-no-rj-mo';
 // 600 px: the highest a popup window of the browser gets.
-const POPUP = { page: 'ui/popup/popup.html', size: [340, 600] };
+const POPUP = { page: 'ui/popup/popup.html', size: [360, 600] };
 const OPTIONS = { page: 'ui/options/options.html', size: [1100, 1700], status: 'no-answer' };
 
 const video = {
@@ -218,5 +218,5 @@ export const SCENARIOS = [
   { name: 'popup-language-fr', ...POPUP, settings: { language: 'fr' }, status: { videoId: null } },
   { name: 'options-narrow', ...OPTIONS, size: [390, 1600], settings: { enabled: false, timing: { mode: 'random' } } },
   // The options page as the frame of the popup shows it.
-  { name: 'options-embedded', ...OPTIONS, query: '?embedded', size: [340, 470], settings: { enabled: false } },
+  { name: 'options-embedded', ...OPTIONS, query: '?embedded', size: [360, 470], settings: { enabled: false } },
 ];

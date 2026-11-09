@@ -6,7 +6,7 @@ html {
   overflow-x: hidden;
 }
 body {
-  width: 340px;
+  width: 360px;
 }
 
 .popup-head {
@@ -127,8 +127,27 @@ body {
   margin: 6px 0 0;
 }
 
+/* "Active rule" and its "Change the settings" link share the first line,
+   the rule sentence takes the full width under them: one line less in a
+   popup that the browser keeps under 600 px. */
+#rule-section {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 10px;
+  align-items: baseline;
+}
+#rule-heading {
+  grid-column: 1;
+  grid-row: 1;
+}
+#open-settings {
+  grid-column: 2;
+  grid-row: 1;
+}
 .rule {
-  margin: 0 0 10px;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0;
 }
 .rule strong {
   font-weight: 600;
