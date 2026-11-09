@@ -226,7 +226,7 @@
     "placeholders": { "count": { "content": "$1" } }
   },
   "listPageSizeLabel": { "message": "Lignes affichées dans les listes et l'historique" },
-  "listPageSizeHint": { "message": "Les suivantes s'affichent avec « Afficher de plus » ou « Tout afficher », et défilent à l'intérieur de la liste." },
+  "listPageSizeHint": { "message": "Les suivantes s'affichent avec « Afficher de plus » ou « Tout afficher ». Une longue liste défile à l'intérieur, sans allonger la page." },
   "listPageSizeAll": { "message": "Toutes" },
   "listOpenChannel": { "message": "Ouvrir la chaîne sur YouTube" },
 

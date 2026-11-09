@@ -254,7 +254,7 @@
     "placeholders": { "count": { "content": "$1", "example": "500" } }
   },
   "listPageSizeLabel": { "message": "Rows shown in the lists and the history" },
-  "listPageSizeHint": { "message": "The others show with “Show more” or “Show all”, and scroll inside the list." },
+  "listPageSizeHint": { "message": "The others show with “Show more” or “Show all”. A long list scrolls inside, without making the page longer." },
   "listPageSizeAll": { "message": "All" },
   "listOpenChannel": { "message": "Open the channel on YouTube" },
 

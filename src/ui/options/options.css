@@ -328,13 +328,18 @@ main {
   color: var(--text);
   font: inherit;
 }
+/* A list is never higher than most of the window, whatever the number of
+   rows shown (pager.js): the rows past that scroll inside it, and the list
+   and its buttons stay in view. */
 .rows {
   list-style: none;
   margin: 0;
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
-  overflow: hidden;
+  max-height: 70vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .rows:empty {
   display: none;
@@ -379,8 +384,8 @@ main {
   margin: 0;
 }
 
-/* Under a long list: how many rows are shown, "Show more" and "Show all";
-   past the first page, the rows scroll inside the list (pager.js). */
+/* Under a long list: how many rows are shown, "Show more" and "Show all"
+   (pager.js). */
 .more-row {
   display: flex;
   flex-wrap: wrap;
@@ -395,10 +400,6 @@ main {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 8px;
-}
-.rows.boxed {
-  overflow-y: auto;
-  overscroll-behavior: contain;
 }
 .section-tools {
   display: flex;

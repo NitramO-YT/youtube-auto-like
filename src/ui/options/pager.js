@@ -1,9 +1,11 @@
 /**
  * Long lists of the options page (channels, excluded videos, history): they
  * show a first page of rows (the listPageSize setting, 0 for all), then more
- * at each "Show more", or all with "Show all". Past the first page, the rows
- * scroll inside a box as high as the first page, so the page never grows
- * and the sections after a long list stay close.
+ * at each "Show more", or all with "Show all". However many rows are shown,
+ * the list is never higher than most of the window (.rows in
+ * options.css): the rows past that scroll inside it, so the page never
+ * grows, the list and its buttons stay in view, and the sections after a
+ * long list stay close.
  */
 import { formatNumber } from '../shared/format.js';
 
@@ -20,15 +22,6 @@ export function pagerLabels(shown, total, pageSize, t, lang) {
     more: t('listShowMore', [formatNumber(Math.min(pageSize, total - shown), lang)]),
     all: t('listShowAll', [formatNumber(total, lang)]),
   };
-}
-
-/** Height of the first `count` rows of a list, borders of the list included. */
-function firstRowsHeight(rows, count) {
-  const items = rows.children;
-  const top = items[0].getBoundingClientRect().top;
-  const bottom = items[count - 1].getBoundingClientRect().bottom;
-  const style = rows.ownerDocument.defaultView.getComputedStyle(rows);
-  return Math.ceil(bottom - top + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth));
 }
 
 /**
@@ -70,18 +63,14 @@ export function createPager(elements, { t, lang, redraw }) {
     slice(entries) {
       return entries.slice(0, limit);
     },
-    /** The line under the list, and the box once past the first page; after the rows are drawn. */
+    /** The line under the list: how many rows are shown, and the buttons. */
     render(shown, total) {
       const labels = pagerLabels(shown, total, pageSize || total, t, lang);
       elements.row.hidden = labels.hidden;
-      if (!labels.hidden) {
-        elements.count.textContent = labels.count;
-        elements.more.textContent = labels.more;
-        elements.all.textContent = labels.all;
-      }
-      const boxed = pageSize > 0 && shown > pageSize;
-      elements.rows.classList.toggle('boxed', boxed);
-      elements.rows.style.maxHeight = boxed ? `${firstRowsHeight(elements.rows, pageSize)}px` : '';
+      if (labels.hidden) return;
+      elements.count.textContent = labels.count;
+      elements.more.textContent = labels.more;
+      elements.all.textContent = labels.all;
     },
   };
 }
