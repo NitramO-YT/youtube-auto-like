@@ -208,6 +208,27 @@ function channelMeta(status, t) {
 }
 
 /**
+ * What the popup shows on a channel page: the channel and its choice, or
+ * null when the tab shows no channel page.
+ *
+ * @param {object|null} channel { id, name, avatarUrl } from the liker.
+ * @returns {{ channel: object, choice: string } | null}
+ */
+export function channelPageView(channel, settings, t) {
+  if (!channel?.id) return null;
+  return {
+    channel: {
+      id: channel.id,
+      name: channel.name || t('channelUnknown'),
+      initial: initialOf(channel.name),
+      avatarUrl: channel.avatarUrl ?? null,
+      meta: '',
+    },
+    choice: channelChoice(channel, settings),
+  };
+}
+
+/**
  * Everything the popup shows about the video, or null when the tab shows
  * no video. The channel choice (null without a channel) shows even while
  * the extension is paused: it is a setting, not an action on the video.

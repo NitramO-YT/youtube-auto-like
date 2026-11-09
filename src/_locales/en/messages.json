@@ -33,12 +33,13 @@
   },
 
   "sectionThisVideo": { "message": "This video", "description": "Heading of the popup section about the video in the current tab." },
+  "sectionThisChannel": { "message": "This channel", "description": "Heading of the popup section about the channel page in the current tab." },
   "sectionRule": { "message": "Active rule", "description": "Heading of the popup section that sums up the settings in one sentence." },
   "openSettings": { "message": "Change the settings →" },
   "settingsShow": { "message": "Show the settings" },
   "settingsHide": { "message": "Back to the video" },
   "openFullPage": { "message": "Open in a full page ↗" },
-  "noVideo": { "message": "Open a video or a Short on YouTube to see what the extension does with it." },
+  "noVideo": { "message": "Open a video or a Short on YouTube to see what the extension does with it, or a channel page to choose whether its videos are liked." },
   "noVideoHint": {
     "message": "If a video is already open, reload its page.",
     "description": "Shown when the current tab did not answer, for instance a YouTube tab opened before the extension was installed."

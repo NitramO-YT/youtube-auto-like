@@ -22,7 +22,7 @@ import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
 import { applyTheme } from '../shared/theme.js';
 import { renderActions, renderCard, renderChannel, renderChannelChoice } from './render.js';
-import { Action, listForChoice, videoView } from './view.js';
+import { Action, channelPageView, listForChoice, videoView } from './view.js';
 
 const REFRESH_MS = 1000;
 const LOG_PREFIX = '[YouTube Auto Like]';
@@ -74,8 +74,14 @@ function render() {
   byId('paused-banner').hidden = !paused;
 
   const view = status ? videoView(status, settings, t, lang, Date.now()) : null;
+  const page = view ? null : channelPageView(status?.channelPage, settings, t);
   byId('video').hidden = !view;
-  byId('no-video').hidden = Boolean(view) || status === undefined;
+  byId('channel-page').hidden = !page;
+  byId('no-video').hidden = Boolean(view || page) || status === undefined;
+  if (page) {
+    draw('page-channel', page.channel, (channel) => renderChannel(byId('channel-page-channel'), channel));
+    draw('page-choice', page.choice, (choice) => renderChannelChoice(byId('channel-page-choice'), choice, t));
+  }
   byId('no-video-hint').hidden = status !== null;
   if (view) {
     draw('title', view.title, (title) => {
@@ -156,9 +162,12 @@ function moveNoticeKey(target, from) {
   return from === 'always' ? 'noticeRemovedAlways' : 'noticeRemovedNever';
 }
 
-/** Moves the channel of the video to a list (null: out of both), with an undo. */
-async function moveVideoChannel(target) {
-  const channel = state.status?.channel;
+/**
+ * Moves the channel shown (of the video, or of the channel page) to a list
+ * (null: out of both), with an undo.
+ */
+async function moveShownChannel(target) {
+  const channel = state.status?.channel ?? state.status?.channelPage;
   if (!channel) return;
   const from = listOf(state.settings.lists, channel.id);
   if (from === target) return;
@@ -240,19 +249,22 @@ function listen() {
     const action = ACTIONS[event.target.closest('button[data-action]')?.dataset.action];
     if (action) act(action);
   });
-  byId('video-channel-choice').addEventListener('change', (event) => {
+  const onChoice = (event) => {
     const target = listForChoice(event.target.value);
     act(async () => {
       try {
-        await moveVideoChannel(target);
+        await moveShownChannel(target);
       } finally {
         // The choice shown follows the stored lists, also when the move
         // failed (a full list) and the input checked by the user is wrong.
         drawn.delete('choice');
+        drawn.delete('page-choice');
         render();
       }
     });
-  });
+  };
+  byId('video-channel-choice').addEventListener('change', onChoice);
+  byId('channel-page-choice').addEventListener('change', onChoice);
   byId('settings-toggle').addEventListener('click', () => showSettings(byId('settings-view').hidden));
   byId('open-settings').addEventListener('click', () => showSettings(true));
   byId('open-full-page').addEventListener('click', () => {

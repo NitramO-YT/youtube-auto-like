@@ -101,6 +101,13 @@ export const SCENARIOS = [
     status: { ...video, channel: channel(true, { avatarUrl: COLAS_AVATAR }), status: 'liked', target: { at: 0, basis: 'instant' }, likedAgoMs: 60_000 },
   },
   { name: 'popup-no-video', ...POPUP, status: { videoId: null } },
+  // A channel page, its channel in "always like".
+  {
+    name: 'popup-channel-page',
+    ...POPUP,
+    settings: { lists: { always: [{ id: COLAS, name: 'COLAS' }] } },
+    status: { videoId: null, channelPage: { id: COLAS, name: 'COLAS', avatarUrl: COLAS_AVATAR } },
+  },
   { name: 'popup-no-answer', ...POPUP, status: 'no-answer' },
   // A fixed theme wins over the one of the system, in both color schemes.
   { name: 'popup-theme-light', ...POPUP, settings: { theme: 'light' }, status: { videoId: null } },

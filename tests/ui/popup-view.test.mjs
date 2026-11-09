@@ -9,6 +9,7 @@ import {
   CHANNEL_CHOICES,
   ChannelChoice,
   channelChoice,
+  channelPageView,
   listForChoice,
   statusCard,
   videoView,
@@ -189,6 +190,15 @@ describe('channel choice', () => {
 
   it('puts the channel in the list of the choice, or in none for "per my settings"', () => {
     assert.deepEqual(CHANNEL_CHOICES.map(listForChoice), ['always', null, 'never']);
+  });
+
+  it('shows on a channel page, with the channel', () => {
+    const view = channelPageView({ id: COLAS, name: '', avatarUrl: null }, listed('always'), en);
+    assert.deepEqual(view, {
+      channel: { id: COLAS, name: 'Unknown channel', initial: '?', avatarUrl: null, meta: '' },
+      choice: ChannelChoice.ALWAYS,
+    });
+    assert.equal(channelPageView(null, defaults, en), null);
   });
 
   it('shows in the view even while the extension is paused, and not without a channel', () => {

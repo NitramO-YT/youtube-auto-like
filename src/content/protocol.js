@@ -7,6 +7,7 @@
  * untrusted: validateSnapshot keeps only the expected fields, with their
  * expected type and size, and anything else makes the snapshot unusable.
  */
+import { storedAvatarUrl } from '../core/avatar.js';
 import { isValidChannelId } from '../core/channels.js';
 import { isValidVideoId } from '../core/video.js';
 
@@ -16,6 +17,9 @@ export const PAGE_SOURCE = 'youtube-auto-like:page';
 export const ISOLATED_SOURCE = 'youtube-auto-like:isolated';
 export const SNAPSHOT_REQUEST = 'snapshot-request';
 export const SNAPSHOT = 'snapshot';
+// The channel a channel page shows (see youtube/channel-page.js).
+export const CHANNEL_PAGE_REQUEST = 'channel-page-request';
+export const CHANNEL_PAGE = 'channel-page';
 
 const MAX_NAME_LENGTH = 200;
 // YouTube limits a title to 100 characters; the margin keeps a title intact
@@ -58,5 +62,20 @@ export function validateSnapshot(payload) {
     subscribed: booleanOrNull(payload.subscribed),
     likeAtLoad: validateRatingAtLoad(payload.likeAtLoad),
     dislikeAtLoad: validateRatingAtLoad(payload.dislikeAtLoad),
+  };
+}
+
+/**
+ * @returns {object|null} { id, name, avatarUrl } of the channel a channel
+ *   page shows, in the shape of the channels of the lists; null when the
+ *   payload has no valid channel ID. avatarUrl is null unless it is an
+ *   address storedAvatarUrl accepts.
+ */
+export function validateChannelPage(payload) {
+  if (!payload || typeof payload !== 'object' || !isValidChannelId(payload.channelId)) return null;
+  return {
+    id: payload.channelId,
+    name: textOf(payload.channelName, MAX_NAME_LENGTH),
+    avatarUrl: storedAvatarUrl(payload.avatarUrl),
   };
 }

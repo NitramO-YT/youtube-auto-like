@@ -19,12 +19,13 @@
   },
 
   "sectionThisVideo": { "message": "Cette vidéo" },
+  "sectionThisChannel": { "message": "Cette chaîne" },
   "sectionRule": { "message": "Règle active" },
   "openSettings": { "message": "Modifier les réglages →" },
   "settingsShow": { "message": "Afficher les réglages" },
   "settingsHide": { "message": "Revenir à la vidéo" },
   "openFullPage": { "message": "Ouvrir en pleine page ↗" },
-  "noVideo": { "message": "Ouvrez une vidéo ou un Short sur YouTube pour voir ce que fait l'extension." },
+  "noVideo": { "message": "Ouvrez une vidéo ou un Short sur YouTube pour voir ce que fait l'extension, ou la page d'une chaîne pour choisir si ses vidéos sont likées." },
   "noVideoHint": { "message": "Si une vidéo est déjà ouverte, rechargez sa page." },
 
   "channelUnknown": { "message": "Chaîne inconnue" },
