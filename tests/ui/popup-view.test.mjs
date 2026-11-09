@@ -3,7 +3,16 @@ import { describe, it } from 'node:test';
 import { Status } from '../../src/content/isolated/session.js';
 import { Reason } from '../../src/core/eligibility.js';
 import { normalizeSettings } from '../../src/core/settings.js';
-import { Action, actions, channelAction, statusCard, videoView } from '../../src/ui/popup/view.js';
+import {
+  Action,
+  actions,
+  CHANNEL_CHOICES,
+  ChannelChoice,
+  channelChoice,
+  listForChoice,
+  statusCard,
+  videoView,
+} from '../../src/ui/popup/view.js';
 import { translator } from '../helpers/fake-i18n.mjs';
 
 const en = translator('en');
@@ -140,7 +149,7 @@ describe('a rating removed, and a video to restart', () => {
     for (const state of [{ status: Status.LIKED }, { status: Status.SKIPPED, reason: Reason.ALREADY_LIKED }]) {
       const now = status({ ...state, rating: removed, target: { at: 0, basis: 'instant' } });
       assert.equal(statusCard(now, defaults, en, 'en', NOW).title, 'Like removed');
-      assert.deepEqual(actions(now, defaults, NOW), [Action.RESTART, Action.NEVER]);
+      assert.deepEqual(actions(now, defaults, NOW), [Action.RESTART]);
     }
     const stillLiked = status({ status: Status.LIKED, rating: { liked: true, disliked: false }, target: { at: 0, basis: 'instant' } });
     assert.equal(statusCard(stillLiked, defaults, en, 'en', NOW).title, 'Liked automatically');
@@ -149,7 +158,7 @@ describe('a rating removed, and a video to restart', () => {
   it('shows a dislike removed with "restart"', () => {
     const now = status({ status: Status.SKIPPED, reason: Reason.ALREADY_DISLIKED, rating: removed });
     assert.equal(statusCard(now, defaults, en, 'en', NOW).title, 'Dislike removed');
-    assert.deepEqual(actions(now, defaults, NOW), [Action.RESTART, Action.NEVER]);
+    assert.deepEqual(actions(now, defaults, NOW), [Action.RESTART]);
   });
 
   it('says when a like removed comes back, and offers to like now', () => {
@@ -157,53 +166,55 @@ describe('a rating removed, and a video to restart', () => {
     assert.equal(statusCard(atTime, defaults, fr, 'fr', NOW).detail, 'Il sera remis quand la lecture repassera à 9:22.');
     const instantLike = status({ status: Status.NOT_ELIGIBLE, reason: Reason.LIKE_REMOVED, target: { at: 0, basis: 'instant' } });
     assert.equal(statusCard(instantLike, defaults, fr, 'fr', NOW).detail, 'Il sera remis à la prochaine ouverture de la vidéo.');
-    assert.deepEqual(actions(atTime, defaults, NOW), [Action.LIKE_NOW, Action.NEVER]);
+    assert.deepEqual(actions(atTime, defaults, NOW), [Action.LIKE_NOW]);
   });
 
   it('offers to try again after a like that did not take, and to restart a page read for too long', () => {
-    assert.deepEqual(actions(status({ status: Status.CLICK_FAILED }), defaults, NOW), [Action.RETRY, Action.NEVER]);
+    assert.deepEqual(actions(status({ status: Status.CLICK_FAILED }), defaults, NOW), [Action.RETRY]);
     const reading = (age) => status({ status: Status.READING, startedAt: NOW - age, channel: null });
     assert.deepEqual(actions(reading(5_000), defaults, NOW), []);
     assert.deepEqual(actions(reading(25_000), defaults, NOW), [Action.RESTART]);
   });
 });
 
-describe('channelAction', () => {
+describe('channel choice', () => {
   const channel = (subscribed) => ({ id: COLAS, name: 'COLAS', subscribed });
   const listed = (list, settings = {}) => normalizeSettings({ ...settings, lists: { [list]: [{ id: COLAS, name: 'COLAS' }] } });
 
-  it('offers "never" for a channel that is liked, "always" for one that is not', () => {
-    assert.equal(channelAction(channel(true), defaults), Action.NEVER);
-    assert.equal(channelAction(channel(false), defaults), Action.ALWAYS);
-    assert.equal(channelAction(channel(false), normalizeSettings({ likeWhat: 'all' })), Action.NEVER);
-    assert.equal(channelAction(channel(true), normalizeSettings({ likeWhat: 'alwaysList' })), Action.ALWAYS);
-    assert.equal(channelAction(channel(false), listed('always')), Action.NEVER);
+  it('is the list the channel is in, or "per my settings" in neither, whatever the subscription', () => {
+    assert.equal(channelChoice(channel(true), listed('always')), ChannelChoice.ALWAYS);
+    assert.equal(channelChoice(channel(false), listed('never', { likeWhat: 'all' })), ChannelChoice.NEVER);
+    for (const subscribed of [true, false, null]) assert.equal(channelChoice(channel(subscribed), defaults), ChannelChoice.AUTO);
   });
 
-  it('offers to take a channel out of "never like", whatever else applies', () => {
-    assert.equal(channelAction(channel(true), listed('never')), Action.UNLIST_NEVER);
-    assert.equal(channelAction(channel(true), listed('never', { likeWhat: 'all' })), Action.UNLIST_NEVER);
+  it('puts the channel in the list of the choice, or in none for "per my settings"', () => {
+    assert.deepEqual(CHANNEL_CHOICES.map(listForChoice), ['always', null, 'never']);
+  });
+
+  it('shows in the view even while the extension is paused, and not without a channel', () => {
+    assert.equal(videoView(status(), listed('never', { enabled: false }), en, 'en', NOW).choice, ChannelChoice.NEVER);
+    assert.equal(videoView(status({ channel: null }), defaults, en, 'en', NOW).choice, null);
   });
 });
 
 describe('actions', () => {
   it('offers "like now", "not this time" and "never this video" only while the video waits', () => {
-    const waiting = [Action.LIKE_NOW, Action.SKIP, Action.EXCLUDE_VIDEO, Action.NEVER];
+    const waiting = [Action.LIKE_NOW, Action.SKIP, Action.EXCLUDE_VIDEO];
     assert.deepEqual(actions(status({ status: Status.WAITING }), defaults), waiting);
     assert.deepEqual(actions(status({ status: Status.WAITING_AD }), defaults), waiting);
-    assert.deepEqual(actions(status({ status: Status.LIKED }), defaults), [Action.NEVER]);
-    assert.deepEqual(actions(status({ status: Status.CONFIRMING }), defaults), [Action.NEVER]);
+    assert.deepEqual(actions(status({ status: Status.LIKED }), defaults), []);
+    assert.deepEqual(actions(status({ status: Status.CONFIRMING }), defaults), []);
   });
 
   it('offers to take back "not this time", to like now or to exclude for good, and to stop excluding an excluded video', () => {
     const skipped = status({ status: Status.SKIPPED, reason: Reason.SKIPPED_BY_USER });
-    assert.deepEqual(actions(skipped, defaults), [Action.RESUME, Action.LIKE_NOW, Action.EXCLUDE_VIDEO, Action.NEVER]);
+    assert.deepEqual(actions(skipped, defaults), [Action.RESUME, Action.LIKE_NOW, Action.EXCLUDE_VIDEO]);
     const excluded = status({ status: Status.NOT_ELIGIBLE, reason: Reason.VIDEO_EXCLUDED });
-    assert.deepEqual(actions(excluded, defaults), [Action.UNEXCLUDE_VIDEO, Action.NEVER]);
-    assert.deepEqual(actions(status({ status: Status.SKIPPED, reason: Reason.ALREADY_LIKED }), defaults), [Action.NEVER]);
+    assert.deepEqual(actions(excluded, defaults), [Action.UNEXCLUDE_VIDEO]);
+    assert.deepEqual(actions(status({ status: Status.SKIPPED, reason: Reason.ALREADY_LIKED }), defaults), []);
   });
 
-  it('offers nothing while the extension is paused, and no list without a channel', () => {
+  it('offers nothing while the extension is paused', () => {
     assert.deepEqual(actions(status(), paused), []);
     assert.deepEqual(actions(status({ status: Status.READING, channel: null }), defaults), []);
   });

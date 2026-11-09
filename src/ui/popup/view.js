@@ -5,9 +5,9 @@
  * passed in.
  *
  * The status card answers "what does the extension do with this video, and
- * why"; the actions offer what would change it: like now or not at all for
- * a video still waiting, and the channel lists for every video of the
- * channel.
+ * why"; the actions offer what would change it for this video: like now or
+ * not at all while it waits. The channel choice puts every video of the
+ * channel in a list, or leaves it to the settings.
  */
 import { listOf } from '../../core/channels.js';
 import { Reason } from '../../core/eligibility.js';
@@ -29,10 +29,20 @@ export const Action = Object.freeze({
   // long, RETRY after a like that did not take.
   RESTART: 'restart',
   RETRY: 'retry',
-  ALWAYS: 'always',
-  NEVER: 'never',
-  UNLIST_NEVER: 'unlist-never',
 });
+
+/**
+ * Positions of the channel choice: in "always like", in neither list (the
+ * settings decide), or in "never like". The values of the two lists are
+ * their names in the settings; AUTO stands for no list.
+ */
+export const ChannelChoice = Object.freeze({ ALWAYS: 'always', AUTO: 'auto', NEVER: 'never' });
+export const CHANNEL_CHOICES = Object.freeze([ChannelChoice.ALWAYS, ChannelChoice.AUTO, ChannelChoice.NEVER]);
+
+/** The list a choice puts the channel in, null for AUTO. */
+export function listForChoice(choice) {
+  return choice === ChannelChoice.AUTO ? null : choice;
+}
 
 const REASON_DETAILS = {
   [Reason.ALREADY_LIKED]: 'reasonAlreadyLiked',
@@ -152,17 +162,9 @@ export function statusCard(status, settings, t, lang, now) {
   }
 }
 
-/**
- * The list button for the channel: take it out of "never like", keep it
- * from being liked, or have it always liked, depending on whether its
- * videos are liked under the current settings.
- */
-export function channelAction(channel, settings) {
-  const list = listOf(settings.lists, channel.id);
-  if (list === 'never') return Action.UNLIST_NEVER;
-  const liked =
-    list === 'always' || settings.likeWhat === 'all' || (settings.likeWhat === 'subscribed' && channel.subscribed === true);
-  return liked ? Action.NEVER : Action.ALWAYS;
+/** The position of the channel choice: the list the channel is in, or AUTO. */
+export function channelChoice(channel, settings) {
+  return listOf(settings.lists, channel.id) ?? ChannelChoice.AUTO;
 }
 
 /**
@@ -189,10 +191,7 @@ function videoActions(status, now) {
 
 /** The buttons under the status card, in order; none while the extension is paused. */
 export function actions(status, settings, now = Date.now()) {
-  if (!settings.enabled) return [];
-  const list = videoActions(status, now);
-  if (status.channel) list.push(channelAction(status.channel, settings));
-  return list;
+  return settings.enabled ? videoActions(status, now) : [];
 }
 
 /** The line under the channel name: "Subscribed · 18:45 video". */
@@ -210,9 +209,10 @@ function channelMeta(status, t) {
 
 /**
  * Everything the popup shows about the video, or null when the tab shows
- * no video.
+ * no video. The channel choice (null without a channel) shows even while
+ * the extension is paused: it is a setting, not an action on the video.
  *
- * @returns {{ title: string|null, channel: object|null, card: object, actions: string[] } | null}
+ * @returns {{ title: string|null, channel: object|null, choice: string|null, card: object, actions: string[] } | null}
  */
 export function videoView(status, settings, t, lang, now) {
   if (!status?.videoId) return null;
@@ -228,6 +228,7 @@ export function videoView(status, settings, t, lang, now) {
   return {
     title: status.title || null,
     channel,
+    choice: status.channel ? channelChoice(status.channel, settings) : null,
     card: statusCard(status, settings, t, lang, now),
     actions: actions(status, settings, now),
   };

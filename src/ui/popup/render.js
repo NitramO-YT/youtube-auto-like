@@ -3,7 +3,7 @@
  */
 import { createAvatar } from '../shared/avatar.js';
 import { el, icon } from '../shared/dom.js';
-import { Action } from './view.js';
+import { Action, CHANNEL_CHOICES, ChannelChoice } from './view.js';
 
 const ACTION_LABELS = {
   [Action.LIKE_NOW]: 'actionLikeNow',
@@ -13,9 +13,12 @@ const ACTION_LABELS = {
   [Action.RETRY]: 'actionRetry',
   [Action.EXCLUDE_VIDEO]: 'actionExcludeVideo',
   [Action.UNEXCLUDE_VIDEO]: 'actionUnexcludeVideo',
-  [Action.ALWAYS]: 'actionAlways',
-  [Action.NEVER]: 'actionNever',
-  [Action.UNLIST_NEVER]: 'actionUnlistNever',
+};
+
+const CHOICE_LABELS = {
+  [ChannelChoice.ALWAYS]: 'channelChoiceAlways',
+  [ChannelChoice.AUTO]: 'channelChoiceAuto',
+  [ChannelChoice.NEVER]: 'channelChoiceNever',
 };
 
 /** @param {object|null} channel { id, name, initial, avatarUrl, meta } */
@@ -31,6 +34,35 @@ export function renderChannel(container, channel) {
   if (channel.meta) text.append(el(doc, 'div', 'meta', channel.meta));
   row.append(createAvatar(doc, channel), text);
   container.replaceChildren(row);
+}
+
+/**
+ * "Like this channel's videos": always, as the settings say, or never, as
+ * radio inputs named channel-choice whose values are the CHANNEL_CHOICES.
+ *
+ * @param {string|null} choice The checked one; null draws nothing.
+ */
+export function renderChannelChoice(container, choice, t) {
+  const doc = container.ownerDocument;
+  if (!choice) {
+    container.replaceChildren();
+    return;
+  }
+  const group = el(doc, 'fieldset', 'channel-choice');
+  group.append(el(doc, 'legend', null, t('channelChoiceLegend')));
+  const options = el(doc, 'div', 'seg');
+  for (const value of CHANNEL_CHOICES) {
+    const label = el(doc, 'label');
+    const input = el(doc, 'input');
+    input.type = 'radio';
+    input.name = 'channel-choice';
+    input.value = value;
+    input.checked = value === choice;
+    label.append(input, doc.createTextNode(t(CHOICE_LABELS[value])));
+    options.append(label);
+  }
+  group.append(options);
+  container.replaceChildren(group);
 }
 
 /** @param {object} card { tone, icon, title, detail, progress } */

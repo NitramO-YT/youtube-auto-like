@@ -135,9 +135,10 @@
   "actionResume": { "message": "Undo “Not this time”", "description": "Button: the video goes through the usual checks again, and may be liked." },
   "actionExcludeVideo": { "message": "Never like this video", "description": "Button: never like this video, until the user takes it out of the excluded videos." },
   "actionUnexcludeVideo": { "message": "Stop excluding this video" },
-  "actionAlways": { "message": "Always like this channel" },
-  "actionNever": { "message": "Never like this channel" },
-  "actionUnlistNever": { "message": "Remove from “Never like”" },
+  "channelChoiceLegend": { "message": "Like this channel's videos" },
+  "channelChoiceAlways": { "message": "Always" },
+  "channelChoiceAuto": { "message": "Per my settings" },
+  "channelChoiceNever": { "message": "Never" },
 
   "noticeAddedAlways": { "message": "Added to “Always like”" },
   "noticeAddedNever": { "message": "Added to “Never like”" },

@@ -110,9 +110,10 @@
   "actionResume": { "message": "Annuler « Pas cette fois »" },
   "actionExcludeVideo": { "message": "Ne jamais liker cette vidéo" },
   "actionUnexcludeVideo": { "message": "Ne plus exclure cette vidéo" },
-  "actionAlways": { "message": "Toujours liker cette chaîne" },
-  "actionNever": { "message": "Ne jamais liker cette chaîne" },
-  "actionUnlistNever": { "message": "Retirer de « Ne jamais liker »" },
+  "channelChoiceLegend": { "message": "Liker les vidéos de cette chaîne" },
+  "channelChoiceAlways": { "message": "Toujours" },
+  "channelChoiceAuto": { "message": "Selon mes réglages" },
+  "channelChoiceNever": { "message": "Jamais" },
 
   "noticeAddedAlways": { "message": "Ajoutée à « Toujours liker »" },
   "noticeAddedNever": { "message": "Ajoutée à « Ne jamais liker »" },

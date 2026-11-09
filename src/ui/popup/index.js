@@ -7,6 +7,7 @@
  * a button keeps the keyboard focus while the remaining time ticks.
  */
 import './popup.css';
+import { listOf } from '../../core/channels.js';
 import { availableUpdate } from '../../core/update.js';
 import { api } from '../../platform/api.js';
 import { Message } from '../../platform/messages.js';
@@ -20,8 +21,8 @@ import { moveChannel, setVideoExcluded } from '../shared/lists.js';
 import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
 import { applyTheme } from '../shared/theme.js';
-import { renderActions, renderCard, renderChannel } from './render.js';
-import { Action, videoView } from './view.js';
+import { renderActions, renderCard, renderChannel, renderChannelChoice } from './render.js';
+import { Action, listForChoice, videoView } from './view.js';
 
 const REFRESH_MS = 1000;
 const LOG_PREFIX = '[YouTube Auto Like]';
@@ -87,6 +88,7 @@ function render() {
     draw('channel', view.channel, (channel) => renderChannel(byId('video-channel'), channel));
     draw('card', view.card, (card) => renderCard(byId('video-card'), card));
     draw('actions', view.actions, (actions) => renderActions(byId('video-actions'), actions, t));
+    draw('choice', view.choice, (choice) => renderChannelChoice(byId('video-channel-choice'), choice, t));
   }
 
   byId('rule-section').hidden = paused;
@@ -147,19 +149,23 @@ async function skipThisTime() {
   });
 }
 
-function moveNoticeKey(target) {
+/** The notice of a move to target (null: out of both lists) from the list the channel was in. */
+function moveNoticeKey(target, from) {
   if (target === 'always') return 'noticeAddedAlways';
-  return target === 'never' ? 'noticeAddedNever' : 'noticeRemovedNever';
+  if (target === 'never') return 'noticeAddedNever';
+  return from === 'always' ? 'noticeRemovedAlways' : 'noticeRemovedNever';
 }
 
 /** Moves the channel of the video to a list (null: out of both), with an undo. */
 async function moveVideoChannel(target) {
   const channel = state.status?.channel;
   if (!channel) return;
+  const from = listOf(state.settings.lists, channel.id);
+  if (from === target) return;
   const { settings, undo } = await moveChannel(store, { id: channel.id, name: channel.name, avatarUrl: channel.avatarUrl }, target);
   state.settings = settings;
   render();
-  notice.show(t(moveNoticeKey(target)), {
+  notice.show(t(moveNoticeKey(target, from)), {
     undo: async () => {
       state.settings = await undo();
       render();
@@ -217,9 +223,6 @@ const ACTIONS = {
   [Action.RETRY]: () => videoCommand(Message.RESTART_VIDEO),
   [Action.EXCLUDE_VIDEO]: () => excludeVideo(true),
   [Action.UNEXCLUDE_VIDEO]: () => excludeVideo(false),
-  [Action.ALWAYS]: () => moveVideoChannel('always'),
-  [Action.NEVER]: () => moveVideoChannel('never'),
-  [Action.UNLIST_NEVER]: () => moveVideoChannel(null),
 };
 
 function listen() {
@@ -236,6 +239,19 @@ function listen() {
   byId('video-actions').addEventListener('click', (event) => {
     const action = ACTIONS[event.target.closest('button[data-action]')?.dataset.action];
     if (action) act(action);
+  });
+  byId('video-channel-choice').addEventListener('change', (event) => {
+    const target = listForChoice(event.target.value);
+    act(async () => {
+      try {
+        await moveVideoChannel(target);
+      } finally {
+        // The choice shown follows the stored lists, also when the move
+        // failed (a full list) and the input checked by the user is wrong.
+        drawn.delete('choice');
+        render();
+      }
+    });
   });
   byId('settings-toggle').addEventListener('click', () => showSettings(byId('settings-view').hidden));
   byId('open-settings').addEventListener('click', () => showSettings(true));

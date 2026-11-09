@@ -5,10 +5,9 @@ body {
 }
 
 /* Native inputs stay in the page, for the keyboard and screen readers, but
-   are drawn by the element that follows them. */
+   are drawn by the element that follows them (.seg: in theme.css). */
 .choice input,
-.check input,
-.seg input {
+.check input {
   position: absolute;
   opacity: 0;
   width: 1px;
@@ -130,8 +129,7 @@ main {
   background: var(--accent-soft);
 }
 .choice:has(input:focus-visible),
-.check:has(input:focus-visible),
-.seg label:has(input:focus-visible) {
+.check:has(input:focus-visible) {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
@@ -217,29 +215,7 @@ main {
   transform: rotate(-45deg) translate(1px, -1px);
 }
 
-/* "When to like": segmented choice, then the thresholds. */
-.seg {
-  display: inline-flex;
-  flex-wrap: wrap;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-.seg label {
-  padding: 8px 14px;
-  font-size: 13px;
-  cursor: pointer;
-  position: relative;
-}
-.seg label + label {
-  border-left: 1px solid var(--border);
-}
-.seg label:has(input:checked) {
-  background: var(--accent);
-  color: var(--on-accent);
-  font-weight: 600;
-}
+/* "When to like": segmented choice (.seg, in theme.css), then the thresholds. */
 .delays {
   display: grid;
   gap: 10px;

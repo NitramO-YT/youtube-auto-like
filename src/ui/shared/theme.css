@@ -177,6 +177,42 @@ body {
   fill: currentColor;
 }
 
+/* Segmented choice: one label per radio input. The native input stays in
+   the page, for the keyboard and screen readers, but is drawn by its label. */
+.seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.seg label {
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  position: relative;
+}
+.seg label + label {
+  border-left: 1px solid var(--border);
+}
+.seg label:has(input:checked) {
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+.seg input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+.seg label:has(input:focus-visible) {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
 .link {
   border: 0;
   background: none;
