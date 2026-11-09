@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Awtomatikong nila-like ang mga YouTube video mula sa mga channel na pipiliin mo." },
+
+  "locale": { "message": "fil" },
+
+  "switchLabel": { "message": "Awtomatikong i-like ang mga video" },
+  "switchActive": { "message": "Aktibo" },
+  "switchPaused": { "message": "Naka-pause" },
+  "pausedBanner": { "message": "Walang nila-like ang extension habang naka-pause ito." },
+  "badgeUpdate": { "message": "BAGO" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: lumabas na ang bersyon $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Lumabas na ang bersyon $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Ang video na ito" },
+  "sectionThisChannel": { "message": "Ang channel na ito" },
+  "sectionRule": { "message": "Umiiral na panuntunan" },
+  "openSettings": { "message": "Baguhin ang mga setting →" },
+  "settingsShow": { "message": "Ipakita ang mga setting" },
+  "settingsHide": { "message": "Bumalik sa video" },
+  "openFullPage": { "message": "Buksan sa buong page ↗" },
+  "noVideo": { "message": "Magbukas ng video o Short sa YouTube para makita kung ano ang ginagawa ng extension dito, o ng page ng channel para piliin kung ila-like ang mga video nito." },
+  "noVideoHint": { "message": "Kung bukas na ang video, i-reload ang page." },
+
+  "channelUnknown": { "message": "Hindi kilalang channel" },
+  "channelSubscribed": { "message": "Naka-subscribe" },
+  "channelNotSubscribed": { "message": "Hindi naka-subscribe" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "Video, $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Live stream" },
+
+  "statusLikedTitle": { "message": "Awtomatikong na-like" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "agad pagbukas" },
+  "likedHowLikeNow": { "message": "ayon sa hiling mo" },
+  "likedHowAt": {
+    "message": "sa $TIME$ ng video",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "pagkatapos manood nang $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Ila-like sa $PERCENT$% ng video",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Ila-like pagkalipas ng $MINUTES$ min na pag-play",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Ila-like sa random na sandali" },
+  "statusWaitBeforeEnd": { "message": "Ila-like bago mismo matapos" },
+  "statusWaitRemaining": {
+    "message": "Natitirang pag-play: $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Ila-like maya-maya" },
+  "statusWaitDuration": { "message": "Hinihintay ang haba ng video" },
+  "statusWaitAd": { "message": "Hinihintay matapos ang ad" },
+  "statusWaitAdDetail": { "message": "Hindi binibilang ang oras ng ad." },
+  "statusReading": { "message": "Binabasa ang page…" },
+  "statusReadingDetail": { "message": "Sa isang Short, minsan ipinapakita lang ng YouTube ang mga button kapag gumalaw ang mouse sa ibabaw ng video." },
+  "statusConfirming": { "message": "Tinitingnan kung pumasok ang like…" },
+  "statusFailedTitle": { "message": "Hindi makumpirma ang like" },
+  "statusFailedDetail": { "message": "Hindi tumugon ang button na “Like”. I-reload ang page para subukang muli." },
+
+  "statusAlreadyLikedTitle": { "message": "Naka-like na" },
+  "statusNotLikedTitle": { "message": "Hindi na-like" },
+  "reasonAlreadyLiked": { "message": "Naka-like na ang video na ito: hindi ito gagalawin ng extension." },
+  "reasonAlreadyDisliked": { "message": "Na-dislike mo ang video na ito: hindi ito gagalawin ng extension." },
+  "reasonSkippedByUser": { "message": "Hiniling mong huwag itong i-like ngayon. Puwede itong ma-like kapag pinanood mo ulit." },
+  "reasonVideoExcluded": { "message": "Ibinukod mo ang video na ito: hindi ito kailanman ila-like hangga't hindi mo inaalis ang pagbubukod." },
+  "reasonNotSubscribed": { "message": "Hindi ka naka-subscribe sa channel na ito. Ila-like ang video kapag nag-subscribe ka." },
+  "reasonNotInAlwaysList": { "message": "Ang mga channel lang sa listahan mong “Laging i-like” ang nila-like." },
+  "reasonInNeverList": { "message": "Nasa listahan mong “Huwag kailanman i-like” ang channel na ito." },
+  "reasonShortsOff": { "message": "Ayon sa mga setting mo, hindi nila-like ang mga Short." },
+  "reasonNormalVideosOff": { "message": "Ayon sa mga setting mo, mga Short lang ang nila-like." },
+  "statusWouldLike": { "message": "Ila-like sana" },
+  "statusWouldLikeDetail": { "message": "kung aktibo ang extension." },
+
+  "actionLikeNow": { "message": "I-like ngayon" },
+  "actionSkip": { "message": "Hindi ngayon" },
+  "actionRestart": { "message": "Ulitin para sa video na ito" },
+  "actionRetry": { "message": "Subukang muli" },
+  "removedLikeTitle": { "message": "Inalis ang like" },
+  "removedLikeRestart": { "message": "Inalis mo ang like. Ulitin para suriin muli ng extension ang video." },
+  "removedDislikeTitle": { "message": "Inalis ang dislike" },
+  "removedDislikeRestart": { "message": "Inalis mo ang dislike. Ulitin para suriin muli ng extension ang video." },
+  "likeRemovedNextOpening": { "message": "Ila-like ulit ito sa susunod na pagbukas ng video." },
+  "likeRemovedAt": {
+    "message": "Ila-like ulit ito kapag dumaan muli ang pag-play sa $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "I-like ulit ang video na inalisan ko ng like" },
+  "relikeHint": { "message": "Kapag dumaan muli ang pag-play sa nakatakdang sandali, ibig sabihin pagkatapos mong mag-rewind bago rito; sa “Agad pagbukas”, sa susunod na pagbukas. Kasama rin ang video na ikaw mismo ang nag-like." },
+  "actionResume": { "message": "Bawiin ang “Hindi ngayon”" },
+  "actionExcludeVideo": { "message": "Huwag kailanman i-like ang video na ito" },
+  "actionUnexcludeVideo": { "message": "Alisin ang pagbubukod sa video na ito" },
+  "channelChoiceLegend": { "message": "I-like ang mga video ng channel na ito" },
+  "channelChoiceAlways": { "message": "Palagi" },
+  "channelChoiceAuto": { "message": "Ayon sa setting" },
+  "channelChoiceNever": { "message": "Huwag" },
+
+  "noticeAddedAlways": { "message": "Idinagdag sa “Laging i-like”" },
+  "noticeAddedNever": { "message": "Idinagdag sa “Huwag kailanman i-like”" },
+  "noticeRemovedNever": { "message": "Inalis sa “Huwag kailanman i-like”" },
+  "noticeSkipped": { "message": "Hindi na-like ngayon" },
+  "noticeVideoExcluded": { "message": "Idinagdag sa mga ibinukod na video" },
+  "noticeVideoUnexcluded": { "message": "Inalis sa mga ibinukod na video" },
+  "noticeUndo": { "message": "I-undo" },
+  "noticeUndone": { "message": "Na-undo" },
+  "noticeSaveFailed": { "message": "Hindi ma-save ang pagbabago." },
+  "noticeStorageFull": { "message": "Puno na ang storage ng extension: mag-alis ng mga channel o ibinukod na video sa mga listahan mo, at subukang muli." },
+  "noticeLoadFailed": { "message": "Hindi mabasa ang mga setting." },
+  "noticeListFull": {
+    "message": "Puno na ang listahang ito (hanggang $COUNT$ item).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Hindi tumugon ang page. I-reload ito at subukang muli." },
+  "noticeSaved": { "message": "Na-save" },
+  "noticeRemovedAlways": { "message": "Inalis sa “Laging i-like”" },
+  "noticeImportDone": {
+    "message": "Tapos na ang pag-import: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ channel ang idinagdag sa “$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "$COUNT$ channel ang idinagdag sa “$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Kanselahin" },
+  "dialogClose": { "message": "Isara" },
+  "noticeCopied": { "message": "Nakopya" },
+  "noticeCopyFailed": { "message": "Hindi makopya: piliin ang text at kopyahin ito mismo." },
+  "noticeJournalCleared": { "message": "Na-clear ang log" },
+
+  "languageLabel": { "message": "Wika" },
+  "languageHint": { "message": "Ang wika ng browser, o ibang wikang pipiliin mo. May dapat ayusin sa salin? Imungkahi ito sa GitHub." },
+  "languageAuto": { "message": "Wika ng browser" },
+
+  "debugLabel": { "message": "Debug mode" },
+  "debugHint": { "message": "Para sa log ng ginagawa ng extension, kapag mag-uulat ng problema: ang huling 200 hakbang kasama ang mga ID ng mga video na pinanood mo, naka-save lang sa browser na ito. Kapag naka-off, walang log na itinatago." },
+  "journalCountOne": { "message": "Log: $COUNT$ entry", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Log: $COUNT$ entry", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Kopyahin ang log" },
+  "journalClear": { "message": "I-clear ang log" },
+
+  "navAbout": { "message": "Tungkol dito" },
+  "aboutHeading": { "message": "Tungkol dito" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, bersyon $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Gawa ni" },
+  "aboutOrigin": { "message": "Orihinal na proyekto" },
+  "aboutFirefox": { "message": "Fork para sa Firefox" },
+  "aboutLicense": { "message": "Lisensya" },
+  "aboutInvite": { "message": "Bisitahin ang GitHub repository para malaman pa, sundan ang mga bagong bersyon, o magmungkahi ng pagpapabuti. May problema? Iulat ito gamit ang button sa ibaba." },
+  "aboutRepository": { "message": "Tingnan ang proyekto sa GitHub" },
+  "reportOpen": { "message": "Mag-ulat ng problema" },
+  "reportHint": { "message": "Ilarawan ang problema sa issue na bubukas sa GitHub: ilalakip ang ulat na ito para makatulong na maunawaan ito. Basahin ito bago ipadala; hindi kasama ang mga listahan mo ng channel." },
+  "reportJournalOne": {
+    "message": "Ilakip ang log ($COUNT$ entry, kasama ang mga ID ng mga video na pinanood mo)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Ilakip ang log ($COUNT$ entry, kasama ang mga ID ng mga video na pinanood mo)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Walang log na naitago. Para maglakip ng log: i-on ang debug mode sa “Iba pa”, ulitin ang nagkakaproblema, saka bumalik dito." },
+  "reportTextLabel": { "message": "Ulat" },
+  "reportCopy": { "message": "Kopyahin ang ulat" },
+  "reportIssue": { "message": "Magbukas ng issue sa GitHub" },
+  "reportCut": { "message": "Masyadong mahaba ang ulat para sa address ng issue, kaya pinaikli ito roon. Kopyahin ang buong ulat at i-paste ito sa issue." },
+  "dialogAnalyse": { "message": "Suriin" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Magdagdag ng mga channel" },
+  "addHint": { "message": "Mag-paste ng mga link ng channel o video, o mga @handle, isa kada linya. Tatanungin ng extension ang YouTube kung aling channel ito, na parang binuksan mo ang page nito." },
+  "addLinesLabel": { "message": "Mga link o @handle" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@pangalan\n@pangalan\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "Sa listahang" },
+  "addSearch": { "message": "Hanapin" },
+  "addSearching": {
+    "message": "Tinatanong ang YouTube… $DONE$/$TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Idagdag" },
+  "addApplyOne": {
+    "message": "Idagdag ang $COUNT$ channel",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Idagdag ang $COUNT$ channel",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Walang channel na maidaragdag: nasa listahan na ang lahat, o walang nahanap." },
+  "addEmpty": { "message": "Mag-paste ng kahit isang link o @handle." },
+  "addTooMany": {
+    "message": "Hanggang $MAX$ linya lang bawat beses.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "idaragdag" },
+  "lookupAlready": { "message": "nasa listahan na" },
+  "lookupMoved": {
+    "message": "ililipat mula sa “$FROM$” papunta sa “$TO$”",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "kaparehong channel ng naunang linya" },
+  "lookupNotALink": { "message": "hindi link ng YouTube channel o video, at hindi rin @handle" },
+  "lookupNotFound": { "message": "walang ganitong channel o video sa YouTube" },
+  "lookupUnreadable": { "message": "Hindi sinabi ng YouTube ang channel. Kung hindi pa nabubuksan ang YouTube sa browser na ito, buksan ito nang isang beses at piliin ang setting ng cookies, saka subukang muli" },
+
+  "importTitle": { "message": "Mag-import ng mga listahan" },
+  "importHint": { "message": "Isang file na na-export ng extension, o listahan ng mga link ng channel, isa kada linya. Walang mase-save bago ang “Mag-import”: ipinapakita muna ng “Suriin” ang mangyayari." },
+  "importDropHere": { "message": "Ihulog dito ang file, o" },
+  "importBrowse": { "message": "mag-browse ng mga file" },
+  "importPasteHint": { "message": "Puwede ka ring mag-paste ng file o text (Ctrl+V) sa window na ito." },
+  "importChange": { "message": "Palitan" },
+  "importRemove": { "message": "Alisin" },
+  "importPasted": { "message": "Na-paste na text" },
+  "importSourceFile": { "message": "File na na-export ng extension" },
+  "importSourceLinksOne": {
+    "message": "Listahan ng link, $COUNT$ linya",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Listahan ng link, $COUNT$ linya",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Hindi ito export ng extension at hindi rin listahan ng link." },
+  "importNoSource": { "message": "Pumili muna ng file, o mag-paste ng text." },
+  "importNoPart": { "message": "Lagyan ng check ang kahit isang bahaging ii-import." },
+  "importListFull": {
+    "message": "Lalampas sa $COUNT$ item ang isang listahan: walang maii-import.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Ang ii-import" },
+  "importLinksTarget": { "message": "Ilagay ang mga channel na ito sa" },
+  "importModeLabel": { "message": "Mga item na mayroon na" },
+  "importModeAddNew": { "message": "Idagdag lang ang mga bago" },
+  "importModeAddNewHint": { "message": "Mananatili sa lugar nito ang channel na nasa isang listahan na." },
+  "importModeFollow": { "message": "Idagdag at sundin ang file" },
+  "importModeFollowHint": { "message": "Ililipat ang channel na mayroon na sa listahang nakasaad sa file." },
+  "importModeReplace": { "message": "Palitan ang lahat ng laman ng file" },
+  "importModeReplaceHint": { "message": "Magiging eksaktong katulad ng file ang mga bahaging naka-check: aalisin ang wala rito." },
+  "importRemember": { "message": "Tandaan ang pinili ko" },
+  "importApply": { "message": "Mag-import" },
+  "importConfirmOne": {
+    "message": "Kinukumpirma kong aalisin ang $COUNT$ item na wala sa file.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Kinukumpirma kong aalisin ang $COUNT$ item na wala sa file.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "walang pagbabago" },
+  "reportNothing": { "message": "Walang pagbabago: mayroon na ang lahat." },
+  "reportAddedOne": { "message": "bago: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "bago: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "inilipat: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "inilipat: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "mayroon na: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "mayroon na: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "inalis: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "inalis: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Mag-export ng mga listahan" },
+  "exportPartsLabel": { "message": "Ang ie-export" },
+  "exportFormatLabel": { "message": "Format" },
+  "exportFormatJson": { "message": "File ng extension (JSON)" },
+  "exportFormatJsonHint": { "message": "Maii-import muli nang buo, kasama ang mga petsa at larawan ng mga channel." },
+  "exportFormatLinks": { "message": "Listahan ng link (text)" },
+  "exportFormatLinksHint": { "message": "Isang link ng channel kada linya kasama ang pangalan nito, para basahin o ibahagi. Hindi kasama ang mga ibinukod na video." },
+  "exportDownload": { "message": "I-download" },
+  "exportNothing": { "message": "Lagyan ng check ang kahit isang listahan." },
+  "noticeImportInvalid": { "message": "Hindi listahang na-export ng YouTube Auto Like ang file na ito." },
+  "noticeImportTooBig": { "message": "Masyadong malaki ang file na ito para maging listahan ng channel." },
+  "noticeCountReset": { "message": "Na-reset ang counter" },
+  "noticeNumberInvalid": {
+    "message": "Maglagay ng numero mula $MIN$ hanggang $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Mga setting ng YouTube Auto Like" },
+  "optionsTitle": { "message": "Mga setting" },
+  "navSections": { "message": "Mga seksyon" },
+  "navChannels": { "message": "Aling mga channel" },
+  "navVideos": { "message": "Aling mga video" },
+  "navWhen": { "message": "Kailan ila-like" },
+  "navLists": { "message": "Mga listahan ko" },
+  "navMore": { "message": "Iba pa" },
+
+  "channelsHeading": { "message": "Aling mga channel ang ila-like?" },
+  "channelsHint": { "message": "Laging nauuna ang listahang “Huwag kailanman i-like”." },
+  "likeWhatSubscribed": { "message": "Ang mga channel na naka-subscribe ako" },
+  "likeWhatSubscribedHint": { "message": "pati ang nasa listahan kong “Laging i-like”." },
+  "recommended": { "message": "Inirerekomenda" },
+  "likeWhatAll": { "message": "Lahat ng channel" },
+  "likeWhatAllHint": { "message": "ila-like ang bawat video na papanoorin mo." },
+  "likeWhatList": { "message": "Ang listahan ko lang na “Laging i-like”" },
+  "likeWhatListHint": { "message": "naka-subscribe man o hindi, walang ibang ila-like." },
+
+  "videosHeading": { "message": "Aling mga video?" },
+  "videosHint": { "message": "Nakikilala ang mga Short kahit buksan sa karaniwang player." },
+  "likeNormalVideos": { "message": "Mga video" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Kailan ila-like?" },
+  "whenHint": { "message": "Hindi kailanman gagalawin ang video na ikaw mismo ang nag-like o nag-dislike." },
+  "modeInstant": { "message": "Agad pagbukas" },
+  "modeCustom": { "message": "Pagkalipas ng ilang sandali" },
+  "modeRandom": { "message": "Sa random na sandali" },
+  "thresholdAfter": { "message": "pagkalipas ng" },
+  "thresholdPercentUnit": { "message": "% ng video" },
+  "thresholdMinutesUnit": { "message": "minutong pag-play" },
+  "percentLabel": { "message": "Porsyento ng video" },
+  "minutesLabel": { "message": "Minuto ng pag-play" },
+  "thresholdKeepOne": { "message": "Laging may kahit isa sa dalawang limit na naka-check." },
+  "thresholdsHint": { "message": "Ang limit na unang maaabot ang magti-trigger ng like. Ang mas maikling video ay ila-like dalawang segundo bago matapos. Sa live stream, ang mga minuto lang mula nang magsimula kang manood ang binibilang; kung walang limit sa minuto, ila-like ito agad pagbukas. Hindi binibilang ang mga ad." },
+  "randomHint": { "message": "Isang sandaling random na pinili sa bawat video. Ila-like agad pagbukas ang live stream." },
+  "summaryLabel": { "message": "Buod:" },
+
+  "listsHeading": { "message": "Mga listahan ko ng channel" },
+  "listsHint": { "message": "Magdagdag ng mga channel gamit ang link o @handle, mula sa window ng icon sa isang video o page ng channel, o mula sa history. Ibinubukod ang video mula sa window ng icon." },
+  "listAlways": { "message": "Laging i-like" },
+  "listNever": { "message": "Huwag kailanman i-like" },
+  "listVideos": { "message": "Mga ibinukod na video" },
+  "listExcludedOn": {
+    "message": "ibinukod noong $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Alisin ang pagbubukod sa $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Maghanap sa listahan" },
+  "listImport": { "message": "Mag-import" },
+  "listExport": { "message": "Mag-export" },
+  "listEmpty": { "message": "Walang channel sa listahan. Magdagdag gamit ang link o @handle, mula sa window ng icon sa isang video o page ng channel, o mula sa history." },
+  "listEmptyVideos": { "message": "Walang ibinukod na video. Para magbukod ng video, buksan ang window ng icon habang nanonood at piliin ang “Huwag kailanman i-like ang video na ito”." },
+  "listNoMatch": { "message": "Walang channel na tumutugma sa paghahanap." },
+  "listAddedOn": {
+    "message": "idinagdag noong $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Alisin ang $NAME$ sa listahan",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ sa $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Magpakita ng $COUNT$ pa",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Ipakita lahat ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Mga linyang ipinapakita sa mga listahan at history" },
+  "listPageSizeHint": { "message": "Lumalabas ang iba gamit ang “Magpakita ng … pa” o “Ipakita lahat”. Nag-i-scroll sa loob ang mahabang listahan nang hindi pinahahaba ang page." },
+  "listPageSizeAll": { "message": "Lahat" },
+  "listOpenChannel": { "message": "Buksan ang channel sa YouTube" },
+
+  "navHistory": { "message": "History" },
+  "historyHeading": { "message": "Mga na-like ng extension" },
+  "historyHint": {
+    "message": "Ang huling $COUNT$, pinakabago muna, naka-save lang sa browser na ito.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Wala pang na-like ang extension." },
+  "historyUntitled": { "message": "Video na walang pamagat" },
+  "historyChannelChoice": {
+    "message": "I-like ang mga video ng $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "I-clear ang history" },
+  "noticeHistoryCleared": { "message": "Na-clear ang history" },
+
+  "moreHeading": { "message": "Iba pa" },
+  "themeLabel": { "message": "Tema" },
+  "themeSystem": { "message": "Ayon sa system" },
+  "themeLight": { "message": "Maliwanag" },
+  "themeDark": { "message": "Madilim" },
+  "updatesLabel": { "message": "Maghanap ng mga bagong bersyon" },
+  "updatesHint": { "message": "Nagtatanong sa GitHub, kung saan inilalathala ang extension; makikita ng GitHub ang IP address mo." },
+  "updateEvery0": { "message": "Hindi kailanman" },
+  "updateEvery30": { "message": "Tuwing 30 minuto" },
+  "updateEvery60": { "message": "Bawat oras" },
+  "updateEvery360": { "message": "Tuwing 6 na oras" },
+  "updateEvery1440": { "message": "Araw-araw" },
+  "updateEvery10080": { "message": "Linggo-linggo" },
+  "updateEveryCustom": { "message": "Custom…" },
+  "updateEveryPrefix": { "message": "Tuwing" },
+  "updateCustomCount": { "message": "Bilang ng minuto, oras, o araw sa pagitan ng dalawang pagsusuri" },
+  "updateCustomUnit": { "message": "Yunit" },
+  "unitMinutesOne": { "message": "minuto" },
+  "unitMinutesOther": { "message": "minuto" },
+  "unitHoursOne": { "message": "oras" },
+  "unitHoursOther": { "message": "oras" },
+  "unitDaysOne": { "message": "araw" },
+  "unitDaysOther": { "message": "araw" },
+  "noticeFrequencyInvalid": { "message": "Maglagay ng tagal mula 5 minuto hanggang 30 araw." },
+  "updateCheckNow": { "message": "Suriin ngayon" },
+  "updateStatusOff": { "message": "Hindi naghahanap ng mga bagong bersyon." },
+  "updateStatusNever": { "message": "Hindi pa nasusuri." },
+  "updateStatusChecking": { "message": "Sinusuri…" },
+  "updateStatusAvailable": {
+    "message": "Lumabas na ang bersyon $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Nasuri $WHEN$: nasa pinakabagong bersyon ka.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Nasuri $WHEN$: wala pang nailalathalang bersyon.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Nabigo ang huling pagsusuri $WHEN$; susubukang muli sa susunod.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Hindi magawa ang pagsusuri." },
+  "likeCountHint": { "message": "Mula nang i-install ang extension, o mula sa huling reset. Walang ibang binabago ang pag-reset." },
+  "likeCountReset": { "message": "I-reset" },
+
+  "ruleSentence": {
+    "message": "Nila-like $WHAT$ $CHANNELS$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Walang nila-like: naka-off ang mga video at Short." },
+  "ruleWhatBoth": { "message": "ang mga video at Short" },
+  "ruleWhatVideos": { "message": "ang mga video" },
+  "ruleWhatShorts": { "message": "ang mga Short" },
+  "ruleChannelsSubscribed": { "message": "mula sa mga subscription mo" },
+  "ruleChannelsSubscribedAndList": { "message": "mula sa mga subscription mo at sa listahang “Laging i-like”" },
+  "ruleChannelsAll": { "message": "mula sa lahat ng channel" },
+  "ruleChannelsList": { "message": "mula sa listahan mong “Laging i-like”" },
+  "ruleWhenInstant": { "message": "agad pagbukas" },
+  "ruleWhenPercent": {
+    "message": "sa $PERCENT$% ng video",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "pagkalipas ng $MINUTES$ min na pag-play",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "sa $PERCENT$% ng video o pagkalipas ng $MINUTES$ min na pag-play, alinman ang mauna",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "sa random na sandali" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ video ang na-like",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ video ang na-like",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ seg",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$ seg",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ oras $MINUTES$ min",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
