@@ -4,7 +4,7 @@
  */
 
 // Browser targets. Each one has its manifest overlay in src/manifest/<target>.json.
-export const TARGETS = ['chromium'];
+export const TARGETS = ['chromium', 'firefox'];
 
 // Folders and files of src/ copied unchanged into the build, at the same path.
 // A page is listed file by file: its folder also holds the JavaScript sources

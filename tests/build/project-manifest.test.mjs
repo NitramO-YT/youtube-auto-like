@@ -101,20 +101,39 @@ for (const target of TARGETS) {
       assert.deepEqual(connect.slice(1), ["'self'", new URL(LATEST_RELEASE_API).origin, YOUTUBE_ORIGIN]);
     });
 
-    it('ships the background service worker it declares', async () => {
-      // Chromium runs the background as a service worker; Firefox, later,
-      // declares background scripts in its own layer.
-      if (target !== 'chromium') return;
-      assert.ok(manifest.background?.service_worker, 'the Chromium build declares a service worker');
-      const worker = await readFile(path.join(outDir, manifest.background.service_worker), 'utf8');
-      // A service worker cannot load modules unless declared as one.
-      assert.doesNotMatch(worker, /^\s*(import|export)\s/m);
+    it('ships the background script it declares, in the form of its browser', async () => {
+      // Chromium runs the background as a service worker, Firefox as
+      // background scripts; declaring both has kept Firefox from loading an
+      // extension (bug 1860304), hence one form per target.
+      const background = manifest.background ?? {};
+      const file = target === 'firefox' ? background.scripts?.[0] : background.service_worker;
+      assert.ok(file, `the ${target} build declares its background`);
+      assert.ok(target === 'firefox' ? !background.service_worker : !background.scripts, 'one form of background only');
+      const code = await readFile(path.join(outDir, file), 'utf8');
+      // A background script cannot load modules unless declared as one.
+      assert.doesNotMatch(code, /^\s*(import|export)\s/m);
       // Evaluated as the browser would: an error at the top level (an
       // unknown identifier, a use of the DOM, which a service worker lacks)
       // keeps the whole background from registering, and only shows once
       // loaded. Every browser API is a stub that accepts any call.
-      const sandbox = { console: { log() {}, error() {}, warn() {}, debug() {} }, chrome: stub(), fetch: stub(), URL, Headers };
-      assert.doesNotThrow(() => vm.runInNewContext(worker, sandbox, { filename: 'background.js' }));
+      const api = target === 'firefox' ? { browser: stub() } : { chrome: stub() };
+      const sandbox = { console: { log() {}, error() {}, warn() {}, debug() {} }, ...api, fetch: stub(), URL, Headers };
+      assert.doesNotThrow(() => vm.runInNewContext(code, sandbox, { filename: file }));
+    });
+
+    it('carries the identity of its browser only', () => {
+      const gecko = manifest.browser_specific_settings?.gecko;
+      if (target === 'firefox') {
+        assert.match(gecko?.id ?? '', /^[\w.-]+@[\w.-]+$/, 'Firefox needs a fixed add-on ID');
+        // data_collection_permissions, which Mozilla requires, exists from
+        // Firefox 140; older versions refuse the manifest.
+        assert.deepEqual(gecko.data_collection_permissions, { required: ['none'] });
+        assert.ok(Number.parseFloat(gecko.strict_min_version) >= 140);
+        assert.equal(manifest.key, undefined, 'the key of the Chromium ID is not for Firefox');
+      } else {
+        assert.equal(manifest.browser_specific_settings, undefined, 'Chromium warns about Firefox settings');
+        assert.ok(manifest.key, 'the key gives the Chromium build its fixed ID');
+      }
     });
 
     it('defines every __MSG_ key it uses, in every locale', async () => {
