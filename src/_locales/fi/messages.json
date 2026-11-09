@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Tykkää automaattisesti valitsemiesi kanavien YouTube-videoista." },
+
+  "locale": { "message": "fi" },
+
+  "switchLabel": { "message": "Tykkää videoista automaattisesti" },
+  "switchActive": { "message": "Päällä" },
+  "switchPaused": { "message": "Tauolla" },
+  "pausedBanner": { "message": "Laajennus ei tykkää mistään, kun se on tauolla." },
+  "badgeUpdate": { "message": "UUSI" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: versio $VERSION$ on julkaistu",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Versio $VERSION$ on julkaistu ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Tämä video" },
+  "sectionThisChannel": { "message": "Tämä kanava" },
+  "sectionRule": { "message": "Voimassa oleva sääntö" },
+  "openSettings": { "message": "Muuta asetuksia →" },
+  "settingsShow": { "message": "Näytä asetukset" },
+  "settingsHide": { "message": "Takaisin videoon" },
+  "openFullPage": { "message": "Avaa koko sivulla ↗" },
+  "noVideo": { "message": "Avaa video tai Short YouTubessa nähdäksesi, mitä laajennus tekee sille, tai kanavan sivu valitaksesi, tykätäänkö sen videoista." },
+  "noVideoHint": { "message": "Jos video on jo auki, lataa sivu uudelleen." },
+
+  "channelUnknown": { "message": "Tuntematon kanava" },
+  "channelSubscribed": { "message": "Tilattu" },
+  "channelNotSubscribed": { "message": "Ei tilattu" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "Video, kesto $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Suora lähetys" },
+
+  "statusLikedTitle": { "message": "Tykätty automaattisesti" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "heti avattaessa" },
+  "likedHowLikeNow": { "message": "pyynnöstäsi" },
+  "likedHowAt": {
+    "message": "videon kohdassa $TIME$",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "$DURATION$ katselun jälkeen",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Tykätään videon $PERCENT$ %:n kohdalla",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Tykätään $MINUTES$ min toiston jälkeen",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Tykätään satunnaisella hetkellä" },
+  "statusWaitBeforeEnd": { "message": "Tykätään juuri ennen loppua" },
+  "statusWaitRemaining": {
+    "message": "Toistoa jäljellä $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Tykätään hetken kuluttua" },
+  "statusWaitDuration": { "message": "Odotetaan videon kestoa" },
+  "statusWaitAd": { "message": "Odotetaan mainoksen päättymistä" },
+  "statusWaitAdDetail": { "message": "Mainosaikaa ei lasketa." },
+  "statusReading": { "message": "Luetaan sivua…" },
+  "statusReadingDetail": { "message": "Shortsissa YouTube näyttää painikkeet joskus vasta, kun hiiri liikkuu videon päällä." },
+  "statusConfirming": { "message": "Tarkistetaan, että tykkäys meni perille…" },
+  "statusFailedTitle": { "message": "Tykkäystä ei voitu vahvistaa" },
+  "statusFailedDetail": { "message": "”Tykkää”-painike ei reagoinut. Lataa sivu uudelleen yrittääksesi uudestaan." },
+
+  "statusAlreadyLikedTitle": { "message": "Jo tykätty" },
+  "statusNotLikedTitle": { "message": "Ei tykätty" },
+  "reasonAlreadyLiked": { "message": "Tästä videosta oli jo tykätty: laajennus jättää sen ennalleen." },
+  "reasonAlreadyDisliked": { "message": "Merkitsit, ettet tykkää tästä videosta: laajennus jättää sen ennalleen." },
+  "reasonSkippedByUser": { "message": "Pyysit, ettei siitä tykätä tällä kertaa. Siitä voidaan tykätä, kun katsot sen uudelleen." },
+  "reasonVideoExcluded": { "message": "Olet sulkenut tämän videon pois: siitä ei tykätä koskaan, ellet peru poissulkemista." },
+  "reasonNotSubscribed": { "message": "Et ole tilannut tätä kanavaa. Videosta tykätään, jos tilaat kanavan." },
+  "reasonNotInAlwaysList": { "message": "Vain ”Tykkää aina” -listasi kanavien videoista tykätään." },
+  "reasonInNeverList": { "message": "Tämä kanava on ”Älä tykkää koskaan” -listallasi." },
+  "reasonShortsOff": { "message": "Asetustesi mukaan Shortseista ei tykätä." },
+  "reasonNormalVideosOff": { "message": "Asetustesi mukaan tykätään vain Shortseista." },
+  "statusWouldLike": { "message": "Tykättäisiin" },
+  "statusWouldLikeDetail": { "message": "jos laajennus olisi päällä." },
+
+  "actionLikeNow": { "message": "Tykkää nyt" },
+  "actionSkip": { "message": "Ei tällä kertaa" },
+  "actionRestart": { "message": "Aloita alusta tälle videolle" },
+  "actionRetry": { "message": "Yritä uudelleen" },
+  "removedLikeTitle": { "message": "Tykkäys poistettu" },
+  "removedLikeRestart": { "message": "Poistit tykkäyksen. Aloita alusta, niin laajennus tarkistaa videon uudelleen." },
+  "removedDislikeTitle": { "message": "”En tykkää” -merkintä poistettu" },
+  "removedDislikeRestart": { "message": "Poistit ”En tykkää” -merkinnän. Aloita alusta, niin laajennus tarkistaa videon uudelleen." },
+  "likeRemovedNextOpening": { "message": "Siitä tykätään uudelleen, kun video avataan seuraavan kerran." },
+  "likeRemovedAt": {
+    "message": "Siitä tykätään uudelleen, kun toisto ohittaa taas kohdan $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Tykkää uudelleen videosta, jonka tykkäyksen poistan" },
+  "relikeHint": { "message": "Kun toisto ohittaa suunnitellun hetken uudelleen, eli kun olet kelannut sen taakse; ”Heti avattaessa” -tilassa seuraavalla avauskerralla. Koskee myös videota, josta olit itse tykännyt." },
+  "actionResume": { "message": "Peru ”Ei tällä kertaa”" },
+  "actionExcludeVideo": { "message": "Älä koskaan tykkää tästä videosta" },
+  "actionUnexcludeVideo": { "message": "Peru tämän videon poissulkeminen" },
+  "channelChoiceLegend": { "message": "Tykkää tämän kanavan videoista" },
+  "channelChoiceAlways": { "message": "Aina" },
+  "channelChoiceAuto": { "message": "Asetusten mukaan" },
+  "channelChoiceNever": { "message": "Ei koskaan" },
+
+  "noticeAddedAlways": { "message": "Lisätty listaan ”Tykkää aina”" },
+  "noticeAddedNever": { "message": "Lisätty listaan ”Älä tykkää koskaan”" },
+  "noticeRemovedNever": { "message": "Poistettu listalta ”Älä tykkää koskaan”" },
+  "noticeSkipped": { "message": "Ei tykätty tällä kertaa" },
+  "noticeVideoExcluded": { "message": "Lisätty poissuljettuihin videoihin" },
+  "noticeVideoUnexcluded": { "message": "Poistettu poissuljetuista videoista" },
+  "noticeUndo": { "message": "Kumoa" },
+  "noticeUndone": { "message": "Kumottu" },
+  "noticeSaveFailed": { "message": "Muutosta ei voitu tallentaa." },
+  "noticeStorageFull": { "message": "Laajennuksen tallennustila on täynnä: poista kanavia tai poissuljettuja videoita listoiltasi ja yritä uudelleen." },
+  "noticeLoadFailed": { "message": "Asetuksia ei voitu lukea." },
+  "noticeListFull": {
+    "message": "Tämä lista on täynnä (enintään $COUNT$ kohdetta).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Sivu ei vastannut. Lataa se uudelleen ja yritä uudestaan." },
+  "noticeSaved": { "message": "Tallennettu" },
+  "noticeRemovedAlways": { "message": "Poistettu listalta ”Tykkää aina”" },
+  "noticeImportDone": {
+    "message": "Tuonti valmis: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ kanava lisätty listaan ”$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "$COUNT$ kanavaa lisätty listaan ”$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Peruuta" },
+  "dialogClose": { "message": "Sulje" },
+  "noticeCopied": { "message": "Kopioitu" },
+  "noticeCopyFailed": { "message": "Kopiointi ei onnistunut: valitse teksti ja kopioi se itse." },
+  "noticeJournalCleared": { "message": "Loki tyhjennetty" },
+
+  "languageLabel": { "message": "Kieli" },
+  "languageHint": { "message": "Selaimen kieli tai valitsemasi kieli. Korjattavaa käännöksessä? Ehdota sitä GitHubissa." },
+  "languageAuto": { "message": "Selaimen kieli" },
+
+  "debugLabel": { "message": "Vianetsintätila" },
+  "debugHint": { "message": "Loki laajennuksen toiminnasta ongelman ilmoittamista varten: viimeiset 200 vaihetta katsomiesi videoiden tunnisteineen, tallennettuna vain tähän selaimeen. Kun tila on pois päältä, lokia ei pidetä." },
+  "journalCountOne": { "message": "Loki: $COUNT$ merkintä", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Loki: $COUNT$ merkintää", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Kopioi loki" },
+  "journalClear": { "message": "Tyhjennä loki" },
+
+  "navAbout": { "message": "Tietoja" },
+  "aboutHeading": { "message": "Tietoja" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, versio $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Kehittäjä" },
+  "aboutOrigin": { "message": "Alkuperäinen projekti" },
+  "aboutFirefox": { "message": "Haara Firefoxille" },
+  "aboutLicense": { "message": "Lisenssi" },
+  "aboutInvite": { "message": "Käy GitHub-repositoriossa lukeaksesi lisää, seurataksesi uusia versioita tai ehdottaaksesi parannusta. Ongelma? Ilmoita siitä alla olevalla painikkeella." },
+  "aboutRepository": { "message": "Katso projekti GitHubissa" },
+  "reportOpen": { "message": "Ilmoita ongelmasta" },
+  "reportHint": { "message": "Kuvaile ongelma GitHubiin avautuvassa ilmoituksessa: tämä raportti liitetään mukaan sen ymmärtämisen avuksi. Lue se ennen lähettämistä; kanavalistasi eivät ole mukana." },
+  "reportJournalOne": {
+    "message": "Liitä loki ($COUNT$ merkintä, katsomiesi videoiden tunnisteineen)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Liitä loki ($COUNT$ merkintää, katsomiesi videoiden tunnisteineen)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Lokia ei ole pidetty. Liittääksesi sellaisen: ota vianetsintätila käyttöön kohdassa ”Muut”, toista se, mikä menee vikaan, ja palaa sitten tänne." },
+  "reportTextLabel": { "message": "Raportti" },
+  "reportCopy": { "message": "Kopioi raportti" },
+  "reportIssue": { "message": "Avaa ilmoitus GitHubissa" },
+  "reportCut": { "message": "Raportti on liian pitkä ilmoituksen osoitteeseen, joten se lyhennetään siinä. Kopioi koko raportti ja liitä se ilmoitukseen." },
+  "dialogAnalyse": { "message": "Analysoi" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Lisää kanavia" },
+  "addHint": { "message": "Liitä kanavien tai videoiden linkkejä tai @kahvoja, yksi riviä kohden. Laajennus kysyy YouTubelta, mistä kanavasta on kyse, kuin avaisit sen sivun." },
+  "addLinesLabel": { "message": "Linkit tai @kahvat" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@nimi\n@nimi\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "Listaan" },
+  "addSearch": { "message": "Hae" },
+  "addSearching": {
+    "message": "Kysytään YouTubelta… $DONE$/$TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Lisää" },
+  "addApplyOne": {
+    "message": "Lisää $COUNT$ kanava",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Lisää $COUNT$ kanavaa",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Ei lisättäviä kanavia: kaikki ovat jo listalla, tai yhtään ei löytynyt." },
+  "addEmpty": { "message": "Liitä vähintään yksi linkki tai @kahva." },
+  "addTooMany": {
+    "message": "Enintään $MAX$ riviä kerrallaan.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "lisätään" },
+  "lookupAlready": { "message": "on jo listalla" },
+  "lookupMoved": {
+    "message": "siirretään listalta ”$FROM$” listaan ”$TO$”",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "sama kanava kuin aiemmalla rivillä" },
+  "lookupNotALink": { "message": "ei YouTube-kanavan tai -videon linkki eikä @kahva" },
+  "lookupNotFound": { "message": "kanavaa tai videota ei ole YouTubessa" },
+  "lookupUnreadable": { "message": "YouTube ei kertonut kanavaa. Jos YouTubea ei ole koskaan avattu tässä selaimessa, avaa se kerran ja tee evästevalintasi, ja yritä sitten uudelleen" },
+
+  "importTitle": { "message": "Tuo listoja" },
+  "importHint": { "message": "Laajennuksen viemä tiedosto tai lista kanavalinkkejä, yksi riviä kohden. Mitään ei tallenneta ennen ”Tuo”-painiketta: ”Analysoi” näyttää ensin, mitä tehdään." },
+  "importDropHere": { "message": "Pudota tiedosto tähän, tai" },
+  "importBrowse": { "message": "selaa tiedostojasi" },
+  "importPasteHint": { "message": "Voit myös liittää tiedoston tai tekstiä (Ctrl+V) tähän ikkunaan." },
+  "importChange": { "message": "Vaihda" },
+  "importRemove": { "message": "Poista" },
+  "importPasted": { "message": "Liitetty teksti" },
+  "importSourceFile": { "message": "Laajennuksen viemä tiedosto" },
+  "importSourceLinksOne": {
+    "message": "Linkkilista, $COUNT$ rivi",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Linkkilista, $COUNT$ riviä",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Tämä ei ole laajennuksen vientitiedosto eikä linkkilista." },
+  "importNoSource": { "message": "Valitse ensin tiedosto tai liitä tekstiä." },
+  "importNoPart": { "message": "Valitse vähintään yksi tuotava osa." },
+  "importListFull": {
+    "message": "Listassa olisi yli $COUNT$ kohdetta: mitään ei tuotaisi.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Mitä tuodaan" },
+  "importLinksTarget": { "message": "Lisää nämä kanavat listaan" },
+  "importModeLabel": { "message": "Jo olemassa olevat kohteet" },
+  "importModeAddNew": { "message": "Lisää vain uudet" },
+  "importModeAddNewHint": { "message": "Kanava, joka on jo jollakin listalla, pysyy paikallaan." },
+  "importModeFollow": { "message": "Lisää ja noudata tiedostoa" },
+  "importModeFollowHint": { "message": "Jo olemassa oleva kanava siirretään tiedoston osoittamalle listalle." },
+  "importModeReplace": { "message": "Korvaa kaikki tiedostolla" },
+  "importModeReplaceHint": { "message": "Valituista osista tulee täsmälleen tiedoston mukaiset: mitä siinä ei ole, poistetaan." },
+  "importRemember": { "message": "Muista valintani" },
+  "importApply": { "message": "Tuo" },
+  "importConfirmOne": {
+    "message": "Vahvistan, että $COUNT$ tiedostosta puuttuva kohde poistetaan.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Vahvistan, että $COUNT$ tiedostosta puuttuvaa kohdetta poistetaan.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "ei muutoksia" },
+  "reportNothing": { "message": "Ei muutoksia: kaikki on jo olemassa." },
+  "reportAddedOne": { "message": "$COUNT$ uusi", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "$COUNT$ uutta", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ siirretty", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "$COUNT$ siirrettyä", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ oli jo olemassa", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ oli jo olemassa", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ poistettu", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ poistettua", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Vie listoja" },
+  "exportPartsLabel": { "message": "Mitä viedään" },
+  "exportFormatLabel": { "message": "Muoto" },
+  "exportFormatJson": { "message": "Laajennuksen tiedosto (JSON)" },
+  "exportFormatJsonHint": { "message": "Tuodaan takaisin sellaisenaan, kanavien päivämäärineen ja kuvineen." },
+  "exportFormatLinks": { "message": "Linkkilista (teksti)" },
+  "exportFormatLinksHint": { "message": "Yksi kanavalinkki riviä kohden nimineen, luettavaksi tai jaettavaksi. Poissuljetut videot eivät ole mukana." },
+  "exportDownload": { "message": "Lataa" },
+  "exportNothing": { "message": "Valitse vähintään yksi lista." },
+  "noticeImportInvalid": { "message": "Tämä tiedosto ei ole YouTube Auto Liken viemä lista." },
+  "noticeImportTooBig": { "message": "Tämä tiedosto on liian suuri ollakseen kanavalista." },
+  "noticeCountReset": { "message": "Laskuri nollattu" },
+  "noticeNumberInvalid": {
+    "message": "Anna luku väliltä $MIN$–$MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "YouTube Auto Liken asetukset" },
+  "optionsTitle": { "message": "Asetukset" },
+  "navSections": { "message": "Osiot" },
+  "navChannels": { "message": "Mitkä kanavat" },
+  "navVideos": { "message": "Mitkä videot" },
+  "navWhen": { "message": "Milloin tykätään" },
+  "navLists": { "message": "Omat listat" },
+  "navMore": { "message": "Muut" },
+
+  "channelsHeading": { "message": "Minkä kanavien videoista tykätään?" },
+  "channelsHint": { "message": "”Älä tykkää koskaan” -lista menee aina ensin." },
+  "likeWhatSubscribed": { "message": "Tilaamani kanavat" },
+  "likeWhatSubscribedHint": { "message": "sekä ”Tykkää aina” -listani kanavat." },
+  "recommended": { "message": "Suositeltu" },
+  "likeWhatAll": { "message": "Kaikki kanavat" },
+  "likeWhatAllHint": { "message": "jokaisesta katsomastasi videosta tykätään." },
+  "likeWhatList": { "message": "Vain ”Tykkää aina” -listani" },
+  "likeWhatListHint": { "message": "tilattu tai ei, mistään muusta ei tykätä." },
+
+  "videosHeading": { "message": "Mistä videoista?" },
+  "videosHint": { "message": "Shortsit tunnistetaan myös silloin, kun ne avataan tavallisessa soittimessa." },
+  "likeNormalVideos": { "message": "Videot" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Milloin tykätään?" },
+  "whenHint": { "message": "Videoon, josta itse tykkäät tai et tykkää, ei koskaan kosketa." },
+  "modeInstant": { "message": "Heti avattaessa" },
+  "modeCustom": { "message": "Hetken kuluttua" },
+  "modeRandom": { "message": "Satunnaisella hetkellä" },
+  "thresholdAfter": { "message": "kun takana on" },
+  "thresholdPercentUnit": { "message": "% videosta" },
+  "thresholdMinutesUnit": { "message": "minuuttia toistoa" },
+  "percentLabel": { "message": "Prosenttia videosta" },
+  "minutesLabel": { "message": "Minuuttia toistoa" },
+  "thresholdKeepOne": { "message": "Vähintään yksi kahdesta rajasta pysyy valittuna." },
+  "thresholdsHint": { "message": "Ensin saavutettu raja laukaisee tykkäyksen. Lyhyemmästä videosta tykätään kaksi sekuntia ennen loppua. Suorassa lähetyksessä lasketaan vain minuutit katselun alusta; ilman minuuttirajaa siitä tykätään heti avattaessa. Mainoksia ei lasketa." },
+  "randomHint": { "message": "Satunnaisesti valittu hetki jokaisessa videossa. Suorasta lähetyksestä tykätään heti avattaessa." },
+  "summaryLabel": { "message": "Yhteenveto:" },
+
+  "listsHeading": { "message": "Omat kanavalistani" },
+  "listsHint": { "message": "Lisää kanavia linkillä tai @kahvalla, kuvakkeen ikkunasta videolla tai kanavan sivulla, tai historiasta. Video suljetaan pois kuvakkeen ikkunasta." },
+  "listAlways": { "message": "Tykkää aina" },
+  "listNever": { "message": "Älä tykkää koskaan" },
+  "listVideos": { "message": "Poissuljetut videot" },
+  "listExcludedOn": {
+    "message": "poissuljettu $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Peru videon $TITLE$ poissulkeminen",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Hae listasta" },
+  "listImport": { "message": "Tuo" },
+  "listExport": { "message": "Vie" },
+  "listEmpty": { "message": "Listalla ei ole kanavia. Lisää niitä linkillä tai @kahvalla, kuvakkeen ikkunasta videolla tai kanavan sivulla, tai historiasta." },
+  "listEmptyVideos": { "message": "Ei poissuljettuja videoita. Sulkeaksesi videon pois avaa kuvakkeen ikkuna katsellessasi ja valitse ”Älä koskaan tykkää tästä videosta”." },
+  "listNoMatch": { "message": "Mikään kanava ei vastaa hakua." },
+  "listAddedOn": {
+    "message": "lisätty $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Poista $NAME$ listalta",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$/$TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Näytä $COUNT$ lisää",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Näytä kaikki ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Listoissa ja historiassa näytettävät rivit" },
+  "listPageSizeHint": { "message": "Muut rivit tulevat esiin valinnoilla ”Näytä … lisää” tai ”Näytä kaikki”. Pitkä lista vierii itsessään pidentämättä sivua." },
+  "listPageSizeAll": { "message": "Kaikki" },
+  "listOpenChannel": { "message": "Avaa kanava YouTubessa" },
+
+  "navHistory": { "message": "Historia" },
+  "historyHeading": { "message": "Laajennuksen tykkäykset" },
+  "historyHint": {
+    "message": "Viimeiset $COUNT$, uusin ensin, tallennettuna vain tähän selaimeen.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Laajennus ei ole vielä tykännyt mistään." },
+  "historyUntitled": { "message": "Nimetön video" },
+  "historyChannelChoice": {
+    "message": "Tykkää kanavan $NAME$ videoista",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Tyhjennä historia" },
+  "noticeHistoryCleared": { "message": "Historia tyhjennetty" },
+
+  "moreHeading": { "message": "Muut" },
+  "themeLabel": { "message": "Teema" },
+  "themeSystem": { "message": "Järjestelmän mukaan" },
+  "themeLight": { "message": "Vaalea" },
+  "themeDark": { "message": "Tumma" },
+  "updatesLabel": { "message": "Tarkista uudet versiot" },
+  "updatesHint": { "message": "Kysyy GitHubilta, jossa laajennus julkaistaan; GitHub näkee silloin IP-osoitteesi." },
+  "updateEvery0": { "message": "Ei koskaan" },
+  "updateEvery30": { "message": "30 minuutin välein" },
+  "updateEvery60": { "message": "Tunnin välein" },
+  "updateEvery360": { "message": "6 tunnin välein" },
+  "updateEvery1440": { "message": "Päivittäin" },
+  "updateEvery10080": { "message": "Viikoittain" },
+  "updateEveryCustom": { "message": "Mukautettu…" },
+  "updateEveryPrefix": { "message": "Aina" },
+  "updateCustomCount": { "message": "Minuuttien, tuntien tai päivien määrä kahden tarkistuksen välillä" },
+  "updateCustomUnit": { "message": "Yksikkö" },
+  "unitMinutesOne": { "message": "minuutin välein" },
+  "unitMinutesOther": { "message": "minuutin välein" },
+  "unitHoursOne": { "message": "tunnin välein" },
+  "unitHoursOther": { "message": "tunnin välein" },
+  "unitDaysOne": { "message": "päivän välein" },
+  "unitDaysOther": { "message": "päivän välein" },
+  "noticeFrequencyInvalid": { "message": "Anna väli 5 minuutista 30 päivään." },
+  "updateCheckNow": { "message": "Tarkista nyt" },
+  "updateStatusOff": { "message": "Uusia versioita ei tarkisteta." },
+  "updateStatusNever": { "message": "Ei vielä tarkistettu." },
+  "updateStatusChecking": { "message": "Tarkistetaan…" },
+  "updateStatusAvailable": {
+    "message": "Versio $VERSION$ on julkaistu ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Tarkistettu $WHEN$: sinulla on uusin versio.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Tarkistettu $WHEN$: yhtään versiota ei ole vielä julkaistu.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Viimeisin tarkistus epäonnistui $WHEN$; seuraava yrittää uudelleen.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Tarkistusta ei voitu tehdä." },
+  "likeCountHint": { "message": "Laajennuksen asennuksesta tai viimeisimmästä nollauksesta lähtien. Nollaus ei muuta mitään muuta." },
+  "likeCountReset": { "message": "Nollaa" },
+
+  "ruleSentence": {
+    "message": "Tykkää $CHANNELS$ $WHAT$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Ei tykkää mistään: sekä videot että Shorts ovat pois päältä." },
+  "ruleWhatBoth": { "message": "videoista ja Shortseista" },
+  "ruleWhatVideos": { "message": "videoista" },
+  "ruleWhatShorts": { "message": "Shortseista" },
+  "ruleChannelsSubscribed": { "message": "tilaamiesi kanavien" },
+  "ruleChannelsSubscribedAndList": { "message": "tilaamiesi ja ”Tykkää aina” -listasi kanavien" },
+  "ruleChannelsAll": { "message": "kaikkien kanavien" },
+  "ruleChannelsList": { "message": "”Tykkää aina” -listasi kanavien" },
+  "ruleWhenInstant": { "message": "heti avattaessa" },
+  "ruleWhenPercent": {
+    "message": "videon $PERCENT$ %:n kohdalla",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "$MINUTES$ min toiston jälkeen",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "videon $PERCENT$ %:n kohdalla tai $MINUTES$ min toiston jälkeen, kumpi tulee ensin",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "satunnaisella hetkellä" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ video tykätty",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ videota tykätty",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$ s",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ h $MINUTES$ min",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
