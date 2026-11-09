@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { defaultSettings } from '../../src/core/settings.js';
-import { createStore, HISTORY_KEY, SETTINGS_KEY, STATS_KEY } from '../../src/platform/storage.js';
+import { createStore, HISTORY_KEY, JOURNAL_KEY, SETTINGS_KEY, STATS_KEY } from '../../src/platform/storage.js';
 import { fakeStorageApi as fakeApi } from '../helpers/fake-storage.mjs';
 
 const LIKE = {
@@ -104,5 +104,18 @@ describe('createStore', () => {
     assert.equal(await store.setLikeCount(-1), 0);
     assert.equal(await store.setLikeCount(2.5), 0);
     assert.equal(await store.loadLikeCount(), 0);
+  });
+
+  it('appends to the journal, keeps valid entries only, and replaces it', async () => {
+    const api = fakeApi({ [JOURNAL_KEY]: [{ at: '2026-11-09T02:10:01.000Z', videoId: 'aeP4eG-gO10', text: 'opened (watch)' }, 'text'] });
+    const store = createStore(api);
+    const changes = [];
+    store.onJournalChange((journal) => changes.push(journal.length));
+    await store.appendJournal([{ at: '2026-11-09T02:10:04.000Z', videoId: 'aeP4eG-gO10', text: 'liked' }, { text: 'no date' }]);
+    assert.deepEqual((await store.loadJournal()).map((entry) => entry.text), ['opened (watch)', 'liked']);
+    await store.appendJournal([]);
+    assert.deepEqual(changes, [2], 'an empty append writes nothing');
+    assert.deepEqual(await store.setJournal([]), []);
+    assert.deepEqual(await store.loadJournal(), []);
   });
 });

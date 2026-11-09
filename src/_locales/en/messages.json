@@ -172,6 +172,45 @@
   },
 
   "dialogCancel": { "message": "Cancel" },
+  "dialogClose": { "message": "Close" },
+  "noticeCopied": { "message": "Copied" },
+  "noticeCopyFailed": { "message": "Could not copy: select the text and copy it yourself." },
+  "noticeJournalCleared": { "message": "Journal cleared" },
+
+  "debugLabel": { "message": "Debug mode" },
+  "debugHint": { "message": "Keeps a journal of what the extension does, to report a problem: the last 200 steps, with the IDs of the videos watched, kept in this browser only. Off, no journal is kept." },
+  "journalCountOne": { "message": "Journal: $COUNT$ entry", "placeholders": { "count": { "content": "$1", "example": "1" } } },
+  "journalCountOther": { "message": "Journal: $COUNT$ entries", "placeholders": { "count": { "content": "$1", "example": "42" } } },
+  "journalCopy": { "message": "Copy the journal" },
+  "journalClear": { "message": "Clear the journal" },
+
+  "navAbout": { "message": "About" },
+  "aboutHeading": { "message": "About" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, version $VERSION$",
+    "placeholders": { "version": { "content": "$1", "example": "3.0.0" } }
+  },
+  "aboutBy": { "message": "Made by" },
+  "aboutOrigin": { "message": "Original project" },
+  "aboutFirefox": { "message": "Firefox fork" },
+  "aboutLicense": { "message": "License" },
+  "aboutInvite": { "message": "To learn more, follow the new versions or suggest an improvement, visit the GitHub repository. A problem? Report it with the button below." },
+  "aboutRepository": { "message": "See the project on GitHub" },
+  "reportOpen": { "message": "Report a problem" },
+  "reportHint": { "message": "Describe the problem in the issue that opens on GitHub: this report is attached to help understand it. Read it before sending it; your channel lists are not in it." },
+  "reportJournalOne": {
+    "message": "Attach the journal ($COUNT$ entry, with the IDs of the videos watched)",
+    "placeholders": { "count": { "content": "$1", "example": "1" } }
+  },
+  "reportJournalOther": {
+    "message": "Attach the journal ($COUNT$ entries, with the IDs of the videos watched)",
+    "placeholders": { "count": { "content": "$1", "example": "42" } }
+  },
+  "reportDebugOff": { "message": "No journal was kept. To attach one: turn the debug mode on in “More”, do again what goes wrong, then come back here." },
+  "reportTextLabel": { "message": "Report" },
+  "reportCopy": { "message": "Copy the report" },
+  "reportIssue": { "message": "Open an issue on GitHub" },
+  "reportCut": { "message": "The report is too long for the address of the issue: it is shortened there. Copy the full report and paste it in the issue." },
   "dialogAnalyse": { "message": "Analyze" },
   "partWithCount": {
     "message": "$PART$ ($COUNT$)",

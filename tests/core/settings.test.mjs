@@ -43,6 +43,7 @@ describe('normalizeSettings', () => {
       relikeAfterRemoval: true,
       theme: 'dark',
       listPageSize: 0,
+      debug: true,
     };
     assert.deepEqual(normalizeSettings(custom), custom);
   });
@@ -82,8 +83,8 @@ describe('normalizeSettings', () => {
   });
 
   it('drops unknown keys, including those of the single list of earlier designs', () => {
-    const normalized = normalizeSettings({ list: { enabled: true, mode: 'allowlist' }, channels: [{ id: CHANNEL }], debug: true });
-    for (const key of ['list', 'channels', 'debug']) assert.equal(key in normalized, false);
+    const normalized = normalizeSettings({ list: { enabled: true, mode: 'allowlist' }, channels: [{ id: CHANNEL }], verbose: true });
+    for (const key of ['list', 'channels', 'verbose']) assert.equal(key in normalized, false);
     assert.equal(normalized.schemaVersion, SETTINGS_SCHEMA_VERSION);
   });
 

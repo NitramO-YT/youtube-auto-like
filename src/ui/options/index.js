@@ -25,6 +25,7 @@ import { createHistorySection } from './history-section.js';
 import { createImportDialog } from './import-dialog.js';
 import { createListsSection } from './lists-section.js';
 import { highlightSections } from './menu.js';
+import { createReportSection } from './report-section.js';
 import { createUpdateSection } from './update-section.js';
 
 const LOG_PREFIX = '[YouTube Auto Like]';
@@ -70,10 +71,12 @@ const page = {
 const lists = createListsSection(page);
 const history = createHistorySection(page);
 const updates = createUpdateSection(page, api);
+const report = createReportSection(page, api);
 const dialogs = {
   add: createAddDialog(page),
   import: createImportDialog(page),
   export: createExportDialog(page),
+  report: { open: report.open, listen: () => {} },
 };
 
 /**
@@ -131,6 +134,7 @@ function fill() {
   lists.render();
   history.render();
   updates.render();
+  report.render();
 }
 
 async function changeField(field, value) {
@@ -198,6 +202,7 @@ function listen() {
   lists.listen();
   history.listen();
   updates.listen();
+  report.listen();
   for (const dialog of Object.values(dialogs)) dialog.listen();
 
   store.onSettingsChange((settings) => {
@@ -218,6 +223,7 @@ async function start() {
     state.likeCount = await store.loadLikeCount();
     await history.start();
     await updates.start();
+    await report.start();
   } catch (error) {
     console.error(LOG_PREFIX, 'could not load the settings', error);
     notice.show(t('noticeLoadFailed'), { error: true });

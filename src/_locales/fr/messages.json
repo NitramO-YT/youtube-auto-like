@@ -147,6 +147,45 @@
   },
 
   "dialogCancel": { "message": "Annuler" },
+  "dialogClose": { "message": "Fermer" },
+  "noticeCopied": { "message": "Copié" },
+  "noticeCopyFailed": { "message": "Copie impossible : sélectionnez le texte et copiez-le vous-même." },
+  "noticeJournalCleared": { "message": "Journal effacé" },
+
+  "debugLabel": { "message": "Mode débogage" },
+  "debugHint": { "message": "Tient un journal de ce que fait l'extension, pour signaler un problème : les 200 dernières étapes, avec les identifiants des vidéos regardées, gardées dans ce navigateur seulement. Désactivé, aucun journal n'est tenu." },
+  "journalCountOne": { "message": "Journal : $COUNT$ entrée", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Journal : $COUNT$ entrées", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Copier le journal" },
+  "journalClear": { "message": "Effacer le journal" },
+
+  "navAbout": { "message": "À propos" },
+  "aboutHeading": { "message": "À propos" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, version $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Développée par" },
+  "aboutOrigin": { "message": "Projet d'origine" },
+  "aboutFirefox": { "message": "Fork pour Firefox" },
+  "aboutLicense": { "message": "Licence" },
+  "aboutInvite": { "message": "Pour en savoir plus, suivre les nouvelles versions ou proposer une amélioration, rendez-vous sur le dépôt GitHub. Un problème ? Signalez-le avec le bouton ci-dessous." },
+  "aboutRepository": { "message": "Voir le projet sur GitHub" },
+  "reportOpen": { "message": "Signaler un problème" },
+  "reportHint": { "message": "Décrivez le problème dans l'issue qui s'ouvre sur GitHub : ce rapport y est joint pour aider à le comprendre. Relisez-le avant de l'envoyer ; vos listes de chaînes n'y figurent pas." },
+  "reportJournalOne": {
+    "message": "Joindre le journal ($COUNT$ entrée, avec les identifiants des vidéos regardées)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Joindre le journal ($COUNT$ entrées, avec les identifiants des vidéos regardées)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Aucun journal n'a été tenu. Pour en joindre un : activez le mode débogage dans « Divers », refaites ce qui pose problème, puis revenez ici." },
+  "reportTextLabel": { "message": "Rapport" },
+  "reportCopy": { "message": "Copier le rapport" },
+  "reportIssue": { "message": "Ouvrir une issue sur GitHub" },
+  "reportCut": { "message": "Le rapport est trop long pour l'adresse de l'issue : il y est raccourci. Copiez le rapport complet et collez-le dans l'issue." },
   "dialogAnalyse": { "message": "Analyser" },
   "partWithCount": {
     "message": "$PART$ ($COUNT$)",

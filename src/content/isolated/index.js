@@ -16,6 +16,7 @@
  * read, and never holds two likers.
  */
 import { historyEntry } from '../../core/history.js';
+import { journalEntry } from '../../core/journal.js';
 import { api } from '../../platform/api.js';
 import { acceptedMessage, Message } from '../../platform/messages.js';
 import { createStore } from '../../platform/storage.js';
@@ -56,9 +57,27 @@ let clicked = null;
 // validateChannelPage (null while the page does not show it yet).
 let channelPage = null;
 let busy = false;
+// Journal entries waiting for their write (see note).
+const JOURNAL_DELAY_MS = 2000;
+let pendingJournal = [];
+let journalTimer = null;
 
-function log(...args) {
-  console.debug(LOG_PREFIX, ...args);
+/**
+ * Notes a step of a video (videoId null for none): in the console, at the
+ * debug level, and in the journal while the debug mode is on. The journal
+ * is written at most every JOURNAL_DELAY_MS, in one go.
+ */
+function note(videoId, text) {
+  console.debug(LOG_PREFIX, videoId ? `video ${videoId}: ${text}` : text);
+  if (!settings?.debug) return;
+  pendingJournal.push(journalEntry(Date.now(), videoId, text));
+  if (journalTimer !== null) return;
+  journalTimer = setTimeout(() => {
+    const entries = pendingJournal;
+    pendingJournal = [];
+    journalTimer = null;
+    store.appendJournal(entries).catch((error) => console.error(LOG_PREFIX, 'could not write the journal', error));
+  }, JOURNAL_DELAY_MS);
 }
 
 /** Whether this copy may go on: still connected to the extension, and the newest one in the page. */
@@ -145,7 +164,7 @@ async function tick() {
       session = createSession(videoId, Date.now(), Math.random());
       lastObservation = null;
       clicked = null;
-      log(`video ${videoId}`);
+      note(videoId, `opened (${surfaceFromUrl(window.location.href)})`);
     }
     // A final video is still observed, for the popup and for a like the
     // user removes (see step); it is never clicked again.
@@ -167,13 +186,15 @@ async function tick() {
       if (button) {
         button.click();
         clicked = observation;
+        note(next.videoId, 'like button clicked');
       } else {
         next = { ...next, status: Status.CLICK_FAILED };
+        note(next.videoId, `like button not found (${surface})`);
       }
     }
 
     if (next.status !== session.status || next.reason !== session.reason) {
-      log(`video ${next.videoId}: ${describe(next)}`);
+      note(next.videoId, describe(next));
     }
     if (next.status === Status.LIKED && session.status !== Status.LIKED) {
       store
@@ -184,6 +205,7 @@ async function tick() {
     lastObservation = observation;
   } catch (error) {
     console.error(LOG_PREFIX, 'observation failed', error);
+    note(session?.videoId ?? null, `observation failed: ${error?.message ?? error}`);
   } finally {
     busy = false;
   }
@@ -219,7 +241,7 @@ function onPopupMessage(message, sender, sendResponse) {
   const onVideo = session && session.videoId === videoIdFromUrl(window.location.href);
   if (onVideo && COMMANDS[type]) {
     session = COMMANDS[type](session);
-    log(`video ${session.videoId}: ${type}, ${describe(session)}`);
+    note(session.videoId, `${type} from the popup, ${describe(session)}`);
   }
   sendResponse(currentStatus());
   // The video is looked at again at once, rather than at the next tick.

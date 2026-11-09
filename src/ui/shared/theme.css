@@ -136,6 +136,8 @@ body {
   gap: 6px;
   align-items: center;
   white-space: nowrap;
+  /* A link drawn as a button. */
+  text-decoration: none;
 }
 .btn:hover {
   background: var(--surface);

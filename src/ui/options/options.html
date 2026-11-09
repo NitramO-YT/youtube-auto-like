@@ -29,6 +29,7 @@
     <a href="#lists" data-i18n="navLists"></a>
     <a href="#history" data-i18n="navHistory"></a>
     <a href="#more" data-i18n="navMore"></a>
+    <a href="#about" data-i18n="navAbout"></a>
   </nav>
 
   <main id="form">
@@ -178,6 +179,39 @@
         <div><span id="like-count"></span><span class="hint" data-i18n="likeCountHint"></span></div>
         <button type="button" class="btn" id="reset-count" data-i18n="likeCountReset"></button>
       </div>
+      <div class="row-toggle">
+        <div>
+          <label class="check"><input type="checkbox" data-field="debug"><span class="box" aria-hidden="true"></span><span data-i18n="debugLabel"></span></label>
+          <p class="hint debug-hint" data-i18n="debugHint"></p>
+        </div>
+      </div>
+      <div class="row-toggle" id="journal-row" hidden>
+        <span id="journal-count"></span>
+        <span class="more-buttons">
+          <button type="button" class="btn" id="journal-copy" data-i18n="journalCopy"></button>
+          <button type="button" class="btn" id="journal-clear" data-i18n="journalClear"></button>
+        </span>
+      </div>
+    </section>
+
+    <section class="block" id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading" data-i18n="aboutHeading"></h2>
+      <p class="hint" id="about-version"></p>
+      <dl class="credits">
+        <dt data-i18n="aboutBy"></dt>
+        <dd><a href="https://github.com/NitramO-YT" target="_blank" rel="noopener noreferrer">Martin (NitramO)</a></dd>
+        <dt data-i18n="aboutOrigin"></dt>
+        <dd><a href="https://github.com/austencm/youtube-auto-like" target="_blank" rel="noopener noreferrer">Austen Morgan, austencm/youtube-auto-like</a></dd>
+        <dt data-i18n="aboutFirefox"></dt>
+        <dd><a href="https://github.com/Taknok/youtube-auto-like" target="_blank" rel="noopener noreferrer">Taknok, Taknok/youtube-auto-like</a></dd>
+        <dt data-i18n="aboutLicense"></dt>
+        <dd><a id="about-license" target="_blank" rel="noopener noreferrer">MIT</a></dd>
+      </dl>
+      <p class="hint" data-i18n="aboutInvite"></p>
+      <div class="more-buttons">
+        <a class="btn" id="about-repository" target="_blank" rel="noopener noreferrer" data-i18n="aboutRepository"></a>
+        <button type="button" class="btn" data-dialog="report" data-i18n="reportOpen"></button>
+      </div>
     </section>
   </main>
 </div>
@@ -280,6 +314,22 @@
   <div class="dialog-actions">
     <button type="button" class="btn" data-close data-i18n="dialogCancel"></button>
     <button type="button" class="btn primary" id="export-download" data-i18n="exportDownload"></button>
+  </div>
+</dialog>
+
+<!-- "Report a problem": the report to attach to an issue on GitHub. -->
+<dialog class="dialog" id="report-dialog" aria-labelledby="report-title">
+  <h2 id="report-title" data-i18n="reportOpen"></h2>
+  <p class="hint" data-i18n="reportHint"></p>
+  <label class="check" id="report-journal-row"><input type="checkbox" id="report-journal"><span class="box" aria-hidden="true"></span><span id="report-journal-label"></span></label>
+  <p class="hint" id="report-debug-off" data-i18n="reportDebugOff" hidden></p>
+  <label class="field" for="report-text" data-i18n="reportTextLabel"></label>
+  <textarea class="text-area" id="report-text" rows="10" readonly spellcheck="false"></textarea>
+  <p class="dialog-status" id="report-status" role="status" hidden></p>
+  <div class="dialog-actions">
+    <button type="button" class="btn" data-close data-i18n="dialogClose"></button>
+    <button type="button" class="btn" id="report-copy" data-i18n="reportCopy"></button>
+    <a class="btn primary" id="report-issue" target="_blank" rel="noopener noreferrer" data-i18n="reportIssue"></a>
   </div>
 </dialog>
 

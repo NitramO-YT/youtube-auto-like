@@ -51,6 +51,7 @@ async function writePreviewPage(extensionDir, scenario, locale, version) {
     stats: scenario.stats ?? { likeCount: 1248 },
     history: scenario.history,
     update: scenario.update,
+    journal: scenario.journal,
     status: scenario.status,
   };
   await writeFile(path.join(path.dirname(pageFile), `${id}.data.js`), `window.PREVIEW = ${JSON.stringify(preview)};\n`);

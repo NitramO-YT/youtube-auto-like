@@ -20,7 +20,7 @@ export function embeddedOptionsUrl(getURL) {
 
 // Dialogs too large for the frame of the popup open in the full page, at
 // options.html#dialog-<name>.
-export const FULL_PAGE_DIALOGS = Object.freeze(['add', 'import', 'export']);
+export const FULL_PAGE_DIALOGS = Object.freeze(['add', 'import', 'export', 'report']);
 const DIALOG_HASH = '#dialog-';
 
 /** Address of the full options page that opens a dialog. */

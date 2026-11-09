@@ -68,8 +68,9 @@ for (const target of TARGETS) {
     it('ships the popup, the options page, and every file they load', async () => {
       for (const page of [manifest.action.default_popup, manifest.options_ui.page]) {
         const html = await readFile(path.join(outDir, page), 'utf8');
-        // Addresses of the page itself (anchors to its sections) are not files.
-        const loaded = [...html.matchAll(/(?:src|href)="([^"#]+)"/g)].map((match) => match[1]);
+        // Addresses of the page itself (anchors to its sections) and links to
+        // other sites (the credits) are not files of the extension.
+        const loaded = [...html.matchAll(/(?:src|href)="([^"#]+)"/g)].map((match) => match[1]).filter((address) => !/^https:\/\//.test(address));
         assert.ok(loaded.length >= 2, `${page} loads its script and its stylesheet`);
         for (const file of loaded) {
           await access(path.join(outDir, path.dirname(page), file));

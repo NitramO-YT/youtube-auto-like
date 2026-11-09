@@ -46,6 +46,10 @@ export const FIELDS = Object.freeze({
     get: (settings) => settings.updateCheckMinutes,
     set: (settings, value) => ({ ...settings, updateCheckMinutes: value }),
   },
+  debug: {
+    get: (settings) => settings.debug,
+    set: (settings, value) => ({ ...settings, debug: value }),
+  },
 });
 
 export const NUMBER_RANGES = Object.freeze({ percentValue: PERCENT_RANGE, minutesValue: MINUTES_RANGE });

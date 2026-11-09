@@ -43,6 +43,9 @@ const DEFAULTS = {
   relikeAfterRemoval: false,
   theme: 'system',
   listPageSize: 20,
+  // Keeps the journal of what the extension does (core/journal.js), for the
+  // report of a problem; off by default, the journal naming the videos watched.
+  debug: false,
 };
 
 export function defaultSettings() {
@@ -97,6 +100,7 @@ export function normalizeSettings(raw) {
     relikeAfterRemoval: booleanOr(input.relikeAfterRemoval, defaults.relikeAfterRemoval),
     theme: oneOf(input.theme, THEMES, defaults.theme),
     listPageSize: oneOf(input.listPageSize, LIST_PAGE_SIZES, defaults.listPageSize),
+    debug: booleanOr(input.debug, defaults.debug),
   };
 
   // A custom timing with no threshold enabled would leave the user waiting

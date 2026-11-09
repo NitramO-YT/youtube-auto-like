@@ -1,12 +1,13 @@
 /**
- * Settings, statistics and history of likes in storage.local. Everything
- * read goes through normalizeSettings or normalizeHistory, so a value written
+ * Settings, statistics, history of likes and journal in storage.local.
+ * Everything read goes through its normalize function, so a value written
  * by an older version, by hand or by an import never reaches the rest of the
  * extension as is.
  *
  * The API is passed in, so that tests can use a fake one.
  */
 import { addToHistory, normalizeHistory } from '../core/history.js';
+import { addToJournal, normalizeJournal } from '../core/journal.js';
 import { normalizeSettings } from '../core/settings.js';
 import { normalizeUpdateState } from '../core/update.js';
 
@@ -14,6 +15,7 @@ export const SETTINGS_KEY = 'settings';
 export const STATS_KEY = 'stats';
 export const HISTORY_KEY = 'history';
 export const UPDATE_KEY = 'update';
+export const JOURNAL_KEY = 'journal';
 
 function validCount(value) {
   return Number.isInteger(value) && value >= 0 ? value : 0;
@@ -120,6 +122,38 @@ export function createStore(api) {
       api.storage.onChanged.addListener((changes, areaName) => {
         if (areaName === 'local' && HISTORY_KEY in changes) {
           listener(normalizeHistory(changes[HISTORY_KEY].newValue));
+        }
+      });
+    },
+
+    async loadJournal() {
+      const stored = await area.get(JOURNAL_KEY);
+      return normalizeJournal(stored[JOURNAL_KEY]);
+    },
+
+    /**
+     * Adds entries at the end of the journal. Like recordLike, two tabs
+     * writing at the very same moment could lose one entry: acceptable for a
+     * journal meant to help with a report.
+     */
+    async appendJournal(entries) {
+      if (entries.length === 0) return;
+      const stored = await area.get(JOURNAL_KEY);
+      await area.set({ [JOURNAL_KEY]: addToJournal(normalizeJournal(stored[JOURNAL_KEY]), entries) });
+    },
+
+    /** Replaces the journal (clearing it, or its undo). */
+    async setJournal(journal) {
+      const normalized = normalizeJournal(journal);
+      await area.set({ [JOURNAL_KEY]: normalized });
+      return normalized;
+    },
+
+    /** Calls listener with the new journal, normalized, after each change. */
+    onJournalChange(listener) {
+      api.storage.onChanged.addListener((changes, areaName) => {
+        if (areaName === 'local' && JOURNAL_KEY in changes) {
+          listener(normalizeJournal(changes[JOURNAL_KEY].newValue));
         }
       });
     },

@@ -1,13 +1,13 @@
 /**
  * Stand-in for the extension API in a preview page (scripts/preview-ui.mjs),
  * loaded before the page's own script. It serves the real texts, and the
- * settings, statistics and video status of one scenario, from
- * window.PREVIEW. Uncaught errors, rejected promises and console.error calls
+ * settings, statistics, history, journal and video status of one scenario,
+ * from window.PREVIEW. Uncaught errors, rejected promises and console.error calls
  * are kept in the data-preview-errors attribute of <html>, which the preview
  * script reads back from the DOM.
  */
 (() => {
-  const { messages, settings, stats, history, update, status } = window.PREVIEW;
+  const { messages, settings, stats, history, update, journal, status } = window.PREVIEW;
   const root = document.documentElement;
   const errors = [];
   const record = (text) => {
@@ -36,7 +36,7 @@
       .replace(/\$([1-9])/g, (_, rank) => substitutions[rank - 1] ?? '');
   }
 
-  const data = { settings, stats, history, update };
+  const data = { settings, stats, history, update, journal };
   const listeners = [];
 
   window.chrome = {

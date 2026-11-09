@@ -202,6 +202,18 @@ export const SCENARIOS = [
       likedAt: new Date(Date.UTC(2026, 10, 8, 23, 0) - i * 1_800_000).toISOString(),
     })),
   },
+  // The bottom of the page: "More" with the debug mode and its journal, then "About".
+  {
+    name: 'options-about',
+    ...OPTIONS,
+    size: [1100, 3000],
+    settings: { debug: true },
+    journal: [
+      { at: '2026-11-09T02:10:01.000Z', videoId: 'aeP4eG-gO10', text: 'opened (watch)' },
+      { at: '2026-11-09T02:10:03.000Z', videoId: 'aeP4eG-gO10', text: 'confirming, at 0 s (instant)' },
+      { at: '2026-11-09T02:10:04.000Z', videoId: 'aeP4eG-gO10', text: 'liked, at 0 s (instant)' },
+    ],
+  },
   { name: 'options-narrow', ...OPTIONS, size: [390, 1600], settings: { enabled: false, timing: { mode: 'random' } } },
   // The options page as the frame of the popup shows it.
   { name: 'options-embedded', ...OPTIONS, query: '?embedded', size: [340, 470], settings: { enabled: false } },
