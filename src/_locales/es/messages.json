@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Da «Me gusta» automáticamente a los videos de YouTube de los canales que elijas." },
+
+  "locale": { "message": "es" },
+
+  "switchLabel": { "message": "Dar «Me gusta» a los videos automáticamente" },
+  "switchActive": { "message": "Activa" },
+  "switchPaused": { "message": "En pausa" },
+  "pausedBanner": { "message": "La extensión no da «Me gusta» a nada mientras está en pausa." },
+  "badgeUpdate": { "message": "NEW" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: ya está disponible la versión $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Ya está disponible la versión $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Este video" },
+  "sectionThisChannel": { "message": "Este canal" },
+  "sectionRule": { "message": "Regla activa" },
+  "openSettings": { "message": "Cambiar la configuración →" },
+  "settingsShow": { "message": "Mostrar la configuración" },
+  "settingsHide": { "message": "Volver al video" },
+  "openFullPage": { "message": "Abrir en una página completa ↗" },
+  "noVideo": { "message": "Abre un video o un Short en YouTube para ver qué hace la extensión con él, o la página de un canal para elegir si se da «Me gusta» a sus videos." },
+  "noVideoHint": { "message": "Si ya hay un video abierto, vuelve a cargar su página." },
+
+  "channelUnknown": { "message": "Canal desconocido" },
+  "channelSubscribed": { "message": "Suscrito" },
+  "channelNotSubscribed": { "message": "No suscrito" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "Video de $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "En directo" },
+
+  "statusLikedTitle": { "message": "«Me gusta» dado automáticamente" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "nada más abrirlo" },
+  "likedHowLikeNow": { "message": "a petición tuya" },
+  "likedHowAt": {
+    "message": "en el $TIME$ del video",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "tras $DURATION$ de reproducción",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Recibirá «Me gusta» al $PERCENT$ % del video",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Recibirá «Me gusta» tras $MINUTES$ min de reproducción",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Recibirá «Me gusta» en un momento al azar" },
+  "statusWaitBeforeEnd": { "message": "Recibirá «Me gusta» justo antes del final" },
+  "statusWaitRemaining": {
+    "message": "quedan $DURATION$ de reproducción",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "«Me gusta» en un momento" },
+  "statusWaitDuration": { "message": "Esperando la duración del video" },
+  "statusWaitAd": { "message": "Esperando a que termine el anuncio" },
+  "statusWaitAdDetail": { "message": "El tiempo de anuncios no cuenta." },
+  "statusReading": { "message": "Leyendo la página…" },
+  "statusReadingDetail": { "message": "En un Short, YouTube a veces solo muestra sus botones cuando el ratón pasa por encima del video." },
+  "statusConfirming": { "message": "Comprobando que el «Me gusta» se ha registrado…" },
+  "statusFailedTitle": { "message": "No se pudo confirmar el «Me gusta»" },
+  "statusFailedDetail": { "message": "El botón «Me gusta» no ha reaccionado. Vuelve a cargar la página para intentarlo de nuevo." },
+
+  "statusAlreadyLikedTitle": { "message": "Ya tiene «Me gusta»" },
+  "statusNotLikedTitle": { "message": "Sin «Me gusta»" },
+  "reasonAlreadyLiked": { "message": "Este video ya tenía «Me gusta»: la extensión lo deja como está." },
+  "reasonAlreadyDisliked": { "message": "Has marcado este video con «No me gusta»: la extensión lo deja como está." },
+  "reasonSkippedByUser": { "message": "Has pedido no darle «Me gusta» esta vez. Podrá recibirlo cuando lo vuelvas a ver." },
+  "reasonVideoExcluded": { "message": "Has excluido este video: nunca recibe «Me gusta», hasta que dejes de excluirlo." },
+  "reasonNotSubscribed": { "message": "No estás suscrito a este canal. Recibirá «Me gusta» si te suscribes." },
+  "reasonNotInAlwaysList": { "message": "Solo reciben «Me gusta» los canales de tu lista «Siempre me gusta»." },
+  "reasonInNeverList": { "message": "Este canal está en tu lista «Nunca me gusta»." },
+  "reasonShortsOff": { "message": "Los Shorts no reciben «Me gusta», según tu configuración." },
+  "reasonNormalVideosOff": { "message": "Solo los Shorts reciben «Me gusta», según tu configuración." },
+  "statusWouldLike": { "message": "Recibiría «Me gusta»" },
+  "statusWouldLikeDetail": { "message": "si la extensión estuviera activa." },
+
+  "actionLikeNow": { "message": "Dar «Me gusta» ahora" },
+  "actionSkip": { "message": "Esta vez no" },
+  "actionRestart": { "message": "Reiniciar para este video" },
+  "actionRetry": { "message": "Reintentar" },
+  "removedLikeTitle": { "message": "«Me gusta» quitado" },
+  "removedLikeRestart": { "message": "Has quitado el «Me gusta». Reinicia para que la extensión vuelva a revisar este video." },
+  "removedDislikeTitle": { "message": "«No me gusta» quitado" },
+  "removedDislikeRestart": { "message": "Has quitado el «No me gusta». Reinicia para que la extensión vuelva a revisar este video." },
+  "likeRemovedNextOpening": { "message": "Volverá a recibir «Me gusta» la próxima vez que se abra el video." },
+  "likeRemovedAt": {
+    "message": "Volverá a recibir «Me gusta» cuando la reproducción vuelva a pasar por $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Volver a dar «Me gusta» a un video cuyo «Me gusta» quito" },
+  "relikeHint": { "message": "Cuando la reproducción vuelve a pasar por el momento previsto, es decir, tras retroceder antes de él; con «Nada más abrirlo», la próxima vez que se abra el video. También para un video al que diste «Me gusta» tú." },
+  "actionResume": { "message": "Deshacer «Esta vez no»" },
+  "actionExcludeVideo": { "message": "No dar nunca «Me gusta» a este video" },
+  "actionUnexcludeVideo": { "message": "Dejar de excluir este video" },
+  "channelChoiceLegend": { "message": "Dar «Me gusta» a los videos de este canal" },
+  "channelChoiceAlways": { "message": "Siempre" },
+  "channelChoiceAuto": { "message": "Según mi configuración" },
+  "channelChoiceNever": { "message": "Nunca" },
+
+  "noticeAddedAlways": { "message": "Añadido a «Siempre me gusta»" },
+  "noticeAddedNever": { "message": "Añadido a «Nunca me gusta»" },
+  "noticeRemovedNever": { "message": "Quitado de «Nunca me gusta»" },
+  "noticeSkipped": { "message": "Sin «Me gusta» esta vez" },
+  "noticeVideoExcluded": { "message": "Añadido a los videos excluidos" },
+  "noticeVideoUnexcluded": { "message": "Quitado de los videos excluidos" },
+  "noticeUndo": { "message": "Deshacer" },
+  "noticeUndone": { "message": "Deshecho" },
+  "noticeSaveFailed": { "message": "No se pudo guardar el cambio." },
+  "noticeStorageFull": { "message": "El almacenamiento de la extensión está lleno: quita canales o videos excluidos de tus listas y vuelve a intentarlo." },
+  "noticeLoadFailed": { "message": "No se pudo leer la configuración." },
+  "noticeListFull": {
+    "message": "Esta lista está llena ($COUNT$ entradas como máximo).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "La página no ha respondido. Vuelve a cargarla e inténtalo de nuevo." },
+  "noticeSaved": { "message": "Guardado" },
+  "noticeRemovedAlways": { "message": "Quitado de «Siempre me gusta»" },
+  "noticeImportDone": {
+    "message": "Importación terminada: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ canal añadido a «$LIST$»",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "$COUNT$ canales añadidos a «$LIST$»",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Cancelar" },
+  "dialogClose": { "message": "Cerrar" },
+  "noticeCopied": { "message": "Copiado" },
+  "noticeCopyFailed": { "message": "No se pudo copiar: selecciona el texto y cópialo tú." },
+  "noticeJournalCleared": { "message": "Registro borrado" },
+
+  "languageLabel": { "message": "Idioma" },
+  "languageHint": { "message": "El del navegador u otro a tu elección. ¿Una traducción que corregir? Propónlo en GitHub." },
+  "languageAuto": { "message": "El del navegador" },
+
+  "debugLabel": { "message": "Modo de depuración" },
+  "debugHint": { "message": "Lleva un registro de lo que hace la extensión, para informar de un problema: los últimos 200 pasos, con los identificadores de los videos vistos, guardados solo en este navegador. Desactivado, no se lleva ningún registro." },
+  "journalCountOne": { "message": "Registro: $COUNT$ entrada", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Registro: $COUNT$ entradas", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Copiar el registro" },
+  "journalClear": { "message": "Borrar el registro" },
+
+  "navAbout": { "message": "Acerca de" },
+  "aboutHeading": { "message": "Acerca de" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, versión $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Desarrollada por" },
+  "aboutOrigin": { "message": "Proyecto original" },
+  "aboutFirefox": { "message": "Fork para Firefox" },
+  "aboutLicense": { "message": "Licencia" },
+  "aboutInvite": { "message": "Para saber más, seguir las nuevas versiones o proponer una mejora, visita el repositorio de GitHub. ¿Un problema? Infórmalo con el botón de abajo." },
+  "aboutRepository": { "message": "Ver el proyecto en GitHub" },
+  "reportOpen": { "message": "Informar de un problema" },
+  "reportHint": { "message": "Describe el problema en la issue que se abre en GitHub: este informe se adjunta para ayudar a entenderlo. Léelo antes de enviarlo; tus listas de canales no aparecen en él." },
+  "reportJournalOne": {
+    "message": "Adjuntar el registro ($COUNT$ entrada, con los identificadores de los videos vistos)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Adjuntar el registro ($COUNT$ entradas, con los identificadores de los videos vistos)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "No se ha llevado ningún registro. Para adjuntar uno: activa el modo de depuración en «Más», repite lo que falla y vuelve aquí." },
+  "reportTextLabel": { "message": "Informe" },
+  "reportCopy": { "message": "Copiar el informe" },
+  "reportIssue": { "message": "Abrir una issue en GitHub" },
+  "reportCut": { "message": "El informe es demasiado largo para la dirección de la issue: allí aparece recortado. Copia el informe completo y pégalo en la issue." },
+  "dialogAnalyse": { "message": "Analizar" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Añadir canales" },
+  "addHint": { "message": "Pega enlaces de canales o de videos, o @identificadores, uno por línea. La extensión pregunta a YouTube de qué canal se trata, como si abrieras su página." },
+  "addLinesLabel": { "message": "Enlaces o @identificadores" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@nombre\n@nombre\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "En la lista" },
+  "addSearch": { "message": "Buscar" },
+  "addSearching": {
+    "message": "Preguntando a YouTube… $DONE$ de $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Añadir" },
+  "addApplyOne": {
+    "message": "Añadir $COUNT$ canal",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Añadir $COUNT$ canales",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Ningún canal que añadir: ya están todos en esta lista, o no se encontró ninguno." },
+  "addEmpty": { "message": "Pega al menos un enlace o un @identificador." },
+  "addTooMany": {
+    "message": "Como máximo $MAX$ líneas a la vez.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "se añadirá" },
+  "lookupAlready": { "message": "ya está en esta lista" },
+  "lookupMoved": {
+    "message": "pasará de «$FROM$» a «$TO$»",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "el mismo canal que una línea anterior" },
+  "lookupNotALink": { "message": "ni un enlace a un canal o video de YouTube, ni un @identificador" },
+  "lookupNotFound": { "message": "ese canal o video no existe en YouTube" },
+  "lookupUnreadable": { "message": "YouTube no ha indicado el canal. Si nunca se ha abierto en este navegador, ábrelo una vez y elige tus preferencias de cookies; luego vuelve a intentarlo" },
+
+  "importTitle": { "message": "Importar listas" },
+  "importHint": { "message": "Un archivo exportado por la extensión, o una lista de enlaces de canales, uno por línea. No se guarda nada antes de «Importar»: «Analizar» muestra primero lo que se hará." },
+  "importDropHere": { "message": "Arrastra un archivo aquí, o" },
+  "importBrowse": { "message": "busca en tus archivos" },
+  "importPasteHint": { "message": "También puedes pegar un archivo o un texto (Ctrl+V) en esta ventana." },
+  "importChange": { "message": "Cambiar" },
+  "importRemove": { "message": "Quitar" },
+  "importPasted": { "message": "Texto pegado" },
+  "importSourceFile": { "message": "Archivo exportado por la extensión" },
+  "importSourceLinksOne": {
+    "message": "Lista de enlaces, $COUNT$ línea",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Lista de enlaces, $COUNT$ líneas",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Esto no es ni una exportación de la extensión ni una lista de enlaces." },
+  "importNoSource": { "message": "Primero elige un archivo, o pega un texto." },
+  "importNoPart": { "message": "Marca al menos una parte que importar." },
+  "importListFull": {
+    "message": "Una lista superaría las $COUNT$ entradas: no se importaría nada.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Lo que se importa" },
+  "importLinksTarget": { "message": "Poner estos canales en" },
+  "importModeLabel": { "message": "Entradas ya presentes" },
+  "importModeAddNew": { "message": "Añadir solo las nuevas" },
+  "importModeAddNewHint": { "message": "Un canal que ya está en una lista se queda donde está." },
+  "importModeFollow": { "message": "Añadir y seguir el archivo" },
+  "importModeFollowHint": { "message": "Un canal ya presente pasa a la lista que le da el archivo." },
+  "importModeReplace": { "message": "Reemplazarlo todo por el archivo" },
+  "importModeReplaceHint": { "message": "Las partes marcadas pasan a ser exactamente las del archivo: lo que no contiene se quita." },
+  "importRemember": { "message": "Recordar mi elección" },
+  "importApply": { "message": "Importar" },
+  "importConfirmOne": {
+    "message": "Confirmo que se quite $COUNT$ entrada que falta en el archivo.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Confirmo que se quiten las $COUNT$ entradas que faltan en el archivo.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "no cambia nada" },
+  "reportNothing": { "message": "No cambia nada: todo está ya presente." },
+  "reportAddedOne": { "message": "$COUNT$ nueva", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "$COUNT$ nuevas", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ movida", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "$COUNT$ movidas", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ ya presente", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ ya presentes", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ quitada", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ quitadas", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Exportar listas" },
+  "exportPartsLabel": { "message": "Lo que se exporta" },
+  "exportFormatLabel": { "message": "Formato" },
+  "exportFormatJson": { "message": "Archivo de la extensión (JSON)" },
+  "exportFormatJsonHint": { "message": "Se vuelve a importar tal cual, con las fechas y las imágenes de los canales." },
+  "exportFormatLinks": { "message": "Lista de enlaces (texto)" },
+  "exportFormatLinksHint": { "message": "Un enlace de canal por línea, con su nombre, para leer o compartir. Los videos excluidos no aparecen." },
+  "exportDownload": { "message": "Descargar" },
+  "exportNothing": { "message": "Marca al menos una lista." },
+  "noticeImportInvalid": { "message": "Este archivo no es una lista exportada por YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "Este archivo es demasiado grande para ser una lista de canales." },
+  "noticeCountReset": { "message": "Contador puesto a cero" },
+  "noticeNumberInvalid": {
+    "message": "Introduce un número de $MIN$ a $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Configuración de YouTube Auto Like" },
+  "optionsTitle": { "message": "Configuración" },
+  "navSections": { "message": "Secciones" },
+  "navChannels": { "message": "Qué canales" },
+  "navVideos": { "message": "Qué videos" },
+  "navWhen": { "message": "Cuándo dar «Me gusta»" },
+  "navLists": { "message": "Mis listas" },
+  "navMore": { "message": "Más" },
+
+  "channelsHeading": { "message": "¿A qué canales dar «Me gusta»?" },
+  "channelsHint": { "message": "La lista «Nunca me gusta» siempre tiene prioridad." },
+  "likeWhatSubscribed": { "message": "Los canales a los que estoy suscrito" },
+  "likeWhatSubscribedHint": { "message": "más los de mi lista «Siempre me gusta»." },
+  "recommended": { "message": "Recomendado" },
+  "likeWhatAll": { "message": "Todos los canales" },
+  "likeWhatAllHint": { "message": "cada video visto recibe «Me gusta»." },
+  "likeWhatList": { "message": "Solo mi lista «Siempre me gusta»" },
+  "likeWhatListHint": { "message": "suscrito o no, nada más recibe «Me gusta»." },
+
+  "videosHeading": { "message": "¿Qué videos?" },
+  "videosHint": { "message": "Los Shorts se reconocen incluso abiertos en el reproductor normal." },
+  "likeNormalVideos": { "message": "Videos" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "¿Cuándo dar «Me gusta»?" },
+  "whenHint": { "message": "Un video al que tú mismo das «Me gusta» o «No me gusta» nunca se toca." },
+  "modeInstant": { "message": "Nada más abrirlo" },
+  "modeCustom": { "message": "Al cabo de un rato" },
+  "modeRandom": { "message": "En un momento al azar" },
+  "thresholdAfter": { "message": "tras" },
+  "thresholdPercentUnit": { "message": "% del video" },
+  "thresholdMinutesUnit": { "message": "minutos de reproducción" },
+  "percentLabel": { "message": "Porcentaje del video" },
+  "minutesLabel": { "message": "Minutos de reproducción" },
+  "thresholdKeepOne": { "message": "Al menos uno de los dos umbrales queda marcado." },
+  "thresholdsHint": { "message": "El primer umbral alcanzado activa el «Me gusta». Un video más corto lo recibe dos segundos antes de terminar. En un directo solo cuentan los minutos, desde que empezaste a verlo; sin umbral en minutos, lo recibe nada más abrirlo. Los anuncios no cuentan." },
+  "randomHint": { "message": "Un momento elegido al azar en cada video. Un directo recibe «Me gusta» nada más abrirlo." },
+  "summaryLabel": { "message": "Resumen:" },
+
+  "listsHeading": { "message": "Mis listas de canales" },
+  "listsHint": { "message": "Añade canales por enlace o @identificador, desde la ventana del icono en un video o en la página de un canal, o desde el historial. Un video se excluye desde la ventana del icono." },
+  "listAlways": { "message": "Siempre me gusta" },
+  "listNever": { "message": "Nunca me gusta" },
+  "listVideos": { "message": "Videos excluidos" },
+  "listExcludedOn": {
+    "message": "excluido el $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Dejar de excluir $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Buscar en la lista" },
+  "listImport": { "message": "Importar" },
+  "listExport": { "message": "Exportar" },
+  "listEmpty": { "message": "No hay ningún canal en esta lista. Añade alguno por enlace o @identificador, desde la ventana del icono en un video o en la página de un canal, o desde el historial." },
+  "listEmptyVideos": { "message": "No hay ningún video excluido. Para excluir un video, abre la ventana del icono mientras lo ves y elige «No dar nunca “Me gusta” a este video»." },
+  "listNoMatch": { "message": "Ningún canal coincide con esta búsqueda." },
+  "listAddedOn": {
+    "message": "añadido el $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Quitar $NAME$ de esta lista",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ de $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Mostrar $COUNT$ más",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Mostrar todo ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Filas mostradas en las listas y el historial" },
+  "listPageSizeHint": { "message": "Las demás aparecen con «Mostrar más» o «Mostrar todo». Una lista larga se desplaza por dentro, sin alargar la página." },
+  "listPageSizeAll": { "message": "Todas" },
+  "listOpenChannel": { "message": "Abrir el canal en YouTube" },
+
+  "navHistory": { "message": "Historial" },
+  "historyHeading": { "message": "«Me gusta» dados por la extensión" },
+  "historyHint": {
+    "message": "Los $COUNT$ últimos, del más reciente al más antiguo, guardados solo en este navegador.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "La extensión aún no ha dado ningún «Me gusta»." },
+  "historyUntitled": { "message": "Video sin título" },
+  "historyChannelChoice": {
+    "message": "Dar «Me gusta» a los videos de $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Borrar el historial" },
+  "noticeHistoryCleared": { "message": "Historial borrado" },
+
+  "moreHeading": { "message": "Más" },
+  "themeLabel": { "message": "Tema" },
+  "themeSystem": { "message": "Como el sistema" },
+  "themeLight": { "message": "Claro" },
+  "themeDark": { "message": "Oscuro" },
+  "updatesLabel": { "message": "Buscar nuevas versiones" },
+  "updatesHint": { "message": "Consulta GitHub, donde se publica la extensión; GitHub ve entonces tu dirección IP." },
+  "updateEvery0": { "message": "Nunca" },
+  "updateEvery30": { "message": "Cada 30 minutos" },
+  "updateEvery60": { "message": "Cada hora" },
+  "updateEvery360": { "message": "Cada 6 horas" },
+  "updateEvery1440": { "message": "Cada día" },
+  "updateEvery10080": { "message": "Cada semana" },
+  "updateEveryCustom": { "message": "Personalizado…" },
+  "updateEveryPrefix": { "message": "Cada" },
+  "updateCustomCount": { "message": "Número de minutos, horas o días entre dos comprobaciones" },
+  "updateCustomUnit": { "message": "Unidad" },
+  "unitMinutesOne": { "message": "minuto" },
+  "unitMinutesOther": { "message": "minutos" },
+  "unitHoursOne": { "message": "hora" },
+  "unitHoursOther": { "message": "horas" },
+  "unitDaysOne": { "message": "día" },
+  "unitDaysOther": { "message": "días" },
+  "noticeFrequencyInvalid": { "message": "Introduce una duración de 5 minutos a 30 días." },
+  "updateCheckNow": { "message": "Comprobar ahora" },
+  "updateStatusOff": { "message": "No se buscan nuevas versiones." },
+  "updateStatusNever": { "message": "Aún no se ha comprobado." },
+  "updateStatusChecking": { "message": "Comprobando…" },
+  "updateStatusAvailable": {
+    "message": "Ya está disponible la versión $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Comprobado $WHEN$: tienes la última versión.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Comprobado $WHEN$: aún no hay ninguna versión publicada.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "La última comprobación falló $WHEN$; la siguiente lo volverá a intentar.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "No se pudo hacer la comprobación." },
+  "likeCountHint": { "message": "Desde que se instaló la extensión, o desde la última puesta a cero. Ponerlo a cero no cambia nada más." },
+  "likeCountReset": { "message": "Poner a cero" },
+
+  "ruleSentence": {
+    "message": "Da «Me gusta» a $WHAT$ $CHANNELS$, $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "No da «Me gusta» a nada: los videos y los Shorts están desactivados." },
+  "ruleWhatBoth": { "message": "los videos y los Shorts" },
+  "ruleWhatVideos": { "message": "los videos" },
+  "ruleWhatShorts": { "message": "los Shorts" },
+  "ruleChannelsSubscribed": { "message": "de los canales a los que estás suscrito" },
+  "ruleChannelsSubscribedAndList": { "message": "de los canales a los que estás suscrito y de los de tu lista «Siempre me gusta»" },
+  "ruleChannelsAll": { "message": "de todos los canales" },
+  "ruleChannelsList": { "message": "de los canales de tu lista «Siempre me gusta»" },
+  "ruleWhenInstant": { "message": "nada más abrirlos" },
+  "ruleWhenPercent": {
+    "message": "al $PERCENT$ % del video",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "tras $MINUTES$ min de reproducción",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "al $PERCENT$ % del video o tras $MINUTES$ min de reproducción, lo que ocurra primero",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "en un momento al azar" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ video con «Me gusta»",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ videos con «Me gusta»",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$ s",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ h $MINUTES$ min",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
