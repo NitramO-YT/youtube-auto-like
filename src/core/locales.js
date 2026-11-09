@@ -10,6 +10,7 @@ export const LOCALES = Object.freeze({
   es: Object.freeze({ name: 'Español', region: 'ES' }),
   fr: Object.freeze({ name: 'Français', region: 'FR' }),
   it: Object.freeze({ name: 'Italiano', region: 'IT' }),
+  nl: Object.freeze({ name: 'Nederlands', region: 'NL' }),
   pt_BR: Object.freeze({ name: 'Português (Brasil)', region: 'BR' }),
 });
 

@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Liket automatisch YouTube-video's van de kanalen die je kiest." },
+
+  "locale": { "message": "nl" },
+
+  "switchLabel": { "message": "Video's automatisch liken" },
+  "switchActive": { "message": "Actief" },
+  "switchPaused": { "message": "Gepauzeerd" },
+  "pausedBanner": { "message": "Zolang de extensie gepauzeerd is, liket ze niets." },
+  "badgeUpdate": { "message": "NEW" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: versie $VERSION$ is uit",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Versie $VERSION$ is uit ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Deze video" },
+  "sectionThisChannel": { "message": "Dit kanaal" },
+  "sectionRule": { "message": "Actieve regel" },
+  "openSettings": { "message": "Instellingen wijzigen →" },
+  "settingsShow": { "message": "Instellingen tonen" },
+  "settingsHide": { "message": "Terug naar de video" },
+  "openFullPage": { "message": "Op een volledige pagina openen ↗" },
+  "noVideo": { "message": "Open een video of een Short op YouTube om te zien wat de extensie ermee doet, of de pagina van een kanaal om te kiezen of de video's ervan geliket worden." },
+  "noVideoHint": { "message": "Is er al een video open, laad de pagina dan opnieuw." },
+
+  "channelUnknown": { "message": "Onbekend kanaal" },
+  "channelSubscribed": { "message": "Geabonneerd" },
+  "channelNotSubscribed": { "message": "Niet geabonneerd" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "Video van $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Livestream" },
+
+  "statusLikedTitle": { "message": "Automatisch geliket" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "meteen bij het openen" },
+  "likedHowLikeNow": { "message": "op jouw verzoek" },
+  "likedHowAt": {
+    "message": "op $TIME$ in de video",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "na $DURATION$ kijken",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Wordt geliket op $PERCENT$% van de video",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Wordt geliket na $MINUTES$ min afspelen",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Wordt geliket op een willekeurig moment" },
+  "statusWaitBeforeEnd": { "message": "Wordt vlak voor het einde geliket" },
+  "statusWaitRemaining": {
+    "message": "nog $DURATION$ afspelen",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Zo meteen geliket" },
+  "statusWaitDuration": { "message": "Wacht op de lengte van de video" },
+  "statusWaitAd": { "message": "Wacht tot de advertentie voorbij is" },
+  "statusWaitAdDetail": { "message": "Advertentietijd telt niet mee." },
+  "statusReading": { "message": "Pagina wordt gelezen…" },
+  "statusReadingDetail": { "message": "Bij een Short toont YouTube de knoppen soms pas als de muis over de video beweegt." },
+  "statusConfirming": { "message": "Controleren of de like is aangekomen…" },
+  "statusFailedTitle": { "message": "De like kon niet worden bevestigd" },
+  "statusFailedDetail": { "message": "De knop ‘Vind ik leuk’ reageerde niet. Laad de pagina opnieuw om het nog eens te proberen." },
+
+  "statusAlreadyLikedTitle": { "message": "Al geliket" },
+  "statusNotLikedTitle": { "message": "Niet geliket" },
+  "reasonAlreadyLiked": { "message": "Deze video had al een like: de extensie laat hem zoals hij is." },
+  "reasonAlreadyDisliked": { "message": "Je hebt deze video ‘Vind ik niet leuk’ gegeven: de extensie laat hem zoals hij is." },
+  "reasonSkippedByUser": { "message": "Je hebt gevraagd hem deze keer niet te liken. Hij kan geliket worden als je hem opnieuw bekijkt." },
+  "reasonVideoExcluded": { "message": "Je hebt deze video uitgesloten: hij wordt nooit geliket, tot je de uitsluiting opheft." },
+  "reasonNotSubscribed": { "message": "Je bent niet geabonneerd op dit kanaal. Hij wordt geliket als je je abonneert." },
+  "reasonNotInAlwaysList": { "message": "Alleen de kanalen uit je lijst ‘Altijd liken’ worden geliket." },
+  "reasonInNeverList": { "message": "Dit kanaal staat in je lijst ‘Nooit liken’." },
+  "reasonShortsOff": { "message": "Shorts worden volgens je instellingen niet geliket." },
+  "reasonNormalVideosOff": { "message": "Volgens je instellingen worden alleen Shorts geliket." },
+  "statusWouldLike": { "message": "Zou geliket worden" },
+  "statusWouldLikeDetail": { "message": "als de extensie actief was." },
+
+  "actionLikeNow": { "message": "Nu liken" },
+  "actionSkip": { "message": "Deze keer niet" },
+  "actionRestart": { "message": "Opnieuw starten voor deze video" },
+  "actionRetry": { "message": "Opnieuw proberen" },
+  "removedLikeTitle": { "message": "Like verwijderd" },
+  "removedLikeRestart": { "message": "Je hebt de like verwijderd. Start opnieuw zodat de extensie deze video opnieuw controleert." },
+  "removedDislikeTitle": { "message": "Dislike verwijderd" },
+  "removedDislikeRestart": { "message": "Je hebt de ‘Vind ik niet leuk’ verwijderd. Start opnieuw zodat de extensie deze video opnieuw controleert." },
+  "likeRemovedNextOpening": { "message": "Hij wordt opnieuw geliket wanneer de video de volgende keer wordt geopend." },
+  "likeRemovedAt": {
+    "message": "Hij wordt opnieuw geliket wanneer het afspelen weer voorbij $TIME$ komt.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Een video opnieuw liken als ik de like verwijder" },
+  "relikeHint": { "message": "Wanneer het afspelen weer voorbij het geplande moment komt, dus na terugspoelen tot ervoor; met ‘Meteen bij het openen’ de volgende keer dat de video wordt geopend. Ook voor een video die je zelf had geliket." },
+  "actionResume": { "message": "‘Deze keer niet’ ongedaan maken" },
+  "actionExcludeVideo": { "message": "Deze video nooit liken" },
+  "actionUnexcludeVideo": { "message": "Uitsluiting van deze video opheffen" },
+  "channelChoiceLegend": { "message": "Video's van dit kanaal liken" },
+  "channelChoiceAlways": { "message": "Altijd" },
+  "channelChoiceAuto": { "message": "Volgens instellingen" },
+  "channelChoiceNever": { "message": "Nooit" },
+
+  "noticeAddedAlways": { "message": "Toegevoegd aan ‘Altijd liken’" },
+  "noticeAddedNever": { "message": "Toegevoegd aan ‘Nooit liken’" },
+  "noticeRemovedNever": { "message": "Verwijderd uit ‘Nooit liken’" },
+  "noticeSkipped": { "message": "Deze keer niet geliket" },
+  "noticeVideoExcluded": { "message": "Toegevoegd aan de uitgesloten video's" },
+  "noticeVideoUnexcluded": { "message": "Verwijderd uit de uitgesloten video's" },
+  "noticeUndo": { "message": "Ongedaan maken" },
+  "noticeUndone": { "message": "Ongedaan gemaakt" },
+  "noticeSaveFailed": { "message": "De wijziging kon niet worden opgeslagen." },
+  "noticeStorageFull": { "message": "De opslag van de extensie is vol: verwijder kanalen of uitgesloten video's uit je lijsten en probeer het opnieuw." },
+  "noticeLoadFailed": { "message": "De instellingen konden niet worden gelezen." },
+  "noticeListFull": {
+    "message": "Deze lijst is vol (hoogstens $COUNT$ items).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "De pagina reageerde niet. Laad haar opnieuw en probeer het nog eens." },
+  "noticeSaved": { "message": "Opgeslagen" },
+  "noticeRemovedAlways": { "message": "Verwijderd uit ‘Altijd liken’" },
+  "noticeImportDone": {
+    "message": "Import voltooid: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ kanaal toegevoegd aan ‘$LIST$’",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "$COUNT$ kanalen toegevoegd aan ‘$LIST$’",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Annuleren" },
+  "dialogClose": { "message": "Sluiten" },
+  "noticeCopied": { "message": "Gekopieerd" },
+  "noticeCopyFailed": { "message": "Kopiëren lukte niet: selecteer de tekst en kopieer hem zelf." },
+  "noticeJournalCleared": { "message": "Logboek gewist" },
+
+  "languageLabel": { "message": "Taal" },
+  "languageHint": { "message": "Die van de browser, of een andere naar keuze. Een vertaling die beter kan? Stel het voor op GitHub." },
+  "languageAuto": { "message": "Die van de browser" },
+
+  "debugLabel": { "message": "Debugmodus" },
+  "debugHint": { "message": "Houdt een logboek bij van wat de extensie doet, om een probleem te melden: de laatste 200 stappen, met de ID's van de bekeken video's, alleen in deze browser bewaard. Uitgeschakeld wordt er geen logboek bijgehouden." },
+  "journalCountOne": { "message": "Logboek: $COUNT$ item", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Logboek: $COUNT$ items", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Logboek kopiëren" },
+  "journalClear": { "message": "Logboek wissen" },
+
+  "navAbout": { "message": "Over" },
+  "aboutHeading": { "message": "Over" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, versie $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Ontwikkeld door" },
+  "aboutOrigin": { "message": "Oorspronkelijk project" },
+  "aboutFirefox": { "message": "Fork voor Firefox" },
+  "aboutLicense": { "message": "Licentie" },
+  "aboutInvite": { "message": "Wil je meer weten, nieuwe versies volgen of een verbetering voorstellen, ga dan naar de GitHub-repository. Een probleem? Meld het met de knop hieronder." },
+  "aboutRepository": { "message": "Het project op GitHub bekijken" },
+  "reportOpen": { "message": "Een probleem melden" },
+  "reportHint": { "message": "Beschrijf het probleem in de issue die op GitHub opent: dit rapport wordt bijgevoegd om het te helpen begrijpen. Lees het voor je het verstuurt; je kanaallijsten staan er niet in." },
+  "reportJournalOne": {
+    "message": "Het logboek bijvoegen ($COUNT$ item, met de ID's van de bekeken video's)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Het logboek bijvoegen ($COUNT$ items, met de ID's van de bekeken video's)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Er is geen logboek bijgehouden. Om er een bij te voegen: zet de debugmodus aan onder ‘Meer’, doe opnieuw wat misgaat en kom dan hier terug." },
+  "reportTextLabel": { "message": "Rapport" },
+  "reportCopy": { "message": "Rapport kopiëren" },
+  "reportIssue": { "message": "Een issue openen op GitHub" },
+  "reportCut": { "message": "Het rapport is te lang voor het adres van de issue: het wordt daar ingekort. Kopieer het volledige rapport en plak het in de issue." },
+  "dialogAnalyse": { "message": "Analyseren" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Kanalen toevoegen" },
+  "addHint": { "message": "Plak links naar kanalen of video's, of @handles, één per regel. De extensie vraagt YouTube om welk kanaal het gaat, alsof je de pagina ervan opent." },
+  "addLinesLabel": { "message": "Links of @handles" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@naam\n@naam\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "In de lijst" },
+  "addSearch": { "message": "Opzoeken" },
+  "addSearching": {
+    "message": "YouTube wordt gevraagd… $DONE$ van $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Toevoegen" },
+  "addApplyOne": {
+    "message": "$COUNT$ kanaal toevoegen",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "$COUNT$ kanalen toevoegen",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Geen kanaal om toe te voegen: ze staan allemaal al in deze lijst, of er is er geen gevonden." },
+  "addEmpty": { "message": "Plak minstens één link of @handle." },
+  "addTooMany": {
+    "message": "Hoogstens $MAX$ regels tegelijk.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "wordt toegevoegd" },
+  "lookupAlready": { "message": "staat al in deze lijst" },
+  "lookupMoved": {
+    "message": "gaat van ‘$FROM$’ naar ‘$TO$’",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "hetzelfde kanaal als een eerdere regel" },
+  "lookupNotALink": { "message": "geen link naar een YouTube-kanaal of -video, en geen @handle" },
+  "lookupNotFound": { "message": "dit kanaal of deze video bestaat niet op YouTube" },
+  "lookupUnreadable": { "message": "YouTube gaf het kanaal niet door. Is YouTube nooit geopend in deze browser, open het dan eenmaal, maak je cookiekeuze en probeer het opnieuw" },
+
+  "importTitle": { "message": "Lijsten importeren" },
+  "importHint": { "message": "Een bestand dat door de extensie is geëxporteerd, of een lijst met kanaallinks, één per regel. Er wordt niets opgeslagen vóór ‘Importeren’: ‘Analyseren’ toont eerst wat er zal gebeuren." },
+  "importDropHere": { "message": "Sleep een bestand hierheen, of" },
+  "importBrowse": { "message": "blader door je bestanden" },
+  "importPasteHint": { "message": "Je kunt ook een bestand of tekst in dit venster plakken (Ctrl+V)." },
+  "importChange": { "message": "Wijzigen" },
+  "importRemove": { "message": "Verwijderen" },
+  "importPasted": { "message": "Geplakte tekst" },
+  "importSourceFile": { "message": "Bestand geëxporteerd door de extensie" },
+  "importSourceLinksOne": {
+    "message": "Lijst met links, $COUNT$ regel",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Lijst met links, $COUNT$ regels",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Dit is geen export van de extensie en ook geen lijst met links." },
+  "importNoSource": { "message": "Kies eerst een bestand, of plak tekst." },
+  "importNoPart": { "message": "Vink minstens één onderdeel aan om te importeren." },
+  "importListFull": {
+    "message": "Een lijst zou meer dan $COUNT$ items krijgen: er zou niets worden geïmporteerd.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Wat wordt geïmporteerd" },
+  "importLinksTarget": { "message": "Deze kanalen zetten in" },
+  "importModeLabel": { "message": "Items die er al zijn" },
+  "importModeAddNew": { "message": "Alleen de nieuwe toevoegen" },
+  "importModeAddNewHint": { "message": "Een kanaal dat al in een lijst staat, blijft waar het is." },
+  "importModeFollow": { "message": "Toevoegen en het bestand volgen" },
+  "importModeFollowHint": { "message": "Een kanaal dat er al is, gaat naar de lijst die het bestand het geeft." },
+  "importModeReplace": { "message": "Alles vervangen door het bestand" },
+  "importModeReplaceHint": { "message": "De aangevinkte onderdelen worden precies die van het bestand: wat er niet in staat, wordt verwijderd." },
+  "importRemember": { "message": "Mijn keuze onthouden" },
+  "importApply": { "message": "Importeren" },
+  "importConfirmOne": {
+    "message": "Ik bevestig het verwijderen van $COUNT$ item dat in het bestand ontbreekt.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Ik bevestig het verwijderen van de $COUNT$ items die in het bestand ontbreken.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "er verandert niets" },
+  "reportNothing": { "message": "Er verandert niets: alles is er al." },
+  "reportAddedOne": { "message": "$COUNT$ nieuw", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "$COUNT$ nieuw", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ verplaatst", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "$COUNT$ verplaatst", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ al aanwezig", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ al aanwezig", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ verwijderd", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ verwijderd", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Lijsten exporteren" },
+  "exportPartsLabel": { "message": "Wat wordt geëxporteerd" },
+  "exportFormatLabel": { "message": "Indeling" },
+  "exportFormatJson": { "message": "Bestand van de extensie (JSON)" },
+  "exportFormatJsonHint": { "message": "Wordt ongewijzigd weer geïmporteerd, met de datums en afbeeldingen van de kanalen." },
+  "exportFormatLinks": { "message": "Lijst met links (tekst)" },
+  "exportFormatLinksHint": { "message": "Eén kanaallink per regel, met de naam ervan, om te lezen of te delen. Uitgesloten video's staan er niet in." },
+  "exportDownload": { "message": "Downloaden" },
+  "exportNothing": { "message": "Vink minstens één lijst aan." },
+  "noticeImportInvalid": { "message": "Dit bestand is geen lijst die door YouTube Auto Like is geëxporteerd." },
+  "noticeImportTooBig": { "message": "Dit bestand is te groot om een kanaallijst te zijn." },
+  "noticeCountReset": { "message": "Teller op nul gezet" },
+  "noticeNumberInvalid": {
+    "message": "Voer een getal van $MIN$ tot $MAX$ in.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Instellingen van YouTube Auto Like" },
+  "optionsTitle": { "message": "Instellingen" },
+  "navSections": { "message": "Onderdelen" },
+  "navChannels": { "message": "Welke kanalen" },
+  "navVideos": { "message": "Welke video's" },
+  "navWhen": { "message": "Wanneer liken" },
+  "navLists": { "message": "Mijn lijsten" },
+  "navMore": { "message": "Meer" },
+
+  "channelsHeading": { "message": "Welke kanalen liken?" },
+  "channelsHint": { "message": "De lijst ‘Nooit liken’ gaat altijd voor." },
+  "likeWhatSubscribed": { "message": "De kanalen waarop ik geabonneerd ben" },
+  "likeWhatSubscribedHint": { "message": "plus die uit mijn lijst ‘Altijd liken’." },
+  "recommended": { "message": "Aanbevolen" },
+  "likeWhatAll": { "message": "Alle kanalen" },
+  "likeWhatAllHint": { "message": "elke bekeken video wordt geliket." },
+  "likeWhatList": { "message": "Alleen mijn lijst ‘Altijd liken’" },
+  "likeWhatListHint": { "message": "geabonneerd of niet, verder wordt niets geliket." },
+
+  "videosHeading": { "message": "Welke video's?" },
+  "videosHint": { "message": "Shorts worden ook herkend als ze in de gewone speler worden geopend." },
+  "likeNormalVideos": { "message": "Video's" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Wanneer liken?" },
+  "whenHint": { "message": "Een video die je zelf ‘Vind ik leuk’ of ‘Vind ik niet leuk’ geeft, wordt nooit aangeraakt." },
+  "modeInstant": { "message": "Meteen bij het openen" },
+  "modeCustom": { "message": "Na een tijdje" },
+  "modeRandom": { "message": "Op een willekeurig moment" },
+  "thresholdAfter": { "message": "na" },
+  "thresholdPercentUnit": { "message": "% van de video" },
+  "thresholdMinutesUnit": { "message": "minuten afspelen" },
+  "percentLabel": { "message": "Percentage van de video" },
+  "minutesLabel": { "message": "Minuten afspelen" },
+  "thresholdKeepOne": { "message": "Minstens één van de twee drempels blijft aangevinkt." },
+  "thresholdsHint": { "message": "De eerst bereikte drempel activeert de like. Een kortere video wordt twee seconden voor het einde geliket. Bij een livestream tellen alleen de minuten, vanaf het moment dat je begon te kijken; zonder minutendrempel wordt hij meteen bij het openen geliket. Advertenties tellen niet mee." },
+  "randomHint": { "message": "Een willekeurig gekozen moment in elke video. Een livestream wordt meteen bij het openen geliket." },
+  "summaryLabel": { "message": "Samenvatting:" },
+
+  "listsHeading": { "message": "Mijn kanaallijsten" },
+  "listsHint": { "message": "Voeg kanalen toe via een link of @handle, via het venster van het pictogram op een video of de pagina van een kanaal, of via de geschiedenis. Een video sluit je uit via het venster van het pictogram." },
+  "listAlways": { "message": "Altijd liken" },
+  "listNever": { "message": "Nooit liken" },
+  "listVideos": { "message": "Uitgesloten video's" },
+  "listExcludedOn": {
+    "message": "uitgesloten op $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Uitsluiting van $TITLE$ opheffen",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "In de lijst zoeken" },
+  "listImport": { "message": "Importeren" },
+  "listExport": { "message": "Exporteren" },
+  "listEmpty": { "message": "Geen kanaal in deze lijst. Voeg er toe via een link of @handle, via het venster van het pictogram op een video of de pagina van een kanaal, of via de geschiedenis." },
+  "listEmptyVideos": { "message": "Geen uitgesloten video. Om een video uit te sluiten, open je het venster van het pictogram terwijl je kijkt en kies je ‘Deze video nooit liken’." },
+  "listNoMatch": { "message": "Geen kanaal komt overeen met deze zoekopdracht." },
+  "listAddedOn": {
+    "message": "toegevoegd op $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "$NAME$ uit deze lijst verwijderen",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ van $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Nog $COUNT$ tonen",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Alles tonen ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Getoonde regels in de lijsten en de geschiedenis" },
+  "listPageSizeHint": { "message": "De overige verschijnen met ‘Nog … tonen’ of ‘Alles tonen’. Een lange lijst scrolt binnen zichzelf, zonder de pagina langer te maken." },
+  "listPageSizeAll": { "message": "Alle" },
+  "listOpenChannel": { "message": "Het kanaal openen op YouTube" },
+
+  "navHistory": { "message": "Geschiedenis" },
+  "historyHeading": { "message": "Likes van de extensie" },
+  "historyHint": {
+    "message": "De laatste $COUNT$, nieuwste eerst, alleen in deze browser bewaard.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "De extensie heeft nog niets geliket." },
+  "historyUntitled": { "message": "Video zonder titel" },
+  "historyChannelChoice": {
+    "message": "Video's van $NAME$ liken",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Geschiedenis wissen" },
+  "noticeHistoryCleared": { "message": "Geschiedenis gewist" },
+
+  "moreHeading": { "message": "Meer" },
+  "themeLabel": { "message": "Thema" },
+  "themeSystem": { "message": "Zoals het systeem" },
+  "themeLight": { "message": "Licht" },
+  "themeDark": { "message": "Donker" },
+  "updatesLabel": { "message": "Naar nieuwe versies zoeken" },
+  "updatesHint": { "message": "Vraagt het aan GitHub, waar de extensie wordt gepubliceerd; GitHub ziet dan je IP-adres." },
+  "updateEvery0": { "message": "Nooit" },
+  "updateEvery30": { "message": "Elke 30 minuten" },
+  "updateEvery60": { "message": "Elk uur" },
+  "updateEvery360": { "message": "Elke 6 uur" },
+  "updateEvery1440": { "message": "Elke dag" },
+  "updateEvery10080": { "message": "Elke week" },
+  "updateEveryCustom": { "message": "Aangepast…" },
+  "updateEveryPrefix": { "message": "Elke" },
+  "updateCustomCount": { "message": "Aantal minuten, uren of dagen tussen twee controles" },
+  "updateCustomUnit": { "message": "Eenheid" },
+  "unitMinutesOne": { "message": "minuut" },
+  "unitMinutesOther": { "message": "minuten" },
+  "unitHoursOne": { "message": "uur" },
+  "unitHoursOther": { "message": "uur" },
+  "unitDaysOne": { "message": "dag" },
+  "unitDaysOther": { "message": "dagen" },
+  "noticeFrequencyInvalid": { "message": "Voer een duur in van 5 minuten tot 30 dagen." },
+  "updateCheckNow": { "message": "Nu controleren" },
+  "updateStatusOff": { "message": "Er wordt niet naar nieuwe versies gezocht." },
+  "updateStatusNever": { "message": "Nog niet gecontroleerd." },
+  "updateStatusChecking": { "message": "Bezig met controleren…" },
+  "updateStatusAvailable": {
+    "message": "Versie $VERSION$ is uit ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Gecontroleerd $WHEN$: je hebt de nieuwste versie.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Gecontroleerd $WHEN$: nog geen versie gepubliceerd.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "De laatste controle is $WHEN$ mislukt; de volgende probeert het opnieuw.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "De controle kon niet worden uitgevoerd." },
+  "likeCountHint": { "message": "Sinds de installatie van de extensie, of sinds de laatste keer op nul zetten. Op nul zetten verandert verder niets." },
+  "likeCountReset": { "message": "Op nul zetten" },
+
+  "ruleSentence": {
+    "message": "Liket $WHAT$ $CHANNELS$, $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Liket niets: video's en Shorts staan allebei uit." },
+  "ruleWhatBoth": { "message": "video's en Shorts" },
+  "ruleWhatVideos": { "message": "video's" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "van de kanalen waarop je geabonneerd bent" },
+  "ruleChannelsSubscribedAndList": { "message": "van de kanalen waarop je geabonneerd bent en die uit je lijst ‘Altijd liken’" },
+  "ruleChannelsAll": { "message": "van alle kanalen" },
+  "ruleChannelsList": { "message": "van de kanalen uit je lijst ‘Altijd liken’" },
+  "ruleWhenInstant": { "message": "meteen bij het openen" },
+  "ruleWhenPercent": {
+    "message": "op $PERCENT$% van de video",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "na $MINUTES$ min afspelen",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "op $PERCENT$% van de video of na $MINUTES$ min afspelen, wat het eerst komt",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "op een willekeurig moment" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ video geliket",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ video's geliket",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$ s",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ u $MINUTES$ min",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
