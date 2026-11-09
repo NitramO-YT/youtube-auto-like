@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Mette automaticamente «Mi piace» ai video di YouTube dei canali che scegli." },
+
+  "locale": { "message": "it" },
+
+  "switchLabel": { "message": "Mettere «Mi piace» ai video automaticamente" },
+  "switchActive": { "message": "Attiva" },
+  "switchPaused": { "message": "In pausa" },
+  "pausedBanner": { "message": "L'estensione non mette «Mi piace» a nulla mentre è in pausa." },
+  "badgeUpdate": { "message": "NEW" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: è disponibile la versione $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "È disponibile la versione $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Questo video" },
+  "sectionThisChannel": { "message": "Questo canale" },
+  "sectionRule": { "message": "Regola attiva" },
+  "openSettings": { "message": "Modifica le impostazioni →" },
+  "settingsShow": { "message": "Mostra le impostazioni" },
+  "settingsHide": { "message": "Torna al video" },
+  "openFullPage": { "message": "Apri a pagina intera ↗" },
+  "noVideo": { "message": "Apri un video o uno Short su YouTube per vedere cosa ne fa l'estensione, oppure la pagina di un canale per scegliere se i suoi video ricevono «Mi piace»." },
+  "noVideoHint": { "message": "Se un video è già aperto, ricarica la sua pagina." },
+
+  "channelUnknown": { "message": "Canale sconosciuto" },
+  "channelSubscribed": { "message": "Iscritto" },
+  "channelNotSubscribed": { "message": "Non iscritto" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "Video di $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Diretta" },
+
+  "statusLikedTitle": { "message": "«Mi piace» messo automaticamente" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "appena aperto" },
+  "likedHowLikeNow": { "message": "su tua richiesta" },
+  "likedHowAt": {
+    "message": "a $TIME$ del video",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "dopo $DURATION$ di visione",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Riceverà «Mi piace» al $PERCENT$% del video",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Riceverà «Mi piace» dopo $MINUTES$ min di riproduzione",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Riceverà «Mi piace» in un momento casuale" },
+  "statusWaitBeforeEnd": { "message": "Riceverà «Mi piace» poco prima della fine" },
+  "statusWaitRemaining": {
+    "message": "mancano $DURATION$ di riproduzione",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "«Mi piace» tra un istante" },
+  "statusWaitDuration": { "message": "In attesa della durata del video" },
+  "statusWaitAd": { "message": "In attesa della fine dell'annuncio" },
+  "statusWaitAdDetail": { "message": "Il tempo degli annunci non viene contato." },
+  "statusReading": { "message": "Lettura della pagina…" },
+  "statusReadingDetail": { "message": "Su uno Short, a volte YouTube mostra i pulsanti solo quando il mouse passa sopra il video." },
+  "statusConfirming": { "message": "Verifica che il «Mi piace» sia stato registrato…" },
+  "statusFailedTitle": { "message": "Impossibile confermare il «Mi piace»" },
+  "statusFailedDetail": { "message": "Il pulsante «Mi piace» non ha reagito. Ricarica la pagina per riprovare." },
+
+  "statusAlreadyLikedTitle": { "message": "Ha già «Mi piace»" },
+  "statusNotLikedTitle": { "message": "Senza «Mi piace»" },
+  "reasonAlreadyLiked": { "message": "Questo video aveva già un «Mi piace»: l'estensione lo lascia com'è." },
+  "reasonAlreadyDisliked": { "message": "Hai messo «Non mi piace» a questo video: l'estensione lo lascia com'è." },
+  "reasonSkippedByUser": { "message": "Hai chiesto di non mettergli «Mi piace» questa volta. Potrà riceverlo quando lo riguarderai." },
+  "reasonVideoExcluded": { "message": "Hai escluso questo video: non riceve mai «Mi piace», finché non smetti di escluderlo." },
+  "reasonNotSubscribed": { "message": "Non sei iscritto a questo canale. Riceverà «Mi piace» se ti iscrivi." },
+  "reasonNotInAlwaysList": { "message": "Ricevono «Mi piace» solo i canali della tua lista «Sempre Mi piace»." },
+  "reasonInNeverList": { "message": "Questo canale è nella tua lista «Mai Mi piace»." },
+  "reasonShortsOff": { "message": "Gli Short non ricevono «Mi piace», secondo le tue impostazioni." },
+  "reasonNormalVideosOff": { "message": "Solo gli Short ricevono «Mi piace», secondo le tue impostazioni." },
+  "statusWouldLike": { "message": "Riceverebbe «Mi piace»" },
+  "statusWouldLikeDetail": { "message": "se l'estensione fosse attiva." },
+
+  "actionLikeNow": { "message": "Metti «Mi piace» ora" },
+  "actionSkip": { "message": "Non questa volta" },
+  "actionRestart": { "message": "Ricomincia per questo video" },
+  "actionRetry": { "message": "Riprova" },
+  "removedLikeTitle": { "message": "«Mi piace» tolto" },
+  "removedLikeRestart": { "message": "Hai tolto il «Mi piace». Ricomincia perché l'estensione ricontrolli questo video." },
+  "removedDislikeTitle": { "message": "«Non mi piace» tolto" },
+  "removedDislikeRestart": { "message": "Hai tolto il «Non mi piace». Ricomincia perché l'estensione ricontrolli questo video." },
+  "likeRemovedNextOpening": { "message": "Riceverà di nuovo «Mi piace» alla prossima apertura del video." },
+  "likeRemovedAt": {
+    "message": "Riceverà di nuovo «Mi piace» quando la riproduzione ripasserà da $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Rimettere «Mi piace» a un video di cui tolgo il «Mi piace»" },
+  "relikeHint": { "message": "Quando la riproduzione ripassa dal momento previsto, cioè dopo essere tornati prima di esso; con «Appena aperto», alla prossima apertura del video. Vale anche per un video a cui avevi messo «Mi piace» tu." },
+  "actionResume": { "message": "Annulla «Non questa volta»" },
+  "actionExcludeVideo": { "message": "Non mettere mai «Mi piace» a questo video" },
+  "actionUnexcludeVideo": { "message": "Smetti di escludere questo video" },
+  "channelChoiceLegend": { "message": "«Mi piace» ai video di questo canale" },
+  "channelChoiceAlways": { "message": "Sempre" },
+  "channelChoiceAuto": { "message": "Secondo le impostazioni" },
+  "channelChoiceNever": { "message": "Mai" },
+
+  "noticeAddedAlways": { "message": "Aggiunto a «Sempre Mi piace»" },
+  "noticeAddedNever": { "message": "Aggiunto a «Mai Mi piace»" },
+  "noticeRemovedNever": { "message": "Tolto da «Mai Mi piace»" },
+  "noticeSkipped": { "message": "Niente «Mi piace» questa volta" },
+  "noticeVideoExcluded": { "message": "Aggiunto ai video esclusi" },
+  "noticeVideoUnexcluded": { "message": "Tolto dai video esclusi" },
+  "noticeUndo": { "message": "Annulla" },
+  "noticeUndone": { "message": "Annullato" },
+  "noticeSaveFailed": { "message": "Impossibile salvare la modifica." },
+  "noticeStorageFull": { "message": "Lo spazio dell'estensione è pieno: togli canali o video esclusi dalle tue liste, poi riprova." },
+  "noticeLoadFailed": { "message": "Impossibile leggere le impostazioni." },
+  "noticeListFull": {
+    "message": "Questa lista è piena (al massimo $COUNT$ voci).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "La pagina non ha risposto. Ricaricala e riprova." },
+  "noticeSaved": { "message": "Salvato" },
+  "noticeRemovedAlways": { "message": "Tolto da «Sempre Mi piace»" },
+  "noticeImportDone": {
+    "message": "Importazione completata: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ canale aggiunto a «$LIST$»",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "$COUNT$ canali aggiunti a «$LIST$»",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Annulla" },
+  "dialogClose": { "message": "Chiudi" },
+  "noticeCopied": { "message": "Copiato" },
+  "noticeCopyFailed": { "message": "Impossibile copiare: seleziona il testo e copialo tu." },
+  "noticeJournalCleared": { "message": "Registro cancellato" },
+
+  "languageLabel": { "message": "Lingua" },
+  "languageHint": { "message": "Quella del browser, o un'altra a tua scelta. Una traduzione da correggere? Proponilo su GitHub." },
+  "languageAuto": { "message": "Quella del browser" },
+
+  "debugLabel": { "message": "Modalità debug" },
+  "debugHint": { "message": "Tiene un registro di ciò che fa l'estensione, per segnalare un problema: gli ultimi 200 passaggi, con gli identificativi dei video guardati, conservati solo in questo browser. Disattivata, non viene tenuto alcun registro." },
+  "journalCountOne": { "message": "Registro: $COUNT$ voce", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Registro: $COUNT$ voci", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Copia il registro" },
+  "journalClear": { "message": "Cancella il registro" },
+
+  "navAbout": { "message": "Informazioni" },
+  "aboutHeading": { "message": "Informazioni" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, versione $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Sviluppata da" },
+  "aboutOrigin": { "message": "Progetto originale" },
+  "aboutFirefox": { "message": "Fork per Firefox" },
+  "aboutLicense": { "message": "Licenza" },
+  "aboutInvite": { "message": "Per saperne di più, seguire le nuove versioni o proporre un miglioramento, visita il repository su GitHub. Un problema? Segnalalo con il pulsante qui sotto." },
+  "aboutRepository": { "message": "Vedi il progetto su GitHub" },
+  "reportOpen": { "message": "Segnala un problema" },
+  "reportHint": { "message": "Descrivi il problema nella issue che si apre su GitHub: questo rapporto viene allegato per aiutare a capirlo. Rileggilo prima di inviarlo; le tue liste di canali non ci sono." },
+  "reportJournalOne": {
+    "message": "Allega il registro ($COUNT$ voce, con gli identificativi dei video guardati)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Allega il registro ($COUNT$ voci, con gli identificativi dei video guardati)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Non è stato tenuto alcun registro. Per allegarne uno: attiva la modalità debug in «Altro», rifai ciò che non funziona, poi torna qui." },
+  "reportTextLabel": { "message": "Rapporto" },
+  "reportCopy": { "message": "Copia il rapporto" },
+  "reportIssue": { "message": "Apri una issue su GitHub" },
+  "reportCut": { "message": "Il rapporto è troppo lungo per l'indirizzo della issue: lì risulta accorciato. Copia il rapporto completo e incollalo nella issue." },
+  "dialogAnalyse": { "message": "Analizza" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Aggiungi canali" },
+  "addHint": { "message": "Incolla link di canali o di video, oppure @handle, uno per riga. L'estensione chiede a YouTube di quale canale si tratta, come se aprissi la sua pagina." },
+  "addLinesLabel": { "message": "Link o @handle" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@nome\n@nome\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "Nella lista" },
+  "addSearch": { "message": "Cerca" },
+  "addSearching": {
+    "message": "Interrogo YouTube… $DONE$ su $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Aggiungi" },
+  "addApplyOne": {
+    "message": "Aggiungi $COUNT$ canale",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Aggiungi $COUNT$ canali",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Nessun canale da aggiungere: sono già tutti in questa lista, oppure non ne è stato trovato nessuno." },
+  "addEmpty": { "message": "Incolla almeno un link o un @handle." },
+  "addTooMany": {
+    "message": "Al massimo $MAX$ righe alla volta.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "verrà aggiunto" },
+  "lookupAlready": { "message": "già in questa lista" },
+  "lookupMoved": {
+    "message": "passerà da «$FROM$» a «$TO$»",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "lo stesso canale di una riga precedente" },
+  "lookupNotALink": { "message": "né un link a un canale o a un video di YouTube, né un @handle" },
+  "lookupNotFound": { "message": "questo canale o video non esiste su YouTube" },
+  "lookupUnreadable": { "message": "YouTube non ha indicato il canale. Se non è mai stato aperto in questo browser, aprilo una volta e fai la tua scelta sui cookie, poi riprova" },
+
+  "importTitle": { "message": "Importa liste" },
+  "importHint": { "message": "Un file esportato dall'estensione, oppure una lista di link di canali, uno per riga. Nulla viene salvato prima di «Importa»: «Analizza» mostra prima cosa verrà fatto." },
+  "importDropHere": { "message": "Trascina un file qui, oppure" },
+  "importBrowse": { "message": "sfoglia i tuoi file" },
+  "importPasteHint": { "message": "Puoi anche incollare un file o un testo (Ctrl+V) in questa finestra." },
+  "importChange": { "message": "Cambia" },
+  "importRemove": { "message": "Togli" },
+  "importPasted": { "message": "Testo incollato" },
+  "importSourceFile": { "message": "File esportato dall'estensione" },
+  "importSourceLinksOne": {
+    "message": "Lista di link, $COUNT$ riga",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Lista di link, $COUNT$ righe",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Questo non è né un'esportazione dell'estensione né una lista di link." },
+  "importNoSource": { "message": "Prima scegli un file, oppure incolla un testo." },
+  "importNoPart": { "message": "Seleziona almeno una parte da importare." },
+  "importListFull": {
+    "message": "Una lista supererebbe le $COUNT$ voci: non verrebbe importato nulla.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Cosa viene importato" },
+  "importLinksTarget": { "message": "Metti questi canali in" },
+  "importModeLabel": { "message": "Voci già presenti" },
+  "importModeAddNew": { "message": "Aggiungi solo le nuove" },
+  "importModeAddNewHint": { "message": "Un canale già in una lista resta dov'è." },
+  "importModeFollow": { "message": "Aggiungi e segui il file" },
+  "importModeFollowHint": { "message": "Un canale già presente passa nella lista che gli dà il file." },
+  "importModeReplace": { "message": "Sostituisci tutto con il file" },
+  "importModeReplaceHint": { "message": "Le parti selezionate diventano esattamente quelle del file: ciò che non contiene viene tolto." },
+  "importRemember": { "message": "Ricorda la mia scelta" },
+  "importApply": { "message": "Importa" },
+  "importConfirmOne": {
+    "message": "Confermo la rimozione di $COUNT$ voce assente dal file.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Confermo la rimozione delle $COUNT$ voci assenti dal file.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "nessuna modifica" },
+  "reportNothing": { "message": "Nessuna modifica: è già tutto presente." },
+  "reportAddedOne": { "message": "$COUNT$ nuova", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "$COUNT$ nuove", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ spostata", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "$COUNT$ spostate", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ già presente", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ già presenti", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ tolta", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ tolte", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Esporta liste" },
+  "exportPartsLabel": { "message": "Cosa viene esportato" },
+  "exportFormatLabel": { "message": "Formato" },
+  "exportFormatJson": { "message": "File dell'estensione (JSON)" },
+  "exportFormatJsonHint": { "message": "Si reimporta così com'è, con le date e le immagini dei canali." },
+  "exportFormatLinks": { "message": "Lista di link (testo)" },
+  "exportFormatLinksHint": { "message": "Un link di canale per riga, con il suo nome, da leggere o condividere. I video esclusi non ci sono." },
+  "exportDownload": { "message": "Scarica" },
+  "exportNothing": { "message": "Seleziona almeno una lista." },
+  "noticeImportInvalid": { "message": "Questo file non è una lista esportata da YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "Questo file è troppo grande per essere una lista di canali." },
+  "noticeCountReset": { "message": "Contatore azzerato" },
+  "noticeNumberInvalid": {
+    "message": "Inserisci un numero da $MIN$ a $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Impostazioni di YouTube Auto Like" },
+  "optionsTitle": { "message": "Impostazioni" },
+  "navSections": { "message": "Sezioni" },
+  "navChannels": { "message": "Quali canali" },
+  "navVideos": { "message": "Quali video" },
+  "navWhen": { "message": "Quando mettere «Mi piace»" },
+  "navLists": { "message": "Le mie liste" },
+  "navMore": { "message": "Altro" },
+
+  "channelsHeading": { "message": "A quali canali mettere «Mi piace»?" },
+  "channelsHint": { "message": "La lista «Mai Mi piace» ha sempre la precedenza." },
+  "likeWhatSubscribed": { "message": "I canali a cui sono iscritto" },
+  "likeWhatSubscribedHint": { "message": "più quelli della mia lista «Sempre Mi piace»." },
+  "recommended": { "message": "Consigliato" },
+  "likeWhatAll": { "message": "Tutti i canali" },
+  "likeWhatAllHint": { "message": "ogni video guardato riceve «Mi piace»." },
+  "likeWhatList": { "message": "Solo la mia lista «Sempre Mi piace»" },
+  "likeWhatListHint": { "message": "iscritto o no, nient'altro riceve «Mi piace»." },
+
+  "videosHeading": { "message": "Quali video?" },
+  "videosHint": { "message": "Gli Short vengono riconosciuti anche se aperti nel player normale." },
+  "likeNormalVideos": { "message": "Video" },
+  "likeShorts": { "message": "Short" },
+
+  "whenHeading": { "message": "Quando mettere «Mi piace»?" },
+  "whenHint": { "message": "Un video a cui metti tu «Mi piace» o «Non mi piace» non viene mai toccato." },
+  "modeInstant": { "message": "Appena aperto" },
+  "modeCustom": { "message": "Dopo un po'" },
+  "modeRandom": { "message": "In un momento casuale" },
+  "thresholdAfter": { "message": "dopo" },
+  "thresholdPercentUnit": { "message": "% del video" },
+  "thresholdMinutesUnit": { "message": "minuti di riproduzione" },
+  "percentLabel": { "message": "Percentuale del video" },
+  "minutesLabel": { "message": "Minuti di riproduzione" },
+  "thresholdKeepOne": { "message": "Almeno una delle due soglie resta selezionata." },
+  "thresholdsHint": { "message": "La prima soglia raggiunta fa scattare il «Mi piace». Un video più corto lo riceve due secondi prima della fine. In una diretta contano solo i minuti, dal momento in cui hai iniziato a guardarla; senza soglia in minuti, lo riceve appena aperta. Gli annunci non vengono contati." },
+  "randomHint": { "message": "Un momento estratto a caso in ogni video. Una diretta riceve «Mi piace» appena aperta." },
+  "summaryLabel": { "message": "Riepilogo:" },
+
+  "listsHeading": { "message": "Le mie liste di canali" },
+  "listsHint": { "message": "Aggiungi canali tramite link o @handle, dalla finestra dell'icona su un video o sulla pagina di un canale, oppure dalla cronologia. Un video si esclude dalla finestra dell'icona." },
+  "listAlways": { "message": "Sempre Mi piace" },
+  "listNever": { "message": "Mai Mi piace" },
+  "listVideos": { "message": "Video esclusi" },
+  "listExcludedOn": {
+    "message": "escluso il $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Smetti di escludere $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Cerca nella lista" },
+  "listImport": { "message": "Importa" },
+  "listExport": { "message": "Esporta" },
+  "listEmpty": { "message": "Nessun canale in questa lista. Aggiungine tramite link o @handle, dalla finestra dell'icona su un video o sulla pagina di un canale, oppure dalla cronologia." },
+  "listEmptyVideos": { "message": "Nessun video escluso. Per escludere un video, apri la finestra dell'icona mentre lo guardi, poi scegli «Non mettere mai “Mi piace” a questo video»." },
+  "listNoMatch": { "message": "Nessun canale corrisponde a questa ricerca." },
+  "listAddedOn": {
+    "message": "aggiunto il $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Togli $NAME$ da questa lista",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ su $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Mostra altri $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Mostra tutto ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Righe mostrate nelle liste e nella cronologia" },
+  "listPageSizeHint": { "message": "Le altre compaiono con «Mostra altri» o «Mostra tutto». Una lista lunga scorre al suo interno, senza allungare la pagina." },
+  "listPageSizeAll": { "message": "Tutte" },
+  "listOpenChannel": { "message": "Apri il canale su YouTube" },
+
+  "navHistory": { "message": "Cronologia" },
+  "historyHeading": { "message": "«Mi piace» messi dall'estensione" },
+  "historyHint": {
+    "message": "Gli ultimi $COUNT$, dal più recente al più vecchio, conservati solo in questo browser.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "L'estensione non ha ancora messo nessun «Mi piace»." },
+  "historyUntitled": { "message": "Video senza titolo" },
+  "historyChannelChoice": {
+    "message": "«Mi piace» ai video di $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Cancella la cronologia" },
+  "noticeHistoryCleared": { "message": "Cronologia cancellata" },
+
+  "moreHeading": { "message": "Altro" },
+  "themeLabel": { "message": "Tema" },
+  "themeSystem": { "message": "Come il sistema" },
+  "themeLight": { "message": "Chiaro" },
+  "themeDark": { "message": "Scuro" },
+  "updatesLabel": { "message": "Cerca nuove versioni" },
+  "updatesHint": { "message": "Interroga GitHub, dove l'estensione è pubblicata; GitHub vede così il tuo indirizzo IP." },
+  "updateEvery0": { "message": "Mai" },
+  "updateEvery30": { "message": "Ogni 30 minuti" },
+  "updateEvery60": { "message": "Ogni ora" },
+  "updateEvery360": { "message": "Ogni 6 ore" },
+  "updateEvery1440": { "message": "Ogni giorno" },
+  "updateEvery10080": { "message": "Ogni settimana" },
+  "updateEveryCustom": { "message": "Personalizzato…" },
+  "updateEveryPrefix": { "message": "Ogni" },
+  "updateCustomCount": { "message": "Numero di minuti, ore o giorni tra due controlli" },
+  "updateCustomUnit": { "message": "Unità" },
+  "unitMinutesOne": { "message": "minuto" },
+  "unitMinutesOther": { "message": "minuti" },
+  "unitHoursOne": { "message": "ora" },
+  "unitHoursOther": { "message": "ore" },
+  "unitDaysOne": { "message": "giorno" },
+  "unitDaysOther": { "message": "giorni" },
+  "noticeFrequencyInvalid": { "message": "Inserisci una durata da 5 minuti a 30 giorni." },
+  "updateCheckNow": { "message": "Controlla ora" },
+  "updateStatusOff": { "message": "Le nuove versioni non vengono cercate." },
+  "updateStatusNever": { "message": "Non ancora controllato." },
+  "updateStatusChecking": { "message": "Controllo in corso…" },
+  "updateStatusAvailable": {
+    "message": "È disponibile la versione $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Controllato $WHEN$: hai l'ultima versione.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Controllato $WHEN$: ancora nessuna versione pubblicata.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "L'ultimo controllo è fallito $WHEN$; il prossimo riproverà.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Impossibile effettuare il controllo." },
+  "likeCountHint": { "message": "Dall'installazione dell'estensione, o dall'ultimo azzeramento. Azzerarlo non cambia nient'altro." },
+  "likeCountReset": { "message": "Azzera" },
+
+  "ruleSentence": {
+    "message": "Mette «Mi piace» $WHAT$ $CHANNELS$, $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Non mette «Mi piace» a nulla: video e Short sono entrambi disattivati." },
+  "ruleWhatBoth": { "message": "ai video e agli Short" },
+  "ruleWhatVideos": { "message": "ai video" },
+  "ruleWhatShorts": { "message": "agli Short" },
+  "ruleChannelsSubscribed": { "message": "dei canali a cui sei iscritto" },
+  "ruleChannelsSubscribedAndList": { "message": "dei canali a cui sei iscritto e di quelli della tua lista «Sempre Mi piace»" },
+  "ruleChannelsAll": { "message": "di tutti i canali" },
+  "ruleChannelsList": { "message": "dei canali della tua lista «Sempre Mi piace»" },
+  "ruleWhenInstant": { "message": "appena aperti" },
+  "ruleWhenPercent": {
+    "message": "al $PERCENT$% del video",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "dopo $MINUTES$ min di riproduzione",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "al $PERCENT$% del video o dopo $MINUTES$ min di riproduzione, a seconda di cosa avviene prima",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "in un momento casuale" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ video con «Mi piace»",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ video con «Mi piace»",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$ s",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ h $MINUTES$ min",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
