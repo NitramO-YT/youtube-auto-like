@@ -2,8 +2,9 @@
  * DOM of the popup, built from the models of view.js.
  */
 import { createAvatar } from '../shared/avatar.js';
+import { CHANNEL_CHOICES, ChannelChoice } from '../shared/channel-choice.js';
 import { el, icon } from '../shared/dom.js';
-import { Action, CHANNEL_CHOICES, ChannelChoice } from './view.js';
+import { Action } from './view.js';
 
 const ACTION_LABELS = {
   [Action.LIKE_NOW]: 'actionLikeNow',

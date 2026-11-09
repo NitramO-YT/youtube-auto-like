@@ -9,10 +9,10 @@
  * not at all while it waits. The channel choice puts every video of the
  * channel in a list, or leaves it to the settings.
  */
-import { listOf } from '../../core/channels.js';
 import { Reason } from '../../core/eligibility.js';
 import { Status } from '../../content/isolated/session.js';
 import { initialOf } from '../shared/avatar.js';
+import { channelChoice } from '../shared/channel-choice.js';
 import { formatAgo, formatClock, formatDuration, formatNumber } from '../shared/format.js';
 
 export const Action = Object.freeze({
@@ -30,19 +30,6 @@ export const Action = Object.freeze({
   RESTART: 'restart',
   RETRY: 'retry',
 });
-
-/**
- * Positions of the channel choice: in "always like", in neither list (the
- * settings decide), or in "never like". The values of the two lists are
- * their names in the settings; AUTO stands for no list.
- */
-export const ChannelChoice = Object.freeze({ ALWAYS: 'always', AUTO: 'auto', NEVER: 'never' });
-export const CHANNEL_CHOICES = Object.freeze([ChannelChoice.ALWAYS, ChannelChoice.AUTO, ChannelChoice.NEVER]);
-
-/** The list a choice puts the channel in, null for AUTO. */
-export function listForChoice(choice) {
-  return choice === ChannelChoice.AUTO ? null : choice;
-}
 
 const REASON_DETAILS = {
   [Reason.ALREADY_LIKED]: 'reasonAlreadyLiked',
@@ -160,11 +147,6 @@ export function statusCard(status, settings, t, lang, now) {
     default:
       return readingCard(t);
   }
-}
-
-/** The position of the channel choice: the list the channel is in, or AUTO. */
-export function channelChoice(channel, settings) {
-  return listOf(settings.lists, channel.id) ?? ChannelChoice.AUTO;
 }
 
 /**

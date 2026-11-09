@@ -352,6 +352,13 @@ main {
   color: var(--muted);
   font-size: 12px;
 }
+/* The choice for the channel of a like, in the history. */
+.row .row-choice {
+  flex: none;
+  max-width: 45%;
+  padding: 4px 6px;
+  font-size: 12px;
+}
 .list-empty {
   color: var(--muted);
   padding: 14px;

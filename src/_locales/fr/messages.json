@@ -240,6 +240,10 @@
   },
   "historyEmpty": { "message": "Aucun like posé par l'extension pour l'instant." },
   "historyUntitled": { "message": "Vidéo sans titre" },
+  "historyChannelChoice": {
+    "message": "Liker les vidéos de $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
   "historyClear": { "message": "Effacer l'historique" },
   "noticeHistoryCleared": { "message": "Historique effacé" },
 

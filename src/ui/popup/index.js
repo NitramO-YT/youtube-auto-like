@@ -21,8 +21,9 @@ import { moveChannel, setVideoExcluded } from '../shared/lists.js';
 import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
 import { applyTheme } from '../shared/theme.js';
+import { listForChoice, moveNoticeKey } from '../shared/channel-choice.js';
 import { renderActions, renderCard, renderChannel, renderChannelChoice } from './render.js';
-import { Action, channelPageView, listForChoice, videoView } from './view.js';
+import { Action, channelPageView, videoView } from './view.js';
 
 const REFRESH_MS = 1000;
 const LOG_PREFIX = '[YouTube Auto Like]';
@@ -153,13 +154,6 @@ async function skipThisTime() {
       if (await videoCommand(Message.RESUME_VIDEO)) notice.show(t('noticeUndone'));
     },
   });
-}
-
-/** The notice of a move to target (null: out of both lists) from the list the channel was in. */
-function moveNoticeKey(target, from) {
-  if (target === 'always') return 'noticeAddedAlways';
-  if (target === 'never') return 'noticeAddedNever';
-  return from === 'always' ? 'noticeRemovedAlways' : 'noticeRemovedNever';
 }
 
 /**

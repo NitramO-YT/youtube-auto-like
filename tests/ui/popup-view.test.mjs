@@ -3,17 +3,8 @@ import { describe, it } from 'node:test';
 import { Status } from '../../src/content/isolated/session.js';
 import { Reason } from '../../src/core/eligibility.js';
 import { normalizeSettings } from '../../src/core/settings.js';
-import {
-  Action,
-  actions,
-  CHANNEL_CHOICES,
-  ChannelChoice,
-  channelChoice,
-  channelPageView,
-  listForChoice,
-  statusCard,
-  videoView,
-} from '../../src/ui/popup/view.js';
+import { CHANNEL_CHOICES, ChannelChoice, channelChoice, listForChoice, moveNoticeKey } from '../../src/ui/shared/channel-choice.js';
+import { Action, actions, channelPageView, statusCard, videoView } from '../../src/ui/popup/view.js';
 import { translator } from '../helpers/fake-i18n.mjs';
 
 const en = translator('en');
@@ -190,6 +181,13 @@ describe('channel choice', () => {
 
   it('puts the channel in the list of the choice, or in none for "per my settings"', () => {
     assert.deepEqual(CHANNEL_CHOICES.map(listForChoice), ['always', null, 'never']);
+  });
+
+  it('says where the channel went, or which list it left', () => {
+    assert.equal(moveNoticeKey('always', 'never'), 'noticeAddedAlways');
+    assert.equal(moveNoticeKey('never', null), 'noticeAddedNever');
+    assert.equal(moveNoticeKey(null, 'always'), 'noticeRemovedAlways');
+    assert.equal(moveNoticeKey(null, 'never'), 'noticeRemovedNever');
   });
 
   it('shows on a channel page, with the channel', () => {
