@@ -133,15 +133,129 @@
   "noticeNoAnswer": { "message": "La page n'a pas répondu. Rechargez-la et réessayez." },
   "noticeSaved": { "message": "Enregistré" },
   "noticeRemovedAlways": { "message": "Retirée de « Toujours liker »" },
-  "noticeImportedOne": {
-    "message": "$COUNT$ chaîne importée",
+  "noticeImportDone": {
+    "message": "Import terminé : $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ chaîne ajoutée à « $LIST$ »",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "$COUNT$ chaînes ajoutées à « $LIST$ »",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Annuler" },
+  "dialogAnalyse": { "message": "Analyser" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Ajouter des chaînes" },
+  "addHint": { "message": "Collez des liens de chaînes ou de vidéos, ou des @noms, un par ligne. L'extension demande à YouTube de quelle chaîne il s'agit, comme si vous ouvriez sa page." },
+  "addLinesLabel": { "message": "Liens ou @noms" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@nom\n@nom\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "Dans la liste" },
+  "addSearch": { "message": "Rechercher" },
+  "addSearching": {
+    "message": "Recherche sur YouTube… $DONE$ sur $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Ajouter" },
+  "addApplyOne": {
+    "message": "Ajouter $COUNT$ chaîne",
     "placeholders": { "count": { "content": "$1" } }
   },
-  "noticeImportedOther": {
-    "message": "$COUNT$ chaînes importées",
+  "addApplyOther": {
+    "message": "Ajouter $COUNT$ chaînes",
     "placeholders": { "count": { "content": "$1" } }
   },
-  "noticeImportedNone": { "message": "Ce fichier ne contient aucune chaîne qui ne soit déjà dans vos listes." },
+  "addNothing": { "message": "Aucune chaîne à ajouter : elles sont déjà toutes dans cette liste, ou aucune n'a été trouvée." },
+  "addEmpty": { "message": "Collez au moins un lien ou un @nom." },
+  "addTooMany": {
+    "message": "Au plus $MAX$ lignes à la fois.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "sera ajoutée" },
+  "lookupAlready": { "message": "déjà dans cette liste" },
+  "lookupMoved": {
+    "message": "passera de « $FROM$ » à « $TO$ »",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "même chaîne qu'une ligne précédente" },
+  "lookupNotALink": { "message": "ni un lien de chaîne ou de vidéo YouTube, ni un @nom" },
+  "lookupNotFound": { "message": "chaîne ou vidéo introuvable sur YouTube" },
+  "lookupUnreadable": { "message": "YouTube n'a pas indiqué la chaîne. S'il ne s'est jamais ouvert dans ce navigateur, ouvrez-le une fois et faites votre choix pour les cookies, puis réessayez" },
+
+  "importTitle": { "message": "Importer des listes" },
+  "importHint": { "message": "Un fichier exporté par l'extension, ou une liste de liens de chaînes, un par ligne. Rien n'est enregistré avant « Importer » : « Analyser » montre d'abord ce qui sera fait." },
+  "importDropHere": { "message": "Glissez un fichier ici, ou" },
+  "importBrowse": { "message": "parcourez vos fichiers" },
+  "importPasteHint": { "message": "Vous pouvez aussi coller un fichier ou du texte (Ctrl+V) dans cette fenêtre." },
+  "importChange": { "message": "Changer" },
+  "importRemove": { "message": "Retirer" },
+  "importPasted": { "message": "Texte collé" },
+  "importSourceFile": { "message": "Fichier exporté par l'extension" },
+  "importSourceLinksOne": {
+    "message": "Liste de liens, $COUNT$ ligne",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Liste de liens, $COUNT$ lignes",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Ce contenu n'est ni un export de l'extension ni une liste de liens." },
+  "importNoSource": { "message": "Choisissez d'abord un fichier, ou collez du texte." },
+  "importNoPart": { "message": "Cochez au moins une partie à importer." },
+  "importListFull": {
+    "message": "Une liste dépasserait $COUNT$ entrées : rien ne serait importé.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Ce qui est importé" },
+  "importLinksTarget": { "message": "Mettre ces chaînes dans" },
+  "importModeLabel": { "message": "Entrées déjà présentes" },
+  "importModeAddNew": { "message": "Ajouter seulement les nouvelles" },
+  "importModeAddNewHint": { "message": "Les chaînes déjà dans une liste restent où elles sont." },
+  "importModeFollow": { "message": "Ajouter et suivre le fichier" },
+  "importModeFollowHint": { "message": "Les chaînes déjà présentes passent dans la liste que leur donne le fichier." },
+  "importModeReplace": { "message": "Tout remplacer par le fichier" },
+  "importModeReplaceHint": { "message": "Les parties cochées deviennent exactement celles du fichier : ce qui n'y est pas est retiré." },
+  "importRemember": { "message": "Mémoriser mon choix" },
+  "importApply": { "message": "Importer" },
+  "importConfirmOne": {
+    "message": "Je confirme le retrait de $COUNT$ entrée absente du fichier.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Je confirme le retrait des $COUNT$ entrées absentes du fichier.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$ : $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "rien ne change" },
+  "reportNothing": { "message": "Rien ne change : tout est déjà présent." },
+  "reportAddedOne": { "message": "$COUNT$ nouvelle", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "$COUNT$ nouvelles", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ déplacée", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "$COUNT$ déplacées", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ déjà présente", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ déjà présentes", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ retirée", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ retirées", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Exporter des listes" },
+  "exportPartsLabel": { "message": "Ce qui est exporté" },
+  "exportFormatLabel": { "message": "Format" },
+  "exportFormatJson": { "message": "Fichier de l'extension (JSON)" },
+  "exportFormatJsonHint": { "message": "Se réimporte tel quel, avec les dates et les images des chaînes." },
+  "exportFormatLinks": { "message": "Liste de liens (texte)" },
+  "exportFormatLinksHint": { "message": "Un lien de chaîne par ligne, avec son nom, à lire ou à partager. Les vidéos exclues n'y figurent pas." },
+  "exportDownload": { "message": "Télécharger" },
+  "exportNothing": { "message": "Cochez au moins une liste." },
   "noticeImportInvalid": { "message": "Ce fichier n'est pas une liste exportée par YouTube Auto Like." },
   "noticeImportTooBig": { "message": "Ce fichier est trop volumineux pour être une liste de chaînes." },
   "noticeCountReset": { "message": "Compteur remis à zéro" },
@@ -190,7 +304,7 @@
   "summaryLabel": { "message": "Résumé :" },
 
   "listsHeading": { "message": "Mes listes de chaînes" },
-  "listsHint": { "message": "Ajoutez une chaîne, ou excluez une vidéo, depuis la fenêtre de l'icône pendant que vous la regardez." },
+  "listsHint": { "message": "Ajoutez des chaînes par lien ou par @nom, ou depuis la fenêtre de l'icône sur une vidéo ou sur la page d'une chaîne, ou encore depuis l'historique. Une vidéo s'exclut depuis la fenêtre de l'icône." },
   "listAlways": { "message": "Toujours liker" },
   "listNever": { "message": "Ne jamais liker" },
   "listVideos": { "message": "Vidéos exclues" },
@@ -205,7 +319,8 @@
   "listSearch": { "message": "Rechercher dans la liste" },
   "listImport": { "message": "Importer" },
   "listExport": { "message": "Exporter" },
-  "listEmpty": { "message": "Aucune chaîne dans cette liste." },
+  "listEmpty": { "message": "Aucune chaîne dans cette liste. Ajoutez-en par lien ou par @nom, depuis la fenêtre de l'icône sur une vidéo ou la page d'une chaîne, ou depuis l'historique." },
+  "listEmptyVideos": { "message": "Aucune vidéo exclue. Pour exclure une vidéo, ouvrez la fenêtre de l'icône pendant que vous la regardez, puis choisissez « Ne jamais liker cette vidéo »." },
   "listNoMatch": { "message": "Aucune chaîne ne correspond à cette recherche." },
   "listAddedOn": {
     "message": "ajoutée le $DATE$",

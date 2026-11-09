@@ -48,27 +48,6 @@ export function isVideoExcluded(videos, videoId) {
 }
 
 /**
- * Adds imported excluded videos to the current ones, in the order of the
- * import, with their dates; a video already excluded stays as it is.
- *
- * @returns {{ videos: object[], added: number }}
- * @throws {ListFullError} when the list would go past MAX_EXCLUDED_VIDEOS;
- *   nothing is merged then.
- */
-export function mergeExcludedVideos(current, imported) {
-  let videos = current;
-  let added = 0;
-  // placeVideo puts a new video first: going through the import from its
-  // end keeps its order at the top of the list.
-  for (const video of [...imported].reverse()) {
-    if (isVideoExcluded(videos, video.videoId)) continue;
-    videos = placeVideo(videos, video, true);
-    added += 1;
-  }
-  return { videos, added };
-}
-
-/**
  * Adds a video to the excluded ones (first in the list), or takes it out
  * with exclude false. A video already excluded keeps its place and its date.
  * Returns a new list; the input is not modified.

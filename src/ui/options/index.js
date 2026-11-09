@@ -14,11 +14,15 @@ import { createActionRunner } from '../shared/actions.js';
 import { markReady, renderParts } from '../shared/dom.js';
 import { formatLikeCount, formatNumber } from '../shared/format.js';
 import { createTranslator, translatePage } from '../shared/i18n.js';
+import { dialogFromHash, dialogPageUrl, isEmbedded } from '../shared/embed.js';
 import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
 import { applyTheme } from '../shared/theme.js';
+import { createAddDialog } from './add-dialog.js';
+import { createExportDialog } from './export-dialog.js';
 import { FIELDS, lockedThreshold, NUMBER_RANGES, validNumber } from './fields.js';
 import { createHistorySection } from './history-section.js';
+import { createImportDialog } from './import-dialog.js';
 import { createListsSection } from './lists-section.js';
 import { highlightSections } from './menu.js';
 import { createUpdateSection } from './update-section.js';
@@ -66,6 +70,27 @@ const page = {
 const lists = createListsSection(page);
 const history = createHistorySection(page);
 const updates = createUpdateSection(page, api);
+const dialogs = {
+  add: createAddDialog(page),
+  import: createImportDialog(page),
+  export: createExportDialog(page),
+};
+
+/**
+ * Opens a dialog of the lists. In the frame of the popup, too small for
+ * them, the full page opens instead, on the same dialog.
+ */
+function openDialog(name) {
+  if (isEmbedded(window.location)) {
+    api.tabs.create({ url: dialogPageUrl((path) => api.runtime.getURL(path), name) }).then(
+      () => {},
+      (error) => console.error(LOG_PREFIX, 'could not open the options page', error),
+    );
+    return;
+  }
+  if (name === 'add') dialogs.add.open(lists.currentList() ?? 'always');
+  else dialogs[name].open();
+}
 
 function renderCount() {
   byId('like-count').textContent = state.likeCount === null ? '' : formatLikeCount(state.likeCount, lang, t);
@@ -166,9 +191,14 @@ function listen() {
     if (range) form.querySelector(`[data-field="${range.dataset.mirror}"]`).value = range.value;
   });
   byId('reset-count').addEventListener('click', () => act(resetCount));
+  document.addEventListener('click', (event) => {
+    const name = event.target.closest('[data-dialog]')?.dataset.dialog;
+    if (name && Object.hasOwn(dialogs, name)) openDialog(name);
+  });
   lists.listen();
   history.listen();
   updates.listen();
+  for (const dialog of Object.values(dialogs)) dialog.listen();
 
   store.onSettingsChange((settings) => {
     state.settings = settings;
@@ -198,6 +228,13 @@ async function start() {
   markReady(document);
   listen();
   highlightSections(window, byId('nav'), [...form.querySelectorAll('section')]);
+  // Opened from the popup on a dialog (dialogPageUrl): the dialog shows at
+  // once, and the address goes back to the page alone.
+  const asked = dialogFromHash(window.location.hash);
+  if (asked) {
+    window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    openDialog(asked);
+  }
 }
 
 start();

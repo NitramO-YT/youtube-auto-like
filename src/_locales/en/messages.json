@@ -158,15 +158,129 @@
   "noticeNoAnswer": { "message": "The page did not answer. Reload it and try again." },
   "noticeSaved": { "message": "Saved" },
   "noticeRemovedAlways": { "message": "Removed from “Always like”" },
-  "noticeImportedOne": {
-    "message": "$COUNT$ channel imported",
+  "noticeImportDone": {
+    "message": "Import done: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1", "example": "3 new · 1 moved" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ channel added to “$LIST$”",
+    "placeholders": { "count": { "content": "$1", "example": "1" }, "list": { "content": "$2", "example": "Always like" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "$COUNT$ channels added to “$LIST$”",
+    "placeholders": { "count": { "content": "$1", "example": "12" }, "list": { "content": "$2", "example": "Always like" } }
+  },
+
+  "dialogCancel": { "message": "Cancel" },
+  "dialogAnalyse": { "message": "Analyze" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1", "example": "Always like" }, "count": { "content": "$2", "example": "12" } }
+  },
+
+  "addChannels": { "message": "Add channels" },
+  "addHint": { "message": "Paste links to channels or videos, or @handles, one per line. The extension asks YouTube which channel each one is, as if you opened its page." },
+  "addLinesLabel": { "message": "Links or @handles" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@handle\n@handle\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "Into the list" },
+  "addSearch": { "message": "Look up" },
+  "addSearching": {
+    "message": "Asking YouTube… $DONE$ of $TOTAL$",
+    "placeholders": { "done": { "content": "$1", "example": "3" }, "total": { "content": "$2", "example": "10" } }
+  },
+  "addApply": { "message": "Add" },
+  "addApplyOne": {
+    "message": "Add $COUNT$ channel",
     "placeholders": { "count": { "content": "$1", "example": "1" } }
   },
-  "noticeImportedOther": {
-    "message": "$COUNT$ channels imported",
+  "addApplyOther": {
+    "message": "Add $COUNT$ channels",
     "placeholders": { "count": { "content": "$1", "example": "12" } }
   },
-  "noticeImportedNone": { "message": "This file holds no channel that is not already in your lists." },
+  "addNothing": { "message": "No channel to add: they are all in this list already, or none was found." },
+  "addEmpty": { "message": "Paste at least one link or @handle." },
+  "addTooMany": {
+    "message": "At most $MAX$ lines at a time.",
+    "placeholders": { "max": { "content": "$1", "example": "200" } }
+  },
+  "lookupNew": { "message": "will be added" },
+  "lookupAlready": { "message": "already in this list" },
+  "lookupMoved": {
+    "message": "will move from “$FROM$” to “$TO$”",
+    "placeholders": { "from": { "content": "$1", "example": "Never like" }, "to": { "content": "$2", "example": "Always like" } }
+  },
+  "lookupDuplicate": { "message": "same channel as an earlier line" },
+  "lookupNotALink": { "message": "neither a link to a YouTube channel or video, nor an @handle" },
+  "lookupNotFound": { "message": "no such channel or video on YouTube" },
+  "lookupUnreadable": { "message": "YouTube did not tell the channel. If it was never opened in this browser, open it once and make your cookie choice, then try again" },
+
+  "importTitle": { "message": "Import lists" },
+  "importHint": { "message": "A file exported by the extension, or a list of channel links, one per line. Nothing is saved before “Import”: “Analyze” first shows what will be done." },
+  "importDropHere": { "message": "Drop a file here, or" },
+  "importBrowse": { "message": "browse your files" },
+  "importPasteHint": { "message": "You can also paste a file or text (Ctrl+V) in this window." },
+  "importChange": { "message": "Change" },
+  "importRemove": { "message": "Remove" },
+  "importPasted": { "message": "Pasted text" },
+  "importSourceFile": { "message": "File exported by the extension" },
+  "importSourceLinksOne": {
+    "message": "List of links, $COUNT$ line",
+    "placeholders": { "count": { "content": "$1", "example": "1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "List of links, $COUNT$ lines",
+    "placeholders": { "count": { "content": "$1", "example": "12" } }
+  },
+  "importNotUnderstood": { "message": "This is neither an export of the extension nor a list of links." },
+  "importNoSource": { "message": "First choose a file, or paste some text." },
+  "importNoPart": { "message": "Check at least one part to import." },
+  "importListFull": {
+    "message": "A list would go past $COUNT$ entries: nothing would be imported.",
+    "placeholders": { "count": { "content": "$1", "example": "5,000" } }
+  },
+  "importPartsLabel": { "message": "What is imported" },
+  "importLinksTarget": { "message": "Put these channels in" },
+  "importModeLabel": { "message": "Entries already there" },
+  "importModeAddNew": { "message": "Add only the new ones" },
+  "importModeAddNewHint": { "message": "A channel already in a list stays where it is." },
+  "importModeFollow": { "message": "Add and follow the file" },
+  "importModeFollowHint": { "message": "A channel already there moves to the list the file gives it." },
+  "importModeReplace": { "message": "Replace everything with the file" },
+  "importModeReplaceHint": { "message": "The parts checked become exactly those of the file: what it does not hold is removed." },
+  "importRemember": { "message": "Remember my choice" },
+  "importApply": { "message": "Import" },
+  "importConfirmOne": {
+    "message": "I confirm removing $COUNT$ entry missing from the file.",
+    "placeholders": { "count": { "content": "$1", "example": "1" } }
+  },
+  "importConfirmOther": {
+    "message": "I confirm removing the $COUNT$ entries missing from the file.",
+    "placeholders": { "count": { "content": "$1", "example": "12" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1", "example": "Always like" }, "counts": { "content": "$2", "example": "3 new · 1 moved" } }
+  },
+  "reportPartEmpty": { "message": "nothing changes" },
+  "reportNothing": { "message": "Nothing changes: everything is there already." },
+  "reportAddedOne": { "message": "$COUNT$ new", "placeholders": { "count": { "content": "$1", "example": "1" } } },
+  "reportAddedOther": { "message": "$COUNT$ new", "placeholders": { "count": { "content": "$1", "example": "3" } } },
+  "reportMovedOne": { "message": "$COUNT$ moved", "placeholders": { "count": { "content": "$1", "example": "1" } } },
+  "reportMovedOther": { "message": "$COUNT$ moved", "placeholders": { "count": { "content": "$1", "example": "3" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ already there", "placeholders": { "count": { "content": "$1", "example": "1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ already there", "placeholders": { "count": { "content": "$1", "example": "3" } } },
+  "reportRemovedOne": { "message": "$COUNT$ removed", "placeholders": { "count": { "content": "$1", "example": "1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ removed", "placeholders": { "count": { "content": "$1", "example": "3" } } },
+
+  "exportTitle": { "message": "Export lists" },
+  "exportPartsLabel": { "message": "What is exported" },
+  "exportFormatLabel": { "message": "Format" },
+  "exportFormatJson": { "message": "File of the extension (JSON)" },
+  "exportFormatJsonHint": { "message": "Imported back as it is, with the dates and the pictures of the channels." },
+  "exportFormatLinks": { "message": "List of links (text)" },
+  "exportFormatLinksHint": { "message": "One channel link per line, with its name, to read or share. Excluded videos are left out." },
+  "exportDownload": { "message": "Download" },
+  "exportNothing": { "message": "Check at least one list." },
   "noticeImportInvalid": { "message": "This file is not a list exported by YouTube Auto Like." },
   "noticeImportTooBig": { "message": "This file is too large to be a list of channels." },
   "noticeCountReset": { "message": "Counter reset" },
@@ -218,7 +332,7 @@
   "summaryLabel": { "message": "Summary:" },
 
   "listsHeading": { "message": "My channel lists" },
-  "listsHint": { "message": "Add a channel, or exclude a video, from the toolbar popup while you watch it." },
+  "listsHint": { "message": "Add channels by link or @handle, from the toolbar popup on a video or a channel page, or from the history. A video is excluded from the toolbar popup." },
   "listAlways": { "message": "Always like" },
   "listNever": { "message": "Never like" },
   "listVideos": { "message": "Excluded videos" },
@@ -233,7 +347,8 @@
   "listSearch": { "message": "Search the list" },
   "listImport": { "message": "Import" },
   "listExport": { "message": "Export" },
-  "listEmpty": { "message": "No channel in this list." },
+  "listEmpty": { "message": "No channel in this list. Add some by link or @handle, from the toolbar popup on a video or a channel page, or from the history." },
+  "listEmptyVideos": { "message": "No excluded video. To exclude a video, open the toolbar popup while you watch it, then choose “Never like this video”." },
   "listNoMatch": { "message": "No channel matches this search." },
   "listAddedOn": {
     "message": "added on $DATE$",

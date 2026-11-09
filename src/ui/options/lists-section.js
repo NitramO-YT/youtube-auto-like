@@ -1,19 +1,18 @@
 /**
  * "My lists" on the options page, in three tabs: the two channel lists and
- * the excluded videos. Each tab has its search and its removal with undo;
- * the export and import cover all three.
+ * the excluded videos. Each tab has its search and its removal with undo.
+ * Adding channels, the import and the export are dialogs of their own
+ * (add-dialog.js, import-dialog.js, export-dialog.js), opened by the buttons
+ * carrying data-dialog (see index.js).
  *
  * @param {object} page From index.js: { doc, byId, t, lang, store, notice,
  *   act, confirmChange, state, refresh }; state.settings holds the settings
  *   shown, refresh redraws the page from them.
  */
-import { mergeLists } from '../../core/channels.js';
-import { mergeExcludedVideos } from '../../core/excluded-videos.js';
 import { videoUrl } from '../../core/video.js';
-import { ImportError, listsFileName, MAX_LISTS_FILE_BYTES, parseListsFile, serializeLists } from '../../core/lists-file.js';
 import { createAvatar, initialOf } from '../shared/avatar.js';
 import { el, icon } from '../shared/dom.js';
-import { formatNumber, pluralKey } from '../shared/format.js';
+import { formatNumber } from '../shared/format.js';
 import { moveChannel, setVideoExcluded } from '../shared/lists.js';
 import { filterChannels, filterVideos } from './fields.js';
 import { createPager } from './pager.js';
@@ -22,7 +21,7 @@ const CHANNEL_URL = 'https://www.youtube.com/channel/';
 const TAB_NAMES = ['always', 'never', 'videos'];
 
 export function createListsSection(page) {
-  const { doc, byId, t, lang, store, notice, act, confirmChange, state } = page;
+  const { doc, byId, t, lang, store, act, confirmChange, state } = page;
   const dateFormat = new Intl.DateTimeFormat(lang, { dateStyle: 'medium' });
   let tab = 'always';
   let query = '';
@@ -54,6 +53,7 @@ export function createListsSection(page) {
   }
 
   const channelTab = (list) => ({
+    emptyKey: 'listEmpty',
     entries: () => state.settings.lists[list],
     filter: filterChannels,
     idOf: (channel) => channel.id,
@@ -79,6 +79,7 @@ export function createListsSection(page) {
     always: channelTab('always'),
     never: channelTab('never'),
     videos: {
+      emptyKey: 'listEmptyVideos',
       entries: () => state.settings.excludedVideos,
       filter: filterVideos,
       idOf: (video) => video.videoId,
@@ -120,9 +121,12 @@ export function createListsSection(page) {
       drawnRows = key;
       byId('list-rows').replaceChildren(...shown.map(current.row));
     }
-    const empty = byId('list-empty');
-    empty.hidden = found.length > 0;
-    empty.textContent = t(current.entries().length === 0 ? 'listEmpty' : 'listNoMatch');
+    const isEmpty = current.entries().length === 0;
+    byId('list-empty').hidden = found.length > 0;
+    byId('list-empty-text').textContent = t(isEmpty ? current.emptyKey : 'listNoMatch');
+    // Channels are added to the two channel lists; a video is excluded from the popup.
+    byId('list-empty-add').hidden = !isEmpty || tab === 'videos';
+    byId('add-channels').hidden = tab === 'videos';
     pager.render(shown.length, found.length);
   }
 
@@ -141,44 +145,6 @@ export function createListsSection(page) {
     (remaining[index] ?? remaining[index - 1] ?? byId('list-search')).focus();
     confirmChange(noticeKey, [], async () => {
       state.settings = await undo();
-    });
-  }
-
-  function exportLists() {
-    const now = new Date();
-    const text = serializeLists(state.settings.lists, state.settings.excludedVideos, now.toISOString());
-    const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
-    const link = el(doc, 'a');
-    link.href = url;
-    link.download = listsFileName(now);
-    link.click();
-    setTimeout(() => URL.revokeObjectURL(url), 0);
-  }
-
-  async function importLists(file) {
-    // A file too large is refused before being read.
-    const text = file.size > MAX_LISTS_FILE_BYTES ? '' : await file.text();
-    const result = parseListsFile(text, file.size);
-    if (result.error) {
-      notice.show(t(result.error === ImportError.TOO_BIG ? 'noticeImportTooBig' : 'noticeImportInvalid'), { error: true });
-      return;
-    }
-    let previous;
-    let added = 0;
-    state.settings = await store.updateSettings((current) => {
-      previous = { lists: current.lists, excludedVideos: current.excludedVideos };
-      const channels = mergeLists(current.lists, result.lists, new Date().toISOString());
-      const videos = mergeExcludedVideos(current.excludedVideos, result.excludedVideos);
-      added = channels.added + videos.added;
-      return { ...current, lists: channels.lists, excludedVideos: videos.videos };
-    });
-    page.refresh();
-    if (added === 0) {
-      notice.show(t('noticeImportedNone'));
-      return;
-    }
-    confirmChange(pluralKey(added, lang, 'noticeImportedOne', 'noticeImportedOther'), [formatNumber(added, lang)], async () => {
-      state.settings = await store.updateSettings((current) => ({ ...current, ...previous }));
     });
   }
 
@@ -206,14 +172,10 @@ export function createListsSection(page) {
       const id = event.target.closest('[data-remove]')?.dataset.remove;
       if (id) act(() => remove(id));
     });
-    byId('export').addEventListener('click', exportLists);
-    byId('import').addEventListener('click', () => byId('import-file').click());
-    byId('import-file').addEventListener('change', (event) => {
-      const [file] = event.target.files;
-      event.target.value = '';
-      if (file) act(() => importLists(file));
-    });
   }
 
-  return { render, listen };
+  /** The channel list of the tab shown ('always' or 'never'), the list "Add channels" fills; null on the videos tab. */
+  const currentList = () => (tab === 'videos' ? null : tab);
+
+  return { render, listen, currentList };
 }

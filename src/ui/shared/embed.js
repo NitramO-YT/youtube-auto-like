@@ -17,3 +17,19 @@ export function isEmbedded(location) {
 export function embeddedOptionsUrl(getURL) {
   return `${getURL(OPTIONS_PAGE)}?${EMBED_PARAM}`;
 }
+
+// Dialogs too large for the frame of the popup open in the full page, at
+// options.html#dialog-<name>.
+export const FULL_PAGE_DIALOGS = Object.freeze(['add', 'import', 'export']);
+const DIALOG_HASH = '#dialog-';
+
+/** Address of the full options page that opens a dialog. */
+export function dialogPageUrl(getURL, name) {
+  return `${getURL(OPTIONS_PAGE)}${DIALOG_HASH}${name}`;
+}
+
+/** The dialog an address asks to open, or null. */
+export function dialogFromHash(hash) {
+  const name = hash.startsWith(DIALOG_HASH) ? hash.slice(DIALOG_HASH.length) : null;
+  return FULL_PAGE_DIALOGS.includes(name) ? name : null;
+}

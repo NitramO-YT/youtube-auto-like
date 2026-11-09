@@ -104,28 +104,3 @@ export function placeChannel(lists, channel, target, now) {
   next[target] = [entry, ...next[target]];
   return next;
 }
-
-/**
- * Adds imported lists to the current ones. A channel of the import goes to
- * the list it has in the import, with its date when the import has one;
- * every other channel stays where it is. Both inputs come from
- * normalizeLists, so the import holds a channel in one list at most.
- *
- * @returns {{ lists: object, added: number }} added counts the channels
- *   that were not already in the list the import gives them.
- * @throws {ListFullError} when a list would go past MAX_CHANNELS; nothing is
- *   merged then.
- */
-export function mergeLists(current, imported, now) {
-  let lists = current;
-  let added = 0;
-  for (const target of LIST_NAMES) {
-    // placeChannel puts a new channel first: going through the import from
-    // its end keeps its order at the top of the list.
-    for (const entry of [...imported[target]].reverse()) {
-      if (!isChannelListed(lists[target], entry.id)) added += 1;
-      lists = placeChannel(lists, entry, target, entry.addedAt ?? now);
-    }
-  }
-  return { lists, added };
-}

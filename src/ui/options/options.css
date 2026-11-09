@@ -366,6 +366,174 @@ main {
   border-radius: 10px;
   margin: 0;
 }
+.list-empty p {
+  margin: 0;
+}
+.list-empty .btn {
+  margin-top: 10px;
+}
+
+/* Dialogs of the lists: add channels, import, export (dialog.js). */
+.dialog {
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+}
+.dialog::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+.dialog h2 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+.dialog .field {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  margin: 12px 0 6px;
+}
+.text-area {
+  display: block;
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.5 ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+.dialog-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 14px 0 0;
+  min-width: 0;
+}
+.dialog-fieldset legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 13px;
+}
+.dialog .remember {
+  margin-top: 10px;
+}
+.dialog-report {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--surface);
+}
+.dialog-status {
+  margin: 0 0 6px;
+  font-size: 13px;
+}
+.dialog-status:last-child {
+  margin-bottom: 0;
+}
+.report-lines {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+}
+.report-lines:empty,
+.lookup-rows:empty {
+  display: none;
+}
+.lookup-rows {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  max-height: 40vh;
+  overflow-y: auto;
+  display: grid;
+  gap: 6px;
+}
+.lookup-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+}
+.lookup-row .avatar {
+  width: 26px;
+  height: 26px;
+  font-size: 11px;
+}
+.lookup-row .title {
+  min-width: 0;
+}
+.lookup-row .name {
+  display: block;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.lookup-row .meta {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.lookup-row.failed .meta {
+  color: var(--error);
+}
+.check.danger {
+  margin-top: 10px;
+  border-color: var(--error);
+  color: var(--error);
+}
+.error-text {
+  color: var(--error);
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+/* Source of an import: a file chosen or dropped, or text pasted. */
+.drop-zone {
+  margin-top: 12px;
+  padding: 14px;
+  border: 1.5px dashed var(--border);
+  border-radius: 10px;
+  text-align: center;
+}
+.drop-zone.dragging {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.drop-zone p {
+  margin: 0;
+}
+.drop-zone .hint {
+  margin: 4px 0 0;
+}
+.drop-filled {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+}
+.drop-filled > div {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.drop-filled .hint {
+  margin: 0;
+}
 
 /* Under a long list: how many rows are shown, "Show more" and "Show all"
    (pager.js). */

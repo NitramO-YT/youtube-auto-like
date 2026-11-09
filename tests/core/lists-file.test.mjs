@@ -8,7 +8,16 @@ import {
   MAX_TITLE_LENGTH,
   normalizeExcludedVideos,
 } from '../../src/core/excluded-videos.js';
-import { ImportError, listsFileName, MAX_LISTS_FILE_BYTES, parseListsFile, serializeLists } from '../../src/core/lists-file.js';
+import {
+  ImportError,
+  linksFileName,
+  listsFileName,
+  MAX_LISTS_FILE_BYTES,
+  parseListsFile,
+  readLinkLines,
+  serializeLinks,
+  serializeLists,
+} from '../../src/core/lists-file.js';
 
 const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
 const QOQSIK = 'UCfefITu3BR2ix7ZUSrxj16w';
@@ -63,6 +72,26 @@ describe('lists file', () => {
 
   it('names the file after the day of the export', () => {
     assert.equal(listsFileName(new Date('2026-11-08T22:00:00.000Z')), 'youtube-auto-like-lists-2026-11-08.json');
+    assert.equal(linksFileName(new Date('2026-11-08T22:00:00.000Z')), 'youtube-auto-like-channels-2026-11-08.txt');
+  });
+
+  it('writes a list of links that reads back as the channel addresses', () => {
+    const text = serializeLinks([
+      { title: 'Toujours liker', channels: lists.always },
+      { title: 'Ne jamais liker', channels: [{ id: QOQSIK, name: '' }] },
+    ]);
+    assert.equal(
+      text,
+      `# Toujours liker\nhttps://www.youtube.com/channel/${COLAS}  # COLAS\n\n# Ne jamais liker\nhttps://www.youtube.com/channel/${QOQSIK}\n`,
+    );
+    assert.deepEqual(readLinkLines(text), [`https://www.youtube.com/channel/${COLAS}`, `https://www.youtube.com/channel/${QOQSIK}`]);
+  });
+
+  it('reads pasted lines trimmed, once, without comments or empty lines', () => {
+    assert.deepEqual(readLinkLines(' @COLAS. \r\n\n@COLAS.  # again\n  \n# note\nhttps://youtu.be/aeP4eG-gO10#t=1'), [
+      '@COLAS.',
+      'https://youtu.be/aeP4eG-gO10#t=1',
+    ]);
   });
 
   it('keeps only valid channels, valid videos and known fields', () => {

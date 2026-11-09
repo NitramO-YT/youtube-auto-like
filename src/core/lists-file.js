@@ -43,6 +43,45 @@ export function listsFileName(date) {
   return `youtube-auto-like-lists-${date.toISOString().slice(0, 10)}.json`;
 }
 
+/** The name proposed for a list of links: youtube-auto-like-channels-2026-11-08.txt. */
+export function linksFileName(date) {
+  return `youtube-auto-like-channels-${date.toISOString().slice(0, 10)}.txt`;
+}
+
+/**
+ * A list of links to read or to share: for each list given, a "# title"
+ * line, then one channel per line, its address followed by "  # name".
+ * The lines a user pastes are read back the same way (readLinkLines):
+ * comments are left out.
+ *
+ * @param {Array<{ title: string, channels: object[] }>} sections
+ */
+export function serializeLinks(sections) {
+  const lines = [];
+  for (const { title, channels } of sections) {
+    lines.push(`# ${title}`);
+    for (const channel of channels) {
+      const name = channel.name.replace(/\s+/g, ' ').trim();
+      lines.push(`https://www.youtube.com/channel/${channel.id}${name ? `  # ${name}` : ''}`);
+    }
+    lines.push('');
+  }
+  return `${lines.join('\n').trimEnd()}\n`;
+}
+
+/**
+ * The lines of a pasted text or a list of links: trimmed, without comments
+ * (a line starting with "#", or the end of a line from " #"), without empty
+ * lines and repeats.
+ */
+export function readLinkLines(text) {
+  const lines = String(text)
+    .split(/\r?\n/)
+    .map((line) => line.replace(/\s+#.*$/, '').trim())
+    .filter((line) => line && !line.startsWith('#'));
+  return [...new Set(lines)];
+}
+
 /**
  * @param {string} text Content of the file.
  * @param {number} size Size of the file in bytes.

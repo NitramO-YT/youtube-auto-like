@@ -8,6 +8,7 @@ import vm from 'node:vm';
 import { TARGETS } from '../../scripts/build-config.mjs';
 import { buildExtension } from '../../scripts/build.mjs';
 import { AVATAR_HOSTS } from '../../src/core/avatar.js';
+import { YOUTUBE_ORIGIN } from '../../src/core/channel-links.js';
 import { LATEST_RELEASE_API } from '../../src/core/update.js';
 
 // Builds the real sources of each target and checks what would keep the
@@ -88,12 +89,13 @@ for (const target of TARGETS) {
       assert.deepEqual(directives['object-src'], ["'none'"]);
     });
 
-    it('lets extension pages connect only to the API that publishes the releases', () => {
+    it('lets extension pages connect only to the API that publishes the releases and to YouTube', () => {
       const connect = manifest.content_security_policy.extension_pages
         .split(';')
         .map((directive) => directive.trim().split(/\s+/))
         .find(([name]) => name === 'connect-src');
-      assert.deepEqual(connect.slice(1), [new URL(LATEST_RELEASE_API).origin]);
+      // YouTube: the channel pages and oEmbed that name a pasted channel (core/channel-links.js).
+      assert.deepEqual(connect.slice(1), [new URL(LATEST_RELEASE_API).origin, YOUTUBE_ORIGIN]);
     });
 
     it('ships the background service worker it declares', async () => {

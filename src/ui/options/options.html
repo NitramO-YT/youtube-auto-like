@@ -104,13 +104,16 @@
       </div>
       <div class="list-tools">
         <input class="search" type="search" id="list-search" data-i18n-placeholder="listSearch" data-i18n-aria-label="listSearch">
-        <button type="button" class="btn" id="import" data-i18n="listImport"></button>
-        <button type="button" class="btn" id="export" data-i18n="listExport"></button>
-        <input type="file" id="import-file" accept="application/json,.json" hidden>
+        <button type="button" class="btn primary" id="add-channels" data-dialog="add" data-i18n="addChannels"></button>
+        <button type="button" class="btn" id="import" data-dialog="import" data-i18n="listImport"></button>
+        <button type="button" class="btn" id="export" data-dialog="export" data-i18n="listExport"></button>
       </div>
       <div id="list-panel" role="tabpanel" aria-labelledby="tab-always">
         <ul class="rows" id="list-rows"></ul>
-        <p class="list-empty" id="list-empty" hidden></p>
+        <div class="list-empty" id="list-empty" hidden>
+          <p id="list-empty-text"></p>
+          <button type="button" class="btn" id="list-empty-add" data-dialog="add" data-i18n="addChannels"></button>
+        </div>
         <div class="more-row" id="list-more" hidden><span id="list-more-count"></span><span class="more-buttons"><button type="button" class="btn" id="list-more-button"></button><button type="button" class="btn" id="list-all-button"></button></span></div>
       </div>
     </section>
@@ -178,6 +181,107 @@
     </section>
   </main>
 </div>
+
+<!-- "Add channels": links, @handles or video links, looked up on YouTube. -->
+<dialog class="dialog" id="add-dialog" aria-labelledby="add-title">
+  <h2 id="add-title" data-i18n="addChannels"></h2>
+  <p class="hint" data-i18n="addHint"></p>
+  <label class="field" for="add-lines" data-i18n="addLinesLabel"></label>
+  <textarea class="text-area" id="add-lines" rows="6" spellcheck="false" autocomplete="off" data-i18n-placeholder="addLinesPlaceholder"></textarea>
+  <div class="field" id="add-target-label" data-i18n="addTargetLabel"></div>
+  <div class="seg compact" role="radiogroup" aria-labelledby="add-target-label">
+    <label><input type="radio" name="add-target" value="always" checked><span data-i18n="listAlways"></span></label>
+    <label><input type="radio" name="add-target" value="never"><span data-i18n="listNever"></span></label>
+  </div>
+  <div class="dialog-report" id="add-report" aria-live="polite" hidden>
+    <p class="dialog-status" id="add-status"></p>
+    <ul class="lookup-rows" id="add-results"></ul>
+  </div>
+  <div class="dialog-actions">
+    <button type="button" class="btn" data-close data-i18n="dialogCancel"></button>
+    <button type="button" class="btn" id="add-search" data-i18n="addSearch"></button>
+    <button type="button" class="btn primary" id="add-apply" disabled></button>
+  </div>
+</dialog>
+
+<!-- "Import": an export of the extension or a list of links, analysed before it is applied. -->
+<dialog class="dialog" id="import-dialog" aria-labelledby="import-title">
+  <h2 id="import-title" data-i18n="importTitle"></h2>
+  <p class="hint" data-i18n="importHint"></p>
+  <div class="drop-zone" id="import-source">
+    <div id="import-source-empty">
+      <p><span data-i18n="importDropHere"></span> <button type="button" class="link" id="import-browse" data-i18n="importBrowse"></button></p>
+      <p class="hint" data-i18n="importPasteHint"></p>
+    </div>
+    <div class="drop-filled" id="import-source-filled" hidden>
+      <div><strong id="import-source-name"></strong><span class="hint" id="import-source-detail"></span></div>
+      <button type="button" class="btn" id="import-source-change" data-i18n="importChange"></button>
+      <button type="button" class="btn" id="import-source-remove" data-i18n="importRemove"></button>
+    </div>
+    <p class="error-text" id="import-source-error" role="alert" hidden></p>
+    <input type="file" id="import-file" accept="application/json,.json,text/plain,.txt" hidden>
+  </div>
+  <fieldset class="dialog-fieldset" id="import-parts" hidden>
+    <legend data-i18n="importPartsLabel"></legend>
+    <div class="checks">
+      <label class="check"><input type="checkbox" name="import-part" value="always"><span class="box" aria-hidden="true"></span><span id="import-part-always"></span></label>
+      <label class="check"><input type="checkbox" name="import-part" value="never"><span class="box" aria-hidden="true"></span><span id="import-part-never"></span></label>
+      <label class="check"><input type="checkbox" name="import-part" value="videos"><span class="box" aria-hidden="true"></span><span id="import-part-videos"></span></label>
+    </div>
+  </fieldset>
+  <fieldset class="dialog-fieldset" id="import-links-target" hidden>
+    <legend data-i18n="importLinksTarget"></legend>
+    <div class="seg compact">
+      <label><input type="radio" name="import-target" value="always" checked><span data-i18n="listAlways"></span></label>
+      <label><input type="radio" name="import-target" value="never"><span data-i18n="listNever"></span></label>
+    </div>
+  </fieldset>
+  <fieldset class="dialog-fieldset">
+    <legend data-i18n="importModeLabel"></legend>
+    <div class="choices">
+      <label class="choice"><input type="radio" name="import-mode" value="add-new"><span class="radio" aria-hidden="true"></span><span><strong data-i18n="importModeAddNew"></strong><span class="choice-hint" data-i18n="importModeAddNewHint"></span></span></label>
+      <label class="choice"><input type="radio" name="import-mode" value="follow"><span class="radio" aria-hidden="true"></span><span><strong data-i18n="importModeFollow"></strong><span class="choice-hint" data-i18n="importModeFollowHint"></span></span></label>
+      <label class="choice"><input type="radio" name="import-mode" value="replace"><span class="radio" aria-hidden="true"></span><span><strong data-i18n="importModeReplace"></strong><span class="choice-hint" data-i18n="importModeReplaceHint"></span></span></label>
+    </div>
+    <label class="check remember"><input type="checkbox" id="import-remember"><span class="box" aria-hidden="true"></span><span data-i18n="importRemember"></span></label>
+  </fieldset>
+  <div class="dialog-report" id="import-report" aria-live="polite" hidden>
+    <p class="dialog-status" id="import-status"></p>
+    <ul class="report-lines" id="import-lines"></ul>
+    <ul class="lookup-rows" id="import-failures"></ul>
+    <label class="check danger" id="import-confirm-row" hidden><input type="checkbox" id="import-confirm"><span class="box" aria-hidden="true"></span><span id="import-confirm-text"></span></label>
+  </div>
+  <div class="dialog-actions">
+    <button type="button" class="btn" data-close data-i18n="dialogCancel"></button>
+    <button type="button" class="btn" id="import-analyse" data-i18n="dialogAnalyse"></button>
+    <button type="button" class="btn primary" id="import-apply" data-i18n="importApply" disabled></button>
+  </div>
+</dialog>
+
+<!-- "Export": the lists chosen, as a file of the extension or a list of links. -->
+<dialog class="dialog" id="export-dialog" aria-labelledby="export-title">
+  <h2 id="export-title" data-i18n="exportTitle"></h2>
+  <fieldset class="dialog-fieldset">
+    <legend data-i18n="exportPartsLabel"></legend>
+    <div class="checks">
+      <label class="check"><input type="checkbox" name="export-part" value="always" checked><span class="box" aria-hidden="true"></span><span id="export-part-always"></span></label>
+      <label class="check"><input type="checkbox" name="export-part" value="never" checked><span class="box" aria-hidden="true"></span><span id="export-part-never"></span></label>
+      <label class="check"><input type="checkbox" name="export-part" value="videos" checked><span class="box" aria-hidden="true"></span><span id="export-part-videos"></span></label>
+    </div>
+  </fieldset>
+  <fieldset class="dialog-fieldset">
+    <legend data-i18n="exportFormatLabel"></legend>
+    <div class="choices">
+      <label class="choice"><input type="radio" name="export-format" value="json" checked><span class="radio" aria-hidden="true"></span><span><strong data-i18n="exportFormatJson"></strong><span class="choice-hint" data-i18n="exportFormatJsonHint"></span></span></label>
+      <label class="choice"><input type="radio" name="export-format" value="links"><span class="radio" aria-hidden="true"></span><span><strong data-i18n="exportFormatLinks"></strong><span class="choice-hint" data-i18n="exportFormatLinksHint"></span></span></label>
+    </div>
+  </fieldset>
+  <p class="error-text" id="export-error" role="alert" hidden></p>
+  <div class="dialog-actions">
+    <button type="button" class="btn" data-close data-i18n="dialogCancel"></button>
+    <button type="button" class="btn primary" id="export-download" data-i18n="exportDownload"></button>
+  </div>
+</dialog>
 
 <div class="notice toast" id="notice" role="status" hidden>
   <span id="notice-text"></span>
