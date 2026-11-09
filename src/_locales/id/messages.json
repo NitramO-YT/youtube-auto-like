@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Otomatis menyukai video YouTube dari channel yang Anda pilih." },
+
+  "locale": { "message": "id" },
+
+  "switchLabel": { "message": "Sukai video secara otomatis" },
+  "switchActive": { "message": "Aktif" },
+  "switchPaused": { "message": "Dijeda" },
+  "pausedBanner": { "message": "Ekstensi tidak menyukai apa pun selama dijeda." },
+  "badgeUpdate": { "message": "BARU" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: versi $VERSION$ telah dirilis",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Versi $VERSION$ telah dirilis ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Video ini" },
+  "sectionThisChannel": { "message": "Channel ini" },
+  "sectionRule": { "message": "Aturan yang berlaku" },
+  "openSettings": { "message": "Ubah setelan →" },
+  "settingsShow": { "message": "Tampilkan setelan" },
+  "settingsHide": { "message": "Kembali ke video" },
+  "openFullPage": { "message": "Buka di halaman penuh ↗" },
+  "noVideo": { "message": "Buka video atau Short di YouTube untuk melihat apa yang dilakukan ekstensi terhadapnya, atau halaman channel untuk memilih apakah videonya disukai." },
+  "noVideoHint": { "message": "Jika video sudah terbuka, muat ulang halaman." },
+
+  "channelUnknown": { "message": "Channel tidak dikenal" },
+  "channelSubscribed": { "message": "Berlangganan" },
+  "channelNotSubscribed": { "message": "Tidak berlangganan" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "Video $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Live streaming" },
+
+  "statusLikedTitle": { "message": "Disukai secara otomatis" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "langsung saat dibuka" },
+  "likedHowLikeNow": { "message": "atas permintaan Anda" },
+  "likedHowAt": {
+    "message": "pada $TIME$ di video",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "setelah menonton $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Akan disukai pada $PERCENT$% video",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Akan disukai setelah $MINUTES$ menit diputar",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Akan disukai pada saat acak" },
+  "statusWaitBeforeEnd": { "message": "Akan disukai tepat sebelum selesai" },
+  "statusWaitRemaining": {
+    "message": "Sisa pemutaran $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Akan disukai sebentar lagi" },
+  "statusWaitDuration": { "message": "Menunggu durasi video" },
+  "statusWaitAd": { "message": "Menunggu iklan selesai" },
+  "statusWaitAdDetail": { "message": "Waktu iklan tidak dihitung." },
+  "statusReading": { "message": "Membaca halaman…" },
+  "statusReadingDetail": { "message": "Pada Short, YouTube terkadang baru menampilkan tombol setelah mouse bergerak di atas video." },
+  "statusConfirming": { "message": "Memeriksa apakah suka sudah tercatat…" },
+  "statusFailedTitle": { "message": "Suka tidak dapat dikonfirmasi" },
+  "statusFailedDetail": { "message": "Tombol “Suka” tidak merespons. Muat ulang halaman untuk mencoba lagi." },
+
+  "statusAlreadyLikedTitle": { "message": "Sudah disukai" },
+  "statusNotLikedTitle": { "message": "Tidak disukai" },
+  "reasonAlreadyLiked": { "message": "Video ini sudah disukai: ekstensi membiarkannya." },
+  "reasonAlreadyDisliked": { "message": "Anda memberi “Tidak suka” pada video ini: ekstensi membiarkannya." },
+  "reasonSkippedByUser": { "message": "Anda meminta agar video ini tidak disukai kali ini. Video ini bisa disukai saat Anda menontonnya lagi." },
+  "reasonVideoExcluded": { "message": "Anda mengecualikan video ini: video ini tidak akan pernah disukai sampai Anda membatalkan pengecualiannya." },
+  "reasonNotSubscribed": { "message": "Anda tidak berlangganan channel ini. Video akan disukai jika Anda berlangganan." },
+  "reasonNotInAlwaysList": { "message": "Hanya channel dalam daftar “Selalu sukai” Anda yang disukai." },
+  "reasonInNeverList": { "message": "Channel ini ada dalam daftar “Jangan pernah sukai” Anda." },
+  "reasonShortsOff": { "message": "Sesuai setelan Anda, Shorts tidak disukai." },
+  "reasonNormalVideosOff": { "message": "Sesuai setelan Anda, hanya Shorts yang disukai." },
+  "statusWouldLike": { "message": "Akan disukai" },
+  "statusWouldLikeDetail": { "message": "jika ekstensi aktif." },
+
+  "actionLikeNow": { "message": "Sukai sekarang" },
+  "actionSkip": { "message": "Tidak kali ini" },
+  "actionRestart": { "message": "Mulai ulang untuk video ini" },
+  "actionRetry": { "message": "Coba lagi" },
+  "removedLikeTitle": { "message": "Suka dibatalkan" },
+  "removedLikeRestart": { "message": "Anda membatalkan suka. Mulai ulang agar ekstensi memeriksa video lagi." },
+  "removedDislikeTitle": { "message": "“Tidak suka” dibatalkan" },
+  "removedDislikeRestart": { "message": "Anda membatalkan “Tidak suka”. Mulai ulang agar ekstensi memeriksa video lagi." },
+  "likeRemovedNextOpening": { "message": "Video akan disukai lagi saat dibuka berikutnya." },
+  "likeRemovedAt": {
+    "message": "Video akan disukai lagi saat pemutaran kembali melewati $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Sukai lagi video yang sukanya saya batalkan" },
+  "relikeHint": { "message": "Saat pemutaran kembali melewati saat yang direncanakan, yaitu setelah Anda memundurkan ke sebelumnya; dengan “Langsung saat dibuka”, saat dibuka berikutnya. Juga berlaku untuk video yang sebelumnya Anda sukai sendiri." },
+  "actionResume": { "message": "Batalkan “Tidak kali ini”" },
+  "actionExcludeVideo": { "message": "Jangan pernah sukai video ini" },
+  "actionUnexcludeVideo": { "message": "Batalkan pengecualian video ini" },
+  "channelChoiceLegend": { "message": "Sukai video dari channel ini" },
+  "channelChoiceAlways": { "message": "Selalu" },
+  "channelChoiceAuto": { "message": "Ikut setelan" },
+  "channelChoiceNever": { "message": "Tak pernah" },
+
+  "noticeAddedAlways": { "message": "Ditambahkan ke “Selalu sukai”" },
+  "noticeAddedNever": { "message": "Ditambahkan ke “Jangan pernah sukai”" },
+  "noticeRemovedNever": { "message": "Dihapus dari “Jangan pernah sukai”" },
+  "noticeSkipped": { "message": "Tidak disukai kali ini" },
+  "noticeVideoExcluded": { "message": "Ditambahkan ke video yang dikecualikan" },
+  "noticeVideoUnexcluded": { "message": "Dihapus dari video yang dikecualikan" },
+  "noticeUndo": { "message": "Urungkan" },
+  "noticeUndone": { "message": "Diurungkan" },
+  "noticeSaveFailed": { "message": "Perubahan tidak dapat disimpan." },
+  "noticeStorageFull": { "message": "Penyimpanan ekstensi penuh: hapus channel atau video yang dikecualikan dari daftar Anda, lalu coba lagi." },
+  "noticeLoadFailed": { "message": "Setelan tidak dapat dibaca." },
+  "noticeListFull": {
+    "message": "Daftar ini penuh (maksimal $COUNT$ entri).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Halaman tidak merespons. Muat ulang halaman, lalu coba lagi." },
+  "noticeSaved": { "message": "Tersimpan" },
+  "noticeRemovedAlways": { "message": "Dihapus dari “Selalu sukai”" },
+  "noticeImportDone": {
+    "message": "Impor selesai: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ channel ditambahkan ke “$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "$COUNT$ channel ditambahkan ke “$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Batal" },
+  "dialogClose": { "message": "Tutup" },
+  "noticeCopied": { "message": "Disalin" },
+  "noticeCopyFailed": { "message": "Gagal menyalin: pilih teksnya dan salin sendiri." },
+  "noticeJournalCleared": { "message": "Log dihapus" },
+
+  "languageLabel": { "message": "Bahasa" },
+  "languageHint": { "message": "Bahasa browser, atau bahasa lain pilihan Anda. Ada terjemahan yang perlu diperbaiki? Usulkan di GitHub." },
+  "languageAuto": { "message": "Bahasa browser" },
+
+  "debugLabel": { "message": "Mode debug" },
+  "debugHint": { "message": "Untuk log tentang apa yang dilakukan ekstensi, guna melaporkan masalah: 200 langkah terakhir dengan ID video yang Anda tonton, hanya disimpan di browser ini. Jika nonaktif, tidak ada log yang disimpan." },
+  "journalCountOne": { "message": "Log: $COUNT$ entri", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Log: $COUNT$ entri", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Salin log" },
+  "journalClear": { "message": "Hapus log" },
+
+  "navAbout": { "message": "Tentang" },
+  "aboutHeading": { "message": "Tentang" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, versi $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Dikembangkan oleh" },
+  "aboutOrigin": { "message": "Proyek asli" },
+  "aboutFirefox": { "message": "Fork untuk Firefox" },
+  "aboutLicense": { "message": "Lisensi" },
+  "aboutInvite": { "message": "Kunjungi repositori GitHub untuk mengetahui lebih lanjut, mengikuti versi baru, atau mengusulkan perbaikan. Ada masalah? Laporkan dengan tombol di bawah." },
+  "aboutRepository": { "message": "Lihat proyek di GitHub" },
+  "reportOpen": { "message": "Laporkan masalah" },
+  "reportHint": { "message": "Jelaskan masalahnya di issue yang terbuka di GitHub: laporan ini dilampirkan untuk membantu memahaminya. Baca dulu sebelum mengirim; daftar channel Anda tidak disertakan." },
+  "reportJournalOne": {
+    "message": "Lampirkan log ($COUNT$ entri, dengan ID video yang Anda tonton)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Lampirkan log ($COUNT$ entri, dengan ID video yang Anda tonton)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Tidak ada log yang disimpan. Untuk melampirkannya: aktifkan mode debug di “Lainnya”, ulangi hal yang bermasalah, lalu kembali ke sini." },
+  "reportTextLabel": { "message": "Laporan" },
+  "reportCopy": { "message": "Salin laporan" },
+  "reportIssue": { "message": "Buka issue di GitHub" },
+  "reportCut": { "message": "Laporan terlalu panjang untuk alamat issue, jadi dipotong di sana. Salin seluruh laporan dan tempelkan ke issue." },
+  "dialogAnalyse": { "message": "Analisis" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Tambahkan channel" },
+  "addHint": { "message": "Tempel link channel atau video, atau @nama sebutan, satu per baris. Ekstensi menanyakan kepada YouTube channel mana yang dimaksud, seolah-olah Anda membuka halamannya." },
+  "addLinesLabel": { "message": "Link atau @nama sebutan" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@nama\n@nama\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "Ke daftar" },
+  "addSearch": { "message": "Cari" },
+  "addSearching": {
+    "message": "Menanyakan YouTube… $DONE$ dari $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Tambahkan" },
+  "addApplyOne": {
+    "message": "Tambahkan $COUNT$ channel",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Tambahkan $COUNT$ channel",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Tidak ada channel untuk ditambahkan: semuanya sudah ada di daftar, atau tidak ada yang ditemukan." },
+  "addEmpty": { "message": "Tempel setidaknya satu link atau @nama sebutan." },
+  "addTooMany": {
+    "message": "Maksimal $MAX$ baris sekaligus.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "akan ditambahkan" },
+  "lookupAlready": { "message": "sudah ada di daftar" },
+  "lookupMoved": {
+    "message": "dipindahkan dari “$FROM$” ke “$TO$”",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "channel yang sama dengan baris sebelumnya" },
+  "lookupNotALink": { "message": "bukan link channel atau video YouTube, juga bukan @nama sebutan" },
+  "lookupNotFound": { "message": "channel atau video tidak ada di YouTube" },
+  "lookupUnreadable": { "message": "YouTube tidak menyebutkan channel-nya. Jika YouTube belum pernah dibuka di browser ini, buka sekali dan tentukan pilihan cookie Anda, lalu coba lagi" },
+
+  "importTitle": { "message": "Impor daftar" },
+  "importHint": { "message": "File yang diekspor oleh ekstensi, atau daftar link channel, satu per baris. Tidak ada yang disimpan sebelum “Impor”: “Analisis” lebih dulu menunjukkan apa yang akan dilakukan." },
+  "importDropHere": { "message": "Letakkan file di sini, atau" },
+  "importBrowse": { "message": "telusuri file Anda" },
+  "importPasteHint": { "message": "Anda juga dapat menempelkan file atau teks (Ctrl+V) di jendela ini." },
+  "importChange": { "message": "Ganti" },
+  "importRemove": { "message": "Hapus" },
+  "importPasted": { "message": "Teks yang ditempel" },
+  "importSourceFile": { "message": "File yang diekspor oleh ekstensi" },
+  "importSourceLinksOne": {
+    "message": "Daftar link, $COUNT$ baris",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Daftar link, $COUNT$ baris",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Ini bukan ekspor dari ekstensi maupun daftar link." },
+  "importNoSource": { "message": "Pilih file terlebih dahulu, atau tempel teks." },
+  "importNoPart": { "message": "Centang setidaknya satu bagian untuk diimpor." },
+  "importListFull": {
+    "message": "Sebuah daftar akan berisi lebih dari $COUNT$ entri: tidak ada yang akan diimpor.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Yang diimpor" },
+  "importLinksTarget": { "message": "Masukkan channel ini ke" },
+  "importModeLabel": { "message": "Entri yang sudah ada" },
+  "importModeAddNew": { "message": "Tambahkan yang baru saja" },
+  "importModeAddNewHint": { "message": "Channel yang sudah ada di sebuah daftar tetap di tempatnya." },
+  "importModeFollow": { "message": "Tambahkan dan ikuti file" },
+  "importModeFollowHint": { "message": "Channel yang sudah ada dipindahkan ke daftar yang ditunjukkan file." },
+  "importModeReplace": { "message": "Ganti semuanya dengan file" },
+  "importModeReplaceHint": { "message": "Bagian yang dicentang menjadi persis seperti di file: yang tidak ada di dalamnya akan dihapus." },
+  "importRemember": { "message": "Ingat pilihan saya" },
+  "importApply": { "message": "Impor" },
+  "importConfirmOne": {
+    "message": "Saya mengonfirmasi penghapusan $COUNT$ entri yang tidak ada di file.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Saya mengonfirmasi penghapusan $COUNT$ entri yang tidak ada di file.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "tidak ada perubahan" },
+  "reportNothing": { "message": "Tidak ada perubahan: semuanya sudah ada." },
+  "reportAddedOne": { "message": "$COUNT$ baru", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "$COUNT$ baru", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ dipindahkan", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "$COUNT$ dipindahkan", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ sudah ada", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ sudah ada", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ dihapus", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ dihapus", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Ekspor daftar" },
+  "exportPartsLabel": { "message": "Yang diekspor" },
+  "exportFormatLabel": { "message": "Format" },
+  "exportFormatJson": { "message": "File ekstensi (JSON)" },
+  "exportFormatJsonHint": { "message": "Dapat diimpor kembali apa adanya, dengan tanggal dan gambar channel." },
+  "exportFormatLinks": { "message": "Daftar link (teks)" },
+  "exportFormatLinksHint": { "message": "Satu link channel per baris beserta namanya, untuk dibaca atau dibagikan. Video yang dikecualikan tidak disertakan." },
+  "exportDownload": { "message": "Unduh" },
+  "exportNothing": { "message": "Centang setidaknya satu daftar." },
+  "noticeImportInvalid": { "message": "File ini bukan daftar yang diekspor oleh YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "File ini terlalu besar untuk sebuah daftar channel." },
+  "noticeCountReset": { "message": "Penghitung direset" },
+  "noticeNumberInvalid": {
+    "message": "Masukkan angka dari $MIN$ sampai $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Setelan YouTube Auto Like" },
+  "optionsTitle": { "message": "Setelan" },
+  "navSections": { "message": "Bagian" },
+  "navChannels": { "message": "Channel mana" },
+  "navVideos": { "message": "Video mana" },
+  "navWhen": { "message": "Kapan menyukai" },
+  "navLists": { "message": "Daftar saya" },
+  "navMore": { "message": "Lainnya" },
+
+  "channelsHeading": { "message": "Channel mana yang disukai?" },
+  "channelsHint": { "message": "Daftar “Jangan pernah sukai” selalu diutamakan." },
+  "likeWhatSubscribed": { "message": "Channel yang saya langgani" },
+  "likeWhatSubscribedHint": { "message": "ditambah channel dalam daftar “Selalu sukai” saya." },
+  "recommended": { "message": "Disarankan" },
+  "likeWhatAll": { "message": "Semua channel" },
+  "likeWhatAllHint": { "message": "setiap video yang Anda tonton akan disukai." },
+  "likeWhatList": { "message": "Hanya daftar “Selalu sukai” saya" },
+  "likeWhatListHint": { "message": "berlangganan atau tidak, yang lain tidak disukai." },
+
+  "videosHeading": { "message": "Video mana?" },
+  "videosHint": { "message": "Shorts tetap dikenali meskipun dibuka di pemutar biasa." },
+  "likeNormalVideos": { "message": "Video" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Kapan disukai?" },
+  "whenHint": { "message": "Video yang Anda beri “Suka” atau “Tidak suka” sendiri tidak pernah disentuh." },
+  "modeInstant": { "message": "Langsung saat dibuka" },
+  "modeCustom": { "message": "Setelah beberapa saat" },
+  "modeRandom": { "message": "Pada saat acak" },
+  "thresholdAfter": { "message": "setelah" },
+  "thresholdPercentUnit": { "message": "% video" },
+  "thresholdMinutesUnit": { "message": "menit pemutaran" },
+  "percentLabel": { "message": "Persentase video" },
+  "minutesLabel": { "message": "Menit pemutaran" },
+  "thresholdKeepOne": { "message": "Setidaknya satu dari dua batas tetap dicentang." },
+  "thresholdsHint": { "message": "Batas yang tercapai lebih dulu memicu suka. Video yang lebih pendek disukai dua detik sebelum selesai. Pada live streaming, hanya menit sejak Anda mulai menonton yang dihitung; tanpa batas menit, live streaming disukai langsung saat dibuka. Iklan tidak dihitung." },
+  "randomHint": { "message": "Saat yang dipilih secara acak di setiap video. Live streaming disukai langsung saat dibuka." },
+  "summaryLabel": { "message": "Ringkasan:" },
+
+  "listsHeading": { "message": "Daftar channel saya" },
+  "listsHint": { "message": "Tambahkan channel lewat link atau @nama sebutan, dari jendela ikon di video atau halaman channel, atau dari histori. Video dikecualikan dari jendela ikon." },
+  "listAlways": { "message": "Selalu sukai" },
+  "listNever": { "message": "Jangan pernah sukai" },
+  "listVideos": { "message": "Video yang dikecualikan" },
+  "listExcludedOn": {
+    "message": "dikecualikan $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Batalkan pengecualian $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Cari di daftar" },
+  "listImport": { "message": "Impor" },
+  "listExport": { "message": "Ekspor" },
+  "listEmpty": { "message": "Tidak ada channel di daftar. Tambahkan lewat link atau @nama sebutan, dari jendela ikon di video atau halaman channel, atau dari histori." },
+  "listEmptyVideos": { "message": "Tidak ada video yang dikecualikan. Untuk mengecualikan video, buka jendela ikon saat menontonnya dan pilih “Jangan pernah sukai video ini”." },
+  "listNoMatch": { "message": "Tidak ada channel yang cocok dengan pencarian." },
+  "listAddedOn": {
+    "message": "ditambahkan $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Hapus $NAME$ dari daftar",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ dari $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Tampilkan $COUNT$ lagi",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Tampilkan semua ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Baris yang ditampilkan di daftar dan histori" },
+  "listPageSizeHint": { "message": "Sisanya muncul dengan “Tampilkan … lagi” atau “Tampilkan semua”. Daftar yang panjang bergulir di dalamnya sendiri tanpa memperpanjang halaman." },
+  "listPageSizeAll": { "message": "Semua" },
+  "listOpenChannel": { "message": "Buka channel di YouTube" },
+
+  "navHistory": { "message": "Histori" },
+  "historyHeading": { "message": "Suka dari ekstensi" },
+  "historyHint": {
+    "message": "$COUNT$ terakhir, terbaru lebih dulu, hanya disimpan di browser ini.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Ekstensi belum menyukai apa pun." },
+  "historyUntitled": { "message": "Video tanpa judul" },
+  "historyChannelChoice": {
+    "message": "Sukai video dari $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Hapus histori" },
+  "noticeHistoryCleared": { "message": "Histori dihapus" },
+
+  "moreHeading": { "message": "Lainnya" },
+  "themeLabel": { "message": "Tema" },
+  "themeSystem": { "message": "Ikuti sistem" },
+  "themeLight": { "message": "Terang" },
+  "themeDark": { "message": "Gelap" },
+  "updatesLabel": { "message": "Cari versi baru" },
+  "updatesHint": { "message": "Menanyakan GitHub, tempat ekstensi dipublikasikan; GitHub pun melihat alamat IP Anda." },
+  "updateEvery0": { "message": "Tidak pernah" },
+  "updateEvery30": { "message": "Setiap 30 menit" },
+  "updateEvery60": { "message": "Setiap jam" },
+  "updateEvery360": { "message": "Setiap 6 jam" },
+  "updateEvery1440": { "message": "Setiap hari" },
+  "updateEvery10080": { "message": "Setiap minggu" },
+  "updateEveryCustom": { "message": "Kustom…" },
+  "updateEveryPrefix": { "message": "Setiap" },
+  "updateCustomCount": { "message": "Jumlah menit, jam, atau hari di antara dua pemeriksaan" },
+  "updateCustomUnit": { "message": "Satuan" },
+  "unitMinutesOne": { "message": "menit" },
+  "unitMinutesOther": { "message": "menit" },
+  "unitHoursOne": { "message": "jam" },
+  "unitHoursOther": { "message": "jam" },
+  "unitDaysOne": { "message": "hari" },
+  "unitDaysOther": { "message": "hari" },
+  "noticeFrequencyInvalid": { "message": "Masukkan waktu dari 5 menit sampai 30 hari." },
+  "updateCheckNow": { "message": "Periksa sekarang" },
+  "updateStatusOff": { "message": "Versi baru tidak dicari." },
+  "updateStatusNever": { "message": "Belum diperiksa." },
+  "updateStatusChecking": { "message": "Memeriksa…" },
+  "updateStatusAvailable": {
+    "message": "Versi $VERSION$ telah dirilis ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Diperiksa $WHEN$: Anda memakai versi terbaru.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Diperiksa $WHEN$: belum ada versi yang dipublikasikan.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Pemeriksaan terakhir gagal $WHEN$; pemeriksaan berikutnya akan mencoba lagi.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Pemeriksaan tidak dapat dilakukan." },
+  "likeCountHint": { "message": "Sejak ekstensi dipasang, atau sejak reset terakhir. Reset tidak mengubah hal lain." },
+  "likeCountReset": { "message": "Reset" },
+
+  "ruleSentence": {
+    "message": "Menyukai $WHAT$ $CHANNELS$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Tidak menyukai apa pun: video dan Shorts sama-sama dinonaktifkan." },
+  "ruleWhatBoth": { "message": "video dan Shorts" },
+  "ruleWhatVideos": { "message": "video" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "dari langganan Anda" },
+  "ruleChannelsSubscribedAndList": { "message": "dari langganan Anda dan daftar “Selalu sukai” Anda" },
+  "ruleChannelsAll": { "message": "dari semua channel" },
+  "ruleChannelsList": { "message": "dari daftar “Selalu sukai” Anda" },
+  "ruleWhenInstant": { "message": "langsung saat dibuka" },
+  "ruleWhenPercent": {
+    "message": "pada $PERCENT$% video",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "setelah $MINUTES$ menit pemutaran",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "pada $PERCENT$% video atau setelah $MINUTES$ menit pemutaran, mana yang lebih dulu",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "pada saat acak" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ video disukai",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ video disukai",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ dtk",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ mnt $SECONDS$ dtk",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ j $MINUTES$ mnt",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
