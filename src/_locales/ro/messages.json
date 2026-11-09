@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Apreciază automat videoclipurile YouTube de pe canalele pe care le alegi." },
+
+  "locale": { "message": "ro" },
+
+  "switchLabel": { "message": "Apreciază automat videoclipurile" },
+  "switchActive": { "message": "Activă" },
+  "switchPaused": { "message": "În pauză" },
+  "pausedBanner": { "message": "Extensia nu apreciază nimic cât timp este în pauză." },
+  "badgeUpdate": { "message": "NOU" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: a apărut versiunea $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "A apărut versiunea $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Acest videoclip" },
+  "sectionThisChannel": { "message": "Acest canal" },
+  "sectionRule": { "message": "Regula activă" },
+  "openSettings": { "message": "Modifică setările →" },
+  "settingsShow": { "message": "Afișează setările" },
+  "settingsHide": { "message": "Înapoi la videoclip" },
+  "openFullPage": { "message": "Deschide pe o pagină întreagă ↗" },
+  "noVideo": { "message": "Deschide un videoclip sau un Short pe YouTube ca să vezi ce face extensia cu el, sau pagina unui canal ca să alegi dacă videoclipurile lui sunt apreciate." },
+  "noVideoHint": { "message": "Dacă un videoclip este deja deschis, reîncarcă pagina." },
+
+  "channelUnknown": { "message": "Canal necunoscut" },
+  "channelSubscribed": { "message": "Abonat" },
+  "channelNotSubscribed": { "message": "Neabonat" },
+  "kindVideo": { "message": "Videoclip" },
+  "kindVideoDuration": {
+    "message": "Videoclip de $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Transmisie live" },
+
+  "statusLikedTitle": { "message": "Apreciat automat" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "imediat la deschidere" },
+  "likedHowLikeNow": { "message": "la cererea ta" },
+  "likedHowAt": {
+    "message": "la $TIME$ din videoclip",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "după $DURATION$ de vizionare",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Va fi apreciat la $PERCENT$ % din videoclip",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Va fi apreciat după $MINUTES$ min de redare",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Va fi apreciat la un moment aleatoriu" },
+  "statusWaitBeforeEnd": { "message": "Va fi apreciat chiar înainte de final" },
+  "statusWaitRemaining": {
+    "message": "Mai sunt $DURATION$ de redare",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Va fi apreciat imediat" },
+  "statusWaitDuration": { "message": "Se așteaptă durata videoclipului" },
+  "statusWaitAd": { "message": "Se așteaptă finalul reclamei" },
+  "statusWaitAdDetail": { "message": "Timpul reclamelor nu se numără." },
+  "statusReading": { "message": "Se citește pagina…" },
+  "statusReadingDetail": { "message": "La un Short, YouTube afișează uneori butoanele doar după ce mouse-ul se mișcă deasupra videoclipului." },
+  "statusConfirming": { "message": "Se verifică dacă aprecierea a fost înregistrată…" },
+  "statusFailedTitle": { "message": "Aprecierea nu a putut fi confirmată" },
+  "statusFailedDetail": { "message": "Butonul „Îmi place” nu a reacționat. Reîncarcă pagina pentru a încerca din nou." },
+
+  "statusAlreadyLikedTitle": { "message": "Deja apreciat" },
+  "statusNotLikedTitle": { "message": "Neapreciat" },
+  "reasonAlreadyLiked": { "message": "Acest videoclip era deja apreciat: extensia nu îl atinge." },
+  "reasonAlreadyDisliked": { "message": "Ai marcat acest videoclip cu „Nu-mi place”: extensia nu îl atinge." },
+  "reasonSkippedByUser": { "message": "Ai cerut să nu fie apreciat de data aceasta. Poate fi apreciat când îl vizionezi din nou." },
+  "reasonVideoExcluded": { "message": "Ai exclus acest videoclip: nu va fi apreciat niciodată până nu anulezi excluderea." },
+  "reasonNotSubscribed": { "message": "Nu ești abonat la acest canal. Videoclipul va fi apreciat dacă te abonezi." },
+  "reasonNotInAlwaysList": { "message": "Sunt apreciate doar canalele din lista ta „Apreciază mereu”." },
+  "reasonInNeverList": { "message": "Acest canal este în lista ta „Nu aprecia niciodată”." },
+  "reasonShortsOff": { "message": "Conform setărilor tale, Shorts nu sunt apreciate." },
+  "reasonNormalVideosOff": { "message": "Conform setărilor tale, sunt apreciate doar Shorts." },
+  "statusWouldLike": { "message": "Ar fi apreciat" },
+  "statusWouldLikeDetail": { "message": "dacă extensia ar fi activă." },
+
+  "actionLikeNow": { "message": "Apreciază acum" },
+  "actionSkip": { "message": "Nu de data asta" },
+  "actionRestart": { "message": "Reia pentru acest videoclip" },
+  "actionRetry": { "message": "Încearcă din nou" },
+  "removedLikeTitle": { "message": "Apreciere retrasă" },
+  "removedLikeRestart": { "message": "Ai retras aprecierea. Reia, ca extensia să verifice din nou videoclipul." },
+  "removedDislikeTitle": { "message": "„Nu-mi place” retras" },
+  "removedDislikeRestart": { "message": "Ai retras „Nu-mi place”. Reia, ca extensia să verifice din nou videoclipul." },
+  "likeRemovedNextOpening": { "message": "Va fi apreciat din nou la următoarea deschidere a videoclipului." },
+  "likeRemovedAt": {
+    "message": "Va fi apreciat din nou când redarea trece iar de $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Apreciază din nou un videoclip a cărui apreciere o retrag" },
+  "relikeHint": { "message": "Când redarea trece din nou de momentul prevăzut, adică după ce ai derulat înapoi înaintea lui; cu „Imediat la deschidere”, la următoarea deschidere. Se aplică și unui videoclip pe care îl apreciaseși tu." },
+  "actionResume": { "message": "Anulează „Nu de data asta”" },
+  "actionExcludeVideo": { "message": "Nu aprecia niciodată acest videoclip" },
+  "actionUnexcludeVideo": { "message": "Anulează excluderea acestui videoclip" },
+  "channelChoiceLegend": { "message": "Apreciază videoclipurile acestui canal" },
+  "channelChoiceAlways": { "message": "Mereu" },
+  "channelChoiceAuto": { "message": "După setări" },
+  "channelChoiceNever": { "message": "Niciodată" },
+
+  "noticeAddedAlways": { "message": "Adăugat în „Apreciază mereu”" },
+  "noticeAddedNever": { "message": "Adăugat în „Nu aprecia niciodată”" },
+  "noticeRemovedNever": { "message": "Eliminat din „Nu aprecia niciodată”" },
+  "noticeSkipped": { "message": "Neapreciat de data aceasta" },
+  "noticeVideoExcluded": { "message": "Adăugat la videoclipurile excluse" },
+  "noticeVideoUnexcluded": { "message": "Eliminat din videoclipurile excluse" },
+  "noticeUndo": { "message": "Anulează" },
+  "noticeUndone": { "message": "Anulat" },
+  "noticeSaveFailed": { "message": "Modificarea nu a putut fi salvată." },
+  "noticeStorageFull": { "message": "Spațiul de stocare al extensiei este plin: elimină canale sau videoclipuri excluse din liste și încearcă din nou." },
+  "noticeLoadFailed": { "message": "Setările nu au putut fi citite." },
+  "noticeListFull": {
+    "message": "Această listă este plină (maximum: $COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Pagina nu a răspuns. Reîncarc-o și încearcă din nou." },
+  "noticeSaved": { "message": "Salvat" },
+  "noticeRemovedAlways": { "message": "Eliminat din „Apreciază mereu”" },
+  "noticeImportDone": {
+    "message": "Import finalizat: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ canal adăugat în „$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "Canale adăugate în „$LIST$”: $COUNT$",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Anulează" },
+  "dialogClose": { "message": "Închide" },
+  "noticeCopied": { "message": "Copiat" },
+  "noticeCopyFailed": { "message": "Copierea nu a reușit: selectează textul și copiază-l singur." },
+  "noticeJournalCleared": { "message": "Jurnal golit" },
+
+  "languageLabel": { "message": "Limbă" },
+  "languageHint": { "message": "Limba browserului sau alta, la alegere. O traducere de corectat? Propune corectura pe GitHub." },
+  "languageAuto": { "message": "Limba browserului" },
+
+  "debugLabel": { "message": "Mod depanare" },
+  "debugHint": { "message": "Pentru un jurnal al acțiunilor extensiei, ca să raportezi o problemă: ultimii 200 de pași, cu ID-urile videoclipurilor vizionate, păstrați doar în acest browser. Cât timp este dezactivat, nu se ține niciun jurnal." },
+  "journalCountOne": { "message": "Jurnal: $COUNT$ intrare", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Intrări în jurnal: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Copiază jurnalul" },
+  "journalClear": { "message": "Golește jurnalul" },
+
+  "navAbout": { "message": "Despre" },
+  "aboutHeading": { "message": "Despre" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, versiunea $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Dezvoltat de" },
+  "aboutOrigin": { "message": "Proiectul original" },
+  "aboutFirefox": { "message": "Fork pentru Firefox" },
+  "aboutLicense": { "message": "Licență" },
+  "aboutInvite": { "message": "Vizitează depozitul de pe GitHub ca să afli mai multe, să urmărești versiunile noi sau să propui o îmbunătățire. O problemă? Raporteaz-o cu butonul de mai jos." },
+  "aboutRepository": { "message": "Vezi proiectul pe GitHub" },
+  "reportOpen": { "message": "Raportează o problemă" },
+  "reportHint": { "message": "Descrie problema în issue-ul care se deschide pe GitHub: acest raport este atașat ca să ajute la înțelegerea ei. Citește-l înainte de a-l trimite; listele tale de canale nu sunt incluse." },
+  "reportJournalOne": {
+    "message": "Atașează jurnalul ($COUNT$ intrare, cu ID-urile videoclipurilor vizionate)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Atașează jurnalul (intrări: $COUNT$, cu ID-urile videoclipurilor vizionate)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Nu s-a ținut niciun jurnal. Ca să atașezi unul: activează modul depanare în „Altele”, repetă ce nu funcționează, apoi revino aici." },
+  "reportTextLabel": { "message": "Raport" },
+  "reportCopy": { "message": "Copiază raportul" },
+  "reportIssue": { "message": "Deschide un issue pe GitHub" },
+  "reportCut": { "message": "Raportul este prea lung pentru adresa issue-ului, așa că este scurtat acolo. Copiază raportul complet și lipește-l în issue." },
+  "dialogAnalyse": { "message": "Analizează" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Adaugă canale" },
+  "addHint": { "message": "Lipește linkuri către canale sau videoclipuri, ori @identificatori, câte unul pe rând. Extensia întreabă YouTube despre ce canal este vorba, ca și cum i-ai deschide pagina." },
+  "addLinesLabel": { "message": "Linkuri sau @identificatori" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@nume\n@nume\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "În lista" },
+  "addSearch": { "message": "Caută" },
+  "addSearching": {
+    "message": "Se întreabă YouTube… $DONE$ din $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Adaugă" },
+  "addApplyOne": {
+    "message": "Adaugă $COUNT$ canal",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Adaugă canalele ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Niciun canal de adăugat: toate sunt deja în listă sau nu s-a găsit niciunul." },
+  "addEmpty": { "message": "Lipește cel puțin un link sau un @identificator." },
+  "addTooMany": {
+    "message": "Cel mult $MAX$ de rânduri odată.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "va fi adăugat" },
+  "lookupAlready": { "message": "este deja în listă" },
+  "lookupMoved": {
+    "message": "va fi mutat din „$FROM$” în „$TO$”",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "același canal ca pe un rând anterior" },
+  "lookupNotALink": { "message": "nici link către un canal sau videoclip YouTube, nici @identificator" },
+  "lookupNotFound": { "message": "canalul sau videoclipul nu există pe YouTube" },
+  "lookupUnreadable": { "message": "YouTube nu a indicat canalul. Dacă YouTube nu a fost deschis niciodată în acest browser, deschide-l o dată și alege opțiunile pentru cookie-uri, apoi încearcă din nou" },
+
+  "importTitle": { "message": "Importă liste" },
+  "importHint": { "message": "Un fișier exportat de extensie sau o listă de linkuri către canale, câte unul pe rând. Nimic nu se salvează înainte de „Importă”: „Analizează” arată mai întâi ce se va face." },
+  "importDropHere": { "message": "Plasează un fișier aici sau" },
+  "importBrowse": { "message": "răsfoiește fișierele" },
+  "importPasteHint": { "message": "Poți și să lipești un fișier sau text (Ctrl+V) în această fereastră." },
+  "importChange": { "message": "Schimbă" },
+  "importRemove": { "message": "Elimină" },
+  "importPasted": { "message": "Text lipit" },
+  "importSourceFile": { "message": "Fișier exportat de extensie" },
+  "importSourceLinksOne": {
+    "message": "Listă de linkuri, $COUNT$ rând",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Listă de linkuri, rânduri: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Nu este nici un export al extensiei, nici o listă de linkuri." },
+  "importNoSource": { "message": "Alege mai întâi un fișier sau lipește text." },
+  "importNoPart": { "message": "Bifează cel puțin o parte de importat." },
+  "importListFull": {
+    "message": "O listă ar depăși $COUNT$ de intrări: nu s-ar importa nimic.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Ce se importă" },
+  "importLinksTarget": { "message": "Pune aceste canale în" },
+  "importModeLabel": { "message": "Intrările care există deja" },
+  "importModeAddNew": { "message": "Adaugă doar pe cele noi" },
+  "importModeAddNewHint": { "message": "Un canal aflat deja într-o listă rămâne unde este." },
+  "importModeFollow": { "message": "Adaugă și urmează fișierul" },
+  "importModeFollowHint": { "message": "Un canal care există deja este mutat în lista indicată de fișier." },
+  "importModeReplace": { "message": "Înlocuiește totul cu fișierul" },
+  "importModeReplaceHint": { "message": "Părțile bifate devin exact ca în fișier: ce nu este în el se elimină." },
+  "importRemember": { "message": "Ține minte alegerea" },
+  "importApply": { "message": "Importă" },
+  "importConfirmOne": {
+    "message": "Confirm eliminarea a $COUNT$ intrare care lipsește din fișier.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Confirm eliminarea intrărilor care lipsesc din fișier ($COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "nicio modificare" },
+  "reportNothing": { "message": "Nicio modificare: totul există deja." },
+  "reportAddedOne": { "message": "$COUNT$ nou", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "noi: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ mutat", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "mutate: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ exista deja", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "existau deja: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ eliminat", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "eliminate: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Exportă liste" },
+  "exportPartsLabel": { "message": "Ce se exportă" },
+  "exportFormatLabel": { "message": "Format" },
+  "exportFormatJson": { "message": "Fișierul extensiei (JSON)" },
+  "exportFormatJsonHint": { "message": "Se reimportă așa cum este, cu datele și imaginile canalelor." },
+  "exportFormatLinks": { "message": "Listă de linkuri (text)" },
+  "exportFormatLinksHint": { "message": "Câte un link de canal pe rând, cu numele lui, de citit sau de distribuit. Videoclipurile excluse nu sunt incluse." },
+  "exportDownload": { "message": "Descarcă" },
+  "exportNothing": { "message": "Bifează cel puțin o listă." },
+  "noticeImportInvalid": { "message": "Acest fișier nu este o listă exportată de YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "Acest fișier este prea mare ca să fie o listă de canale." },
+  "noticeCountReset": { "message": "Contor resetat" },
+  "noticeNumberInvalid": {
+    "message": "Introdu un număr între $MIN$ și $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Setări YouTube Auto Like" },
+  "optionsTitle": { "message": "Setări" },
+  "navSections": { "message": "Secțiuni" },
+  "navChannels": { "message": "Ce canale" },
+  "navVideos": { "message": "Ce videoclipuri" },
+  "navWhen": { "message": "Când se apreciază" },
+  "navLists": { "message": "Listele mele" },
+  "navMore": { "message": "Altele" },
+
+  "channelsHeading": { "message": "Ce canale să fie apreciate?" },
+  "channelsHint": { "message": "Lista „Nu aprecia niciodată” are mereu prioritate." },
+  "likeWhatSubscribed": { "message": "Canalele la care sunt abonat" },
+  "likeWhatSubscribedHint": { "message": "plus cele din lista mea „Apreciază mereu”." },
+  "recommended": { "message": "Recomandat" },
+  "likeWhatAll": { "message": "Toate canalele" },
+  "likeWhatAllHint": { "message": "orice videoclip pe care îl vizionezi este apreciat." },
+  "likeWhatList": { "message": "Doar lista mea „Apreciază mereu”" },
+  "likeWhatListHint": { "message": "abonat sau nu, nimic altceva nu este apreciat." },
+
+  "videosHeading": { "message": "Ce videoclipuri?" },
+  "videosHint": { "message": "Shorts sunt recunoscute chiar și când sunt deschise în playerul obișnuit." },
+  "likeNormalVideos": { "message": "Videoclipuri" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Când să fie apreciate?" },
+  "whenHint": { "message": "Un videoclip pe care tu însuți îl marchezi cu „Îmi place” sau „Nu-mi place” nu este atins niciodată." },
+  "modeInstant": { "message": "Imediat la deschidere" },
+  "modeCustom": { "message": "După un timp" },
+  "modeRandom": { "message": "La un moment aleatoriu" },
+  "thresholdAfter": { "message": "după" },
+  "thresholdPercentUnit": { "message": "% din videoclip" },
+  "thresholdMinutesUnit": { "message": "min de redare" },
+  "percentLabel": { "message": "Procent din videoclip" },
+  "minutesLabel": { "message": "Minute de redare" },
+  "thresholdKeepOne": { "message": "Cel puțin unul dintre cele două praguri rămâne bifat." },
+  "thresholdsHint": { "message": "Pragul atins primul declanșează aprecierea. Un videoclip mai scurt este apreciat cu două secunde înainte de final. La o transmisie live se numără doar minutele de la începutul vizionării; fără prag în minute, este apreciată imediat la deschidere. Reclamele nu se numără." },
+  "randomHint": { "message": "Un moment ales aleatoriu în fiecare videoclip. O transmisie live este apreciată imediat la deschidere." },
+  "summaryLabel": { "message": "Rezumat:" },
+
+  "listsHeading": { "message": "Listele mele de canale" },
+  "listsHint": { "message": "Adaugă canale prin link sau @identificator, din fereastra pictogramei pe un videoclip sau pe pagina unui canal, ori din istoric. Un videoclip se exclude din fereastra pictogramei." },
+  "listAlways": { "message": "Apreciază mereu" },
+  "listNever": { "message": "Nu aprecia niciodată" },
+  "listVideos": { "message": "Videoclipuri excluse" },
+  "listExcludedOn": {
+    "message": "exclus pe $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Anulează excluderea pentru $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Caută în listă" },
+  "listImport": { "message": "Importă" },
+  "listExport": { "message": "Exportă" },
+  "listEmpty": { "message": "Niciun canal în listă. Adaugă prin link sau @identificator, din fereastra pictogramei pe un videoclip sau pe pagina unui canal, ori din istoric." },
+  "listEmptyVideos": { "message": "Niciun videoclip exclus. Ca să excluzi un videoclip, deschide fereastra pictogramei în timp ce îl vizionezi și alege „Nu aprecia niciodată acest videoclip”." },
+  "listNoMatch": { "message": "Niciun canal nu corespunde căutării." },
+  "listAddedOn": {
+    "message": "adăugat pe $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Elimină $NAME$ din listă",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ din $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Afișează încă $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Afișează tot ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Rânduri afișate în liste și în istoric" },
+  "listPageSizeHint": { "message": "Celelalte apar cu „Afișează încă …” sau „Afișează tot”. O listă lungă derulează în interiorul ei, fără să lungească pagina." },
+  "listPageSizeAll": { "message": "Toate" },
+  "listOpenChannel": { "message": "Deschide canalul pe YouTube" },
+
+  "navHistory": { "message": "Istoric" },
+  "historyHeading": { "message": "Aprecierile extensiei" },
+  "historyHint": {
+    "message": "Ultimele $COUNT$, cele mai noi primele, păstrate doar în acest browser.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Extensia nu a apreciat încă nimic." },
+  "historyUntitled": { "message": "Videoclip fără titlu" },
+  "historyChannelChoice": {
+    "message": "Apreciază videoclipurile canalului $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Golește istoricul" },
+  "noticeHistoryCleared": { "message": "Istoric golit" },
+
+  "moreHeading": { "message": "Altele" },
+  "themeLabel": { "message": "Temă" },
+  "themeSystem": { "message": "Ca sistemul" },
+  "themeLight": { "message": "Luminoasă" },
+  "themeDark": { "message": "Întunecată" },
+  "updatesLabel": { "message": "Caută versiuni noi" },
+  "updatesHint": { "message": "Întreabă GitHub, unde este publicată extensia; GitHub vede astfel adresa ta IP." },
+  "updateEvery0": { "message": "Niciodată" },
+  "updateEvery30": { "message": "La fiecare 30 de minute" },
+  "updateEvery60": { "message": "La fiecare oră" },
+  "updateEvery360": { "message": "La fiecare 6 ore" },
+  "updateEvery1440": { "message": "În fiecare zi" },
+  "updateEvery10080": { "message": "În fiecare săptămână" },
+  "updateEveryCustom": { "message": "Personalizat…" },
+  "updateEveryPrefix": { "message": "La fiecare" },
+  "updateCustomCount": { "message": "Numărul de minute, ore sau zile dintre două verificări" },
+  "updateCustomUnit": { "message": "Unitate" },
+  "unitMinutesOne": { "message": "minut" },
+  "unitMinutesOther": { "message": "min" },
+  "unitHoursOne": { "message": "oră" },
+  "unitHoursOther": { "message": "h" },
+  "unitDaysOne": { "message": "zi" },
+  "unitDaysOther": { "message": "zile" },
+  "noticeFrequencyInvalid": { "message": "Introdu un interval între 5 minute și 30 de zile." },
+  "updateCheckNow": { "message": "Verifică acum" },
+  "updateStatusOff": { "message": "Nu se caută versiuni noi." },
+  "updateStatusNever": { "message": "Încă neverificat." },
+  "updateStatusChecking": { "message": "Se verifică…" },
+  "updateStatusAvailable": {
+    "message": "A apărut versiunea $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Verificat $WHEN$: ai cea mai recentă versiune.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Verificat $WHEN$: nicio versiune publicată încă.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Ultima verificare a eșuat $WHEN$; următoarea va încerca din nou.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Verificarea nu a putut fi făcută." },
+  "likeCountHint": { "message": "De la instalarea extensiei sau de la ultima resetare. Resetarea nu schimbă nimic altceva." },
+  "likeCountReset": { "message": "Resetează" },
+
+  "ruleSentence": {
+    "message": "Apreciază $WHAT$ $CHANNELS$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Nu apreciază nimic: și videoclipurile, și Shorts sunt dezactivate." },
+  "ruleWhatBoth": { "message": "videoclipurile și Shorts" },
+  "ruleWhatVideos": { "message": "videoclipurile" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "din abonamentele tale" },
+  "ruleChannelsSubscribedAndList": { "message": "din abonamentele tale și din lista ta „Apreciază mereu”" },
+  "ruleChannelsAll": { "message": "de pe toate canalele" },
+  "ruleChannelsList": { "message": "din lista ta „Apreciază mereu”" },
+  "ruleWhenInstant": { "message": "imediat la deschidere" },
+  "ruleWhenPercent": {
+    "message": "la $PERCENT$ % din videoclip",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "după $MINUTES$ min de redare",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "la $PERCENT$ % din videoclip sau după $MINUTES$ min de redare, care vine primul",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "la un moment aleatoriu" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ videoclip apreciat",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "Videoclipuri apreciate: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$ s",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ h $MINUTES$ min",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
