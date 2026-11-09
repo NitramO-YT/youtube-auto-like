@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Automaticky označuje videá na YouTube ako „Páči sa mi to“ pri kanáloch, ktoré si vyberiete." },
+
+  "locale": { "message": "sk" },
+
+  "switchLabel": { "message": "Automaticky označovať videá „Páči sa mi to“" },
+  "switchActive": { "message": "Zapnuté" },
+  "switchPaused": { "message": "Pozastavené" },
+  "pausedBanner": { "message": "Keď je rozšírenie pozastavené, nič neoznačuje." },
+  "badgeUpdate": { "message": "NEW" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: vyšla verzia $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Vyšla verzia $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Toto video" },
+  "sectionThisChannel": { "message": "Tento kanál" },
+  "sectionRule": { "message": "Platné pravidlo" },
+  "openSettings": { "message": "Zmeniť nastavenia →" },
+  "settingsShow": { "message": "Zobraziť nastavenia" },
+  "settingsHide": { "message": "Späť na video" },
+  "openFullPage": { "message": "Otvoriť na celej stránke ↗" },
+  "noVideo": { "message": "Otvorte na YouTube video alebo Short a uvidíte, čo s ním rozšírenie robí, alebo stránku kanála a vyberte, či sa majú jeho videá označovať." },
+  "noVideoHint": { "message": "Ak je video už otvorené, načítajte stránku znova." },
+
+  "channelUnknown": { "message": "Neznámy kanál" },
+  "channelSubscribed": { "message": "Odoberáte" },
+  "channelNotSubscribed": { "message": "Neodoberáte" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "Video, dĺžka $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Priamy prenos" },
+
+  "statusLikedTitle": { "message": "Automaticky označené „Páči sa mi to“" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "hneď po otvorení" },
+  "likedHowLikeNow": { "message": "na vašu žiadosť" },
+  "likedHowAt": {
+    "message": "v čase $TIME$ videa",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "po $DURATION$ pozerania",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Označí sa pri $PERCENT$ % videa",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Označí sa po $MINUTES$ min prehrávania",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Označí sa v náhodnom okamihu" },
+  "statusWaitBeforeEnd": { "message": "Označí sa tesne pred koncom" },
+  "statusWaitRemaining": {
+    "message": "Zostáva $DURATION$ prehrávania",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Označí sa o chvíľu" },
+  "statusWaitDuration": { "message": "Čaká sa na dĺžku videa" },
+  "statusWaitAd": { "message": "Čaká sa na koniec reklamy" },
+  "statusWaitAdDetail": { "message": "Čas reklám sa nepočíta." },
+  "statusReading": { "message": "Čítanie stránky…" },
+  "statusReadingDetail": { "message": "Pri Shorts YouTube niekedy zobrazí tlačidlá až po pohybe myši nad videom." },
+  "statusConfirming": { "message": "Overuje sa, či označenie prebehlo…" },
+  "statusFailedTitle": { "message": "Označenie sa nepodarilo overiť" },
+  "statusFailedDetail": { "message": "Tlačidlo „Páči sa mi to“ nereagovalo. Ak to chcete skúsiť znova, načítajte stránku znova." },
+
+  "statusAlreadyLikedTitle": { "message": "Už označené" },
+  "statusNotLikedTitle": { "message": "Neoznačené" },
+  "reasonAlreadyLiked": { "message": "Toto video už bolo označené „Páči sa mi to“: rozšírenie ho necháva tak." },
+  "reasonAlreadyDisliked": { "message": "Toto video ste označili „Nepáči sa mi to“: rozšírenie ho necháva tak." },
+  "reasonSkippedByUser": { "message": "Požiadali ste, aby sa tentoraz neoznačovalo. Môže sa označiť, keď si ho pozriete znova." },
+  "reasonVideoExcluded": { "message": "Toto video ste vylúčili: nikdy sa neoznačí, kým vylúčenie nezrušíte." },
+  "reasonNotSubscribed": { "message": "Tento kanál neodoberáte. Video sa označí, ak ho začnete odoberať." },
+  "reasonNotInAlwaysList": { "message": "Označujú sa len kanály z vášho zoznamu „Vždy označovať“." },
+  "reasonInNeverList": { "message": "Tento kanál je vo vašom zozname „Nikdy neoznačovať“." },
+  "reasonShortsOff": { "message": "Podľa vašich nastavení sa Shorts neoznačujú." },
+  "reasonNormalVideosOff": { "message": "Podľa vašich nastavení sa označujú len Shorts." },
+  "statusWouldLike": { "message": "Označilo by sa" },
+  "statusWouldLikeDetail": { "message": "keby bolo rozšírenie zapnuté." },
+
+  "actionLikeNow": { "message": "Označiť teraz" },
+  "actionSkip": { "message": "Tentoraz nie" },
+  "actionRestart": { "message": "Začať pri tomto videu znova" },
+  "actionRetry": { "message": "Skúsiť znova" },
+  "removedLikeTitle": { "message": "Označenie odstránené" },
+  "removedLikeRestart": { "message": "Odstránili ste „Páči sa mi to“. Začnite znova, aby rozšírenie video znova skontrolovalo." },
+  "removedDislikeTitle": { "message": "„Nepáči sa mi to“ odstránené" },
+  "removedDislikeRestart": { "message": "Odstránili ste „Nepáči sa mi to“. Začnite znova, aby rozšírenie video znova skontrolovalo." },
+  "likeRemovedNextOpening": { "message": "Znova sa označí pri ďalšom otvorení videa." },
+  "likeRemovedAt": {
+    "message": "Znova sa označí, keď prehrávanie opäť prejde časom $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Znova označiť video, pri ktorom označenie odstránim" },
+  "relikeHint": { "message": "Keď prehrávanie znova prejde plánovaným okamihom, teda potom, čo ste sa vrátili pred neho; v režime „Hneď po otvorení“ pri ďalšom otvorení. Platí aj pre video, ktoré ste označili sami." },
+  "actionResume": { "message": "Zrušiť „Tentoraz nie“" },
+  "actionExcludeVideo": { "message": "Toto video nikdy neoznačovať" },
+  "actionUnexcludeVideo": { "message": "Zrušiť vylúčenie tohto videa" },
+  "channelChoiceLegend": { "message": "Označovať videá tohto kanála" },
+  "channelChoiceAlways": { "message": "Vždy" },
+  "channelChoiceAuto": { "message": "Podľa nastavení" },
+  "channelChoiceNever": { "message": "Nikdy" },
+
+  "noticeAddedAlways": { "message": "Pridané do „Vždy označovať“" },
+  "noticeAddedNever": { "message": "Pridané do „Nikdy neoznačovať“" },
+  "noticeRemovedNever": { "message": "Odstránené z „Nikdy neoznačovať“" },
+  "noticeSkipped": { "message": "Tentoraz neoznačené" },
+  "noticeVideoExcluded": { "message": "Pridané medzi vylúčené videá" },
+  "noticeVideoUnexcluded": { "message": "Odstránené z vylúčených videí" },
+  "noticeUndo": { "message": "Späť" },
+  "noticeUndone": { "message": "Vrátené" },
+  "noticeSaveFailed": { "message": "Zmenu sa nepodarilo uložiť." },
+  "noticeStorageFull": { "message": "Úložisko rozšírenia je plné: odstráňte zo zoznamov kanály alebo vylúčené videá a skúste to znova." },
+  "noticeLoadFailed": { "message": "Nastavenia sa nepodarilo načítať." },
+  "noticeListFull": {
+    "message": "Tento zoznam je plný (najviac $COUNT$ položiek).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Stránka neodpovedala. Načítajte ju znova a skúste to znova." },
+  "noticeSaved": { "message": "Uložené" },
+  "noticeRemovedAlways": { "message": "Odstránené z „Vždy označovať“" },
+  "noticeImportDone": {
+    "message": "Import dokončený: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ kanál pridaný do „$LIST$“",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "Kanály pridané do „$LIST$“: $COUNT$",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Zrušiť" },
+  "dialogClose": { "message": "Zavrieť" },
+  "noticeCopied": { "message": "Skopírované" },
+  "noticeCopyFailed": { "message": "Kopírovanie zlyhalo: vyberte text a skopírujte ho sami." },
+  "noticeJournalCleared": { "message": "Protokol vymazaný" },
+
+  "languageLabel": { "message": "Jazyk" },
+  "languageHint": { "message": "Jazyk prehliadača alebo iný, ktorý si vyberiete. Preklad na opravu? Navrhnite to na GitHube." },
+  "languageAuto": { "message": "Jazyk prehliadača" },
+
+  "debugLabel": { "message": "Režim ladenia" },
+  "debugHint": { "message": "Protokol toho, čo rozšírenie robí, na nahlásenie problému: posledných 200 krokov s ID pozretých videí, uložený len v tomto prehliadači. Keď je režim vypnutý, protokol sa nevedie." },
+  "journalCountOne": { "message": "Protokol: $COUNT$ záznam", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Záznamy v protokole: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Skopírovať protokol" },
+  "journalClear": { "message": "Vymazať protokol" },
+
+  "navAbout": { "message": "O rozšírení" },
+  "aboutHeading": { "message": "O rozšírení" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, verzia $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Vyvíja" },
+  "aboutOrigin": { "message": "Pôvodný projekt" },
+  "aboutFirefox": { "message": "Fork pre Firefox" },
+  "aboutLicense": { "message": "Licencia" },
+  "aboutInvite": { "message": "Navštívte repozitár na GitHube, kde sa dozviete viac, môžete sledovať nové verzie alebo navrhnúť vylepšenie. Problém? Nahláste ho tlačidlom nižšie." },
+  "aboutRepository": { "message": "Zobraziť projekt na GitHube" },
+  "reportOpen": { "message": "Nahlásiť problém" },
+  "reportHint": { "message": "Opíšte problém v issue, ktoré sa otvorí na GitHube: toto hlásenie sa priloží, aby pomohlo ho pochopiť. Pred odoslaním si ho prečítajte; vaše zoznamy kanálov v ňom nie sú." },
+  "reportJournalOne": {
+    "message": "Priložiť protokol ($COUNT$ záznam, s ID pozretých videí)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Priložiť protokol (záznamy: $COUNT$, s ID pozretých videí)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Žiadny protokol sa neviedol. Ak ho chcete priložiť: zapnite režim ladenia v časti „Ďalšie“, zopakujte to, čo nefunguje, a potom sa sem vráťte." },
+  "reportTextLabel": { "message": "Hlásenie" },
+  "reportCopy": { "message": "Skopírovať hlásenie" },
+  "reportIssue": { "message": "Otvoriť issue na GitHube" },
+  "reportCut": { "message": "Hlásenie je na adresu issue príliš dlhé, preto je v nej skrátené. Skopírujte celé hlásenie a vložte ho do issue." },
+  "dialogAnalyse": { "message": "Analyzovať" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Pridať kanály" },
+  "addHint": { "message": "Vložte odkazy na kanály alebo videá, alebo @identifikátory, jeden na riadok. Rozšírenie sa YouTubu opýta, o ktorý kanál ide, ako keby ste otvorili jeho stránku." },
+  "addLinesLabel": { "message": "Odkazy alebo @identifikátory" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@nazov\n@nazov\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "Do zoznamu" },
+  "addSearch": { "message": "Vyhľadať" },
+  "addSearching": {
+    "message": "Dopyt na YouTube… $DONE$ z $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Pridať" },
+  "addApplyOne": {
+    "message": "Pridať $COUNT$ kanál",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Pridať kanály ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Žiadny kanál na pridanie: všetky už v zozname sú, alebo sa žiadny nenašiel." },
+  "addEmpty": { "message": "Vložte aspoň jeden odkaz alebo @identifikátor." },
+  "addTooMany": {
+    "message": "Najviac $MAX$ riadkov naraz.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "bude pridaný" },
+  "lookupAlready": { "message": "už je v zozname" },
+  "lookupMoved": {
+    "message": "presunie sa z „$FROM$“ do „$TO$“",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "rovnaký kanál ako na predchádzajúcom riadku" },
+  "lookupNotALink": { "message": "nie je odkaz na kanál ani video YouTube, ani @identifikátor" },
+  "lookupNotFound": { "message": "kanál alebo video na YouTube neexistuje" },
+  "lookupUnreadable": { "message": "YouTube kanál neuviedol. Ak ste YouTube v tomto prehliadači nikdy neotvorili, otvorte ho raz a vyberte nastavenia súborov cookie, potom to skúste znova" },
+
+  "importTitle": { "message": "Importovať zoznamy" },
+  "importHint": { "message": "Súbor exportovaný rozšírením alebo zoznam odkazov na kanály, jeden na riadok. Pred „Importovať“ sa nič neuloží: „Analyzovať“ najprv ukáže, čo sa vykoná." },
+  "importDropHere": { "message": "Pretiahnite sem súbor, alebo" },
+  "importBrowse": { "message": "prehľadávajte súbory" },
+  "importPasteHint": { "message": "Do tohto okna môžete tiež vložiť súbor alebo text (Ctrl+V)." },
+  "importChange": { "message": "Zmeniť" },
+  "importRemove": { "message": "Odstrániť" },
+  "importPasted": { "message": "Vložený text" },
+  "importSourceFile": { "message": "Súbor exportovaný rozšírením" },
+  "importSourceLinksOne": {
+    "message": "Zoznam odkazov, $COUNT$ riadok",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Zoznam odkazov, riadky: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Nejde o export rozšírenia ani o zoznam odkazov." },
+  "importNoSource": { "message": "Najprv vyberte súbor alebo vložte text." },
+  "importNoPart": { "message": "Začiarknite aspoň jednu časť na import." },
+  "importListFull": {
+    "message": "Zoznam by mal viac ako $COUNT$ položiek: nič by sa neimportovalo.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Čo sa importuje" },
+  "importLinksTarget": { "message": "Tieto kanály pridať do" },
+  "importModeLabel": { "message": "Položky, ktoré už existujú" },
+  "importModeAddNew": { "message": "Pridať len nové" },
+  "importModeAddNewHint": { "message": "Kanál, ktorý už je v niektorom zozname, zostane, kde je." },
+  "importModeFollow": { "message": "Pridať a riadiť sa súborom" },
+  "importModeFollowHint": { "message": "Kanál, ktorý už existuje, sa presunie do zoznamu, ktorý uvádza súbor." },
+  "importModeReplace": { "message": "Všetko nahradiť súborom" },
+  "importModeReplaceHint": { "message": "Začiarknuté časti budú presne ako v súbore: čo v ňom nie je, sa odstráni." },
+  "importRemember": { "message": "Zapamätať si voľbu" },
+  "importApply": { "message": "Importovať" },
+  "importConfirmOne": {
+    "message": "Potvrdzujem odstránenie $COUNT$ položky, ktorá v súbore chýba.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Potvrdzujem odstránenie položiek, ktoré v súbore chýbajú ($COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "bez zmien" },
+  "reportNothing": { "message": "Žiadne zmeny: všetko už existuje." },
+  "reportAddedOne": { "message": "nové: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "nové: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "presunuté: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "presunuté: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "už existujúce: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "už existujúce: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "odstránené: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "odstránené: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Exportovať zoznamy" },
+  "exportPartsLabel": { "message": "Čo sa exportuje" },
+  "exportFormatLabel": { "message": "Formát" },
+  "exportFormatJson": { "message": "Súbor rozšírenia (JSON)" },
+  "exportFormatJsonHint": { "message": "Importuje sa späť tak, ako je, s dátumami a obrázkami kanálov." },
+  "exportFormatLinks": { "message": "Zoznam odkazov (text)" },
+  "exportFormatLinksHint": { "message": "Jeden odkaz na kanál na riadok, s jeho názvom, na čítanie alebo zdieľanie. Vylúčené videá v ňom nie sú." },
+  "exportDownload": { "message": "Stiahnuť" },
+  "exportNothing": { "message": "Začiarknite aspoň jeden zoznam." },
+  "noticeImportInvalid": { "message": "Tento súbor nie je zoznam exportovaný rozšírením YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "Tento súbor je na zoznam kanálov príliš veľký." },
+  "noticeCountReset": { "message": "Počítadlo vynulované" },
+  "noticeNumberInvalid": {
+    "message": "Zadajte číslo od $MIN$ do $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Nastavenia YouTube Auto Like" },
+  "optionsTitle": { "message": "Nastavenia" },
+  "navSections": { "message": "Sekcie" },
+  "navChannels": { "message": "Ktoré kanály" },
+  "navVideos": { "message": "Ktoré videá" },
+  "navWhen": { "message": "Kedy označovať" },
+  "navLists": { "message": "Moje zoznamy" },
+  "navMore": { "message": "Ďalšie" },
+
+  "channelsHeading": { "message": "Videá ktorých kanálov označovať?" },
+  "channelsHint": { "message": "Zoznam „Nikdy neoznačovať“ má vždy prednosť." },
+  "likeWhatSubscribed": { "message": "Kanály, ktoré odoberám" },
+  "likeWhatSubscribedHint": { "message": "a tie z môjho zoznamu „Vždy označovať“." },
+  "recommended": { "message": "Odporúčané" },
+  "likeWhatAll": { "message": "Všetky kanály" },
+  "likeWhatAllHint": { "message": "označí sa každé video, ktoré pozeráte." },
+  "likeWhatList": { "message": "Len môj zoznam „Vždy označovať“" },
+  "likeWhatListHint": { "message": "odoberané alebo nie, nič iné sa neoznačí." },
+
+  "videosHeading": { "message": "Ktoré videá?" },
+  "videosHint": { "message": "Shorts sa rozpoznajú, aj keď sa otvoria v bežnom prehrávači." },
+  "likeNormalVideos": { "message": "Videá" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Kedy ich označovať?" },
+  "whenHint": { "message": "Video, ktoré sami označíte „Páči sa mi to“ alebo „Nepáči sa mi to“, sa nikdy nemení." },
+  "modeInstant": { "message": "Hneď po otvorení" },
+  "modeCustom": { "message": "Po chvíli" },
+  "modeRandom": { "message": "V náhodnom okamihu" },
+  "thresholdAfter": { "message": "po" },
+  "thresholdPercentUnit": { "message": "% videa" },
+  "thresholdMinutesUnit": { "message": "min prehrávania" },
+  "percentLabel": { "message": "Percento videa" },
+  "minutesLabel": { "message": "Minúty prehrávania" },
+  "thresholdKeepOne": { "message": "Aspoň jedna z dvoch hraníc zostane začiarknutá." },
+  "thresholdsHint": { "message": "Označenie spustí tá hranica, ktorá sa dosiahne skôr. Kratšie video sa označí dve sekundy pred koncom. Pri priamom prenose sa počítajú len minúty od začiatku pozerania; bez hranice v minútach sa označí hneď po otvorení. Reklamy sa nepočítajú." },
+  "randomHint": { "message": "Náhodne zvolený okamih v každom videu. Priamy prenos sa označí hneď po otvorení." },
+  "summaryLabel": { "message": "Zhrnutie:" },
+
+  "listsHeading": { "message": "Moje zoznamy kanálov" },
+  "listsHint": { "message": "Kanály pridáte odkazom alebo @identifikátorom, z okna ikony na videu alebo na stránke kanála, alebo z histórie. Video vylúčite z okna ikony." },
+  "listAlways": { "message": "Vždy označovať" },
+  "listNever": { "message": "Nikdy neoznačovať" },
+  "listVideos": { "message": "Vylúčené videá" },
+  "listExcludedOn": {
+    "message": "vylúčené $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Zrušiť vylúčenie: $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Hľadať v zozname" },
+  "listImport": { "message": "Importovať" },
+  "listExport": { "message": "Exportovať" },
+  "listEmpty": { "message": "Zoznam neobsahuje žiadny kanál. Pridajte ich odkazom alebo @identifikátorom, z okna ikony na videu alebo na stránke kanála, alebo z histórie." },
+  "listEmptyVideos": { "message": "Žiadne vylúčené video. Video vylúčite tak, že počas pozerania otvoríte okno ikony a zvolíte „Toto video nikdy neoznačovať“." },
+  "listNoMatch": { "message": "Hľadaniu nezodpovedá žiadny kanál." },
+  "listAddedOn": {
+    "message": "pridané $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Odstrániť zo zoznamu: $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ z $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Zobraziť ďalšie ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Zobraziť všetko ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Riadky zobrazené v zoznamoch a histórii" },
+  "listPageSizeHint": { "message": "Ostatné sa zobrazia pomocou „Zobraziť ďalšie“ alebo „Zobraziť všetko“. Dlhý zoznam sa posúva vo vnútri seba bez toho, aby predlžoval stránku." },
+  "listPageSizeAll": { "message": "Všetko" },
+  "listOpenChannel": { "message": "Otvoriť kanál na YouTube" },
+
+  "navHistory": { "message": "História" },
+  "historyHeading": { "message": "Označenia rozšírením" },
+  "historyHint": {
+    "message": "Posledných $COUNT$, najnovšie prvé, uložené len v tomto prehliadači.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Rozšírenie zatiaľ nič neoznačilo." },
+  "historyUntitled": { "message": "Video bez názvu" },
+  "historyChannelChoice": {
+    "message": "Označovať videá kanála $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Vymazať históriu" },
+  "noticeHistoryCleared": { "message": "História vymazaná" },
+
+  "moreHeading": { "message": "Ďalšie" },
+  "themeLabel": { "message": "Motív" },
+  "themeSystem": { "message": "Podľa systému" },
+  "themeLight": { "message": "Svetlý" },
+  "themeDark": { "message": "Tmavý" },
+  "updatesLabel": { "message": "Hľadať nové verzie" },
+  "updatesHint": { "message": "Pýta sa GitHubu, kde sa rozšírenie zverejňuje; GitHub pritom vidí vašu IP adresu." },
+  "updateEvery0": { "message": "Nikdy" },
+  "updateEvery30": { "message": "Každých 30 minút" },
+  "updateEvery60": { "message": "Každú hodinu" },
+  "updateEvery360": { "message": "Každých 6 hodín" },
+  "updateEvery1440": { "message": "Každý deň" },
+  "updateEvery10080": { "message": "Každý týždeň" },
+  "updateEveryCustom": { "message": "Vlastné…" },
+  "updateEveryPrefix": { "message": "Raz za" },
+  "updateCustomCount": { "message": "Počet minút, hodín alebo dní medzi dvoma kontrolami" },
+  "updateCustomUnit": { "message": "Jednotka" },
+  "unitMinutesOne": { "message": "minútu" },
+  "unitMinutesOther": { "message": "min" },
+  "unitHoursOne": { "message": "hodinu" },
+  "unitHoursOther": { "message": "h" },
+  "unitDaysOne": { "message": "deň" },
+  "unitDaysOther": { "message": "d" },
+  "noticeFrequencyInvalid": { "message": "Zadajte interval od 5 minút do 30 dní." },
+  "updateCheckNow": { "message": "Skontrolovať teraz" },
+  "updateStatusOff": { "message": "Nové verzie sa nehľadajú." },
+  "updateStatusNever": { "message": "Zatiaľ neskontrolované." },
+  "updateStatusChecking": { "message": "Kontroluje sa…" },
+  "updateStatusAvailable": {
+    "message": "Vyšla verzia $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Skontrolované $WHEN$: máte najnovšiu verziu.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Skontrolované $WHEN$: zatiaľ nevyšla žiadna verzia.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Posledná kontrola zlyhala $WHEN$; ďalšia to skúsi znova.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Kontrolu sa nepodarilo vykonať." },
+  "likeCountHint": { "message": "Od inštalácie rozšírenia alebo od posledného vynulovania. Vynulovanie nič iné nemení." },
+  "likeCountReset": { "message": "Vynulovať" },
+
+  "ruleSentence": {
+    "message": "Označuje $WHAT$ $CHANNELS$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Neoznačuje nič: videá aj Shorts sú vypnuté." },
+  "ruleWhatBoth": { "message": "videá a Shorts" },
+  "ruleWhatVideos": { "message": "videá" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "odoberaných kanálov" },
+  "ruleChannelsSubscribedAndList": { "message": "odoberaných kanálov a kanálov z vášho zoznamu „Vždy označovať“" },
+  "ruleChannelsAll": { "message": "všetkých kanálov" },
+  "ruleChannelsList": { "message": "kanálov z vášho zoznamu „Vždy označovať“" },
+  "ruleWhenInstant": { "message": "hneď po otvorení" },
+  "ruleWhenPercent": {
+    "message": "pri $PERCENT$ % videa",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "po $MINUTES$ min prehrávania",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "pri $PERCENT$ % videa alebo po $MINUTES$ min prehrávania, podľa toho, čo nastane skôr",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "v náhodnom okamihu" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ označené video",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "Označené videá: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$ s",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ h $MINUTES$ min",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
