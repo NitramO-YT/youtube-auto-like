@@ -22,6 +22,7 @@ import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { buildExtension } from './build.mjs';
 import { checkIdentity, PRIVATE_KEY_PATH } from './extension-identity.mjs';
+import { packArgs } from './lib/browser-args.mjs';
 import { zipFiles } from './lib/zip.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -69,7 +70,7 @@ async function packCrx(out) {
   const packed = `${BUILD_DIR}.crx`;
   await rm(packed, { force: true });
   try {
-    const result = spawnSync(packer, [`--user-data-dir=${profile}`, '--no-first-run', `--pack-extension=${BUILD_DIR}`, `--pack-extension-key=${PRIVATE_KEY_PATH}`], {
+    const result = spawnSync(packer, packArgs(profile, BUILD_DIR, PRIVATE_KEY_PATH), {
       encoding: 'utf8',
       timeout: 60_000,
     });

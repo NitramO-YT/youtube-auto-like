@@ -21,6 +21,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs, promisify } from 'node:util';
 import { buildExtension } from './build.mjs';
+import { headlessArgs } from './lib/browser-args.mjs';
 import { findExecutable, injectScripts, readErrors } from './lib/preview.mjs';
 import { SCENARIOS } from './preview/scenarios.mjs';
 
@@ -64,21 +65,7 @@ async function writePreviewPage(extensionDir, scenario, locale, version) {
 }
 
 async function headless(browser, profileDir, args) {
-  const { stdout } = await run(
-    browser,
-    [
-      '--headless=new',
-      '--no-first-run',
-      '--no-default-browser-check',
-      '--disable-gpu',
-      // Scripts loaded from files are otherwise cross-origin to the page,
-      // and their errors reach it as a bare "Script error.".
-      '--allow-file-access-from-files',
-      `--user-data-dir=${profileDir}`,
-      ...args,
-    ],
-    { timeout: BROWSER_TIMEOUT_MS, maxBuffer: 32 * 1024 * 1024 },
-  );
+  const { stdout } = await run(browser, headlessArgs(profileDir, args), { timeout: BROWSER_TIMEOUT_MS, maxBuffer: 32 * 1024 * 1024 });
   return stdout;
 }
 
