@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Автоматически отмечает «Нравится» видео YouTube с выбранных вами каналов." },
+
+  "locale": { "message": "ru" },
+
+  "switchLabel": { "message": "Автоматически отмечать видео «Нравится»" },
+  "switchActive": { "message": "Включено" },
+  "switchPaused": { "message": "На паузе" },
+  "pausedBanner": { "message": "Пока расширение на паузе, оно ничего не отмечает." },
+  "badgeUpdate": { "message": "NEW" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: вышла версия $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Вышла версия $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Это видео" },
+  "sectionThisChannel": { "message": "Этот канал" },
+  "sectionRule": { "message": "Действующее правило" },
+  "openSettings": { "message": "Изменить настройки →" },
+  "settingsShow": { "message": "Показать настройки" },
+  "settingsHide": { "message": "Вернуться к видео" },
+  "openFullPage": { "message": "Открыть на всю страницу ↗" },
+  "noVideo": { "message": "Откройте видео или Short на YouTube, чтобы увидеть, что с ним делает расширение, или страницу канала, чтобы выбрать, отмечать ли его видео." },
+  "noVideoHint": { "message": "Если видео уже открыто, перезагрузите его страницу." },
+
+  "channelUnknown": { "message": "Неизвестный канал" },
+  "channelSubscribed": { "message": "Вы подписаны" },
+  "channelNotSubscribed": { "message": "Вы не подписаны" },
+  "kindVideo": { "message": "Видео" },
+  "kindVideoDuration": {
+    "message": "Видео, $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Прямой эфир" },
+
+  "statusLikedTitle": { "message": "Отмечено «Нравится» автоматически" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "сразу при открытии" },
+  "likedHowLikeNow": { "message": "по вашему запросу" },
+  "likedHowAt": {
+    "message": "на $TIME$ видео",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "после $DURATION$ просмотра",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Будет отмечено на $PERCENT$ % видео",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Будет отмечено после $MINUTES$ мин воспроизведения",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Будет отмечено в случайный момент" },
+  "statusWaitBeforeEnd": { "message": "Будет отмечено перед самым концом" },
+  "statusWaitRemaining": {
+    "message": "осталось $DURATION$ воспроизведения",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Отметка через мгновение" },
+  "statusWaitDuration": { "message": "Ожидание длительности видео" },
+  "statusWaitAd": { "message": "Ожидание окончания рекламы" },
+  "statusWaitAdDetail": { "message": "Время рекламы не учитывается." },
+  "statusReading": { "message": "Чтение страницы…" },
+  "statusReadingDetail": { "message": "В Shorts YouTube иногда показывает кнопки, только когда мышь проходит над видео." },
+  "statusConfirming": { "message": "Проверка, что отметка сохранилась…" },
+  "statusFailedTitle": { "message": "Не удалось подтвердить отметку" },
+  "statusFailedDetail": { "message": "Кнопка «Нравится» не отреагировала. Перезагрузите страницу, чтобы попробовать снова." },
+
+  "statusAlreadyLikedTitle": { "message": "Уже отмечено «Нравится»" },
+  "statusNotLikedTitle": { "message": "Не отмечено" },
+  "reasonAlreadyLiked": { "message": "У этого видео уже была отметка «Нравится»: расширение оставляет его как есть." },
+  "reasonAlreadyDisliked": { "message": "Вы отметили это видео «Не нравится»: расширение оставляет его как есть." },
+  "reasonSkippedByUser": { "message": "Вы попросили не отмечать его в этот раз. Его можно будет отметить при следующем просмотре." },
+  "reasonVideoExcluded": { "message": "Вы исключили это видео: оно никогда не отмечается, пока вы не отмените исключение." },
+  "reasonNotSubscribed": { "message": "Вы не подписаны на этот канал. Видео будет отмечено, если вы подпишетесь." },
+  "reasonNotInAlwaysList": { "message": "Отмечаются только каналы из вашего списка «Всегда отмечать»." },
+  "reasonInNeverList": { "message": "Этот канал в вашем списке «Никогда не отмечать»." },
+  "reasonShortsOff": { "message": "Согласно вашим настройкам, Shorts не отмечаются." },
+  "reasonNormalVideosOff": { "message": "Согласно вашим настройкам, отмечаются только Shorts." },
+  "statusWouldLike": { "message": "Было бы отмечено" },
+  "statusWouldLikeDetail": { "message": "если бы расширение было включено." },
+
+  "actionLikeNow": { "message": "Отметить сейчас" },
+  "actionSkip": { "message": "Не в этот раз" },
+  "actionRestart": { "message": "Начать заново для этого видео" },
+  "actionRetry": { "message": "Повторить" },
+  "removedLikeTitle": { "message": "Отметка «Нравится» снята" },
+  "removedLikeRestart": { "message": "Вы сняли отметку «Нравится». Начните заново, чтобы расширение снова проверило это видео." },
+  "removedDislikeTitle": { "message": "Отметка «Не нравится» снята" },
+  "removedDislikeRestart": { "message": "Вы сняли отметку «Не нравится». Начните заново, чтобы расширение снова проверило это видео." },
+  "likeRemovedNextOpening": { "message": "Видео будет отмечено снова при следующем открытии." },
+  "likeRemovedAt": {
+    "message": "Видео будет отмечено снова, когда воспроизведение снова пройдёт $TIME$.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Снова отмечать видео, с которого я снимаю отметку" },
+  "relikeHint": { "message": "Когда воспроизведение снова проходит намеченный момент, то есть после перемотки назад до него; с «Сразу при открытии» при следующем открытии видео. Также для видео, которое вы отметили сами." },
+  "actionResume": { "message": "Отменить «Не в этот раз»" },
+  "actionExcludeVideo": { "message": "Никогда не отмечать это видео" },
+  "actionUnexcludeVideo": { "message": "Отменить исключение этого видео" },
+  "channelChoiceLegend": { "message": "Отмечать видео этого канала" },
+  "channelChoiceAlways": { "message": "Всегда" },
+  "channelChoiceAuto": { "message": "По настройкам" },
+  "channelChoiceNever": { "message": "Никогда" },
+
+  "noticeAddedAlways": { "message": "Добавлено в «Всегда отмечать»" },
+  "noticeAddedNever": { "message": "Добавлено в «Никогда не отмечать»" },
+  "noticeRemovedNever": { "message": "Удалено из «Никогда не отмечать»" },
+  "noticeSkipped": { "message": "В этот раз без отметки" },
+  "noticeVideoExcluded": { "message": "Добавлено в исключённые видео" },
+  "noticeVideoUnexcluded": { "message": "Удалено из исключённых видео" },
+  "noticeUndo": { "message": "Отменить" },
+  "noticeUndone": { "message": "Отменено" },
+  "noticeSaveFailed": { "message": "Не удалось сохранить изменение." },
+  "noticeStorageFull": { "message": "Хранилище расширения заполнено: удалите каналы или исключённые видео из своих списков и попробуйте снова." },
+  "noticeLoadFailed": { "message": "Не удалось прочитать настройки." },
+  "noticeListFull": {
+    "message": "Этот список заполнен (максимум записей: $COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Страница не ответила. Перезагрузите её и попробуйте снова." },
+  "noticeSaved": { "message": "Сохранено" },
+  "noticeRemovedAlways": { "message": "Удалено из «Всегда отмечать»" },
+  "noticeImportDone": {
+    "message": "Импорт завершён: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "Каналов добавлено в «$LIST$»: $COUNT$",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "Каналов добавлено в «$LIST$»: $COUNT$",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Отмена" },
+  "dialogClose": { "message": "Закрыть" },
+  "noticeCopied": { "message": "Скопировано" },
+  "noticeCopyFailed": { "message": "Не удалось скопировать: выделите текст и скопируйте его сами." },
+  "noticeJournalCleared": { "message": "Журнал очищен" },
+
+  "languageLabel": { "message": "Язык" },
+  "languageHint": { "message": "Язык браузера или другой на ваш выбор. Перевод можно улучшить? Предложите это на GitHub." },
+  "languageAuto": { "message": "Язык браузера" },
+
+  "debugLabel": { "message": "Режим отладки" },
+  "debugHint": { "message": "Ведёт журнал действий расширения, чтобы сообщить о проблеме: последние 200 шагов с идентификаторами просмотренных видео, хранятся только в этом браузере. Когда режим выключен, журнал не ведётся." },
+  "journalCountOne": { "message": "Записей в журнале: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Записей в журнале: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Копировать журнал" },
+  "journalClear": { "message": "Очистить журнал" },
+
+  "navAbout": { "message": "О расширении" },
+  "aboutHeading": { "message": "О расширении" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, версия $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Разработчик" },
+  "aboutOrigin": { "message": "Исходный проект" },
+  "aboutFirefox": { "message": "Форк для Firefox" },
+  "aboutLicense": { "message": "Лицензия" },
+  "aboutInvite": { "message": "Чтобы узнать больше, следить за новыми версиями или предложить улучшение, загляните в репозиторий на GitHub. Проблема? Сообщите о ней кнопкой ниже." },
+  "aboutRepository": { "message": "Проект на GitHub" },
+  "reportOpen": { "message": "Сообщить о проблеме" },
+  "reportHint": { "message": "Опишите проблему в issue, которое откроется на GitHub: этот отчёт прикладывается, чтобы помочь её понять. Прочитайте его перед отправкой; ваших списков каналов в нём нет." },
+  "reportJournalOne": {
+    "message": "Приложить журнал (записей: $COUNT$, с идентификаторами просмотренных видео)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Приложить журнал (записей: $COUNT$, с идентификаторами просмотренных видео)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Журнал не вёлся. Чтобы приложить его: включите режим отладки в разделе «Ещё», повторите то, что не работает, и вернитесь сюда." },
+  "reportTextLabel": { "message": "Отчёт" },
+  "reportCopy": { "message": "Копировать отчёт" },
+  "reportIssue": { "message": "Открыть issue на GitHub" },
+  "reportCut": { "message": "Отчёт слишком длинный для адреса issue: там он сокращён. Скопируйте полный отчёт и вставьте его в issue." },
+  "dialogAnalyse": { "message": "Проанализировать" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Добавить каналы" },
+  "addHint": { "message": "Вставьте ссылки на каналы или видео либо @псевдонимы, по одному в строке. Расширение спрашивает YouTube, о каком канале речь, как если бы вы открыли его страницу." },
+  "addLinesLabel": { "message": "Ссылки или @псевдонимы" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@name\n@name\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "В список" },
+  "addSearch": { "message": "Найти" },
+  "addSearching": {
+    "message": "Запрос к YouTube… $DONE$ из $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Добавить" },
+  "addApplyOne": {
+    "message": "Добавить каналы ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Добавить каналы ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Нечего добавлять: все каналы уже в этом списке, или ни один не найден." },
+  "addEmpty": { "message": "Вставьте хотя бы одну ссылку или @псевдоним." },
+  "addTooMany": {
+    "message": "Максимум строк за раз: $MAX$.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "будет добавлен" },
+  "lookupAlready": { "message": "уже в этом списке" },
+  "lookupMoved": {
+    "message": "перейдёт из «$FROM$» в «$TO$»",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "тот же канал, что в одной из предыдущих строк" },
+  "lookupNotALink": { "message": "не ссылка на канал или видео YouTube и не @псевдоним" },
+  "lookupNotFound": { "message": "такого канала или видео на YouTube нет" },
+  "lookupUnreadable": { "message": "YouTube не указал канал. Если YouTube ни разу не открывался в этом браузере, откройте его один раз и сделайте выбор насчёт файлов cookie, затем попробуйте снова" },
+
+  "importTitle": { "message": "Импорт списков" },
+  "importHint": { "message": "Файл, экспортированный расширением, или список ссылок на каналы, по одной в строке. До нажатия «Импортировать» ничего не сохраняется: «Проанализировать» сначала показывает, что будет сделано." },
+  "importDropHere": { "message": "Перетащите файл сюда или" },
+  "importBrowse": { "message": "выберите его" },
+  "importPasteHint": { "message": "Можно также вставить файл или текст (Ctrl+V) в это окно." },
+  "importChange": { "message": "Заменить" },
+  "importRemove": { "message": "Убрать" },
+  "importPasted": { "message": "Вставленный текст" },
+  "importSourceFile": { "message": "Файл, экспортированный расширением" },
+  "importSourceLinksOne": {
+    "message": "Список ссылок, строк: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Список ссылок, строк: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Это не экспорт расширения и не список ссылок." },
+  "importNoSource": { "message": "Сначала выберите файл или вставьте текст." },
+  "importNoPart": { "message": "Отметьте хотя бы одну часть для импорта." },
+  "importListFull": {
+    "message": "В списке стало бы больше допустимого числа записей ($COUNT$): ничего не было бы импортировано.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Что импортируется" },
+  "importLinksTarget": { "message": "Поместить эти каналы в" },
+  "importModeLabel": { "message": "Уже имеющиеся записи" },
+  "importModeAddNew": { "message": "Добавить только новые" },
+  "importModeAddNewHint": { "message": "Канал, который уже есть в списке, остаётся на месте." },
+  "importModeFollow": { "message": "Добавить и следовать файлу" },
+  "importModeFollowHint": { "message": "Уже имеющийся канал переходит в список, который указывает файл." },
+  "importModeReplace": { "message": "Заменить всё файлом" },
+  "importModeReplaceHint": { "message": "Отмеченные части становятся в точности такими, как в файле: то, чего в нём нет, удаляется." },
+  "importRemember": { "message": "Запомнить мой выбор" },
+  "importApply": { "message": "Импортировать" },
+  "importConfirmOne": {
+    "message": "Подтверждаю удаление записей, которых нет в файле ($COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Подтверждаю удаление записей, которых нет в файле ($COUNT$).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "без изменений" },
+  "reportNothing": { "message": "Без изменений: всё уже на месте." },
+  "reportAddedOne": { "message": "новых: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "новых: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "перемещено: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "перемещено: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "уже есть: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "уже есть: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "удалено: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "удалено: $COUNT$", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Экспорт списков" },
+  "exportPartsLabel": { "message": "Что экспортируется" },
+  "exportFormatLabel": { "message": "Формат" },
+  "exportFormatJson": { "message": "Файл расширения (JSON)" },
+  "exportFormatJsonHint": { "message": "Импортируется обратно без изменений, с датами и изображениями каналов." },
+  "exportFormatLinks": { "message": "Список ссылок (текст)" },
+  "exportFormatLinksHint": { "message": "Одна ссылка на канал в строке, с его названием, чтобы прочитать или поделиться. Исключённых видео здесь нет." },
+  "exportDownload": { "message": "Скачать" },
+  "exportNothing": { "message": "Отметьте хотя бы один список." },
+  "noticeImportInvalid": { "message": "Этот файл не является списком, экспортированным YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "Этот файл слишком большой для списка каналов." },
+  "noticeCountReset": { "message": "Счётчик сброшен" },
+  "noticeNumberInvalid": {
+    "message": "Введите число от $MIN$ до $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Настройки YouTube Auto Like" },
+  "optionsTitle": { "message": "Настройки" },
+  "navSections": { "message": "Разделы" },
+  "navChannels": { "message": "Какие каналы" },
+  "navVideos": { "message": "Какие видео" },
+  "navWhen": { "message": "Когда отмечать" },
+  "navLists": { "message": "Мои списки" },
+  "navMore": { "message": "Ещё" },
+
+  "channelsHeading": { "message": "Какие каналы отмечать?" },
+  "channelsHint": { "message": "Список «Никогда не отмечать» всегда в приоритете." },
+  "likeWhatSubscribed": { "message": "Каналы, на которые я подписан" },
+  "likeWhatSubscribedHint": { "message": "а также из моего списка «Всегда отмечать»." },
+  "recommended": { "message": "Рекомендуется" },
+  "likeWhatAll": { "message": "Все каналы" },
+  "likeWhatAllHint": { "message": "каждое просмотренное видео отмечается." },
+  "likeWhatList": { "message": "Только мой список «Всегда отмечать»" },
+  "likeWhatListHint": { "message": "с подпиской или без, больше ничего не отмечается." },
+
+  "videosHeading": { "message": "Какие видео?" },
+  "videosHint": { "message": "Shorts распознаются, даже если открыты в обычном проигрывателе." },
+  "likeNormalVideos": { "message": "Видео" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "Когда отмечать?" },
+  "whenHint": { "message": "Видео, которое вы сами отметили «Нравится» или «Не нравится», никогда не трогается." },
+  "modeInstant": { "message": "Сразу при открытии" },
+  "modeCustom": { "message": "Через некоторое время" },
+  "modeRandom": { "message": "В случайный момент" },
+  "thresholdAfter": { "message": "после" },
+  "thresholdPercentUnit": { "message": "% видео" },
+  "thresholdMinutesUnit": { "message": "мин воспроизведения" },
+  "percentLabel": { "message": "Процент видео" },
+  "minutesLabel": { "message": "Минуты воспроизведения" },
+  "thresholdKeepOne": { "message": "Хотя бы один из двух порогов остаётся отмеченным." },
+  "thresholdsHint": { "message": "Отметку запускает первый достигнутый порог. Более короткое видео отмечается за две секунды до конца. В прямом эфире учитываются только минуты, с момента, когда вы начали смотреть; без порога в минутах эфир отмечается сразу при открытии. Реклама не учитывается." },
+  "randomHint": { "message": "Момент, выбранный случайно в каждом видео. Прямой эфир отмечается сразу при открытии." },
+  "summaryLabel": { "message": "Итог:" },
+
+  "listsHeading": { "message": "Мои списки каналов" },
+  "listsHint": { "message": "Добавляйте каналы по ссылке или @псевдониму, из окна значка на видео или странице канала либо из истории. Видео исключается из окна значка." },
+  "listAlways": { "message": "Всегда отмечать" },
+  "listNever": { "message": "Никогда не отмечать" },
+  "listVideos": { "message": "Исключённые видео" },
+  "listExcludedOn": {
+    "message": "исключено $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Отменить исключение: $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Поиск по списку" },
+  "listImport": { "message": "Импорт" },
+  "listExport": { "message": "Экспорт" },
+  "listEmpty": { "message": "В этом списке нет каналов. Добавьте их по ссылке или @псевдониму, из окна значка на видео или странице канала либо из истории." },
+  "listEmptyVideos": { "message": "Нет исключённых видео. Чтобы исключить видео, откройте окно значка во время просмотра и выберите «Никогда не отмечать это видео»." },
+  "listNoMatch": { "message": "Ни один канал не подходит под этот поиск." },
+  "listAddedOn": {
+    "message": "добавлено $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Удалить из этого списка: $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ из $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Показать ещё $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Показать всё ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Строк в списках и истории" },
+  "listPageSizeHint": { "message": "Остальные появляются по кнопкам «Показать ещё» или «Показать всё». Длинный список прокручивается внутри, не удлиняя страницу." },
+  "listPageSizeAll": { "message": "Все" },
+  "listOpenChannel": { "message": "Открыть канал на YouTube" },
+
+  "navHistory": { "message": "История" },
+  "historyHeading": { "message": "Отметки расширения" },
+  "historyHint": {
+    "message": "Последние отметки (не больше $COUNT$), от новых к старым, хранятся только в этом браузере.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Расширение ещё ничего не отметило." },
+  "historyUntitled": { "message": "Видео без названия" },
+  "historyChannelChoice": {
+    "message": "Отмечать видео канала $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Очистить историю" },
+  "noticeHistoryCleared": { "message": "История очищена" },
+
+  "moreHeading": { "message": "Ещё" },
+  "themeLabel": { "message": "Тема" },
+  "themeSystem": { "message": "Как в системе" },
+  "themeLight": { "message": "Светлая" },
+  "themeDark": { "message": "Тёмная" },
+  "updatesLabel": { "message": "Искать новые версии" },
+  "updatesHint": { "message": "Обращается к GitHub, где публикуется расширение; GitHub при этом видит ваш IP-адрес." },
+  "updateEvery0": { "message": "Никогда" },
+  "updateEvery30": { "message": "Каждые 30 мин" },
+  "updateEvery60": { "message": "Каждый час" },
+  "updateEvery360": { "message": "Каждые 6 ч" },
+  "updateEvery1440": { "message": "Каждый день" },
+  "updateEvery10080": { "message": "Каждую неделю" },
+  "updateEveryCustom": { "message": "Своя частота…" },
+  "updateEveryPrefix": { "message": "Раз в" },
+  "updateCustomCount": { "message": "Число минут, часов или дней между двумя проверками" },
+  "updateCustomUnit": { "message": "Единица" },
+  "unitMinutesOne": { "message": "мин" },
+  "unitMinutesOther": { "message": "мин" },
+  "unitHoursOne": { "message": "ч" },
+  "unitHoursOther": { "message": "ч" },
+  "unitDaysOne": { "message": "дн." },
+  "unitDaysOther": { "message": "дн." },
+  "noticeFrequencyInvalid": { "message": "Введите срок от 5 минут до 30 дней." },
+  "updateCheckNow": { "message": "Проверить сейчас" },
+  "updateStatusOff": { "message": "Новые версии не ищутся." },
+  "updateStatusNever": { "message": "Ещё не проверялось." },
+  "updateStatusChecking": { "message": "Проверка…" },
+  "updateStatusAvailable": {
+    "message": "Вышла версия $VERSION$ ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Проверено $WHEN$: у вас последняя версия.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Проверено $WHEN$: ещё нет опубликованных версий.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Последняя проверка не удалась $WHEN$; следующая попробует снова.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Не удалось выполнить проверку." },
+  "likeCountHint": { "message": "С установки расширения или с последнего сброса. Сброс больше ничего не меняет." },
+  "likeCountReset": { "message": "Сбросить" },
+
+  "ruleSentence": {
+    "message": "Отмечает $WHAT$ $CHANNELS$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Ничего не отмечает: и видео, и Shorts выключены." },
+  "ruleWhatBoth": { "message": "видео и Shorts" },
+  "ruleWhatVideos": { "message": "видео" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "с каналов, на которые вы подписаны," },
+  "ruleChannelsSubscribedAndList": { "message": "с каналов, на которые вы подписаны, и из вашего списка «Всегда отмечать»" },
+  "ruleChannelsAll": { "message": "со всех каналов" },
+  "ruleChannelsList": { "message": "с каналов из вашего списка «Всегда отмечать»" },
+  "ruleWhenInstant": { "message": "сразу при открытии" },
+  "ruleWhenPercent": {
+    "message": "на $PERCENT$ % видео",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "после $MINUTES$ мин воспроизведения",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "на $PERCENT$ % видео или после $MINUTES$ мин воспроизведения, смотря что наступит раньше",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "в случайный момент" },
+
+  "likeCountOne": {
+    "message": "Отмечено видео: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "Отмечено видео: $COUNT$",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ с",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ мин $SECONDS$ с",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ ч $MINUTES$ мин",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
