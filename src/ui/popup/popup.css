@@ -16,11 +16,23 @@ body {
   padding: 12px 14px;
   border-bottom: 1px solid var(--border);
 }
+/* The name of the extension keeps one line: when the state of the switch
+   lacks room next to it ("Duraklatıldı", "Gepauzeerd"…), that text goes
+   under the switch instead. */
 .popup-head h1 {
   margin: 0;
   font-size: 14px;
   font-weight: 650;
-  flex: 1;
+  flex: 1 0 auto;
+  white-space: nowrap;
+}
+.popup-head .switch {
+  flex: 0 1 auto;
+  min-width: 0;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+  row-gap: 2px;
+  text-align: center;
 }
 
 .paused-banner {
