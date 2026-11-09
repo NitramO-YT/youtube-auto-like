@@ -1,0 +1,508 @@
+{
+  "extensionName": { "message": "YouTube Auto Like" },
+  "extensionDescription": { "message": "Gillar automatiskt YouTube-videor från de kanaler du väljer." },
+
+  "locale": { "message": "sv" },
+
+  "switchLabel": { "message": "Gilla videor automatiskt" },
+  "switchActive": { "message": "Aktiv" },
+  "switchPaused": { "message": "Pausad" },
+  "pausedBanner": { "message": "Tillägget gillar ingenting medan det är pausat." },
+  "badgeUpdate": { "message": "NY" },
+  "updateAvailableTitle": {
+    "message": "YouTube Auto Like: version $VERSION$ har släppts",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateFooter": {
+    "message": "Version $VERSION$ har släppts ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+
+  "sectionThisVideo": { "message": "Den här videon" },
+  "sectionThisChannel": { "message": "Den här kanalen" },
+  "sectionRule": { "message": "Aktiv regel" },
+  "openSettings": { "message": "Ändra inställningarna →" },
+  "settingsShow": { "message": "Visa inställningarna" },
+  "settingsHide": { "message": "Tillbaka till videon" },
+  "openFullPage": { "message": "Öppna på en hel sida ↗" },
+  "noVideo": { "message": "Öppna en video eller en Short på YouTube för att se vad tillägget gör med den, eller en kanalsida för att välja om dess videor ska gillas." },
+  "noVideoHint": { "message": "Om en video redan är öppen, läs in sidan igen." },
+
+  "channelUnknown": { "message": "Okänd kanal" },
+  "channelSubscribed": { "message": "Prenumererar" },
+  "channelNotSubscribed": { "message": "Prenumererar inte" },
+  "kindVideo": { "message": "Video" },
+  "kindVideoDuration": {
+    "message": "Video på $DURATION$",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "kindShort": { "message": "Short" },
+  "kindLive": { "message": "Livesändning" },
+
+  "statusLikedTitle": { "message": "Gillad automatiskt" },
+  "statusLikedDetail": {
+    "message": "$WHEN$, $HOW$",
+    "placeholders": { "when": { "content": "$1" }, "how": { "content": "$2" } }
+  },
+  "likedHowInstant": { "message": "direkt när den öppnades" },
+  "likedHowLikeNow": { "message": "på din begäran" },
+  "likedHowAt": {
+    "message": "vid $TIME$ i videon",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "likedHowAfterWatching": {
+    "message": "efter $DURATION$ tittande",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+
+  "statusWaitPercent": {
+    "message": "Gillas vid $PERCENT$ % av videon",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "statusWaitMinutes": {
+    "message": "Gillas efter $MINUTES$ min uppspelning",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "statusWaitRandom": { "message": "Gillas vid ett slumpmässigt tillfälle" },
+  "statusWaitBeforeEnd": { "message": "Gillas strax före slutet" },
+  "statusWaitRemaining": {
+    "message": "$DURATION$ uppspelning kvar",
+    "placeholders": { "duration": { "content": "$1" } }
+  },
+  "statusWaitSoon": { "message": "Gillas om ett ögonblick" },
+  "statusWaitDuration": { "message": "Väntar på videons längd" },
+  "statusWaitAd": { "message": "Väntar på att annonsen ska ta slut" },
+  "statusWaitAdDetail": { "message": "Annonstid räknas inte." },
+  "statusReading": { "message": "Läser sidan…" },
+  "statusReadingDetail": { "message": "På en Short visar YouTube ibland knapparna först när musen rör sig över videon." },
+  "statusConfirming": { "message": "Kontrollerar att gillningen gick igenom…" },
+  "statusFailedTitle": { "message": "Gillningen kunde inte bekräftas" },
+  "statusFailedDetail": { "message": "Knappen ”Gilla” reagerade inte. Läs in sidan igen för att försöka på nytt." },
+
+  "statusAlreadyLikedTitle": { "message": "Redan gillad" },
+  "statusNotLikedTitle": { "message": "Inte gillad" },
+  "reasonAlreadyLiked": { "message": "Den här videon var redan gillad: tillägget låter den vara." },
+  "reasonAlreadyDisliked": { "message": "Du har ogillat den här videon: tillägget låter den vara." },
+  "reasonSkippedByUser": { "message": "Du bad om att den inte skulle gillas den här gången. Den kan gillas när du tittar på den igen." },
+  "reasonVideoExcluded": { "message": "Du har exkluderat den här videon: den gillas aldrig förrän du slutar exkludera den." },
+  "reasonNotSubscribed": { "message": "Du prenumererar inte på den här kanalen. Den gillas om du börjar prenumerera." },
+  "reasonNotInAlwaysList": { "message": "Bara kanalerna i din lista ”Gilla alltid” gillas." },
+  "reasonInNeverList": { "message": "Den här kanalen finns i din lista ”Gilla aldrig”." },
+  "reasonShortsOff": { "message": "Shorts gillas inte, enligt dina inställningar." },
+  "reasonNormalVideosOff": { "message": "Bara Shorts gillas, enligt dina inställningar." },
+  "statusWouldLike": { "message": "Skulle gillas" },
+  "statusWouldLikeDetail": { "message": "om tillägget var aktivt." },
+
+  "actionLikeNow": { "message": "Gilla nu" },
+  "actionSkip": { "message": "Inte den här gången" },
+  "actionRestart": { "message": "Börja om för den här videon" },
+  "actionRetry": { "message": "Försök igen" },
+  "removedLikeTitle": { "message": "Gillning borttagen" },
+  "removedLikeRestart": { "message": "Du tog bort gillningen. Börja om så att tillägget kontrollerar videon igen." },
+  "removedDislikeTitle": { "message": "Ogillning borttagen" },
+  "removedDislikeRestart": { "message": "Du tog bort ogillningen. Börja om så att tillägget kontrollerar videon igen." },
+  "likeRemovedNextOpening": { "message": "Den gillas igen nästa gång videon öppnas." },
+  "likeRemovedAt": {
+    "message": "Den gillas igen när uppspelningen passerar $TIME$ igen.",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "relikeLabel": { "message": "Gilla igen en video vars gillning jag tar bort" },
+  "relikeHint": { "message": "När uppspelningen passerar det planerade tillfället igen, alltså efter att du spolat tillbaka till före det; med ”Direkt när den öppnas” nästa gång videon öppnas. Gäller även en video som du själv hade gillat." },
+  "actionResume": { "message": "Ångra ”Inte den här gången”" },
+  "actionExcludeVideo": { "message": "Gilla aldrig den här videon" },
+  "actionUnexcludeVideo": { "message": "Sluta exkludera den här videon" },
+  "channelChoiceLegend": { "message": "Gilla videor från den här kanalen" },
+  "channelChoiceAlways": { "message": "Alltid" },
+  "channelChoiceAuto": { "message": "Enligt inställningar" },
+  "channelChoiceNever": { "message": "Aldrig" },
+
+  "noticeAddedAlways": { "message": "Tillagd i ”Gilla alltid”" },
+  "noticeAddedNever": { "message": "Tillagd i ”Gilla aldrig”" },
+  "noticeRemovedNever": { "message": "Borttagen från ”Gilla aldrig”" },
+  "noticeSkipped": { "message": "Inte gillad den här gången" },
+  "noticeVideoExcluded": { "message": "Tillagd bland de exkluderade videorna" },
+  "noticeVideoUnexcluded": { "message": "Borttagen från de exkluderade videorna" },
+  "noticeUndo": { "message": "Ångra" },
+  "noticeUndone": { "message": "Ångrat" },
+  "noticeSaveFailed": { "message": "Ändringen kunde inte sparas." },
+  "noticeStorageFull": { "message": "Tilläggets lagring är full: ta bort kanaler eller exkluderade videor från dina listor och försök igen." },
+  "noticeLoadFailed": { "message": "Inställningarna kunde inte läsas." },
+  "noticeListFull": {
+    "message": "Den här listan är full (högst $COUNT$ poster).",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "noticeNoAnswer": { "message": "Sidan svarade inte. Läs in den igen och försök på nytt." },
+  "noticeSaved": { "message": "Sparat" },
+  "noticeRemovedAlways": { "message": "Borttagen från ”Gilla alltid”" },
+  "noticeImportDone": {
+    "message": "Importen är klar: $CHANGES$",
+    "placeholders": { "changes": { "content": "$1" } }
+  },
+  "noticeChannelsAddedOne": {
+    "message": "$COUNT$ kanal tillagd i ”$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+  "noticeChannelsAddedOther": {
+    "message": "$COUNT$ kanaler tillagda i ”$LIST$”",
+    "placeholders": { "count": { "content": "$1" }, "list": { "content": "$2" } }
+  },
+
+  "dialogCancel": { "message": "Avbryt" },
+  "dialogClose": { "message": "Stäng" },
+  "noticeCopied": { "message": "Kopierat" },
+  "noticeCopyFailed": { "message": "Det gick inte att kopiera: markera texten och kopiera den själv." },
+  "noticeJournalCleared": { "message": "Loggen rensad" },
+
+  "languageLabel": { "message": "Språk" },
+  "languageHint": { "message": "Webbläsarens, eller ett annat som du väljer. En översättning att rätta? Föreslå det på GitHub." },
+  "languageAuto": { "message": "Webbläsarens" },
+
+  "debugLabel": { "message": "Felsökningsläge" },
+  "debugHint": { "message": "För en logg över vad tillägget gör, för att rapportera ett problem: de senaste 200 stegen, med ID:n för de videor du tittat på, sparade bara i den här webbläsaren. Avstängt förs ingen logg." },
+  "journalCountOne": { "message": "Logg: $COUNT$ post", "placeholders": { "count": { "content": "$1" } } },
+  "journalCountOther": { "message": "Logg: $COUNT$ poster", "placeholders": { "count": { "content": "$1" } } },
+  "journalCopy": { "message": "Kopiera loggen" },
+  "journalClear": { "message": "Rensa loggen" },
+
+  "navAbout": { "message": "Om" },
+  "aboutHeading": { "message": "Om" },
+  "aboutVersion": {
+    "message": "YouTube Auto Like, version $VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "aboutBy": { "message": "Utvecklat av" },
+  "aboutOrigin": { "message": "Ursprungligt projekt" },
+  "aboutFirefox": { "message": "Fork för Firefox" },
+  "aboutLicense": { "message": "Licens" },
+  "aboutInvite": { "message": "Besök GitHub-förrådet för att lära dig mer, följa nya versioner eller föreslå en förbättring. Ett problem? Rapportera det med knappen nedan." },
+  "aboutRepository": { "message": "Se projektet på GitHub" },
+  "reportOpen": { "message": "Rapportera ett problem" },
+  "reportHint": { "message": "Beskriv problemet i det ärende som öppnas på GitHub: den här rapporten bifogas för att hjälpa till att förstå det. Läs den innan du skickar; dina kanallistor finns inte med." },
+  "reportJournalOne": {
+    "message": "Bifoga loggen ($COUNT$ post, med ID:n för de videor du tittat på)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportJournalOther": {
+    "message": "Bifoga loggen ($COUNT$ poster, med ID:n för de videor du tittat på)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportDebugOff": { "message": "Ingen logg har förts. För att bifoga en: slå på felsökningsläget under ”Mer”, gör om det som går fel och kom sedan tillbaka hit." },
+  "reportTextLabel": { "message": "Rapport" },
+  "reportCopy": { "message": "Kopiera rapporten" },
+  "reportIssue": { "message": "Öppna ett ärende på GitHub" },
+  "reportCut": { "message": "Rapporten är för lång för ärendets adress: den kortas av där. Kopiera hela rapporten och klistra in den i ärendet." },
+  "dialogAnalyse": { "message": "Analysera" },
+  "partWithCount": {
+    "message": "$PART$ ($COUNT$)",
+    "placeholders": { "part": { "content": "$1" }, "count": { "content": "$2" } }
+  },
+
+  "addChannels": { "message": "Lägg till kanaler" },
+  "addHint": { "message": "Klistra in länkar till kanaler eller videor, eller @handtag, en per rad. Tillägget frågar YouTube vilken kanal det gäller, som om du öppnade dess sida." },
+  "addLinesLabel": { "message": "Länkar eller @handtag" },
+  "addLinesPlaceholder": { "message": "https://www.youtube.com/@namn\n@namn\nhttps://www.youtube.com/watch?v=…" },
+  "addTargetLabel": { "message": "I listan" },
+  "addSearch": { "message": "Sök" },
+  "addSearching": {
+    "message": "Frågar YouTube… $DONE$ av $TOTAL$",
+    "placeholders": { "done": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "addApply": { "message": "Lägg till" },
+  "addApplyOne": {
+    "message": "Lägg till $COUNT$ kanal",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addApplyOther": {
+    "message": "Lägg till $COUNT$ kanaler",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "addNothing": { "message": "Ingen kanal att lägga till: alla finns redan i listan, eller så hittades ingen." },
+  "addEmpty": { "message": "Klistra in minst en länk eller ett @handtag." },
+  "addTooMany": {
+    "message": "Högst $MAX$ rader åt gången.",
+    "placeholders": { "max": { "content": "$1" } }
+  },
+  "lookupNew": { "message": "läggs till" },
+  "lookupAlready": { "message": "finns redan i listan" },
+  "lookupMoved": {
+    "message": "flyttas från ”$FROM$” till ”$TO$”",
+    "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
+  },
+  "lookupDuplicate": { "message": "samma kanal som en tidigare rad" },
+  "lookupNotALink": { "message": "varken en länk till en YouTube-kanal eller -video eller ett @handtag" },
+  "lookupNotFound": { "message": "kanalen eller videon finns inte på YouTube" },
+  "lookupUnreadable": { "message": "YouTube angav inte kanalen. Om YouTube aldrig har öppnats i den här webbläsaren, öppna det en gång och gör ditt cookieval, och försök sedan igen" },
+
+  "importTitle": { "message": "Importera listor" },
+  "importHint": { "message": "En fil som tillägget har exporterat, eller en lista med kanallänkar, en per rad. Inget sparas före ”Importera”: ”Analysera” visar först vad som kommer att göras." },
+  "importDropHere": { "message": "Släpp en fil här, eller" },
+  "importBrowse": { "message": "bläddra bland dina filer" },
+  "importPasteHint": { "message": "Du kan också klistra in en fil eller text (Ctrl+V) i det här fönstret." },
+  "importChange": { "message": "Byt" },
+  "importRemove": { "message": "Ta bort" },
+  "importPasted": { "message": "Inklistrad text" },
+  "importSourceFile": { "message": "Fil som tillägget har exporterat" },
+  "importSourceLinksOne": {
+    "message": "Lista med länkar, $COUNT$ rad",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importSourceLinksOther": {
+    "message": "Lista med länkar, $COUNT$ rader",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importNotUnderstood": { "message": "Det här är varken en export från tillägget eller en lista med länkar." },
+  "importNoSource": { "message": "Välj först en fil, eller klistra in text." },
+  "importNoPart": { "message": "Markera minst en del att importera." },
+  "importListFull": {
+    "message": "En lista skulle få mer än $COUNT$ poster: ingenting skulle importeras.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importPartsLabel": { "message": "Vad som importeras" },
+  "importLinksTarget": { "message": "Lägg de här kanalerna i" },
+  "importModeLabel": { "message": "Poster som redan finns" },
+  "importModeAddNew": { "message": "Lägg bara till de nya" },
+  "importModeAddNewHint": { "message": "En kanal som redan finns i en lista stannar där den är." },
+  "importModeFollow": { "message": "Lägg till och följ filen" },
+  "importModeFollowHint": { "message": "En kanal som redan finns flyttas till den lista som filen anger." },
+  "importModeReplace": { "message": "Ersätt allt med filen" },
+  "importModeReplaceHint": { "message": "De markerade delarna blir exakt som i filen: det som inte finns i den tas bort." },
+  "importRemember": { "message": "Kom ihåg mitt val" },
+  "importApply": { "message": "Importera" },
+  "importConfirmOne": {
+    "message": "Jag bekräftar att $COUNT$ post som saknas i filen tas bort.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "importConfirmOther": {
+    "message": "Jag bekräftar att de $COUNT$ poster som saknas i filen tas bort.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "reportPart": {
+    "message": "$PART$: $COUNTS$",
+    "placeholders": { "part": { "content": "$1" }, "counts": { "content": "$2" } }
+  },
+  "reportPartEmpty": { "message": "inget ändras" },
+  "reportNothing": { "message": "Inget ändras: allt finns redan." },
+  "reportAddedOne": { "message": "$COUNT$ ny", "placeholders": { "count": { "content": "$1" } } },
+  "reportAddedOther": { "message": "$COUNT$ nya", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOne": { "message": "$COUNT$ flyttad", "placeholders": { "count": { "content": "$1" } } },
+  "reportMovedOther": { "message": "$COUNT$ flyttade", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOne": { "message": "$COUNT$ fanns redan", "placeholders": { "count": { "content": "$1" } } },
+  "reportUnchangedOther": { "message": "$COUNT$ fanns redan", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOne": { "message": "$COUNT$ borttagen", "placeholders": { "count": { "content": "$1" } } },
+  "reportRemovedOther": { "message": "$COUNT$ borttagna", "placeholders": { "count": { "content": "$1" } } },
+
+  "exportTitle": { "message": "Exportera listor" },
+  "exportPartsLabel": { "message": "Vad som exporteras" },
+  "exportFormatLabel": { "message": "Format" },
+  "exportFormatJson": { "message": "Tilläggets fil (JSON)" },
+  "exportFormatJsonHint": { "message": "Importeras tillbaka som den är, med kanalernas datum och bilder." },
+  "exportFormatLinks": { "message": "Lista med länkar (text)" },
+  "exportFormatLinksHint": { "message": "En kanallänk per rad, med dess namn, att läsa eller dela. Exkluderade videor ingår inte." },
+  "exportDownload": { "message": "Ladda ner" },
+  "exportNothing": { "message": "Markera minst en lista." },
+  "noticeImportInvalid": { "message": "Den här filen är inte en lista som exporterats av YouTube Auto Like." },
+  "noticeImportTooBig": { "message": "Den här filen är för stor för att vara en kanallista." },
+  "noticeCountReset": { "message": "Räknaren nollställd" },
+  "noticeNumberInvalid": {
+    "message": "Ange ett tal från $MIN$ till $MAX$.",
+    "placeholders": { "min": { "content": "$1" }, "max": { "content": "$2" } }
+  },
+
+  "optionsPageTitle": { "message": "Inställningar för YouTube Auto Like" },
+  "optionsTitle": { "message": "Inställningar" },
+  "navSections": { "message": "Avsnitt" },
+  "navChannels": { "message": "Vilka kanaler" },
+  "navVideos": { "message": "Vilka videor" },
+  "navWhen": { "message": "När gilla" },
+  "navLists": { "message": "Mina listor" },
+  "navMore": { "message": "Mer" },
+
+  "channelsHeading": { "message": "Vilka kanaler ska gillas?" },
+  "channelsHint": { "message": "Listan ”Gilla aldrig” går alltid först." },
+  "likeWhatSubscribed": { "message": "Kanalerna jag prenumererar på" },
+  "likeWhatSubscribedHint": { "message": "plus de i min lista ”Gilla alltid”." },
+  "recommended": { "message": "Rekommenderas" },
+  "likeWhatAll": { "message": "Alla kanaler" },
+  "likeWhatAllHint": { "message": "varje video du tittar på gillas." },
+  "likeWhatList": { "message": "Bara min lista ”Gilla alltid”" },
+  "likeWhatListHint": { "message": "prenumeration eller inte, inget annat gillas." },
+
+  "videosHeading": { "message": "Vilka videor?" },
+  "videosHint": { "message": "Shorts känns igen även när de öppnas i den vanliga spelaren." },
+  "likeNormalVideos": { "message": "Videor" },
+  "likeShorts": { "message": "Shorts" },
+
+  "whenHeading": { "message": "När ska de gillas?" },
+  "whenHint": { "message": "En video som du själv gillar eller ogillar rörs aldrig." },
+  "modeInstant": { "message": "Direkt när den öppnas" },
+  "modeCustom": { "message": "Efter en stund" },
+  "modeRandom": { "message": "Vid ett slumpmässigt tillfälle" },
+  "thresholdAfter": { "message": "efter" },
+  "thresholdPercentUnit": { "message": "% av videon" },
+  "thresholdMinutesUnit": { "message": "minuters uppspelning" },
+  "percentLabel": { "message": "Procent av videon" },
+  "minutesLabel": { "message": "Minuters uppspelning" },
+  "thresholdKeepOne": { "message": "Minst en av de två gränserna förblir markerad." },
+  "thresholdsHint": { "message": "Den gräns som nås först utlöser gillningen. En kortare video gillas två sekunder före slutet. I en livesändning räknas bara minuterna, från det att du började titta; utan minutgräns gillas den direkt när den öppnas. Annonser räknas inte." },
+  "randomHint": { "message": "Ett slumpmässigt valt tillfälle i varje video. En livesändning gillas direkt när den öppnas." },
+  "summaryLabel": { "message": "Sammanfattning:" },
+
+  "listsHeading": { "message": "Mina kanallistor" },
+  "listsHint": { "message": "Lägg till kanaler via länk eller @handtag, från ikonens fönster på en video eller en kanalsida, eller från historiken. En video exkluderas från ikonens fönster." },
+  "listAlways": { "message": "Gilla alltid" },
+  "listNever": { "message": "Gilla aldrig" },
+  "listVideos": { "message": "Exkluderade videor" },
+  "listExcludedOn": {
+    "message": "exkluderad $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listUnexclude": {
+    "message": "Sluta exkludera $TITLE$",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "listSearch": { "message": "Sök i listan" },
+  "listImport": { "message": "Importera" },
+  "listExport": { "message": "Exportera" },
+  "listEmpty": { "message": "Ingen kanal i listan. Lägg till via länk eller @handtag, från ikonens fönster på en video eller en kanalsida, eller från historiken." },
+  "listEmptyVideos": { "message": "Ingen exkluderad video. För att exkludera en video, öppna ikonens fönster medan du tittar och välj ”Gilla aldrig den här videon”." },
+  "listNoMatch": { "message": "Ingen kanal matchar sökningen." },
+  "listAddedOn": {
+    "message": "tillagd $DATE$",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "listRemove": {
+    "message": "Ta bort $NAME$ från listan",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "listShownOf": {
+    "message": "$SHOWN$ av $TOTAL$",
+    "placeholders": { "shown": { "content": "$1" }, "total": { "content": "$2" } }
+  },
+  "listShowMore": {
+    "message": "Visa $COUNT$ till",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listShowAll": {
+    "message": "Visa alla ($COUNT$)",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "listPageSizeLabel": { "message": "Rader som visas i listorna och historiken" },
+  "listPageSizeHint": { "message": "De övriga visas med ”Visa … till” eller ”Visa alla”. En lång lista rullar inuti sig själv, utan att göra sidan längre." },
+  "listPageSizeAll": { "message": "Alla" },
+  "listOpenChannel": { "message": "Öppna kanalen på YouTube" },
+
+  "navHistory": { "message": "Historik" },
+  "historyHeading": { "message": "Tilläggets gillningar" },
+  "historyHint": {
+    "message": "De senaste $COUNT$, nyaste först, sparade bara i den här webbläsaren.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "historyEmpty": { "message": "Tillägget har inte gillat något ännu." },
+  "historyUntitled": { "message": "Video utan titel" },
+  "historyChannelChoice": {
+    "message": "Gilla videor från $NAME$",
+    "placeholders": { "name": { "content": "$1" } }
+  },
+  "historyClear": { "message": "Rensa historiken" },
+  "noticeHistoryCleared": { "message": "Historiken rensad" },
+
+  "moreHeading": { "message": "Mer" },
+  "themeLabel": { "message": "Tema" },
+  "themeSystem": { "message": "Som systemet" },
+  "themeLight": { "message": "Ljust" },
+  "themeDark": { "message": "Mörkt" },
+  "updatesLabel": { "message": "Sök efter nya versioner" },
+  "updatesHint": { "message": "Frågar GitHub, där tillägget publiceras; GitHub ser då din IP-adress." },
+  "updateEvery0": { "message": "Aldrig" },
+  "updateEvery30": { "message": "Var 30:e minut" },
+  "updateEvery60": { "message": "Varje timme" },
+  "updateEvery360": { "message": "Var 6:e timme" },
+  "updateEvery1440": { "message": "Varje dag" },
+  "updateEvery10080": { "message": "Varje vecka" },
+  "updateEveryCustom": { "message": "Anpassat…" },
+  "updateEveryPrefix": { "message": "Med" },
+  "updateCustomCount": { "message": "Antal minuter, timmar eller dagar mellan två kontroller" },
+  "updateCustomUnit": { "message": "Enhet" },
+  "unitMinutesOne": { "message": "minuts mellanrum" },
+  "unitMinutesOther": { "message": "minuters mellanrum" },
+  "unitHoursOne": { "message": "timmes mellanrum" },
+  "unitHoursOther": { "message": "timmars mellanrum" },
+  "unitDaysOne": { "message": "dags mellanrum" },
+  "unitDaysOther": { "message": "dagars mellanrum" },
+  "noticeFrequencyInvalid": { "message": "Ange en tid från 5 minuter till 30 dagar." },
+  "updateCheckNow": { "message": "Kontrollera nu" },
+  "updateStatusOff": { "message": "Nya versioner söks inte." },
+  "updateStatusNever": { "message": "Inte kontrollerat ännu." },
+  "updateStatusChecking": { "message": "Kontrollerar…" },
+  "updateStatusAvailable": {
+    "message": "Version $VERSION$ har släppts ↗",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "updateStatusUpToDate": {
+    "message": "Kontrollerat $WHEN$: du har den senaste versionen.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusNone": {
+    "message": "Kontrollerat $WHEN$: ingen version publicerad ännu.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "updateStatusFailed": {
+    "message": "Den senaste kontrollen misslyckades $WHEN$; nästa försöker igen.",
+    "placeholders": { "when": { "content": "$1" } }
+  },
+  "noticeCheckFailed": { "message": "Kontrollen kunde inte göras." },
+  "likeCountHint": { "message": "Sedan tillägget installerades, eller sedan den senaste nollställningen. Att nollställa ändrar inget annat." },
+  "likeCountReset": { "message": "Nollställ" },
+
+  "ruleSentence": {
+    "message": "Gillar $WHAT$ $CHANNELS$ $WHEN$.",
+    "placeholders": { "what": { "content": "$1" }, "channels": { "content": "$2" }, "when": { "content": "$3" } }
+  },
+  "ruleNothing": { "message": "Gillar ingenting: både videor och Shorts är avstängda." },
+  "ruleWhatBoth": { "message": "videor och Shorts" },
+  "ruleWhatVideos": { "message": "videor" },
+  "ruleWhatShorts": { "message": "Shorts" },
+  "ruleChannelsSubscribed": { "message": "från kanalerna du prenumererar på" },
+  "ruleChannelsSubscribedAndList": { "message": "från kanalerna du prenumererar på och de i din lista ”Gilla alltid”" },
+  "ruleChannelsAll": { "message": "från alla kanaler" },
+  "ruleChannelsList": { "message": "från kanalerna i din lista ”Gilla alltid”" },
+  "ruleWhenInstant": { "message": "direkt när de öppnas" },
+  "ruleWhenPercent": {
+    "message": "vid $PERCENT$ % av videon",
+    "placeholders": { "percent": { "content": "$1" } }
+  },
+  "ruleWhenMinutes": {
+    "message": "efter $MINUTES$ min uppspelning",
+    "placeholders": { "minutes": { "content": "$1" } }
+  },
+  "ruleWhenBoth": {
+    "message": "vid $PERCENT$ % av videon eller efter $MINUTES$ min uppspelning, det som kommer först",
+    "placeholders": { "percent": { "content": "$1" }, "minutes": { "content": "$2" } }
+  },
+  "ruleWhenRandom": { "message": "vid ett slumpmässigt tillfälle" },
+
+  "likeCountOne": {
+    "message": "$COUNT$ video gillad",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "likeCountOther": {
+    "message": "$COUNT$ videor gillade",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "versionLabel": {
+    "message": "v$VERSION$",
+    "placeholders": { "version": { "content": "$1" } }
+  },
+  "durationSeconds": {
+    "message": "$SECONDS$ s",
+    "placeholders": { "seconds": { "content": "$1" } }
+  },
+  "durationMinutes": {
+    "message": "$MINUTES$ min $SECONDS$ s",
+    "placeholders": { "minutes": { "content": "$1" }, "seconds": { "content": "$2" } }
+  },
+  "durationHours": {
+    "message": "$HOURS$ h $MINUTES$ min",
+    "placeholders": { "hours": { "content": "$1" }, "minutes": { "content": "$2" } }
+  }
+}
