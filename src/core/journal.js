@@ -41,7 +41,10 @@ export function journalEntry(at, videoId, text) {
   return { at: new Date(at).toISOString(), videoId: videoId ?? null, text };
 }
 
-/** The journal as text, one line per entry: "2026-11-09 02:10:03 aeP4eG-gO10 waiting, at 562 s (percent)". */
+/**
+ * The journal as text, one line per entry, its time in UTC, as stored, and
+ * said so: "2026-11-09 02:10:03 UTC aeP4eG-gO10 waiting, at 562 s (percent)".
+ */
 export function journalText(journal) {
-  return journal.map(({ at, videoId, text }) => `${at.slice(0, 19).replace('T', ' ')} ${videoId ?? '-'} ${text}`).join('\n');
+  return journal.map(({ at, videoId, text }) => `${at.slice(0, 19).replace('T', ' ')} UTC ${videoId ?? '-'} ${text}`).join('\n');
 }

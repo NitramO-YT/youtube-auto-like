@@ -35,6 +35,7 @@ import { channelRefFromUrl } from '../youtube/channel-page.js';
 import { findLikeButton, readChannelAvatar, readPlayback, readRating } from '../youtube/dom.js';
 import { surfaceFromUrl, videoIdFromUrl } from '../youtube/surface.js';
 import { createSession, likeNow, restartVideo, resumeVideo, skipVideo, Status, step } from './session.js';
+import { ratingChanges } from './rating-changes.js';
 import { popupStatus } from './status.js';
 
 const TICK_MS = 1000;
@@ -193,6 +194,11 @@ async function tick() {
       }
     }
 
+    // The click of the extension is told by its own lines.
+    const clicking = action === 'click' || session.status === Status.CONFIRMING || next.status === Status.CONFIRMING;
+    if (!clicking) {
+      for (const change of ratingChanges(lastObservation, observation)) note(next.videoId, change);
+    }
     if (next.status !== session.status || next.reason !== session.reason) {
       note(next.videoId, describe(next));
     }

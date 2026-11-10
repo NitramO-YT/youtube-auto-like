@@ -19,8 +19,8 @@ describe('journal', () => {
     assert.equal(normalizeJournal([{ at: entry(0).at, text: 'x'.repeat(1000) }])[0].text.length, 300);
   });
 
-  it('reads as one line per entry', () => {
-    assert.equal(journalText([entry(0), journalEntry(AT, null, 'cut off')]), '2026-11-09 02:10:03 aeP4eG-gO10 waiting, at 562 s (percent)\n2026-11-09 02:10:03 - cut off');
+  it('reads as one line per entry, its time said to be UTC', () => {
+    assert.equal(journalText([entry(0), journalEntry(AT, null, 'cut off')]), '2026-11-09 02:10:03 UTC aeP4eG-gO10 waiting, at 562 s (percent)\n2026-11-09 02:10:03 UTC - cut off');
   });
 });
 
@@ -42,7 +42,7 @@ describe('report', () => {
   });
 
   it('includes the journal only when given, and says when it is empty', () => {
-    assert.match(reportText({ ...facts, journal: [entry(0)] }), /### Journal\n```text\n2026-11-09 02:10:03 aeP4eG-gO10 waiting/);
+    assert.match(reportText({ ...facts, journal: [entry(0)] }), /### Journal\n```text\n2026-11-09 02:10:03 UTC aeP4eG-gO10 waiting/);
     assert.match(reportText({ ...facts, journal: [] }), /Empty: the debug mode kept nothing\./);
   });
 
