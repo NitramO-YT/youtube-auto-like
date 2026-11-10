@@ -36,7 +36,7 @@ describe('normalizeSettings', () => {
       likeShorts: false,
       lists: { always: [{ id: CHANNEL, name: 'COLAS', avatarUrl: AVATAR, addedAt: '2026-11-08T21:00:00.000Z' }], never: [] },
       excludedVideos: [
-        { videoId: 'aeP4eG-gO10', title: 'Atelier', channelName: 'COLAS', channelAvatarUrl: AVATAR, isShort: false, addedAt: '2026-11-08T21:00:00.000Z' },
+        { videoId: 'aeP4eG-gO10', title: 'Atelier', channelId: 'UC9orcd4I_3Uy_8_UAz2r48g', channelName: 'COLAS', channelAvatarUrl: AVATAR, isShort: false, addedAt: '2026-11-08T21:00:00.000Z' },
       ],
       timing: { mode: 'custom', percent: { enabled: false, value: 0 }, minutes: { enabled: true, value: 600 } },
       updateCheckMinutes: 0,

@@ -2,9 +2,9 @@
  * The file the options page exports the lists to, and imports them from:
  * JSON, { format, version, exportedAt, always, never, excludedVideos }. The
  * channel lists hold { id, name, avatarUrl, addedAt } entries, the excluded
- * videos { videoId, title, channelName, channelAvatarUrl, isShort, addedAt }
- * ones. excludedVideos may be missing from a file, and avatars from its
- * entries.
+ * videos { videoId, title, channelId, channelName, channelAvatarUrl, isShort,
+ * addedAt } ones. excludedVideos may be missing from a file, and avatars and
+ * the channelId of a video from its entries.
  *
  * An imported file is untrusted: its size is bounded, its format must be
  * this one, and its lists go through normalizeLists and

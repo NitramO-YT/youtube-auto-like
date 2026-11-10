@@ -191,6 +191,7 @@ async function excludeVideo(exclude) {
   const video = {
     videoId: status.videoId,
     title: status.title,
+    channelId: status.channel?.id ?? null,
     channelName: status.channel?.name ?? '',
     channelAvatarUrl: status.channel?.avatarUrl ?? null,
     isShort: status.isShort === true,

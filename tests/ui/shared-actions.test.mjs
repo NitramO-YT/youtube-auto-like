@@ -48,7 +48,7 @@ describe('moveChannel', () => {
 });
 
 describe('setVideoExcluded', () => {
-  const VIDEO = { videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelName: 'COLAS', channelAvatarUrl: AVATAR, isShort: true };
+  const VIDEO = { videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelId: 'UC9orcd4I_3Uy_8_UAz2r48g', channelName: 'COLAS', channelAvatarUrl: AVATAR, isShort: true };
 
   it('excludes a video, and the undo takes it out again', async () => {
     const store = storeWith({});

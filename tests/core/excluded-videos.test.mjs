@@ -40,4 +40,16 @@ describe('normalizeExcludedVideos', () => {
     assert.equal('script' in videos[0], false);
     assert.deepEqual(normalizeExcludedVideos('videos'), []);
   });
+
+  it('keeps the ID of the channel of a video when it is one, for the link to its page', () => {
+    const [kept, invalid, missing] = normalizeExcludedVideos([
+      video('aeP4eG-gO10', { channelId: 'UC9orcd4I_3Uy_8_UAz2r48g' }),
+      video('EkDC9elBHHc', { channelId: 'javascript:alert(1)' }),
+      video('82DBD5efxMc'),
+    ]);
+    assert.equal(kept.channelId, 'UC9orcd4I_3Uy_8_UAz2r48g');
+    assert.equal(invalid.channelId, null);
+    assert.equal(missing.channelId, null);
+    assert.equal(placeVideo([], video('aeP4eG-gO10', { channelId: 'UC9orcd4I_3Uy_8_UAz2r48g' }), true)[0].channelId, 'UC9orcd4I_3Uy_8_UAz2r48g');
+  });
 });

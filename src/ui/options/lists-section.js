@@ -14,9 +14,10 @@
 import { LinkKind, channelPageUrl } from '../../core/channel-links.js';
 import { videoUrl } from '../../core/video.js';
 import { createAvatar, initialOf } from '../shared/avatar.js';
-import { el, icon } from '../shared/dom.js';
+import { el, icon, joinedParts } from '../shared/dom.js';
 import { formatNumber, formatterFor } from '../shared/format.js';
 import { moveChannel, setVideoExcluded } from '../shared/lists.js';
+import { channelPart } from './channel-link.js';
 import { filterChannels, filterVideos, sortEntries } from './fields.js';
 import { createPager } from './pager.js';
 
@@ -43,7 +44,8 @@ export function createListsSection(page) {
     link.rel = 'noopener noreferrer';
     if (linkTitle) link.title = linkTitle;
     title.append(link);
-    if (meta) title.append(el(doc, 'span', 'meta', meta));
+    const parts = meta.filter(Boolean);
+    if (parts.length > 0) title.append(joinedParts(doc, 'span', 'meta', parts));
     const remove = el(doc, 'button', 'icon-btn');
     remove.type = 'button';
     remove.dataset.remove = id;
@@ -69,7 +71,7 @@ export function createListsSection(page) {
         name,
         href: channelPageUrl({ kind: LinkKind.CHANNEL_ID, channelId: channel.id }),
         linkTitle: t('listOpenChannel'),
-        meta: channel.addedAt ? t('listAddedOn', [dateFormat.format(new Date(channel.addedAt))]) : '',
+        meta: [channel.addedAt ? t('listAddedOn', [dateFormat.format(new Date(channel.addedAt))]) : null],
         removeLabel: t('listRemove', [name]),
       });
     },
@@ -94,10 +96,10 @@ export function createListsSection(page) {
         const added = video.addedAt ? t('listExcludedOn', [dateFormat.format(new Date(video.addedAt))]) : '';
         return row({
           id: video.videoId,
-          avatar: { id: video.videoId, initial: initialOf(video.channelName), avatarUrl: video.channelAvatarUrl },
+          avatar: { id: video.channelId ?? video.videoId, initial: initialOf(video.channelName), avatarUrl: video.channelAvatarUrl },
           name,
           href: videoUrl(video),
-          meta: [video.channelName, t(video.isShort ? 'kindShort' : 'kindVideo'), added].filter(Boolean).join(' · '),
+          meta: [channelPart(doc, video), t(video.isShort ? 'kindShort' : 'kindVideo'), added],
           removeLabel: t('listUnexclude', [name]),
         });
       },

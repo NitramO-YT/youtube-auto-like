@@ -27,7 +27,7 @@ const lists = normalizeLists({
   never: [{ id: QOQSIK, name: 'qoqsik', addedAt: null }],
 });
 const excludedVideos = normalizeExcludedVideos([
-  { videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelName: 'COLAS', channelAvatarUrl: AVATAR, isShort: true, addedAt: '2026-11-08T21:30:00.000Z' },
+  { videoId: 'EkDC9elBHHc', title: 'le moooonstre', channelId: 'UC9orcd4I_3Uy_8_UAz2r48g', channelName: 'COLAS', channelAvatarUrl: AVATAR, isShort: true, addedAt: '2026-11-08T21:30:00.000Z' },
 ]);
 
 describe('lists file', () => {
@@ -105,7 +105,7 @@ describe('lists file', () => {
     });
     assert.deepEqual(parseListsFile(text, text.length), {
       lists: { always: [{ id: COLAS, name: 'COLAS', avatarUrl: null, addedAt: null }], never: [] },
-      excludedVideos: [{ videoId: 'EkDC9elBHHc', title: '', channelName: '', channelAvatarUrl: null, isShort: false, addedAt: null }],
+      excludedVideos: [{ videoId: 'EkDC9elBHHc', title: '', channelId: null, channelName: '', channelAvatarUrl: null, isShort: false, addedAt: null }],
     });
   });
 

@@ -46,7 +46,7 @@ export async function moveChannel(store, channel, target, now = new Date()) {
  * entry it had is read from the settings as stored; the undo puts it back
  * as it was.
  *
- * @param {{ videoId: string, title?: string, channelName?: string, channelAvatarUrl?: string|null, isShort?: boolean }} video
+ * @param {{ videoId: string, title?: string, channelId?: string|null, channelName?: string, channelAvatarUrl?: string|null, isShort?: boolean }} video
  * @param {boolean} exclude
  * @returns {Promise<{ settings: object, undo: () => Promise<object> }>}
  * @throws {ListFullError} when the list is full; nothing is saved.
