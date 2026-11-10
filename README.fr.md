@@ -6,6 +6,10 @@
 
 Like automatiquement les vidéos YouTube que vous choisissez : celles des chaînes auxquelles vous êtes abonné, de toutes les chaînes, ou seulement de votre propre liste, dès l'ouverture ou après un moment.
 
+[![Dernière version](https://img.shields.io/github/v/release/NitramO-YT/youtube-auto-like)](https://github.com/NitramO-YT/youtube-auto-like/releases/latest)
+[![Date de la dernière version](https://img.shields.io/github/release-date/NitramO-YT/youtube-auto-like)](https://github.com/NitramO-YT/youtube-auto-like/releases/latest)
+[![Licence](https://img.shields.io/github/license/NitramO-YT/youtube-auto-like)](LICENSE)
+
 > [!NOTE]
 > Ce dépôt est la suite maintenue de [austencm/youtube-auto-like](https://github.com/austencm/youtube-auto-like), pour les navigateurs basés sur Chromium (Brave, Chrome, Edge…) et pour Firefox. Il n'est pas tenu par son auteur d'origine : voir [À propos de ce fork](#à-propos-de-ce-fork).
 
