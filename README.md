@@ -110,6 +110,12 @@ For a security vulnerability, follow the [security policy](SECURITY.md) instead.
 
 This applies to the Firefox version of this project too. [Taknok's fork](https://github.com/Taknok/youtube-auto-like) is another extension, with its own issues.
 
+## Supporting the project
+
+The extension is free, and stays so. If it is useful to you, you can support its development on [Ko-fi](https://ko-fi.com/NitramO).
+
+The projects it comes from can be supported too: Austen Morgan, who created it, on [Buy Me a Coffee](https://www.buymeacoffee.com/austen), and Taknok, who has kept it alive for Firefox since 2017, through [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=F8J6T6WHJBRAA).
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md): how to build, test and try the extension, how the code is organized, and how to help with translations.
