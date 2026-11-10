@@ -440,6 +440,9 @@
   },
   "historyClear": { "message": "Clear the history" },
   "noticeHistoryCleared": { "message": "History cleared" },
+  "noticeHistoryEntryRemoved": { "message": "Removed from the history" },
+  "historyRemove": { "message": "Remove $NAME$ from the history", "placeholders": { "name": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "like removed on $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "More" },
   "themeLabel": { "message": "Theme" },

@@ -320,9 +320,13 @@ main {
 .rows:empty {
   display: none;
 }
+/* A row holds its title and its controls side by side; the controls go
+   under the title only when both do not fit (a row of the history, with
+   its choice and its remove button, in a narrow window). */
 .row {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 6px 10px;
   align-items: center;
   padding: 8px 8px 8px 12px;
 }
@@ -335,7 +339,7 @@ main {
   font-size: 12px;
 }
 .row .title {
-  flex: 1;
+  flex: 1 1 12rem;
   min-width: 0;
 }
 /* Channel names and video titles come from YouTube, in any language:
@@ -368,9 +372,15 @@ main {
 /* The choice for the channel of a like, in the history. */
 .row .row-choice {
   flex: none;
-  max-width: 45%;
+  margin-inline-start: auto;
+  max-width: 100%;
   padding: 4px 6px;
   font-size: 12px;
+}
+/* A like of the history that the extension saw removed on the page. */
+.row .meta .like-removed {
+  color: var(--wait);
+  font-weight: 600;
 }
 .list-empty {
   color: var(--muted);

@@ -412,6 +412,9 @@
   },
   "historyClear": { "message": "ล้างประวัติ" },
   "noticeHistoryCleared": { "message": "ล้างประวัติแล้ว" },
+  "noticeHistoryEntryRemoved": { "message": "นำออกจากประวัติแล้ว" },
+  "historyRemove": { "message": "นำ $NAME$ ออกจากประวัติ", "placeholders": { "name": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "ยกเลิกการกดชอบเมื่อ $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "อื่นๆ" },
   "themeLabel": { "message": "ธีม" },

@@ -412,6 +412,9 @@
   },
   "historyClear": { "message": "Golește istoricul" },
   "noticeHistoryCleared": { "message": "Istoric golit" },
+  "noticeHistoryEntryRemoved": { "message": "Eliminat din istoric" },
+  "historyRemove": { "message": "Elimină $NAME$ din istoric", "placeholders": { "name": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "apreciere retrasă pe $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Altele" },
   "themeLabel": { "message": "Temă" },

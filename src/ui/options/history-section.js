@@ -1,17 +1,18 @@
 /**
  * "History" on the options page: the likes the extension made, newest first,
  * each linking to its video with the choice for its channel (always, per
- * the settings, never), and the clearing of the history. It follows the
+ * the settings, never), the mark of a like seen removed on the page, the
+ * removal of one like or the clearing of all, with an undo. It follows the
  * likes made while the page is open.
  *
  * @param {object} page From index.js (see lists-section.js).
  */
 import { listOf } from '../../core/channels.js';
-import { MAX_HISTORY } from '../../core/history.js';
+import { insertIntoHistory, MAX_HISTORY, removeFromHistory } from '../../core/history.js';
 import { videoUrl } from '../../core/video.js';
 import { createAvatar, initialOf } from '../shared/avatar.js';
 import { ChannelChoice, channelChoice, listForChoice, moveNoticeKey } from '../shared/channel-choice.js';
-import { el, joinedParts } from '../shared/dom.js';
+import { el, icon, joinedParts } from '../shared/dom.js';
 import { formatNumber, formatterFor } from '../shared/format.js';
 import { moveChannel } from '../shared/lists.js';
 import { channelPart } from './channel-link.js';
@@ -62,12 +63,22 @@ export function createHistorySection(page) {
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     const meta = [channelPart(doc, entry), t(entry.isShort ? 'kindShort' : 'kindVideo'), dateTimeFormat.format(new Date(entry.likedAt))];
+    // The like no longer stands: the line says so rather than show it as made.
+    if (entry.removedAt) meta.push(el(doc, 'span', 'like-removed', t('historyLikeRemoved', [dateTimeFormat.format(new Date(entry.removedAt))])));
     title.append(link, joinedParts(doc, 'span', 'meta', meta.filter(Boolean)));
     item.append(
       createAvatar(doc, { id: entry.channelId ?? entry.videoId, initial: initialOf(entry.channelName), avatarUrl: entry.channelAvatarUrl }),
       title,
     );
     if (choice) item.append(choiceSelect(entry, choice));
+    const label = t('historyRemove', [entry.title || t('historyUntitled')]);
+    const remove = el(doc, 'button', 'icon-btn');
+    remove.type = 'button';
+    remove.dataset.remove = entry.videoId;
+    remove.setAttribute('aria-label', label);
+    remove.title = label;
+    remove.append(icon(doc, 'close'));
+    item.append(remove);
     return item;
   }
 
@@ -104,6 +115,20 @@ export function createHistorySection(page) {
     pager.render(shown.length, history.length);
   }
 
+  /** Takes one like out of the history; the undo puts it back at its place, keeping the likes made since. */
+  async function removeEntry(videoId) {
+    const current = await store.loadHistory();
+    const index = current.findIndex((entry) => entry.videoId === videoId);
+    if (index === -1) return;
+    const removed = current[index];
+    history = await store.setHistory(removeFromHistory(current, videoId));
+    render();
+    confirmChange('noticeHistoryEntryRemoved', [], async () => {
+      history = await store.setHistory(insertIntoHistory(await store.loadHistory(), removed, index));
+      render();
+    });
+  }
+
   async function clear() {
     const previous = await store.loadHistory();
     history = await store.setHistory([]);
@@ -123,6 +148,10 @@ export function createHistorySection(page) {
 
   function listen() {
     byId('history-clear').addEventListener('click', () => act(clear));
+    byId('history-rows').addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-remove]');
+      if (button) act(() => removeEntry(button.dataset.remove));
+    });
     byId('history-rows').addEventListener('change', (event) => {
       const select = event.target.closest('select[data-video-id]');
       if (!select) return;

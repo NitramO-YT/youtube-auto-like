@@ -412,6 +412,9 @@
   },
   "historyClear": { "message": "Geschiedenis wissen" },
   "noticeHistoryCleared": { "message": "Geschiedenis gewist" },
+  "noticeHistoryEntryRemoved": { "message": "Uit de geschiedenis verwijderd" },
+  "historyRemove": { "message": "$NAME$ uit de geschiedenis verwijderen", "placeholders": { "name": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "like verwijderd op $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Meer" },
   "themeLabel": { "message": "Thema" },

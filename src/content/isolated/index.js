@@ -197,7 +197,16 @@ async function tick() {
     // The click of the extension is told by its own lines.
     const clicking = action === 'click' || session.status === Status.CONFIRMING || next.status === Status.CONFIRMING;
     if (!clicking) {
-      for (const change of ratingChanges(lastObservation, observation)) note(next.videoId, change);
+      for (const change of ratingChanges(lastObservation, observation)) {
+        note(next.videoId, change.text);
+        // A like the extension made, taken back or given again on the page,
+        // shows so in the history (a video without an entry is left alone).
+        if (change.button === 'like') {
+          store
+            .markHistoryLike(next.videoId, change.given ? null : new Date().toISOString())
+            .catch((error) => console.error(LOG_PREFIX, 'could not mark the like in the history', error));
+        }
+      }
     }
     if (next.status !== session.status || next.reason !== session.reason) {
       note(next.videoId, describe(next));

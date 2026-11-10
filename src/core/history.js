@@ -1,7 +1,10 @@
 /**
  * History of the likes the extension made: the last MAX_HISTORY videos,
  * newest first, kept in the browser only. Each entry is
- * { videoId, title, channelId, channelName, channelAvatarUrl, isShort, likedAt }.
+ * { videoId, title, channelId, channelName, channelAvatarUrl, isShort, likedAt, removedAt }:
+ * removedAt is the date the extension saw the like removed on the page, or
+ * null while the like stands or was not seen removed (the extension only
+ * sees what happens on a YouTube page it runs in).
  *
  * Like the settings, the history read from storage is untrusted:
  * normalizeHistory keeps valid entries with known fields and bounded texts.
@@ -15,10 +18,11 @@ const MAX_TITLE_LENGTH = 300;
 const MAX_NAME_LENGTH = 200;
 
 const text = (value, maxLength) => (typeof value === 'string' ? value.slice(0, maxLength) : '');
+const validDate = (value) => (typeof value === 'string' && value.length <= 40 && !Number.isNaN(Date.parse(value)) ? value : null);
 
 function normalizeEntry(entry) {
   if (!entry || typeof entry !== 'object' || !isValidVideoId(entry.videoId)) return null;
-  const likedAt = typeof entry.likedAt === 'string' && entry.likedAt.length <= 40 && !Number.isNaN(Date.parse(entry.likedAt)) ? entry.likedAt : null;
+  const likedAt = validDate(entry.likedAt);
   if (!likedAt) return null;
   return {
     videoId: entry.videoId,
@@ -28,6 +32,7 @@ function normalizeEntry(entry) {
     channelAvatarUrl: storedAvatarUrl(entry.channelAvatarUrl),
     isShort: entry.isShort === true,
     likedAt,
+    removedAt: validDate(entry.removedAt),
   };
 }
 
@@ -57,6 +62,38 @@ export function addToHistory(history, entry) {
   return [valid, ...history.filter((existing) => existing.videoId !== valid.videoId)].slice(0, MAX_HISTORY);
 }
 
+/** The history without the entry of a video. */
+export function removeFromHistory(history, videoId) {
+  return history.filter((entry) => entry.videoId !== videoId);
+}
+
+/**
+ * The history with an entry put back at its place (the undo of
+ * removeFromHistory), keeping the likes made since; unchanged when the video
+ * is already there.
+ */
+export function insertIntoHistory(history, entry, index) {
+  const valid = normalizeEntry(entry);
+  if (!valid || history.some((existing) => existing.videoId === valid.videoId)) return history;
+  const at = Math.min(Math.max(index, 0), history.length);
+  return [...history.slice(0, at), valid, ...history.slice(at)].slice(0, MAX_HISTORY);
+}
+
+/**
+ * The history with the like of a video marked as removed at a date, or as
+ * standing again with null; the same array when the video has no entry or
+ * already has that mark.
+ *
+ * @param {string|null} removedAt ISO date.
+ */
+export function markLikeRemoved(history, videoId, removedAt) {
+  const index = history.findIndex((entry) => entry.videoId === videoId);
+  if (index === -1 || Boolean(history[index].removedAt) === Boolean(removedAt)) return history;
+  const marked = [...history];
+  marked[index] = { ...history[index], removedAt: validDate(removedAt) };
+  return marked;
+}
+
 /**
  * The history entry of a like, from what the page showed when the like
  * button was clicked: the snapshot of the page reader (see validateSnapshot
@@ -77,5 +114,6 @@ export function historyEntry(videoId, snapshot, likedAt, channelAvatarUrl = null
     channelAvatarUrl: snapshot ? channelAvatarUrl : null,
     isShort: snapshot?.isShort === true,
     likedAt: new Date(likedAt).toISOString(),
+    removedAt: null,
   };
 }

@@ -412,6 +412,9 @@
   },
   "historyClear": { "message": "Tyhjennä historia" },
   "noticeHistoryCleared": { "message": "Historia tyhjennetty" },
+  "noticeHistoryEntryRemoved": { "message": "Poistettu historiasta" },
+  "historyRemove": { "message": "Poista $NAME$ historiasta", "placeholders": { "name": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "tykkäys poistettu $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Muut" },
   "themeLabel": { "message": "Teema" },

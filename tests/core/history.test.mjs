@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { addToHistory, historyEntry, MAX_HISTORY, normalizeHistory } from '../../src/core/history.js';
+import { addToHistory, historyEntry, insertIntoHistory, markLikeRemoved, MAX_HISTORY, normalizeHistory, removeFromHistory } from '../../src/core/history.js';
 import { videoUrl } from '../../src/core/video.js';
 
 const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
@@ -46,6 +46,48 @@ describe('addToHistory', () => {
   });
 });
 
+describe('one like taken out of the history, and put back', () => {
+  const ids = (history) => history.map((entry) => entry.videoId);
+
+  it('takes out the entry of one video only', () => {
+    assert.deepEqual(ids(removeFromHistory([like('aeP4eG-gO10'), like('EkDC9elBHHc')], 'aeP4eG-gO10')), ['EkDC9elBHHc']);
+  });
+
+  it('puts it back at its place, keeping the likes made since, and never twice', () => {
+    const removed = like('EkDC9elBHHc');
+    const now = [like('82DBD5efxMc'), like('aeP4eG-gO10'), like('mvner5stHJc')];
+    assert.deepEqual(ids(insertIntoHistory(now, removed, 1)), ['82DBD5efxMc', 'EkDC9elBHHc', 'aeP4eG-gO10', 'mvner5stHJc']);
+    assert.deepEqual(ids(insertIntoHistory([like('aeP4eG-gO10')], removed, 5)), ['aeP4eG-gO10', 'EkDC9elBHHc']);
+    const already = [removed];
+    assert.equal(insertIntoHistory(already, removed, 0), already);
+  });
+});
+
+describe('markLikeRemoved', () => {
+  const AT = '2026-11-10T21:52:00.000Z';
+
+  it('marks the like of a video as removed, and as standing again', () => {
+    const marked = markLikeRemoved([like('aeP4eG-gO10'), like('EkDC9elBHHc')], 'EkDC9elBHHc', AT);
+    assert.deepEqual(marked.map((entry) => entry.removedAt ?? null), [null, AT]);
+    assert.equal(markLikeRemoved(marked, 'EkDC9elBHHc', null)[1].removedAt, null);
+  });
+
+  it('changes nothing for a video without an entry, or already marked so', () => {
+    const history = [like('aeP4eG-gO10', { removedAt: AT })];
+    assert.equal(markLikeRemoved(history, 'EkDC9elBHHc', AT), history);
+    assert.equal(markLikeRemoved(history, 'aeP4eG-gO10', '2026-11-11T08:00:00.000Z'), history);
+  });
+
+  it('is cleared by a new like of the same video', () => {
+    assert.equal(addToHistory([like('aeP4eG-gO10', { removedAt: AT })], historyEntry('aeP4eG-gO10', null, Date.parse(AT)))[0].removedAt, null);
+  });
+
+  it('keeps only a valid date when read', () => {
+    assert.equal(normalizeHistory([like('aeP4eG-gO10', { removedAt: 'tomorrow' })])[0].removedAt, null);
+    assert.equal(normalizeHistory([like('aeP4eG-gO10', { removedAt: AT })])[0].removedAt, AT);
+  });
+});
+
 describe('normalizeHistory', () => {
   it('keeps valid entries with known fields and bounded texts', () => {
     const [entry] = normalizeHistory([{ ...like('aeP4eG-gO10'), title: 'x'.repeat(1000), script: '<img>', channelId: '@COLAS.' }]);
@@ -74,6 +116,7 @@ describe('historyEntry', () => {
         channelAvatarUrl: AVATAR,
         isShort: true,
         likedAt: '2026-11-08T21:00:00.000Z',
+        removedAt: null,
       },
     ]);
   });

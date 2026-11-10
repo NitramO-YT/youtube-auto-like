@@ -412,6 +412,9 @@
   },
   "historyClear": { "message": "Vymazat historii" },
   "noticeHistoryCleared": { "message": "Historie vymazána" },
+  "noticeHistoryEntryRemoved": { "message": "Odebráno z historie" },
+  "historyRemove": { "message": "Odebrat z historie: $NAME$", "placeholders": { "name": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "označení odebráno $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Další" },
   "themeLabel": { "message": "Motiv" },

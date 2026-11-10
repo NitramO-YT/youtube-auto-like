@@ -412,6 +412,9 @@
   },
   "historyClear": { "message": "清除历史记录" },
   "noticeHistoryCleared": { "message": "已清除历史记录" },
+  "noticeHistoryEntryRemoved": { "message": "已从历史记录中移除" },
+  "historyRemove": { "message": "从历史记录中移除 $NAME$", "placeholders": { "name": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "已于 $DATE$ 取消点赞", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "其他" },
   "themeLabel": { "message": "主题" },

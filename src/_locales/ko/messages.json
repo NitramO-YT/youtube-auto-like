@@ -412,6 +412,9 @@
   },
   "historyClear": { "message": "기록 삭제" },
   "noticeHistoryCleared": { "message": "기록 삭제됨" },
+  "noticeHistoryEntryRemoved": { "message": "기록에서 삭제됨" },
+  "historyRemove": { "message": "기록에서 $NAME$ 삭제", "placeholders": { "name": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "$DATE$에 좋아요 취소됨", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "기타" },
   "themeLabel": { "message": "테마" },

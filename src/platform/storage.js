@@ -10,7 +10,7 @@
  * like count and the history go into the journal, in the same write as the
  * change, each line naming the page (source).
  */
-import { addToHistory, normalizeHistory } from '../core/history.js';
+import { addToHistory, markLikeRemoved, normalizeHistory } from '../core/history.js';
 import { addToJournal, journalEntry, normalizeJournal } from '../core/journal.js';
 import { settingsChanges } from '../core/settings-changes.js';
 import { normalizeSettings } from '../core/settings.js';
@@ -120,6 +120,18 @@ export function createStore(api, { source = 'extension', now = Date.now } = {}) 
       const line = { videoId: null, text: `history set to ${normalized.length} likes (was ${previous})` };
       await area.set({ [HISTORY_KEY]: normalized, ...journalItems(stored, normalizeSettings(stored[SETTINGS_KEY]), [line]) });
       return normalized;
+    },
+
+    /**
+     * Marks the like of a video of the history as removed at a date, or as
+     * standing again with null (see markLikeRemoved); writes nothing for a
+     * video without an entry, or already marked so.
+     */
+    async markHistoryLike(videoId, removedAt) {
+      const stored = await area.get(HISTORY_KEY);
+      const history = normalizeHistory(stored[HISTORY_KEY]);
+      const marked = markLikeRemoved(history, videoId, removedAt);
+      if (marked !== history) await area.set({ [HISTORY_KEY]: marked });
     },
 
     /** The state of the checks for a new version (see normalizeUpdateState). */

@@ -12,6 +12,7 @@ const LIKE = {
   channelAvatarUrl: 'https://yt3.googleusercontent.com/3fhLCThebQlwuSDXM9SEapaTSVFB3EuXHCKtDzFhnugoLLb71I05xsU_yi5-qLMoT0Ve4PQQ=s88-c-k-c0x00ffffff-no-rj-mo',
   isShort: false,
   likedAt: '2026-11-08T21:00:00.000Z',
+  removedAt: null,
 };
 
 describe('createStore', () => {
@@ -117,6 +118,18 @@ describe('createStore', () => {
     assert.deepEqual(changes, [2], 'an empty append writes nothing');
     assert.deepEqual(await store.setJournal([]), []);
     assert.deepEqual(await store.loadJournal(), []);
+  });
+
+  it('marks a like of the history as removed, and writes nothing when it has nothing to mark', async () => {
+    const api = fakeApi({ [HISTORY_KEY]: [LIKE] });
+    const store = createStore(api);
+    const writes = [];
+    store.onHistoryChange((history) => writes.push(history[0].removedAt));
+    await store.markHistoryLike('aeP4eG-gO10', '2026-11-10T21:52:00.000Z');
+    await store.markHistoryLike('aeP4eG-gO10', '2026-11-10T21:53:00.000Z');
+    await store.markHistoryLike('EkDC9elBHHc', '2026-11-10T21:52:00.000Z');
+    await store.markHistoryLike('aeP4eG-gO10', null);
+    assert.deepEqual(writes, ['2026-11-10T21:52:00.000Z', null]);
   });
 
   describe('while the debug mode is on', () => {

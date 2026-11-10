@@ -412,6 +412,9 @@
   },
   "historyClear": { "message": "Apagar o histórico" },
   "noticeHistoryCleared": { "message": "Histórico apagado" },
+  "noticeHistoryEntryRemoved": { "message": "Removido do histórico" },
+  "historyRemove": { "message": "Remover $NAME$ do histórico", "placeholders": { "name": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "“Gostei” removido em $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Mais" },
   "themeLabel": { "message": "Tema" },

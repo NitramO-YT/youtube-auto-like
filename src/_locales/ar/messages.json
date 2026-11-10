@@ -412,6 +412,9 @@
   },
   "historyClear": { "message": "مسح سجل الإعجابات" },
   "noticeHistoryCleared": { "message": "تم مسح سجل الإعجابات" },
+  "noticeHistoryEntryRemoved": { "message": "تمت الإزالة من سجل الإعجابات" },
+  "historyRemove": { "message": "إزالة $NAME$ من سجل الإعجابات", "placeholders": { "name": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "تمت إزالة الإعجاب في $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "المزيد" },
   "themeLabel": { "message": "المظهر" },

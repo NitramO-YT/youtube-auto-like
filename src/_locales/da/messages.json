@@ -412,6 +412,9 @@
   },
   "historyClear": { "message": "Ryd historikken" },
   "noticeHistoryCleared": { "message": "Historikken er ryddet" },
+  "noticeHistoryEntryRemoved": { "message": "Fjernet fra historikken" },
+  "historyRemove": { "message": "Fjern $NAME$ fra historikken", "placeholders": { "name": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "markering fjernet $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Mere" },
   "themeLabel": { "message": "Tema" },
