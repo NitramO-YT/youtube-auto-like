@@ -39,12 +39,12 @@ Two channels, each with a link that never changes:
 
 Each release provides:
 
-- `youtube-auto-like.zip`, to load unpacked: the way that works in every Chromium-based browser;
+- `youtube-auto-like-chromium.zip`, to load unpacked: the way that works in every Chromium-based browser;
 - `youtube-auto-like.crx`, the signed package. Browsers often refuse a package that does not come from their store: if yours does, use the zip.
 - `youtube-auto-like.xpi`, for Firefox 140 or later, signed by Mozilla.
 
 Each file comes with a `.sha256` checksum file. The latest zip is always at
-`https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/youtube-auto-like.zip`.
+`https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/youtube-auto-like-chromium.zip`.
 
 ### Installing in Firefox
 
@@ -52,7 +52,7 @@ Open the [latest release](https://github.com/NitramO-YT/youtube-auto-like/releas
 
 ### Installing the zip
 
-1. Download `youtube-auto-like.zip` and unzip it into a folder you will keep (the browser loads the extension from there).
+1. Download `youtube-auto-like-chromium.zip` and unzip it into a folder you will keep (the browser loads the extension from there).
 2. Open `chrome://extensions` (`brave://extensions` in Brave, `edge://extensions` in Edge).
 3. Turn on the **Developer mode**.
 4. Click **Load unpacked** and choose the unzipped folder.
@@ -70,7 +70,7 @@ Firefox updates the extension by itself: it reads the `updates.json` file of the
 Put the `.sha256` file next to the downloaded file, then run:
 
 ```sh
-sha256sum -c youtube-auto-like.zip.sha256
+sha256sum -c youtube-auto-like-chromium.zip.sha256
 ```
 
 ## Privacy

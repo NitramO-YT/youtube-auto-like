@@ -111,7 +111,7 @@ and only the version you publish.
 1. Set the new version in `package.json` (the manifest takes it from there),
    and commit.
 2. Run `npm test`, then `npm run package`. It writes into `releases/`:
-   `youtube-auto-like.zip`, `youtube-auto-like.crx`, and a `.sha256` file for
+   `youtube-auto-like-chromium.zip`, `youtube-auto-like.crx`, and a `.sha256` file for
    each.
 3. Run `npm run sign-firefox` with the keys in `WEB_EXT_API_KEY` and
    `WEB_EXT_API_SECRET` (`-- --dry-run` checks everything without sending).

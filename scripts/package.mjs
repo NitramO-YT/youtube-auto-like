@@ -1,11 +1,12 @@
 /**
  * Packages a release of the extension into releases/:
- * - youtube-auto-like.zip, to load unpacked (developer mode);
+ * - youtube-auto-like-chromium.zip, to load unpacked (developer mode), named
+ *   after its browsers so that a Firefox user does not take it for theirs;
  * - youtube-auto-like.crx, signed with extension-key.pem, which gives it the
  *   ID pinned in src/manifest/chromium.json (scripts/extension-identity.mjs);
  * - a .sha256 file next to each, which `sha256sum -c` checks.
  * The names carry no version, so that the address of the latest release's
- * file never changes (releases/latest/download/youtube-auto-like.zip); the
+ * file never changes (releases/latest/download/youtube-auto-like-chromium.zip); the
  * version is the one of package.json, given to the build.
  *
  * The CRX is packed by a Chromium-family browser started on a throwaway
@@ -94,7 +95,7 @@ async function main() {
   await buildExtension({ target: 'chromium', srcDir: path.join(ROOT, 'src'), outDir: BUILD_DIR, version });
   await mkdir(OUT_DIR, { recursive: true });
 
-  const zip = path.join(OUT_DIR, `${NAME}.zip`);
+  const zip = path.join(OUT_DIR, `${NAME}-chromium.zip`);
   await writeFile(zip, zipFiles(await filesOf(BUILD_DIR)));
   const written = [[zip, await writeChecksum(zip)]];
 
