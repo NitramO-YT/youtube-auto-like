@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "sama kanava kuin aiemmalla rivillä" },
+  "importWillRemove": { "message": "poistetaan" },
+  "importStaysIn": { "message": "pysyy listalla ”$LIST$”", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "lisätään" },
+  "importVideoAlready": { "message": "jo poissuljettu" },
+  "importVideoRemove": { "message": "poistetaan" },
   "lookupNotALink": { "message": "ei YouTube-kanavan tai -videon linkki eikä @kahva" },
   "lookupNotFound": { "message": "kanavaa tai videota ei ole YouTubessa" },
   "lookupUnreadable": { "message": "YouTube ei kertonut kanavaa. Jos YouTubea ei ole koskaan avattu tässä selaimessa, avaa se kerran ja tee evästevalintasi, ja yritä sitten uudelleen" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Mitä tuodaan" },
   "importLinksTarget": { "message": "Lisää nämä kanavat listaan" },
-  "importModeLabel": { "message": "Jo olemassa olevat kohteet" },
+  "importModeLabel": { "message": "Sille, mikä sinulla jo on" },
   "importModeAddNew": { "message": "Lisää vain uudet" },
-  "importModeAddNewHint": { "message": "Kanava, joka on jo jollakin listalla, pysyy paikallaan." },
-  "importModeFollow": { "message": "Lisää ja noudata tiedostoa" },
-  "importModeFollowHint": { "message": "Jo olemassa oleva kanava siirretään tiedoston osoittamalle listalle." },
+  "importModeAddNewHint": { "message": "Lisää kanavat ja videot, joita sinulla ei vielä ole. Jo olemassa olevat pysyvät paikallaan, vaikka tiedosto sijoittaisi ne toiselle listalle." },
+  "importModeFollow": { "message": "Lisää ja järjestä tiedoston mukaan" },
+  "importModeFollowHint": { "message": "Lisää uudet ja siirtää jo olemassa olevat sille listalle, jolle tiedosto ne sijoittaa, esimerkiksi listalta ”Tykkää aina” listaan ”Älä tykkää koskaan”. Mitään ei poisteta." },
   "importModeReplace": { "message": "Korvaa kaikki tiedostolla" },
-  "importModeReplaceHint": { "message": "Valituista osista tulee täsmälleen tiedoston mukaiset: mitä siinä ei ole, poistetaan." },
+  "importModeReplaceHint": { "message": "Valituista listoista tulee täsmälleen tiedoston mukaiset: puuttuvat lisätään, muualla olevat siirretään ja se, mitä tiedostossa ei ole, poistetaan listoiltasi." },
   "importRemember": { "message": "Muista valintani" },
   "importApply": { "message": "Tuo" },
-  "importConfirmOne": {
-    "message": "Vahvistan, että $COUNT$ tiedostosta puuttuva kohde poistetaan.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Vahvistan: poista listoiltani yllä punaisella merkitty kohde." },
   "importConfirmOther": {
-    "message": "Vahvistan, että $COUNT$ tiedostosta puuttuvaa kohdetta poistetaan.",
+    "message": "Vahvistan: poista listoiltani yllä punaisella merkityt kohteet ($COUNT$).",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

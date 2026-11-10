@@ -15,11 +15,10 @@ import { ListFullError, normalizeChannels } from '../../core/channels.js';
 import { readLinkLines } from '../../core/lists-file.js';
 import { ImportMode, planImport } from '../../core/lists-import.js';
 import { failureText } from '../shared/actions.js';
-import { createAvatar, initialOf } from '../shared/avatar.js';
-import { el, joinedParts } from '../shared/dom.js';
 import { formatNumber, pluralKey } from '../shared/format.js';
 import { lookUpLines } from './channel-lookup.js';
 import { setStatus, setUpDialog } from './dialog.js';
+import { entryRow } from './entry-row.js';
 import { lookupLines, PART_LABELS } from './import-report.js';
 
 export function createAddDialog(page, { lookUp = (lines, onProgress) => lookUpLines(lines, fetch, onProgress) } = {}) {
@@ -43,13 +42,12 @@ export function createAddDialog(page, { lookUp = (lines, onProgress) => lookUpLi
   }
 
   function resultRow({ line, channel, text, ok }) {
-    const item = el(doc, 'li', ok ? 'lookup-row' : 'lookup-row failed');
-    const title = el(doc, 'div', 'title');
-    title.append(el(doc, 'span', 'name', channel ? channel.name || t('channelUnknown') : line));
-    title.append(joinedParts(doc, 'span', 'meta', channel ? [text, line] : [text]));
-    if (channel) item.append(createAvatar(doc, { id: channel.id, initial: initialOf(channel.name), avatarUrl: channel.avatarUrl }));
-    item.append(title);
-    return item;
+    return entryRow(doc, {
+      name: channel ? channel.name || t('channelUnknown') : line,
+      avatar: channel ? { id: channel.id, name: channel.name, avatarUrl: channel.avatarUrl } : null,
+      parts: channel ? [text, line] : [text],
+      failed: !ok,
+    });
   }
 
   function showResults() {

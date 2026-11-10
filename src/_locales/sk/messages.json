@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "rovnaký kanál ako na predchádzajúcom riadku" },
+  "importWillRemove": { "message": "bude odstránený" },
+  "importStaysIn": { "message": "zostane v „$LIST$“", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "bude pridané" },
+  "importVideoAlready": { "message": "už vylúčené" },
+  "importVideoRemove": { "message": "bude odstránené" },
   "lookupNotALink": { "message": "nie je odkaz na kanál ani video YouTube, ani @identifikátor" },
   "lookupNotFound": { "message": "kanál alebo video na YouTube neexistuje" },
   "lookupUnreadable": { "message": "YouTube kanál neuviedol. Ak ste YouTube v tomto prehliadači nikdy neotvorili, otvorte ho raz a vyberte nastavenia súborov cookie, potom to skúste znova" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Čo sa importuje" },
   "importLinksTarget": { "message": "Tieto kanály pridať do" },
-  "importModeLabel": { "message": "Položky, ktoré už existujú" },
+  "importModeLabel": { "message": "Pre to, čo už máte" },
   "importModeAddNew": { "message": "Pridať len nové" },
-  "importModeAddNewHint": { "message": "Kanál, ktorý už je v niektorom zozname, zostane, kde je." },
-  "importModeFollow": { "message": "Pridať a riadiť sa súborom" },
-  "importModeFollowHint": { "message": "Kanál, ktorý už existuje, sa presunie do zoznamu, ktorý uvádza súbor." },
+  "importModeAddNewHint": { "message": "Pridá kanály a videá, ktoré ešte nemáte. Tie, ktoré už máte, zostanú, kde sú, aj keď ich súbor zaraďuje do druhého zoznamu." },
+  "importModeFollow": { "message": "Pridať a zoradiť podľa súboru" },
+  "importModeFollowHint": { "message": "Pridá nové a tie, ktoré už máte, presunie do zoznamu, kam ich zaraďuje súbor, napríklad z „Vždy označovať“ do „Nikdy neoznačovať“. Nič sa neodstráni." },
   "importModeReplace": { "message": "Všetko nahradiť súborom" },
-  "importModeReplaceHint": { "message": "Začiarknuté časti budú presne ako v súbore: čo v ňom nie je, sa odstráni." },
+  "importModeReplaceHint": { "message": "Začiarknuté zoznamy budú presne ako v súbore: čo chýba, sa pridá, čo je inde, sa presunie, a čo súbor neobsahuje, sa z vašich zoznamov odstráni." },
   "importRemember": { "message": "Zapamätať si voľbu" },
   "importApply": { "message": "Importovať" },
-  "importConfirmOne": {
-    "message": "Potvrdzujem odstránenie $COUNT$ položky, ktorá v súbore chýba.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Potvrdzujem: odstrániť z mojich zoznamov položku označenú vyššie červenou." },
   "importConfirmOther": {
-    "message": "Potvrdzujem odstránenie položiek, ktoré v súbore chýbajú ($COUNT$).",
+    "message": "Potvrdzujem: odstrániť z mojich zoznamov položky označené vyššie červenou (počet: $COUNT$).",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

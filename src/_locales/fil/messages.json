@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "kaparehong channel ng naunang linya" },
+  "importWillRemove": { "message": "aalisin" },
+  "importStaysIn": { "message": "mananatili sa “$LIST$”", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "idaragdag" },
+  "importVideoAlready": { "message": "nakabukod na" },
+  "importVideoRemove": { "message": "aalisin" },
   "lookupNotALink": { "message": "hindi link ng YouTube channel o video, at hindi rin @handle" },
   "lookupNotFound": { "message": "walang ganitong channel o video sa YouTube" },
   "lookupUnreadable": { "message": "Hindi sinabi ng YouTube ang channel. Kung hindi pa nabubuksan ang YouTube sa browser na ito, buksan ito nang isang beses at piliin ang setting ng cookies, saka subukang muli" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Ang ii-import" },
   "importLinksTarget": { "message": "Ilagay ang mga channel na ito sa" },
-  "importModeLabel": { "message": "Mga item na mayroon na" },
+  "importModeLabel": { "message": "Para sa mga mayroon ka na" },
   "importModeAddNew": { "message": "Idagdag lang ang mga bago" },
-  "importModeAddNewHint": { "message": "Mananatili sa lugar nito ang channel na nasa isang listahan na." },
-  "importModeFollow": { "message": "Idagdag at sundin ang file" },
-  "importModeFollowHint": { "message": "Ililipat ang channel na mayroon na sa listahang nakasaad sa file." },
+  "importModeAddNewHint": { "message": "Idinaragdag ang mga channel at video na wala ka pa. Mananatili sa lugar ang mga mayroon ka na, kahit ilagay sila ng file sa kabilang listahan." },
+  "importModeFollow": { "message": "Idagdag at ayusin ayon sa file" },
+  "importModeFollowHint": { "message": "Idinaragdag ang mga bago, at inililipat ang mga mayroon ka na sa listahang pinaglalagyan ng file, halimbawa mula sa “Laging i-like” papunta sa “Huwag kailanman i-like”. Walang inaalis." },
   "importModeReplace": { "message": "Palitan ang lahat ng laman ng file" },
-  "importModeReplaceHint": { "message": "Magiging eksaktong katulad ng file ang mga bahaging naka-check: aalisin ang wala rito." },
+  "importModeReplaceHint": { "message": "Magiging eksaktong katulad ng file ang mga naka-check na listahan: idaragdag ang kulang, ililipat ang nasa ibang listahan, at aalisin sa iyong mga listahan ang wala sa file." },
   "importRemember": { "message": "Tandaan ang pinili ko" },
   "importApply": { "message": "Mag-import" },
-  "importConfirmOne": {
-    "message": "Kinukumpirma kong aalisin ang $COUNT$ item na wala sa file.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Kinukumpirma ko: alisin sa aking mga listahan ang item na may markang pula sa itaas." },
   "importConfirmOther": {
-    "message": "Kinukumpirma kong aalisin ang $COUNT$ item na wala sa file.",
+    "message": "Kinukumpirma ko: alisin sa aking mga listahan ang $COUNT$ item na may markang pula sa itaas.",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

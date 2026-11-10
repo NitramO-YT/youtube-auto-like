@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "cùng kênh với một dòng phía trên" },
+  "importWillRemove": { "message": "sẽ bị xóa" },
+  "importStaysIn": { "message": "vẫn ở “$LIST$”", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "sẽ được thêm" },
+  "importVideoAlready": { "message": "đã bị loại trừ" },
+  "importVideoRemove": { "message": "sẽ bị xóa" },
   "lookupNotALink": { "message": "không phải đường liên kết đến kênh hay video YouTube, cũng không phải @tên người dùng" },
   "lookupNotFound": { "message": "kênh hoặc video không tồn tại trên YouTube" },
   "lookupUnreadable": { "message": "YouTube không cho biết kênh. Nếu chưa từng mở YouTube trong trình duyệt này, hãy mở một lần và chọn tùy chọn cookie, rồi thử lại" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Nội dung được nhập" },
   "importLinksTarget": { "message": "Đưa các kênh này vào" },
-  "importModeLabel": { "message": "Các mục đã có" },
+  "importModeLabel": { "message": "Với những gì bạn đã có" },
   "importModeAddNew": { "message": "Chỉ thêm mục mới" },
-  "importModeAddNewHint": { "message": "Kênh đã có trong một danh sách sẽ giữ nguyên vị trí." },
-  "importModeFollow": { "message": "Thêm và làm theo tệp" },
-  "importModeFollowHint": { "message": "Kênh đã có sẽ được chuyển sang danh sách mà tệp chỉ định." },
+  "importModeAddNewHint": { "message": "Thêm các kênh và video bạn chưa có. Những mục bạn đã có giữ nguyên vị trí, kể cả khi tệp xếp chúng vào danh sách kia." },
+  "importModeFollow": { "message": "Thêm và sắp xếp theo tệp" },
+  "importModeFollowHint": { "message": "Thêm các mục mới và chuyển những mục bạn đã có sang danh sách mà tệp xếp chúng vào, ví dụ từ “Luôn thích” sang “Không bao giờ thích”. Không có gì bị xóa." },
   "importModeReplace": { "message": "Thay thế tất cả bằng tệp" },
-  "importModeReplaceHint": { "message": "Các phần được chọn sẽ giống hệt trong tệp: những gì không có trong tệp sẽ bị xóa." },
+  "importModeReplaceHint": { "message": "Các danh sách được chọn sẽ giống hệt trong tệp: mục còn thiếu được thêm, mục ở danh sách khác được chuyển, và những gì tệp không có sẽ bị xóa khỏi danh sách của bạn." },
   "importRemember": { "message": "Ghi nhớ lựa chọn" },
   "importApply": { "message": "Nhập" },
-  "importConfirmOne": {
-    "message": "Tôi xác nhận xóa $COUNT$ mục không có trong tệp.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Tôi xác nhận: xóa khỏi danh sách của tôi mục được đánh dấu đỏ ở trên." },
   "importConfirmOther": {
-    "message": "Tôi xác nhận xóa $COUNT$ mục không có trong tệp.",
+    "message": "Tôi xác nhận: xóa khỏi danh sách của tôi $COUNT$ mục được đánh dấu đỏ ở trên.",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

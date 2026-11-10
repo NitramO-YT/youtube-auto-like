@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "önceki bir satırla aynı kanal" },
+  "importWillRemove": { "message": "kaldırılacak" },
+  "importStaysIn": { "message": "“$LIST$” listesinde kalacak", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "eklenecek" },
+  "importVideoAlready": { "message": "zaten hariç tutuldu" },
+  "importVideoRemove": { "message": "kaldırılacak" },
   "lookupNotALink": { "message": "ne bir YouTube kanalı ya da videosu bağlantısı ne de bir @kullanıcı adı" },
   "lookupNotFound": { "message": "YouTube'da böyle bir kanal veya video yok" },
   "lookupUnreadable": { "message": "YouTube kanalı bildirmedi. YouTube bu tarayıcıda hiç açılmadıysa bir kez açıp çerez tercihinizi yapın, sonra yeniden deneyin" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "İçe aktarılanlar" },
   "importLinksTarget": { "message": "Bu kanalları şuraya koy" },
-  "importModeLabel": { "message": "Zaten var olan öğeler" },
+  "importModeLabel": { "message": "Zaten sahip olduklarınız için" },
   "importModeAddNew": { "message": "Yalnızca yenileri ekle" },
-  "importModeAddNewHint": { "message": "Zaten bir listede olan kanal yerinde kalır." },
-  "importModeFollow": { "message": "Ekle ve dosyaya uy" },
-  "importModeFollowHint": { "message": "Zaten var olan bir kanal, dosyanın ona verdiği listeye geçer." },
+  "importModeAddNewHint": { "message": "Henüz sahip olmadığınız kanalları ve videoları ekler. Zaten sahip olduklarınız, dosya onları diğer listeye koysa bile yerinde kalır." },
+  "importModeFollow": { "message": "Ekle ve dosyadaki gibi düzenle" },
+  "importModeFollowHint": { "message": "Yenileri ekler ve zaten sahip olduklarınızı dosyanın onları koyduğu listeye taşır, örneğin “Her zaman beğen” listesinden “Asla beğenme” listesine. Hiçbir şey kaldırılmaz." },
   "importModeReplace": { "message": "Her şeyi dosyayla değiştir" },
-  "importModeReplaceHint": { "message": "İşaretli bölümler tam olarak dosyadakiler olur: dosyada olmayanlar kaldırılır." },
+  "importModeReplaceHint": { "message": "İşaretli listeler tam olarak dosyadakiler olur: eksik olanlar eklenir, başka listede olanlar taşınır ve dosyada olmayanlar listelerinizden kaldırılır." },
   "importRemember": { "message": "Seçimimi hatırla" },
   "importApply": { "message": "İçe aktar" },
-  "importConfirmOne": {
-    "message": "Dosyada olmayan $COUNT$ öğenin kaldırılmasını onaylıyorum.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Onaylıyorum: yukarıda kırmızıyla işaretlenen öğeyi listelerimden kaldır." },
   "importConfirmOther": {
-    "message": "Dosyada olmayan $COUNT$ öğenin kaldırılmasını onaylıyorum.",
+    "message": "Onaylıyorum: yukarıda kırmızıyla işaretlenen $COUNT$ öğeyi listelerimden kaldır.",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

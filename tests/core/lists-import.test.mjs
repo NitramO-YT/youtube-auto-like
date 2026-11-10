@@ -101,3 +101,35 @@ describe('planImport', () => {
     assert.deepEqual(current, copy);
   });
 });
+
+describe('planImport details', () => {
+  const fates = (details) => details.map(({ fate, entry, from }) => [fate, entry.id ?? entry.videoId, from]);
+
+  it('names each entry with what happens to it, those that change first', () => {
+    const incoming = normalizeLists({ always: [{ id: COLAS, name: 'COLAS' }, { id: QOQSIK, name: 'qoqsik' }, { id: WAKED, name: 'Waked XY' }] });
+    const { details } = planImport(current, { always: incoming.always }, ImportMode.FOLLOW, NOW);
+    assert.deepEqual(fates(details.always), [
+      ['added', WAKED, null],
+      ['moved', QOQSIK, 'never'],
+      ['unchanged', COLAS, null],
+    ]);
+  });
+
+  it('says where a channel stays when only the new ones are added', () => {
+    const incoming = normalizeLists({ always: [{ id: QOQSIK, name: 'qoqsik' }] });
+    assert.deepEqual(fates(planImport(current, { always: incoming.always }, ImportMode.ADD_NEW, NOW).details.always), [['unchanged', QOQSIK, 'never']]);
+  });
+
+  it('names what a replacement takes out, channels and videos', () => {
+    const incoming = normalizeLists({ always: [{ id: WAKED, name: 'Waked XY' }], never: [] });
+    const videos = normalizeExcludedVideos([{ videoId: '82DBD5efxMc', title: 'Paris' }]);
+    const { details, report } = planImport(current, { ...incoming, videos }, ImportMode.REPLACE, NOW);
+    assert.deepEqual(fates(details.always), [['added', WAKED, null], ['removed', COLAS, null]]);
+    assert.deepEqual(fates(details.never), [['removed', QOQSIK, null]]);
+    assert.deepEqual(fates(details.videos), [['added', '82DBD5efxMc', null], ['removed', 'aeP4eG-gO10', null]]);
+    for (const part of ['always', 'never', 'videos']) {
+      const count = (fate) => details[part].filter((detail) => detail.fate === fate).length;
+      assert.deepEqual(report[part], counts(count('added'), count('moved'), count('unchanged'), count('removed')), `${part}: the details and the counts agree`);
+    }
+  });
+});

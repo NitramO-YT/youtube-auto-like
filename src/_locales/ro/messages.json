@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "același canal ca pe un rând anterior" },
+  "importWillRemove": { "message": "va fi eliminat" },
+  "importStaysIn": { "message": "rămâne în „$LIST$”", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "va fi adăugat" },
+  "importVideoAlready": { "message": "deja exclus" },
+  "importVideoRemove": { "message": "va fi eliminat" },
   "lookupNotALink": { "message": "nici link către un canal sau videoclip YouTube, nici @identificator" },
   "lookupNotFound": { "message": "canalul sau videoclipul nu există pe YouTube" },
   "lookupUnreadable": { "message": "YouTube nu a indicat canalul. Dacă YouTube nu a fost deschis niciodată în acest browser, deschide-l o dată și alege opțiunile pentru cookie-uri, apoi încearcă din nou" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Ce se importă" },
   "importLinksTarget": { "message": "Pune aceste canale în" },
-  "importModeLabel": { "message": "Intrările care există deja" },
+  "importModeLabel": { "message": "Pentru ce ai deja" },
   "importModeAddNew": { "message": "Adaugă doar pe cele noi" },
-  "importModeAddNewHint": { "message": "Un canal aflat deja într-o listă rămâne unde este." },
-  "importModeFollow": { "message": "Adaugă și urmează fișierul" },
-  "importModeFollowHint": { "message": "Un canal care există deja este mutat în lista indicată de fișier." },
+  "importModeAddNewHint": { "message": "Adaugă canalele și videoclipurile pe care nu le ai încă. Cele pe care le ai deja rămân unde sunt, chiar dacă fișierul le pune în cealaltă listă." },
+  "importModeFollow": { "message": "Adaugă și ordonează ca în fișier" },
+  "importModeFollowHint": { "message": "Adaugă cele noi și le mută pe cele pe care le ai deja în lista în care le pune fișierul, de exemplu din „Apreciază mereu” în „Nu aprecia niciodată”. Nu se elimină nimic." },
   "importModeReplace": { "message": "Înlocuiește totul cu fișierul" },
-  "importModeReplaceHint": { "message": "Părțile bifate devin exact ca în fișier: ce nu este în el se elimină." },
+  "importModeReplaceHint": { "message": "Listele bifate devin exact ca în fișier: ce lipsește se adaugă, ce e în altă listă se mută, iar ce nu conține fișierul se elimină din listele tale." },
   "importRemember": { "message": "Ține minte alegerea" },
   "importApply": { "message": "Importă" },
-  "importConfirmOne": {
-    "message": "Confirm eliminarea a $COUNT$ intrare care lipsește din fișier.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Confirm: elimină din listele mele intrarea marcată cu roșu mai sus." },
   "importConfirmOther": {
-    "message": "Confirm eliminarea intrărilor care lipsesc din fișier ($COUNT$).",
+    "message": "Confirm: elimină din listele mele intrările marcate cu roșu mai sus ($COUNT$).",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

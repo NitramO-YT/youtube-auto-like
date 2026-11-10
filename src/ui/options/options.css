@@ -507,6 +507,11 @@ main {
 .lookup-row.failed .meta {
   color: var(--error);
 }
+/* An entry the import takes out of the lists. */
+.lookup-row.removing .meta {
+  color: var(--error);
+  font-weight: 600;
+}
 .check.danger {
   margin-top: 10px;
   border-color: var(--error);

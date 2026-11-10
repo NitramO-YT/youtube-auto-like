@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "lo stesso canale di una riga precedente" },
+  "importWillRemove": { "message": "verrà tolto" },
+  "importStaysIn": { "message": "resta in «$LIST$»", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "verrà aggiunto" },
+  "importVideoAlready": { "message": "già escluso" },
+  "importVideoRemove": { "message": "verrà tolto" },
   "lookupNotALink": { "message": "né un link a un canale o a un video di YouTube, né un @handle" },
   "lookupNotFound": { "message": "questo canale o video non esiste su YouTube" },
   "lookupUnreadable": { "message": "YouTube non ha indicato il canale. Se non è mai stato aperto in questo browser, aprilo una volta e fai la tua scelta sui cookie, poi riprova" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Cosa viene importato" },
   "importLinksTarget": { "message": "Metti questi canali in" },
-  "importModeLabel": { "message": "Voci già presenti" },
+  "importModeLabel": { "message": "Per ciò che hai già" },
   "importModeAddNew": { "message": "Aggiungi solo le nuove" },
-  "importModeAddNewHint": { "message": "Un canale già in una lista resta dov'è." },
-  "importModeFollow": { "message": "Aggiungi e segui il file" },
-  "importModeFollowHint": { "message": "Un canale già presente passa nella lista che gli dà il file." },
+  "importModeAddNewHint": { "message": "Aggiunge i canali e i video che non hai ancora. Quelli che hai già restano dove sono, anche se il file li mette nell'altra lista." },
+  "importModeFollow": { "message": "Aggiungi e ordina come nel file" },
+  "importModeFollowHint": { "message": "Aggiunge i nuovi e sposta quelli che hai già nella lista in cui li mette il file, per esempio da «Sempre Mi piace» a «Mai Mi piace». Non viene tolto nulla." },
   "importModeReplace": { "message": "Sostituisci tutto con il file" },
-  "importModeReplaceHint": { "message": "Le parti selezionate diventano esattamente quelle del file: ciò che non contiene viene tolto." },
+  "importModeReplaceHint": { "message": "Le liste selezionate diventano esattamente quelle del file: ciò che manca viene aggiunto, ciò che sta in un'altra lista viene spostato e ciò che il file non contiene viene tolto dalle tue liste." },
   "importRemember": { "message": "Ricorda la mia scelta" },
   "importApply": { "message": "Importa" },
-  "importConfirmOne": {
-    "message": "Confermo la rimozione di $COUNT$ voce assente dal file.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Confermo: togliere dalle mie liste la voce segnata in rosso qui sopra." },
   "importConfirmOther": {
-    "message": "Confermo la rimozione delle $COUNT$ voci assenti dal file.",
+    "message": "Confermo: togliere dalle mie liste le $COUNT$ voci segnate in rosso qui sopra.",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

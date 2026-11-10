@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "samme kanal som en tidligere linje" },
+  "importWillRemove": { "message": "fjernes" },
+  "importStaysIn": { "message": "bliver på »$LIST$«", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "tilføjes" },
+  "importVideoAlready": { "message": "allerede udelukket" },
+  "importVideoRemove": { "message": "fjernes" },
   "lookupNotALink": { "message": "hverken et link til en YouTube-kanal eller -video eller et @handle" },
   "lookupNotFound": { "message": "kanalen eller videoen findes ikke på YouTube" },
   "lookupUnreadable": { "message": "YouTube oplyste ikke kanalen. Hvis YouTube aldrig er blevet åbnet i denne browser, så åbn det én gang og træf dit valg om cookies, og prøv derefter igen" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Hvad der importeres" },
   "importLinksTarget": { "message": "Læg disse kanaler på" },
-  "importModeLabel": { "message": "Poster, der allerede findes" },
+  "importModeLabel": { "message": "For det, du allerede har" },
   "importModeAddNew": { "message": "Tilføj kun de nye" },
-  "importModeAddNewHint": { "message": "En kanal, der allerede er på en liste, bliver, hvor den er." },
-  "importModeFollow": { "message": "Tilføj og følg filen" },
-  "importModeFollowHint": { "message": "En kanal, der allerede findes, flyttes til den liste, filen angiver." },
+  "importModeAddNewHint": { "message": "Tilføjer de kanaler og videoer, du ikke har endnu. Dem, du allerede har, bliver, hvor de er, selv om filen placerer dem på den anden liste." },
+  "importModeFollow": { "message": "Tilføj og placér som i filen" },
+  "importModeFollowHint": { "message": "Tilføjer de nye og flytter dem, du allerede har, til den liste, filen placerer dem på, for eksempel fra »Markér altid« til »Markér aldrig«. Intet fjernes." },
   "importModeReplace": { "message": "Erstat alt med filen" },
-  "importModeReplaceHint": { "message": "De valgte dele bliver præcis som i filen: det, der ikke er i den, fjernes." },
+  "importModeReplaceHint": { "message": "De valgte lister bliver præcis som i filen: det, der mangler, tilføjes, det, der står et andet sted, flyttes, og det, filen ikke indeholder, fjernes fra dine lister." },
   "importRemember": { "message": "Husk mit valg" },
   "importApply": { "message": "Importér" },
-  "importConfirmOne": {
-    "message": "Jeg bekræfter, at $COUNT$ post, der mangler i filen, fjernes.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Jeg bekræfter: fjern posten markeret med rødt ovenfor fra mine lister." },
   "importConfirmOther": {
-    "message": "Jeg bekræfter, at de $COUNT$ poster, der mangler i filen, fjernes.",
+    "message": "Jeg bekræfter: fjern de $COUNT$ poster markeret med rødt ovenfor fra mine lister.",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

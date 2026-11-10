@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "與前面某一行是同一個頻道" },
+  "importWillRemove": { "message": "將移除" },
+  "importStaysIn": { "message": "保留在「$LIST$」", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "將新增" },
+  "importVideoAlready": { "message": "已排除" },
+  "importVideoRemove": { "message": "將移除" },
   "lookupNotALink": { "message": "不是 YouTube 頻道或影片的連結，也不是 @帳號代碼" },
   "lookupNotFound": { "message": "YouTube 上沒有這個頻道或影片" },
   "lookupUnreadable": { "message": "YouTube 沒有提供頻道資訊。如果從未在這個瀏覽器開啟過 YouTube，請先開啟一次並選擇 Cookie 設定，然後再試一次" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "匯入內容" },
   "importLinksTarget": { "message": "將這些頻道放入" },
-  "importModeLabel": { "message": "已存在的項目" },
+  "importModeLabel": { "message": "對於你已有的項目" },
   "importModeAddNew": { "message": "只新增新的項目" },
-  "importModeAddNewHint": { "message": "已在某個清單中的頻道維持不變。" },
-  "importModeFollow": { "message": "新增並依照檔案" },
-  "importModeFollowHint": { "message": "已存在的頻道會移到檔案指定的清單。" },
+  "importModeAddNewHint": { "message": "新增你還沒有的頻道和影片。已有的維持不變，即使檔案把它們放在另一個清單中。" },
+  "importModeFollow": { "message": "新增並依檔案整理" },
+  "importModeFollowHint": { "message": "新增新的項目，並把已有的項目移到檔案所放的清單，例如從「一律按讚」移到「一律不按讚」。不會移除任何項目。" },
   "importModeReplace": { "message": "全部以檔案取代" },
-  "importModeReplaceHint": { "message": "勾選的部分會變得與檔案完全相同：檔案中沒有的項目會被移除。" },
+  "importModeReplaceHint": { "message": "勾選的清單會變得與檔案完全相同：缺少的會新增，在其他清單中的會移動，檔案中沒有的會從你的清單中移除。" },
   "importRemember": { "message": "記住我的選擇" },
   "importApply": { "message": "匯入" },
-  "importConfirmOne": {
-    "message": "我確認要移除檔案中沒有的 $COUNT$ 個項目。",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "我確認：從我的清單中移除上方標紅的項目。" },
   "importConfirmOther": {
-    "message": "我確認要移除檔案中沒有的 $COUNT$ 個項目。",
+    "message": "我確認：從我的清單中移除上方標紅的 $COUNT$ 個項目。",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

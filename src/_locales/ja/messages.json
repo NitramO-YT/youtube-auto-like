@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "前の行と同じチャンネル" },
+  "importWillRemove": { "message": "削除されます" },
+  "importStaysIn": { "message": "「$LIST$」のままです", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "追加されます" },
+  "importVideoAlready": { "message": "すでに除外済み" },
+  "importVideoRemove": { "message": "削除されます" },
   "lookupNotALink": { "message": "YouTube のチャンネルや動画のリンクでも @ハンドルでもありません" },
   "lookupNotFound": { "message": "このチャンネルまたは動画は YouTube にありません" },
   "lookupUnreadable": { "message": "YouTube がチャンネルを返しませんでした。このブラウザで YouTube を一度も開いていない場合は、一度開いて Cookie の選択をしてから、もう一度お試しください" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "インポートする内容" },
   "importLinksTarget": { "message": "これらのチャンネルの追加先" },
-  "importModeLabel": { "message": "すでにある項目" },
+  "importModeLabel": { "message": "すでにあるものについて" },
   "importModeAddNew": { "message": "新しいものだけ追加" },
-  "importModeAddNewHint": { "message": "すでにリストにあるチャンネルはそのままです。" },
-  "importModeFollow": { "message": "追加してファイルに合わせる" },
-  "importModeFollowHint": { "message": "すでにあるチャンネルは、ファイルで指定されたリストに移ります。" },
+  "importModeAddNewHint": { "message": "まだないチャンネルと動画を追加します。すでにあるものは、ファイルで別のリストに入っていても、そのままです。" },
+  "importModeFollow": { "message": "追加してファイルどおりに分ける" },
+  "importModeFollowHint": { "message": "新しいものを追加し、すでにあるものをファイルで入っているリストに移します（例：「常に高評価」から「高評価しない」へ）。何も削除されません。" },
   "importModeReplace": { "message": "すべてファイルの内容に置き換える" },
-  "importModeReplaceHint": { "message": "選んだ項目はファイルとまったく同じになります。ファイルにないものは削除されます。" },
+  "importModeReplaceHint": { "message": "選んだリストはファイルとまったく同じになります。足りないものは追加、別のリストにあるものは移動、ファイルにないものはリストから削除されます。" },
   "importRemember": { "message": "選択を記憶する" },
   "importApply": { "message": "インポート" },
-  "importConfirmOne": {
-    "message": "ファイルにない $COUNT$ 件の削除を確認しました。",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "確認しました：上で赤く示した項目をリストから削除します。" },
   "importConfirmOther": {
-    "message": "ファイルにない $COUNT$ 件の削除を確認しました。",
+    "message": "確認しました：上で赤く示した $COUNT$ 件をリストから削除します。",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

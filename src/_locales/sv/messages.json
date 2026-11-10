@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "samma kanal som en tidigare rad" },
+  "importWillRemove": { "message": "tas bort" },
+  "importStaysIn": { "message": "stannar i ”$LIST$”", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "läggs till" },
+  "importVideoAlready": { "message": "redan exkluderad" },
+  "importVideoRemove": { "message": "tas bort" },
   "lookupNotALink": { "message": "varken en länk till en YouTube-kanal eller -video eller ett @handtag" },
   "lookupNotFound": { "message": "kanalen eller videon finns inte på YouTube" },
   "lookupUnreadable": { "message": "YouTube angav inte kanalen. Om YouTube aldrig har öppnats i den här webbläsaren, öppna det en gång och gör ditt cookieval, och försök sedan igen" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Vad som importeras" },
   "importLinksTarget": { "message": "Lägg de här kanalerna i" },
-  "importModeLabel": { "message": "Poster som redan finns" },
+  "importModeLabel": { "message": "För det du redan har" },
   "importModeAddNew": { "message": "Lägg bara till de nya" },
-  "importModeAddNewHint": { "message": "En kanal som redan finns i en lista stannar där den är." },
-  "importModeFollow": { "message": "Lägg till och följ filen" },
-  "importModeFollowHint": { "message": "En kanal som redan finns flyttas till den lista som filen anger." },
+  "importModeAddNewHint": { "message": "Lägger till de kanaler och videor som du inte har än. De som du redan har stannar där de är, även om filen lägger dem i den andra listan." },
+  "importModeFollow": { "message": "Lägg till och sortera som i filen" },
+  "importModeFollowHint": { "message": "Lägger till de nya och flyttar de som du redan har till listan som filen lägger dem i, till exempel från ”Gilla alltid” till ”Gilla aldrig”. Inget tas bort." },
   "importModeReplace": { "message": "Ersätt allt med filen" },
-  "importModeReplaceHint": { "message": "De markerade delarna blir exakt som i filen: det som inte finns i den tas bort." },
+  "importModeReplaceHint": { "message": "De markerade listorna blir exakt som i filen: det som saknas läggs till, det som ligger någon annanstans flyttas, och det som filen inte innehåller tas bort från dina listor." },
   "importRemember": { "message": "Kom ihåg mitt val" },
   "importApply": { "message": "Importera" },
-  "importConfirmOne": {
-    "message": "Jag bekräftar att $COUNT$ post som saknas i filen tas bort.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Jag bekräftar: ta bort posten som är markerad med rött ovan från mina listor." },
   "importConfirmOther": {
-    "message": "Jag bekräftar att de $COUNT$ poster som saknas i filen tas bort.",
+    "message": "Jag bekräftar: ta bort de $COUNT$ poster som är markerade med rött ovan från mina listor.",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

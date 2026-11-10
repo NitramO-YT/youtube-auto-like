@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "पिछली किसी लाइन वाला ही चैनल" },
+  "importWillRemove": { "message": "हटाया जाएगा" },
+  "importStaysIn": { "message": "“$LIST$” में रहेगा", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "जोड़ा जाएगा" },
+  "importVideoAlready": { "message": "पहले से बाहर रखा गया है" },
+  "importVideoRemove": { "message": "हटाया जाएगा" },
   "lookupNotALink": { "message": "न YouTube चैनल या वीडियो का लिंक है, न @हैंडल" },
   "lookupNotFound": { "message": "यह चैनल या वीडियो YouTube पर मौजूद नहीं है" },
   "lookupUnreadable": { "message": "YouTube ने चैनल नहीं बताया। अगर इस ब्राउज़र में YouTube कभी नहीं खोला गया है, तो उसे एक बार खोलें और कुकी का विकल्प चुनें, फिर से कोशिश करें" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "क्या इंपोर्ट होगा" },
   "importLinksTarget": { "message": "इन चैनलों को यहां रखें" },
-  "importModeLabel": { "message": "पहले से मौजूद एंट्री" },
+  "importModeLabel": { "message": "जो पहले से आपके पास है, उसके लिए" },
   "importModeAddNew": { "message": "सिर्फ़ नई जोड़ें" },
-  "importModeAddNewHint": { "message": "जो चैनल पहले से किसी सूची में है, वह वहीं रहता है।" },
-  "importModeFollow": { "message": "जोड़ें और फ़ाइल के हिसाब से चलें" },
-  "importModeFollowHint": { "message": "पहले से मौजूद चैनल को उस सूची में ले जाया जाता है जो फ़ाइल बताती है।" },
+  "importModeAddNewHint": { "message": "वे चैनल और वीडियो जोड़ता है जो अभी आपके पास नहीं हैं। जो पहले से हैं, वे वहीं रहते हैं, भले फ़ाइल उन्हें दूसरी सूची में रखे।" },
+  "importModeFollow": { "message": "जोड़ें और फ़ाइल के हिसाब से व्यवस्थित करें" },
+  "importModeFollowHint": { "message": "नए जोड़ता है, और जो पहले से हैं उन्हें उस सूची में ले जाता है जिसमें फ़ाइल उन्हें रखती है, जैसे “हमेशा पसंद करें” से “कभी पसंद न करें” में। कुछ भी हटाया नहीं जाता।" },
   "importModeReplace": { "message": "सब कुछ फ़ाइल से बदलें" },
-  "importModeReplaceHint": { "message": "चुने गए हिस्से बिल्कुल फ़ाइल जैसे हो जाते हैं: जो उसमें नहीं है, वह हटा दिया जाता है।" },
+  "importModeReplaceHint": { "message": "चुनी गई सूचियां बिल्कुल फ़ाइल जैसी हो जाती हैं: जो कम है वह जोड़ा जाता है, जो दूसरी सूची में है वह ले जाया जाता है, और जो फ़ाइल में नहीं है वह आपकी सूचियों से हटा दिया जाता है।" },
   "importRemember": { "message": "मेरी पसंद याद रखें" },
   "importApply": { "message": "इंपोर्ट करें" },
-  "importConfirmOne": {
-    "message": "पुष्टि: फ़ाइल में न मौजूद $COUNT$ एंट्री हटा दी जाएगी।",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "पुष्टि: ऊपर लाल रंग से चिह्नित एंट्री मेरी सूचियों से हटा दी जाए।" },
   "importConfirmOther": {
-    "message": "पुष्टि: फ़ाइल में न मौजूद $COUNT$ एंट्री हटा दी जाएंगी।",
+    "message": "पुष्टि: ऊपर लाल रंग से चिह्नित $COUNT$ एंट्री मेरी सूचियों से हटा दी जाएं।",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

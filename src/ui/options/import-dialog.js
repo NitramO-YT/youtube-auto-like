@@ -25,7 +25,8 @@ import { el } from '../shared/dom.js';
 import { formatNumber, pluralKey } from '../shared/format.js';
 import { lookUpLines } from './channel-lookup.js';
 import { setStatus, setUpDialog } from './dialog.js';
-import { lookupLines, PART_LABELS, removedCount, reportLines, totalsLine } from './import-report.js';
+import { entryRow } from './entry-row.js';
+import { detailLines, lookupLines, PART_LABELS, removedCount, reportLines, totalsLine } from './import-report.js';
 
 // « Mémoriser mon choix »: the mode is kept in this browser only.
 const MODE_STORAGE_KEY = 'youtube-auto-like:import-mode';
@@ -85,6 +86,7 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
     analysed = false;
     byId('import-report').hidden = true;
     byId('import-lines').replaceChildren();
+    byId('import-entries').replaceChildren();
     byId('import-failures').replaceChildren();
     byId('import-confirm-row').hidden = true;
     byId('import-confirm').checked = false;
@@ -174,22 +176,26 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
       if (!(error instanceof ListFullError)) throw error;
       setStatus(status, t('importListFull', [formatNumber(error.max, page.lang)]), { error: true });
       byId('import-lines').replaceChildren();
+      byId('import-entries').replaceChildren();
       byId('import-apply').disabled = true;
       return;
     }
-    const { report } = result;
+    const { report, details } = result;
     const changes = importChanges(report);
     setStatus(status, Object.keys(report).length === 0 ? t('importNoPart') : changes ? null : t('reportNothing'));
     byId('import-lines').replaceChildren(...reportLines(report, t, page.lang).map((line) => el(doc, 'li', null, line)));
-    const failures = source.kind === 'links' ? lookupLines(source.results, state.settings.lists, checked('import-target')[0], t).filter((line) => !line.ok) : [];
+    byId('import-entries').replaceChildren(...detailLines(details, t).map((line) => entryRow(doc, line)));
+    // The lines of a list of links that add nothing: not found, or naming a channel again.
+    const skipped = source.kind === 'links' ? lookupLines(source.results, state.settings.lists, checked('import-target')[0], t).filter((line) => !line.ok || line.duplicate) : [];
     byId('import-failures').replaceChildren(
-      ...failures.map(({ line, text }) => {
-        const item = el(doc, 'li', 'lookup-row failed');
-        const title = el(doc, 'div', 'title');
-        title.append(el(doc, 'span', 'name', line), el(doc, 'span', 'meta', text));
-        item.append(title);
-        return item;
-      }),
+      ...skipped.map(({ line, text, ok, channel }) =>
+        entryRow(doc, {
+          name: line,
+          avatar: channel ? { id: channel.id, name: channel.name, avatarUrl: channel.avatarUrl } : null,
+          parts: [text],
+          failed: !ok,
+        }),
+      ),
     );
     const removed = removedCount(report);
     byId('import-confirm-row').hidden = removed === 0;

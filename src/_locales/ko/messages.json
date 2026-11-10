@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "앞 줄과 같은 채널" },
+  "importWillRemove": { "message": "삭제 예정" },
+  "importStaysIn": { "message": "‘$LIST$’에 그대로 있음", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "추가 예정" },
+  "importVideoAlready": { "message": "이미 제외됨" },
+  "importVideoRemove": { "message": "삭제 예정" },
   "lookupNotALink": { "message": "YouTube 채널이나 동영상 링크도, @핸들도 아님" },
   "lookupNotFound": { "message": "YouTube에 없는 채널 또는 동영상" },
   "lookupUnreadable": { "message": "YouTube가 채널을 알려주지 않았습니다. 이 브라우저에서 YouTube를 연 적이 없다면 한 번 열어 쿠키 옵션을 선택한 후 다시 시도하세요" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "가져올 항목" },
   "importLinksTarget": { "message": "이 채널을 넣을 목록" },
-  "importModeLabel": { "message": "이미 있는 항목" },
+  "importModeLabel": { "message": "이미 가진 항목의 경우" },
   "importModeAddNew": { "message": "새 항목만 추가" },
-  "importModeAddNewHint": { "message": "이미 목록에 있는 채널은 그대로 둡니다." },
-  "importModeFollow": { "message": "추가하고 파일 따르기" },
-  "importModeFollowHint": { "message": "이미 있는 채널을 파일에 지정된 목록으로 옮깁니다." },
+  "importModeAddNewHint": { "message": "아직 없는 채널과 동영상을 추가합니다. 이미 있는 항목은 파일에서 다른 목록에 있어도 그대로 둡니다." },
+  "importModeFollow": { "message": "추가하고 파일대로 정리" },
+  "importModeFollowHint": { "message": "새 항목을 추가하고, 이미 있는 항목은 파일에서 넣은 목록으로 옮깁니다. 예: ‘항상 좋아요’에서 ‘좋아요 안 함’으로. 삭제되는 것은 없습니다." },
   "importModeReplace": { "message": "모두 파일로 바꾸기" },
-  "importModeReplaceHint": { "message": "선택한 항목이 파일과 똑같아집니다. 파일에 없는 것은 삭제됩니다." },
+  "importModeReplaceHint": { "message": "선택한 목록이 파일과 똑같아집니다. 없는 항목은 추가되고, 다른 목록에 있는 항목은 옮겨지며, 파일에 없는 항목은 목록에서 삭제됩니다." },
   "importRemember": { "message": "선택 기억하기" },
   "importApply": { "message": "가져오기" },
-  "importConfirmOne": {
-    "message": "파일에 없는 항목 $COUNT$개를 삭제하는 데 동의합니다.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "확인: 위에 빨간색으로 표시된 항목을 내 목록에서 삭제합니다." },
   "importConfirmOther": {
-    "message": "파일에 없는 항목 $COUNT$개를 삭제하는 데 동의합니다.",
+    "message": "확인: 위에 빨간색으로 표시된 항목 $COUNT$개를 내 목록에서 삭제합니다.",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

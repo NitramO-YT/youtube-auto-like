@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { normalizeLists } from '../../src/core/channels.js';
 import { LookupError } from '../../src/ui/options/channel-lookup.js';
-import { lookupLines, removedCount, reportLines, totalsLine } from '../../src/ui/options/import-report.js';
+import { detailLines, lookupLines, removedCount, reportLines, totalsLine } from '../../src/ui/options/import-report.js';
 import { translator } from '../helpers/fake-i18n.mjs';
 
 const fr = translator('fr');
@@ -10,6 +10,35 @@ const en = translator('en');
 const COLAS = { id: 'UC9orcd4I_3Uy_8_UAz2r48g', name: 'COLAS', avatarUrl: null };
 const QOQSIK = { id: 'UCfefITu3BR2ix7ZUSrxj16w', name: 'Qoqsik', avatarUrl: null };
 const counts = (added, moved, unchanged, removed) => ({ added, moved, unchanged, removed });
+
+describe('detailLines', () => {
+  const video = { videoId: 'aeP4eG-gO10', title: 'Atelier', channelId: COLAS.id, channelName: 'COLAS', channelAvatarUrl: null };
+
+  it('says, for each channel or video, what happens to it and in which list', () => {
+    const details = {
+      always: [
+        { fate: 'added', entry: QOQSIK, from: null },
+        { fate: 'moved', entry: COLAS, from: 'never' },
+        { fate: 'removed', entry: { id: 'UC1111111111111111111111', name: '' }, from: null },
+        { fate: 'unchanged', entry: COLAS, from: 'never' },
+        { fate: 'unchanged', entry: QOQSIK, from: null },
+      ],
+      videos: [{ fate: 'unchanged', entry: video, from: null }],
+    };
+    assert.deepEqual(
+      detailLines(details, fr).map(({ name, parts, removing }) => [name, parts.join(' · '), removing]),
+      [
+        ['Qoqsik', 'sera ajoutée · Toujours liker', false],
+        ['COLAS', 'passera de « Ne jamais liker » à « Toujours liker » · Toujours liker', false],
+        ['Chaîne inconnue', 'sera retirée · Toujours liker', true],
+        ['COLAS', 'reste dans « Ne jamais liker » · Toujours liker', false],
+        ['Qoqsik', 'déjà dans cette liste · Toujours liker', false],
+        ['Atelier', 'déjà exclue · Vidéos exclues', false],
+      ],
+    );
+    assert.deepEqual(detailLines({ videos: [{ fate: 'removed', entry: video, from: null }] }, en)[0].avatar, { id: COLAS.id, name: 'COLAS', avatarUrl: null });
+  });
+});
 
 describe('reportLines and totalsLine', () => {
   const report = { always: counts(3, 1, 0, 0), never: counts(0, 0, 0, 0), videos: counts(1, 0, 2, 1) };

@@ -256,6 +256,11 @@
     "placeholders": { "from": { "content": "$1", "example": "Never like" }, "to": { "content": "$2", "example": "Always like" } }
   },
   "lookupDuplicate": { "message": "same channel as an earlier line" },
+  "importWillRemove": { "message": "will be removed" },
+  "importStaysIn": { "message": "stays in “$LIST$”", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "will be added" },
+  "importVideoAlready": { "message": "already excluded" },
+  "importVideoRemove": { "message": "will be removed" },
   "lookupNotALink": { "message": "neither a link to a YouTube channel or video, nor an @handle" },
   "lookupNotFound": { "message": "no such channel or video on YouTube" },
   "lookupUnreadable": { "message": "YouTube did not tell the channel. If it was never opened in this browser, open it once and make your cookie choice, then try again" },
@@ -286,21 +291,18 @@
   },
   "importPartsLabel": { "message": "What is imported" },
   "importLinksTarget": { "message": "Put these channels in" },
-  "importModeLabel": { "message": "Entries already there" },
+  "importModeLabel": { "message": "For what you already have" },
   "importModeAddNew": { "message": "Add only the new ones" },
-  "importModeAddNewHint": { "message": "A channel already in a list stays where it is." },
-  "importModeFollow": { "message": "Add and follow the file" },
-  "importModeFollowHint": { "message": "A channel already there moves to the list the file gives it." },
+  "importModeAddNewHint": { "message": "Adds the channels and videos you do not have yet. Those you already have stay where they are, even if the file puts them in the other list." },
+  "importModeFollow": { "message": "Add and sort as in the file" },
+  "importModeFollowHint": { "message": "Adds the new ones, and moves those you already have to the list the file puts them in, for example from “Always like” to “Never like”. Nothing is removed." },
   "importModeReplace": { "message": "Replace everything with the file" },
-  "importModeReplaceHint": { "message": "The parts checked become exactly those of the file: what it does not hold is removed." },
+  "importModeReplaceHint": { "message": "The lists checked become exactly those of the file: what is missing is added, what is sorted elsewhere is moved, and what the file does not hold is removed from your lists." },
   "importRemember": { "message": "Remember my choice" },
   "importApply": { "message": "Import" },
-  "importConfirmOne": {
-    "message": "I confirm removing $COUNT$ entry missing from the file.",
-    "placeholders": { "count": { "content": "$1", "example": "1" } }
-  },
+  "importConfirmOne": { "message": "I confirm: remove from my lists the entry marked “will be removed” above." },
   "importConfirmOther": {
-    "message": "I confirm removing the $COUNT$ entries missing from the file.",
+    "message": "I confirm: remove from my lists the $COUNT$ entries marked “will be removed” above.",
     "placeholders": { "count": { "content": "$1", "example": "12" } }
   },
   "reportPart": {

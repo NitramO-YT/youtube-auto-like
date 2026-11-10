@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "derselbe Kanal wie in einer früheren Zeile" },
+  "importWillRemove": { "message": "wird entfernt" },
+  "importStaysIn": { "message": "bleibt in „$LIST$“", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "wird hinzugefügt" },
+  "importVideoAlready": { "message": "bereits ausgeschlossen" },
+  "importVideoRemove": { "message": "wird entfernt" },
   "lookupNotALink": { "message": "weder ein Link zu einem YouTube-Kanal oder -Video noch ein @Handle" },
   "lookupNotFound": { "message": "dieser Kanal oder dieses Video existiert auf YouTube nicht" },
   "lookupUnreadable": { "message": "YouTube hat den Kanal nicht genannt. Wurde YouTube in diesem Browser noch nie geöffnet, öffne es einmal, triff deine Cookie-Auswahl und versuche es erneut" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Was importiert wird" },
   "importLinksTarget": { "message": "Diese Kanäle eintragen in" },
-  "importModeLabel": { "message": "Bereits vorhandene Einträge" },
+  "importModeLabel": { "message": "Für das, was schon da ist" },
   "importModeAddNew": { "message": "Nur die neuen hinzufügen" },
-  "importModeAddNewHint": { "message": "Ein Kanal, der schon in einer Liste steht, bleibt, wo er ist." },
-  "importModeFollow": { "message": "Hinzufügen und der Datei folgen" },
-  "importModeFollowHint": { "message": "Ein bereits vorhandener Kanal wechselt in die Liste, die ihm die Datei gibt." },
+  "importModeAddNewHint": { "message": "Fügt die Kanäle und Videos hinzu, die du noch nicht hast. Die vorhandenen bleiben, wo sie sind, auch wenn die Datei sie in die andere Liste einordnet." },
+  "importModeFollow": { "message": "Hinzufügen und wie in der Datei einordnen" },
+  "importModeFollowHint": { "message": "Fügt die neuen hinzu und verschiebt die vorhandenen in die Liste, in die die Datei sie einordnet, zum Beispiel von „Immer bewerten“ nach „Nie bewerten“. Nichts wird entfernt." },
   "importModeReplace": { "message": "Alles durch die Datei ersetzen" },
-  "importModeReplaceHint": { "message": "Die ausgewählten Teile werden genau die der Datei: Was sie nicht enthält, wird entfernt." },
+  "importModeReplaceHint": { "message": "Die ausgewählten Listen werden genau die der Datei: Fehlendes wird hinzugefügt, anders Eingeordnetes verschoben, und was die Datei nicht enthält, wird aus deinen Listen entfernt." },
   "importRemember": { "message": "Meine Wahl merken" },
   "importApply": { "message": "Importieren" },
-  "importConfirmOne": {
-    "message": "Ich bestätige das Entfernen von $COUNT$ Eintrag, der in der Datei fehlt.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Ich bestätige: den oben rot markierten Eintrag aus meinen Listen entfernen." },
   "importConfirmOther": {
-    "message": "Ich bestätige das Entfernen der $COUNT$ Einträge, die in der Datei fehlen.",
+    "message": "Ich bestätige: die $COUNT$ oben rot markierten Einträge aus meinen Listen entfernen.",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

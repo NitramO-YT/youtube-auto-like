@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "ugyanaz a csatorna, mint egy korábbi sorban" },
+  "importWillRemove": { "message": "törlődik" },
+  "importStaysIn": { "message": "marad itt: „$LIST$”", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "hozzá lesz adva" },
+  "importVideoAlready": { "message": "már ki van zárva" },
+  "importVideoRemove": { "message": "törlődik" },
   "lookupNotALink": { "message": "sem YouTube-csatorna vagy -videó hivatkozása, sem @identifikátor" },
   "lookupNotFound": { "message": "a csatorna vagy a videó nem létezik a YouTube-on" },
   "lookupUnreadable": { "message": "A YouTube nem adta meg a csatornát. Ha a YouTube-ot még soha nem nyitottad meg ebben a böngészőben, nyisd meg egyszer, és válaszd ki a sütikre vonatkozó beállítást, majd próbáld újra" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Mit importál" },
   "importLinksTarget": { "message": "Ezek a csatornák ide kerülnek" },
-  "importModeLabel": { "message": "Már létező elemek" },
+  "importModeLabel": { "message": "Ami már megvan" },
   "importModeAddNew": { "message": "Csak az újak hozzáadása" },
-  "importModeAddNewHint": { "message": "Egy listán már szereplő csatorna a helyén marad." },
-  "importModeFollow": { "message": "Hozzáadás és a fájl követése" },
-  "importModeFollowHint": { "message": "Egy már létező csatorna átkerül abba a listába, amelyet a fájl megad." },
+  "importModeAddNewHint": { "message": "Hozzáadja azokat a csatornákat és videókat, amelyek még nincsenek meg. A már meglévők a helyükön maradnak, akkor is, ha a fájl a másik listába sorolja őket." },
+  "importModeFollow": { "message": "Hozzáadás és rendezés a fájl szerint" },
+  "importModeFollowHint": { "message": "Hozzáadja az újakat, és a már meglévőket abba a listába helyezi át, amelybe a fájl sorolja őket, például innen: „Mindig kedveld”, ide: „Soha ne kedveld”. Semmi sem törlődik." },
   "importModeReplace": { "message": "Minden cseréje a fájlra" },
-  "importModeReplaceHint": { "message": "A bejelölt részek pontosan olyanok lesznek, mint a fájlban: ami nincs benne, törlődik." },
+  "importModeReplaceHint": { "message": "A bejelölt listák pontosan olyanok lesznek, mint a fájlban: ami hiányzik, bekerül, ami máshol van, áthelyeződik, és ami nincs a fájlban, törlődik a listáidból." },
   "importRemember": { "message": "Választás megjegyzése" },
   "importApply": { "message": "Importálás" },
-  "importConfirmOne": {
-    "message": "Megerősítem a fájlból hiányzó $COUNT$ elem törlését.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Megerősítem: a fent pirossal jelölt elem törlése a listáimból." },
   "importConfirmOther": {
-    "message": "Megerősítem a fájlból hiányzó $COUNT$ elem törlését.",
+    "message": "Megerősítem: a fent pirossal jelölt $COUNT$ elem törlése a listáimból.",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

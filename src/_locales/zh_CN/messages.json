@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "与前面某一行是同一个频道" },
+  "importWillRemove": { "message": "将移除" },
+  "importStaysIn": { "message": "保留在“$LIST$”", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "将添加" },
+  "importVideoAlready": { "message": "已排除" },
+  "importVideoRemove": { "message": "将移除" },
   "lookupNotALink": { "message": "不是 YouTube 频道或视频的链接，也不是 @账号名" },
   "lookupNotFound": { "message": "YouTube 上没有此频道或视频" },
   "lookupUnreadable": { "message": "YouTube 没有提供频道信息。如果从未在此浏览器中打开过 YouTube，请先打开一次并选择 Cookie 设置，然后再试一次" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "导入内容" },
   "importLinksTarget": { "message": "将这些频道放入" },
-  "importModeLabel": { "message": "已存在的项" },
+  "importModeLabel": { "message": "对于你已有的项" },
   "importModeAddNew": { "message": "只添加新的项" },
-  "importModeAddNewHint": { "message": "已在某个列表中的频道保持不变。" },
-  "importModeFollow": { "message": "添加并按文件调整" },
-  "importModeFollowHint": { "message": "已存在的频道会移到文件指定的列表。" },
+  "importModeAddNewHint": { "message": "添加你还没有的频道和视频。已有的保持不变，即使文件把它们放在另一个列表中。" },
+  "importModeFollow": { "message": "添加并按文件整理" },
+  "importModeFollowHint": { "message": "添加新的项，并把已有的项移到文件所放的列表，例如从“始终点赞”移到“从不点赞”。不会移除任何项。" },
   "importModeReplace": { "message": "全部用文件替换" },
-  "importModeReplaceHint": { "message": "勾选的部分会变得与文件完全相同：文件中没有的项会被移除。" },
+  "importModeReplaceHint": { "message": "勾选的列表会变得与文件完全相同：缺少的会添加，在其他列表中的会移动，文件中没有的会从你的列表中移除。" },
   "importRemember": { "message": "记住我的选择" },
   "importApply": { "message": "导入" },
-  "importConfirmOne": {
-    "message": "我确认移除文件中没有的 $COUNT$ 项。",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "我确认：从我的列表中移除上方标红的项。" },
   "importConfirmOther": {
-    "message": "我确认移除文件中没有的 $COUNT$ 项。",
+    "message": "我确认：从我的列表中移除上方标红的 $COUNT$ 项。",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "ช่องเดียวกับบรรทัดก่อนหน้า" },
+  "importWillRemove": { "message": "จะถูกนำออก" },
+  "importStaysIn": { "message": "อยู่ใน “$LIST$” ต่อไป", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "จะถูกเพิ่ม" },
+  "importVideoAlready": { "message": "ยกเว้นอยู่แล้ว" },
+  "importVideoRemove": { "message": "จะถูกนำออก" },
   "lookupNotALink": { "message": "ไม่ใช่ลิงก์ของช่องหรือวิดีโอ YouTube และไม่ใช่ @แฮนเดิล" },
   "lookupNotFound": { "message": "ไม่มีช่องหรือวิดีโอนี้บน YouTube" },
   "lookupUnreadable": { "message": "YouTube ไม่ได้ระบุช่อง หากไม่เคยเปิด YouTube ในเบราว์เซอร์นี้ ให้เปิดหนึ่งครั้งแล้วเลือกตัวเลือกคุกกี้ จากนั้นลองอีกครั้ง" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "สิ่งที่จะนำเข้า" },
   "importLinksTarget": { "message": "ใส่ช่องเหล่านี้ลงใน" },
-  "importModeLabel": { "message": "รายการที่มีอยู่แล้ว" },
+  "importModeLabel": { "message": "สำหรับสิ่งที่คุณมีอยู่แล้ว" },
   "importModeAddNew": { "message": "เพิ่มเฉพาะรายการใหม่" },
-  "importModeAddNewHint": { "message": "ช่องที่อยู่ในรายการใดรายการหนึ่งแล้วจะอยู่ที่เดิม" },
-  "importModeFollow": { "message": "เพิ่มและทำตามไฟล์" },
-  "importModeFollowHint": { "message": "ช่องที่มีอยู่แล้วจะถูกย้ายไปยังรายการที่ไฟล์ระบุ" },
+  "importModeAddNewHint": { "message": "เพิ่มช่องและวิดีโอที่คุณยังไม่มี รายการที่คุณมีอยู่แล้วจะอยู่ที่เดิม แม้ไฟล์จะจัดไว้ในอีกรายการหนึ่งก็ตาม" },
+  "importModeFollow": { "message": "เพิ่มและจัดตามไฟล์" },
+  "importModeFollowHint": { "message": "เพิ่มรายการใหม่ และย้ายรายการที่คุณมีอยู่แล้วไปยังรายการที่ไฟล์จัดไว้ เช่น จาก “กดชอบเสมอ” ไปยัง “ไม่กดชอบ” ไม่มีสิ่งใดถูกนำออก" },
   "importModeReplace": { "message": "แทนที่ทั้งหมดด้วยไฟล์" },
-  "importModeReplaceHint": { "message": "ส่วนที่เลือกจะเหมือนในไฟล์ทุกประการ: สิ่งที่ไม่มีในไฟล์จะถูกนำออก" },
+  "importModeReplaceHint": { "message": "รายการที่เลือกจะเหมือนในไฟล์ทุกประการ: สิ่งที่ขาดจะถูกเพิ่ม สิ่งที่อยู่ในรายการอื่นจะถูกย้าย และสิ่งที่ไม่มีในไฟล์จะถูกนำออกจากรายการของคุณ" },
   "importRemember": { "message": "จดจำตัวเลือกของฉัน" },
   "importApply": { "message": "นำเข้า" },
-  "importConfirmOne": {
-    "message": "ฉันยืนยันการนำออก $COUNT$ รายการที่ไม่มีในไฟล์",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "ฉันยืนยัน: นำรายการที่ทำเครื่องหมายสีแดงด้านบนออกจากรายการของฉัน" },
   "importConfirmOther": {
-    "message": "ฉันยืนยันการนำออก $COUNT$ รายการที่ไม่มีในไฟล์",
+    "message": "ฉันยืนยัน: นำ $COUNT$ รายการที่ทำเครื่องหมายสีแดงด้านบนออกจากรายการของฉัน",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "той самий канал, що в одному з попередніх рядків" },
+  "importWillRemove": { "message": "буде вилучено" },
+  "importStaysIn": { "message": "залишається в «$LIST$»", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "буде додано" },
+  "importVideoAlready": { "message": "уже виключено" },
+  "importVideoRemove": { "message": "буде вилучено" },
   "lookupNotALink": { "message": "не посилання на канал чи відео YouTube і не @псевдонім" },
   "lookupNotFound": { "message": "такого каналу чи відео на YouTube немає" },
   "lookupUnreadable": { "message": "YouTube не вказав канал. Якщо YouTube жодного разу не відкривався в цьому браузері, відкрийте його один раз і зробіть вибір щодо файлів cookie, потім спробуйте знову" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Що імпортується" },
   "importLinksTarget": { "message": "Помістити ці канали до" },
-  "importModeLabel": { "message": "Наявні записи" },
+  "importModeLabel": { "message": "Для того, що у вас уже є" },
   "importModeAddNew": { "message": "Додати лише нові" },
-  "importModeAddNewHint": { "message": "Канал, який уже є в списку, залишається на місці." },
-  "importModeFollow": { "message": "Додати й дотримуватися файлу" },
-  "importModeFollowHint": { "message": "Наявний канал переходить до списку, який вказує файл." },
+  "importModeAddNewHint": { "message": "Додає канали й відео, яких у вас ще немає. Ті, що вже є, залишаються на місці, навіть якщо у файлі вони в іншому списку." },
+  "importModeFollow": { "message": "Додати й розкласти як у файлі" },
+  "importModeFollowHint": { "message": "Додає нові й переносить наявні до того списку, де вони у файлі, наприклад із «Завжди позначати» до «Ніколи не позначати». Нічого не вилучається." },
   "importModeReplace": { "message": "Замінити все файлом" },
-  "importModeReplaceHint": { "message": "Позначені частини стають точно такими, як у файлі: те, чого в ньому немає, вилучається." },
+  "importModeReplaceHint": { "message": "Позначені списки стають точно такими, як у файлі: те, чого бракує, додається, те, що в іншому списку, переноситься, а те, чого у файлі немає, вилучається з ваших списків." },
   "importRemember": { "message": "Запам'ятати мій вибір" },
   "importApply": { "message": "Імпортувати" },
-  "importConfirmOne": {
-    "message": "Підтверджую вилучення записів, яких немає у файлі ($COUNT$).",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Підтверджую: вилучити з моїх списків запис, позначений вище червоним." },
   "importConfirmOther": {
-    "message": "Підтверджую вилучення записів, яких немає у файлі ($COUNT$).",
+    "message": "Підтверджую: вилучити з моїх списків записи, позначені вище червоним (записів: $COUNT$).",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "القناة نفسها في سطر سابق" },
+  "importWillRemove": { "message": "ستُزال" },
+  "importStaysIn": { "message": "تبقى في «$LIST$»", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "سيُضاف" },
+  "importVideoAlready": { "message": "مستبعد بالفعل" },
+  "importVideoRemove": { "message": "سيُزال" },
   "lookupNotALink": { "message": "ليس رابط قناة أو فيديو على YouTube ولا اسمًا معرِّفًا" },
   "lookupNotFound": { "message": "القناة أو الفيديو غير موجود على YouTube" },
   "lookupUnreadable": { "message": "لم يحدد YouTube القناة. إذا لم يُفتح YouTube من قبل في هذا المتصفح، فافتحه مرة واحدة واختر إعدادات ملفات تعريف الارتباط، ثم حاول مرة أخرى" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "ما سيُستورد" },
   "importLinksTarget": { "message": "ضع هذه القنوات في" },
-  "importModeLabel": { "message": "الإدخالات الموجودة بالفعل" },
+  "importModeLabel": { "message": "لما لديك بالفعل" },
   "importModeAddNew": { "message": "إضافة الجديدة فقط" },
-  "importModeAddNewHint": { "message": "تبقى القناة الموجودة في قائمة ما في مكانها." },
-  "importModeFollow": { "message": "الإضافة واتباع الملف" },
-  "importModeFollowHint": { "message": "تُنقل القناة الموجودة إلى القائمة التي يحددها الملف." },
+  "importModeAddNewHint": { "message": "يضيف القنوات والفيديوهات التي ليست لديك بعد. ما لديك بالفعل يبقى في مكانه، حتى لو وضعه الملف في القائمة الأخرى." },
+  "importModeFollow": { "message": "الإضافة والترتيب كما في الملف" },
+  "importModeFollowHint": { "message": "يضيف الجديد، وينقل ما لديك بالفعل إلى القائمة التي يضعه فيها الملف، مثلًا من «إعجاب دائمًا» إلى «لا إعجاب أبدًا». لا يُزال شيء." },
   "importModeReplace": { "message": "استبدال الكل بالملف" },
-  "importModeReplaceHint": { "message": "تصبح الأجزاء المحددة مطابقة للملف تمامًا: يُزال ما ليس فيه." },
+  "importModeReplaceHint": { "message": "تصبح القوائم المحددة مطابقة للملف تمامًا: يُضاف الناقص، ويُنقل ما هو في قائمة أخرى، ويُزال من قوائمك ما ليس في الملف." },
   "importRemember": { "message": "تذكّر اختياري" },
   "importApply": { "message": "استيراد" },
-  "importConfirmOne": {
-    "message": "أؤكد إزالة الإدخالات غير الموجودة في الملف (العدد: $COUNT$).",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "أؤكد: إزالة الإدخال المميز بالأحمر أعلاه من قوائمي." },
   "importConfirmOther": {
-    "message": "أؤكد إزالة الإدخالات غير الموجودة في الملف (العدد: $COUNT$).",
+    "message": "أؤكد: إزالة الإدخالات المميزة بالأحمر أعلاه من قوائمي (العدد: $COUNT$).",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

@@ -4,7 +4,7 @@
  * come from t, numbers are formatted in lang.
  */
 import { listOf } from '../../core/channels.js';
-import { ImportPart } from '../../core/lists-import.js';
+import { EntryFate, ImportPart } from '../../core/lists-import.js';
 import { formatNumber, pluralKey } from '../shared/format.js';
 import { LookupError } from './channel-lookup.js';
 
@@ -50,6 +50,41 @@ export function totalsLine(report, t, lang) {
   return countsText(totals, Object.keys(totals), t, lang) ?? t('reportPartEmpty');
 }
 
+/** What happens to a channel of a list, by its fate (a channel and a video take different words in some languages). */
+function channelFate({ fate, from }, part, t) {
+  if (fate === EntryFate.ADDED) return t('lookupNew');
+  if (fate === EntryFate.MOVED) return t('lookupMoved', [t(PART_LABELS[from]), t(PART_LABELS[part])]);
+  if (fate === EntryFate.REMOVED) return t('importWillRemove');
+  return from ? t('importStaysIn', [t(PART_LABELS[from])]) : t('lookupAlready');
+}
+
+const VIDEO_FATES = { [EntryFate.ADDED]: 'importVideoNew', [EntryFate.UNCHANGED]: 'importVideoAlready', [EntryFate.REMOVED]: 'importVideoRemove' };
+
+/**
+ * One line per entry an import concerns, from the details of planImport:
+ * { id, name, avatar, parts, removing }. name is the channel or the title of
+ * the video, parts what happens to it and its list, removing true for an
+ * entry the import takes out.
+ */
+export function detailLines(details, t) {
+  return Object.entries(details).flatMap(([part, entries]) =>
+    entries.map((detail) => {
+      const { entry, fate } = detail;
+      const isVideo = part === ImportPart.VIDEOS;
+      const text = isVideo ? t(VIDEO_FATES[fate]) : channelFate(detail, part, t);
+      return {
+        id: isVideo ? entry.videoId : entry.id,
+        name: (isVideo ? entry.title : entry.name) || t(isVideo ? 'historyUntitled' : 'channelUnknown'),
+        avatar: isVideo
+          ? { id: entry.channelId ?? entry.videoId, name: entry.channelName, avatarUrl: entry.channelAvatarUrl }
+          : { id: entry.id, name: entry.name, avatarUrl: entry.avatarUrl },
+        parts: [text, t(PART_LABELS[part])],
+        removing: fate === EntryFate.REMOVED,
+      };
+    }),
+  );
+}
+
 /** Entries the import takes out of the lists. */
 export function removedCount(report) {
   return Object.values(report).reduce((total, counts) => total + counts.removed, 0);
@@ -63,14 +98,15 @@ const LOOKUP_ERRORS = {
 
 /**
  * What happens to the channel of each looked-up line when it goes to the
- * target list: { line, channel, text, ok }. ok is false for a line that
- * names no channel; a channel named by an earlier line is said once.
+ * target list: { line, channel, text, ok, duplicate }. ok is false for a
+ * line that names no channel; a channel named by an earlier line is said
+ * once, its later lines being duplicate.
  */
 export function lookupLines(results, lists, target, t) {
   const seen = new Set();
   return results.map(({ line, channel, error }) => {
     if (error) return { line, channel: null, text: t(LOOKUP_ERRORS[error]), ok: false };
-    if (seen.has(channel.id)) return { line, channel, text: t('lookupDuplicate'), ok: true };
+    if (seen.has(channel.id)) return { line, channel, text: t('lookupDuplicate'), ok: true, duplicate: true };
     seen.add(channel.id);
     const from = listOf(lists, channel.id);
     let text = t('lookupNew');

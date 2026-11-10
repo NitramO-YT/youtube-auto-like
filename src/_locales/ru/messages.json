@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "тот же канал, что в одной из предыдущих строк" },
+  "importWillRemove": { "message": "будет удалён" },
+  "importStaysIn": { "message": "остаётся в «$LIST$»", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "будет добавлено" },
+  "importVideoAlready": { "message": "уже исключено" },
+  "importVideoRemove": { "message": "будет удалено" },
   "lookupNotALink": { "message": "не ссылка на канал или видео YouTube и не @псевдоним" },
   "lookupNotFound": { "message": "такого канала или видео на YouTube нет" },
   "lookupUnreadable": { "message": "YouTube не указал канал. Если YouTube ни разу не открывался в этом браузере, откройте его один раз и сделайте выбор насчёт файлов cookie, затем попробуйте снова" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Что импортируется" },
   "importLinksTarget": { "message": "Поместить эти каналы в" },
-  "importModeLabel": { "message": "Уже имеющиеся записи" },
+  "importModeLabel": { "message": "Для того, что у вас уже есть" },
   "importModeAddNew": { "message": "Добавить только новые" },
-  "importModeAddNewHint": { "message": "Канал, который уже есть в списке, остаётся на месте." },
-  "importModeFollow": { "message": "Добавить и следовать файлу" },
-  "importModeFollowHint": { "message": "Уже имеющийся канал переходит в список, который указывает файл." },
+  "importModeAddNewHint": { "message": "Добавляет каналы и видео, которых у вас ещё нет. Те, что уже есть, остаются на месте, даже если в файле они в другом списке." },
+  "importModeFollow": { "message": "Добавить и разложить как в файле" },
+  "importModeFollowHint": { "message": "Добавляет новые и переносит уже имеющиеся в тот список, где они в файле, например из «Всегда отмечать» в «Никогда не отмечать». Ничего не удаляется." },
   "importModeReplace": { "message": "Заменить всё файлом" },
-  "importModeReplaceHint": { "message": "Отмеченные части становятся в точности такими, как в файле: то, чего в нём нет, удаляется." },
+  "importModeReplaceHint": { "message": "Отмеченные списки становятся в точности такими, как в файле: недостающее добавляется, лежащее в другом списке переносится, а то, чего в файле нет, удаляется из ваших списков." },
   "importRemember": { "message": "Запомнить мой выбор" },
   "importApply": { "message": "Импортировать" },
-  "importConfirmOne": {
-    "message": "Подтверждаю удаление записей, которых нет в файле ($COUNT$).",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Подтверждаю: удалить из моих списков запись, отмеченную выше красным." },
   "importConfirmOther": {
-    "message": "Подтверждаю удаление записей, которых нет в файле ($COUNT$).",
+    "message": "Подтверждаю: удалить из моих списков записи, отмеченные выше красным (записей: $COUNT$).",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

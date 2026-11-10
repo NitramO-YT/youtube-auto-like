@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "channel yang sama dengan baris sebelumnya" },
+  "importWillRemove": { "message": "akan dihapus" },
+  "importStaysIn": { "message": "tetap di “$LIST$”", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "akan ditambahkan" },
+  "importVideoAlready": { "message": "sudah dikecualikan" },
+  "importVideoRemove": { "message": "akan dihapus" },
   "lookupNotALink": { "message": "bukan link channel atau video YouTube, juga bukan @nama sebutan" },
   "lookupNotFound": { "message": "channel atau video tidak ada di YouTube" },
   "lookupUnreadable": { "message": "YouTube tidak menyebutkan channel-nya. Jika YouTube belum pernah dibuka di browser ini, buka sekali dan tentukan pilihan cookie Anda, lalu coba lagi" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Yang diimpor" },
   "importLinksTarget": { "message": "Masukkan channel ini ke" },
-  "importModeLabel": { "message": "Entri yang sudah ada" },
+  "importModeLabel": { "message": "Untuk yang sudah Anda miliki" },
   "importModeAddNew": { "message": "Tambahkan yang baru saja" },
-  "importModeAddNewHint": { "message": "Channel yang sudah ada di sebuah daftar tetap di tempatnya." },
-  "importModeFollow": { "message": "Tambahkan dan ikuti file" },
-  "importModeFollowHint": { "message": "Channel yang sudah ada dipindahkan ke daftar yang ditunjukkan file." },
+  "importModeAddNewHint": { "message": "Menambahkan channel dan video yang belum Anda miliki. Yang sudah Anda miliki tetap di tempatnya, meskipun file menempatkannya di daftar lain." },
+  "importModeFollow": { "message": "Tambahkan dan atur seperti di file" },
+  "importModeFollowHint": { "message": "Menambahkan yang baru, dan memindahkan yang sudah Anda miliki ke daftar tempat file menaruhnya, misalnya dari “Selalu sukai” ke “Jangan pernah sukai”. Tidak ada yang dihapus." },
   "importModeReplace": { "message": "Ganti semuanya dengan file" },
-  "importModeReplaceHint": { "message": "Bagian yang dicentang menjadi persis seperti di file: yang tidak ada di dalamnya akan dihapus." },
+  "importModeReplaceHint": { "message": "Daftar yang dicentang menjadi persis seperti di file: yang kurang ditambahkan, yang ada di daftar lain dipindahkan, dan yang tidak ada di file dihapus dari daftar Anda." },
   "importRemember": { "message": "Ingat pilihan saya" },
   "importApply": { "message": "Impor" },
-  "importConfirmOne": {
-    "message": "Saya mengonfirmasi penghapusan $COUNT$ entri yang tidak ada di file.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Saya konfirmasi: hapus dari daftar saya entri yang ditandai merah di atas." },
   "importConfirmOther": {
-    "message": "Saya mengonfirmasi penghapusan $COUNT$ entri yang tidak ada di file.",
+    "message": "Saya konfirmasi: hapus dari daftar saya $COUNT$ entri yang ditandai merah di atas.",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {

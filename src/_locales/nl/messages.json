@@ -231,6 +231,11 @@
     "placeholders": { "from": { "content": "$1" }, "to": { "content": "$2" } }
   },
   "lookupDuplicate": { "message": "hetzelfde kanaal als een eerdere regel" },
+  "importWillRemove": { "message": "wordt verwijderd" },
+  "importStaysIn": { "message": "blijft in ‘$LIST$’", "placeholders": { "list": { "content": "$1" } } },
+  "importVideoNew": { "message": "wordt toegevoegd" },
+  "importVideoAlready": { "message": "al uitgesloten" },
+  "importVideoRemove": { "message": "wordt verwijderd" },
   "lookupNotALink": { "message": "geen link naar een YouTube-kanaal of -video, en geen @handle" },
   "lookupNotFound": { "message": "dit kanaal of deze video bestaat niet op YouTube" },
   "lookupUnreadable": { "message": "YouTube gaf het kanaal niet door. Is YouTube nooit geopend in deze browser, open het dan eenmaal, maak je cookiekeuze en probeer het opnieuw" },
@@ -261,21 +266,18 @@
   },
   "importPartsLabel": { "message": "Wat wordt geïmporteerd" },
   "importLinksTarget": { "message": "Deze kanalen zetten in" },
-  "importModeLabel": { "message": "Items die er al zijn" },
+  "importModeLabel": { "message": "Voor wat je al hebt" },
   "importModeAddNew": { "message": "Alleen de nieuwe toevoegen" },
-  "importModeAddNewHint": { "message": "Een kanaal dat al in een lijst staat, blijft waar het is." },
-  "importModeFollow": { "message": "Toevoegen en het bestand volgen" },
-  "importModeFollowHint": { "message": "Een kanaal dat er al is, gaat naar de lijst die het bestand het geeft." },
+  "importModeAddNewHint": { "message": "Voegt de kanalen en video's toe die je nog niet hebt. Wat je al hebt, blijft waar het is, ook als het bestand het in de andere lijst zet." },
+  "importModeFollow": { "message": "Toevoegen en indelen zoals in het bestand" },
+  "importModeFollowHint": { "message": "Voegt de nieuwe toe en verplaatst wat je al hebt naar de lijst waarin het bestand het zet, bijvoorbeeld van ‘Altijd liken’ naar ‘Nooit liken’. Er wordt niets verwijderd." },
   "importModeReplace": { "message": "Alles vervangen door het bestand" },
-  "importModeReplaceHint": { "message": "De aangevinkte onderdelen worden precies die van het bestand: wat er niet in staat, wordt verwijderd." },
+  "importModeReplaceHint": { "message": "De aangevinkte lijsten worden precies die van het bestand: wat ontbreekt, wordt toegevoegd, wat elders staat, wordt verplaatst, en wat het bestand niet bevat, wordt uit je lijsten verwijderd." },
   "importRemember": { "message": "Mijn keuze onthouden" },
   "importApply": { "message": "Importeren" },
-  "importConfirmOne": {
-    "message": "Ik bevestig het verwijderen van $COUNT$ item dat in het bestand ontbreekt.",
-    "placeholders": { "count": { "content": "$1" } }
-  },
+  "importConfirmOne": { "message": "Ik bevestig: het hierboven rood gemarkeerde item uit mijn lijsten verwijderen." },
   "importConfirmOther": {
-    "message": "Ik bevestig het verwijderen van de $COUNT$ items die in het bestand ontbreken.",
+    "message": "Ik bevestig: de $COUNT$ hierboven rood gemarkeerde items uit mijn lijsten verwijderen.",
     "placeholders": { "count": { "content": "$1" } }
   },
   "reportPart": {
