@@ -17,6 +17,7 @@ Like automatiquement les vidéos YouTube que vous choisissez : celles des chaîn
 - **Deux listes :** « Toujours liker » et « Ne jamais liker », qui l'emporte toujours. Ajoutez une chaîne depuis la fenêtre de l'icône sur une de ses vidéos ou sur sa page, depuis l'historique des likes, ou en collant des liens et des @noms.
 - **Pas cette fois, ou jamais :** écartez une vidéo pour ce visionnage, ou excluez-la pour de bon.
 - **Montre ce qu'elle fait :** la fenêtre de l'icône dit ce qui arrive à la vidéo regardée et pourquoi, avec les actions qui le changent.
+- **Historique :** les 500 derniers likes posés par l'extension, chacun avec un lien vers sa vidéo et sa chaîne, et le choix de toujours ou de ne jamais liker cette chaîne.
 - **Vos listes vous appartiennent :** exportez-les en fichier ou en liste de liens, réimportez-les en voyant d'abord ce qui change.
 - **Thèmes clair et sombre, 28 langues :** celle du navigateur, ou celle que vous choisissez dans les réglages. Seuls le français et l'anglais ont été relus par des locuteurs natifs pour l'instant : les corrections sont bienvenues (voir [Contribuer](#contribuer)).
 
@@ -35,7 +36,7 @@ Deux canaux, chacun avec un lien qui ne change jamais :
 | Canal | Ce que c'est | Lien |
 | --- | --- | --- |
 | **Latest** | La version la plus récente. | [Dernière version](https://github.com/NitramO-YT/youtube-auto-like/releases/latest) |
-| **Beta** | La prochaine version, pour l'essayer avant tout le monde. | [Version bêta](https://github.com/NitramO-YT/youtube-auto-like/releases/tag/beta) |
+| **Beta** | La prochaine version, pour l'essayer avant tout le monde. | [Version bêta](https://github.com/NitramO-YT/youtube-auto-like/releases/tag/beta) (aucune publiée pour l'instant) |
 
 Chaque version fournit :
 
@@ -43,8 +44,9 @@ Chaque version fournit :
 - `youtube-auto-like-chromium.zip`, la même extension à charger non empaquetée, depuis un dossier que vous gardez ;
 - `youtube-auto-like.xpi`, pour Firefox 140 ou plus récent, signé par Mozilla.
 
-Chaque fichier est accompagné de sa somme de contrôle `.sha256`. Le dernier zip est toujours à l'adresse
-`https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/youtube-auto-like-chromium.zip`.
+Chaque paquet est accompagné de sa somme de contrôle `.sha256`. Les fichiers de la dernière version sont toujours à l'adresse
+`https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/<fichier>`, par exemple
+`https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/youtube-auto-like.crx`.
 
 ### Installer dans Firefox
 
@@ -90,10 +92,11 @@ sha256sum -c youtube-auto-like-chromium.zip.sha256
 
 Tout ce que l'extension garde reste dans votre navigateur : vos réglages, vos listes, l'historique des likes qu'elle a posés et, seulement quand le mode débogage est activé, son journal. Rien n'est envoyé à l'auteur, et il n'y a aucun pistage.
 
-L'extension ne se connecte qu'à deux endroits :
+En dehors des pages YouTube que vous ouvrez, l'extension ne se connecte qu'à ces endroits :
 
 - **GitHub** (`api.github.com`), pour savoir si une nouvelle version existe, à la fréquence que vous choisissez, ou jamais. GitHub voit alors votre adresse IP.
 - **YouTube**, seulement quand vous ajoutez des chaînes par lien ou importez une liste de liens, pour savoir de quelle chaîne il s'agit. Ces demandes portent vos cookies YouTube, comme si vous ouvriez la page.
+- **Les serveurs d'images de YouTube** (`yt3.ggpht.com`, `yt3.googleusercontent.com`, `yt4.ggpht.com`), pour les images des chaînes dans la fenêtre de l'icône, les listes et l'historique, comme les pages de YouTube les chargent.
 
 Dans Firefox, c'est Firefox lui-même, et non l'extension, qui lit aussi sur GitHub le fichier `updates.json` des mises à jour.
 
