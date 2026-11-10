@@ -39,8 +39,8 @@ Deux canaux, chacun avec un lien qui ne change jamais :
 
 Chaque version fournit :
 
-- `youtube-auto-like-chromium.zip`, à charger non empaquetée : la méthode qui fonctionne dans tous les navigateurs basés sur Chromium ;
-- `youtube-auto-like.crx`, le paquet signé. Les navigateurs refusent souvent un paquet qui ne vient pas de leur boutique : si le vôtre le refuse, prenez le zip.
+- `youtube-auto-like.crx`, le paquet signé pour les navigateurs basés sur Chromium : le plus simple à installer et à mettre à jour ;
+- `youtube-auto-like-chromium.zip`, la même extension à charger non empaquetée, depuis un dossier que vous gardez ;
 - `youtube-auto-like.xpi`, pour Firefox 140 ou plus récent, signé par Mozilla.
 
 Chaque fichier est accompagné de sa somme de contrôle `.sha256`. Le dernier zip est toujours à l'adresse
@@ -49,6 +49,15 @@ Chaque fichier est accompagné de sa somme de contrôle `.sha256`. Le dernier zi
 ### Installer dans Firefox
 
 Ouvrez la [dernière version](https://github.com/NitramO-YT/youtube-auto-like/releases/latest) dans Firefox et cliquez sur `youtube-auto-like.xpi` : Firefox demande s'il faut l'installer. Mozilla l'a signée sans la publier sur son site de modules, ce que Firefox exige de toute extension qu'il installe pour de bon.
+
+### Installer le CRX (Chrome, Brave, Edge…)
+
+1. Téléchargez `youtube-auto-like.crx`.
+2. Ouvrez `chrome://extensions` (`brave://extensions` dans Brave, `edge://extensions` dans Edge).
+3. Activez le **mode développeur**. Sans lui, le navigateur refuse un paquet qui ne vient pas de sa boutique, avec l'erreur `CRX_REQUIRED_PROOF_MISSING`.
+4. Glissez le fichier sur la page des extensions, puis confirmez.
+
+Vérifié dans Chrome et Brave sous Linux.
 
 ### Installer le zip
 
@@ -61,7 +70,7 @@ Ouvrez la [dernière version](https://github.com/NitramO-YT/youtube-auto-like/re
 
 L'extension vérifie sur GitHub si une nouvelle version existe, toutes les 30 minutes par défaut (réglages, section Divers). Quand c'est le cas, son icône affiche une pastille, et la fenêtre de l'icône donne le lien.
 
-Pour mettre à jour une extension non empaquetée, remplacez le contenu de son dossier par le nouveau zip, puis cliquez sur le bouton de rechargement de l'extension dans la page des extensions. Vos réglages et vos listes sont conservés : l'extension garde le même identifiant d'une version à l'autre.
+Pour mettre à jour le CRX, glissez le nouveau sur la page des extensions, comme pour l'installation. Pour mettre à jour une extension non empaquetée, remplacez le contenu de son dossier par le nouveau zip, puis cliquez sur le bouton de rechargement de l'extension dans la page des extensions. Dans les deux cas, vos réglages et vos listes sont conservés : l'extension garde le même identifiant d'une version à l'autre.
 
 Firefox met l'extension à jour tout seul : il lit le fichier `updates.json` de la dernière version publiée, et installe la version qu'il indique.
 

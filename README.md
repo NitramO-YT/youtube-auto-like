@@ -39,8 +39,8 @@ Two channels, each with a link that never changes:
 
 Each release provides:
 
-- `youtube-auto-like-chromium.zip`, to load unpacked: the way that works in every Chromium-based browser;
-- `youtube-auto-like.crx`, the signed package. Browsers often refuse a package that does not come from their store: if yours does, use the zip.
+- `youtube-auto-like.crx`, the signed package for Chromium-based browsers: the simplest to install and to update;
+- `youtube-auto-like-chromium.zip`, the same extension to load unpacked, from a folder you keep;
 - `youtube-auto-like.xpi`, for Firefox 140 or later, signed by Mozilla.
 
 Each file comes with a `.sha256` checksum file. The latest zip is always at
@@ -49,6 +49,15 @@ Each file comes with a `.sha256` checksum file. The latest zip is always at
 ### Installing in Firefox
 
 Open the [latest release](https://github.com/NitramO-YT/youtube-auto-like/releases/latest) in Firefox and click `youtube-auto-like.xpi`: Firefox asks whether to install it. Mozilla has signed it without listing it on its add-ons site, which Firefox requires of every extension it installs for good.
+
+### Installing the CRX (Chrome, Brave, Edge…)
+
+1. Download `youtube-auto-like.crx`.
+2. Open `chrome://extensions` (`brave://extensions` in Brave, `edge://extensions` in Edge).
+3. Turn on the **Developer mode**. Without it, the browser refuses a package that does not come from its store, with the error `CRX_REQUIRED_PROOF_MISSING`.
+4. Drag the file onto the extensions page, then confirm.
+
+Checked in Chrome and Brave on Linux.
 
 ### Installing the zip
 
@@ -61,7 +70,7 @@ Open the [latest release](https://github.com/NitramO-YT/youtube-auto-like/releas
 
 The extension checks for a new version on GitHub, every 30 minutes by default (settings, under More). When one is out, its icon shows a badge, and the popup links to it.
 
-To update an unpacked extension, replace the content of its folder with the new zip, then click the reload button of the extension in the extensions page. Your settings and lists are kept: the extension keeps the same ID from one version to the next.
+To update the CRX, drag the new one onto the extensions page, as for the installation. To update an unpacked extension, replace the content of its folder with the new zip, then click the reload button of the extension in the extensions page. Either way, your settings and lists are kept: the extension keeps the same ID from one version to the next.
 
 Firefox updates the extension by itself: it reads the `updates.json` file of the latest release, and installs the version it names.
 
