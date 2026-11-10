@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "Cronologia cancellata" },
   "noticeHistoryEntryRemoved": { "message": "Tolto dalla cronologia" },
   "historyRemove": { "message": "Togli $NAME$ dalla cronologia", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "«Mi piace» tolto il $DATE$", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "«Mi piace» tolto, rilevato il $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Altro" },
   "themeLabel": { "message": "Tema" },

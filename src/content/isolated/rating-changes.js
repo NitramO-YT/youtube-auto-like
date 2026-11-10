@@ -1,10 +1,10 @@
 /**
  * What changed on the rating buttons of a video between two observations: a
  * like or a dislike given or removed on the page, by the user or by another
- * extension. The session (session.js) keeps its own state after a like, so
- * without these changes the journal would not tell why the popup offers to
- * restart a video, and the history would show as standing a like the user
- * took back.
+ * extension, for the journal: the session (session.js) keeps its own state
+ * after a like, so without these lines the journal would not tell why the
+ * popup offers to restart a video. The history follows the like itself
+ * (history-sync.js).
  */
 
 const BUTTONS = [

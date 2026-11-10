@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "已清除記錄" },
   "noticeHistoryEntryRemoved": { "message": "已從記錄移除" },
   "historyRemove": { "message": "從記錄移除 $NAME$", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "已於 $DATE$ 收回讚", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "已收回讚，發現於 $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "其他" },
   "themeLabel": { "message": "主題" },

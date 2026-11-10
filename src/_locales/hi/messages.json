@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "इतिहास साफ़ किया गया" },
   "noticeHistoryEntryRemoved": { "message": "इतिहास से हटाया गया" },
   "historyRemove": { "message": "$NAME$ को इतिहास से हटाएं", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "पसंद $DATE$ को हटाई गई", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "पसंद हटाई गई, $DATE$ को देखा गया", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "अन्य" },
   "themeLabel": { "message": "थीम" },

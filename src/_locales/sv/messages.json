@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "Historiken rensad" },
   "noticeHistoryEntryRemoved": { "message": "Borttaget från historiken" },
   "historyRemove": { "message": "Ta bort $NAME$ från historiken", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "gillning borttagen $DATE$", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "gillning borttagen, sedd $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Mer" },
   "themeLabel": { "message": "Tema" },

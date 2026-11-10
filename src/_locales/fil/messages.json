@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "Na-clear ang history" },
   "noticeHistoryEntryRemoved": { "message": "Inalis sa history" },
   "historyRemove": { "message": "Alisin ang $NAME$ sa history", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "inalis ang like noong $DATE$", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "inalis ang like, nakita noong $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Iba pa" },
   "themeLabel": { "message": "Tema" },

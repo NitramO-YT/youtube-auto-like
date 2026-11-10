@@ -34,7 +34,8 @@ import {
 import { channelRefFromUrl } from '../youtube/channel-page.js';
 import { findLikeButton, readChannelAvatar, readPlayback, readRating } from '../youtube/dom.js';
 import { surfaceFromUrl, videoIdFromUrl } from '../youtube/surface.js';
-import { createSession, likeNow, restartVideo, resumeVideo, skipVideo, Status, step } from './session.js';
+import { createSession, likeNow, likeState, restartVideo, resumeVideo, skipVideo, Status, step } from './session.js';
+import { initialSync, syncHistory } from './history-sync.js';
 import { ratingChanges } from './rating-changes.js';
 import { popupStatus } from './status.js';
 
@@ -49,6 +50,8 @@ let stopped = false;
 let settings = null;
 let session = null;
 let lastObservation = null;
+// What the history was told about the like of the video watched (history-sync.js).
+let historySync = initialSync();
 // The observation of the page when the like button was clicked: step() had
 // just checked that its snapshot describes the video of the session. The
 // history entry is made from it, the page being possibly unreadable when
@@ -164,6 +167,7 @@ async function tick() {
     if (!session || session.videoId !== videoId) {
       session = createSession(videoId, Date.now(), Math.random());
       lastObservation = null;
+      historySync = initialSync();
       clicked = null;
       note(videoId, `opened (${surfaceFromUrl(window.location.href)})`);
     }
@@ -197,15 +201,15 @@ async function tick() {
     // The click of the extension is told by its own lines.
     const clicking = action === 'click' || session.status === Status.CONFIRMING || next.status === Status.CONFIRMING;
     if (!clicking) {
-      for (const change of ratingChanges(lastObservation, observation)) {
-        note(next.videoId, change.text);
-        // A like the extension made, taken back or given again on the page,
-        // shows so in the history (a video without an entry is left alone).
-        if (change.button === 'like') {
-          store
-            .markHistoryLike(next.videoId, change.given ? null : new Date().toISOString())
-            .catch((error) => console.error(LOG_PREFIX, 'could not mark the like in the history', error));
-        }
+      for (const change of ratingChanges(lastObservation, observation)) note(next.videoId, change.text);
+      // A video of the history seen not liked, or liked again, shows so in
+      // its entry (a video without an entry is left alone).
+      const synced = syncHistory(historySync, likeState(next, observation), Date.now());
+      historySync = synced.state;
+      if (synced.mark !== null) {
+        store
+          .markHistoryLike(next.videoId, synced.mark ? new Date().toISOString() : null)
+          .catch((error) => console.error(LOG_PREFIX, 'could not mark the like in the history', error));
       }
     }
     if (next.status !== session.status || next.reason !== session.reason) {

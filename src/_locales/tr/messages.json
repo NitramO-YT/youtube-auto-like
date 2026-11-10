@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "Geçmiş temizlendi" },
   "noticeHistoryEntryRemoved": { "message": "Geçmişten kaldırıldı" },
   "historyRemove": { "message": "Geçmişten kaldır: $NAME$", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "beğeni kaldırıldı: $DATE$", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "beğeni kaldırıldı, görülme: $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Diğer" },
   "themeLabel": { "message": "Tema" },

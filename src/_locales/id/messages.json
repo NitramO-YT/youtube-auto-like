@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "Histori dihapus" },
   "noticeHistoryEntryRemoved": { "message": "Dihapus dari histori" },
   "historyRemove": { "message": "Hapus $NAME$ dari histori", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "suka dibatalkan pada $DATE$", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "suka dibatalkan, terlihat pada $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Lainnya" },
   "themeLabel": { "message": "Tema" },

@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "História vymazaná" },
   "noticeHistoryEntryRemoved": { "message": "Odstránené z histórie" },
   "historyRemove": { "message": "Odstrániť z histórie: $NAME$", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "označenie odstránené $DATE$", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "označenie odstránené, zistené $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Ďalšie" },
   "themeLabel": { "message": "Motív" },

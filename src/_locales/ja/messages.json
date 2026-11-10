@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "履歴を消去しました" },
   "noticeHistoryEntryRemoved": { "message": "履歴から削除しました" },
   "historyRemove": { "message": "履歴から削除: $NAME$", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "$DATE$ に高評価が取り消されました", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "高評価の取り消しを $DATE$ に確認", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "その他" },
   "themeLabel": { "message": "テーマ" },

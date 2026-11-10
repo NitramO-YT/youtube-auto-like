@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "Előzmények törölve" },
   "noticeHistoryEntryRemoved": { "message": "Eltávolítva az előzményekből" },
   "historyRemove": { "message": "Eltávolítás az előzményekből: $NAME$", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "kedvelés visszavonva: $DATE$", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "kedvelés visszavonva, észlelve: $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Egyebek" },
   "themeLabel": { "message": "Téma" },

@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "Historia wyczyszczona" },
   "noticeHistoryEntryRemoved": { "message": "Usunięto z historii" },
   "historyRemove": { "message": "Usuń z historii: $NAME$", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "polubienie usunięte $DATE$", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "polubienie usunięte, wykryto $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Więcej" },
   "themeLabel": { "message": "Motyw" },

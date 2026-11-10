@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "Đã xóa lịch sử" },
   "noticeHistoryEntryRemoved": { "message": "Đã xóa khỏi lịch sử" },
   "historyRemove": { "message": "Xóa $NAME$ khỏi lịch sử", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "đã bỏ thích lúc $DATE$", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "đã bỏ thích, phát hiện lúc $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Khác" },
   "themeLabel": { "message": "Giao diện" },

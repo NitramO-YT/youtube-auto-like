@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "Historique effacé" },
   "noticeHistoryEntryRemoved": { "message": "Retiré de l'historique" },
   "historyRemove": { "message": "Retirer $NAME$ de l'historique", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "like retiré le $DATE$", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "like retiré, constaté le $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Divers" },
   "themeLabel": { "message": "Thème" },

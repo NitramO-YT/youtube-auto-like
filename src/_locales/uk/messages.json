@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "Історію очищено" },
   "noticeHistoryEntryRemoved": { "message": "Вилучено з історії" },
   "historyRemove": { "message": "Вилучити з історії: $NAME$", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "позначку знято $DATE$", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "позначку знято, помічено $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Ще" },
   "themeLabel": { "message": "Тема" },

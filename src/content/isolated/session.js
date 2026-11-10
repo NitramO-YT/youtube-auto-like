@@ -174,18 +174,28 @@ const showsVideo = (session, snapshot) =>
 export function evaluateVideo(session, observation, settings) {
   const snapshot = observation?.snapshot;
   if (!showsVideo(session, snapshot)) return null;
-  const { trustShown } = session;
   return evaluateEligibility(
     {
       videoId: session.videoId,
       channelId: snapshot.channelId,
       isShort: snapshot.isShort,
       subscribed: snapshot.subscribed,
-      liked: ratingState(observation.liked, snapshot.likeAtLoad, session.videoId, true, trustShown),
-      disliked: ratingState(observation.disliked, snapshot.dislikeAtLoad, session.videoId, false, trustShown),
+      liked: likeState(session, observation),
+      disliked: ratingState(observation.disliked, snapshot.dislikeAtLoad, session.videoId, false, session.trustShown),
     },
     settings,
   );
+}
+
+/**
+ * Whether the video of the session is liked, read as for the decision to
+ * like it (see ratingState): true, false, or null when unknown or when the
+ * page does not show this video yet.
+ */
+export function likeState(session, observation) {
+  const snapshot = observation?.snapshot;
+  if (!showsVideo(session, snapshot)) return null;
+  return ratingState(observation.liked, snapshot.likeAtLoad, session.videoId, true, session.trustShown);
 }
 
 /**

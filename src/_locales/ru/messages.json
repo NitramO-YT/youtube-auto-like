@@ -416,7 +416,7 @@
   "noticeHistoryCleared": { "message": "История очищена" },
   "noticeHistoryEntryRemoved": { "message": "Удалено из истории" },
   "historyRemove": { "message": "Удалить из истории: $NAME$", "placeholders": { "name": { "content": "$1" } } },
-  "historyLikeRemoved": { "message": "отметка снята $DATE$", "placeholders": { "date": { "content": "$1" } } },
+  "historyLikeRemoved": { "message": "отметка снята, замечено $DATE$", "placeholders": { "date": { "content": "$1" } } },
 
   "moreHeading": { "message": "Ещё" },
   "themeLabel": { "message": "Тема" },
