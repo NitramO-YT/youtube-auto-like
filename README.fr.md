@@ -48,7 +48,11 @@ Chaque fichier est accompagné de sa somme de contrôle `.sha256`. Le dernier zi
 
 ### Installer dans Firefox
 
-Ouvrez la [dernière version](https://github.com/NitramO-YT/youtube-auto-like/releases/latest) dans Firefox et cliquez sur `youtube-auto-like.xpi` : Firefox demande s'il faut l'installer. Mozilla l'a signée sans la publier sur son site de modules, ce que Firefox exige de toute extension qu'il installe pour de bon.
+1. Ouvrez la [dernière version](https://github.com/NitramO-YT/youtube-auto-like/releases/latest) dans Firefox et cliquez sur `youtube-auto-like.xpi`.
+2. Firefox indique d'abord qu'il a empêché le site de proposer l'installation d'un logiciel, comme pour tout site autre que celui de Mozilla : choisissez de continuer l'installation.
+3. Firefox affiche l'extension et sa permission (l'accès à `www.youtube.com`) : cliquez sur **Ajouter**.
+
+Mozilla l'a signée sans la publier sur son site de modules, ce que Firefox exige de toute extension qu'il installe pour de bon.
 
 ### Installer le CRX (Chrome, Brave, Edge…)
 
@@ -72,7 +76,7 @@ L'extension vérifie sur GitHub si une nouvelle version existe, toutes les 30 mi
 
 Pour mettre à jour le CRX, glissez le nouveau sur la page des extensions, comme pour l'installation. Pour mettre à jour une extension non empaquetée, remplacez le contenu de son dossier par le nouveau zip, puis cliquez sur le bouton de rechargement de l'extension dans la page des extensions. Dans les deux cas, vos réglages et vos listes sont conservés : l'extension garde le même identifiant d'une version à l'autre.
 
-Firefox met l'extension à jour tout seul : il lit le fichier `updates.json` de la dernière version publiée, et installe la version qu'il indique.
+Firefox met l'extension à jour tout seul, sans rien à télécharger ni à faire : une fois par jour par défaut, il lit le fichier `updates.json` de la dernière version publiée, et installe la version qu'il indique, en gardant vos réglages et vos listes. Pour l'avoir tout de suite, ouvrez `about:addons` et lancez la recherche des mises à jour depuis le menu en forme de roue dentée. Une nouvelle version qui demanderait une permission de plus attendrait votre accord.
 
 ### Vérifier un téléchargement
 

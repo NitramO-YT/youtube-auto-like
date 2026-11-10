@@ -48,7 +48,11 @@ Each file comes with a `.sha256` checksum file. The latest zip is always at
 
 ### Installing in Firefox
 
-Open the [latest release](https://github.com/NitramO-YT/youtube-auto-like/releases/latest) in Firefox and click `youtube-auto-like.xpi`: Firefox asks whether to install it. Mozilla has signed it without listing it on its add-ons site, which Firefox requires of every extension it installs for good.
+1. Open the [latest release](https://github.com/NitramO-YT/youtube-auto-like/releases/latest) in Firefox and click `youtube-auto-like.xpi`.
+2. Firefox first says it prevented the site from asking to install software, as it does for any site but Mozilla's: choose to continue to the installation.
+3. Firefox shows the extension and its permission (access to `www.youtube.com`): click **Add**.
+
+Mozilla has signed it without listing it on its add-ons site, which Firefox requires of every extension it installs for good.
 
 ### Installing the CRX (Chrome, Brave, Edge…)
 
@@ -72,7 +76,7 @@ The extension checks for a new version on GitHub, every 30 minutes by default (s
 
 To update the CRX, drag the new one onto the extensions page, as for the installation. To update an unpacked extension, replace the content of its folder with the new zip, then click the reload button of the extension in the extensions page. Either way, your settings and lists are kept: the extension keeps the same ID from one version to the next.
 
-Firefox updates the extension by itself: it reads the `updates.json` file of the latest release, and installs the version it names.
+Firefox updates the extension by itself, with nothing to download or to do: once a day by default, it reads the `updates.json` file of the latest release, and installs the version it names, keeping your settings and lists. To get it at once, open `about:addons` and check for updates in the gear menu. A new version asking for one more permission would wait for your approval instead.
 
 ### Checking a download
 
