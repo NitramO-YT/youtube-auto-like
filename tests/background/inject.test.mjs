@@ -16,6 +16,10 @@ function fakeApi(tabs, { failOn = null } = {}) {
     scripting: {
       async executeScript(options) {
         if (options.target.tabId === failOn) throw new Error('Frame with ID 0 is showing error page');
+        // What Brave answers for a tab that holds no page yet (12 November 2026).
+        if (tabs.find((tab) => tab.id === options.target.tabId)?.status === 'unloaded') {
+          throw new Error('Cannot access contents of the page. Extension manifest must request permission to access the respective host.');
+        }
         calls.push([options.target.tabId, options.files[0], options.world]);
       },
     },
@@ -44,5 +48,21 @@ describe('injectIntoOpenTabs', () => {
       error.mock.restore();
     }
     assert.deepEqual(api.calls.map(([tab]) => tab), [3, 3]);
+  });
+
+  it('skips a tab that holds no page yet, without an error, and injects into one loading or loaded', async () => {
+    const api = fakeApi([
+      { id: 1, status: 'unloaded', discarded: false },
+      { id: 2, status: 'loading', discarded: false },
+      { id: 3, status: 'complete', discarded: false },
+    ]);
+    const error = mock.method(console, 'error', () => {});
+    try {
+      assert.equal(await injectIntoOpenTabs(api), 2);
+      assert.equal(error.mock.callCount(), 0);
+    } finally {
+      error.mock.restore();
+    }
+    assert.deepEqual(api.calls.map(([tab]) => tab), [2, 2, 3, 3]);
   });
 });
