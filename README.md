@@ -22,7 +22,7 @@ Likes the YouTube videos you choose, automatically: the channels you subscribe t
 - **This video only, or never:** skip a video this time, or exclude it for good.
 - **Shows what it does:** the toolbar popup tells what happens to the video you watch and why, with the actions that change it.
 - **History:** the last 500 likes the extension made, each with a link to its video and its channel, and a choice to always or never like that channel.
-- **Your lists, yours:** export them as a file or a list of links, import them back with a preview of what changes.
+- **Your lists, yours:** export them as a file or a list of links, import them back with a preview of what changes. The file can also hold all your settings and the history of likes, to find everything again in another browser or after a new installation.
 - **Light and dark themes, 28 languages:** the browser's, or the one you pick in the settings. Only English and French have been reviewed by native speakers so far: corrections are welcome (see [Contributing](#contributing)).
 
 ## About this fork
@@ -99,7 +99,7 @@ Everything the extension keeps stays in your browser: your settings, your lists,
 Besides the YouTube pages you open, the extension connects to these places only:
 
 - **GitHub** (`api.github.com`), to check for a new version, at the frequency you choose, or never. GitHub sees your IP address.
-- **YouTube**, only when you add channels by link or import a list of links, to find which channel each link is. These requests carry your YouTube cookies, as opening the page would.
+- **YouTube**, only when you add channels by link or import a list of links, to find which channel each link is, and when the settings page opens with a channel saved without its picture, to find that picture. These requests carry your YouTube cookies, as opening the page would.
 - **YouTube's image servers** (`yt3.ggpht.com`, `yt3.googleusercontent.com`, `yt4.ggpht.com`), for the pictures of the channels in the popup, the lists and the history, as YouTube's pages load them.
 
 In Firefox, Firefox itself, not the extension, also reads on GitHub the `updates.json` file that tells it about new versions.

@@ -22,7 +22,7 @@ Like automatiquement les vidéos YouTube que vous choisissez : celles des chaîn
 - **Pas cette fois, ou jamais :** écartez une vidéo pour ce visionnage, ou excluez-la pour de bon.
 - **Montre ce qu'elle fait :** la fenêtre de l'icône dit ce qui arrive à la vidéo regardée et pourquoi, avec les actions qui le changent.
 - **Historique :** les 500 derniers likes posés par l'extension, chacun avec un lien vers sa vidéo et sa chaîne, et le choix de toujours ou de ne jamais liker cette chaîne.
-- **Vos listes vous appartiennent :** exportez-les en fichier ou en liste de liens, réimportez-les en voyant d'abord ce qui change.
+- **Vos listes vous appartiennent :** exportez-les en fichier ou en liste de liens, réimportez-les en voyant d'abord ce qui change. Le fichier peut aussi contenir tous vos réglages et l'historique des likes, pour tout retrouver dans un autre navigateur ou après une réinstallation.
 - **Thèmes clair et sombre, 28 langues :** celle du navigateur, ou celle que vous choisissez dans les réglages. Seuls le français et l'anglais ont été relus par des locuteurs natifs pour l'instant : les corrections sont bienvenues (voir [Contribuer](#contribuer)).
 
 ## À propos de ce fork
@@ -99,7 +99,7 @@ Tout ce que l'extension garde reste dans votre navigateur : vos réglages, vos l
 En dehors des pages YouTube que vous ouvrez, l'extension ne se connecte qu'à ces endroits :
 
 - **GitHub** (`api.github.com`), pour savoir si une nouvelle version existe, à la fréquence que vous choisissez, ou jamais. GitHub voit alors votre adresse IP.
-- **YouTube**, seulement quand vous ajoutez des chaînes par lien ou importez une liste de liens, pour savoir de quelle chaîne il s'agit. Ces demandes portent vos cookies YouTube, comme si vous ouvriez la page.
+- **YouTube**, seulement quand vous ajoutez des chaînes par lien ou importez une liste de liens, pour savoir de quelle chaîne il s'agit, et quand la page de réglages s'ouvre avec une chaîne enregistrée sans son image, pour retrouver cette image. Ces demandes portent vos cookies YouTube, comme si vous ouvriez la page.
 - **Les serveurs d'images de YouTube** (`yt3.ggpht.com`, `yt3.googleusercontent.com`, `yt4.ggpht.com`), pour les images des chaînes dans la fenêtre de l'icône, les listes et l'historique, comme les pages de YouTube les chargent.
 
 Dans Firefox, c'est Firefox lui-même, et non l'extension, qui lit aussi sur GitHub le fichier `updates.json` des mises à jour.
