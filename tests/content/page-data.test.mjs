@@ -1,13 +1,37 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { ratingAtLoad, readSnapshot, shortsSubscription } from '../../src/content/youtube/page-data.js';
+import { pickAvatar, ratingAtLoad, readSnapshot, shortsSubscription } from '../../src/content/youtube/page-data.js';
 import { Surface } from '../../src/content/youtube/surface.js';
 import { element, fakeDocument } from '../helpers/fake-dom.mjs';
 
+const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
+const QOQSIK = 'UCfefITu3BR2ix7ZUSrxj16w';
+
 // Shapes observed in Brave on 8 November 2026.
 const response = (videoId, overrides = {}) => ({
-  videoDetails: { videoId, title: `Title of ${videoId}`, channelId: 'UC9orcd4I_3Uy_8_UAz2r48g', author: 'COLAS', ...overrides.details },
+  videoDetails: { videoId, title: `Title of ${videoId}`, channelId: COLAS, author: 'COLAS', ...overrides.details },
   microformat: { playerMicroformatRenderer: { isShortsEligible: false, ...overrides.microformat } },
+});
+
+// Avatar of COLAS, in the sizes and shapes observed on 11 November 2026.
+const AVATAR = 'https://yt3.ggpht.com/MVUN-H_w-0QKeMUYdDNiS3NA0cvA8mWGPHNzgTdxvplCbszxBKH-4smhoBfc9GBiI0j8Riu7AA';
+const avatarOfSize = (size) => `${AVATAR}=s${size}-c-k-c0x00ffffff-no-rj`;
+
+const owner = (channelId = COLAS) =>
+  element({
+    props: {
+      data: {
+        thumbnail: { thumbnails: [48, 88, 176].map((size) => ({ url: avatarOfSize(size), width: size, height: size })) },
+        navigationEndpoint: { browseEndpoint: { browseId: channelId, canonicalBaseUrl: '/@COLAS.' } },
+      },
+    },
+  });
+
+const decoratedAvatar = (channelId) => ({
+  decoratedAvatarViewModel: {
+    avatar: { avatarViewModel: { image: { sources: [{ url: avatarOfSize(48) }] } } },
+    rendererContext: { commandContext: { onTap: { innertubeCommand: { browseEndpoint: { browseId: channelId } } } } },
+  },
 });
 
 // Button data as observed: the like command sits in a serialCommand on the
@@ -48,11 +72,13 @@ const watchPage = ({
   surfaceVideoId = 'aeP4eG-gO10',
   subscribed = true,
   liked = true,
+  ownerElement = owner(),
 } = {}) =>
   fakeDocument({
     'ytd-watch-flexy ytd-player': element({ props: { getPlayer: () => ({ getPlayerResponse: () => playerResponse }) } }),
     'ytd-watch-flexy': element({ attributes: surfaceVideoId === null ? {} : { 'video-id': surfaceVideoId } }),
     'ytd-watch-metadata ytd-subscribe-button-renderer': element({ props: { data: { subscribed } } }),
+    ...(ownerElement && { 'ytd-watch-metadata ytd-video-owner-renderer': ownerElement }),
     'ytd-menu-renderer.ytd-watch-metadata segmented-like-dislike-button-view-model': element({
       children: {
         [LIKE_TOGGLE]: watchToggle('aeP4eG-gO10', liked),
@@ -61,9 +87,14 @@ const watchPage = ({
     }),
   });
 
-const channelBar = ({ listsButton, buttonClasses = [] }) =>
+const channelBar = ({ listsButton, buttonClasses = [], avatarChannel = listsButton ? QOQSIK : COLAS }) =>
   element({
-    props: { data: listsButton ? { channelName: 'qoqsik', subscribeButtonViewModel: {} } : { channelName: '@COLAS.' } },
+    props: {
+      data: {
+        ...(listsButton ? { channelName: 'qoqsik', subscribeButtonViewModel: {} } : { channelName: '@COLAS.' }),
+        decoratedAvatarViewModel: decoratedAvatar(avatarChannel),
+      },
+    },
     children: listsButton ? { 'yt-subscribe-button-view-model button': element({ classes: buttonClasses }) } : {},
   });
 
@@ -110,8 +141,9 @@ describe('readSnapshot on the watch page', () => {
       videoId: 'aeP4eG-gO10',
       surfaceVideoId: 'aeP4eG-gO10',
       title: 'Title of aeP4eG-gO10',
-      channelId: 'UC9orcd4I_3Uy_8_UAz2r48g',
+      channelId: COLAS,
       channelName: 'COLAS',
+      avatarUrl: avatarOfSize(88),
       isShort: false,
       isLive: false,
       subscribed: true,
@@ -140,12 +172,25 @@ describe('readSnapshot on the watch page', () => {
       title: '',
       channelId: null,
       channelName: '',
+      avatarUrl: null,
       isShort: null,
       isLive: null,
       subscribed: null,
       likeAtLoad: null,
       dislikeAtLoad: null,
     });
+  });
+
+  it('gives the avatar only when the owner element names the channel of the video', () => {
+    // The owner element is reused from one video to the next, and can still
+    // show the previous channel.
+    assert.equal(readSnapshot(watchPage({ ownerElement: owner(QOQSIK) }), Surface.WATCH).avatarUrl, null);
+    assert.equal(readSnapshot(watchPage({ ownerElement: owner(null) }), Surface.WATCH).avatarUrl, null);
+    assert.equal(readSnapshot(watchPage({ ownerElement: null }), Surface.WATCH).avatarUrl, null);
+    const withoutChannel = response('aeP4eG-gO10', { details: { channelId: undefined } });
+    assert.equal(readSnapshot(watchPage({ playerResponse: withoutChannel }), Surface.WATCH).avatarUrl, null);
+    // Neither the player nor the owner element names a channel.
+    assert.equal(readSnapshot(watchPage({ playerResponse: withoutChannel, ownerElement: owner(null) }), Surface.WATCH).avatarUrl, null);
   });
 
   it('survives a player that throws while being rebuilt', () => {
@@ -162,8 +207,9 @@ describe('readSnapshot in the Shorts player', () => {
       videoId: 'JgL5gMtA2X4',
       surfaceVideoId: 'JgL5gMtA2X4',
       title: 'Title of JgL5gMtA2X4',
-      channelId: 'UC9orcd4I_3Uy_8_UAz2r48g',
+      channelId: COLAS,
       channelName: 'COLAS',
+      avatarUrl: avatarOfSize(48),
       isShort: true,
       isLive: false,
       subscribed: true,
@@ -206,6 +252,11 @@ describe('readSnapshot in the Shorts player', () => {
     });
   });
 
+  it('gives the avatar of the channel bar only when it names the channel of the Short', () => {
+    assert.equal(readSnapshot(shortsPage({ bar: channelBar({ listsButton: false, avatarChannel: QOQSIK }) }), Surface.SHORTS).avatarUrl, null);
+    assert.equal(readSnapshot(shortsPage({ bar: null }), Surface.SHORTS).avatarUrl, null);
+  });
+
   it('ignores the watch page hidden behind the Shorts player', () => {
     const doc = shortsPage();
     const hiddenWatch = watchPage({ playerResponse: response('aeP4eG-gO10') });
@@ -214,6 +265,27 @@ describe('readSnapshot in the Shorts player', () => {
       'ytd-watch-flexy ytd-player': hiddenWatch.querySelector('ytd-watch-flexy ytd-player'),
     });
     assert.equal(readSnapshot(combined, Surface.SHORTS).videoId, 'JgL5gMtA2X4');
+  });
+});
+
+describe('pickAvatar', () => {
+  const sized = (...sizes) => sizes.map((size) => ({ url: avatarOfSize(size), width: size, height: size }));
+
+  it('keeps the smallest size at least 88 pixels wide, in any order', () => {
+    assert.equal(pickAvatar(sized(48, 88, 176)), avatarOfSize(88));
+    assert.equal(pickAvatar(sized(176, 48, 100)), avatarOfSize(100));
+  });
+
+  it('keeps the widest when all are smaller, and the last one when none gives its width', () => {
+    assert.equal(pickAvatar(sized(32, 48)), avatarOfSize(48));
+    assert.equal(pickAvatar(sized(48, 32)), avatarOfSize(48));
+    assert.equal(pickAvatar([{ url: avatarOfSize(48) }, { url: avatarOfSize(64) }]), avatarOfSize(64));
+  });
+
+  it('gives null without any address', () => {
+    for (const value of [undefined, null, [], [{ width: 88 }], [{ url: 42, width: 88 }], {}]) {
+      assert.equal(pickAvatar(value), null, JSON.stringify(value));
+    }
   });
 });
 

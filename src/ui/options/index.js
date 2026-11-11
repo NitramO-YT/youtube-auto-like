@@ -21,6 +21,7 @@ import { createNotice } from '../shared/notice.js';
 import { ruleParts } from '../shared/rule.js';
 import { applyTheme } from '../shared/theme.js';
 import { createAddDialog } from './add-dialog.js';
+import { repairMissingAvatars } from './avatar-repair.js';
 import { createExportDialog } from './export-dialog.js';
 import { FIELDS, lockedThreshold, NUMBER_RANGES, validNumber } from './fields.js';
 import { createHistorySection } from './history-section.js';
@@ -290,6 +291,15 @@ async function changeLanguage(language) {
   crossFade(document, switchLanguage);
 }
 
+/** The localStorage of the extension, or null where the browser refuses it. */
+function localStorageOrNull() {
+  try {
+    return window.localStorage;
+  } catch {
+    return null;
+  }
+}
+
 async function start() {
   try {
     state.settings = await store.loadSettings();
@@ -317,6 +327,10 @@ async function start() {
   markReady(document);
   listen();
   highlightSections(window, byId('nav'), [...form.querySelectorAll('section')]);
+  // The rows redraw through the storage events as avatars are found.
+  repairMissingAvatars({ store, fetchImpl: (...args) => fetch(...args), storage: localStorageOrNull() }).catch((error) =>
+    console.error(LOG_PREFIX, 'could not look up the missing avatars', error),
+  );
   // Opened from the popup on a dialog (dialogPageUrl): the dialog shows at
   // once, and the address goes back to the page alone.
   const asked = dialogFromHash(window.location.hash);

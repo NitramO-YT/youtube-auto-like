@@ -40,8 +40,9 @@ function validateRatingAtLoad(value) {
 
 /**
  * @returns {object|null} { videoId, surfaceVideoId, title, channelId,
- *   channelName, isShort, isLive, subscribed, likeAtLoad, dislikeAtLoad }.
- *   videoId is the
+ *   channelName, avatarUrl, isShort, isLive, subscribed, likeAtLoad,
+ *   dislikeAtLoad }. avatarUrl is null unless it is an address
+ *   storedAvatarUrl accepts. videoId is the
  *   video of the player, surfaceVideoId the one the rating buttons on screen
  *   belong to; likeAtLoad and dislikeAtLoad are { toggled, videoId }, the
  *   state of each button at page load and the video it rates. Each field the
@@ -57,6 +58,7 @@ export function validateSnapshot(payload) {
     title: textOf(payload.title, MAX_TITLE_LENGTH),
     channelId: isValidChannelId(payload.channelId) ? payload.channelId : null,
     channelName: textOf(payload.channelName, MAX_NAME_LENGTH),
+    avatarUrl: storedAvatarUrl(payload.avatarUrl),
     isShort: booleanOrNull(payload.isShort),
     isLive: booleanOrNull(payload.isLive),
     subscribed: booleanOrNull(payload.subscribed),

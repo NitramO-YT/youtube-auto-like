@@ -32,7 +32,7 @@ import {
   validateSnapshot,
 } from '../protocol.js';
 import { channelRefFromUrl } from '../youtube/channel-page.js';
-import { findLikeButton, readChannelAvatar, readPlayback, readRating } from '../youtube/dom.js';
+import { findLikeButton, readPlayback, readRating } from '../youtube/dom.js';
 import { surfaceFromUrl, videoIdFromUrl } from '../youtube/surface.js';
 import { createSession, likeNow, likeState, restartVideo, resumeVideo, skipVideo, Status, step } from './session.js';
 import { initialSync, syncHistory } from './history-sync.js';
@@ -60,6 +60,9 @@ let clicked = null;
 // On a channel page: { href, channel } read at that address, channel from
 // validateChannelPage (null while the page does not show it yet).
 let channelPage = null;
+// The last channel avatar passed on to the entries of its channel, as
+// "channelId avatarUrl": each one is written once, not at every tick.
+let avatarPassedOn = null;
 let busy = false;
 // Journal entries waiting for their write (see note).
 const JOURNAL_DELAY_MS = 2000;
@@ -125,6 +128,23 @@ function askPage(requestType, answerType, validate) {
 
 const requestSnapshot = () => askPage(SNAPSHOT_REQUEST, SNAPSHOT, validateSnapshot);
 
+/**
+ * Gives the avatar a page shows for a channel to the entries of that channel
+ * in the lists, the excluded videos and the history: those made without it
+ * get it, and an older address is replaced.
+ */
+function passOnAvatar(channelId, avatarUrl) {
+  if (!channelId || !avatarUrl) return;
+  const key = `${channelId} ${avatarUrl}`;
+  if (key === avatarPassedOn) return;
+  avatarPassedOn = key;
+  store.refreshChannelAvatar(channelId, avatarUrl).catch((error) => {
+    // Tried again at the next tick.
+    avatarPassedOn = null;
+    console.error(LOG_PREFIX, 'could not save the channel avatar', error);
+  });
+}
+
 /** Reads the channel of a channel page for the popup; channelPage stays null on any other page. */
 async function readChannelPageOf(href) {
   if (!channelRefFromUrl(href)) {
@@ -134,12 +154,13 @@ async function readChannelPageOf(href) {
   const channel = await askPage(CHANNEL_PAGE_REQUEST, CHANNEL_PAGE, validateChannelPage);
   // The page may have moved on while the reader answered.
   channelPage = window.location.href === href ? { href, channel } : null;
+  if (channelPage?.channel) passOnAvatar(channelPage.channel.id, channelPage.channel.avatarUrl);
 }
 
 function observe(snapshot, surface) {
   return {
     snapshot,
-    avatarUrl: readChannelAvatar(document, surface),
+    avatarUrl: snapshot?.avatarUrl ?? null,
     ...readRating(document, surface),
     ...readPlayback(document, surface),
   };
@@ -186,6 +207,9 @@ async function tick() {
     // is still the one on the page when the button is clicked.
     const observation = observe(snapshot, surface);
     let { session: next, action } = step(session, observation, settings, Date.now());
+    // The snapshot describes the video of the session (checked above); its
+    // avatar is the one of its channel (page-data.js).
+    passOnAvatar(snapshot?.channelId ?? null, observation.avatarUrl);
     if (action === 'click') {
       const button = findLikeButton(document, surface);
       if (button) {
@@ -217,7 +241,12 @@ async function tick() {
     }
     if (next.status === Status.LIKED && session.status !== Status.LIKED) {
       store
-        .recordLike(historyEntry(next.videoId, clicked?.snapshot ?? null, next.likedAt, clicked?.avatarUrl ?? null))
+        .recordLike(historyEntry(next.videoId, clicked?.snapshot ?? null, next.likedAt, clicked?.avatarUrl ?? observation.avatarUrl))
+        .then(() => {
+          // The avatar of the channel, if the page shows it later, also goes
+          // to this new entry.
+          avatarPassedOn = null;
+        })
         .catch((error) => console.error(LOG_PREFIX, 'could not record the like', error));
     }
     session = next;

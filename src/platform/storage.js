@@ -10,6 +10,7 @@
  * like count and the history go into the journal, in the same write as the
  * change, each line naming the page (source).
  */
+import { setChannelAvatar } from '../core/channel-avatars.js';
 import { addToHistory, markLikeRemoved, normalizeHistory } from '../core/history.js';
 import { addToJournal, journalEntry, normalizeJournal } from '../core/journal.js';
 import { settingsChanges } from '../core/settings-changes.js';
@@ -132,6 +133,30 @@ export function createStore(api, { source = 'extension', now = Date.now } = {}) 
       const history = normalizeHistory(stored[HISTORY_KEY]);
       const marked = markLikeRemoved(history, videoId, removedAt);
       if (marked !== history) await area.set({ [HISTORY_KEY]: marked });
+    },
+
+    /**
+     * Sets the avatar of a channel in every entry of that channel, in the
+     * lists, the excluded videos and the history (see setChannelAvatar);
+     * writes only the parts that change, and nothing when none does. Like
+     * recordLike, a change of the settings made elsewhere at the very same
+     * moment could be written over.
+     *
+     * @returns {Promise<number>} The number of entries changed.
+     */
+    async refreshChannelAvatar(channelId, avatarUrl) {
+      const stored = await area.get([SETTINGS_KEY, HISTORY_KEY, JOURNAL_KEY]);
+      const settings = normalizeSettings(stored[SETTINGS_KEY]);
+      const history = normalizeHistory(stored[HISTORY_KEY]);
+      const next = setChannelAvatar(settings, history, channelId, avatarUrl);
+      if (next.count === 0) return 0;
+      const line = { videoId: null, text: `avatar of channel ${channelId} set in ${next.count} ${next.count === 1 ? 'entry' : 'entries'}` };
+      await area.set({
+        ...(next.settings !== settings ? { [SETTINGS_KEY]: next.settings } : {}),
+        ...(next.history !== history ? { [HISTORY_KEY]: next.history } : {}),
+        ...journalItems(stored, settings, [line]),
+      });
+      return next.count;
     },
 
     /** The state of the checks for a new version (see normalizeUpdateState). */

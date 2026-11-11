@@ -132,6 +132,47 @@ describe('createStore', () => {
     assert.deepEqual(writes, ['2026-11-10T21:52:00.000Z', null]);
   });
 
+  describe('refreshChannelAvatar', () => {
+    const AVATAR = 'https://yt3.ggpht.com/MVUN-H_w-0QKeMUYdDNiS3NA0cvA8mWGPHNzgTdxvplCbszxBKH-4smhoBfc9GBiI0j8Riu7AA=s88-c-k-c0x00ffffff-no-rj';
+    const COLAS = { id: LIKE.channelId, name: 'COLAS', avatarUrl: null, addedAt: '2026-11-09T10:00:00.000Z' };
+    const writesOf = (api) => {
+      const writes = [];
+      const set = api.storage.local.set;
+      api.storage.local.set = (items) => {
+        writes.push(Object.keys(items).sort());
+        return set(items);
+      };
+      return writes;
+    };
+
+    it('sets the avatar in the lists and the history, in one write of what changed', async () => {
+      const api = fakeApi({ [SETTINGS_KEY]: { lists: { always: [COLAS] } }, [HISTORY_KEY]: [{ ...LIKE, channelAvatarUrl: null }] });
+      const writes = writesOf(api);
+      assert.equal(await createStore(api).refreshChannelAvatar(LIKE.channelId, AVATAR), 2);
+      assert.deepEqual(writes, [[HISTORY_KEY, SETTINGS_KEY]]);
+      assert.equal(api.data[SETTINGS_KEY].lists.always[0].avatarUrl, AVATAR);
+      assert.equal(api.data[HISTORY_KEY][0].channelAvatarUrl, AVATAR);
+    });
+
+    it('writes only the history when the lists do not change, and nothing at all a second time', async () => {
+      const api = fakeApi({ [HISTORY_KEY]: [{ ...LIKE, channelAvatarUrl: null }] });
+      const writes = writesOf(api);
+      const store = createStore(api);
+      await store.refreshChannelAvatar(LIKE.channelId, AVATAR);
+      assert.equal(await store.refreshChannelAvatar(LIKE.channelId, AVATAR), 0);
+      assert.deepEqual(writes, [[HISTORY_KEY]]);
+    });
+
+    it('notes the change in the journal while the debug mode is on', async () => {
+      const api = fakeApi({ [SETTINGS_KEY]: { debug: true }, [HISTORY_KEY]: [{ ...LIKE, channelAvatarUrl: null }] });
+      await createStore(api).refreshChannelAvatar(LIKE.channelId, AVATAR);
+      assert.deepEqual(
+        api.data[JOURNAL_KEY].map((entry) => entry.text),
+        [`extension: avatar of channel ${LIKE.channelId} set in 1 entry`],
+      );
+    });
+  });
+
   describe('while the debug mode is on', () => {
     const AT = Date.parse('2026-11-09T18:00:00.000Z');
     const debugStore = (initial) => {

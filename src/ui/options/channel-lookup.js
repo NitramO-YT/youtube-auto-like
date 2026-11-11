@@ -59,6 +59,11 @@ async function lookUpChannelPage(input, fetchImpl) {
   return { channel };
 }
 
+/** { channel } or { error } for a channel ID; without a usable answer, the channel comes without its name and avatar. */
+export function lookUpChannelById(channelId, fetchImpl) {
+  return lookUpChannelPage({ kind: LinkKind.CHANNEL_ID, channelId }, fetchImpl);
+}
+
 /** { channel } or { error } for one line. */
 export async function lookUpLine(line, fetchImpl) {
   const input = parseChannelInput(line);

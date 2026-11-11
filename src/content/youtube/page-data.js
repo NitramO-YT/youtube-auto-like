@@ -34,6 +34,21 @@
  * other than the two observed counts as disliked, so that an unknown value
  * never allows a like.
  *
+ * Channel avatar, checked in Brave on 11 November 2026, read from data
+ * rather than from the img shown, which can be empty when the like is made
+ * (the page has not loaded the picture yet, or does not show it, as in full
+ * screen):
+ * - watch page: ytd-watch-metadata ytd-video-owner-renderer .data, with
+ *   thumbnail.thumbnails (48, 88 and 176 pixels) and the channel in
+ *   navigationEndpoint.browseEndpoint.browseId;
+ * - Shorts player: the yt-reel-channel-bar-view-model of the Short shown,
+ *   .data.decoratedAvatarViewModel.decoratedAvatarViewModel, with
+ *   avatar.avatarViewModel.image.sources (one source, 48 pixels, without
+ *   width) and the channel in rendererContext.commandContext.onTap
+ *   .innertubeCommand.browseEndpoint.browseId.
+ * The owner element of the watch page is reused from one video to the next:
+ * an avatar counts only when its channel is the one of the player response.
+ *
  * Every access is guarded: a missing piece gives null, never an exception.
  */
 import { Surface } from './surface.js';
@@ -41,6 +56,11 @@ import { Surface } from './surface.js';
 const WATCH_PAGE = 'ytd-watch-flexy';
 const WATCH_PLAYER = 'ytd-watch-flexy ytd-player';
 const WATCH_SUBSCRIBE = 'ytd-watch-metadata ytd-subscribe-button-renderer';
+const WATCH_OWNER = 'ytd-watch-metadata ytd-video-owner-renderer';
+// Width of the avatar kept when the page offers several: the popup and the
+// options page show it at 26 to 32 CSS pixels (theme.css, options.css),
+// sharp up to a screen of twice the density.
+const AVATAR_WIDTH = 88;
 const WATCH_RATING_BAR = 'ytd-menu-renderer.ytd-watch-metadata segmented-like-dislike-button-view-model';
 const SHORTS_PLAYER = '#shorts-player';
 const SHORT = 'ytd-reel-video-renderer';
@@ -84,6 +104,36 @@ export function shortsSubscription(short) {
   if (button?.classList.contains(SUBSCRIBED_CLASS)) return true;
   if (button?.classList.contains(NOT_SUBSCRIBED_CLASS)) return false;
   return null;
+}
+
+/**
+ * The address of the image to keep among the sizes of an avatar: the
+ * smallest at least AVATAR_WIDTH wide, else the widest; the last one when
+ * none gives its width. null without any address.
+ */
+export function pickAvatar(thumbnails) {
+  if (!Array.isArray(thumbnails)) return null;
+  const usable = thumbnails.filter((thumbnail) => typeof thumbnail?.url === 'string');
+  const sized = usable.filter((thumbnail) => Number.isFinite(thumbnail.width)).sort((a, b) => a.width - b.width);
+  const chosen = sized.find((thumbnail) => thumbnail.width >= AVATAR_WIDTH) ?? sized.at(-1) ?? usable.at(-1);
+  return chosen?.url ?? null;
+}
+
+const avatarOf = (channelId, url) => (typeof channelId === 'string' && url ? { channelId, url } : null);
+
+/** { channelId, url } of the avatar in the data of the owner element of the watch page, or null. */
+export function watchOwnerAvatar(owner) {
+  const data = owner?.data;
+  return avatarOf(data?.navigationEndpoint?.browseEndpoint?.browseId, pickAvatar(data?.thumbnail?.thumbnails));
+}
+
+/** { channelId, url } of the avatar in the data of the channel bar of a Short, or null. */
+export function shortsBarAvatar(short) {
+  const model = short?.querySelector(SHORTS_CHANNEL_BAR)?.data?.decoratedAvatarViewModel?.decoratedAvatarViewModel;
+  return avatarOf(
+    model?.rendererContext?.commandContext?.onTap?.innertubeCommand?.browseEndpoint?.browseId,
+    pickAvatar(model?.avatar?.avatarViewModel?.image?.sources),
+  );
 }
 
 /** The video ID of the first likeEndpoint found in a button's data, or null. */
@@ -144,6 +194,7 @@ function watchSources(doc) {
     response: guarded(() => doc.querySelector(WATCH_PLAYER)?.getPlayer?.()?.getPlayerResponse?.()),
     surfaceVideoId: doc.querySelector(WATCH_PAGE)?.getAttribute('video-id') ?? null,
     subscribed: typeof subscribed === 'boolean' ? subscribed : null,
+    avatar: guarded(() => watchOwnerAvatar(doc.querySelector(WATCH_OWNER))),
     ...ratingsAtLoad(doc.querySelector(WATCH_RATING_BAR)),
   };
 }
@@ -155,6 +206,7 @@ function shortsSources(doc) {
     response: guarded(() => player?.getPlayerResponse?.()),
     surfaceVideoId: short?.data?.command?.reelWatchEndpoint?.videoId ?? null,
     subscribed: shortsSubscription(short),
+    avatar: guarded(() => shortsBarAvatar(short)),
     ...shortsRatingsAtLoad(short?.querySelector(SHORTS_RATING_BAR)),
   };
 }
@@ -165,16 +217,19 @@ function shortsSources(doc) {
  */
 export function readSnapshot(doc, surface) {
   if (surface !== Surface.WATCH && surface !== Surface.SHORTS) return null;
-  const { response, surfaceVideoId, subscribed, likeAtLoad, dislikeAtLoad } =
+  const { response, surfaceVideoId, subscribed, avatar, likeAtLoad, dislikeAtLoad } =
     surface === Surface.SHORTS ? shortsSources(doc) : watchSources(doc);
   const details = response?.videoDetails;
+  const channelId = details?.channelId ?? null;
   const microformat = response?.microformat?.playerMicroformatRenderer;
   return {
     videoId: details?.videoId ?? null,
     surfaceVideoId,
     title: typeof details?.title === 'string' ? details.title : '',
-    channelId: details?.channelId ?? null,
+    channelId,
     channelName: details?.author ?? '',
+    // avatarOf gives a channel ID only as a string: no avatar passes without one.
+    avatarUrl: avatar?.channelId === channelId ? avatar.url : null,
     isShort:
       surface === Surface.SHORTS
         ? true

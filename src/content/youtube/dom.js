@@ -11,7 +11,6 @@
  * #shorts-player, which is the one being played even when the page holds
  * several.
  */
-import { avatarUrl } from '../../core/avatar.js';
 import { Surface } from './surface.js';
 
 const SELECTORS = {
@@ -19,13 +18,11 @@ const SELECTORS = {
     ratingBar: 'ytd-menu-renderer.ytd-watch-metadata segmented-like-dislike-button-view-model',
     player: '#movie_player',
     video: '#movie_player video.video-stream',
-    avatar: 'ytd-watch-metadata ytd-video-owner-renderer #avatar img',
   },
   [Surface.SHORTS]: {
     ratingBar: 'reel-action-bar-view-model',
     player: '#shorts-player',
     video: '#shorts-player video.video-stream',
-    avatar: 'yt-reel-channel-bar-view-model img',
   },
 };
 const SHORT = 'ytd-reel-video-renderer';
@@ -50,14 +47,6 @@ function ratingBar(doc, surface) {
   const selectors = SELECTORS[surface];
   if (!selectors) return null;
   return scope(doc, surface)?.querySelector(selectors.ratingBar) ?? null;
-}
-
-/** The address of the channel avatar, when it is an https image of YouTube's servers; otherwise null. */
-export function readChannelAvatar(doc, surface) {
-  const selectors = SELECTORS[surface];
-  if (!selectors) return null;
-  const image = scope(doc, surface)?.querySelector(selectors.avatar);
-  return avatarUrl(image?.currentSrc || image?.src);
 }
 
 function pressed(button) {

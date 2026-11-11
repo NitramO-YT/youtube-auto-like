@@ -8,6 +8,7 @@ const SNAPSHOT = {
   title: "J'AI CONSTRUIT MON ATELIER DE RÊVE !",
   channelId: 'UC9orcd4I_3Uy_8_UAz2r48g',
   channelName: 'COLAS',
+  avatarUrl: 'https://yt3.ggpht.com/MVUN-H_w-0QKeMUYdDNiS3NA0cvA8mWGPHNzgTdxvplCbszxBKH-4smhoBfc9GBiI0j8Riu7AA=s88-c-k-c0x00ffffff-no-rj',
   isShort: false,
   isLive: false,
   subscribed: true,
@@ -43,6 +44,7 @@ describe('validateSnapshot', () => {
         title: ['<b>', 'title</b>'],
         channelId: '@COLAS.',
         channelName: { toString: () => 'x' },
+        avatarUrl: { href: SNAPSHOT.avatarUrl },
         isShort: 'false',
         isLive: 0,
         subscribed: 'yes',
@@ -55,6 +57,7 @@ describe('validateSnapshot', () => {
         title: '',
         channelId: null,
         channelName: '',
+        avatarUrl: null,
         isShort: null,
         isLive: null,
         subscribed: null,
@@ -62,6 +65,20 @@ describe('validateSnapshot', () => {
         dislikeAtLoad: null,
       },
     );
+  });
+
+  it('keeps an avatar only when it is an https image of the servers of YouTube', () => {
+    for (const avatarUrl of [
+      'http://yt3.ggpht.com/x',
+      'https://evil.example/x.png',
+      'https://yt3.ggpht.com.evil.example/x',
+      'javascript:alert(1)',
+      'data:image/png;base64,AAAA',
+      `https://yt3.ggpht.com/${'x'.repeat(400)}`,
+      '',
+    ]) {
+      assert.equal(validateSnapshot({ ...SNAPSHOT, avatarUrl }).avatarUrl, null, avatarUrl);
+    }
   });
 
   it('drops extra fields and cuts an oversized channel name or title', () => {
