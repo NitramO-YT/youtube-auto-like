@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { claimInstance, isConnected } from '../../src/content/instance.js';
+import { claimInstance, failureLog, isConnected } from '../../src/content/instance.js';
 
 describe('claimInstance', () => {
   it('gives the turn to the newest copy only', () => {
@@ -26,5 +26,17 @@ describe('isConnected', () => {
     assert.equal(isConnected({ runtime: { id: undefined } }), false);
     assert.equal(isConnected({ get runtime() { throw new Error('Extension context invalidated.'); } }), false);
     assert.equal(isConnected(undefined), false);
+  });
+});
+
+describe('failureLog', () => {
+  it('logs a failure while the extension is there, and says nothing once it is cut off', () => {
+    const logged = [];
+    const api = { runtime: { id: 'lccjnbjmgficoniieomponlgdjafnbhi' } };
+    const logFailure = failureLog(api, (...args) => logged.push(args));
+    logFailure('[YouTube Auto Like]', 'could not write the journal', 'quota');
+    api.runtime.id = undefined;
+    logFailure('[YouTube Auto Like]', 'could not write the journal', 'Extension context invalidated.');
+    assert.deepEqual(logged, [['[YouTube Auto Like]', 'could not write the journal', 'quota']]);
   });
 });

@@ -34,3 +34,18 @@ export function isConnected(api) {
     return false;
   }
 }
+
+/**
+ * A function that logs the failure of a write to the extension (storage),
+ * unless the extension is gone: a script cut off from it can no longer
+ * reach its storage ("Extension context invalidated", seen in Brave on
+ * 12 November 2026 after an update), which is then expected, and nothing is
+ * left to report it to.
+ *
+ * @param {Function} [log] console.error, or a stand-in in tests.
+ */
+export function failureLog(api, log = (...args) => console.error(...args)) {
+  return (...args) => {
+    if (isConnected(api)) log(...args);
+  };
+}

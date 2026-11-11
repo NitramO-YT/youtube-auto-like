@@ -20,7 +20,7 @@ import { journalEntry } from '../../core/journal.js';
 import { api } from '../../platform/api.js';
 import { acceptedMessage, Message } from '../../platform/messages.js';
 import { createStore } from '../../platform/storage.js';
-import { claimInstance, isConnected } from '../instance.js';
+import { claimInstance, failureLog, isConnected } from '../instance.js';
 import {
   CHANNEL_PAGE,
   CHANNEL_PAGE_REQUEST,
@@ -45,6 +45,8 @@ const LOG_PREFIX = '[YouTube Auto Like]';
 
 const store = createStore(api);
 const hasTurn = claimInstance(globalThis, Symbol.for('youtube-auto-like:liker'));
+// Failures of the writes below, said only while the extension is there.
+const logFailure = failureLog(api);
 let timer = null;
 let stopped = false;
 let settings = null;
@@ -83,7 +85,8 @@ function note(videoId, text) {
     const entries = pendingJournal;
     pendingJournal = [];
     journalTimer = null;
-    store.appendJournal(entries).catch((error) => console.error(LOG_PREFIX, 'could not write the journal', error));
+    if (!mayRun()) return;
+    store.appendJournal(entries).catch((error) => logFailure(LOG_PREFIX, 'could not write the journal', error));
   }, JOURNAL_DELAY_MS);
 }
 
@@ -93,6 +96,11 @@ function mayRun() {
   if (hasTurn() && isConnected(api)) return true;
   stopped = true;
   clearInterval(timer);
+  // The entries still waiting are dropped: cut off, this copy can no longer
+  // write them; replaced, the newer copy keeps the journal from now on.
+  clearTimeout(journalTimer);
+  journalTimer = null;
+  pendingJournal = [];
   document.removeEventListener('yt-navigate-finish', onNavigate);
   console.info(LOG_PREFIX, hasTurn() ? 'cut off from the extension: this page no longer likes until it is reloaded' : 'a newer copy of the extension takes over');
   return false;
@@ -141,7 +149,7 @@ function passOnAvatar(channelId, avatarUrl) {
   store.refreshChannelAvatar(channelId, avatarUrl).catch((error) => {
     // Tried again at the next tick.
     avatarPassedOn = null;
-    console.error(LOG_PREFIX, 'could not save the channel avatar', error);
+    logFailure(LOG_PREFIX, 'could not save the channel avatar', error);
   });
 }
 
@@ -233,7 +241,7 @@ async function tick() {
       if (synced.mark !== null) {
         store
           .markHistoryLike(next.videoId, synced.mark ? new Date().toISOString() : null)
-          .catch((error) => console.error(LOG_PREFIX, 'could not mark the like in the history', error));
+          .catch((error) => logFailure(LOG_PREFIX, 'could not mark the like in the history', error));
       }
     }
     if (next.status !== session.status || next.reason !== session.reason) {
@@ -247,7 +255,7 @@ async function tick() {
           // to this new entry.
           avatarPassedOn = null;
         })
-        .catch((error) => console.error(LOG_PREFIX, 'could not record the like', error));
+        .catch((error) => logFailure(LOG_PREFIX, 'could not record the like', error));
     }
     session = next;
     lastObservation = observation;
