@@ -8,7 +8,9 @@
  *
  * Two sources are understood: a file exported by the extension (JSON, see
  * core/lists-file.js), and a list of links or @handles, one per line,
- * looked up on YouTube at the analysis and put in the list chosen.
+ * looked up on YouTube at the analysis and put in the list chosen. A file
+ * that also holds the settings or the history offers them as two more
+ * parts, which planImport handles whatever the mode.
  *
  * Once analysed, a change of parts, mode or list updates the report at
  * once, without asking YouTube again; another source starts over.
@@ -19,7 +21,7 @@
 import { MAX_LINKS } from '../../core/channel-links.js';
 import { ListFullError, normalizeChannels } from '../../core/channels.js';
 import { ImportError, MAX_LISTS_FILE_BYTES, parseListsFile, readLinkLines } from '../../core/lists-file.js';
-import { IMPORT_MODES, IMPORT_PARTS, importChanges, ImportMode, planImport } from '../../core/lists-import.js';
+import { BACKUP_PARTS, IMPORT_MODES, IMPORT_PARTS, importChanges, ImportMode, ImportPart, planImport } from '../../core/lists-import.js';
 import { failureText } from '../shared/actions.js';
 import { el } from '../shared/dom.js';
 import { formatNumber, pluralKey } from '../shared/format.js';
@@ -54,11 +56,14 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
   const element = byId('import-dialog');
   const dialog = setUpDialog(element);
   const status = byId('import-status');
-  // { kind: 'file', name, size, data: { lists, excludedVideos } } or
+  // { kind: 'file', name, size, data: { lists, excludedVideos, settings, history } } or
   // { kind: 'links', name, size, lines, results }, results once looked up.
   let source = null;
   let analysed = false;
   let busy = false;
+  // The history, read when the dialog opens, for the analysis; the import
+  // reads it again.
+  let history = [];
 
   const checked = (name) => [...doc.querySelectorAll(`input[name="${name}"]:checked`)].map((input) => input.value);
   const mode = () => checked('import-mode')[0] ?? ImportMode.ADD_NEW;
@@ -70,16 +75,18 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
       return { [checked('import-target')[0]]: channels };
     }
     const parts = checked('import-part');
-    const { lists, excludedVideos } = source.data;
+    const { lists, excludedVideos, settings, history: likes } = source.data;
     const chosen = {};
     if (parts.includes('always')) chosen.always = lists.always;
     if (parts.includes('never')) chosen.never = lists.never;
     if (parts.includes('videos')) chosen.videos = excludedVideos;
+    if (parts.includes(ImportPart.SETTINGS) && settings) chosen.settings = settings;
+    if (parts.includes(ImportPart.HISTORY) && likes) chosen.history = likes;
     return chosen;
   }
 
   function plan() {
-    return planImport(state.settings, incoming(), mode(), new Date().toISOString());
+    return planImport(state.settings, incoming(), mode(), new Date().toISOString(), history);
   }
 
   function resetReport() {
@@ -110,6 +117,17 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
         byId(`import-part-${part}`).textContent = t('partWithCount', [t(PART_LABELS[part]), formatNumber(counts[part], page.lang)]);
         doc.querySelector(`input[name="import-part"][value="${part}"]`).checked = counts[part] > 0;
       }
+      // The settings and the history, offered only when the file holds them.
+      for (const part of BACKUP_PARTS) {
+        const held = source.data[part] !== null;
+        byId(`import-part-row-${part}`).hidden = !held;
+        doc.querySelector(`input[name="import-part"][value="${part}"]`).checked = held;
+      }
+      byId('import-part-settings').textContent = t(PART_LABELS[ImportPart.SETTINGS]);
+      if (source.data.history) {
+        byId('import-part-history').textContent = t('partWithCount', [t(PART_LABELS[ImportPart.HISTORY]), formatNumber(source.data.history.length, page.lang)]);
+      }
+      byId('import-backup-hint').hidden = BACKUP_PARTS.every((part) => source.data[part] === null);
     }
   }
 
@@ -235,14 +253,20 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
     const chosen = incoming();
     const chosenMode = mode();
     let previous = null;
-    let report = null;
+    let previousHistory = null;
+    let result = null;
     try {
+      const currentHistory = chosen.history ? await store.loadHistory() : [];
       state.settings = await store.updateSettings((current) => {
-        previous = { lists: current.lists, excludedVideos: current.excludedVideos };
-        const result = planImport(current, chosen, chosenMode, new Date().toISOString());
-        report = result.report;
-        return { ...current, lists: result.lists, excludedVideos: result.excludedVideos };
+        // Imported settings replace them all; otherwise, only the lists change.
+        previous = chosen.settings ? current : { lists: current.lists, excludedVideos: current.excludedVideos };
+        result = planImport(current, chosen, chosenMode, new Date().toISOString(), currentHistory);
+        return result.settings ?? { ...current, lists: result.lists, excludedVideos: result.excludedVideos };
       });
+      if (result.history && result.history !== currentHistory) {
+        previousHistory = currentHistory;
+        await store.setHistory(result.history);
+      }
     } catch (error) {
       setStatus(status, failureText(error, t, page.lang), { error: true });
       return;
@@ -250,8 +274,9 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
     rememberMode(storage, byId('import-remember').checked ? chosenMode : null);
     dialog.close();
     page.refresh();
-    confirmChange('noticeImportDone', [totalsLine(report, t, page.lang)], async () => {
+    confirmChange('noticeImportDone', [totalsLine(result.report, t, page.lang)], async () => {
       state.settings = await store.updateSettings((current) => ({ ...current, ...previous }));
+      if (previousHistory) await store.setHistory(previousHistory);
     });
   }
 
@@ -315,7 +340,8 @@ export function createImportDialog(page, { lookUp = (lines, onProgress) => lookU
   }
 
   /** Opens the dialog without a source, with the remembered mode. */
-  function open() {
+  async function open() {
+    history = await store.loadHistory();
     source = null;
     resetReport();
     setStatus(status, null);

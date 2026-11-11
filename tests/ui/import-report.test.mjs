@@ -57,6 +57,17 @@ describe('reportLines and totalsLine', () => {
     assert.equal(totalsLine({ always: counts(0, 0, 4, 0) }, en, 'en'), 'nothing changes');
     assert.equal(removedCount(report), 1);
   });
+
+  it('counts the settings and the likes of a backup in their own words', () => {
+    const backup = { ...report, settings: { ...counts(0, 0, 0, 0), changed: 2 }, history: counts(12, 0, 1, 0) };
+    assert.deepEqual(reportLines(backup, fr, 'fr').slice(3), [
+      'Réglages : 2 réglages changés',
+      "Likes posés par l'extension : 12 likes ajoutés · 1 like déjà présent",
+    ]);
+    assert.equal(totalsLine(backup, fr, 'fr'), '4 nouvelles · 1 déplacée · 1 retirée · 12 likes ajoutés · 2 réglages changés');
+    assert.equal(totalsLine({ settings: { ...counts(0, 0, 0, 0), changed: 1 } }, en, 'en'), '1 setting changed');
+    assert.equal(totalsLine({ settings: { ...counts(0, 0, 0, 0), changed: 0 }, history: counts(0, 0, 3, 0) }, en, 'en'), 'nothing changes');
+  });
 });
 
 describe('lookupLines', () => {

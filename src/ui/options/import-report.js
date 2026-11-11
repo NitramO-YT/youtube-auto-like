@@ -12,42 +12,64 @@ export const PART_LABELS = Object.freeze({
   [ImportPart.ALWAYS]: 'listAlways',
   [ImportPart.NEVER]: 'listNever',
   [ImportPart.VIDEOS]: 'listVideos',
+  // The title of the options page, and the heading of its history.
+  [ImportPart.SETTINGS]: 'optionsTitle',
+  [ImportPart.HISTORY]: 'historyHeading',
 });
 
-const COUNT_KEYS = [
+// The words of each count: those of the lists agree with a channel or a
+// video, which differ from a like or a setting in some languages.
+const LIST_COUNT_KEYS = [
   ['added', 'reportAddedOne', 'reportAddedOther'],
   ['moved', 'reportMovedOne', 'reportMovedOther'],
   ['unchanged', 'reportUnchangedOne', 'reportUnchangedOther'],
   ['removed', 'reportRemovedOne', 'reportRemovedOther'],
 ];
+const HISTORY_COUNT_KEYS = [
+  ['added', 'reportLikeAddedOne', 'reportLikeAddedOther'],
+  ['unchanged', 'reportLikeUnchangedOne', 'reportLikeUnchangedOther'],
+];
+const SETTINGS_COUNT_KEYS = [['changed', 'reportSettingChangedOne', 'reportSettingChangedOther']];
+const COUNT_KEYS_OF = { [ImportPart.HISTORY]: HISTORY_COUNT_KEYS, [ImportPart.SETTINGS]: SETTINGS_COUNT_KEYS };
 
 /** "3 new · 1 moved", for the counts of `fields` that are not zero; null when all are. */
-function countsText(counts, fields, t, lang) {
-  const parts = COUNT_KEYS.filter(([field]) => fields.includes(field) && counts[field] > 0).map(([field, one, other]) =>
-    t(pluralKey(counts[field], lang, one, other), [formatNumber(counts[field], lang)]),
-  );
+function countsText(counts, keys, fields, t, lang) {
+  const parts = keys
+    .filter(([field]) => fields.includes(field) && counts[field] > 0)
+    .map(([field, one, other]) => t(pluralKey(counts[field], lang, one, other), [formatNumber(counts[field], lang)]));
   return parts.length ? parts.join(' · ') : null;
 }
 
-const ALL_FIELDS = COUNT_KEYS.map(([field]) => field);
+const keysOf = (part) => COUNT_KEYS_OF[part] ?? LIST_COUNT_KEYS;
+const fieldsOf = (keys) => keys.map(([field]) => field);
 
 /**
  * One line per imported part: "Always like: 3 new · 1 moved". A part with
  * nothing in it says so.
  */
 export function reportLines(report, t, lang) {
-  return Object.entries(report).map(([part, counts]) =>
-    t('reportPart', [t(PART_LABELS[part]), countsText(counts, ALL_FIELDS, t, lang) ?? t('reportPartEmpty')]),
-  );
+  return Object.entries(report).map(([part, counts]) => {
+    const keys = keysOf(part);
+    return t('reportPart', [t(PART_LABELS[part]), countsText(counts, keys, fieldsOf(keys), t, lang) ?? t('reportPartEmpty')]);
+  });
 }
 
-/** What an import changed, all parts together: "3 new · 2 removed". */
+/**
+ * What an import changed, all parts together: "3 new · 2 removed", then the
+ * likes added to the history and the settings changed, in their own words.
+ */
 export function totalsLine(report, t, lang) {
   const totals = { added: 0, moved: 0, removed: 0 };
-  for (const counts of Object.values(report)) {
+  for (const [part, counts] of Object.entries(report)) {
+    if (COUNT_KEYS_OF[part]) continue;
     for (const field of Object.keys(totals)) totals[field] += counts[field];
   }
-  return countsText(totals, Object.keys(totals), t, lang) ?? t('reportPartEmpty');
+  const texts = [
+    countsText(totals, LIST_COUNT_KEYS, Object.keys(totals), t, lang),
+    report.history && countsText(report.history, HISTORY_COUNT_KEYS, ['added'], t, lang),
+    report.settings && countsText(report.settings, SETTINGS_COUNT_KEYS, ['changed'], t, lang),
+  ].filter(Boolean);
+  return texts.length ? texts.join(' · ') : t('reportPartEmpty');
 }
 
 /** What happens to a channel of a list, by its fate (a channel and a video take different words in some languages). */

@@ -190,6 +190,13 @@
         <button type="button" class="btn" id="reset-count" data-i18n="likeCountReset"></button>
       </div>
       <div class="row-toggle">
+        <div><span data-i18n="backupLabel"></span><span class="hint" data-i18n="backupHint"></span></div>
+        <span class="more-buttons">
+          <button type="button" class="btn" data-dialog="export" data-i18n="listExport"></button>
+          <button type="button" class="btn" data-dialog="import" data-i18n="listImport"></button>
+        </span>
+      </div>
+      <div class="row-toggle">
         <div>
           <label class="check"><input type="checkbox" data-field="debug"><span class="box" aria-hidden="true"></span><span data-i18n="debugLabel"></span></label>
           <p class="hint debug-hint" data-i18n="debugHint"></p>
@@ -273,7 +280,10 @@
       <label class="check"><input type="checkbox" name="import-part" value="always"><span class="box" aria-hidden="true"></span><span id="import-part-always"></span></label>
       <label class="check"><input type="checkbox" name="import-part" value="never"><span class="box" aria-hidden="true"></span><span id="import-part-never"></span></label>
       <label class="check"><input type="checkbox" name="import-part" value="videos"><span class="box" aria-hidden="true"></span><span id="import-part-videos"></span></label>
+      <label class="check" id="import-part-row-settings" hidden><input type="checkbox" name="import-part" value="settings"><span class="box" aria-hidden="true"></span><span id="import-part-settings"></span></label>
+      <label class="check" id="import-part-row-history" hidden><input type="checkbox" name="import-part" value="history"><span class="box" aria-hidden="true"></span><span id="import-part-history"></span></label>
     </div>
+    <p class="hint" id="import-backup-hint" data-i18n="importBackupHint" hidden></p>
   </fieldset>
   <fieldset class="dialog-fieldset" id="import-links-target" hidden>
     <legend data-i18n="importLinksTarget"></legend>
@@ -314,6 +324,8 @@
       <label class="check"><input type="checkbox" name="export-part" value="always" checked><span class="box" aria-hidden="true"></span><span id="export-part-always"></span></label>
       <label class="check"><input type="checkbox" name="export-part" value="never" checked><span class="box" aria-hidden="true"></span><span id="export-part-never"></span></label>
       <label class="check"><input type="checkbox" name="export-part" value="videos" checked><span class="box" aria-hidden="true"></span><span id="export-part-videos"></span></label>
+      <label class="check"><input type="checkbox" name="export-part" value="settings" checked><span class="box" aria-hidden="true"></span><span id="export-part-settings"></span></label>
+      <label class="check"><input type="checkbox" name="export-part" value="history" checked><span class="box" aria-hidden="true"></span><span id="export-part-history"></span></label>
     </div>
   </fieldset>
   <fieldset class="dialog-fieldset">

@@ -2,7 +2,10 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { ListFullError, listOf, MAX_CHANNELS, normalizeChannels, normalizeLists } from '../../src/core/channels.js';
 import { normalizeExcludedVideos } from '../../src/core/excluded-videos.js';
+import { MAX_HISTORY, normalizeHistory } from '../../src/core/history.js';
+import { settingsWithoutLists } from '../../src/core/lists-file.js';
 import { importChanges, ImportMode, planImport } from '../../src/core/lists-import.js';
+import { normalizeSettings } from '../../src/core/settings.js';
 
 const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
 const QOQSIK = 'UCfefITu3BR2ix7ZUSrxj16w';
@@ -131,5 +134,64 @@ describe('planImport details', () => {
       const count = (fate) => details[part].filter((detail) => detail.fate === fate).length;
       assert.deepEqual(report[part], counts(count('added'), count('moved'), count('unchanged'), count('removed')), `${part}: the details and the counts agree`);
     }
+  });
+});
+
+describe('planImport of a backup', () => {
+  const settings = normalizeSettings({ ...current, theme: 'light', likeShorts: true });
+  const like = (videoId, likedAt) => ({ videoId, title: videoId, channelId: COLAS, channelName: 'COLAS', likedAt });
+  const history = normalizeHistory([like('aeP4eG-gO10', '2026-11-10T10:00:00.000Z'), like('EkDC9elBHHc', '2026-11-08T10:00:00.000Z')]);
+
+  it('replaces the settings with those of the file, keeps the lists, and counts the settings that change', () => {
+    const incoming = settingsWithoutLists(normalizeSettings({ theme: 'dark', likeShorts: false, likeWhat: 'all' }));
+    for (const mode of [ImportMode.ADD_NEW, ImportMode.REPLACE]) {
+      const result = planImport(settings, { settings: incoming }, mode, NOW);
+      assert.equal(result.settings.theme, 'dark', mode);
+      assert.equal(result.settings.likeShorts, false);
+      assert.equal(result.settings.likeWhat, 'all');
+      assert.deepEqual(result.settings.lists, settings.lists, 'the lists are not part of the settings imported');
+      assert.deepEqual(result.settings.excludedVideos, settings.excludedVideos);
+      assert.deepEqual(result.report.settings, { ...counts(0, 0, 0, 0), changed: 3 });
+      assert.equal(importChanges(result.report), true);
+    }
+  });
+
+  it('gives the lists imported with the settings to the settings saved', () => {
+    const incoming = { settings: settingsWithoutLists(normalizeSettings({ theme: 'dark' })), always: normalizeLists({ always: [{ id: WAKED, name: 'Waked XY' }] }).always };
+    const result = planImport(settings, incoming, ImportMode.ADD_NEW, NOW);
+    assert.deepEqual(ids(result.settings.lists.always), [WAKED, COLAS]);
+  });
+
+  it('says nothing changes for settings that are already those of the file', () => {
+    const result = planImport(settings, { settings: settingsWithoutLists(settings) }, ImportMode.ADD_NEW, NOW);
+    assert.equal(result.report.settings.changed, 0);
+    assert.equal(importChanges(result.report), false);
+  });
+
+  it('adds the likes of the file to the history, newest first, whatever the mode, and counts them', () => {
+    const incoming = normalizeHistory([like('82DBD5efxMc', '2026-11-09T10:00:00.000Z'), like('aeP4eG-gO10', '2026-11-10T10:00:00.000Z')]);
+    for (const mode of [ImportMode.ADD_NEW, ImportMode.REPLACE]) {
+      const result = planImport(settings, { history: incoming }, mode, NOW, history);
+      assert.deepEqual(ids(result.history), ['aeP4eG-gO10', '82DBD5efxMc', 'EkDC9elBHHc'], mode);
+      assert.deepEqual(result.report.history, counts(1, 0, 1, 0));
+      assert.equal(result.settings, null, 'no settings imported');
+    }
+  });
+
+  it('keeps the newest MAX_HISTORY likes, and counts only those it keeps', () => {
+    const full = normalizeHistory(Array.from({ length: MAX_HISTORY }, (_, n) => like(`v${String(n).padStart(10, '0')}`, new Date(Date.parse(NOW) - n * 1000).toISOString())));
+    const incoming = normalizeHistory([like('newerVideo1', '2026-11-10T00:00:00.000Z'), like('olderVideo1', '2020-01-01T00:00:00.000Z')]);
+    const result = planImport(settings, { history: incoming }, ImportMode.ADD_NEW, NOW, full);
+    assert.equal(result.history.length, MAX_HISTORY);
+    assert.equal(result.history[0].videoId, 'newerVideo1');
+    assert.equal(result.history.some((entry) => entry.videoId === 'olderVideo1'), false);
+    assert.equal(result.report.history.added, 1);
+  });
+
+  it('returns the history as it is when the file adds nothing to it', () => {
+    const result = planImport(settings, { history: history.slice(0, 1) }, ImportMode.ADD_NEW, NOW, history);
+    assert.equal(result.history, history);
+    assert.deepEqual(result.report.history, counts(0, 0, 1, 0));
+    assert.equal(importChanges(result.report), false);
   });
 });

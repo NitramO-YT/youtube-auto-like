@@ -180,6 +180,23 @@ export const SCENARIOS = [
       { videoId: 'Bw7eq26hMDw', title: '', channelId: null, channelName: '', isShort: false, likedAt: '2026-11-08T18:05:00.000Z' },
     ],
   },
+  // The whole page, down to "More" and "About" (an anchor scrolls before the page is built).
+  { name: 'options-full', ...OPTIONS, size: [1100, 2600] },
+  // The export dialog, opened from the address as the popup does, with a history to count.
+  {
+    name: 'options-dialog-export',
+    ...OPTIONS,
+    query: '#dialog-export',
+    size: [1100, 900],
+    settings: { lists: { always: [{ id: COLAS, name: 'COLAS' }] } },
+    history: Array.from({ length: 12 }, (_, i) => ({
+      videoId: `video${String(i).padStart(6, '0')}`,
+      title: `Vidéo ${i + 1}`,
+      channelId: COLAS,
+      channelName: 'COLAS',
+      likedAt: '2026-11-08T20:00:00.000Z',
+    })),
+  },
   {
     // Long lists: "Show more" under the lists and the history.
     name: 'options-long-lists',

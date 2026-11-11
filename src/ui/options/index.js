@@ -139,6 +139,8 @@ function openDialog(name) {
     return;
   }
   if (name === 'add') dialogs.add.open(lists.currentList() ?? 'always');
+  // Both read the history first: a failure shows as a notice.
+  else if (name === 'export' || name === 'import') act(() => dialogs[name].open());
   else dialogs[name].open();
 }
 
