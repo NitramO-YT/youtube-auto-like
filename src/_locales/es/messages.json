@@ -450,6 +450,7 @@
     "message": "Ya está disponible la versión $VERSION$ ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Firefox la instala por sí solo, normalmente en menos de un día." },
   "updateStatusUpToDate": {
     "message": "Comprobado $WHEN$: tienes la última versión.",
     "placeholders": { "when": { "content": "$1" } }

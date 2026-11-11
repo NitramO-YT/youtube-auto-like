@@ -450,6 +450,7 @@
     "message": "Vyšla verzia $VERSION$ ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Firefox ju nainštaluje sám, zvyčajne do jedného dňa." },
   "updateStatusUpToDate": {
     "message": "Skontrolované $WHEN$: máte najnovšiu verziu.",
     "placeholders": { "when": { "content": "$1" } }

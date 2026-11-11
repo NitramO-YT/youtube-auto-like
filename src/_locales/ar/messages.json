@@ -450,6 +450,7 @@
     "message": "صدر الإصدار $VERSION$ ↖",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "يثبّته Firefox تلقائيًا، عادةً خلال يوم." },
   "updateStatusUpToDate": {
     "message": "تم التحقق $WHEN$: لديك أحدث إصدار.",
     "placeholders": { "when": { "content": "$1" } }

@@ -1,6 +1,15 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { describe, it } from 'node:test';
-import { availableUpdate, isNewer, isValidCheckFrequency, normalizeUpdateState, parseLatestRelease, parseVersion } from '../../src/core/update.js';
+import {
+  availableUpdate,
+  isNewer,
+  isValidCheckFrequency,
+  normalizeUpdateState,
+  parseLatestRelease,
+  parseVersion,
+  updatesItself,
+} from '../../src/core/update.js';
 
 // Shape of the GitHub API answer, as read on 8 November 2026 for
 // austencm/youtube-auto-like, with this repository's address.
@@ -81,5 +90,20 @@ describe('update state', () => {
     assert.equal(availableUpdate(state, '3.0.0').version, '3.1.0');
     assert.equal(availableUpdate(state, '3.1.0'), null);
     assert.equal(availableUpdate(normalizeUpdateState({}), '3.0.0'), null);
+  });
+});
+
+describe('updatesItself', () => {
+  const layer = async (name) => JSON.parse(await readFile(new URL(`../../src/manifest/${name}.json`, import.meta.url), 'utf8'));
+
+  it('is true for the Firefox package, which names its update manifest, and false for Chromium', async () => {
+    assert.equal(updatesItself(await layer('firefox')), true);
+    assert.equal(updatesItself({ ...(await layer('base')), ...(await layer('chromium')) }), false);
+  });
+
+  it('is false for a manifest without an update address', () => {
+    for (const manifest of [undefined, {}, { browser_specific_settings: { gecko: { id: 'x@y' } } }, { browser_specific_settings: { gecko: { update_url: 42 } } }]) {
+      assert.equal(updatesItself(manifest), false, JSON.stringify(manifest));
+    }
   });
 });

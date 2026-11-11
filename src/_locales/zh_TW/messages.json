@@ -450,6 +450,7 @@
     "message": "已推出 $VERSION$ 版 ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Firefox 會自動安裝，通常在一天之內。" },
   "updateStatusUpToDate": {
     "message": "$WHEN$檢查：你使用的是最新版本。",
     "placeholders": { "when": { "content": "$1" } }

@@ -34,7 +34,11 @@ const NEWER_RELEASE = {
   latest: { version: '99.0.0', url: 'https://github.com/NitramO-YT/youtube-auto-like/releases/tag/v99.0.0', publishedAt: null },
   checkedAt: CHECKED_AT,
 };
-const halfway = { timing: { mode: 'custom', percent: { enabled: true, value: 50 }, minutes: { enabled: false, value: 2 } } };
+// The Firefox package names its update manifest: Firefox installs new versions by itself.
+const FIREFOX_MANIFEST = {
+  browser_specific_settings: { gecko: { update_url: 'https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/updates.json' } },
+};
+const halfway ={ timing: { mode: 'custom', percent: { enabled: true, value: 50 }, minutes: { enabled: false, value: 2 } } };
 
 export const SCENARIOS = [
   {
@@ -100,6 +104,13 @@ export const SCENARIOS = [
     update: NEWER_RELEASE,
     status: { ...video, channel: channel(true, { avatarUrl: COLAS_AVATAR }), status: 'liked', target: { at: 0, basis: 'instant' }, likedAgoMs: 60_000 },
   },
+  {
+    name: 'popup-update-firefox',
+    ...POPUP,
+    manifest: FIREFOX_MANIFEST,
+    update: NEWER_RELEASE,
+    status: { ...video, channel: channel(true, { avatarUrl: COLAS_AVATAR }), status: 'liked', target: { at: 0, basis: 'instant' }, likedAgoMs: 60_000 },
+  },
   { name: 'popup-no-video', ...POPUP, status: { videoId: null } },
   // A channel page, its channel in "always like".
   {
@@ -114,6 +125,7 @@ export const SCENARIOS = [
   { name: 'options-theme-dark', ...OPTIONS, size: [1100, 900], settings: { theme: 'dark' } },
   { name: 'options-default', ...OPTIONS, update: { latest: null, checkedAt: CHECKED_AT } },
   { name: 'options-update-available', ...OPTIONS, update: NEWER_RELEASE },
+  { name: 'options-update-firefox', ...OPTIONS, manifest: FIREFOX_MANIFEST, update: NEWER_RELEASE },
   {
     name: 'options-custom-lists',
     ...OPTIONS,

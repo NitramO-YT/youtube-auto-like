@@ -83,3 +83,13 @@ export function isCheckDue(state, minutes, now) {
 export function availableUpdate(state, currentVersion) {
   return state.latest && isNewer(state.latest.version, currentVersion) ? state.latest : null;
 }
+
+/**
+ * Whether the browser installs new versions by itself: the Firefox package
+ * names its update manifest (browser_specific_settings.gecko.update_url),
+ * which Firefox reads once a day by default; the Chromium packages,
+ * installed by hand, have none.
+ */
+export function updatesItself(manifest) {
+  return typeof manifest?.browser_specific_settings?.gecko?.update_url === 'string';
+}

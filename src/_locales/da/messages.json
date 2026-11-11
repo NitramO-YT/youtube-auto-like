@@ -450,6 +450,7 @@
     "message": "Version $VERSION$ er udgivet ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Firefox installerer den selv, normalt inden for et døgn." },
   "updateStatusUpToDate": {
     "message": "Kontrolleret $WHEN$: du har den nyeste version.",
     "placeholders": { "when": { "content": "$1" } }

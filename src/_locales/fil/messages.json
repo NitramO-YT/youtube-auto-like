@@ -450,6 +450,7 @@
     "message": "Lumabas na ang bersyon $VERSION$ ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Kusang ini-install ito ng Firefox, kadalasan sa loob ng isang araw." },
   "updateStatusUpToDate": {
     "message": "Nasuri $WHEN$: nasa pinakabagong bersyon ka.",
     "placeholders": { "when": { "content": "$1" } }

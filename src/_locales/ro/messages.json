@@ -450,6 +450,7 @@
     "message": "A apărut versiunea $VERSION$ ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Firefox o instalează singur, de obicei în cel mult o zi." },
   "updateStatusUpToDate": {
     "message": "Verificat $WHEN$: ai cea mai recentă versiune.",
     "placeholders": { "when": { "content": "$1" } }

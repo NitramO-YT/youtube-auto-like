@@ -664,6 +664,9 @@ main {
   color: var(--accent);
   font-weight: 650;
 }
+.update-line .hint {
+  margin: 4px 0 0;
+}
 
 .debug-hint {
   margin: 6px 0 0;

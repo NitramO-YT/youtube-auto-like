@@ -450,6 +450,7 @@
     "message": "Új verzió: $VERSION$ ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "A Firefox magától telepíti, általában egy napon belül." },
   "updateStatusUpToDate": {
     "message": "Ellenőrizve $WHEN$: a legújabb verzió van telepítve.",
     "placeholders": { "when": { "content": "$1" } }

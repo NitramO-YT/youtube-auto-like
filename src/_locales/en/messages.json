@@ -478,6 +478,7 @@
     "message": "Version $VERSION$ is out ↗",
     "placeholders": { "version": { "content": "$1", "example": "3.1.0" } }
   },
+  "updateInstallsItself": { "message": "Firefox installs it by itself, usually within a day." },
   "updateStatusUpToDate": {
     "message": "Checked $WHEN$: you have the latest version.",
     "placeholders": { "when": { "content": "$1", "example": "5 minutes ago" } }

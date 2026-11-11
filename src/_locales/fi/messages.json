@@ -450,6 +450,7 @@
     "message": "Versio $VERSION$ on julkaistu ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Firefox asentaa sen itse, yleensä vuorokauden kuluessa." },
   "updateStatusUpToDate": {
     "message": "Tarkistettu $WHEN$: sinulla on uusin versio.",
     "placeholders": { "when": { "content": "$1" } }

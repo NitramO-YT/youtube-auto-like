@@ -450,6 +450,7 @@
     "message": "Versi $VERSION$ telah dirilis ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Firefox memasangnya sendiri, biasanya dalam satu hari." },
   "updateStatusUpToDate": {
     "message": "Diperiksa $WHEN$: Anda memakai versi terbaru.",
     "placeholders": { "when": { "content": "$1" } }

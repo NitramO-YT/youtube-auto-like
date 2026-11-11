@@ -9,15 +9,24 @@ const fr = translator('fr');
 const NOW = Date.parse('2026-11-08T22:00:00.000Z');
 const URL = 'https://github.com/NitramO-YT/youtube-auto-like/releases/tag/v3.1.0';
 const on = normalizeSettings({});
-const status = (state, settings = on, version = '3.0.0') => updateStatus(normalizeUpdateState(state), settings, version, fr, 'fr', NOW);
+const status = (state, settings = on, version = '3.0.0', selfUpdating = false) =>
+  updateStatus(normalizeUpdateState(state), settings, version, fr, 'fr', NOW, selfUpdating);
+const OUT = { latest: { version: '3.1.0', url: URL }, checkedAt: '2026-11-08T21:55:00.000Z' };
 
 describe('updateStatus', () => {
   it('links to a version newer than the one installed', () => {
-    assert.deepEqual(status({ latest: { version: '3.1.0', url: URL }, checkedAt: '2026-11-08T21:55:00.000Z' }), {
+    assert.deepEqual(status(OUT), {
       text: 'La version 3.1.0 est disponible ↗',
       url: URL,
       error: false,
+      note: null,
     });
+  });
+
+  it('adds, where the browser installs new versions by itself, that it will', () => {
+    assert.equal(status(OUT, on, '3.0.0', true).note, "Firefox l'installe de lui-même, en général dans la journée.");
+    assert.equal(status(OUT, on, '3.1.0', true).note, null, 'nothing to install');
+    assert.equal(status({ checkedAt: '2026-11-08T21:55:00.000Z' }, on, '3.0.0', true).note, null);
   });
 
   it('says when it last checked, up to date or with nothing published', () => {

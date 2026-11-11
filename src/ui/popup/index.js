@@ -8,7 +8,7 @@
  */
 import './popup.css';
 import { listOf } from '../../core/channels.js';
-import { availableUpdate } from '../../core/update.js';
+import { availableUpdate, updatesItself } from '../../core/update.js';
 import { api } from '../../platform/api.js';
 import { Message } from '../../platform/messages.js';
 import { createStore } from '../../platform/storage.js';
@@ -37,6 +37,7 @@ const store = createStore(api, { source: 'popup' });
 const byId = (id) => document.getElementById(id);
 
 const VERSION = api.runtime.getManifest().version;
+const SELF_UPDATING = updatesItself(api.runtime.getManifest());
 
 const state = {
   settings: null,
@@ -114,11 +115,14 @@ function render() {
   const update = settings.updateCheckMinutes > 0 && state.update ? availableUpdate(state.update, VERSION) : null;
   draw('update', update, (release) => {
     const link = byId('update-link');
+    const note = byId('update-note');
     link.hidden = !release;
+    note.hidden = !release || !SELF_UPDATING;
     byId('version').hidden = Boolean(release);
     if (!release) return;
     link.href = release.url;
     link.textContent = t('updateFooter', [release.version]);
+    note.textContent = t('updateInstallsItself');
   });
 }
 

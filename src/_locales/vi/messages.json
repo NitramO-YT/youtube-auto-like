@@ -450,6 +450,7 @@
     "message": "Đã có phiên bản $VERSION$ ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Firefox sẽ tự cài đặt, thường trong vòng một ngày." },
   "updateStatusUpToDate": {
     "message": "Đã kiểm tra $WHEN$: bạn đang dùng phiên bản mới nhất.",
     "placeholders": { "when": { "content": "$1" } }

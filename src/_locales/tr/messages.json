@@ -450,6 +450,7 @@
     "message": "$VERSION$ sürümü çıktı ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Firefox bunu kendisi yükler, genellikle bir gün içinde." },
   "updateStatusUpToDate": {
     "message": "Kontrol edildi ($WHEN$): en son sürüme sahipsiniz.",
     "placeholders": { "when": { "content": "$1" } }

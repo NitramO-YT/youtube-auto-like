@@ -48,6 +48,8 @@ async function writePreviewPage(extensionDir, scenario, locale, version) {
   const preview = {
     messages,
     version,
+    // Manifest keys a scenario adds to the version, as a browser would report them.
+    manifest: scenario.manifest ?? {},
     root,
     settings: scenario.settings,
     stats: scenario.stats ?? { likeCount: 1248 },

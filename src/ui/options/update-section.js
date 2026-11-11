@@ -6,7 +6,7 @@
  *
  * @param {object} page From index.js (see lists-section.js), with changeField.
  */
-import { isValidCheckFrequency, UPDATE_CHECK_CHOICES } from '../../core/update.js';
+import { isValidCheckFrequency, UPDATE_CHECK_CHOICES, updatesItself } from '../../core/update.js';
 import { Message } from '../../platform/messages.js';
 import { pluralKey } from '../shared/format.js';
 import { splitMinutes, toMinutes } from './fields.js';
@@ -25,7 +25,9 @@ const UNIT_NAMES = {
 
 export function createUpdateSection(page, api) {
   const { doc, byId, t, store, notice, act, state } = page;
-  const version = api.runtime.getManifest().version;
+  const manifest = api.runtime.getManifest();
+  const { version } = manifest;
+  const selfUpdating = updatesItself(manifest);
   let updateState = null;
   let checking = false;
   // "Custom…" chosen, its fields shown, before a custom value is saved.
@@ -62,9 +64,10 @@ export function createUpdateSection(page, api) {
     if (!state.settings) return;
     renderFrequency();
     if (!updateState) return;
-    const status = updateStatus(updateState, state.settings, version, t, page.lang,Date.now());
+    const status = updateStatus(updateState, state.settings, version, t, page.lang, Date.now(), selfUpdating);
     const text = byId('update-status');
     const link = byId('update-status-link');
+    const note = byId('update-note');
     text.textContent = checking ? t('updateStatusChecking') : status.url ? '' : status.text;
     text.classList.toggle('error', status.error && !checking);
     link.hidden = checking || !status.url;
@@ -72,6 +75,8 @@ export function createUpdateSection(page, api) {
       link.href = status.url;
       link.textContent = status.text;
     }
+    note.hidden = checking || !status.note;
+    note.textContent = status.note ?? '';
     byId('update-check').disabled = checking || state.settings.updateCheckMinutes === 0;
   }
 

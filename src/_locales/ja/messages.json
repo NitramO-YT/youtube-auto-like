@@ -450,6 +450,7 @@
     "message": "バージョン $VERSION$ が公開されました ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Firefox が自動でインストールします（通常は 1 日以内）。" },
   "updateStatusUpToDate": {
     "message": "$WHEN$に確認: 最新バージョンです。",
     "placeholders": { "when": { "content": "$1" } }

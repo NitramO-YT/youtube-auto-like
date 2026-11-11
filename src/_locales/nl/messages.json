@@ -450,6 +450,7 @@
     "message": "Versie $VERSION$ is uit ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Firefox installeert deze zelf, meestal binnen een dag." },
   "updateStatusUpToDate": {
     "message": "Gecontroleerd $WHEN$: je hebt de nieuwste versie.",
     "placeholders": { "when": { "content": "$1" } }

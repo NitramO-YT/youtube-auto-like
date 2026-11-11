@@ -450,6 +450,7 @@
     "message": "वर्शन $VERSION$ जारी हुआ ↗",
     "placeholders": { "version": { "content": "$1" } }
   },
+  "updateInstallsItself": { "message": "Firefox इसे अपने आप इंस्टॉल कर लेता है, आमतौर पर एक दिन के भीतर।" },
   "updateStatusUpToDate": {
     "message": "$WHEN$ जांचा गया: आपके पास सबसे नया वर्शन है।",
     "placeholders": { "when": { "content": "$1" } }
