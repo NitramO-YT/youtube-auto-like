@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Allerede markeret" },
   "statusNotLikedTitle": { "message": "Ikke markeret" },
+  "statusSignedOutTitle": { "message": "Log ind på YouTube" },
+  "statusSignedOutDetail": { "message": "Ingen konto er logget ind, og YouTube lader kun en konto markere videoer. Udvidelsen fortsætter, så snart du logger ind." },
   "reasonAlreadyLiked": { "message": "Denne video var allerede markeret med »Synes godt om«: udvidelsen lader den være." },
   "reasonAlreadyDisliked": { "message": "Du har markeret denne video med »Synes ikke om«: udvidelsen lader den være." },
   "reasonSkippedByUser": { "message": "Du bad om, at den ikke blev markeret denne gang. Den kan markeres, når du ser den igen." },

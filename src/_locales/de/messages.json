@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Bereits mit „Mag ich“ bewertet" },
   "statusNotLikedTitle": { "message": "Nicht bewertet" },
+  "statusSignedOutTitle": { "message": "Melde dich bei YouTube an" },
+  "statusSignedOutDetail": { "message": "Kein Konto ist angemeldet, und YouTube lässt nur ein Konto Videos bewerten. Die Erweiterung macht weiter, sobald du dich anmeldest." },
   "reasonAlreadyLiked": { "message": "Dieses Video hatte bereits ein „Mag ich“: Die Erweiterung lässt es, wie es ist." },
   "reasonAlreadyDisliked": { "message": "Du hast dieses Video mit „Mag ich nicht“ bewertet: Die Erweiterung lässt es, wie es ist." },
   "reasonSkippedByUser": { "message": "Du hast gebeten, es diesmal nicht zu bewerten. Beim nächsten Ansehen kann es bewertet werden." },

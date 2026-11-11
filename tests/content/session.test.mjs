@@ -55,6 +55,20 @@ const settle = (session, obs, settings, now) => step(step(session, obs, settings
 const clicked = () => settle(start(), observation(), instant, T0).session;
 
 describe('step', () => {
+  describe('without an account signed in on YouTube', () => {
+    it('never clicks, says why, and likes once an account is signed in', () => {
+      const signedOut = observation({ snapshot: snapshot({ signedIn: false }) });
+      const waited = settle(start(), signedOut, instant, T0);
+      assert.equal(waited.action, null);
+      assert.equal(waited.session.status, Status.NOT_ELIGIBLE);
+      assert.equal(waited.session.reason, Reason.SIGNED_OUT);
+      assert.equal(isFinal(waited.session), false);
+
+      const signedIn = observation({ snapshot: snapshot({ signedIn: true }) });
+      assert.equal(settle(waited.session, signedIn, instant, T0 + 5000).action, 'click');
+    });
+  });
+
   describe('instant timing', () => {
     it('clicks once the video has stayed unrated for STABLE_FOR_MS, then confirms the like', () => {
       const first = step(start(), observation(), instant, T0);

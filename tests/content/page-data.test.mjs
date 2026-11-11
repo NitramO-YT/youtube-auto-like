@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { pickAvatar, ratingAtLoad, readSnapshot, shortsSubscription } from '../../src/content/youtube/page-data.js';
+import { pickAvatar, ratingAtLoad, readSignedIn, readSnapshot, shortsSubscription } from '../../src/content/youtube/page-data.js';
 import { Surface } from '../../src/content/youtube/surface.js';
 import { element, fakeDocument } from '../helpers/fake-dom.mjs';
 
@@ -144,6 +144,7 @@ describe('readSnapshot on the watch page', () => {
       channelId: COLAS,
       channelName: 'COLAS',
       avatarUrl: avatarOfSize(88),
+      signedIn: null,
       isShort: false,
       isLive: false,
       subscribed: true,
@@ -173,6 +174,7 @@ describe('readSnapshot on the watch page', () => {
       channelId: null,
       channelName: '',
       avatarUrl: null,
+      signedIn: null,
       isShort: null,
       isLive: null,
       subscribed: null,
@@ -210,6 +212,7 @@ describe('readSnapshot in the Shorts player', () => {
       channelId: COLAS,
       channelName: 'COLAS',
       avatarUrl: avatarOfSize(48),
+      signedIn: null,
       isShort: true,
       isLive: false,
       subscribed: true,
@@ -265,6 +268,23 @@ describe('readSnapshot in the Shorts player', () => {
       'ytd-watch-flexy ytd-player': hiddenWatch.querySelector('ytd-watch-flexy ytd-player'),
     });
     assert.equal(readSnapshot(combined, Surface.SHORTS).videoId, 'JgL5gMtA2X4');
+  });
+});
+
+describe('readSignedIn', () => {
+  // ytcfg as observed on 12 November 2026: get() gives LOGGED_IN, a boolean.
+  const ytcfg = (values) => ({ get: (key) => values[key] });
+
+  it('reads LOGGED_IN, with and without an account, into the snapshot', () => {
+    assert.equal(readSnapshot(watchPage(), Surface.WATCH, ytcfg({ LOGGED_IN: true })).signedIn, true);
+    assert.equal(readSnapshot(shortsPage(), Surface.SHORTS, ytcfg({ LOGGED_IN: false })).signedIn, false);
+  });
+
+  it('gives null when the page does not say, or says something else than a boolean', () => {
+    for (const config of [null, undefined, {}, ytcfg({}), ytcfg({ LOGGED_IN: 'false' }), ytcfg({ LOGGED_IN: 0 })]) {
+      assert.equal(readSignedIn(config), null);
+    }
+    assert.equal(readSignedIn({ get: () => { throw new Error('ytcfg not ready'); } }), null);
   });
 });
 

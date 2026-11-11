@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Naka-like na" },
   "statusNotLikedTitle": { "message": "Hindi na-like" },
+  "statusSignedOutTitle": { "message": "Mag-sign in sa YouTube" },
+  "statusSignedOutDetail": { "message": "Walang naka-sign in na account, at sa account lang pinapayagan ng YouTube ang pag-like ng video. Magpapatuloy ang extension kapag nag-sign in ka." },
   "reasonAlreadyLiked": { "message": "Naka-like na ang video na ito: hindi ito gagalawin ng extension." },
   "reasonAlreadyDisliked": { "message": "Na-dislike mo ang video na ito: hindi ito gagalawin ng extension." },
   "reasonSkippedByUser": { "message": "Hiniling mong huwag itong i-like ngayon. Puwede itong ma-like kapag pinanood mo ulit." },

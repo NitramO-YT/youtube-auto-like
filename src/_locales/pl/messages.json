@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Już polubiony" },
   "statusNotLikedTitle": { "message": "Niepolubiony" },
+  "statusSignedOutTitle": { "message": "Zaloguj się w YouTube" },
+  "statusSignedOutDetail": { "message": "Żadne konto nie jest zalogowane, a YouTube pozwala polubić film tylko z konta. Rozszerzenie wznowi działanie, gdy się zalogujesz." },
   "reasonAlreadyLiked": { "message": "Ten film był już polubiony: rozszerzenie zostawia go bez zmian." },
   "reasonAlreadyDisliked": { "message": "Oznaczyłeś ten film jako „Nie podoba mi się”: rozszerzenie zostawia go bez zmian." },
   "reasonSkippedByUser": { "message": "Poprosiłeś, by tym razem go nie polubiać. Może zostać polubiony, gdy obejrzysz go ponownie." },

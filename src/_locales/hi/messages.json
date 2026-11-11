@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "पहले से पसंद किया हुआ" },
   "statusNotLikedTitle": { "message": "पसंद नहीं किया गया" },
+  "statusSignedOutTitle": { "message": "YouTube में साइन इन करें" },
+  "statusSignedOutDetail": { "message": "कोई खाता साइन इन नहीं है, और YouTube केवल खाते से वीडियो पसंद करने देता है। साइन इन करते ही एक्सटेंशन फिर से काम करेगा।" },
   "reasonAlreadyLiked": { "message": "यह वीडियो पहले से पसंद किया हुआ था: एक्सटेंशन इसे नहीं छूता।" },
   "reasonAlreadyDisliked": { "message": "आपने इस वीडियो को नापसंद किया है: एक्सटेंशन इसे नहीं छूता।" },
   "reasonSkippedByUser": { "message": "आपने कहा था कि इस बार इसे पसंद न किया जाए। अगली बार देखने पर इसे पसंद किया जा सकता है।" },

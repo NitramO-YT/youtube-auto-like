@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Sudah disukai" },
   "statusNotLikedTitle": { "message": "Tidak disukai" },
+  "statusSignedOutTitle": { "message": "Masuk ke YouTube" },
+  "statusSignedOutDetail": { "message": "Tidak ada akun yang masuk, dan YouTube hanya mengizinkan akun menyukai video. Ekstensi berlanjut begitu Anda masuk." },
   "reasonAlreadyLiked": { "message": "Video ini sudah disukai: ekstensi membiarkannya." },
   "reasonAlreadyDisliked": { "message": "Anda memberi “Tidak suka” pada video ini: ekstensi membiarkannya." },
   "reasonSkippedByUser": { "message": "Anda meminta agar video ini tidak disukai kali ini. Video ini bisa disukai saat Anda menontonnya lagi." },

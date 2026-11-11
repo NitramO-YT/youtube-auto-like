@@ -106,6 +106,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Already liked" },
   "statusNotLikedTitle": { "message": "Not liked" },
+  "statusSignedOutTitle": { "message": "Sign in to YouTube" },
+  "statusSignedOutDetail": { "message": "No account is signed in, and YouTube only lets an account like a video. The extension goes on once you sign in." },
   "reasonAlreadyLiked": { "message": "This video already had a like: the extension leaves it as it is." },
   "reasonAlreadyDisliked": { "message": "You disliked this video: the extension leaves it as it is." },
   "reasonSkippedByUser": { "message": "You asked not to like it this time. It may be liked when you watch it again." },

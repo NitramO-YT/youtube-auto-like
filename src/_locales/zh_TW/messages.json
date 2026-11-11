@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "已經按讚" },
   "statusNotLikedTitle": { "message": "未按讚" },
+  "statusSignedOutTitle": { "message": "請登入 YouTube" },
+  "statusSignedOutDetail": { "message": "目前沒有登入帳號，而 YouTube 只允許帳號為影片按讚。登入後擴充功能會繼續運作。" },
   "reasonAlreadyLiked": { "message": "這部影片已經按過讚：擴充功能不會變動。" },
   "reasonAlreadyDisliked": { "message": "你已對這部影片按下「不喜歡」：擴充功能不會變動。" },
   "reasonSkippedByUser": { "message": "你要求這次不要按讚。下次觀看時仍可能按讚。" },

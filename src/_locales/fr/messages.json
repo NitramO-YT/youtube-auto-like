@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Déjà likée" },
   "statusNotLikedTitle": { "message": "Pas likée" },
+  "statusSignedOutTitle": { "message": "Connectez-vous à YouTube" },
+  "statusSignedOutDetail": { "message": "Aucun compte n'est connecté, et YouTube ne permet de liker qu'avec un compte. L'extension reprend dès la connexion." },
   "reasonAlreadyLiked": { "message": "Cette vidéo avait déjà un J'aime : l'extension la laisse telle quelle." },
   "reasonAlreadyDisliked": { "message": "Vous avez mis un Je n'aime pas à cette vidéo : l'extension la laisse telle quelle." },
   "reasonSkippedByUser": { "message": "Vous avez demandé de ne pas la liker cette fois-ci. Elle pourra l'être si vous la regardez de nouveau." },

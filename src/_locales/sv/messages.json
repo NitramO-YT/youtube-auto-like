@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Redan gillad" },
   "statusNotLikedTitle": { "message": "Inte gillad" },
+  "statusSignedOutTitle": { "message": "Logga in på YouTube" },
+  "statusSignedOutDetail": { "message": "Inget konto är inloggat, och YouTube låter bara ett konto gilla videor. Tillägget fortsätter så fort du loggar in." },
   "reasonAlreadyLiked": { "message": "Den här videon var redan gillad: tillägget låter den vara." },
   "reasonAlreadyDisliked": { "message": "Du har ogillat den här videon: tillägget låter den vara." },
   "reasonSkippedByUser": { "message": "Du bad om att den inte skulle gillas den här gången. Den kan gillas när du tittar på den igen." },

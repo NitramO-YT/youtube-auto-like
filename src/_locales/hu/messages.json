@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Már kedvelve" },
   "statusNotLikedTitle": { "message": "Nincs kedvelve" },
+  "statusSignedOutTitle": { "message": "Jelentkezz be a YouTube-ra" },
+  "statusSignedOutDetail": { "message": "Nincs bejelentkezett fiók, a YouTube pedig csak fiókkal enged videót kedvelni. A bővítmény folytatja, amint bejelentkezel." },
   "reasonAlreadyLiked": { "message": "Ezt a videót már kedvelted: a bővítmény nem nyúl hozzá." },
   "reasonAlreadyDisliked": { "message": "Ennél a videónál a „Nem tetszik” gombot választottad: a bővítmény nem nyúl hozzá." },
   "reasonSkippedByUser": { "message": "Azt kérted, hogy most ne kedvelje. Akkor kedvelheti, amikor újra megnézed." },

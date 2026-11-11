@@ -3,7 +3,8 @@
  * reason codes let the popup tell the user what the extension does with the
  * video in front of them.
  *
- * Order of the rules: a rating the user gave wins over everything; then a
+ * Order of the rules: no account signed in on YouTube stops everything, as
+ * a like is then impossible; a rating the user gave wins over the rest; then a
  * video the user excluded for good; then the Shorts and normal video
  * switches; then the "never like" list; then the "always like" list; then
  * the base rule (subscribed channels, every channel, or the "always like"
@@ -15,6 +16,8 @@ import { isVideoExcluded } from './excluded-videos.js';
 export const Reason = Object.freeze({
   ELIGIBLE: 'eligible',
   DISABLED: 'disabled',
+  // No account is signed in on YouTube: its like button only offers to sign in.
+  SIGNED_OUT: 'signed-out',
   UNKNOWN_STATE: 'unknown-state',
   ALREADY_LIKED: 'already-liked',
   ALREADY_DISLIKED: 'already-disliked',
@@ -38,12 +41,14 @@ const eligible = verdict(true, Reason.ELIGIBLE);
 
 /**
  * @param {object} video State read from the page: videoId and channelId
- *   (strings), isShort, subscribed, liked and disliked (booleans). A field
- *   the page did not provide is null.
+ *   (strings), signedIn, isShort, subscribed, liked and disliked (booleans).
+ *   A field the page did not provide is null.
  * @param {object} settings Settings returned by normalizeSettings.
  */
 export function evaluateEligibility(video, settings) {
   if (!settings.enabled) return verdict(false, Reason.DISABLED);
+  // Only a page that says so: an unknown session goes on with the rules.
+  if (video.signedIn === false) return verdict(false, Reason.SIGNED_OUT);
 
   // A field that could not be read means the page was not understood: doing
   // nothing is safer than liking, or removing a like, on a guess.

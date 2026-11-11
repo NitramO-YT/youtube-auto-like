@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "กดชอบไว้แล้ว" },
   "statusNotLikedTitle": { "message": "ไม่ได้กดชอบ" },
+  "statusSignedOutTitle": { "message": "ลงชื่อเข้าใช้ YouTube" },
+  "statusSignedOutDetail": { "message": "ยังไม่มีบัญชีที่ลงชื่อเข้าใช้ และ YouTube อนุญาตให้กดชอบวิดีโอได้จากบัญชีเท่านั้น ส่วนขยายจะทำงานต่อทันทีที่คุณลงชื่อเข้าใช้" },
   "reasonAlreadyLiked": { "message": "วิดีโอนี้ถูกกดชอบไว้แล้ว: ส่วนขยายจะไม่แตะต้อง" },
   "reasonAlreadyDisliked": { "message": "คุณกด “ไม่ชอบ” วิดีโอนี้: ส่วนขยายจะไม่แตะต้อง" },
   "reasonSkippedByUser": { "message": "คุณขอไม่ให้กดชอบในครั้งนี้ วิดีโออาจถูกกดชอบเมื่อคุณดูอีกครั้ง" },

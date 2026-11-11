@@ -116,6 +116,14 @@ describe('statusCard: not liked', () => {
     );
   });
 
+  it('asks to sign in to YouTube when no account is, active or paused', () => {
+    const card = cardOf({ status: Status.NOT_ELIGIBLE, reason: Reason.SIGNED_OUT }, defaults, fr);
+    assert.equal(card.title, 'Connectez-vous à YouTube');
+    assert.equal(card.detail, "Aucun compte n'est connecté, et YouTube ne permet de liker qu'avec un compte. L'extension reprend dès la connexion.");
+    const pausedCard = cardOf({ status: Status.NOT_ELIGIBLE, reason: Reason.DISABLED, ifEnabled: { eligible: false, reason: Reason.SIGNED_OUT } }, paused);
+    assert.equal(pausedCard.title, 'Sign in to YouTube');
+  });
+
   it('reports a click that did not take', () => {
     const card = cardOf({ status: Status.CLICK_FAILED });
     assert.equal(card.tone, 'error');

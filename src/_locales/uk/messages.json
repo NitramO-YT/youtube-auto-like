@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Уже позначено «Подобається»" },
   "statusNotLikedTitle": { "message": "Не позначено" },
+  "statusSignedOutTitle": { "message": "Увійдіть у YouTube" },
+  "statusSignedOutDetail": { "message": "Жоден обліковий запис не ввійшов, а YouTube дозволяє позначати відео лише з облікового запису. Розширення продовжить роботу, щойно ви ввійдете." },
   "reasonAlreadyLiked": { "message": "Це відео вже мало позначку «Подобається»: розширення залишає його як є." },
   "reasonAlreadyDisliked": { "message": "Ви позначили це відео «Не подобається»: розширення залишає його як є." },
   "reasonSkippedByUser": { "message": "Ви попросили не позначати його цього разу. Його можна буде позначити під час наступного перегляду." },

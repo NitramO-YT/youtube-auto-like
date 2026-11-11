@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "已经点赞" },
   "statusNotLikedTitle": { "message": "未点赞" },
+  "statusSignedOutTitle": { "message": "请登录 YouTube" },
+  "statusSignedOutDetail": { "message": "当前没有登录账号，而 YouTube 只允许账号为视频点赞。登录后扩展程序会继续运行。" },
   "reasonAlreadyLiked": { "message": "此视频已经点过赞：扩展程序不会改动。" },
   "reasonAlreadyDisliked": { "message": "你已对此视频点踩：扩展程序不会改动。" },
   "reasonSkippedByUser": { "message": "你要求这次不点赞。下次观看时仍可能点赞。" },

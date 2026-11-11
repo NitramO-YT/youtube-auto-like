@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Ha già «Mi piace»" },
   "statusNotLikedTitle": { "message": "Senza «Mi piace»" },
+  "statusSignedOutTitle": { "message": "Accedi a YouTube" },
+  "statusSignedOutDetail": { "message": "Nessun account ha effettuato l'accesso, e YouTube consente di mettere «Mi piace» solo con un account. L'estensione riprende appena accedi." },
   "reasonAlreadyLiked": { "message": "Questo video aveva già un «Mi piace»: l'estensione lo lascia com'è." },
   "reasonAlreadyDisliked": { "message": "Hai messo «Non mi piace» a questo video: l'estensione lo lascia com'è." },
   "reasonSkippedByUser": { "message": "Hai chiesto di non mettergli «Mi piace» questa volta. Potrà riceverlo quando lo riguarderai." },

@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Už označené" },
   "statusNotLikedTitle": { "message": "Neoznačené" },
+  "statusSignedOutTitle": { "message": "Prihláste sa do YouTube" },
+  "statusSignedOutDetail": { "message": "Nie je prihlásený žiadny účet a YouTube dovoľuje označovať videá len z účtu. Rozšírenie bude pokračovať, hneď ako sa prihlásite." },
   "reasonAlreadyLiked": { "message": "Toto video už bolo označené „Páči sa mi to“: rozšírenie ho necháva tak." },
   "reasonAlreadyDisliked": { "message": "Toto video ste označili „Nepáči sa mi to“: rozšírenie ho necháva tak." },
   "reasonSkippedByUser": { "message": "Požiadali ste, aby sa tentoraz neoznačovalo. Môže sa označiť, keď si ho pozriete znova." },

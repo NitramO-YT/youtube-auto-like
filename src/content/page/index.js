@@ -15,7 +15,7 @@ const hasTurn = claimInstance(window, Symbol.for('youtube-auto-like:page-reader'
 
 // Each request type, with the type of its answer and how to read it.
 const ANSWERS = {
-  [SNAPSHOT_REQUEST]: { type: SNAPSHOT, read: () => readSnapshot(document, surfaceFromUrl(window.location.href)) },
+  [SNAPSHOT_REQUEST]: { type: SNAPSHOT, read: () => readSnapshot(document, surfaceFromUrl(window.location.href), window.ytcfg) },
   [CHANNEL_PAGE_REQUEST]: { type: CHANNEL_PAGE, read: () => readChannelPage(document, window.location.href) },
 };
 

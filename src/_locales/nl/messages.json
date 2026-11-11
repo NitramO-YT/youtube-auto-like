@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Al geliket" },
   "statusNotLikedTitle": { "message": "Niet geliket" },
+  "statusSignedOutTitle": { "message": "Log in bij YouTube" },
+  "statusSignedOutDetail": { "message": "Er is geen account ingelogd, en YouTube laat alleen een account video's liken. De extensie gaat verder zodra je inlogt." },
   "reasonAlreadyLiked": { "message": "Deze video had al een like: de extensie laat hem zoals hij is." },
   "reasonAlreadyDisliked": { "message": "Je hebt deze video ‘Vind ik niet leuk’ gegeven: de extensie laat hem zoals hij is." },
   "reasonSkippedByUser": { "message": "Je hebt gevraagd hem deze keer niet te liken. Hij kan geliket worden als je hem opnieuw bekijkt." },

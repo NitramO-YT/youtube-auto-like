@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Уже отмечено «Нравится»" },
   "statusNotLikedTitle": { "message": "Не отмечено" },
+  "statusSignedOutTitle": { "message": "Войдите в YouTube" },
+  "statusSignedOutDetail": { "message": "Ни один аккаунт не вошёл в систему, а YouTube позволяет отмечать видео только с аккаунта. Расширение продолжит работу, как только вы войдёте." },
   "reasonAlreadyLiked": { "message": "У этого видео уже была отметка «Нравится»: расширение оставляет его как есть." },
   "reasonAlreadyDisliked": { "message": "Вы отметили это видео «Не нравится»: расширение оставляет его как есть." },
   "reasonSkippedByUser": { "message": "Вы попросили не отмечать его в этот раз. Его можно будет отметить при следующем просмотре." },

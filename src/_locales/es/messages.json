@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Ya tiene «Me gusta»" },
   "statusNotLikedTitle": { "message": "Sin «Me gusta»" },
+  "statusSignedOutTitle": { "message": "Inicia sesión en YouTube" },
+  "statusSignedOutDetail": { "message": "No hay ninguna cuenta con la sesión iniciada, y YouTube solo permite dar «Me gusta» con una cuenta. La extensión continúa en cuanto inicies sesión." },
   "reasonAlreadyLiked": { "message": "Este video ya tenía «Me gusta»: la extensión lo deja como está." },
   "reasonAlreadyDisliked": { "message": "Has marcado este video con «No me gusta»: la extensión lo deja como está." },
   "reasonSkippedByUser": { "message": "Has pedido no darle «Me gusta» esta vez. Podrá recibirlo cuando lo vuelvas a ver." },

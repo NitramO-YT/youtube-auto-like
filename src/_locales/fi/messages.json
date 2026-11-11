@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Jo tykätty" },
   "statusNotLikedTitle": { "message": "Ei tykätty" },
+  "statusSignedOutTitle": { "message": "Kirjaudu YouTubeen" },
+  "statusSignedOutDetail": { "message": "Yhtään tiliä ei ole kirjautunut, ja YouTube sallii tykkäämisen vain tilillä. Laajennus jatkaa heti, kun kirjaudut." },
   "reasonAlreadyLiked": { "message": "Tästä videosta oli jo tykätty: laajennus jättää sen ennalleen." },
   "reasonAlreadyDisliked": { "message": "Merkitsit, ettet tykkää tästä videosta: laajennus jättää sen ennalleen." },
   "reasonSkippedByUser": { "message": "Pyysit, ettei siitä tykätä tällä kertaa. Siitä voidaan tykätä, kun katsot sen uudelleen." },

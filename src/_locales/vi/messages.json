@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Đã thích" },
   "statusNotLikedTitle": { "message": "Chưa thích" },
+  "statusSignedOutTitle": { "message": "Đăng nhập vào YouTube" },
+  "statusSignedOutDetail": { "message": "Chưa có tài khoản nào đăng nhập, và YouTube chỉ cho phép thích video bằng tài khoản. Tiện ích sẽ tiếp tục ngay khi bạn đăng nhập." },
   "reasonAlreadyLiked": { "message": "Video này đã được thích: tiện ích không động đến." },
   "reasonAlreadyDisliked": { "message": "Bạn đã nhấn “Không thích” video này: tiện ích không động đến." },
   "reasonSkippedByUser": { "message": "Bạn đã yêu cầu không thích lần này. Video có thể được thích khi bạn xem lại." },

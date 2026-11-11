@@ -111,6 +111,12 @@ export const SCENARIOS = [
     update: NEWER_RELEASE,
     status: { ...video, channel: channel(true, { avatarUrl: COLAS_AVATAR }), status: 'liked', target: { at: 0, basis: 'instant' }, likedAgoMs: 60_000 },
   },
+  // No account signed in on YouTube: the like button only offers to sign in.
+  {
+    name: 'popup-signed-out',
+    ...POPUP,
+    status: { ...video, channel: channel(false, { avatarUrl: COLAS_AVATAR }), status: 'not-eligible', reason: 'signed-out' },
+  },
   { name: 'popup-no-video', ...POPUP, status: { videoId: null } },
   // A channel page, its channel in "always like".
   {

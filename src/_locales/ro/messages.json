@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Deja apreciat" },
   "statusNotLikedTitle": { "message": "Neapreciat" },
+  "statusSignedOutTitle": { "message": "Conectează-te la YouTube" },
+  "statusSignedOutDetail": { "message": "Niciun cont nu este conectat, iar YouTube permite aprecierea videoclipurilor doar dintr-un cont. Extensia continuă imediat ce te conectezi." },
   "reasonAlreadyLiked": { "message": "Acest videoclip era deja apreciat: extensia nu îl atinge." },
   "reasonAlreadyDisliked": { "message": "Ai marcat acest videoclip cu „Nu-mi place”: extensia nu îl atinge." },
   "reasonSkippedByUser": { "message": "Ai cerut să nu fie apreciat de data aceasta. Poate fi apreciat când îl vizionezi din nou." },

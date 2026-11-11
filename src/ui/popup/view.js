@@ -68,6 +68,7 @@ function readingCard(t) {
 }
 
 function reasonCard(reason, t) {
+  if (reason === Reason.SIGNED_OUT) return card('no', 'block', t('statusSignedOutTitle'), t('statusSignedOutDetail'));
   const detail = REASON_DETAILS[reason] ? t(REASON_DETAILS[reason]) : null;
   if (reason === Reason.ALREADY_LIKED) return card('liked', 'check', t('statusAlreadyLikedTitle'), detail);
   return card('no', 'block', t('statusNotLikedTitle'), detail);

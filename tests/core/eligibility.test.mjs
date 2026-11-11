@@ -31,6 +31,18 @@ describe('evaluateEligibility', () => {
 
   it('does nothing when the extension is disabled, whatever the video', () => {
     assert.deepEqual(check({ liked: null }, { enabled: false }), { eligible: false, reason: Reason.DISABLED });
+    assert.equal(check({ signedIn: false }, { enabled: false }).reason, Reason.DISABLED);
+  });
+
+  it('says that no account is signed in when the page says so, before anything else the page shows', () => {
+    assert.deepEqual(check({ signedIn: false, liked: null }), { eligible: false, reason: Reason.SIGNED_OUT });
+    assert.equal(check({ signedIn: false }, { likeWhat: 'all' }).reason, Reason.SIGNED_OUT);
+  });
+
+  it('goes on with the rules when an account is signed in, or when the page does not say', () => {
+    assert.equal(check({ signedIn: true }).reason, Reason.ELIGIBLE);
+    assert.equal(check({ signedIn: null }).reason, Reason.ELIGIBLE);
+    assert.equal(check({ signedIn: undefined }).reason, Reason.ELIGIBLE);
   });
 
   describe('state that the page did not provide', () => {

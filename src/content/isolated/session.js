@@ -178,6 +178,7 @@ export function evaluateVideo(session, observation, settings) {
     {
       videoId: session.videoId,
       channelId: snapshot.channelId,
+      signedIn: snapshot.signedIn,
       isShort: snapshot.isShort,
       subscribed: snapshot.subscribed,
       liked: likeState(session, observation),

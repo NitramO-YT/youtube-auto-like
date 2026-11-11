@@ -49,6 +49,11 @@
  * The owner element of the watch page is reused from one video to the next:
  * an avatar counts only when its channel is the one of the player response.
  *
+ * Session: window.ytcfg.get('LOGGED_IN'), true with an account signed in
+ * (Brave) and false without (blank Firefox profile), a boolean in both
+ * cases, checked on 12 November 2026. Without an account, the like button
+ * is there but only offers to sign in.
+ *
  * Every access is guarded: a missing piece gives null, never an exception.
  */
 import { Surface } from './surface.js';
@@ -211,11 +216,19 @@ function shortsSources(doc) {
   };
 }
 
+/** Whether an account is signed in on YouTube, from its ytcfg; null when the page does not say. */
+export function readSignedIn(ytcfg) {
+  const loggedIn = guarded(() => ytcfg?.get?.('LOGGED_IN'));
+  return typeof loggedIn === 'boolean' ? loggedIn : null;
+}
+
 /**
  * The snapshot sent to the liker (see validateSnapshot in protocol.js), for
  * the surface the URL shows; null when the page plays no video.
+ *
+ * @param {object} [ytcfg] window.ytcfg of the page.
  */
-export function readSnapshot(doc, surface) {
+export function readSnapshot(doc, surface, ytcfg = null) {
   if (surface !== Surface.WATCH && surface !== Surface.SHORTS) return null;
   const { response, surfaceVideoId, subscribed, avatar, likeAtLoad, dislikeAtLoad } =
     surface === Surface.SHORTS ? shortsSources(doc) : watchSources(doc);
@@ -230,6 +243,7 @@ export function readSnapshot(doc, surface) {
     channelName: details?.author ?? '',
     // avatarOf gives a channel ID only as a string: no avatar passes without one.
     avatarUrl: avatar?.channelId === channelId ? avatar.url : null,
+    signedIn: readSignedIn(ytcfg),
     isShort:
       surface === Surface.SHORTS
         ? true

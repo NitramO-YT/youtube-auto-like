@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "高評価済み" },
   "statusNotLikedTitle": { "message": "高評価なし" },
+  "statusSignedOutTitle": { "message": "YouTube にログインしてください" },
+  "statusSignedOutDetail": { "message": "ログイン中のアカウントがありません。YouTube で高評価できるのはアカウントからだけです。ログインすると拡張機能が再開します。" },
   "reasonAlreadyLiked": { "message": "この動画にはすでに高評価が付いていました。拡張機能はそのままにします。" },
   "reasonAlreadyDisliked": { "message": "あなたはこの動画に低評価を付けています。拡張機能はそのままにします。" },
   "reasonSkippedByUser": { "message": "今回は高評価しないよう指定しました。次に見たときには高評価されることがあります。" },

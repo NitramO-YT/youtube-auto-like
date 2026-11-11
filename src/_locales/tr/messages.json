@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Zaten beğenilmiş" },
   "statusNotLikedTitle": { "message": "Beğenilmedi" },
+  "statusSignedOutTitle": { "message": "YouTube'da oturum açın" },
+  "statusSignedOutDetail": { "message": "Oturum açmış bir hesap yok ve YouTube videoları yalnızca bir hesapla beğenmeye izin veriyor. Oturum açtığınızda uzantı devam eder." },
   "reasonAlreadyLiked": { "message": "Bu videonun zaten bir beğenisi vardı: uzantı onu olduğu gibi bırakır." },
   "reasonAlreadyDisliked": { "message": "Bu videoyu beğenmediniz: uzantı onu olduğu gibi bırakır." },
   "reasonSkippedByUser": { "message": "Bu sefer beğenilmemesini istediniz. Tekrar izlediğinizde beğenilebilir." },

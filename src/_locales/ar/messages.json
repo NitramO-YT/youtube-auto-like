@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "تم الإعجاب مسبقًا" },
   "statusNotLikedTitle": { "message": "لم يتم تسجيل الإعجاب" },
+  "statusSignedOutTitle": { "message": "سجّل الدخول إلى YouTube" },
+  "statusSignedOutDetail": { "message": "لا يوجد حساب مسجّل الدخول، ولا يسمح YouTube بتسجيل الإعجاب إلا من حساب. ستتابع الإضافة عملها بمجرد تسجيل الدخول." },
   "reasonAlreadyLiked": { "message": "تم تسجيل الإعجاب بهذا الفيديو مسبقًا: لن تغيّره الإضافة." },
   "reasonAlreadyDisliked": { "message": "اخترت «لم يعجبني» لهذا الفيديو: لن تغيّره الإضافة." },
   "reasonSkippedByUser": { "message": "طلبت عدم تسجيل الإعجاب هذه المرة. قد يتم تسجيله عند مشاهدته مرة أخرى." },

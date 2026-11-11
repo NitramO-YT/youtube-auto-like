@@ -81,6 +81,8 @@
 
   "statusAlreadyLikedTitle": { "message": "Já marcado com “Gostei”" },
   "statusNotLikedTitle": { "message": "Sem “Gostei”" },
+  "statusSignedOutTitle": { "message": "Faça login no YouTube" },
+  "statusSignedOutDetail": { "message": "Nenhuma conta está conectada, e o YouTube só permite marcar “Gostei” com uma conta. A extensão continua assim que você fizer login." },
   "reasonAlreadyLiked": { "message": "Este vídeo já tinha um “Gostei”: a extensão o deixa como está." },
   "reasonAlreadyDisliked": { "message": "Você marcou este vídeo com “Não gostei”: a extensão o deixa como está." },
   "reasonSkippedByUser": { "message": "Você pediu para não marcá-lo desta vez. Ele poderá ser marcado quando você o assistir de novo." },
