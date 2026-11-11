@@ -129,6 +129,9 @@ for (const target of TARGETS) {
         // Firefox 140; older versions refuse the manifest.
         assert.deepEqual(gecko.data_collection_permissions, { required: ['none'] });
         assert.ok(Number.parseFloat(gecko.strict_min_version) >= 140);
+        // Firefox for Android knows it from 142 only (web-ext lint,
+        // KEY_FIREFOX_ANDROID_UNSUPPORTED_BY_MIN_VERSION, 11 November 2026).
+        assert.ok(Number.parseFloat(manifest.browser_specific_settings.gecko_android?.strict_min_version) >= 142);
         assert.equal(manifest.key, undefined, 'the key of the Chromium ID is not for Firefox');
       } else {
         assert.equal(manifest.browser_specific_settings, undefined, 'Chromium warns about Firefox settings');
