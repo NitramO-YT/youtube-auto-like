@@ -129,9 +129,12 @@ for (const target of TARGETS) {
         // Firefox 140; older versions refuse the manifest.
         assert.deepEqual(gecko.data_collection_permissions, { required: ['none'] });
         assert.ok(Number.parseFloat(gecko.strict_min_version) >= 140);
-        // Firefox for Android knows it from 142 only (web-ext lint,
-        // KEY_FIREFOX_ANDROID_UNSUPPORTED_BY_MIN_VERSION, 11 November 2026).
-        assert.ok(Number.parseFloat(manifest.browser_specific_settings.gecko_android?.strict_min_version) >= 142);
+        // No gecko_android: addons.mozilla.org would offer the extension to
+        // Firefox for Android, which shows m.youtube.com, a site it does not
+        // read. web-ext lint then warns that Firefox for Android knows
+        // data_collection_permissions from 142 only, which does not concern
+        // the desktop version.
+        assert.equal(manifest.browser_specific_settings.gecko_android, undefined);
         assert.equal(manifest.key, undefined, 'the key of the Chromium ID is not for Firefox');
       } else {
         assert.equal(manifest.browser_specific_settings, undefined, 'Chromium warns about Firefox settings');

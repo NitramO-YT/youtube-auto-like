@@ -57,6 +57,7 @@ async function writePreviewPage(extensionDir, scenario, locale, version) {
     update: scenario.update,
     journal: scenario.journal,
     status: scenario.status,
+    startAt: scenario.startAt,
   };
   await writeFile(path.join(path.dirname(pageFile), `${id}.data.js`), `window.PREVIEW = ${JSON.stringify(preview)};\n`);
   const fakeApi = path.relative(path.dirname(pageFile), path.join(extensionDir, 'preview-fake-api.js'));

@@ -85,11 +85,11 @@ export function availableUpdate(state, currentVersion) {
 }
 
 /**
- * Whether the browser installs new versions by itself: the Firefox package
- * names its update manifest (browser_specific_settings.gecko.update_url),
- * which Firefox reads once a day by default; the Chromium packages,
- * installed by hand, have none.
+ * Whether the browser installs new versions by itself: Firefox does, for
+ * its package (the one with a Gecko ID, browser_specific_settings.gecko.id),
+ * from addons.mozilla.org, checked once a day by default; the Chromium
+ * packages, installed by hand, have no Gecko ID.
  */
 export function updatesItself(manifest) {
-  return typeof manifest?.browser_specific_settings?.gecko?.update_url === 'string';
+  return typeof manifest?.browser_specific_settings?.gecko?.id === 'string';
 }

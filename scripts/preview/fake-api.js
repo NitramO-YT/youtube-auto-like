@@ -87,4 +87,28 @@
       },
     },
   };
+
+  // startAt: the ID of a section of the options page to show first, as if
+  // the page were scrolled to it: the sections before it are hidden, and the
+  // menu marks it. The screenshot of headless Chromium (--screenshot) does
+  // not follow a scrolled page: it draws it shifted, blank at the top.
+  if (window.PREVIEW.startAt) {
+    document.addEventListener('DOMContentLoaded', () => {
+      const section = document.getElementById(window.PREVIEW.startAt);
+      if (!section) {
+        record(`startAt: no section #${window.PREVIEW.startAt}`);
+        return;
+      }
+      for (let previous = section.previousElementSibling; previous; previous = previous.previousElementSibling) {
+        if (previous.matches('section')) previous.hidden = true;
+      }
+      const mark = () => {
+        for (const link of document.querySelectorAll('nav a')) {
+          link.setAttribute('aria-current', String(link.hash === `#${section.id}`));
+        }
+      };
+      // After the page's own marking, which runs once the page is built.
+      setTimeout(mark, 1_000);
+    });
+  }
 })();

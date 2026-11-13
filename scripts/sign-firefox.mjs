@@ -1,9 +1,17 @@
 /**
- * Signs the Firefox version of a release with Mozilla, for self-distribution
- * (channel "unlisted": signed, not listed on addons.mozilla.org), and writes
- * into releases/:
- * - youtube-auto-like.xpi, the package Mozilla signed, and its .sha256;
- * - updates.json, the update manifest Firefox reads (lib/firefox-updates.mjs).
+ * Submits the Firefox version of a release to addons.mozilla.org, in the
+ * channel "listed" (public listing, at the address of the slug in
+ * store/amo-metadata.json), waits for Mozilla to approve and sign it, and
+ * writes into releases/:
+ * - youtube-auto-like.xpi, the package Mozilla signed, the same file as on
+ *   the listing, attached to the GitHub release too, and its .sha256;
+ * - updates.json, the update manifest that versions 3.0.0 and 3.1.0 read
+ *   (lib/firefox-updates.mjs).
+ *
+ * The listing (name, summary, description, categories, license, links) is
+ * sent from store/amo-metadata.json with each version: that file is where
+ * the listing is written, an edit made on the website is replaced at the
+ * next release.
  *
  * Mozilla signs each version only once: run it for the version to publish,
  * from a committed tree, since the build is sent with the source code it
@@ -15,6 +23,11 @@
  *
  * --dry-run does everything but the sending: build, checks by web-ext lint,
  * source archive.
+ *
+ * --beta signs a beta in the channel "unlisted" instead: signed but kept off
+ * the listing, without sending the listing, and without updates.json (only
+ * the latest release carries it). Its version number must be one Mozilla has
+ * not signed yet, in either channel.
  */
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -23,6 +36,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { buildExtension } from './build.mjs';
+import { listingProblems } from './lib/amo-metadata.mjs';
 import { UPDATES_FILE, updatesManifest, XPI_FILE } from './lib/firefox-updates.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -31,8 +45,10 @@ const SIGNED_DIR = path.join(ROOT, 'dist', 'firefox-signed');
 const SOURCE_ARCHIVE = path.join(ROOT, 'dist', 'firefox-source.zip');
 const OUT_DIR = path.join(ROOT, 'releases');
 const WEB_EXT = path.join(ROOT, 'node_modules', '.bin', 'web-ext');
-// What the build reads: none of it may differ from the commit sent as source.
-const BUILD_INPUTS = ['src', 'scripts', 'package.json', 'package-lock.json'];
+const METADATA = path.join(ROOT, 'store', 'amo-metadata.json');
+// What the build reads, and the listing: none of it may differ from the
+// commit sent as source.
+const SENT_INPUTS = ['src', 'scripts', 'package.json', 'package-lock.json', 'store'];
 // Mozilla may hold a version for review before signing it.
 const APPROVAL_TIMEOUT_MS = 30 * 60_000;
 
@@ -42,17 +58,21 @@ function run(command, args, options = {}) {
   return result;
 }
 
-/** Refuses to go on when the build inputs differ from HEAD, untracked files included. */
+/** Refuses to go on when what is sent differs from HEAD, untracked files included. */
 function checkCommitted() {
-  const changed = run('git', ['status', '--porcelain', '--', ...BUILD_INPUTS]).stdout.trim();
+  const changed = run('git', ['status', '--porcelain', '--', ...SENT_INPUTS]).stdout.trim();
   if (changed) {
     throw new Error(`Commit these first: the source sent to Mozilla is the commit, and the build must come from it.\n${changed}`);
   }
 }
 
-/** web-ext lint with Mozilla's rules; an error stops the signing, a warning is shown. */
+/**
+ * web-ext lint with Mozilla's rules for a listed add-on (without
+ * --self-hosted, which would let an update_url through); an error stops
+ * the signing, a warning is shown.
+ */
 function lint() {
-  const result = run(WEB_EXT, ['lint', '--source-dir', BUILD_DIR, '--self-hosted', '--output', 'json']);
+  const result = run(WEB_EXT, ['lint', '--source-dir', BUILD_DIR, '--output', 'json']);
   const report = JSON.parse(result.stdout);
   for (const warning of report.warnings) console.log(`web-ext lint warning: ${warning.code}: ${warning.message}`);
   if (report.errors.length > 0) {
@@ -64,14 +84,22 @@ async function sha256(file) {
   return createHash('sha256').update(await readFile(file)).digest('hex');
 }
 
-async function sign() {
+async function sign(beta) {
   if (!process.env.WEB_EXT_API_KEY || !process.env.WEB_EXT_API_SECRET) {
     throw new Error('Mozilla keys missing: run it through the guichet (guichet exec amo-api-key -- guichet exec amo-api-secret -- npm run sign-firefox).');
   }
   await rm(SIGNED_DIR, { recursive: true, force: true });
+  const channel = beta ? ['--channel', 'unlisted'] : ['--channel', 'listed', '--amo-metadata', METADATA];
   const result = run(
     WEB_EXT,
-    ['sign', '--channel', 'unlisted', '--source-dir', BUILD_DIR, '--artifacts-dir', SIGNED_DIR, '--upload-source-code', SOURCE_ARCHIVE, '--approval-timeout', String(APPROVAL_TIMEOUT_MS)],
+    [
+      'sign',
+      ...channel,
+      '--source-dir', BUILD_DIR,
+      '--artifacts-dir', SIGNED_DIR,
+      '--upload-source-code', SOURCE_ARCHIVE,
+      '--approval-timeout', String(APPROVAL_TIMEOUT_MS),
+    ],
     { stdio: 'inherit' },
   );
   if (result.status !== 0) throw new Error(`web-ext sign failed (exit code ${result.status}).`);
@@ -92,8 +120,12 @@ function checkSigned(xpi, manifest) {
 }
 
 async function main() {
-  const { values } = parseArgs({ options: { 'dry-run': { type: 'boolean', default: false } } });
+  const { values } = parseArgs({
+    options: { 'dry-run': { type: 'boolean', default: false }, beta: { type: 'boolean', default: false } },
+  });
   checkCommitted();
+  const problems = listingProblems(JSON.parse(await readFile(METADATA, 'utf8')));
+  if (problems.length > 0) throw new Error(`The listing (store/amo-metadata.json) cannot be sent:\n${problems.join('\n')}`);
   const { version } = JSON.parse(await readFile(path.join(ROOT, 'package.json'), 'utf8'));
   const manifest = await buildExtension({ target: 'firefox', srcDir: path.join(ROOT, 'src'), outDir: BUILD_DIR, version });
   lint();
@@ -105,7 +137,7 @@ async function main() {
     return;
   }
 
-  const signed = await sign();
+  const signed = await sign(values.beta);
   checkSigned(signed, manifest);
   await mkdir(OUT_DIR, { recursive: true });
   const xpi = path.join(OUT_DIR, XPI_FILE);
@@ -113,10 +145,11 @@ async function main() {
   await chmod(xpi, 0o644);
   const hash = await sha256(xpi);
   await writeFile(`${xpi}.sha256`, `${hash}  ${XPI_FILE}\n`);
+  console.log(`YouTube Auto Like ${version} for Firefox, signed by Mozilla${values.beta ? ' (beta, not listed)' : ''}:`);
+  console.log(`  ${path.relative(ROOT, xpi)}  sha256 ${hash}`);
+  if (values.beta) return;
   const updates = updatesManifest({ id: manifest.browser_specific_settings.gecko.id, version, sha256: hash });
   await writeFile(path.join(OUT_DIR, UPDATES_FILE), `${JSON.stringify(updates, null, 2)}\n`);
-  console.log(`YouTube Auto Like ${version} for Firefox, signed by Mozilla:`);
-  console.log(`  ${path.relative(ROOT, xpi)}  sha256 ${hash}`);
   console.log(`  ${path.join('releases', UPDATES_FILE)}`);
 }
 

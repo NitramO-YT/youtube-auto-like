@@ -96,13 +96,13 @@ describe('update state', () => {
 describe('updatesItself', () => {
   const layer = async (name) => JSON.parse(await readFile(new URL(`../../src/manifest/${name}.json`, import.meta.url), 'utf8'));
 
-  it('is true for the Firefox package, which names its update manifest, and false for Chromium', async () => {
+  it('is true for the Firefox package, which has a Gecko ID, and false for Chromium', async () => {
     assert.equal(updatesItself(await layer('firefox')), true);
     assert.equal(updatesItself({ ...(await layer('base')), ...(await layer('chromium')) }), false);
   });
 
-  it('is false for a manifest without an update address', () => {
-    for (const manifest of [undefined, {}, { browser_specific_settings: { gecko: { id: 'x@y' } } }, { browser_specific_settings: { gecko: { update_url: 42 } } }]) {
+  it('is false for a manifest without a Gecko ID', () => {
+    for (const manifest of [undefined, {}, { browser_specific_settings: {} }, { browser_specific_settings: { gecko: { id: 42 } } }]) {
       assert.equal(updatesItself(manifest), false, JSON.stringify(manifest));
     }
   });

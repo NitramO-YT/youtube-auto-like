@@ -28,9 +28,12 @@ describe('Firefox update manifest', () => {
     assert.throws(() => updatesManifest({ id: ID, version: '3.0.0', sha256: 'abc' }), /Not a SHA-256/);
   });
 
-  it('is read by the Firefox build at the address of the latest release', async () => {
-    const overlay = JSON.parse(await readFile(new URL('../../src/manifest/firefox.json', import.meta.url), 'utf8'));
-    assert.equal(overlay.browser_specific_settings.gecko.update_url, UPDATE_URL);
+  it('stays at the address that versions 3.0.0 and 3.1.0 read', () => {
     assert.equal(UPDATE_URL, 'https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/updates.json');
+  });
+
+  it('is no longer named by the Firefox build, which addons.mozilla.org lists and updates', async () => {
+    const overlay = JSON.parse(await readFile(new URL('../../src/manifest/firefox.json', import.meta.url), 'utf8'));
+    assert.equal('update_url' in overlay.browser_specific_settings.gecko, false);
   });
 });

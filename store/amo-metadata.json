@@ -1,0 +1,30 @@
+{
+  "name": {
+    "en-US": "YouTube Auto Like"
+  },
+  "slug": "youtube-auto-like-nitramo",
+  "summary": {
+    "en-US": "Likes the YouTube videos you choose, automatically: from the channels you subscribe to, every channel, or your own list, as soon as a video opens or after a while.",
+    "fr": "Like automatiquement les vidéos YouTube que vous choisissez : celles des chaînes auxquelles vous êtes abonné, de toutes les chaînes ou de votre propre liste, dès l'ouverture ou au bout d'un moment."
+  },
+  "description": {
+    "en-US": "The maintained continuation of YouTube Auto Like, created by Austen Morgan in 2016, for Firefox and Chromium-based browsers (Brave, Chrome, Edge…).\n\n- Likes what you choose: the channels you subscribe to, every channel, or only your “Always like” list; videos, Shorts, or both.\n- When you choose: as soon as the video opens, after a share of the video or a number of minutes, or at a random moment. Ads are not counted.\n- Never against you: a video you liked or disliked yourself is never touched, and in doubt the extension does nothing and says why.\n- Two lists: “Always like” and “Never like”, which always wins. Add a channel from the toolbar popup on one of its videos or on its page, from the history of likes, or by pasting links and @handles.\n- Videos made by several channels follow the channel that publishes them, and your lists can count for the guest channels too.\n- This video only, or never: skip a video this time, or exclude it for good.\n- Shows what it does: the toolbar popup tells what happens to the video you watch and why.\n- History of the last 500 likes the extension made.\n- Export and import your lists, and all your settings, to find them again in another browser.\n- Light and dark themes, 28 languages.\n\nPrivacy: everything stays in your browser. Nothing is sent to the author, and there is no tracking. The extension checks GitHub for a new version, at the frequency you choose, or never.\n\nSource code, versions for other browsers, and problem reports: https://github.com/NitramO-YT/youtube-auto-like",
+    "fr": "La suite maintenue de YouTube Auto Like, créée par Austen Morgan en 2016, pour Firefox et les navigateurs basés sur Chromium (Brave, Chrome, Edge…).\n\n- Like ce que vous choisissez : les chaînes auxquelles vous êtes abonné, toutes les chaînes, ou seulement votre liste « Toujours liker » ; vidéos, Shorts, ou les deux.\n- Quand vous le choisissez : dès l'ouverture de la vidéo, après une part de la vidéo ou un nombre de minutes, ou à un moment au hasard. Les pubs ne comptent pas.\n- Jamais contre vous : une vidéo que vous avez likée ou dislikée vous-même n'est jamais touchée, et dans le doute l'extension ne fait rien et dit pourquoi.\n- Deux listes : « Toujours liker » et « Ne jamais liker », qui l'emporte toujours. Ajoutez une chaîne depuis la fenêtre de l'icône sur l'une de ses vidéos ou sur sa page, depuis l'historique des likes, ou en collant des liens et des @identifiants.\n- Les vidéos à plusieurs chaînes suivent la chaîne qui les publie, et vos listes peuvent compter aussi pour les chaînes invitées.\n- Pour cette fois, ou jamais : passez une vidéo cette fois-ci, ou excluez-la pour de bon.\n- Dit ce qu'elle fait : la fenêtre de l'icône indique ce qui arrive à la vidéo regardée, et pourquoi.\n- Historique des 500 derniers likes posés par l'extension.\n- Export et import de vos listes, et de tous vos réglages, pour les retrouver dans un autre navigateur.\n- Thèmes clair et sombre, 28 langues.\n\nVie privée : tout reste dans votre navigateur. Rien n'est envoyé à l'auteur, et il n'y a aucun pistage. L'extension vérifie sur GitHub si une nouvelle version existe, à la fréquence de votre choix, ou jamais.\n\nCode source, versions pour les autres navigateurs et signalement d'un problème : https://github.com/NitramO-YT/youtube-auto-like"
+  },
+  "categories": {
+    "firefox": [
+      "photos-music-videos"
+    ]
+  },
+  "homepage": {
+    "en-US": "https://github.com/NitramO-YT/youtube-auto-like"
+  },
+  "support_url": {
+    "en-US": "https://github.com/NitramO-YT/youtube-auto-like/issues"
+  },
+  "contributions_url": "https://ko-fi.com/NitramO",
+  "version": {
+    "license": "MIT",
+    "approval_notes": "The uploaded source archive is the git commit this version is built from. To build it: Node.js 22 or later, then `npm ci` and `npm run build -- --target firefox`; the extension is written to dist/firefox/, identical to the submitted package. The scripts are bundled by esbuild, without minification."
+  }
+}

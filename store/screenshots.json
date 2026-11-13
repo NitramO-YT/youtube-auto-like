@@ -1,0 +1,34 @@
+[
+  {
+    "file": "1-popup.png",
+    "scenario": "popups",
+    "caption": {
+      "en-US": "The toolbar popup tells what happens to the video you watch, and why.",
+      "fr": "La fenêtre de l'icône dit ce qui arrive à la vidéo regardée, et pourquoi."
+    }
+  },
+  {
+    "file": "2-channels.png",
+    "scenario": "store-options-channels",
+    "caption": {
+      "en-US": "Choose which channels and which videos to like.",
+      "fr": "Choisissez quelles chaînes et quelles vidéos liker."
+    }
+  },
+  {
+    "file": "3-when.png",
+    "scenario": "store-options-when",
+    "caption": {
+      "en-US": "Choose when: at once, after a share of the video or some minutes, or at a random moment.",
+      "fr": "Choisissez quand : aussitôt, après une part de la vidéo ou quelques minutes, ou à un moment au hasard."
+    }
+  },
+  {
+    "file": "4-lists.png",
+    "scenario": "store-options-lists",
+    "caption": {
+      "en-US": "Your lists, and the history of the likes made by the extension.",
+      "fr": "Vos listes, et l'historique des likes posés par l'extension."
+    }
+  }
+]

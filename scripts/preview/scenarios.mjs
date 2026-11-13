@@ -34,11 +34,94 @@ const NEWER_RELEASE = {
   latest: { version: '99.0.0', url: 'https://github.com/NitramO-YT/youtube-auto-like/releases/tag/v99.0.0', publishedAt: null },
   checkedAt: CHECKED_AT,
 };
-// The Firefox package names its update manifest: Firefox installs new versions by itself.
+// The Firefox package has a Gecko ID: Firefox installs new versions by itself.
 const FIREFOX_MANIFEST = {
-  browser_specific_settings: { gecko: { update_url: 'https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/updates.json' } },
+  browser_specific_settings: { gecko: { id: 'youtube-auto-like@nitramo-yt.github.io' } },
 };
 const halfway ={ timing: { mode: 'custom', percent: { enabled: true, value: 50 }, minutes: { enabled: false, value: 2 } } };
+
+// Screenshots of the listing on addons.mozilla.org (store/screenshots/):
+// fictional channels and videos only, so that no real creator appears on a
+// public page.
+// The size of a screenshot that addons.mozilla.org recommends and shows in full.
+export const STORE_SIZE = [1280, 800];
+const storeChannel = (index, name, subscribed = true) => ({ id: `UC${String(index).padStart(22, 'x')}`, name, avatarUrl: null, subscribed });
+const STORE_CHANNELS = [
+  storeChannel(1, 'Maker Workshop'),
+  storeChannel(2, 'Pixel Kitchen'),
+  storeChannel(3, 'Trail Stories'),
+  storeChannel(4, 'Synth Lab'),
+  storeChannel(5, 'Garden Hours'),
+  storeChannel(6, 'Retro Rewind'),
+];
+const listEntry = ({ id, name }, daysAgo) => ({ id, name, addedAt: new Date(Date.UTC(2026, 10, 12) - daysAgo * 86_400_000).toISOString() });
+const STORE_SETTINGS = {
+  ...halfway,
+  lists: {
+    always: STORE_CHANNELS.slice(1, 5).map((channel, index) => listEntry(channel, index * 3 + 1)),
+    never: [listEntry(STORE_CHANNELS[5], 6)],
+  },
+};
+const STORE_TITLES = [
+  'Restoring a 100-year-old workbench',
+  'The perfect sourdough, step by step',
+  'Three days alone in the Highlands',
+  'Building a synth from scratch',
+  'Planting a winter vegetable garden',
+  'How I organize my workshop',
+  'Fermented hot sauce in a week',
+  'Night hike to the summit',
+];
+const STORE_HISTORY = STORE_TITLES.map((title, index) => {
+  const channel = STORE_CHANNELS[index % 5];
+  return {
+    videoId: `store${String(index).padStart(6, '0')}`,
+    title,
+    channelId: channel.id,
+    channelName: channel.name,
+    isShort: index % 4 === 3,
+    likedAt: new Date(Date.UTC(2026, 10, 12, 21, 0) - index * 5_400_000).toISOString(),
+  };
+});
+const storeVideo = { ...video, title: STORE_TITLES[0], elapsed: 341, duration: 1260 };
+const STORE_SCENARIOS = [
+  {
+    name: 'store-popup-waiting',
+    ...POPUP,
+    settings: STORE_SETTINGS,
+    status: { ...storeVideo, channel: STORE_CHANNELS[0], status: 'waiting', target: { at: 630, basis: 'percent' } },
+  },
+  {
+    name: 'store-popup-liked',
+    ...POPUP,
+    settings: STORE_SETTINGS,
+    status: {
+      ...storeVideo,
+      title: STORE_TITLES[1],
+      channel: STORE_CHANNELS[1],
+      status: 'liked',
+      target: { at: 630, basis: 'percent' },
+      likedAgoMs: 40_000,
+    },
+  },
+  {
+    name: 'store-popup-not-subscribed',
+    ...POPUP,
+    settings: STORE_SETTINGS,
+    status: {
+      ...storeVideo,
+      title: STORE_TITLES[2],
+      isShort: true,
+      channel: storeChannel(7, 'Coastline Diaries', false),
+      status: 'not-eligible',
+      reason: 'not-subscribed',
+    },
+  },
+  // At the size addons.mozilla.org shows, each at the top of a section.
+  { name: 'store-options-channels', ...OPTIONS, size: STORE_SIZE, settings: STORE_SETTINGS },
+  { name: 'store-options-when', ...OPTIONS, size: STORE_SIZE, settings: STORE_SETTINGS, startAt: 'when' },
+  { name: 'store-options-lists', ...OPTIONS, size: STORE_SIZE, settings: STORE_SETTINGS, history: STORE_HISTORY, startAt: 'lists' },
+];
 
 export const SCENARIOS = [
   {
@@ -281,4 +364,5 @@ export const SCENARIOS = [
   { name: 'options-narrow', ...OPTIONS, size: [390, 1600], settings: { enabled: false, timing: { mode: 'random' } } },
   // The options page as the frame of the popup shows it.
   { name: 'options-embedded', ...OPTIONS, query: '?embedded', size: [360, 470], settings: { enabled: false } },
+  ...STORE_SCENARIOS,
 ];
