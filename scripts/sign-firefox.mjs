@@ -28,6 +28,10 @@
  * the listing, without sending the listing, and without updates.json (only
  * the latest release carries it). Its version number must be one Mozilla has
  * not signed yet, in either channel.
+ *
+ * --fetch sends nothing: when Mozilla approved the version later than the
+ * wait above (a first listed version can be reviewed by a person), it
+ * downloads the signed package of this version and writes the same files.
  */
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -36,6 +40,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { buildExtension } from './build.mjs';
+import { amoKeys, amoRequest, amoToken } from './lib/amo-api.mjs';
 import { listingProblems } from './lib/amo-metadata.mjs';
 import { UPDATES_FILE, updatesManifest, XPI_FILE } from './lib/firefox-updates.mjs';
 
@@ -84,6 +89,28 @@ async function sha256(file) {
   return createHash('sha256').update(await readFile(file)).digest('hex');
 }
 
+/**
+ * The signed package of a version already sent, once Mozilla approved it
+ * (file status "public"), downloaded into SIGNED_DIR; an error while it is
+ * still under review.
+ */
+async function fetchSigned(guid, version) {
+  const keys = amoKeys();
+  const { results } = await amoRequest(keys, 'GET', `/addons/addon/${encodeURIComponent(guid)}/versions/?filter=all_with_unlisted&page_size=50`);
+  const sent = results.find((candidate) => candidate.version === version);
+  if (!sent) throw new Error(`Mozilla has no version ${version} of ${guid}: send it first.`);
+  if (sent.file?.status !== 'public') {
+    throw new Error(`Version ${version} is not approved yet (file status "${sent.file?.status}"): fetch it again later.`);
+  }
+  const response = await fetch(sent.file.url, { headers: { Authorization: `JWT ${amoToken(keys)}` } });
+  if (!response.ok) throw new Error(`Download of ${sent.file.url}: HTTP ${response.status}`);
+  await rm(SIGNED_DIR, { recursive: true, force: true });
+  await mkdir(SIGNED_DIR, { recursive: true });
+  const file = path.join(SIGNED_DIR, `youtube-auto-like-${version}.xpi`);
+  await writeFile(file, Buffer.from(await response.arrayBuffer()));
+  return file;
+}
+
 async function sign(beta) {
   if (!process.env.WEB_EXT_API_KEY || !process.env.WEB_EXT_API_SECRET) {
     throw new Error('Mozilla keys missing: run it through the guichet (guichet exec amo-api-key -- guichet exec amo-api-secret -- npm run sign-firefox).');
@@ -121,23 +148,34 @@ function checkSigned(xpi, manifest) {
 
 async function main() {
   const { values } = parseArgs({
-    options: { 'dry-run': { type: 'boolean', default: false }, beta: { type: 'boolean', default: false } },
+    options: {
+      'dry-run': { type: 'boolean', default: false },
+      beta: { type: 'boolean', default: false },
+      fetch: { type: 'boolean', default: false },
+    },
   });
-  checkCommitted();
-  const problems = listingProblems(JSON.parse(await readFile(METADATA, 'utf8')));
-  if (problems.length > 0) throw new Error(`The listing (store/amo-metadata.json) cannot be sent:\n${problems.join('\n')}`);
   const { version } = JSON.parse(await readFile(path.join(ROOT, 'package.json'), 'utf8'));
-  const manifest = await buildExtension({ target: 'firefox', srcDir: path.join(ROOT, 'src'), outDir: BUILD_DIR, version });
-  lint();
-  const archived = run('git', ['archive', '--format=zip', '--output', SOURCE_ARCHIVE, 'HEAD']);
-  if (archived.status !== 0) throw new Error(`git archive failed: ${archived.stderr}`);
-  console.log(`Firefox ${version} built and checked; source archive: ${path.relative(ROOT, SOURCE_ARCHIVE)}.`);
-  if (values['dry-run']) {
-    console.log('Dry run: nothing sent to Mozilla.');
-    return;
+  let manifest;
+  let signed;
+  if (values.fetch) {
+    // Built only to know the ID and version the signed package must carry.
+    manifest = await buildExtension({ target: 'firefox', srcDir: path.join(ROOT, 'src'), outDir: BUILD_DIR, version });
+    signed = await fetchSigned(manifest.browser_specific_settings.gecko.id, version);
+  } else {
+    checkCommitted();
+    const problems = listingProblems(JSON.parse(await readFile(METADATA, 'utf8')));
+    if (problems.length > 0) throw new Error(`The listing (store/amo-metadata.json) cannot be sent:\n${problems.join('\n')}`);
+    manifest = await buildExtension({ target: 'firefox', srcDir: path.join(ROOT, 'src'), outDir: BUILD_DIR, version });
+    lint();
+    const archived = run('git', ['archive', '--format=zip', '--output', SOURCE_ARCHIVE, 'HEAD']);
+    if (archived.status !== 0) throw new Error(`git archive failed: ${archived.stderr}`);
+    console.log(`Firefox ${version} built and checked; source archive: ${path.relative(ROOT, SOURCE_ARCHIVE)}.`);
+    if (values['dry-run']) {
+      console.log('Dry run: nothing sent to Mozilla.');
+      return;
+    }
+    signed = await sign(values.beta);
   }
-
-  const signed = await sign(values.beta);
   checkSigned(signed, manifest);
   await mkdir(OUT_DIR, { recursive: true });
   const xpi = path.join(OUT_DIR, XPI_FILE);

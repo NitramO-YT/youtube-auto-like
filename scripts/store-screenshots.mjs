@@ -33,6 +33,8 @@ const POPUP_WIDTH = 360;
 const POPUP_GAP = 40;
 const POPUP_TOP = 100;
 const BACKGROUND = '#e9ecf1';
+// Seconds between two writes to the listing when uploading.
+const WRITE_SPACING_S = 20;
 
 const shot = (dir, scenario) => path.join(dir, `${scenario}-en-light.png`);
 
@@ -62,19 +64,25 @@ function composePopups(command, dir, target) {
  */
 async function upload(shots) {
   const keys = amoKeys();
+  // Writes one after the other, apart, so as not to be throttled (see
+  // amo-api.mjs).
+  const pause = () => new Promise((done) => setTimeout(done, WRITE_SPACING_S * 1000));
   const { gecko } = JSON.parse(await readFile(path.join(ROOT, 'src', 'manifest', 'firefox.json'), 'utf8')).browser_specific_settings;
   const addon = await amoRequest(keys, 'GET', `/addons/addon/${encodeURIComponent(gecko.id)}/`);
   const previews = `/addons/addon/${addon.id}/previews`;
   for (const preview of addon.previews ?? []) {
     await amoRequest(keys, 'DELETE', `${previews}/${preview.id}/`);
     console.log(`deleted the screenshot ${preview.id}`);
+    await pause();
   }
   for (const [position, { file, caption }] of shots.entries()) {
     const form = new FormData();
     form.set('image', new Blob([await readFile(path.join(OUT_DIR, file))], { type: 'image/png' }), file);
     form.set('position', String(position));
     const created = await amoRequest(keys, 'POST', `${previews}/`, form);
+    await pause();
     await amoRequest(keys, 'PATCH', `${previews}/${created.id}/`, { caption });
+    await pause();
     console.log(`sent store/screenshots/${file}, screenshot ${created.id}`);
   }
 }
