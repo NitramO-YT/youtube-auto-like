@@ -43,6 +43,7 @@ body:
         - Microsoft Edge
         - Vivaldi
         - Opera
+        - Firefox
         - Something else, described below
     validations:
       required: true
@@ -50,14 +51,16 @@ body:
     id: browser-version
     attributes:
       label: Browser version
-      description: Found at chrome://version or brave://version.
+      description: Found at chrome://version, brave://version or edge://version, or in Firefox under Help › About Firefox.
   - type: dropdown
     id: package
     attributes:
       label: Installed from
       options:
-        - The .zip, loaded unpacked
         - The .crx
+        - The .zip, loaded unpacked
+        - Mozilla's add-ons site (addons.mozilla.org)
+        - The .xpi of a release
         - Built from source
         - Something else, described below
   - type: textarea

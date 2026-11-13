@@ -3,10 +3,10 @@
 # its body.
 blank_issues_enabled: true
 contact_links:
-  - name: 🦊 The Firefox version
+  - name: 🦊 Taknok's fork for Firefox
     url: https://github.com/Taknok/youtube-auto-like/issues
     about:
-      This extension runs in Chromium-based browsers (Brave, Chrome, Edge...). For Firefox, the extension maintained by Taknok has its own tracker.
+      This project builds on the original extension and on Taknok's fork for Firefox, which Taknok keeps maintaining (see "About this fork" in the README). Problems of this extension, in Firefox as in Chromium-based browsers, belong here; those of Taknok's extension, in its own tracker.
   - name: 🔒 A security vulnerability
     url: https://github.com/NitramO-YT/youtube-auto-like/security/policy
     about: Report it privately, following the security policy, never in a public issue.

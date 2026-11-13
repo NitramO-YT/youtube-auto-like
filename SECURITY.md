@@ -17,13 +17,13 @@ the version of the extension and of the browser.
 discussions or pull requests.** A public report tells everyone how to exploit
 the problem before anyone can install a fix.
 
-This project grew from
-[austencm/youtube-auto-like](https://github.com/austencm/youtube-auto-like),
-which is no longer maintained, like the Firefox extension
-[Taknok/youtube-auto-like](https://github.com/Taknok/youtube-auto-like), a fork
-of the same project. A problem found in the code of this repository is
-reported here; one found only in the Firefox extension belongs to Taknok's
-repository.
+This project builds on two others, credited in the README:
+[austencm/youtube-auto-like](https://github.com/austencm/youtube-auto-like), the
+original extension, no longer maintained, and
+[Taknok/youtube-auto-like](https://github.com/Taknok/youtube-auto-like), its
+fork for Firefox, which Taknok keeps maintaining. A vulnerability found in this
+extension, in its Firefox version as in its Chromium one, is reported here; one
+found in Taknok's extension, in his repository.
 
 ## What to expect
 

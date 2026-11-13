@@ -59,7 +59,7 @@ Installez-la depuis [sa page sur le site de modules de Mozilla](https://addons.m
 
 Le fichier `youtube-auto-like.xpi` d'une version publiée est le même paquet. Pour l'installer, cliquez dessus dans Firefox, laissez Firefox continuer après l'avis indiquant qu'il a empêché le site d'installer un logiciel, puis cliquez sur **Ajouter**.
 
-[L'extension de Taknok](https://addons.mozilla.org/firefox/addon/youtube_auto_like/), qui porte le même nom sur le site de Mozilla, en est une autre (voir [À propos de ce fork](#à-propos-de-ce-fork)).
+Le fork de Taknok, l'un des deux projets dont celui-ci est parti (voir [À propos de ce fork](#à-propos-de-ce-fork)), garde sa propre page sur le site de Mozilla sous le même nom, [YouTube Auto Like](https://addons.mozilla.org/firefox/addon/youtube_auto_like/) : le lien ci-dessus est celui de cette extension.
 
 ### Installer le CRX (Chrome, Brave, Edge…)
 
@@ -120,7 +120,7 @@ Ouvrez les réglages de l'extension, puis **À propos › Signaler un problème*
 
 Pour une faille de sécurité, suivez plutôt la [politique de sécurité](SECURITY.md).
 
-Cela vaut aussi pour la version Firefox de ce projet. [Le fork de Taknok](https://github.com/Taknok/youtube-auto-like) est une autre extension, avec ses propres issues.
+Cela vaut aussi pour la version Firefox de ce projet. [Le fork de Taknok](https://github.com/Taknok/youtube-auto-like), dont ce projet est parti et que Taknok continue de maintenir, a ses propres issues pour sa propre extension.
 
 ## Soutenir le projet
 
