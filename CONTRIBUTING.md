@@ -28,8 +28,8 @@ After each `npm run build`, click the reload button of the extension.
 
 In Firefox, open `about:debugging#/runtime/this-firefox`, click **Load
 Temporary Add-on** and choose `dist/firefox/manifest.json`; it stays until
-Firefox closes. `npx web-ext lint --source-dir dist/firefox --self-hosted`
-checks the build with Mozilla's rules.
+Firefox closes. `npx web-ext lint --source-dir dist/firefox` checks the build
+with Mozilla's rules for an add-on listed on its site.
 
 Both builds come from the same sources: the browser layers in
 `src/manifest/` differ only in what each browser requires (a service worker
@@ -102,11 +102,17 @@ The CRX is signed with `extension-key.pem`, which gives the extension its
 fixed ID. It is never committed, and never replaced: a new key would change the
 ID, and every installation would lose its settings.
 
-The Firefox version is signed by Mozilla, without being listed on its add-ons
-site (channel "unlisted"), with the maintainer's addons.mozilla.org API keys.
+The Firefox version is listed on Mozilla's add-ons site, at
+[addons.mozilla.org/firefox/addon/youtube-auto-like-nitramo](https://addons.mozilla.org/firefox/addon/youtube-auto-like-nitramo/),
+and submitted with the maintainer's addons.mozilla.org API keys. Mozilla
+reviews and signs it; the same signed file is attached to the GitHub release.
 Mozilla signs each version number only once, and receives the source code
 with the build (a `git archive` of the commit): sign from a committed tree,
-and only the version you publish.
+and only the version you publish. The text of the listing is in
+`store/amo-metadata.json`, sent with each version: edit it there, not on the
+site, where a change would be replaced at the next release. Its screenshots
+are in `store/screenshots/`, made by `npm run store-screenshots` (it needs
+ImageMagick), with their captions in `store/screenshots.json`.
 
 1. Set the new version in `package.json` (the manifest takes it from there),
    and commit.
@@ -115,15 +121,17 @@ and only the version you publish.
    each.
 3. Run `npm run sign-firefox` with the keys in `WEB_EXT_API_KEY` and
    `WEB_EXT_API_SECRET` (`-- --dry-run` checks everything without sending).
-   It writes `youtube-auto-like.xpi`, its `.sha256`, and `updates.json`, which
-   Firefox reads to update the extension and which names the package at the
-   address of the tag `vX.Y.Z`.
+   It waits for Mozilla's approval, then writes `youtube-auto-like.xpi`, its
+   `.sha256`, and `updates.json`. Versions 3.0.0 and 3.1.0, distributed from
+   GitHub only, read that file to update, and it names the package at the
+   address of the tag `vX.Y.Z`; later versions update from Mozilla's site.
 4. Create the release on GitHub with the tag `vX.Y.Z` and the seven files.
    - **Latest:** a normal release. Its files are then also at
      `https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/<file>`,
      an address that never changes.
    - **Beta:** a pre-release with the tag `beta`, moved to the new commit and
      whose files are replaced at each beta. The extension's own check for a
-     new version ignores pre-releases. For Firefox, a beta needs a version
-     number of its own, since Mozilla signs each number once, and its release
-     carries no `updates.json`: Firefox updates only from the Latest one.
+     new version ignores pre-releases. For Firefox, sign a beta with
+     `npm run sign-firefox -- --beta`: signed but kept off the listing, and
+     without `updates.json`. It needs a version number of its own, since
+     Mozilla signs each number once.

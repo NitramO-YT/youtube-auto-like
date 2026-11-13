@@ -19,6 +19,7 @@ Like automatiquement les vidéos YouTube que vous choisissez : celles des chaîn
 - **Quand vous le choisissez :** dès l'ouverture, après une part de la vidéo ou un nombre de minutes, ou à un moment au hasard. Les pubs ne sont pas comptées.
 - **Jamais contre vous :** une vidéo que vous avez likée ou dislikée vous-même n'est jamais touchée, et dans le doute l'extension ne fait rien et dit pourquoi.
 - **Deux listes :** « Toujours liker » et « Ne jamais liker », qui l'emporte toujours. Ajoutez une chaîne depuis la fenêtre de l'icône sur une de ses vidéos ou sur sa page, depuis l'historique des likes, ou en collant des liens et des @noms.
+- **Vidéos à plusieurs chaînes :** elles suivent la chaîne qui les publie, et vos listes peuvent aussi compter pour les chaînes invitées.
 - **Pas cette fois, ou jamais :** écartez une vidéo pour ce visionnage, ou excluez-la pour de bon.
 - **Montre ce qu'elle fait :** la fenêtre de l'icône dit ce qui arrive à la vidéo regardée et pourquoi, avec les actions qui le changent.
 - **Historique :** les 500 derniers likes posés par l'extension, chacun avec un lien vers sa vidéo et sa chaîne, et le choix de toujours ou de ne jamais liker cette chaîne.
@@ -46,7 +47,7 @@ Chaque version fournit :
 
 - `youtube-auto-like.crx`, le paquet signé pour les navigateurs basés sur Chromium : le plus simple à installer et à mettre à jour ;
 - `youtube-auto-like-chromium.zip`, la même extension à charger non empaquetée, depuis un dossier que vous gardez ;
-- `youtube-auto-like.xpi`, pour Firefox 140 ou plus récent, signé par Mozilla.
+- `youtube-auto-like.xpi`, pour Firefox 140 ou plus récent : le paquet signé par Mozilla pour son site de modules.
 
 Chaque paquet est accompagné de sa somme de contrôle `.sha256`. Les fichiers de la dernière version sont toujours à l'adresse
 `https://github.com/NitramO-YT/youtube-auto-like/releases/latest/download/<fichier>`, par exemple
@@ -54,11 +55,11 @@ Chaque paquet est accompagné de sa somme de contrôle `.sha256`. Les fichiers d
 
 ### Installer dans Firefox
 
-1. Ouvrez la [dernière version](https://github.com/NitramO-YT/youtube-auto-like/releases/latest) dans Firefox et cliquez sur `youtube-auto-like.xpi`.
-2. Firefox indique d'abord qu'il a empêché le site de proposer l'installation d'un logiciel, comme pour tout site autre que celui de Mozilla : choisissez de continuer l'installation.
-3. Firefox affiche l'extension et sa permission (l'accès à `www.youtube.com`) : cliquez sur **Ajouter**.
+Installez-la depuis [sa page sur le site de modules de Mozilla](https://addons.mozilla.org/firefox/addon/youtube-auto-like-nitramo/) : cliquez sur **Ajouter à Firefox**, puis sur **Ajouter** quand Firefox affiche sa permission (l'accès à `www.youtube.com`).
 
-Mozilla l'a signée sans la publier sur son site de modules, ce que Firefox exige de toute extension qu'il installe pour de bon.
+Le fichier `youtube-auto-like.xpi` d'une version publiée est le même paquet. Pour l'installer, cliquez dessus dans Firefox, laissez Firefox continuer après l'avis indiquant qu'il a empêché le site d'installer un logiciel, puis cliquez sur **Ajouter**.
+
+[L'extension de Taknok](https://addons.mozilla.org/firefox/addon/youtube_auto_like/), qui porte le même nom sur le site de Mozilla, en est une autre (voir [À propos de ce fork](#à-propos-de-ce-fork)).
 
 ### Installer le CRX (Chrome, Brave, Edge…)
 
@@ -82,7 +83,7 @@ L'extension vérifie sur GitHub si une nouvelle version existe, toutes les 30 mi
 
 Pour mettre à jour le CRX, glissez le nouveau sur la page des extensions, comme pour l'installation. Pour mettre à jour une extension non empaquetée, remplacez le contenu de son dossier par le nouveau zip, puis cliquez sur le bouton de rechargement de l'extension dans la page des extensions. Dans les deux cas, vos réglages et vos listes sont conservés : l'extension garde le même identifiant d'une version à l'autre.
 
-Firefox met l'extension à jour tout seul, sans rien à télécharger ni à faire : une fois par jour par défaut, il lit le fichier `updates.json` de la dernière version publiée, et installe la version qu'il indique, en gardant vos réglages et vos listes. Pour l'avoir tout de suite, ouvrez `about:addons` et lancez la recherche des mises à jour depuis le menu en forme de roue dentée. Une nouvelle version qui demanderait une permission de plus attendrait votre accord.
+Firefox met l'extension à jour tout seul depuis le site de modules de Mozilla, sans rien à télécharger ni à faire, une fois par jour par défaut, en gardant vos réglages et vos listes. Pour avoir une nouvelle version tout de suite, ouvrez `about:addons` et lancez la recherche des mises à jour depuis le menu en forme de roue dentée. Une nouvelle version qui demanderait une permission de plus attendrait votre accord. Les versions 3.0.0 et 3.1.0, installées depuis GitHub, passent de la même façon à la première version publiée sur le site de Mozilla, par le fichier `updates.json` de la dernière version, puis se mettent à jour depuis le site de Mozilla.
 
 ### Vérifier un téléchargement
 
@@ -102,7 +103,7 @@ En dehors des pages YouTube que vous ouvrez, l'extension ne se connecte qu'à ce
 - **YouTube**, seulement quand vous ajoutez des chaînes par lien ou importez une liste de liens, pour savoir de quelle chaîne il s'agit, et quand la page de réglages s'ouvre avec une chaîne enregistrée sans son image, pour retrouver cette image. Ces demandes portent vos cookies YouTube, comme si vous ouvriez la page.
 - **Les serveurs d'images de YouTube** (`yt3.ggpht.com`, `yt3.googleusercontent.com`, `yt4.ggpht.com`), pour les images des chaînes dans la fenêtre de l'icône, les listes et l'historique, comme les pages de YouTube les chargent.
 
-Dans Firefox, c'est Firefox lui-même, et non l'extension, qui lit aussi sur GitHub le fichier `updates.json` des mises à jour.
+Dans Firefox, c'est Firefox lui-même, et non l'extension, qui vérifie aussi sur le site de modules de Mozilla si une nouvelle version existe, comme pour toute extension installée depuis ce site.
 
 ### Permissions
 
