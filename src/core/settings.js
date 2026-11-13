@@ -35,6 +35,10 @@ const DEFAULTS = {
   likeNormalVideos: true,
   likeShorts: true,
   lists: { always: [], never: [] },
+  // In a video made by several channels, whether the lists also count for
+  // the guest channels, besides the one that publishes it.
+  guestsInAlways: true,
+  guestsInNever: true,
   excludedVideos: [],
   timing: {
     mode: 'instant',
@@ -93,6 +97,8 @@ export function normalizeSettings(raw) {
     likeNormalVideos: booleanOr(input.likeNormalVideos, defaults.likeNormalVideos),
     likeShorts: booleanOr(input.likeShorts, defaults.likeShorts),
     lists: normalizeLists(input.lists),
+    guestsInAlways: booleanOr(input.guestsInAlways, defaults.guestsInAlways),
+    guestsInNever: booleanOr(input.guestsInNever, defaults.guestsInNever),
     excludedVideos: normalizeExcludedVideos(input.excludedVideos),
     timing: {
       mode: oneOf(timing.mode, TIMING_MODES, defaults.timing.mode),

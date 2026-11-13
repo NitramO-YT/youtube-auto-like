@@ -116,6 +116,27 @@ body {
   grid-template-columns: 1fr auto 1fr;
   margin: 0;
 }
+/* On a video made by several channels: "Like the videos of [channel]", the
+   select taking the rest of the line, never wider than it. */
+.channel-choice .choice-of {
+  width: 100%;
+}
+.channel-choice .choice-of label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.channel-choice .choice-of select {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 12.5px;
+}
 .channel-choice .seg label {
   display: flex;
   align-items: center;

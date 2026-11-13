@@ -46,7 +46,16 @@ const state = {
   status: undefined,
   likeCount: null,
   update: null,
+  // On a video made by several channels, the channel the user picked for the
+  // channel choice: { videoId, channelId }, null for the one that publishes it.
+  choiceFor: null,
 };
+
+/** The channel picked for the choice on the video shown, or null. */
+function choiceChannelId() {
+  const { choiceFor, status } = state;
+  return choiceFor && choiceFor.videoId === status?.videoId ? choiceFor.channelId : null;
+}
 let refreshing = false;
 // The language setting the popup is shown in (or being switched to):
 // render() compares it with the settings, whoever changed them.
@@ -82,14 +91,16 @@ function render() {
   });
   byId('paused-banner').hidden = !paused;
 
-  const view = status ? videoView(status, settings, t, lang, Date.now()) : null;
+  const view = status ? videoView(status, settings, t, lang, Date.now(), choiceChannelId()) : null;
   const page = view ? null : channelPageView(status?.channelPage, settings, t);
   byId('video').hidden = !view;
   byId('channel-page').hidden = !page;
   byId('no-video').hidden = Boolean(view || page) || status === undefined;
   if (page) {
     draw('page-channel', page.channel, (channel) => renderChannel(byId('channel-page-channel'), channel));
-    draw('page-choice', page.choice, (choice) => renderChannelChoice(byId('channel-page-choice'), choice, t));
+    draw('page-choice', { choice: page.choice, channels: null, selected: null }, (model) =>
+      renderChannelChoice(byId('channel-page-choice'), model, t),
+    );
   }
   byId('no-video-hint').hidden = status !== null;
   if (view) {
@@ -171,8 +182,19 @@ async function skipThisTime() {
  * Moves the channel shown (of the video, or of the channel page) to a list
  * (null: out of both), with an undo.
  */
+/**
+ * The channel the choice is for: on a video, the one picked among its
+ * channels (by default the one that publishes it); on a channel page, the
+ * channel shown.
+ */
+function choiceChannel() {
+  const { status } = state;
+  const picked = choiceChannelId();
+  return (picked && status?.guests?.find((guest) => guest.id === picked)) || status?.channel || status?.channelPage || null;
+}
+
 async function moveShownChannel(target) {
-  const channel = state.status?.channel ?? state.status?.channelPage;
+  const channel = choiceChannel();
   if (!channel) return;
   const from = listOf(state.settings.lists, channel.id);
   if (from === target) return;
@@ -290,6 +312,13 @@ function listen() {
     if (action) act(action);
   });
   const onChoice = (event) => {
+    // The select of a video made by several channels picks the channel; the
+    // radio inputs move it.
+    if (event.target.name === 'choice-channel') {
+      state.choiceFor = { videoId: state.status?.videoId ?? null, channelId: event.target.value };
+      render();
+      return;
+    }
     const target = listForChoice(event.target.value);
     act(async () => {
       try {

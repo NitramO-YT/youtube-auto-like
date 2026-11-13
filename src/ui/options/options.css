@@ -251,6 +251,26 @@ main {
 .relike {
   margin-top: 12px;
 }
+/* "Videos made by several channels": two checks under the choices. */
+.guests {
+  border: 0;
+  margin: 14px 0 0;
+  padding: 0;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.guests legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 13.5px;
+}
+.guests .hint {
+  flex-basis: 100%;
+  margin: 0;
+}
 .relike .hint {
   margin: 6px 0 0;
 }

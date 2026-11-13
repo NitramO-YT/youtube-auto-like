@@ -26,7 +26,29 @@ const MAX_NAME_LENGTH = 200;
 // if that limit grows.
 const MAX_TITLE_LENGTH = 300;
 
+// Guest channels of a collaboration kept at most: two were seen on
+// 13 November 2026; the bound only keeps a payload of the page small.
+export const MAX_GUESTS = 10;
+
 const textOf = (value, maxLength) => (typeof value === 'string' ? value.slice(0, maxLength) : '');
+
+/**
+ * The guest channels of a collaboration: { id, name, avatarUrl } with a
+ * valid channel ID, other than the channel of the video, each once, at most
+ * MAX_GUESTS; [] for anything else.
+ */
+function validateGuests(value, channelId) {
+  if (!Array.isArray(value)) return [];
+  const seen = new Set([channelId]);
+  const guests = [];
+  for (const guest of value) {
+    if (guests.length >= MAX_GUESTS) break;
+    if (!guest || typeof guest !== 'object' || !isValidChannelId(guest.id) || seen.has(guest.id)) continue;
+    seen.add(guest.id);
+    guests.push({ id: guest.id, name: textOf(guest.name, MAX_NAME_LENGTH), avatarUrl: storedAvatarUrl(guest.avatarUrl) });
+  }
+  return guests;
+}
 
 const booleanOrNull = (value) => (typeof value === 'boolean' ? value : null);
 
@@ -40,9 +62,11 @@ function validateRatingAtLoad(value) {
 
 /**
  * @returns {object|null} { videoId, surfaceVideoId, title, channelId,
- *   channelName, avatarUrl, signedIn, isShort, isLive, subscribed,
- *   likeAtLoad, dislikeAtLoad }. avatarUrl is null unless it is an address
- *   storedAvatarUrl accepts. videoId is the
+ *   channelName, avatarUrl, signedIn, isShort, isLive, subscribed, guests,
+ *   channelsTitle, likeAtLoad, dislikeAtLoad }. avatarUrl is null unless it
+ *   is an address storedAvatarUrl accepts. guests are the other channels of
+ *   a collaboration ({ id, name, avatarUrl }, [] for a video of one channel),
+ *   channelsTitle the name YouTube gives them all ('' then). videoId is the
  *   video of the player, surfaceVideoId the one the rating buttons on screen
  *   belong to; likeAtLoad and dislikeAtLoad are { toggled, videoId }, the
  *   state of each button at page load and the video it rates. Each field the
@@ -52,17 +76,21 @@ function validateRatingAtLoad(value) {
 export function validateSnapshot(payload) {
   if (!payload || typeof payload !== 'object') return null;
   if (!isValidVideoId(payload.videoId)) return null;
+  const channelId = isValidChannelId(payload.channelId) ? payload.channelId : null;
   return {
     videoId: payload.videoId,
     surfaceVideoId: isValidVideoId(payload.surfaceVideoId) ? payload.surfaceVideoId : null,
     title: textOf(payload.title, MAX_TITLE_LENGTH),
-    channelId: isValidChannelId(payload.channelId) ? payload.channelId : null,
+    channelId,
     channelName: textOf(payload.channelName, MAX_NAME_LENGTH),
     avatarUrl: storedAvatarUrl(payload.avatarUrl),
     signedIn: booleanOrNull(payload.signedIn),
     isShort: booleanOrNull(payload.isShort),
     isLive: booleanOrNull(payload.isLive),
     subscribed: booleanOrNull(payload.subscribed),
+    // Without the channel of the video, guests could not be told from it.
+    guests: channelId ? validateGuests(payload.guests, channelId) : [],
+    channelsTitle: textOf(payload.channelsTitle, MAX_TITLE_LENGTH),
     likeAtLoad: validateRatingAtLoad(payload.likeAtLoad),
     dislikeAtLoad: validateRatingAtLoad(payload.dislikeAtLoad),
   };

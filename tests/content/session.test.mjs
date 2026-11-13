@@ -363,6 +363,20 @@ describe('step', () => {
       );
     });
 
+    it('judges a video made by several channels by its guests too', () => {
+      // u5KEPWtwDiU, 13 November 2026: Kang et ses PC is a guest of Le BENGE.
+      const KANG = 'UC3-dl8nKItitMxM9DNTDAfQ';
+      const collab = observation({
+        snapshot: snapshot({ channelId: 'UCW-7TvXaVBhtzCivzhTP5zA', guests: [{ id: KANG, name: 'Kang et ses PC', avatarUrl: null }] }),
+      });
+      const neverKang = normalizeSettings({ lists: { always: [], never: [{ id: KANG, name: 'Kang et ses PC' }] } });
+      const result = settle(start(), collab, neverKang, T0);
+      assert.equal(result.action, null);
+      assert.equal(result.session.reason, Reason.GUEST_IN_NEVER_LIST);
+      // The same list does not touch a video of COLAS alone, given without guests.
+      assert.equal(settle(start(), observation(), neverKang, T0).action, 'click');
+    });
+
     it('does not like a channel the user is not subscribed to, and keeps watching', () => {
       const result = settle(start(), observation({ snapshot: snapshot({ subscribed: false }) }), instant, T0);
       assert.equal(result.action, null);

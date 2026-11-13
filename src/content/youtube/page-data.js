@@ -49,6 +49,20 @@
  * The owner element of the watch page is reused from one video to the next:
  * an avatar counts only when its channel is the one of the player response.
  *
+ * Video made by several channels (a collaboration), checked in Brave on
+ * 13 November 2026 (.claude/docs/donnees-youtube.md): the owner element's
+ * data has no thumbnail nor browseEndpoint, but attributedTitle.content
+ * ("Le BENGE et Kang et ses PC"), subscriptionButton, and in
+ * navigationEndpoint.showDialogCommand the list of the channels
+ * (listViewModel.listItems[].listItemViewModel: title.content, the channel
+ * in title.commandRuns[0].onTap.innertubeCommand.browseEndpoint.browseId,
+ * the avatar in leadingAccessory.avatarViewModel.image.sources). The
+ * ytd-subscribe-button-renderer has no subscribed there.
+ * subscriptionButton.subscribed tells the subscription to the channel that
+ * publishes the video only (the one of the player response), and is left
+ * out when false. Whether the user subscribes to the other channels is not
+ * in the data.
+ *
  * Session: window.ytcfg.get('LOGGED_IN'), true with an account signed in
  * (Brave) and false without (blank Firefox profile), a boolean in both
  * cases, checked on 12 November 2026. Without an account, the like button
@@ -132,6 +146,34 @@ export function watchOwnerAvatar(owner) {
   return avatarOf(data?.navigationEndpoint?.browseEndpoint?.browseId, pickAvatar(data?.thumbnail?.thumbnails));
 }
 
+/**
+ * The channels of a collaboration, from the data of the owner element of
+ * the watch page: { title, subscribed, channels: [{ id, name, avatarUrl }] },
+ * unchecked; null for a video of one channel.
+ */
+export function watchCollaboration(owner) {
+  const data = owner?.data;
+  const items = data?.navigationEndpoint?.showDialogCommand?.panelLoadingStrategy?.inlineContent?.dialogViewModel?.customContent?.listViewModel?.listItems;
+  if (!Array.isArray(items) || items.length === 0) return null;
+  const channels = items
+    .map((item) => {
+      const model = item?.listItemViewModel;
+      return {
+        id: model?.title?.commandRuns?.[0]?.onTap?.innertubeCommand?.browseEndpoint?.browseId,
+        name: model?.title?.content,
+        avatarUrl: pickAvatar(model?.leadingAccessory?.avatarViewModel?.image?.sources),
+      };
+    })
+    .filter((channel) => typeof channel.id === 'string');
+  const button = data.subscriptionButton;
+  return {
+    title: data.attributedTitle?.content,
+    // YouTube leaves subscribed out when it is false.
+    subscribed: button && typeof button === 'object' ? button.subscribed === true : null,
+    channels,
+  };
+}
+
 /** { channelId, url } of the avatar in the data of the channel bar of a Short, or null. */
 export function shortsBarAvatar(short) {
   const model = short?.querySelector(SHORTS_CHANNEL_BAR)?.data?.decoratedAvatarViewModel?.decoratedAvatarViewModel;
@@ -195,12 +237,32 @@ function shortsRatingsAtLoad(bar) {
 
 function watchSources(doc) {
   const subscribed = doc.querySelector(WATCH_SUBSCRIBE)?.data?.subscribed;
+  const owner = doc.querySelector(WATCH_OWNER);
   return {
     response: guarded(() => doc.querySelector(WATCH_PLAYER)?.getPlayer?.()?.getPlayerResponse?.()),
     surfaceVideoId: doc.querySelector(WATCH_PAGE)?.getAttribute('video-id') ?? null,
     subscribed: typeof subscribed === 'boolean' ? subscribed : null,
-    avatar: guarded(() => watchOwnerAvatar(doc.querySelector(WATCH_OWNER))),
+    avatar: guarded(() => watchOwnerAvatar(owner)),
+    collaboration: guarded(() => watchCollaboration(owner)),
     ...ratingsAtLoad(doc.querySelector(WATCH_RATING_BAR)),
+  };
+}
+
+/**
+ * What a collaboration changes in the snapshot, once checked against the
+ * channel of the player response (the owner element may still show the
+ * previous video): the subscription and the avatar of that channel, the
+ * other channels (guests), and the title naming them all. A collaboration
+ * that does not list that channel leaves the subscription unknown.
+ */
+function collaborationParts(collaboration, channelId) {
+  const publisher = collaboration.channels.find((channel) => channel.id === channelId);
+  if (!publisher) return { subscribed: null, avatar: null, guests: [], channelsTitle: '' };
+  return {
+    subscribed: collaboration.subscribed,
+    avatar: avatarOf(publisher.id, publisher.avatarUrl),
+    guests: collaboration.channels.filter((channel) => channel.id !== channelId),
+    channelsTitle: typeof collaboration.title === 'string' ? collaboration.title : '',
   };
 }
 
@@ -230,11 +292,14 @@ export function readSignedIn(ytcfg) {
  */
 export function readSnapshot(doc, surface, ytcfg = null) {
   if (surface !== Surface.WATCH && surface !== Surface.SHORTS) return null;
-  const { response, surfaceVideoId, subscribed, avatar, likeAtLoad, dislikeAtLoad } =
-    surface === Surface.SHORTS ? shortsSources(doc) : watchSources(doc);
+  const sources = surface === Surface.SHORTS ? shortsSources(doc) : watchSources(doc);
+  const { response, surfaceVideoId, likeAtLoad, dislikeAtLoad } = sources;
   const details = response?.videoDetails;
   const channelId = details?.channelId ?? null;
   const microformat = response?.microformat?.playerMicroformatRenderer;
+  const { subscribed, avatar, guests, channelsTitle } = sources.collaboration
+    ? collaborationParts(sources.collaboration, channelId)
+    : { subscribed: sources.subscribed, avatar: sources.avatar, guests: [], channelsTitle: '' };
   return {
     videoId: details?.videoId ?? null,
     surfaceVideoId,
@@ -253,6 +318,8 @@ export function readSnapshot(doc, surface, ytcfg = null) {
     // videoDetails.isLive is only present on a stream that is live.
     isLive: details ? details.isLive === true : null,
     subscribed,
+    guests,
+    channelsTitle,
     likeAtLoad,
     dislikeAtLoad,
   };

@@ -63,13 +63,36 @@ function likeComingBackCard(status, t) {
   return card('no', 'block', t('removedLikeTitle'), when);
 }
 
-function readingCard(t) {
-  return card('wait', 'clock', t('statusReading'), t('statusReadingDetail'));
+/** Reading the page; the hint about the buttons of a Short only on a Short. */
+function readingCard(status, t) {
+  return card('wait', 'clock', t('statusReading'), status.isShort === true ? t('statusReadingDetail') : null);
 }
 
-function reasonCard(reason, t) {
+const isCollaboration = (status) => (status.guests?.length ?? 0) > 0;
+
+/** The name of the first guest channel of the video in a list, or null. */
+function guestInList(status, list) {
+  const guest = (status.guests ?? []).find((channel) => list.some((entry) => entry.id === channel.id));
+  return guest ? guest.name : null;
+}
+
+/**
+ * The words of a reason not to like. On a video made by several channels,
+ * they name the channel at stake: the one that publishes it, or a guest.
+ */
+function reasonDetail(reason, status, settings, t) {
+  if (reason === Reason.NOT_SUBSCRIBED && isCollaboration(status) && status.channel) {
+    return t('reasonNotSubscribedPublisher', [status.channel.name || t('channelUnknown')]);
+  }
+  if (reason === Reason.GUEST_IN_NEVER_LIST) {
+    return t('reasonGuestInNeverList', [guestInList(status, settings.lists.never) || t('channelUnknown')]);
+  }
+  return REASON_DETAILS[reason] ? t(REASON_DETAILS[reason]) : null;
+}
+
+function reasonCard(reason, t, status, settings) {
   if (reason === Reason.SIGNED_OUT) return card('no', 'block', t('statusSignedOutTitle'), t('statusSignedOutDetail'));
-  const detail = REASON_DETAILS[reason] ? t(REASON_DETAILS[reason]) : null;
+  const detail = reasonDetail(reason, status, settings, t);
   if (reason === Reason.ALREADY_LIKED) return card('liked', 'check', t('statusAlreadyLikedTitle'), detail);
   return card('no', 'block', t('statusNotLikedTitle'), detail);
 }
@@ -117,11 +140,11 @@ function waitingCard(status, settings, t, lang) {
   );
 }
 
-function pausedCard(status, t) {
+function pausedCard(status, settings, t) {
   const verdict = status.ifEnabled;
-  if (!verdict || verdict.reason === Reason.UNKNOWN_STATE) return readingCard(t);
+  if (!verdict || verdict.reason === Reason.UNKNOWN_STATE) return readingCard(status, t);
   if (verdict.eligible) return card('no', 'pause', t('statusWouldLike'), t('statusWouldLikeDetail'));
-  return reasonCard(verdict.reason, t);
+  return reasonCard(verdict.reason, t, status, settings);
 }
 
 /** The status card: { tone, icon, title, detail, progress }. */
@@ -132,9 +155,9 @@ export function statusCard(status, settings, t, lang, now) {
   if (dislikeRemoved(status)) return card('no', 'block', t('removedDislikeTitle'), t('removedDislikeRestart'));
   if (status.status === Status.LIKED) return likedCard(status, t, lang, now);
   if (status.status === Status.CLICK_FAILED) return card('error', 'alert', t('statusFailedTitle'), t('statusFailedDetail'));
-  if (status.status === Status.SKIPPED) return reasonCard(status.reason, t);
+  if (status.status === Status.SKIPPED) return reasonCard(status.reason, t, status, settings);
   if (status.reason === Reason.LIKE_REMOVED && settings.enabled) return likeComingBackCard(status, t);
-  if (!settings.enabled) return pausedCard(status, t);
+  if (!settings.enabled) return pausedCard(status, settings, t);
 
   switch (status.status) {
     case Status.WAITING:
@@ -144,9 +167,9 @@ export function statusCard(status, settings, t, lang, now) {
     case Status.CONFIRMING:
       return card('wait', 'clock', t('statusConfirming'));
     case Status.NOT_ELIGIBLE:
-      return reasonCard(status.reason, t);
+      return reasonCard(status.reason, t, status, settings);
     default:
-      return readingCard(t);
+      return readingCard(status, t);
   }
 }
 
@@ -177,11 +200,17 @@ export function actions(status, settings, now = Date.now()) {
   return settings.enabled ? videoActions(status, now) : [];
 }
 
-/** The line under the channel name: "Subscribed · 18:45 video". */
+/**
+ * The line under the channel name: "Subscribed · 18:45 video". On a video
+ * made by several channels, the subscription names the channel that
+ * publishes it, the only one the page tells about.
+ */
 function channelMeta(status, t) {
   const parts = [];
-  if (status.channel.subscribed === true) parts.push(t('channelSubscribed'));
-  if (status.channel.subscribed === false) parts.push(t('channelNotSubscribed'));
+  const collaboration = isCollaboration(status);
+  const name = status.channel.name || t('channelUnknown');
+  if (status.channel.subscribed === true) parts.push(collaboration ? t('channelSubscribedTo', [name]) : t('channelSubscribed'));
+  if (status.channel.subscribed === false) parts.push(collaboration ? t('channelNotSubscribedTo', [name]) : t('channelNotSubscribed'));
   if (status.isLive) parts.push(t('kindLive'));
   else if (status.isShort) parts.push(t('kindShort'));
   else if (status.isShort === false) {
@@ -212,18 +241,36 @@ export function channelPageView(channel, settings, t) {
 }
 
 /**
+ * The channel choice of a video: { choice, channels, selected }. On a video
+ * made by several channels, channels lists them ({ id, name }, the one that
+ * publishes it first) and the choice is the one of the channel selected
+ * (that one, unless the user picked a guest); channels is null otherwise.
+ */
+function choiceModel(status, settings, t, selectedId) {
+  if (!status.channel) return null;
+  const channels = isCollaboration(status)
+    ? [status.channel, ...status.guests].map((channel) => ({ id: channel.id, name: channel.name || t('channelUnknown') }))
+    : null;
+  const selected = channels?.some((channel) => channel.id === selectedId) ? selectedId : status.channel.id;
+  return { choice: channelChoice({ id: selected }, settings), channels, selected };
+}
+
+/**
  * Everything the popup shows about the video, or null when the tab shows
  * no video. The channel choice (null without a channel) shows even while
  * the extension is paused: it is a setting, not an action on the video.
  *
- * @returns {{ title: string|null, channel: object|null, choice: string|null, card: object, actions: string[] } | null}
+ * @param {string|null} [choiceChannelId] The channel the user picked for the
+ *   choice, on a video made by several channels.
+ * @returns {{ title: string|null, channel: object|null, choice: object|null, card: object, actions: string[] } | null}
  */
-export function videoView(status, settings, t, lang, now) {
+export function videoView(status, settings, t, lang, now, choiceChannelId = null) {
   if (!status?.videoId) return null;
   const channel = status.channel
     ? {
         id: status.channel.id,
-        name: status.channel.name || t('channelUnknown'),
+        // A collaboration shows the name YouTube gives all its channels.
+        name: (isCollaboration(status) && status.channelsTitle) || status.channel.name || t('channelUnknown'),
         initial: initialOf(status.channel.name),
         avatarUrl: status.channel.avatarUrl ?? null,
         meta: channelMeta(status, t),
@@ -232,7 +279,7 @@ export function videoView(status, settings, t, lang, now) {
   return {
     title: status.title || null,
     channel,
-    choice: status.channel ? channelChoice(status.channel, settings) : null,
+    choice: choiceModel(status, settings, t, choiceChannelId),
     card: statusCard(status, settings, t, lang, now),
     actions: actions(status, settings, now),
   };

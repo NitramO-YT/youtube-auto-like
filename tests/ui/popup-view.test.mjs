@@ -208,8 +208,99 @@ describe('channel choice', () => {
   });
 
   it('shows in the view even while the extension is paused, and not without a channel', () => {
-    assert.equal(videoView(status(), listed('never', { enabled: false }), en, 'en', NOW).choice, ChannelChoice.NEVER);
+    assert.deepEqual(videoView(status(), listed('never', { enabled: false }), en, 'en', NOW).choice, {
+      choice: ChannelChoice.NEVER,
+      channels: null,
+      selected: COLAS,
+    });
     assert.equal(videoView(status({ channel: null }), defaults, en, 'en', NOW).choice, null);
+  });
+});
+
+describe('video made by several channels', () => {
+  // u5KEPWtwDiU, 13 November 2026: published by Le BENGE, with Kang et ses PC.
+  const BENGE = 'UCW-7TvXaVBhtzCivzhTP5zA';
+  const KANG = 'UC3-dl8nKItitMxM9DNTDAfQ';
+  const collab = (overrides = {}) =>
+    status({
+      channel: { id: BENGE, name: 'Le BENGE', avatarUrl: null, subscribed: true },
+      guests: [{ id: KANG, name: 'Kang et ses PC', avatarUrl: null }],
+      channelsTitle: 'Le BENGE et Kang et ses PC',
+      ...overrides,
+    });
+  const neverKang = normalizeSettings({ lists: { never: [{ id: KANG, name: 'Kang et ses PC' }] } });
+
+  it('shows the name of all its channels, and names the one the subscription is about', () => {
+    const view = videoView(collab(), defaults, fr, 'fr', NOW);
+    assert.equal(view.channel.name, 'Le BENGE et Kang et ses PC');
+    assert.equal(view.channel.initial, 'L');
+    assert.equal(view.channel.meta, 'Abonné à Le BENGE · Vidéo de 18:45');
+    const notSubscribed = collab({ channel: { id: BENGE, name: 'Le BENGE', avatarUrl: null, subscribed: false } });
+    assert.equal(videoView(notSubscribed, defaults, en, 'en', NOW).channel.meta, 'Not subscribed to Le BENGE · 18:45 video');
+  });
+
+  it('falls back on the name of the channel that publishes when YouTube gives no title', () => {
+    assert.equal(videoView(collab({ channelsTitle: '' }), defaults, en, 'en', NOW).channel.name, 'Le BENGE');
+    // A title without guests is not a collaboration.
+    assert.equal(videoView(status({ channelsTitle: 'Somebody else' }), defaults, en, 'en', NOW).channel.name, 'COLAS');
+  });
+
+  it('names the channel at stake in the reasons not to like', () => {
+    const notSubscribed = collab({
+      status: Status.NOT_ELIGIBLE,
+      reason: Reason.NOT_SUBSCRIBED,
+      channel: { id: BENGE, name: 'Le BENGE', avatarUrl: null, subscribed: false },
+    });
+    assert.equal(
+      statusCard(notSubscribed, defaults, en, 'en', NOW).detail,
+      'You are not subscribed to Le BENGE, which publishes this video. It will be liked if you subscribe.',
+    );
+    const guestNever = collab({ status: Status.NOT_ELIGIBLE, reason: Reason.GUEST_IN_NEVER_LIST });
+    assert.equal(
+      statusCard(guestNever, neverKang, fr, 'fr', NOW).detail,
+      'Kang et ses PC, chaîne invitée de cette vidéo, est dans votre liste « Ne jamais liker ».',
+    );
+    // Paused, the same reason comes from what the extension would do.
+    const pausedGuest = collab({ status: Status.READING, ifEnabled: { eligible: false, reason: Reason.GUEST_IN_NEVER_LIST } });
+    const pausedNeverKang = normalizeSettings({ ...neverKang, enabled: false });
+    assert.match(statusCard(pausedGuest, pausedNeverKang, en, 'en', NOW).detail, /^Kang et ses PC, a guest channel/);
+  });
+
+  it('keeps the usual words for a video of one channel', () => {
+    const one = status({ status: Status.NOT_ELIGIBLE, reason: Reason.NOT_SUBSCRIBED, channel: { id: COLAS, name: 'COLAS', subscribed: false } });
+    assert.equal(statusCard(one, defaults, en, 'en', NOW).detail, en('reasonNotSubscribed'));
+  });
+
+  it('lists its channels for the choice, the one that publishes first and selected by default', () => {
+    const { choice } = videoView(collab(), neverKang, en, 'en', NOW);
+    assert.deepEqual(choice, {
+      choice: ChannelChoice.AUTO,
+      channels: [
+        { id: BENGE, name: 'Le BENGE' },
+        { id: KANG, name: 'Kang et ses PC' },
+      ],
+      selected: BENGE,
+    });
+  });
+
+  it('gives the choice of the guest the user picked, and ignores a channel the video does not list', () => {
+    assert.deepEqual(
+      (({ choice, selected }) => ({ choice, selected }))(videoView(collab(), neverKang, en, 'en', NOW, KANG).choice),
+      { choice: ChannelChoice.NEVER, selected: KANG },
+    );
+    assert.equal(videoView(collab(), neverKang, en, 'en', NOW, COLAS).choice.selected, BENGE);
+    // On a video of one channel, a channel picked earlier does not count.
+    assert.equal(videoView(status(), neverKang, en, 'en', NOW, KANG).choice.selected, COLAS);
+  });
+});
+
+describe('statusCard: reading the page', () => {
+  it('gives the hint about the buttons of a Short only on a Short', () => {
+    const reading = (isShort) => cardOf({ status: Status.READING, isShort, channel: null });
+    assert.equal(reading(true).detail, en('statusReadingDetail'));
+    assert.equal(reading(false).detail, null);
+    assert.equal(reading(null).detail, null);
+    assert.equal(reading(false).title, 'Reading the page…');
   });
 });
 

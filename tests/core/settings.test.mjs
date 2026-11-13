@@ -35,6 +35,8 @@ describe('normalizeSettings', () => {
       likeNormalVideos: false,
       likeShorts: false,
       lists: { always: [{ id: CHANNEL, name: 'COLAS', avatarUrl: AVATAR, addedAt: '2026-11-08T21:00:00.000Z' }], never: [] },
+      guestsInAlways: false,
+      guestsInNever: false,
       excludedVideos: [
         { videoId: 'aeP4eG-gO10', title: 'Atelier', channelId: 'UC9orcd4I_3Uy_8_UAz2r48g', channelName: 'COLAS', channelAvatarUrl: AVATAR, isShort: false, addedAt: '2026-11-08T21:00:00.000Z' },
       ],
@@ -73,8 +75,12 @@ describe('normalizeSettings', () => {
       listPageSize: 7,
       listSort: 'random',
       theme: 'sepia',
+      guestsInAlways: 'no',
+      guestsInNever: 0,
     });
     const defaults = defaultSettings();
+    assert.equal(normalized.guestsInAlways, true);
+    assert.equal(normalized.guestsInNever, true);
     assert.equal(normalized.theme, defaults.theme);
     assert.equal(normalized.enabled, defaults.enabled);
     assert.equal(normalized.likeWhat, defaults.likeWhat);

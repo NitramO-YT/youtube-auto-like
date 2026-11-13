@@ -64,6 +64,33 @@ export const SCENARIOS = [
     ...POPUP,
     status: { ...video, isShort: true, channel: channel(false, { id: 'UCbbbbbbbbbbbbbbbbbbbbbb', name: 'qoqsik' }), status: 'not-eligible', reason: 'not-subscribed' },
   },
+  // A video made by several channels: the name YouTube gives them all, the
+  // reason naming the channel that publishes it, and the channel choice.
+  {
+    name: 'popup-collaboration',
+    ...POPUP,
+    status: {
+      ...video,
+      channel: channel(false, { id: 'UCaaaaaaaaaaaaaaaaaaaaaa', name: 'Benjamin Workshop' }),
+      guests: [{ id: 'UCdddddddddddddddddddddd', name: 'Élodie Créations', avatarUrl: null }],
+      channelsTitle: 'Benjamin Workshop and Élodie Créations',
+      status: 'not-eligible',
+      reason: 'not-subscribed',
+    },
+  },
+  {
+    name: 'popup-collaboration-guest-never',
+    ...POPUP,
+    settings: { lists: { never: [{ id: 'UCdddddddddddddddddddddd', name: 'Élodie Créations' }] } },
+    status: {
+      ...video,
+      channel: channel(true, { id: 'UCaaaaaaaaaaaaaaaaaaaaaa', name: 'Benjamin Workshop' }),
+      guests: [{ id: 'UCdddddddddddddddddddddd', name: 'Élodie Créations', avatarUrl: null }],
+      channelsTitle: 'Benjamin Workshop and Élodie Créations',
+      status: 'not-eligible',
+      reason: 'guest-in-never-list',
+    },
+  },
   {
     name: 'popup-skipped-this-time',
     ...POPUP,

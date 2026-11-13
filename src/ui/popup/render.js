@@ -40,17 +40,37 @@ export function renderChannel(container, channel) {
 /**
  * "Like this channel's videos": always, as the settings say, or never, as
  * radio inputs named channel-choice whose values are the CHANNEL_CHOICES.
+ * On a video made by several channels, a select named choice-channel picks
+ * the channel the choice is for.
  *
- * @param {string|null} choice The checked one; null draws nothing.
+ * @param {{ choice: string, channels: Array<{ id, name }>|null, selected: string|null }|null} model
+ *   choice is the checked position; null draws nothing.
  */
-export function renderChannelChoice(container, choice, t) {
+export function renderChannelChoice(container, model, t) {
   const doc = container.ownerDocument;
-  if (!choice) {
+  if (!model) {
     container.replaceChildren();
     return;
   }
+  const { choice, channels, selected } = model;
   const group = el(doc, 'fieldset', 'channel-choice');
-  group.append(el(doc, 'legend', null, t('channelChoiceLegend')));
+  if (channels) {
+    const legend = el(doc, 'legend', 'choice-of');
+    const label = el(doc, 'label', null, t('channelChoiceOf'));
+    const select = el(doc, 'select', 'select');
+    select.name = 'choice-channel';
+    for (const channel of channels) {
+      const option = el(doc, 'option', null, channel.name);
+      option.value = channel.id;
+      option.selected = channel.id === selected;
+      select.append(option);
+    }
+    label.append(select);
+    legend.append(label);
+    group.append(legend);
+  } else {
+    group.append(el(doc, 'legend', null, t('channelChoiceLegend')));
+  }
   const options = el(doc, 'div', 'seg');
   for (const value of CHANNEL_CHOICES) {
     const label = el(doc, 'label');

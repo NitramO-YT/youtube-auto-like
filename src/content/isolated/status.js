@@ -10,9 +10,12 @@ import { evaluateVideo } from './session.js';
  * @param {object} session From session.js.
  * @param {object|null} observation The last observation, with avatarUrl.
  * @param {object} settings From normalizeSettings.
- * @returns {object} { videoId, title, isShort, isLive, channel, status, reason,
- *   target, elapsed, duration, likedAt, startedAt, rating, ifEnabled }.
- *   channel is null until the page has given a channel ID; elapsed is the
+ * @returns {object} { videoId, title, isShort, isLive, channel, guests,
+ *   channelsTitle, status, reason, target, elapsed, duration, likedAt,
+ *   startedAt, rating, ifEnabled }.
+ *   channel is null until the page has given a channel ID; guests are the
+ *   other channels of a video made by several channels ({ id, name,
+ *   avatarUrl }), channelsTitle the name YouTube gives them all; elapsed is the
  *   playback position, or the time watched for a live stream; rating is
  *   { liked, disliked } as the buttons show them, or null while the page is
  *   unreadable. ifEnabled, only while the extension is paused, is the
@@ -40,6 +43,8 @@ export function popupStatus(session, observation, settings) {
           subscribed: snapshot.subscribed,
         }
       : null,
+    guests: channelId ? (snapshot.guests ?? []) : [],
+    channelsTitle: channelId ? (snapshot.channelsTitle ?? '') : '',
     status: session.status,
     reason: session.reason,
     target: session.target,

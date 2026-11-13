@@ -119,4 +119,50 @@ describe('evaluateEligibility', () => {
       });
     }
   });
+
+  describe('video made by several channels', () => {
+    // u5KEPWtwDiU, 13 November 2026: published by Le BENGE, with Kang et ses
+    // PC as guest; a third channel stands for a second guest.
+    const BENGE = 'UCW-7TvXaVBhtzCivzhTP5zA';
+    const KANG = 'UC3-dl8nKItitMxM9DNTDAfQ';
+    const collab = (overrides = {}) => ({ channelId: BENGE, guestIds: [KANG, COLAS], ...overrides });
+    const verdictOf = (videoOverrides, settingsOverrides) => check(collab(videoOverrides), settingsOverrides);
+
+    it('follows the subscription to the channel that publishes, whatever the guests', () => {
+      assert.equal(verdictOf({ subscribed: true }).eligible, true);
+      assert.equal(verdictOf({ subscribed: false }).reason, Reason.NOT_SUBSCRIBED);
+    });
+
+    it('likes when a guest is in "always like", unless guestsInAlways is off', () => {
+      const settings = { lists: lists({ always: [KANG] }) };
+      assert.equal(verdictOf({ subscribed: false }, settings).eligible, true);
+      assert.equal(verdictOf({ subscribed: false }, { ...settings, likeWhat: 'alwaysList' }).eligible, true);
+      assert.equal(verdictOf({ subscribed: false }, { ...settings, guestsInAlways: false }).reason, Reason.NOT_SUBSCRIBED);
+      assert.equal(verdictOf({}, { ...settings, likeWhat: 'alwaysList', guestsInAlways: false }).reason, Reason.NOT_IN_ALWAYS_LIST);
+    });
+
+    it('does not like when a guest is in "never like", unless guestsInNever is off', () => {
+      const settings = { lists: lists({ never: [KANG] }) };
+      assert.deepEqual(verdictOf({}, settings), { eligible: false, reason: Reason.GUEST_IN_NEVER_LIST });
+      assert.equal(verdictOf({}, { ...settings, likeWhat: 'all' }).reason, Reason.GUEST_IN_NEVER_LIST);
+      assert.equal(verdictOf({}, { ...settings, guestsInNever: false }).eligible, true);
+    });
+
+    it('lets "never like" win over "always like", for the channel that publishes as for a guest', () => {
+      assert.equal(verdictOf({}, { lists: lists({ always: [BENGE], never: [KANG] }) }).reason, Reason.GUEST_IN_NEVER_LIST);
+      assert.equal(verdictOf({}, { lists: lists({ always: [KANG], never: [COLAS] }) }).reason, Reason.GUEST_IN_NEVER_LIST);
+      assert.equal(verdictOf({}, { lists: lists({ always: [KANG], never: [BENGE] }) }).reason, Reason.IN_NEVER_LIST);
+    });
+
+    it('gives the reason of the channel that publishes before that of a guest', () => {
+      assert.equal(verdictOf({}, { lists: lists({ never: [BENGE, KANG] }) }).reason, Reason.IN_NEVER_LIST);
+    });
+
+    it('ignores missing or malformed guestIds', () => {
+      const settings = { lists: lists({ always: [KANG] }) };
+      for (const guestIds of [undefined, null, KANG, { 0: KANG }]) {
+        assert.equal(verdictOf({ subscribed: false, guestIds }, settings).reason, Reason.NOT_SUBSCRIBED, String(guestIds));
+      }
+    });
+  });
 });

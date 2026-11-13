@@ -8,6 +8,8 @@ import { normalizeSettings } from '../../src/core/settings.js';
 const VIDEO_ID = 'aeP4eG-gO10';
 const COLAS = 'UC9orcd4I_3Uy_8_UAz2r48g';
 const AVATAR = 'https://yt3.ggpht.com/avatar';
+// Kang et ses PC, guest of u5KEPWtwDiU (13 November 2026).
+const GUEST = { id: 'UC3-dl8nKItitMxM9DNTDAfQ', name: 'Kang et ses PC', avatarUrl: null };
 
 const observation = (overrides = {}) => ({
   snapshot: {
@@ -37,6 +39,8 @@ describe('popupStatus', () => {
       isShort: false,
       isLive: false,
       channel: { id: COLAS, name: 'COLAS', avatarUrl: AVATAR, subscribed: true },
+      guests: [],
+      channelsTitle: '',
       status: Status.WAITING,
       reason: null,
       target: { at: 562.5, basis: 'percent' },
@@ -65,8 +69,20 @@ describe('popupStatus', () => {
     const session = createSession(VIDEO_ID, 0, 0.5);
     assert.equal(popupStatus(session, null, normalizeSettings({})).channel, null);
     const other = observation();
-    other.snapshot = { ...other.snapshot, videoId: 'aaaaaaaaaaa' };
-    assert.equal(popupStatus(session, other, normalizeSettings({})).channel, null);
+    other.snapshot = { ...other.snapshot, videoId: 'aaaaaaaaaaa', guests: [GUEST], channelsTitle: 'COLAS et Kang et ses PC' };
+    const status = popupStatus(session, other, normalizeSettings({}));
+    assert.equal(status.channel, null);
+    assert.deepEqual(status.guests, []);
+    assert.equal(status.channelsTitle, '');
+  });
+
+  it('passes on the guest channels and the title of a video made by several channels', () => {
+    const session = createSession(VIDEO_ID, 0, 0.5);
+    const collab = observation();
+    collab.snapshot = { ...collab.snapshot, guests: [GUEST], channelsTitle: 'COLAS et Kang et ses PC' };
+    const status = popupStatus(session, collab, normalizeSettings({}));
+    assert.deepEqual(status.guests, [GUEST]);
+    assert.equal(status.channelsTitle, 'COLAS et Kang et ses PC');
   });
 
   it('counts the time watched on a live stream, and ignores an unknown duration', () => {

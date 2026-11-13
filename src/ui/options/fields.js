@@ -23,6 +23,14 @@ export const FIELDS = Object.freeze({
     set: (settings, value) => ({ ...settings, likeNormalVideos: value }),
   },
   likeShorts: { get: (settings) => settings.likeShorts, set: (settings, value) => ({ ...settings, likeShorts: value }) },
+  guestsInAlways: {
+    get: (settings) => settings.guestsInAlways,
+    set: (settings, value) => ({ ...settings, guestsInAlways: value }),
+  },
+  guestsInNever: {
+    get: (settings) => settings.guestsInNever,
+    set: (settings, value) => ({ ...settings, guestsInNever: value }),
+  },
   timingMode: {
     get: (settings) => settings.timing.mode,
     set: (settings, value) => ({ ...settings, timing: { ...settings.timing, mode: value } }),

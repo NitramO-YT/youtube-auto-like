@@ -62,9 +62,9 @@ let clicked = null;
 // On a channel page: { href, channel } read at that address, channel from
 // validateChannelPage (null while the page does not show it yet).
 let channelPage = null;
-// The last channel avatar passed on to the entries of its channel, as
+// The channel avatars passed on to the entries of their channel, as
 // "channelId avatarUrl": each one is written once, not at every tick.
-let avatarPassedOn = null;
+const avatarsPassedOn = new Set();
 let busy = false;
 // Journal entries waiting for their write (see note).
 const JOURNAL_DELAY_MS = 2000;
@@ -144,11 +144,11 @@ const requestSnapshot = () => askPage(SNAPSHOT_REQUEST, SNAPSHOT, validateSnapsh
 function passOnAvatar(channelId, avatarUrl) {
   if (!channelId || !avatarUrl) return;
   const key = `${channelId} ${avatarUrl}`;
-  if (key === avatarPassedOn) return;
-  avatarPassedOn = key;
+  if (avatarsPassedOn.has(key)) return;
+  avatarsPassedOn.add(key);
   store.refreshChannelAvatar(channelId, avatarUrl).catch((error) => {
     // Tried again at the next tick.
-    avatarPassedOn = null;
+    avatarsPassedOn.delete(key);
     logFailure(LOG_PREFIX, 'could not save the channel avatar', error);
   });
 }
@@ -198,6 +198,7 @@ async function tick() {
       lastObservation = null;
       historySync = initialSync();
       clicked = null;
+      avatarsPassedOn.clear();
       note(videoId, `opened (${surfaceFromUrl(window.location.href)})`);
     }
     // A final video is still observed, for the popup and for a like the
@@ -216,8 +217,10 @@ async function tick() {
     const observation = observe(snapshot, surface);
     let { session: next, action } = step(session, observation, settings, Date.now());
     // The snapshot describes the video of the session (checked above); its
-    // avatar is the one of its channel (page-data.js).
+    // avatar is the one of its channel, and those of its guests theirs
+    // (page-data.js, protocol.js).
     passOnAvatar(snapshot?.channelId ?? null, observation.avatarUrl);
+    for (const guest of snapshot?.guests ?? []) passOnAvatar(guest.id, guest.avatarUrl);
     if (action === 'click') {
       const button = findLikeButton(document, surface);
       if (button) {
@@ -253,7 +256,7 @@ async function tick() {
         .then(() => {
           // The avatar of the channel, if the page shows it later, also goes
           // to this new entry.
-          avatarPassedOn = null;
+          avatarsPassedOn.clear();
         })
         .catch((error) => logFailure(LOG_PREFIX, 'could not record the like', error));
     }

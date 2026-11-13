@@ -179,6 +179,7 @@ export function evaluateVideo(session, observation, settings) {
       videoId: session.videoId,
       channelId: snapshot.channelId,
       signedIn: snapshot.signedIn,
+      guestIds: (snapshot.guests ?? []).map((guest) => guest.id),
       isShort: snapshot.isShort,
       subscribed: snapshot.subscribed,
       liked: likeState(session, observation),

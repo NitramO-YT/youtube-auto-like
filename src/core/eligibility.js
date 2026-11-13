@@ -9,6 +9,11 @@
  * switches; then the "never like" list; then the "always like" list; then
  * the base rule (subscribed channels, every channel, or the "always like"
  * list only).
+ *
+ * A video made by several channels follows the channel that publishes it
+ * (channelId, whose subscription the page gives). Its guest channels
+ * (guestIds) count in the lists only as the settings guestsInNever and
+ * guestsInAlways say, "never like" still coming first.
  */
 import { isChannelListed, isValidChannelId } from './channels.js';
 import { isVideoExcluded } from './excluded-videos.js';
@@ -25,6 +30,8 @@ export const Reason = Object.freeze({
   NORMAL_VIDEOS_OFF: 'normal-videos-off',
   NOT_SUBSCRIBED: 'not-subscribed',
   IN_NEVER_LIST: 'in-never-list',
+  // A guest channel of a video made by several channels is in "never like".
+  GUEST_IN_NEVER_LIST: 'guest-in-never-list',
   NOT_IN_ALWAYS_LIST: 'not-in-always-list',
   VIDEO_EXCLUDED: 'video-excluded',
   // Set by the liker, not by evaluateEligibility: the user asked, from the
@@ -41,8 +48,9 @@ const eligible = verdict(true, Reason.ELIGIBLE);
 
 /**
  * @param {object} video State read from the page: videoId and channelId
- *   (strings), signedIn, isShort, subscribed, liked and disliked (booleans).
- *   A field the page did not provide is null.
+ *   (strings), signedIn, isShort, subscribed, liked and disliked (booleans),
+ *   guestIds (channel IDs, [] or missing for a video of one channel). A
+ *   field the page did not provide is null.
  * @param {object} settings Settings returned by normalizeSettings.
  */
 export function evaluateEligibility(video, settings) {
@@ -62,11 +70,15 @@ export function evaluateEligibility(video, settings) {
   if (!video.isShort && !settings.likeNormalVideos) return verdict(false, Reason.NORMAL_VIDEOS_OFF);
 
   const { always, never } = settings.lists;
+  const guestIds = Array.isArray(video.guestIds) ? video.guestIds : [];
+  const guestIn = (list) => guestIds.some((id) => isChannelListed(list, id));
   const channelMatters = always.length > 0 || never.length > 0 || settings.likeWhat === 'alwaysList';
   if (channelMatters) {
     if (!isValidChannelId(video.channelId)) return unknown;
     if (isChannelListed(never, video.channelId)) return verdict(false, Reason.IN_NEVER_LIST);
+    if (settings.guestsInNever && guestIn(never)) return verdict(false, Reason.GUEST_IN_NEVER_LIST);
     if (isChannelListed(always, video.channelId)) return eligible;
+    if (settings.guestsInAlways && guestIn(always)) return eligible;
   }
 
   if (settings.likeWhat === 'all') return eligible;

@@ -27,6 +27,49 @@ const owner = (channelId = COLAS) =>
     },
   });
 
+// Channels of the collaborations observed on 13 November 2026: u5KEPWtwDiU is
+// published by Le BENGE with Kang et ses PC, WT5zWNlEUsk the other way round.
+const BENGE = 'UCW-7TvXaVBhtzCivzhTP5zA';
+const KANG = 'UC3-dl8nKItitMxM9DNTDAfQ';
+// Addresses in the shape of yt3.ggpht.com avatars; not the real pictures.
+const collabAvatar = (name) => `https://yt3.ggpht.com/${name}-avatar=s88-c-k-c0x00ffffff-no-rj`;
+
+const collabChannel = (channelId, name) => ({
+  listItemViewModel: {
+    title: { content: name, commandRuns: [{ onTap: { innertubeCommand: { browseEndpoint: { browseId: channelId } } } }] },
+    leadingAccessory: { avatarViewModel: { image: { sources: [{ url: collabAvatar(name), width: 88, height: 88 }] } } },
+  },
+});
+
+// Owner element of a collaboration as observed: no thumbnail nor
+// browseEndpoint, the channels in the dialog of navigationEndpoint, and
+// subscriptionButton without subscribed when the user does not subscribe to
+// the channel that publishes.
+const collabOwner = ({ title, channels, subscriptionButton }) =>
+  element({
+    props: {
+      data: {
+        attributedTitle: { content: title },
+        ...(subscriptionButton !== undefined && { subscriptionButton }),
+        navigationEndpoint: {
+          showDialogCommand: {
+            panelLoadingStrategy: {
+              inlineContent: { dialogViewModel: { customContent: { listViewModel: { listItems: channels } } } },
+            },
+          },
+        },
+      },
+    },
+  });
+
+const bengeWithKang = (options = {}) =>
+  collabOwner({
+    title: 'Le BENGE et Kang et ses PC',
+    channels: [collabChannel(BENGE, 'Le BENGE'), collabChannel(KANG, 'Kang et ses PC')],
+    subscriptionButton: { type: 'FREE', subscribed: true },
+    ...options,
+  });
+
 const decoratedAvatar = (channelId) => ({
   decoratedAvatarViewModel: {
     avatar: { avatarViewModel: { image: { sources: [{ url: avatarOfSize(48) }] } } },
@@ -77,7 +120,10 @@ const watchPage = ({
   fakeDocument({
     'ytd-watch-flexy ytd-player': element({ props: { getPlayer: () => ({ getPlayerResponse: () => playerResponse }) } }),
     'ytd-watch-flexy': element({ attributes: surfaceVideoId === null ? {} : { 'video-id': surfaceVideoId } }),
-    'ytd-watch-metadata ytd-subscribe-button-renderer': element({ props: { data: { subscribed } } }),
+    'ytd-watch-metadata ytd-subscribe-button-renderer': element({
+      // null: the button without subscribed, as on a collaboration.
+      props: { data: subscribed === null ? {} : { subscribed } },
+    }),
     ...(ownerElement && { 'ytd-watch-metadata ytd-video-owner-renderer': ownerElement }),
     'ytd-menu-renderer.ytd-watch-metadata segmented-like-dislike-button-view-model': element({
       children: {
@@ -148,6 +194,8 @@ describe('readSnapshot on the watch page', () => {
       isShort: false,
       isLive: false,
       subscribed: true,
+      guests: [],
+      channelsTitle: '',
       likeAtLoad: { toggled: true, videoId: 'aeP4eG-gO10' },
       dislikeAtLoad: { toggled: false, videoId: 'aeP4eG-gO10' },
     });
@@ -178,6 +226,8 @@ describe('readSnapshot on the watch page', () => {
       isShort: null,
       isLive: null,
       subscribed: null,
+      guests: [],
+      channelsTitle: '',
       likeAtLoad: null,
       dislikeAtLoad: null,
     });
@@ -203,6 +253,65 @@ describe('readSnapshot on the watch page', () => {
   });
 });
 
+describe('readSnapshot on a collaboration', () => {
+  const collab = (publisher, ownerElement) =>
+    readSnapshot(
+      watchPage({
+        playerResponse: response('u5KEPWtwDiU', { details: { channelId: publisher, author: 'Le BENGE' } }),
+        surfaceVideoId: 'u5KEPWtwDiU',
+        subscribed: null,
+        ownerElement,
+      }),
+      Surface.WATCH,
+    );
+
+  it('reads the subscription to the channel that publishes, its avatar, the guests and the title', () => {
+    const snapshot = collab(BENGE, bengeWithKang());
+    assert.equal(snapshot.subscribed, true);
+    assert.equal(snapshot.avatarUrl, collabAvatar('Le BENGE'));
+    assert.deepEqual(snapshot.guests, [{ id: KANG, name: 'Kang et ses PC', avatarUrl: collabAvatar('Kang et ses PC') }]);
+    assert.equal(snapshot.channelsTitle, 'Le BENGE et Kang et ses PC');
+  });
+
+  it('reads a subscriptionButton without subscribed as not subscribed, as observed on WT5zWNlEUsk', () => {
+    assert.equal(collab(BENGE, bengeWithKang({ subscriptionButton: { type: 'FREE' } })).subscribed, false);
+  });
+
+  it('leaves the subscription unknown without subscriptionButton', () => {
+    assert.equal(collab(BENGE, bengeWithKang({ subscriptionButton: undefined })).subscribed, null);
+    assert.equal(collab(BENGE, bengeWithKang({ subscriptionButton: 'yes' })).subscribed, null);
+  });
+
+  it('takes the guests as the channels other than the one that publishes, whatever their order', () => {
+    // WT5zWNlEUsk: published by Kang et ses PC, listed second.
+    const snapshot = collab(KANG, bengeWithKang());
+    assert.deepEqual(snapshot.guests.map((guest) => guest.id), [BENGE]);
+    assert.equal(snapshot.avatarUrl, collabAvatar('Kang et ses PC'));
+  });
+
+  it('ignores a collaboration that does not list the channel of the player, left by the previous video', () => {
+    assert.deepEqual(
+      (({ subscribed, avatarUrl, guests, channelsTitle }) => ({ subscribed, avatarUrl, guests, channelsTitle }))(
+        collab(COLAS, bengeWithKang()),
+      ),
+      { subscribed: null, avatarUrl: null, guests: [], channelsTitle: '' },
+    );
+  });
+
+  it('skips the listed channels without an ID, and reads an empty list as a video of one channel', () => {
+    const withBroken = bengeWithKang({ channels: [collabChannel(BENGE, 'Le BENGE'), { listItemViewModel: {} }, null] });
+    assert.deepEqual(collab(BENGE, withBroken).guests, []);
+    assert.equal(collab(BENGE, withBroken).subscribed, true);
+    // An empty list: no collaboration, so the subscription comes from the
+    // subscribe button.
+    const emptyList = readSnapshot(
+      watchPage({ subscribed: false, ownerElement: bengeWithKang({ channels: [], subscriptionButton: { type: 'FREE', subscribed: true } }) }),
+      Surface.WATCH,
+    );
+    assert.equal(emptyList.subscribed, false);
+  });
+});
+
 describe('readSnapshot in the Shorts player', () => {
   it('reads the Short that holds the player, from the Shorts player', () => {
     assert.deepEqual(readSnapshot(shortsPage(), Surface.SHORTS), {
@@ -216,6 +325,8 @@ describe('readSnapshot in the Shorts player', () => {
       isShort: true,
       isLive: false,
       subscribed: true,
+      guests: [],
+      channelsTitle: '',
       likeAtLoad: { toggled: false, videoId: 'JgL5gMtA2X4' },
       dislikeAtLoad: null,
     });
