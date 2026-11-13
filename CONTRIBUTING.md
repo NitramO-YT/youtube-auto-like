@@ -112,7 +112,9 @@ and only the version you publish. The text of the listing is in
 `store/amo-metadata.json`, sent with each version: edit it there, not on the
 site, where a change would be replaced at the next release. Its screenshots
 are in `store/screenshots/`, made by `npm run store-screenshots` (it needs
-ImageMagick), with their captions in `store/screenshots.json`.
+ImageMagick), with their captions in `store/screenshots.json`;
+`npm run store-screenshots -- --upload`, with the same keys as below, puts
+them on the listing in place of those it shows.
 
 1. Set the new version in `package.json` (the manifest takes it from there),
    and commit.

@@ -8,12 +8,19 @@
  *
  * The three states of the toolbar popup are set side by side by ImageMagick
  * (magick, or convert of ImageMagick 6), which this script needs.
+ *
+ * --upload sends the screenshots of store/screenshots/, as they are, to the
+ * listing, with their captions, in their order, in place of those it shows:
+ *
+ *   guichet exec amo-api-key -- guichet exec amo-api-secret -- npm run store-screenshots -- --upload
  */
 import { execFileSync, spawnSync } from 'node:child_process';
 import { copyFile, mkdir, mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
+import { amoKeys, amoRequest } from './lib/amo-api.mjs';
 import { findExecutable } from './lib/preview.mjs';
 import { STORE_SIZE } from './preview/scenarios.mjs';
 
@@ -48,9 +55,38 @@ function composePopups(command, dir, target) {
   execFileSync(command, ['-size', `${width}x${height}`, `xc:${BACKGROUND}`, ...layers, target]);
 }
 
+/**
+ * Replaces the screenshots of the listing: those it shows are deleted, then
+ * each of store/screenshots.json is sent at its position, and given its
+ * caption (a translated field, set by an edit of the preview).
+ */
+async function upload(shots) {
+  const keys = amoKeys();
+  const { gecko } = JSON.parse(await readFile(path.join(ROOT, 'src', 'manifest', 'firefox.json'), 'utf8')).browser_specific_settings;
+  const addon = await amoRequest(keys, 'GET', `/addons/addon/${encodeURIComponent(gecko.id)}/`);
+  const previews = `/addons/addon/${addon.id}/previews`;
+  for (const preview of addon.previews ?? []) {
+    await amoRequest(keys, 'DELETE', `${previews}/${preview.id}/`);
+    console.log(`deleted the screenshot ${preview.id}`);
+  }
+  for (const [position, { file, caption }] of shots.entries()) {
+    const form = new FormData();
+    form.set('image', new Blob([await readFile(path.join(OUT_DIR, file))], { type: 'image/png' }), file);
+    form.set('position', String(position));
+    const created = await amoRequest(keys, 'POST', `${previews}/`, form);
+    await amoRequest(keys, 'PATCH', `${previews}/${created.id}/`, { caption });
+    console.log(`sent store/screenshots/${file}, screenshot ${created.id}`);
+  }
+}
+
 async function main() {
-  const command = imageMagick();
+  const { values } = parseArgs({ options: { upload: { type: 'boolean', default: false } } });
   const captions = JSON.parse(await readFile(CAPTIONS, 'utf8'));
+  if (values.upload) {
+    await upload(captions);
+    return;
+  }
+  const command = imageMagick();
   const workDir = await mkdtemp(path.join(tmpdir(), 'yal-store-'));
   try {
     const preview = spawnSync(
